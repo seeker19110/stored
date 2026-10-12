@@ -4470,6 +4470,16 @@
       "open_source": true,
       "notes": "Guide red-team AI một người viết (README ~3.580 dòng + ES/ZH/FR, 8 template); README ghi MIT nhưng không có file LICENSE; quảng cáo sản phẩm của tác giả (RedTeamKit, AVERSYN/Cogensec); ★ đọc 12/10/2026",
       "section": "12"
+    },
+    {
+      "name": "CodeFlow",
+      "repo": "braedonsaunders/codeflow",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 5400,
+      "open_source": true,
+      "notes": "Bản đồ phụ thuộc/blast radius/health score trong một index.html, không LLM, không backend; chỉ gọi api.github.com; CLI loopback; GitHub Action card (tag v1 cũ → ghim SHA); ~47% commit do agent; ★ ~5,4k đọc 12/10/2026",
+      "section": "16"
     }
   ]
 }

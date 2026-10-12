@@ -218,3 +218,9 @@
 - Tác giả và sản phẩm: tarique-io.lovable.app · huggingface.co/spaces/Cogensec/README · airedteamkit.com (giá $99/$299/$799, 12/10/2026)
 - Kiểm nhận định: microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us · futurumgroup.com (OpenAI mua Promptfoo, 9/3/2026) · news.bloomberglaw.com · canberratimes.com.au/story/9359341 (Medicare)
 - So sánh: OWASP GenAI Red Teaming Guide · CSA Agentic AI Red Teaming Guide · aisi.go.jp/assets/pdf/E1_ai_safety_RT_v1.10_en.pdf · github.com/cloudstreet-dev/AI-Red-Teaming (4★) · github.com/Vect0rdecay/ai-red-team-course (36★)
+
+## Bổ sung 2026-10-12 (link braedonsaunders/codeflow → mục 16 §2c)
+
+- github.com/braedonsaunders/codeflow (clone đầy đủ, 215 commit, HEAD b0e82d1; chạy `node --test`: 231 pass, 1 skip): README.md, index.html, cli/codeflow.mjs, card/ (action.yml, lib/analyzer.js, README.md), .github/workflows/test.yml, codeql.yml; trang GitHub (~5,4k★, 820 fork, 12/10/2026) · codeflow-five.vercel.app · github.com/braedonsaunders
+- themenonlab.blog/blog/codeflow-github-architecture-visualizer (blog) · skills.sh/akillness/jeo-skills/codeflow (skill bọc lại, bên thứ ba); không tìm thấy thảo luận HN/Reddit
+- So sánh (★ 12/10/2026): ahmedkhaleel2004/gitdiagram (18,1k), sverweij/dependency-cruiser (7,3k), MaibornWolff/codecharta (547)
