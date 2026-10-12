@@ -39,7 +39,9 @@
       "data",
       "docs",
       "prompt",
-      "vietnam"
+      "vietnam",
+      "reasoning-skill",
+      "agentic-video"
     ]
   },
   "projects": [
@@ -1892,6 +1894,116 @@
       "open_source": true,
       "notes": "HF",
       "section": "18"
+    },
+    {
+      "name": "ADHD (adhd-agent)",
+      "repo": "UditAkhourii/adhd",
+      "category": "reasoning-skill",
+      "license": "MIT",
+      "stars": 4400,
+      "open_source": true,
+      "notes": "Skill parallel divergent ideation (5 frame cô lập → critic → deepen top-3); 5–10× chi phí; eval tự báo cáo 5/6; link từ người dùng 2026-10-12",
+      "section": "03"
+    },
+    {
+      "name": "neuroarxiv",
+      "repo": "UditAkhourii/neuroarxiv",
+      "category": "reasoning-skill",
+      "license": "MIT",
+      "stars": 434,
+      "open_source": true,
+      "notes": "Skill check prior art arXiv; cùng tác giả ADHD",
+      "section": "03"
+    },
+    {
+      "name": "OpenMontage",
+      "repo": "calesthio/OpenMontage",
+      "category": "agentic-video",
+      "license": "AGPL-3.0",
+      "stars": 67100,
+      "open_source": true,
+      "notes": "Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12",
+      "section": "19"
+    },
+    {
+      "name": "Crucix",
+      "repo": "calesthio/Crucix",
+      "category": "personal-agent",
+      "license": null,
+      "stars": 12100,
+      "open_source": true,
+      "notes": "Agent giám sát nguồn dữ liệu; cùng tác giả OpenMontage",
+      "section": "19"
+    },
+    {
+      "name": "generative-media-skills",
+      "repo": "calesthio/generative-media-skills",
+      "category": "agentic-video",
+      "license": null,
+      "stars": 199,
+      "open_source": true,
+      "notes": "Skills sinh ảnh/video/audio cho coding agent",
+      "section": "19"
+    },
+    {
+      "name": "awesome-claude-video-skills",
+      "repo": "zhuyansen/awesome-claude-video-skills",
+      "category": "agentic-video",
+      "license": null,
+      "stars": 55000,
+      "open_source": true,
+      "notes": "Số từ trendshift, chưa xác minh",
+      "section": "19"
+    },
+    {
+      "name": "claude-motion-design",
+      "repo": "howseen-ai/claude-motion-design",
+      "category": "agentic-video",
+      "license": null,
+      "stars": 45000,
+      "open_source": true,
+      "notes": "Số từ trendshift, chưa xác minh",
+      "section": "19"
+    },
+    {
+      "name": "Remotion",
+      "repo": "remotion-dev/remotion",
+      "category": "agentic-video",
+      "license": "Remotion License",
+      "stars": null,
+      "open_source": true,
+      "notes": "Video bằng React",
+      "section": "19"
+    },
+    {
+      "name": "Open-Sora",
+      "repo": "hpcaitech/Open-Sora",
+      "category": "agentic-video",
+      "license": "Apache-2.0",
+      "stars": 24100,
+      "open_source": true,
+      "notes": "",
+      "section": "19"
+    },
+    {
+      "name": "HunyuanVideo",
+      "repo": "Tencent-Hunyuan/HunyuanVideo",
+      "category": "agentic-video",
+      "license": "Tencent Community",
+      "stars": 11900,
+      "open_source": true,
+      "notes": "",
+      "section": "19"
+    },
+    {
+      "name": "CogVideoX",
+      "repo": "zai-org/CogVideo",
+      "category": "agentic-video",
+      "license": "Apache-2.0",
+      "stars": 12500,
+      "open_source": true,
+      "notes": "",
+      "section": "19"
     }
   ]
 }

@@ -62,7 +62,45 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 6. Cô lập tài nguyên (worktree, sandbox) khi chạy song song.
 7. Người review ở cuối vòng; không để loop tự merge vào main.
 
-## 7. Nguồn
+## 8. Case study: ADHD – Parallel Divergent Ideation (link từ người dùng, 2026-10-12)
+
+| Thuộc tính | Giá trị (đọc 2026-10-12) |
+|---|---|
+| Repo | https://github.com/UditAkhourii/adhd · npm `adhd-agent` · docs adhd.mintlify.site · preprint adhdstack.github.io (v0.1, 25/5/2026) |
+| Mô tả | "A skill for coding agents. Tree-of-thought with pruning, built on the Claude & Codex Agent SDK" |
+| Tác giả | Udit Akhouri (Raj) – "Independent AI Researcher", IIT Patna; từng ở Emora Health, Malpani Ventures; 125 followers; repo liên quan: neuroarxiv (434★, check prior art trên arXiv), quicksilver, brane-code, branerail, cdaf |
+| ★ / forks / commit | 4.4k ★ · ~300–314 forks · 74 commit · 2 contributor · 12 issue mở; +864★ trong 61 ngày (13/8–12/10/2026), đỉnh 19/8 (+122), đang chậm lại |
+| License | MIT |
+| Ngôn ngữ | TypeScript (~600 dòng core), Node 18+; cài `npx skills add UditAkhourii/adhd` hoặc `npm i -g adhd-agent` |
+
+### Cơ chế (từ `SKILL.md` và preprint)
+- **Vấn đề nhắm tới:** *premature convergence* – LLM chọn phương án hợp lý đầu tiên rồi "đánh bóng" nó.
+- **Phase 1 – Diverge (không critic):** chọn 5 trong 15 "cognitive frame" (hardware engineer, regulator, 10-year-old, competitor, biology, logistics, game design, markets, inversion, $0/1h, infinite budget/10y, remove load-bearing assumption, speedrunner, ant colony, 3am on-call); spawn **5 Agent/Task call song song, cô lập** (không thấy nhau → tránh anchoring), mỗi nhánh trả JSON 6 ý tưởng ngắn. Với bài code: 4 frame code/design + 1 wild.
+- **Phase 2 – Focus (critic bật):** 1 call chấm novelty/viability/fit (0–10, trọng số 0.35/0.40/0.25), gắn cờ **trap** (ý tưởng hấp dẫn nhưng chi phí ẩn); 1 call cluster theo "góc nhìn"; 3 call song song **deepen** top-3 (sketch, rủi ro chịu tải, bước đầu tiên, ý con).
+- **Output cố định:** Brief → Wide set (cluster + chip `[N7 V8 F9]`) → Converge (shortlist 2–4, ★ non-obvious pick, traps riêng) → Focus → Provocation.
+- **Gate tiền kiểm:** chỉ chạy khi bài **mở, rủi ro cao, cách hỏi mở**; bỏ qua với syntax/lookup/"quick/standard/one-line". ~10 call/run, 30–90 giây, **5–10× chi phí** single-shot.
+- **Anti-pattern tác giả nêu:** hội tụ giả dạng phân kỳ; ý lạ mà không hội tụ; chạy "song song" tuần tự; không dám chốt.
+- **Khác ToT (Yao 2023):** nhánh **cô lập** (ToT chia sẻ context), phân nhánh bằng **đổi vantage point** chứ không phải đổi bước kế tiếp, generator/critic là **2 call tách biệt** với system prompt đối lập.
+
+### Bằng chứng & phê bình
+| Nguồn | Nội dung |
+|---|---|
+| EVALS.md / preprint (tự báo cáo) | 6 bài kỹ thuật (LRU cache, LLM hang CLI, rate limiter + leader election, bug 0.1%, tách monolith Rails, đặt tên feature-flag); judge = LLM "skeptical staff engineer" (không nêu model); ADHD thắng 5/6; Δ: breadth +4.17, novelty +5.17, **trap detection +7.67**, actionability +3.00, builder usefulness +0.83 |
+| Hạn chế tác giả tự nhận | judge cùng họ model (familiarity bias); mẫu 6 bài; frame viết tay có thể trùng ý; actionability bị **confound** do ADHD có schema output còn baseline không; chỉ bài engineering |
+| The New Stack (6/2026) | Tiêu đề: *"gave Claude Code 'ADHD'… thinks 2x better now. Outside experts want more proof."* Tác giả nói với báo: "good for brainstorming and planning, **not coding**" |
+| dudarik.com (5/6, cập nhật 7/7/2026) | "2×" chưa được tái lập độc lập; testdouble/han review 8 vòng nêu câu hỏi phương pháp (issues #16–18); chi phí tăng theo N, thêm độ trễ trước khi code |
+| ADOPTERS.md (16 entry, tự duy trì) | Đáng tin nhất là entry có PR merge: repowire (#313), mythify, godaudits, godplans (có **control arm** và từ chối một số tính năng), han; `multi` port đa model (mỗi frame một họ model); phần còn lại là fork/cài đặt |
+
+### Bài học cho kho này
+1. Là hiện thân gọn của **parallelization (sectioning) + evaluator-optimizer** trong 5 pattern của Anthropic (mục 1), dùng đúng cho bài *open-ended* chứ không phải thực thi.
+2. **Cô lập context giữa các nhánh** là điểm thiết kế đáng tái dùng khi chạy subagent song song (mục 5): subagent không nên thấy output nhau nếu muốn đa dạng.
+3. Tách generator/critic bằng call riêng + rubric số + trap list → mẫu tốt cho "design review" trước khi vào Ralph loop.
+4. Rủi ro: chi phí 5–10×, bằng chứng tự báo cáo với judge cùng model; nên tự chạy A/B trên bài của mình (bench/results.json có transcript đầy đủ) và kiểm tra `han` review trước khi đưa vào quy trình team.
+5. Liên hệ: mục 04 (SKILL.md), mục 07 (LLM-as-judge), mục 17 (frame = persona prompting có chủ đích "distort perspective, not supply expertise").
+
+**Nguồn:** https://github.com/UditAkhourii/adhd (README, SKILL.md, EVALS.md, ADOPTERS.md) · https://adhdstack.github.io/ · https://github.com/UditAkhourii · https://trendshift.io/repositories/39300 · https://thenewstack.io/claude-code-adhd/ · https://dudarik.com/en/blog/adhd/ · https://explainx.ai/skills/UditAkhourii/adhd/adhd · https://futureagi.com/blog/what-is-tree-of-thoughts-prompting-2026/ · https://arxiv.org/html/2605.06040v1 (Novelty-based ToT) · https://arxiv.org/html/2605.28566v2 (ToT as heuristic search)
+
+## 9. Nguồn (mục 1–7)
 - https://www.anthropic.com/research/building-effective-agents
 - https://docs.spring.io/spring-ai/reference/api/effective-agents.html (diễn giải lại 5 pattern)
 - https://atlan.com/know/ai-agent/what-is-an-agent-loop/ · https://blogs.oracle.com/developers/what-is-the-ai-agent-loop-the-core-architecture-behind-autonomous-ai-systems

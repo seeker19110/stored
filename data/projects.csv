@@ -183,3 +183,14 @@ underthesea,undertheseanlp/underthesea,https://github.com/undertheseanlp/underth
 VnCoreNLP,vncorenlp/VnCoreNLP,https://github.com/vncorenlp/VnCoreNLP,vietnam,GPL-3.0,,True,18,
 awsome-vietnamese-nlp,vndee/awsome-vietnamese-nlp,https://github.com/vndee/awsome-vietnamese-nlp,vietnam,,,True,18,
 Vistral,Viet-Mistral/Vistral-7B-Chat,https://github.com/Viet-Mistral/Vistral-7B-Chat,vietnam,Apache-2.0,,True,18,HF
+ADHD (adhd-agent),UditAkhourii/adhd,https://github.com/UditAkhourii/adhd,reasoning-skill,MIT,4400,True,03,Skill parallel divergent ideation (5 frame cô lập → critic → deepen top-3); 5–10× chi phí; eval tự báo cáo 5/6; link từ người dùng 2026-10-12
+neuroarxiv,UditAkhourii/neuroarxiv,https://github.com/UditAkhourii/neuroarxiv,reasoning-skill,MIT,434,True,03,Skill check prior art arXiv; cùng tác giả ADHD
+OpenMontage,calesthio/OpenMontage,https://github.com/calesthio/OpenMontage,agentic-video,AGPL-3.0,67100,True,19,"Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12"
+Crucix,calesthio/Crucix,https://github.com/calesthio/Crucix,personal-agent,,12100,True,19,Agent giám sát nguồn dữ liệu; cùng tác giả OpenMontage
+generative-media-skills,calesthio/generative-media-skills,https://github.com/calesthio/generative-media-skills,agentic-video,,199,True,19,Skills sinh ảnh/video/audio cho coding agent
+awesome-claude-video-skills,zhuyansen/awesome-claude-video-skills,https://github.com/zhuyansen/awesome-claude-video-skills,agentic-video,,55000,True,19,"Số từ trendshift, chưa xác minh"
+claude-motion-design,howseen-ai/claude-motion-design,https://github.com/howseen-ai/claude-motion-design,agentic-video,,45000,True,19,"Số từ trendshift, chưa xác minh"
+Remotion,remotion-dev/remotion,https://github.com/remotion-dev/remotion,agentic-video,Remotion License,,True,19,Video bằng React
+Open-Sora,hpcaitech/Open-Sora,https://github.com/hpcaitech/Open-Sora,agentic-video,Apache-2.0,24100,True,19,
+HunyuanVideo,Tencent-Hunyuan/HunyuanVideo,https://github.com/Tencent-Hunyuan/HunyuanVideo,agentic-video,Tencent Community,11900,True,19,
+CogVideoX,zai-org/CogVideo,https://github.com/zai-org/CogVideo,agentic-video,Apache-2.0,12500,True,19,

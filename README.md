@@ -12,7 +12,7 @@
 |---|-----------|----------------|
 | 01 | [AI Coding Agents](01-ai-coding-agents/README.md) | OpenCode, Claude Code, Codex CLI, Gemini CLI, Cline, Aider, DeepSeek Harness, OpenHands, SWE-agent, Cursor, Windsurf/Devin, Copilot, Jules; benchmark SWE-bench |
 | 02 | [Agent Frameworks](02-agent-frameworks/README.md) | LangGraph, CrewAI, AutoGen → MS Agent Framework, OpenAI Agents SDK, LangChain, LlamaIndex, Semantic Kernel, smolagents, Haystack, PydanticAI, OpenClaw |
-| 03 | [Agentic Patterns & Loops](03-agentic-patterns-loops/README.md) | 5 workflow của Anthropic, ReAct, Plan-Execute, Reflexion, Ralph Wiggum loop, context engineering, harness engineering, multi-agent + git worktrees |
+| 03 | [Agentic Patterns & Loops](03-agentic-patterns-loops/README.md) | 5 workflow của Anthropic, ReAct, Plan-Execute, Reflexion, Ralph Wiggum loop, context engineering, harness engineering, multi-agent + git worktrees; **case study ADHD** (parallel divergent ideation skill) |
 | 04 | [Protocols & Standards](04-protocols-standards/README.md) | MCP, A2A, AG-UI, Agent Skills (SKILL.md), AGENTS.md, .cursorrules |
 | 05 | [Low-code LLM Platforms](05-low-code-llm-platforms/README.md) | n8n, Dify, Langflow, Flowise |
 | 06 | [UI/UX & Design](06-ui-ux-design/README.md) | shadcn/ui, Radix, Base UI, MUI, Mantine; Penpot, Excalidraw, tldraw, Onlook; v0, Lovable, Bolt, Stitch; Taste Skill, Refactoring UI, Laws of UX; CopilotKit, assistant-ui, Vercel AI SDK |
@@ -28,6 +28,7 @@
 | 16 | [Docs Tools & Docs-for-AI](16-docs-tools/README.md) | Docusaurus, MkDocs Material/Zensical, Starlight, Fumadocs, Mintlify; llms.txt, Context7 |
 | 17 | [Prompt Engineering](17-prompt-engineering/README.md) | DAIR Prompt Engineering Guide, Anthropic prompt docs, DSPy, TextGrad, bộ sưu tập system prompt |
 | 18 | [Hệ sinh thái Việt Nam](18-vietnam-community/README.md) | PhoGPT, Vistral, URA-LLaMA; underthesea, VnCoreNLP; ViGen; VinAI, VietAI, Zalo AI, hackathon 2026 |
+| 19 | [Agentic Video & Media](19-agentic-video-media/README.md) | **OpenMontage** (67k★, agent là orchestrator: director skills + schema + gate + cost tracker), làn sóng video/motion skills cho Claude Code, Open-Sora, HunyuanVideo, CogVideoX, Remotion |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -77,7 +78,11 @@
 - Docs-for-AI: llms.txt vẫn là đề xuất (adoption 2–10%), Context7 (MCP) mới là cách coding agent lấy docs; prompt engineering chuyển thành **context engineering + DSPy**.
 - Việt Nam: PhoGPT/underthesea là nền, ViGen (dataset quốc gia) và loạt hackathon 2026 cho thấy cộng đồng chuyển từ outsourcing sang AI building.
 
-### 9. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
+### 9. "Skills-as-orchestrator" và "ideation-as-skill" là hai mẫu mới đáng theo dõi
+- **OpenMontage** (67k★) không có orchestrator bằng code: agent đọc AGENT_GUIDE, đi qua 7 stage cố định với director skill, JSON schema, approval gate per-stage, registry runtime và decision log append-only. Đây là bản mở rộng của SKILL.md sang workflow sáng tạo nhiều provider.
+- **ADHD** (4.4k★) đóng gói parallelization + evaluator thành một skill cho bài open-ended: 5 nhánh cô lập dưới các "cognitive frame", critic chấm/prune/deepen; chi phí 5–10×, bằng chứng tự báo cáo và giới chuyên gia còn đòi thêm proof.
+
+### 10. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
 
 ---
