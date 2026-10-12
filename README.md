@@ -23,6 +23,11 @@
 | 11 | [Browser Agents, Computer Use & Sandboxes](11-browser-computer-use-sandbox/README.md) | Browser Use, Stagehand, agent-browser, Playwright MCP; Anthropic Computer Use, OpenAI Operator; E2B, Modal, Daytona |
 | 12 | [AI Security & Guardrails](12-ai-security-guardrails/README.md) | OWASP LLM / Agentic / MCP Top 10; NeMo Guardrails, LLM Guard, Guardrails AI, Promptfoo red-team; gitleaks, trufflehog; AgentDojo |
 | 13 | [Dev Stack & DevOps](13-dev-stack-devops/README.md) | React, Vue, Next.js, Svelte, Astro; FastAPI, NestJS, Hono; Flutter, RN/Expo, KMP; Kubernetes, OpenTofu, Argo CD, GitHub Actions; Spec Kit, Kiro, BMAD; CodeRabbit, Greptile, Qodo |
+| 14 | [Voice & Multimodal](14-voice-multimodal/README.md) | Pipecat, LiveKit Agents, TEN; Whisper, faster-whisper, Kokoro, Chatterbox; Qwen3-VL, LLaVA; ComfyUI, A1111, Fooocus |
+| 15 | [AI for Data](15-ai-for-data/README.md) | DuckDB, Polars, PandasAI, Vanna, marimo, Jupyter AI, Ibis, Data Formulator, MindsDB |
+| 16 | [Docs Tools & Docs-for-AI](16-docs-tools/README.md) | Docusaurus, MkDocs Material/Zensical, Starlight, Fumadocs, Mintlify; llms.txt, Context7 |
+| 17 | [Prompt Engineering](17-prompt-engineering/README.md) | DAIR Prompt Engineering Guide, Anthropic prompt docs, DSPy, TextGrad, bộ sưu tập system prompt |
+| 18 | [Hệ sinh thái Việt Nam](18-vietnam-community/README.md) | PhoGPT, Vistral, URA-LLaMA; underthesea, VnCoreNLP; ViGen; VinAI, VietAI, Zalo AI, hackathon 2026 |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -67,7 +72,12 @@
 - **Memory** (Mem0, Graphiti, Letta), **sandbox** (E2B Firecracker, Modal gVisor), **browser** (Browser Use ~114k★, Stagehand), **guardrails** (NeMo, LLM Guard) tách khỏi framework agent; OWASP đã có Top 10 riêng cho Agentic (12/2025) và MCP (2026).
 - **Spec-driven development** (Spec Kit, Kiro, BMAD) và **AI code review** (CodeRabbit, Greptile, Qodo) khép kín vòng: spec → agent code → review bot → checklist deploy.
 
-### 8. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
+### 8. Voice, multimodal và data agent đã đủ chín để tự host
+- Pipecat/LiveKit + Whisper + Kokoro/Chatterbox cho voice agent mở; ComfyUI thắng cuộc đua UI sinh ảnh; DuckDB (40k★) + Vanna/PandasAI + marimo là stack "hỏi dữ liệu bằng ngôn ngữ tự nhiên".
+- Docs-for-AI: llms.txt vẫn là đề xuất (adoption 2–10%), Context7 (MCP) mới là cách coding agent lấy docs; prompt engineering chuyển thành **context engineering + DSPy**.
+- Việt Nam: PhoGPT/underthesea là nền, ViGen (dataset quốc gia) và loạt hackathon 2026 cho thấy cộng đồng chuyển từ outsourcing sang AI building.
+
+### 9. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
 
 ---

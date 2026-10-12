@@ -31,7 +31,15 @@
       "mobile",
       "devops",
       "spec-driven",
-      "code-review"
+      "code-review",
+      "voice",
+      "speech",
+      "vlm",
+      "image-gen",
+      "data",
+      "docs",
+      "prompt",
+      "vietnam"
     ]
   },
   "projects": [
@@ -1494,6 +1502,396 @@
       "open_source": true,
       "notes": "self-host",
       "section": "13"
+    },
+    {
+      "name": "Pipecat",
+      "repo": "pipecat-ai/pipecat",
+      "category": "voice",
+      "license": "BSD-2",
+      "stars": 15500,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "LiveKit Agents",
+      "repo": "livekit/agents",
+      "category": "voice",
+      "license": "Apache-2.0",
+      "stars": 13000,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "TEN Framework",
+      "repo": "TEN-framework/ten-framework",
+      "category": "voice",
+      "license": "Apache-2.0",
+      "stars": 11000,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "Whisper",
+      "repo": "openai/whisper",
+      "category": "speech",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "faster-whisper",
+      "repo": "SYSTRAN/faster-whisper",
+      "category": "speech",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "whisper.cpp",
+      "repo": "ggml-org/whisper.cpp",
+      "category": "speech",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "Kokoro TTS",
+      "repo": "hexgrad/kokoro",
+      "category": "speech",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "82M",
+      "section": "14"
+    },
+    {
+      "name": "Chatterbox",
+      "repo": "resemble-ai/chatterbox",
+      "category": "speech",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "voice clone",
+      "section": "14"
+    },
+    {
+      "name": "Qwen3-VL",
+      "repo": "QwenLM/Qwen3-VL",
+      "category": "vlm",
+      "license": "Apache-2.0",
+      "stars": 20100,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "LLaVA-NeXT",
+      "repo": "LLaVA-VL/LLaVA-NeXT",
+      "category": "vlm",
+      "license": "Apache-2.0",
+      "stars": 4700,
+      "open_source": true,
+      "notes": "",
+      "section": "14"
+    },
+    {
+      "name": "ComfyUI",
+      "repo": "comfyanonymous/ComfyUI",
+      "category": "image-gen",
+      "license": "GPL-3.0",
+      "stars": 130000,
+      "open_source": true,
+      "notes": "122k–136k",
+      "section": "14"
+    },
+    {
+      "name": "Stable Diffusion WebUI",
+      "repo": "AUTOMATIC1111/stable-diffusion-webui",
+      "category": "image-gen",
+      "license": "AGPL-3.0",
+      "stars": 164000,
+      "open_source": true,
+      "notes": "dừng phát triển",
+      "section": "14"
+    },
+    {
+      "name": "Fooocus",
+      "repo": "lllyasviel/Fooocus",
+      "category": "image-gen",
+      "license": "GPL-3.0",
+      "stars": 53400,
+      "open_source": true,
+      "notes": "LTS",
+      "section": "14"
+    },
+    {
+      "name": "DuckDB",
+      "repo": "duckdb/duckdb",
+      "category": "data",
+      "license": "MIT",
+      "stars": 40000,
+      "open_source": true,
+      "notes": "8/2026",
+      "section": "15"
+    },
+    {
+      "name": "Polars",
+      "repo": "pola-rs/polars",
+      "category": "data",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "PandasAI",
+      "repo": "sinaptik-ai/pandas-ai",
+      "category": "data",
+      "license": "MIT (trừ ee/)",
+      "stars": 23900,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "Vanna",
+      "repo": "vanna-ai/vanna",
+      "category": "data",
+      "license": "MIT",
+      "stars": 23700,
+      "open_source": true,
+      "notes": "text-to-SQL",
+      "section": "15"
+    },
+    {
+      "name": "marimo",
+      "repo": "marimo-team/marimo",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 22500,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "Jupyter AI",
+      "repo": "jupyterlab/jupyter-ai",
+      "category": "data",
+      "license": "BSD-3",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "Ibis",
+      "repo": "ibis-project/ibis",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 6600,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "Data Formulator",
+      "repo": "microsoft/data-formulator",
+      "category": "data",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "MindsDB",
+      "repo": "mindsdb/mindsdb",
+      "category": "data",
+      "license": "Elastic-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "Open Interpreter",
+      "repo": "openinterpreter/open-interpreter",
+      "category": "data",
+      "license": "AGPL-3.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "15"
+    },
+    {
+      "name": "Docusaurus",
+      "repo": "facebook/docusaurus",
+      "category": "docs",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "16"
+    },
+    {
+      "name": "Material for MkDocs",
+      "repo": "squidfunk/mkdocs-material",
+      "category": "docs",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "kế nhiệm Zensical",
+      "section": "16"
+    },
+    {
+      "name": "Starlight",
+      "repo": "withastro/starlight",
+      "category": "docs",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "16"
+    },
+    {
+      "name": "Fumadocs",
+      "repo": "fuma-nama/fumadocs",
+      "category": "docs",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "16"
+    },
+    {
+      "name": "Context7",
+      "repo": "upstash/context7",
+      "category": "docs",
+      "license": "MIT (server)",
+      "stars": null,
+      "open_source": true,
+      "notes": "MCP docs",
+      "section": "16"
+    },
+    {
+      "name": "llms.txt",
+      "repo": "AnswerDotAI/llms-txt",
+      "category": "docs",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "đề xuất 9/2024",
+      "section": "16"
+    },
+    {
+      "name": "Prompt Engineering Guide",
+      "repo": "dair-ai/Prompt-Engineering-Guide",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 78500,
+      "open_source": true,
+      "notes": "9/2026",
+      "section": "17"
+    },
+    {
+      "name": "DSPy",
+      "repo": "stanfordnlp/dspy",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 38500,
+      "open_source": true,
+      "notes": "v3.3.1",
+      "section": "17"
+    },
+    {
+      "name": "awesome-chatgpt-prompts",
+      "repo": "f/awesome-chatgpt-prompts",
+      "category": "prompt",
+      "license": "CC0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "17"
+    },
+    {
+      "name": "system-prompts-and-models-of-ai-tools",
+      "repo": "x1xhlol/system-prompts-and-models-of-ai-tools",
+      "category": "prompt",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "bộ sưu tập system prompt",
+      "section": "17"
+    },
+    {
+      "name": "TextGrad",
+      "repo": "zou-group/textgrad",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "17"
+    },
+    {
+      "name": "PhoGPT",
+      "repo": "VinAIResearch/PhoGPT",
+      "category": "vietnam",
+      "license": "custom",
+      "stars": null,
+      "open_source": true,
+      "notes": "VinAI",
+      "section": "18"
+    },
+    {
+      "name": "underthesea",
+      "repo": "undertheseanlp/underthesea",
+      "category": "vietnam",
+      "license": "GPL-3.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "v9.5.0 5/2026",
+      "section": "18"
+    },
+    {
+      "name": "VnCoreNLP",
+      "repo": "vncorenlp/VnCoreNLP",
+      "category": "vietnam",
+      "license": "GPL-3.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "18"
+    },
+    {
+      "name": "awsome-vietnamese-nlp",
+      "repo": "vndee/awsome-vietnamese-nlp",
+      "category": "vietnam",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "18"
+    },
+    {
+      "name": "Vistral",
+      "repo": "Viet-Mistral/Vistral-7B-Chat",
+      "category": "vietnam",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "HF",
+      "section": "18"
     }
   ]
 }

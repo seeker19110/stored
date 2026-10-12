@@ -144,3 +144,42 @@ Kiro,,,spec-driven,proprietary,,False,13,AWS IDE
 CodeRabbit,,,code-review,proprietary,,False,13,$24/$48
 Greptile,,,code-review,proprietary,,False,13,
 Qodo Merge,qodo-ai/pr-agent,https://github.com/qodo-ai/pr-agent,code-review,AGPL-3.0,,True,13,self-host
+Pipecat,pipecat-ai/pipecat,https://github.com/pipecat-ai/pipecat,voice,BSD-2,15500,True,14,
+LiveKit Agents,livekit/agents,https://github.com/livekit/agents,voice,Apache-2.0,13000,True,14,
+TEN Framework,TEN-framework/ten-framework,https://github.com/TEN-framework/ten-framework,voice,Apache-2.0,11000,True,14,
+Whisper,openai/whisper,https://github.com/openai/whisper,speech,MIT,,True,14,
+faster-whisper,SYSTRAN/faster-whisper,https://github.com/SYSTRAN/faster-whisper,speech,MIT,,True,14,
+whisper.cpp,ggml-org/whisper.cpp,https://github.com/ggml-org/whisper.cpp,speech,MIT,,True,14,
+Kokoro TTS,hexgrad/kokoro,https://github.com/hexgrad/kokoro,speech,Apache-2.0,,True,14,82M
+Chatterbox,resemble-ai/chatterbox,https://github.com/resemble-ai/chatterbox,speech,MIT,,True,14,voice clone
+Qwen3-VL,QwenLM/Qwen3-VL,https://github.com/QwenLM/Qwen3-VL,vlm,Apache-2.0,20100,True,14,
+LLaVA-NeXT,LLaVA-VL/LLaVA-NeXT,https://github.com/LLaVA-VL/LLaVA-NeXT,vlm,Apache-2.0,4700,True,14,
+ComfyUI,comfyanonymous/ComfyUI,https://github.com/comfyanonymous/ComfyUI,image-gen,GPL-3.0,130000,True,14,122k–136k
+Stable Diffusion WebUI,AUTOMATIC1111/stable-diffusion-webui,https://github.com/AUTOMATIC1111/stable-diffusion-webui,image-gen,AGPL-3.0,164000,True,14,dừng phát triển
+Fooocus,lllyasviel/Fooocus,https://github.com/lllyasviel/Fooocus,image-gen,GPL-3.0,53400,True,14,LTS
+DuckDB,duckdb/duckdb,https://github.com/duckdb/duckdb,data,MIT,40000,True,15,8/2026
+Polars,pola-rs/polars,https://github.com/pola-rs/polars,data,MIT,,True,15,
+PandasAI,sinaptik-ai/pandas-ai,https://github.com/sinaptik-ai/pandas-ai,data,MIT (trừ ee/),23900,True,15,
+Vanna,vanna-ai/vanna,https://github.com/vanna-ai/vanna,data,MIT,23700,True,15,text-to-SQL
+marimo,marimo-team/marimo,https://github.com/marimo-team/marimo,data,Apache-2.0,22500,True,15,
+Jupyter AI,jupyterlab/jupyter-ai,https://github.com/jupyterlab/jupyter-ai,data,BSD-3,,True,15,
+Ibis,ibis-project/ibis,https://github.com/ibis-project/ibis,data,Apache-2.0,6600,True,15,
+Data Formulator,microsoft/data-formulator,https://github.com/microsoft/data-formulator,data,MIT,,True,15,
+MindsDB,mindsdb/mindsdb,https://github.com/mindsdb/mindsdb,data,Elastic-2.0,,True,15,
+Open Interpreter,openinterpreter/open-interpreter,https://github.com/openinterpreter/open-interpreter,data,AGPL-3.0,,True,15,
+Docusaurus,facebook/docusaurus,https://github.com/facebook/docusaurus,docs,MIT,,True,16,
+Material for MkDocs,squidfunk/mkdocs-material,https://github.com/squidfunk/mkdocs-material,docs,MIT,,True,16,kế nhiệm Zensical
+Starlight,withastro/starlight,https://github.com/withastro/starlight,docs,MIT,,True,16,
+Fumadocs,fuma-nama/fumadocs,https://github.com/fuma-nama/fumadocs,docs,MIT,,True,16,
+Context7,upstash/context7,https://github.com/upstash/context7,docs,MIT (server),,True,16,MCP docs
+llms.txt,AnswerDotAI/llms-txt,https://github.com/AnswerDotAI/llms-txt,docs,Apache-2.0,,True,16,đề xuất 9/2024
+Prompt Engineering Guide,dair-ai/Prompt-Engineering-Guide,https://github.com/dair-ai/Prompt-Engineering-Guide,prompt,MIT,78500,True,17,9/2026
+DSPy,stanfordnlp/dspy,https://github.com/stanfordnlp/dspy,prompt,MIT,38500,True,17,v3.3.1
+awesome-chatgpt-prompts,f/awesome-chatgpt-prompts,https://github.com/f/awesome-chatgpt-prompts,prompt,CC0,,True,17,
+system-prompts-and-models-of-ai-tools,x1xhlol/system-prompts-and-models-of-ai-tools,https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools,prompt,,,True,17,bộ sưu tập system prompt
+TextGrad,zou-group/textgrad,https://github.com/zou-group/textgrad,prompt,MIT,,True,17,
+PhoGPT,VinAIResearch/PhoGPT,https://github.com/VinAIResearch/PhoGPT,vietnam,custom,,True,18,VinAI
+underthesea,undertheseanlp/underthesea,https://github.com/undertheseanlp/underthesea,vietnam,GPL-3.0,,True,18,v9.5.0 5/2026
+VnCoreNLP,vncorenlp/VnCoreNLP,https://github.com/vncorenlp/VnCoreNLP,vietnam,GPL-3.0,,True,18,
+awsome-vietnamese-nlp,vndee/awsome-vietnamese-nlp,https://github.com/vndee/awsome-vietnamese-nlp,vietnam,,,True,18,
+Vistral,Viet-Mistral/Vistral-7B-Chat,https://github.com/Viet-Mistral/Vistral-7B-Chat,vietnam,Apache-2.0,,True,18,HF

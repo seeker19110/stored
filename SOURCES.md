@@ -45,3 +45,12 @@
 - DevOps: spacelift.io, pulumi.com, qovery.com, oghabi.it, medium.com/@h.stoychev87, blog.railway.com, ksolves.com
 - SDD: augmentcode.com, reenbit.com, fundesk.io, github.com/Anioko/spec-driven-development, braingrid.ai, codemyspec.com, thebcms.com, intentdocs.com
 - Code review: dupple.com, morphllm.com, stork.ai, screencli.sh, wetheflywheel.com, blog.codercops.com, codepick.dev, cursor-alternatives.com
+
+## Bổ sung 2026-10-12 (mục 14–18)
+- Voice: micdrop.dev, livekit.com/blog, forasoft.com, github.com/pipecat-ai/pipecat, techsy.io, grokipedia.com, dograh.com
+- TTS: ocdevel.com, pinggy.io, tryspeakeasy.io, localaimaster.com, spheron.network, secondtalent.com, openvoxai.com, texttolab.com
+- VLM/image: github.com/QwenLM/Qwen3-VL, github.com/LLaVA-VL/LLaVA-NeXT, github.com/EvolvingLMMs-Lab/LLaVA-OneVision-2, en.wikipedia.org (ComfyUI, Automatic1111, Fooocus), github.com/lllyasviel/Fooocus, insiderllm.com, meetrix.io, dev.to/jovan_chan
+- Data: duckdb.org/2026/08/05/github-40k-stars, en.wikipedia.org/wiki/Polars_(software), github.com/sinaptik-ai/pandas-ai, github.com/topics/sql, aitools.flocci.in, jupysql.readthedocs.io
+- Docs: mintlify.com/library, dupple.com, ekline.io, pkgpulse.com, docsalot.dev, affine.pro, upstash.com/blog (context7), glama.ai, npmjs.com/@upstash/context7-mcp, tooldirectory.ai, codersera.com, limy.ai, aisaasradar.com, seeklab.io, llmpulse.ai
+- Prompt: github.com/dair-ai/Prompt-Engineering-Guide, star-history.com, dev.to/web_dev-usman, github.com/stanfordnlp/dspy, futureagi.com, promptquorum.com, github.com/ganarajpr/awesome-dspy
+- Việt Nam: emergentmind.com (PhoGPT), arXiv 2509.26189 / 2608.25478, ai.stanford.edu/blog/crossing-linguistic-horizon, aisean.org, huggingface.co/Vi-VLM, github.com/vndee/awsome-vietnamese-nlp, pypi.org/project/underthesea, github.com/undertheseanlp/underthesea, aclanthology.org/N18-5012, sotatek.com (ViGen), technode.global, morsoftware.com, vietnam.vn, openhackathons.org
