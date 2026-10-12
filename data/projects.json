@@ -41,7 +41,8 @@
       "prompt",
       "vietnam",
       "reasoning-skill",
-      "agentic-video"
+      "agentic-video",
+      "plugin-marketplace"
     ]
   },
   "projects": [
@@ -2004,6 +2005,36 @@
       "open_source": true,
       "notes": "",
       "section": "19"
+    },
+    {
+      "name": "knowledge-work-plugins",
+      "repo": "anthropics/knowledge-work-plugins",
+      "category": "plugin-marketplace",
+      "license": "Apache-2.0",
+      "stars": 29200,
+      "open_source": true,
+      "notes": "123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12",
+      "section": "20"
+    },
+    {
+      "name": "claude-plugins-community",
+      "repo": "anthropics/claude-plugins-community",
+      "category": "plugin-marketplace",
+      "license": "Apache-2.0",
+      "stars": 4600,
+      "open_source": true,
+      "notes": "Mirror read-only marketplace cộng đồng",
+      "section": "20"
+    },
+    {
+      "name": "claude-plugins-official",
+      "repo": "anthropics/claude-plugins-official",
+      "category": "plugin-marketplace",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "Marketplace chính thức, tự thêm khi mở Claude Code",
+      "section": "20"
     }
   ]
 }

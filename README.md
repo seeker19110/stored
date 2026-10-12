@@ -29,6 +29,7 @@
 | 17 | [Prompt Engineering](17-prompt-engineering/README.md) | DAIR Prompt Engineering Guide, Anthropic prompt docs, DSPy, TextGrad, bộ sưu tập system prompt |
 | 18 | [Hệ sinh thái Việt Nam](18-vietnam-community/README.md) | PhoGPT, Vistral, URA-LLaMA; underthesea, VnCoreNLP; ViGen; VinAI, VietAI, Zalo AI, hackathon 2026 |
 | 19 | [Agentic Video & Media](19-agentic-video-media/README.md) | **OpenMontage** (67k★, agent là orchestrator: director skills + schema + gate + cost tracker), làn sóng video/motion skills cho Claude Code, Open-Sora, HunyuanVideo, CogVideoX, Remotion |
+| 20 | [Claude Plugins Ecosystem](20-claude-plugins-ecosystem/README.md) | **anthropics/knowledge-work-plugins** (29k★, 123 plugin: 22 theo vai trò + 101 vendor), giải phẫu plugin/SKILL.md/marketplace.json, 3 marketplace Anthropic, so sánh với Cursor/Copilot/OpenAI Apps |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -82,7 +83,10 @@
 - **OpenMontage** (67k★) không có orchestrator bằng code: agent đọc AGENT_GUIDE, đi qua 7 stage cố định với director skill, JSON schema, approval gate per-stage, registry runtime và decision log append-only. Đây là bản mở rộng của SKILL.md sang workflow sáng tạo nhiều provider.
 - **ADHD** (4.4k★) đóng gói parallelization + evaluator thành một skill cho bài open-ended: 5 nhánh cô lập dưới các "cognitive frame", critic chấm/prune/deepen; chi phí 5–10×, bằng chứng tự báo cáo và giới chuyên gia còn đòi thêm proof.
 
-### 10. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
+### 10. Plugin "không code" trở thành đơn vị phân phối tri thức nghề nghiệp
+- `anthropics/knowledge-work-plugins`: 123 plugin toàn markdown + JSON (skills, .mcp.json), 101 trong đó là vendor pin theo commit sha. Plugin `sales` tăng từ 9 lên 36 skill trong một tháng. Skill `call-prep` là mẫu chuẩn về tool-agnostic + guardrail chống prompt injection ("data, never instructions"). Chi phí thật của plugin là context mỗi lượt.
+
+### 11. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
 
 ---
