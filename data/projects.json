@@ -18,7 +18,20 @@
       "eval-observability",
       "awesome-list",
       "learning",
-      "checklist"
+      "checklist",
+      "inference",
+      "vector-db",
+      "rag",
+      "agent-memory",
+      "browser-agent",
+      "sandbox",
+      "security",
+      "frontend",
+      "backend",
+      "mobile",
+      "devops",
+      "spec-driven",
+      "code-review"
     ]
   },
   "projects": [
@@ -891,6 +904,596 @@
       "open_source": true,
       "notes": "Map ASVS ↔ WSTG",
       "section": "09"
+    },
+    {
+      "name": "Ollama",
+      "repo": "ollama/ollama",
+      "category": "inference",
+      "license": "MIT",
+      "stars": 175000,
+      "open_source": true,
+      "notes": "Wrapper llama.cpp; API OpenAI-compatible",
+      "section": "10"
+    },
+    {
+      "name": "llama.cpp",
+      "repo": "ggml-org/llama.cpp",
+      "category": "inference",
+      "license": "MIT",
+      "stars": 100000,
+      "open_source": true,
+      "notes": "Engine nền; sao lệch 85k–130k",
+      "section": "10"
+    },
+    {
+      "name": "vLLM",
+      "repo": "vllm-project/vllm",
+      "category": "inference",
+      "license": "Apache-2.0",
+      "stars": 85000,
+      "open_source": true,
+      "notes": "Serving production",
+      "section": "10"
+    },
+    {
+      "name": "SGLang",
+      "repo": "sgl-project/sglang",
+      "category": "inference",
+      "license": "Apache-2.0",
+      "stars": 25000,
+      "open_source": true,
+      "notes": "RadixAttention",
+      "section": "10"
+    },
+    {
+      "name": "Milvus",
+      "repo": "milvus-io/milvus",
+      "category": "vector-db",
+      "license": "Apache-2.0",
+      "stars": 42000,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "Qdrant",
+      "repo": "qdrant/qdrant",
+      "category": "vector-db",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Rust; filtering",
+      "section": "10"
+    },
+    {
+      "name": "Chroma",
+      "repo": "chroma-core/chroma",
+      "category": "vector-db",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "Weaviate",
+      "repo": "weaviate/weaviate",
+      "category": "vector-db",
+      "license": "BSD-3",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "pgvector",
+      "repo": "pgvector/pgvector",
+      "category": "vector-db",
+      "license": "PostgreSQL",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "LanceDB",
+      "repo": "lancedb/lancedb",
+      "category": "vector-db",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "GraphRAG",
+      "repo": "microsoft/graphrag",
+      "category": "rag",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "LightRAG",
+      "repo": "HKUDS/LightRAG",
+      "category": "rag",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "RAGFlow",
+      "repo": "infiniflow/ragflow",
+      "category": "rag",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "Mem0",
+      "repo": "mem0ai/mem0",
+      "category": "agent-memory",
+      "license": "Apache-2.0",
+      "stars": 65600,
+      "open_source": true,
+      "notes": "18/9/2026",
+      "section": "10"
+    },
+    {
+      "name": "Graphiti (Zep)",
+      "repo": "getzep/graphiti",
+      "category": "agent-memory",
+      "license": "Apache-2.0",
+      "stars": 31000,
+      "open_source": true,
+      "notes": "temporal KG",
+      "section": "10"
+    },
+    {
+      "name": "Letta",
+      "repo": "letta-ai/letta",
+      "category": "agent-memory",
+      "license": "Apache-2.0",
+      "stars": 24800,
+      "open_source": true,
+      "notes": "MemGPT",
+      "section": "10"
+    },
+    {
+      "name": "cognee",
+      "repo": "topoteretes/cognee",
+      "category": "agent-memory",
+      "license": "Apache-2.0",
+      "stars": 30000,
+      "open_source": true,
+      "notes": "",
+      "section": "10"
+    },
+    {
+      "name": "Browser Use",
+      "repo": "browser-use/browser-use",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 114000,
+      "open_source": true,
+      "notes": "9/2026",
+      "section": "11"
+    },
+    {
+      "name": "agent-browser",
+      "repo": "vercel-labs/agent-browser",
+      "category": "browser-agent",
+      "license": null,
+      "stars": 29500,
+      "open_source": false,
+      "notes": "CLI Rust",
+      "section": "11"
+    },
+    {
+      "name": "Stagehand",
+      "repo": "browserbase/stagehand",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 25600,
+      "open_source": true,
+      "notes": "v4 CDP",
+      "section": "11"
+    },
+    {
+      "name": "Skyvern",
+      "repo": "Skyvern-AI/skyvern",
+      "category": "browser-agent",
+      "license": "AGPL-3.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "11"
+    },
+    {
+      "name": "Playwright MCP",
+      "repo": "microsoft/playwright-mcp",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "accessibility tree",
+      "section": "11"
+    },
+    {
+      "name": "E2B",
+      "repo": "e2b-dev/E2B",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Firecracker microVM",
+      "section": "11"
+    },
+    {
+      "name": "Modal",
+      "repo": "modal-labs/modal-client",
+      "category": "sandbox",
+      "license": "Apache-2.0 (SDK)",
+      "stars": null,
+      "open_source": true,
+      "notes": "gVisor; GPU",
+      "section": "11"
+    },
+    {
+      "name": "Daytona",
+      "repo": "daytonaio/daytona",
+      "category": "sandbox",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Trạng thái mở chưa rõ từ 6/2026",
+      "section": "11"
+    },
+    {
+      "name": "NeMo Guardrails",
+      "repo": "NVIDIA/NeMo-Guardrails",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Colang rails",
+      "section": "12"
+    },
+    {
+      "name": "LLM Guard",
+      "repo": "protectai/llm-guard",
+      "category": "security",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "~35 scanner",
+      "section": "12"
+    },
+    {
+      "name": "Guardrails AI",
+      "repo": "guardrails-ai/guardrails",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "12"
+    },
+    {
+      "name": "OWASP MCP Top 10",
+      "repo": "OWASP/www-project-mcp-top-10",
+      "category": "security",
+      "license": "CC",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "12"
+    },
+    {
+      "name": "gitleaks",
+      "repo": "gitleaks/gitleaks",
+      "category": "security",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "secret scan",
+      "section": "12"
+    },
+    {
+      "name": "trufflehog",
+      "repo": "trufflesecurity/trufflehog",
+      "category": "security",
+      "license": "AGPL-3.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "secret scan",
+      "section": "12"
+    },
+    {
+      "name": "React",
+      "repo": "facebook/react",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 251000,
+      "open_source": true,
+      "notes": "11/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Vue",
+      "repo": "vuejs/core",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 208000,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Next.js",
+      "repo": "vercel/next.js",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 130000,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Angular",
+      "repo": "angular/angular",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 95000,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Svelte",
+      "repo": "sveltejs/svelte",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 78000,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Nuxt",
+      "repo": "nuxt/nuxt",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 54000,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Astro",
+      "repo": "withastro/astro",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 45500,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Vite",
+      "repo": "vitejs/vite",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "FastAPI",
+      "repo": "fastapi/fastapi",
+      "category": "backend",
+      "license": "MIT",
+      "stars": 100000,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "NestJS",
+      "repo": "nestjs/nest",
+      "category": "backend",
+      "license": "MIT",
+      "stars": 76800,
+      "open_source": true,
+      "notes": "10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Hono",
+      "repo": "honojs/hono",
+      "category": "backend",
+      "license": "MIT",
+      "stars": 32500,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Django",
+      "repo": "django/django",
+      "category": "backend",
+      "license": "BSD-3",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Spring Boot",
+      "repo": "spring-projects/spring-boot",
+      "category": "backend",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Flutter",
+      "repo": "flutter/flutter",
+      "category": "mobile",
+      "license": "BSD-3",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "React Native",
+      "repo": "facebook/react-native",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "+ Expo",
+      "section": "13"
+    },
+    {
+      "name": "Kotlin Multiplatform",
+      "repo": "JetBrains/kotlin",
+      "category": "mobile",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Kubernetes",
+      "repo": "kubernetes/kubernetes",
+      "category": "devops",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "OpenTofu",
+      "repo": "opentofu/opentofu",
+      "category": "devops",
+      "license": "MPL-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Fork Terraform",
+      "section": "13"
+    },
+    {
+      "name": "Terraform",
+      "repo": "hashicorp/terraform",
+      "category": "devops",
+      "license": "BSL-1.1",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Argo CD",
+      "repo": "argoproj/argo-cd",
+      "category": "devops",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "CNCF graduated",
+      "section": "13"
+    },
+    {
+      "name": "Dagger",
+      "repo": "dagger/dagger",
+      "category": "devops",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "GitHub Spec Kit",
+      "repo": "github/spec-kit",
+      "category": "spec-driven",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "specify/plan/tasks/implement",
+      "section": "13"
+    },
+    {
+      "name": "BMAD-METHOD",
+      "repo": "bmad-code-org/BMAD-METHOD",
+      "category": "spec-driven",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "role agents",
+      "section": "13"
+    },
+    {
+      "name": "OpenSpec",
+      "repo": "Fission-AI/OpenSpec",
+      "category": "spec-driven",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Kiro",
+      "repo": null,
+      "category": "spec-driven",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "AWS IDE",
+      "section": "13"
+    },
+    {
+      "name": "CodeRabbit",
+      "repo": null,
+      "category": "code-review",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "$24/$48",
+      "section": "13"
+    },
+    {
+      "name": "Greptile",
+      "repo": null,
+      "category": "code-review",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "",
+      "section": "13"
+    },
+    {
+      "name": "Qodo Merge",
+      "repo": "qodo-ai/pr-agent",
+      "category": "code-review",
+      "license": "AGPL-3.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "self-host",
+      "section": "13"
     }
   ]
 }

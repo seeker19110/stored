@@ -19,6 +19,10 @@
 | 07 | [Eval & Observability](07-eval-observability/README.md) | Langfuse, Promptfoo, DeepEval, Ragas, Arize Phoenix |
 | 08 | [Awesome Lists & Learning](08-awesome-lists-learning/README.md) | build-your-own-x, freeCodeCamp, system-design-primer, developer-roadmap, awesome-llm-apps, awesome-claude-code, awesome-agent-skills, awesome-mcp-servers, awesome-design-systems… |
 | 09 | [Engineering Checklists](09-engineering-checklists/README.md) | **PinoyFreeCoder/deployment-checklist** (pre-deploy web/mobile, agent.md trả GO/NO-GO) so với MarinJursic/production-readiness-checklist (10k control + scanner), OWASP ASVS/MASVS, Front-End-Checklist |
+| 10 | [Local LLM, Vector DB, RAG & Memory](10-local-llm-rag-memory/README.md) | Ollama, llama.cpp, vLLM, SGLang; Milvus, Qdrant, Chroma, pgvector; GraphRAG, LightRAG; Mem0, Graphiti, Letta, cognee |
+| 11 | [Browser Agents, Computer Use & Sandboxes](11-browser-computer-use-sandbox/README.md) | Browser Use, Stagehand, agent-browser, Playwright MCP; Anthropic Computer Use, OpenAI Operator; E2B, Modal, Daytona |
+| 12 | [AI Security & Guardrails](12-ai-security-guardrails/README.md) | OWASP LLM / Agentic / MCP Top 10; NeMo Guardrails, LLM Guard, Guardrails AI, Promptfoo red-team; gitleaks, trufflehog; AgentDojo |
+| 13 | [Dev Stack & DevOps](13-dev-stack-devops/README.md) | React, Vue, Next.js, Svelte, Astro; FastAPI, NestJS, Hono; Flutter, RN/Expo, KMP; Kubernetes, OpenTofu, Argo CD, GitHub Actions; Spec Kit, Kiro, BMAD; CodeRabbit, Greptile, Qodo |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -59,7 +63,11 @@
 ### 6. Eval & observability là mảnh ghép bắt buộc để lên production
 - Langfuse (tracing, MIT core) + Promptfoo (CI gate, red-team) + DeepEval/Ragas (metric) là stack miễn phí phổ biến.
 
-### 7. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
+### 7. Hạ tầng quanh agent đang chuẩn hóa thành các lớp riêng
+- **Memory** (Mem0, Graphiti, Letta), **sandbox** (E2B Firecracker, Modal gVisor), **browser** (Browser Use ~114k★, Stagehand), **guardrails** (NeMo, LLM Guard) tách khỏi framework agent; OWASP đã có Top 10 riêng cho Agentic (12/2025) và MCP (2026).
+- **Spec-driven development** (Spec Kit, Kiro, BMAD) và **AI code review** (CodeRabbit, Greptile, Qodo) khép kín vòng: spec → agent code → review bot → checklist deploy.
+
+### 8. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
 
 ---

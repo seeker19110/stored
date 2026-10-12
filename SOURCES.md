@@ -32,3 +32,16 @@
 - Checklists/agent go-live: futureagi.com, dev.to/techsavant_lab, akto.io, aona.ai, alliancetek.com, playcode.io
 - Eval: futureagi.com, inference.net, techsy.io, yobitel.com, builderai.tools, agentscamp.com, aiml.qa, genai.qa
 - Rankings: gitstarclub.com, countly.net, stackscan.com, hostinger.com, firecrawl.dev/blog/best-github-repos, fungies.io, eluminoustechnologies.com, kaggle.com (2026 most starred dataset)
+
+## Bổ sung 2026-10-12 (mục 10–13)
+- Local LLM: dev.to/sreeraj-sreenivasan, blog.starmorph.com, openalternative.co, storagereview.com, deepresearch.ninja, digitalapplied.com, fungies.io, techsy.io, phosailabs.com, maketocreate.com
+- Vector DB: atlan.com, firecrawl.dev, lakefs.io, aimultiple.com, vdf.ai, marktechpost.com, iternal.ai, karthikeyanrathinam.medium.com
+- Agent memory: atlan.com, dev.to/plur9, developersdigest.tech, thegenios.com, niteagent.com, futurepicker.com, contextstudios.ai, medium.com/@wasowski.jarek, baeseokjae.github.io
+- Browser agents: gist kevinmichaelchen, firecrawl.dev, scrapfly.io, agentscamp.com, bug0.com, github.com/browserbase/stagehand, kanopylabs.com, nxcode.io, respan.ai
+- Sandboxes: superagent.sh, blog.logrocket.com, devtoollab.com, bex.co, developersdigest.tech, beri.net, particula.tech, arXiv 2606.08433
+- Security: cycode.com, github.com/OWASP/www-project-mcp-top-10, imperva.com, promptfoo.dev, lakera.ai, blog.alexewerlof.com, getmaxim.ai, appsecsanta.com, dev.to/agdex_ai, turingpost.com, arXiv 2601.10440/2507.21170/2510.19169/2609.06543/2604.21477/2606.31227
+- Dev stack: solutelabs.com, intuz.com, findarepo.com, wasp.sh, github.com/vanodevium/node-framework-stars, encore.dev, hirenodejs.com, rankingdevs.com, index.dev, mgsoftware.nl
+- Mobile: javacodegeeks.com, drizz.dev, mobisoftinfotech.com, techqware.com, meduzzen.com
+- DevOps: spacelift.io, pulumi.com, qovery.com, oghabi.it, medium.com/@h.stoychev87, blog.railway.com, ksolves.com
+- SDD: augmentcode.com, reenbit.com, fundesk.io, github.com/Anioko/spec-driven-development, braingrid.ai, codemyspec.com, thebcms.com, intentdocs.com
+- Code review: dupple.com, morphllm.com, stork.ai, screencli.sh, wetheflywheel.com, blog.codercops.com, codepick.dev, cursor-alternatives.com
