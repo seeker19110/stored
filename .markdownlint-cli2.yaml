@@ -1,0 +1,14 @@
+# Cấu hình markdownlint cho kho tham khảo (markdownlint-cli2)
+config:
+  default: true
+  MD013: false   # độ dài dòng: bảng và đoạn phân tích dài là chủ ý
+  MD033: false   # cho phép HTML inline (<br>, <sub>)
+  MD034: false   # SOURCES.md liệt kê URL trần
+  MD024: false   # cho phép heading trùng tên giữa các mục (vd "Nguồn")
+  MD036: false   # dòng in đậm đứng riêng dùng làm nhãn
+  MD001: false   # cho phép heading nhảy cấp / mục "3b"
+  MD041: false   # dòng đầu không bắt buộc là H1
+  MD040: false   # code fence không bắt buộc ghi ngôn ngữ
+  MD060: false   # bảng không cần canh cột
+ignores:
+  - node_modules

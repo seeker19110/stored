@@ -5,6 +5,7 @@
 ---
 
 ## 0. Tóm tắt 60 giây
+
 - "Autonomous workflow" năm 2026 không còn là một agent chạy vô hạn kiểu AutoGPT 2023, mà là **vòng lặp có ràng buộc** (giới hạn vòng, ngân sách, điều kiện dừng, kiểm chứng đầu-cuối) đặt trong **harness** có bộ nhớ ngoài (progress file, feature list JSON, git) và chạy trên **trigger** (cron, API, sự kiện GitHub).
 - Anthropic công bố hai bài harness: **26/11/2025** (initializer agent + coding agent, `claude-progress.txt`, feature list JSON chỉ được sửa trường `passes`, test đầu-cuối bằng Puppeteer) và **24/3/2026** (planner + generator + evaluator, sprint contract, context reset vs compaction). Bài sau tự nhận: khi model mới ra, **nhiều thành phần harness trở nên thừa** (bỏ reset, bỏ sprint với Opus 4.5/4.6).
 - Claude Code có ba cách lập lịch chính thức: **Cloud Routines** (chạy trên hạ tầng Anthropic, tối thiểu 1 giờ, không cần máy bật, trigger lịch/API/GitHub), **Desktop scheduled tasks** (máy của bạn, tối thiểu 1 phút), **`/loop`** (trong session, cron 5 trường, jitter, hết hạn sau 7 ngày, tối đa 50 task/session).
@@ -31,6 +32,7 @@ Nguyên tắc chung rút ra: **loop** quyết định *khi nào dừng*, **harne
 ## 2. Hai bài harness của Anthropic (đọc gốc, 2026-10-12)
 
 ### 2.1 "Effective harnesses for long-running agents" (Justin Young, 26/11/2025)
+
 - **Vấn đề:** agent làm việc qua nhiều context window mất trí nhớ giữa các session. Compaction giúp một phần, nhưng ngay cả Opus 4.5 chạy loop với prompt cao cấp ("xây bản clone claude.ai") vẫn ôm quá nhiều việc một lúc, hết context giữa chừng, để lại code dang dở không tài liệu; session sau có khi tuyên bố "xong" quá sớm.
 - **Thiết kế:**
   - **Initializer agent** chạy một lần: viết `init.sh` (khởi động dev server), tạo `claude-progress.txt`, commit git đầu tiên.
@@ -41,6 +43,7 @@ Nguyên tắc chung rút ra: **loop** quyết định *khi nào dừng*, **harne
 - **Kết quả:** định tính (không số liệu): cấu trúc ngăn one-shot và kết thúc sớm; browser test bắt được bug không thấy trong code. Câu hỏi mở: một agent tổng quát vs. nhiều agent chuyên QA; tổng quát hóa ngoài web app.
 
 ### 2.2 "Harness design for long-running application development" (Prithvi Rajasekaran, Anthropic Labs, 24/3/2026)
+
 - **Generator–evaluator** (cảm hứng GAN): tách agent sinh và agent chấm. Dễ tinh chỉnh evaluator cho "khó tính" hơn là bắt generator tự phê bình. Với frontend: 4 tiêu chí (chất lượng thiết kế, độc đáo, tay nghề, chức năng), nặng về thiết kế + độc đáo để tránh output chung chung; evaluator dùng Playwright tương tác trang thật; 5–15 vòng, tới 4 giờ.
 - **Hệ 3 agent full-stack:** **Planner** nở prompt ngắn thành product spec (deliverable + thiết kế cấp cao, tìm chỗ thêm tính năng AI) → **Generator** xây theo sprint trên React/Vite/FastAPI/SQLite-Postgres, tự đánh giá, dùng git → **Evaluator** bấm qua app như user, test API & DB, đánh trượt sprint dưới ngưỡng cứng. Giao tiếp qua **file**.
 - **Sprint contract:** trước mỗi sprint, generator đề xuất sẽ làm gì + cách xác minh; evaluator duyệt tới khi hai bên đồng ý. Cầu nối giữa spec cao cấp và hiện thực kiểm thử được.
@@ -68,6 +71,7 @@ Nguyên tắc chung rút ra: **loop** quyết định *khi nào dừng*, **harne
 Gợi ý chính thức: Cloud cho việc phải chạy tin cậy không cần máy; Desktop khi cần file/tool local; `/loop` để poll nhanh trong phiên.
 
 ### 3.1 `/loop` và cron trong session (chi tiết đáng nhớ)
+
 - Ba chế độ: `/loop 5m <prompt>` (cron cố định), `/loop <prompt>` (Claude tự chọn khoảng 1 phút–1 giờ theo quan sát, in lý do; có thể dùng tool **Monitor** để stream thay vì poll), `/loop` trần (prompt bảo trì mặc định: tiếp việc dở → chăm PR của nhánh: review, CI đỏ, conflict → dọn dẹp; hoặc `loop.md` ở `.claude/loop.md` / `~/.claude/loop.md`, tối đa 25.000 byte, sửa là có hiệu lực vòng sau).
 - Có thể lặp một skill: `/loop 20m /review-pr 1234`; chỉ chạy skill mà Claude được phép tự gọi (skill `disable-model-invocation: true`, lệnh built-in, MCP prompt chỉ thành text).
 - Tool nền: `CronCreate` / `CronList` / `CronDelete`; cron 5 trường chuẩn vixie (không hỗ trợ `L`, `W`, `?`, tên `MON`); **tối đa 50 task/session**; ID 8 ký tự; giờ địa phương.
@@ -76,16 +80,19 @@ Gợi ý chính thức: Cloud cho việc phải chạy tin cậy không cần m�
 - Giới hạn: chỉ bắn khi Claude Code đang chạy và rảnh; không bù lượt bỏ lỡ; background session giữ `/loop` sống không cần terminal; tắt toàn bộ bằng `CLAUDE_CODE_DISABLE_CRON=1`.
 
 ### 3.2 Cloud Routines
+
 - Research preview **14/4/2026**. Trigger: lịch (cron), gọi HTTP API, sự kiện GitHub (issue/PR); tạo từ CLI bằng `/schedule` (từ v2.1.225 gắn được GitHub trigger vào routine có sẵn; API trigger/token vẫn chỉ trên web — nguồn thứ cấp).
 - Chạy tự trị, không hỏi quyền, clone repo mới mỗi lần; connector cấu hình theo routine. Nguồn thứ cấp nói routine tính vào hạn mức subscription và giới hạn **5/15/25 lượt tự động/ngày** theo gói — **chưa xác minh trên docs**.
 - Khác biệt với `/loop`: không kế thừa session, nên prompt phải **tự đủ** (standalone); phù hợp "mỗi sáng triage issue", "mỗi PR mới chạy security review", "webhook từ CI đẩy lỗi vào".
 
 ### 3.3 Gắn với Ralph loop (mục 03)
+
 Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Stop hook nạp lại prompt, promise string + max vòng). `/loop` giải bài "quay lại định kỳ". Routines giải bài "không cần người". Ba thứ xếp chồng được: Routine mỗi giờ → mở session → trong session chạy Ralph loop tới khi test xanh → push → Routine kế kiểm tra CI.
 
 ---
 
 ## 4. GitHub Agentic Workflows (`githubnext/gh-aw`)
+
 | Thuộc tính | Giá trị (2026-10-12) |
 |---|---|
 | Định dạng | Markdown + YAML frontmatter (trigger, permissions, tools, engine); thân markdown là nhiệm vụ cho agent |
@@ -101,6 +108,7 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 ---
 
 ## 5. Durable execution cho agent chạy lâu
+
 | Nền tảng | Mô hình | Hợp khi | Lưu ý |
 |---|---|---|---|
 | **Temporal** | Workflow + Activity, worker chạy dài | Cần Signals/Updates/Worker Versioning, đa ngôn ngữ, quy mô lớn | Nền tảng rộng nhất; không hợp serverless (cần worker sống lâu) |
@@ -116,6 +124,7 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 ---
 
 ## 6. Nền tảng automation mã nguồn mở có AI step
+
 | Dự án | License | ★ (ước lượng, nguồn thứ cấp) | AI/agent |
 |---|---|---|---|
 | **n8n** (mục 05) | Sustainable Use (source-available, không OSI) | — | AI Agent node, LangChain nodes |
@@ -128,6 +137,7 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 ---
 
 ## 7. Lịch sử: làn sóng AutoGPT 2023 và bài học
+
 | Dự án | Ra đời | Tình trạng 2026 | ★ |
 |---|---|---|---|
 | **AutoGPT** (Toran Bruce Richards) | 3/2023 | Chuyển thành nền tảng builder agent (block-based) | >187k (nguồn thứ cấp) |
@@ -140,9 +150,11 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 ---
 
 ## 8. Kiểu hỏng và guardrail
+
 **Kiểu hỏng hay gặp (2026):** hallucinated tool call; kế hoạch nhiều bước gãy giữa chừng; prompt injection từ nội dung lấy về; **runaway cost** do loop (ví dụ vendor: tool scrape trả rỗng bị gọi lại 400 lần/5 phút); suy giảm âm thầm khi đổi model; tuyên bố xong sớm (Anthropic 2025).
 
 **Guardrail tối thiểu cho một workflow tự trị:**
+
 1. **Giới hạn vòng** (max iterations) + **phát hiện không tiến triển** (vòng lặp không sinh thông tin mới → thoát).
 2. **Ngân sách token/tiền là hard stop**, không phải dashboard: **spend circuit breaker** cảnh báo 80% / bóp 90% / dừng 100% (arXiv 2606.03115, SPOQ); OWASP LLM06 xếp "unbounded consumption" là rủi ro hàng đầu (mục 12).
 3. **Cổng người duyệt theo mức rủi ro** thay vì bắt duyệt mọi bước (lãng phí chú ý người review): allow-list tool, hành động phá hủy/đối ngoại phải qua gate (so sánh: `/loop` trần chỉ push/xóa khi transcript đã cho phép; gh-aw ghi qua `safe-outputs`).
@@ -155,12 +167,14 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 ---
 
 ## 9. Agent tự sửa CI / từ issue ra PR
+
 - Lớp sản phẩm: Claude Code (GitHub Action + Routines + `/loop` prompt bảo trì "chăm PR"), GitHub Copilot coding agent, Devin, Jules (mục 01). Cơ chế chung: trigger sự kiện (CI đỏ, comment review) → agent đọc log → sửa tối thiểu → push → chờ CI lại; cần quy tắc "không skip/disable test để xanh", "không rewrite history nhánh người khác", giới hạn số vòng re-run.
 - Dự án cộng đồng tìm được chủ yếu là demo cá nhân (self-healing-ci-agent…), chưa có chuẩn mở; coi là tham khảo mẫu, không phải thư viện production.
 
 ---
 
 ## 10. Phân tích & khuyến nghị cho kho này
+
 1. **Chọn tầng trước khi chọn tool:** việc trong phiên → `/loop`/Ralph; việc hằng ngày không máy → Routines; việc theo sự kiện repo → gh-aw hoặc GitHub Action; việc có side effect + chờ người nhiều ngày → Temporal/Restate/DBOS.
 2. **Mẫu harness tối thiểu** cho project nội bộ: `init.sh` + `progress.md` + `features.json` (chỉ đổi `passes`) + commit nhỏ + smoke test đầu session + evaluator riêng khi task vượt ngưỡng model.
 3. **Mọi loop phải có 4 số**: max vòng, ngân sách, timeout, ngày hết hạn. Không có bốn số này thì chưa phải workflow tự trị, mới là demo.
@@ -171,6 +185,7 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 ---
 
 ## 11. Nguồn
+
 - Anthropic: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents (26/11/2025) · https://www.anthropic.com/engineering/harness-design-long-running-apps (24/3/2026) · https://www.anthropic.com/engineering/building-effective-agents
 - Claude Code docs: https://code.claude.com/docs/en/scheduled-tasks · https://code.claude.com/docs/en/routines · https://code.claude.com/docs/en/desktop-scheduled-tasks · https://code.claude.com/docs/en/github-actions · https://code.claude.com/docs/en/goal · https://code.claude.com/docs/en/channels
 - Routines (thứ cấp): prosperinai.substack.com, makerkit.dev, claudefa.st, alexdunlop.com, automatonagency.com, swapbiswas.com, apito.ai

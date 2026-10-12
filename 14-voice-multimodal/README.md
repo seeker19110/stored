@@ -3,6 +3,7 @@
 > Agent giọng nói thời gian thực, STT/TTS mã mở, model thị giác-ngôn ngữ và công cụ sinh ảnh. Số sao ước lượng giữa–cuối 2026.
 
 ## 1. Framework voice agent realtime
+
 | Dự án | Repo | License | ★ | Định vị | Ghi chú |
 |---|---|---|---|---|---|
 | **Pipecat** (Daily) | pipecat-ai/pipecat | BSD-2 | ~15–16k | Pipeline Python cho voice/multimodal agent | Mặc định tốt cho backend Python |
@@ -13,6 +14,7 @@
 | Dograh, Vapi, Retell | – | – | – | Nền tảng thương mại | |
 
 ## 2. Speech-to-text (STT)
+
 | Dự án | Repo | Ghi chú |
 |---|---|---|
 | **Whisper** | openai/whisper | Model STT mở phổ biến nhất (MIT) |
@@ -21,6 +23,7 @@
 | WhisperX, Deepgram/AssemblyAI (đóng) | – | Diarization / cloud |
 
 ## 3. Text-to-speech (TTS)
+
 | Model | License | Thế mạnh | Hạn chế |
 |---|---|---|---|
 | **Kokoro (82M)** | Apache-2.0 | Nhẹ, nhanh, Elo ~1060 (8/2026) | Không clone giọng, voicepack cố định |
@@ -29,6 +32,7 @@
 | Fish Speech, Orpheus, Coqui XTTS (ngừng) | – | | |
 
 ## 4. Vision-language model (VLM) mã mở
+
 | Model | Repo | ★ | Ghi chú |
 |---|---|---|---|
 | **Qwen3-VL** (Alibaba) | QwenLM/Qwen3-VL | ~20k | Apache-2.0; 2B/7B, 72B sắp mở |
@@ -37,6 +41,7 @@
 | Gemma 3 / Llama 4 / Pixtral | – | – | Open-weight đa phương thức |
 
 ## 5. Sinh ảnh / video
+
 | Công cụ | Repo | ★ | Trạng thái |
 |---|---|---|---|
 | **ComfyUI** | comfyanonymous/ComfyUI | ~122–136k | Node-based, hỗ trợ model mới nhanh nhất (Flux, video); **đã thắng** |
@@ -46,6 +51,7 @@
 | Flux (Black Forest Labs), SDXL, Wan/HunyuanVideo | – | – | Model |
 
 ## 6. Nguồn
+
 - https://micdrop.dev/blog/open-source-voice-agent-frameworks · https://livekit.com/blog/best-open-source-voice-and-video-ai-agent-frameworks · https://www.forasoft.com/blog/article/pipecat-vs-livekit-agents · https://github.com/pipecat-ai/pipecat · https://techsy.io/en/blog/best-open-source-voice-agent-frameworks · https://grokipedia.com/page/List_of_open-source_voice_AI_frameworks
 - https://ocdevel.com/blog/20250720-tts · https://pinggy.io/blog/best_open_source_self_hosted_text_to_speech_models/ · https://www.tryspeakeasy.io/blog/open-source-text-to-speech-2026 · https://localaimaster.com/blog/best-local-tts-models · https://www.spheron.network/blog/deploy-open-source-tts-gpu-cloud-2026/
 - https://github.com/QwenLM/Qwen3-VL · https://github.com/LLaVA-VL/LLaVA-NeXT · https://github.com/EvolvingLMMs-Lab/LLaVA-OneVision-2

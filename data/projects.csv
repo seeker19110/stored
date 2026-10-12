@@ -140,9 +140,9 @@ Dagger,dagger/dagger,https://github.com/dagger/dagger,devops,Apache-2.0,,True,13
 GitHub Spec Kit,github/spec-kit,https://github.com/github/spec-kit,spec-driven,MIT,,True,13,specify/plan/tasks/implement
 BMAD-METHOD,bmad-code-org/BMAD-METHOD,https://github.com/bmad-code-org/BMAD-METHOD,spec-driven,MIT,,True,13,role agents
 OpenSpec,Fission-AI/OpenSpec,https://github.com/Fission-AI/OpenSpec,spec-driven,MIT,,True,13,
-Kiro,,,spec-driven,proprietary,,False,13,AWS IDE
-CodeRabbit,,,code-review,proprietary,,False,13,$24/$48
-Greptile,,,code-review,proprietary,,False,13,
+Kiro,,https://kiro.dev,spec-driven,proprietary,,False,13,AWS IDE
+CodeRabbit,,https://www.coderabbit.ai,code-review,proprietary,,False,13,$24/$48
+Greptile,,https://www.greptile.com,code-review,proprietary,,False,13,
 Qodo Merge,qodo-ai/pr-agent,https://github.com/qodo-ai/pr-agent,code-review,AGPL-3.0,,True,13,self-host
 Pipecat,pipecat-ai/pipecat,https://github.com/pipecat-ai/pipecat,voice,BSD-2,15500,True,14,
 LiveKit Agents,livekit/agents,https://github.com/livekit/agents,voice,Apache-2.0,13000,True,14,

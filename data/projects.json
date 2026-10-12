@@ -1479,7 +1479,8 @@
       "stars": null,
       "open_source": false,
       "notes": "AWS IDE",
-      "section": "13"
+      "section": "13",
+      "url": "https://kiro.dev"
     },
     {
       "name": "CodeRabbit",
@@ -1489,7 +1490,8 @@
       "stars": null,
       "open_source": false,
       "notes": "$24/$48",
-      "section": "13"
+      "section": "13",
+      "url": "https://www.coderabbit.ai"
     },
     {
       "name": "Greptile",
@@ -1499,7 +1501,8 @@
       "stars": null,
       "open_source": false,
       "notes": "",
-      "section": "13"
+      "section": "13",
+      "url": "https://www.greptile.com"
     },
     {
       "name": "Qodo Merge",

@@ -7,6 +7,7 @@
 ## 1. calesthio/OpenMontage ⭐ (link từ người dùng)
 
 ### 1.1 Hồ sơ nhanh
+
 | Thuộc tính | Giá trị (đọc 2026-10-12) |
 |---|---|
 | Repo | https://github.com/calesthio/OpenMontage · site openmontage.video · X @calesthioailabs |
@@ -18,6 +19,7 @@
 | Lịch sử | #1 GitHub Trending "Repository of the Day"; bài viết đầu tiên ~6/2026; cadence: dồn dập 14–22/8/2026 (17 merge trong ngày 22/8), sau đó thưa (26/8, 6/9, 3/10 – refresh provider, thêm HeyGen Avatar); fix CVE-2026-67213 ngày 20/8 |
 
 ### 1.2 Kiến trúc "agent là orchestrator" (điểm đáng học nhất)
+
 - **Không có code orchestrator.** `AGENTS.md` chỉ là stub bắt agent đọc `AGENT_GUIDE.md` → `PROJECT_CONTEXT.md`. Python chỉ cung cấp tool + persistence; mọi quyết định sáng tạo/review nằm trong file hướng dẫn. *"The intelligence is in the skills, not in improvised code."*
 - **Pipeline cố định:** `research → proposal → script → scene_plan → assets → edit → compose`; mỗi stage có một **director skill** (Markdown) và sinh đúng một artifact (brief, script, scene plan, asset manifest, edit decisions, render report) phải validate qua **20+ JSON Schema**. *"Every video production request MUST go through the pipeline system. No exceptions."*
 - **Approval gate theo stage:** manifest khai `human_approval_default`; stage gated dừng ở trạng thái `awaiting_human` và agent **phải kết thúc lượt**; "Approval is per-gate"; pre-authorize cả run phải được log như quyết định `approval_policy`. Stage `assets` luôn gated để người xem cảnh trước khi compose.
@@ -30,9 +32,11 @@
 - **Backlot:** bảng điều khiển local (`python -m backlot open`) hiện tiến độ, gate, chi tiêu.
 
 ### 1.3 Pipeline & provider
+
 11 pipeline trong README (About nói 12): Animated Explainer, Animation, Avatar Spokesperson, Cinematic, Clip Factory, Documentary Montage (ghép footage mở từ Archive.org/NASA/Wikimedia), Hybrid, Localization & Dub, Podcast Repurpose, Screen Demo, Talking Head (+ character animation). Provider: FLUX, Kling, Veo, Runway, WAN 2.2 (qua ComfyUI), HeyGen Avatar; TTS ElevenLabs/OpenAI/Google/**Piper (free)**; nhạc Suno/ElevenLabs; stock Pexels/Pixabay/Unsplash. **Zero-key path** hoàn toàn miễn phí.
 
 ### 1.4 Đánh giá từ bên ngoài
+
 | Nguồn | Nội dung |
 |---|---|
 | pinggy.io (26/6/2026) | Free tier chạy end-to-end, explainer 60s mất ~10–15 phút; chi phí ví dụ: Ghibli-style 12 ảnh FLUX ~$0.15, history 70s OpenAI TTS ~$0.02, ad 4 ảnh ~$0.69. Điểm yếu: setup nặng (Python+Node+FFmpeg+SDK), chưa có Docker, pipeline cao cấp phụ thuộc API trả phí |
@@ -42,6 +46,7 @@
 | Thảo luận cộng đồng | OpenMAIC (THU) bàn dùng OpenMontage làm MCP service cho nội dung học tập; OpenViking (Volcengine) RFC dùng làm benchmark context |
 
 ### 1.5 Nhận xét & cách tận dụng
+
 - **Giá trị cốt lõi:** không phải model video mà là **mẫu kiến trúc "skills-as-orchestrator"** ở quy mô lớn: pipeline manifest + director skill + schema + gate + decision log + cost tracker. Đây là bản mở rộng tự nhiên của SKILL.md (mục 04) và evaluator pattern (mục 03) sang domain sáng tạo nhiều bước, nhiều provider.
 - **Bài học tái dùng cho bất kỳ agent workflow nào:** (1) artifact chuẩn hóa + schema mỗi stage; (2) gate theo stage với trạng thái `awaiting_human` và agent phải dừng lượt; (3) registry runtime thay danh sách cứng; (4) ba lớp tri thức tách "cái gì/như thế nào/kỹ thuật vendor"; (5) append-only decision log; (6) reviewer meta-skill có giới hạn vòng.
 - **Rủi ro:** AGPL với SaaS; dự án trẻ, nhiều issue mở, cadence commit chậm từ 9/2026; setup phức tạp (chưa Docker); chất lượng phụ thuộc model agent và provider trả phí; marketing numbers chưa nhất quán.
@@ -50,6 +55,7 @@
 ---
 
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
+
 | Repo | Số hiển thị (★?) | Ghi chú |
 |---|---|---|
 | zhuyansen/awesome-claude-video-skills | ~55k | Danh sách skill video cho Claude |
@@ -64,6 +70,7 @@
 **Nhận định:** số liệu chỉ từ một trang aggregator và tăng rất nhanh → cần xác minh từng repo; nhưng xu hướng rõ: *video/motion được đóng gói thành skill cho coding agent* thay vì app riêng. OpenMontage là bản "full pipeline" của xu hướng này.
 
 ## 3. Model & công cụ video mở liên quan
+
 | Dự án | ★ (ước lượng) | Ghi chú |
 |---|---|---|
 | Remotion | – | Video bằng React; engine compose của OpenMontage (license riêng cho công ty) |
@@ -77,6 +84,7 @@
 | FRAMEWORKERS (arXiv 2608.29814), *Agentic Artifact Creation* (2608.28122) | – | Nghiên cứu multi-agent cho sản xuất video |
 
 ## 4. Nguồn
+
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video
 - https://pinggy.io/blog/openmontage_agentic_video_production/ · https://knightli.com/en/2026/06/22/openmontage-ai-video-production-guide/ · https://dev.to/andrew-ooo/openmontage-review-open-source-agentic-video-production-296l · https://hysenlabs.com/projects/calesthio-openmontage · https://www.opensourcealternatives.to/item/openmontage · https://explainx.ai/blog/openmontage-agentic-video-production-claude-code-2026 · https://www.visionstory.ai/open-source/openmontage · https://tosea.ai/blog/openmontage-agentic-video-production-guide · https://www.blog.brightcoding.dev/2026/10/10/calesthioopenmontage-agentic-video-production-from-natural-language
 - https://github.com/THU-MAIC/OpenMAIC/discussions/346 · https://github.com/volcengine/OpenViking/discussions/1083

@@ -3,11 +3,13 @@
 > Các mẫu thiết kế vòng lặp agent, kỹ thuật vận hành agent tự trị, và cách quản lý ngữ cảnh. Đây là phần "lý thuyết + thực hành" nền cho mọi mục khác.
 
 ## 1. Định nghĩa cốt lõi (Anthropic, *Building Effective Agents*, 12/2024)
+>
 > "Agents are typically just LLMs using tools based on environmental feedback in a loop."
 
 Phân biệt **workflow** (luồng LLM + tool được code định sẵn) và **agent** (LLM tự quyết định luồng). Khuyến nghị: bắt đầu từ mẫu đơn giản nhất, chỉ thêm tự trị khi có lợi ích đo được.
 
 ### 5 workflow pattern
+
 | Pattern | Ý tưởng | Ví dụ |
 |---|---|---|
 | Prompt chaining | Chuỗi gọi LLM tuần tự, có gate kiểm tra giữa các bước | Viết outline → kiểm tra → viết bài |
@@ -17,6 +19,7 @@ Phân biệt **workflow** (luồng LLM + tool được code định sẵn) và *
 | Evaluator–optimizer | Một LLM sinh, một LLM chấm, lặp | Dịch văn học, tìm kiếm nhiều vòng |
 
 ## 2. Hình dạng vòng lặp agent
+
 | Mẫu | Nguồn gốc | Cơ chế | Ưu / nhược |
 |---|---|---|---|
 | **ReAct** | Yao et al. 2022 (Princeton/Google) | Thought → Action → Observation lặp | Linh hoạt, dễ debug / thiếu cái nhìn toàn cục, có thể lạc đường |
@@ -28,10 +31,13 @@ Phân biệt **workflow** (luồng LLM + tool được code định sẵn) và *
 Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (arXiv 2404.11584) kết luận thành công phụ thuộc **planning + self-correction**.
 
 ## 3. Ralph Wiggum loop – vòng lặp tự trị cho coding agent
+
 - **Tác giả:** Geoffrey Huntley (7/2025). Dạng thuần túy:
+
   ```bash
   while :; do cat PROMPT.md | claude ; done
   ```
+
 - **Nguyên lý:** mỗi vòng là một session mới; "bộ nhớ" duy nhất là **file trong repo** (plan, test, progress). Agent lặp cho tới khi tiêu chí hoàn thành đạt.
 - **Phiên bản Anthropic:** plugin `ralph-loop` trong repo `anthropics/claude-code` dùng **Stop hook** chặn việc kết thúc session và nạp lại prompt (giữ ngữ cảnh trong 1 session); kết thúc bằng promise string + giới hạn số vòng. Claude Code cũng có `/loop`, `/goal`, `/batch` (chưa xác minh trên docs chính thức).
 - **Khi nào hội tụ:** prompt chính xác + tiêu chí **kiểm chứng được** (tests pass, lint sạch, build ok). Prompt mơ hồ → lạc.
@@ -40,6 +46,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 - **Xem thêm mục 21 (Autonomous Workflows):** `/loop` đã được xác minh trên docs chính thức (cron 5 trường, jitter, hết hạn 7 ngày, tối đa 50 task, `loop.md`); Routines cloud (≥1 giờ, trigger lịch/API/GitHub); hai bài harness dài hạn của Anthropic (11/2025, 3/2026).
 
 ## 4. Context engineering & harness engineering
+
 | Khái niệm | Nội dung | Nguồn |
 |---|---|---|
 | Context engineering (Anthropic, *Effective Context Engineering for AI Agents*) | Ngân sách ngữ cảnh là kỷ luật kỹ thuật: viết / chọn / nén / cô lập ngữ cảnh qua trajectory dài | anthropic.com, philschmid.de |
@@ -48,6 +55,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 | MemoHarness / structured memory | Harness tự học từ kinh nghiệm | arXiv 2607.14159, 2603.13258 |
 
 ## 5. Multi-agent coding song song (thực hành 2026)
+
 - **Git worktrees** cho mỗi agent (`claude --worktree`): tránh ghi đè file, tranh chấp git index, port dev-server. Không bao phủ state chia sẻ (DB, API ngoài) → serialize các bước đó.
 - **Phân cấp primitive (Claude Code):** subagents (trong session) · agent teams (giữa session, thử nghiệm) · background agents · `/batch` cho thay đổi cơ học lớn.
 - **Hợp đồng giao diện:** sinh OpenAPI/spec trước khi chạy song song để tránh drift (mầm của "spec-driven development").
@@ -55,6 +63,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 - **Hướng dẫn:** `FlorianBruniaux/claude-code-ultimate-guide` (agent-teams.md), thepromptshelf.dev (6 pattern), developersdigest.tech.
 
 ## 6. Checklist thiết kế agent loop (rút ra)
+
 1. Tiêu chí dừng **kiểm chứng được bằng máy** (test, lint, type-check, build).
 2. Trạng thái bền trong **file/repo**, không trong "trí nhớ" của session.
 3. Giới hạn vòng lặp + exit detection + nhật ký tiến độ.
@@ -75,6 +84,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 | Ngôn ngữ | TypeScript (~600 dòng core), Node 18+; cài `npx skills add UditAkhourii/adhd` hoặc `npm i -g adhd-agent` |
 
 ### Cơ chế (từ `SKILL.md` và preprint)
+
 - **Vấn đề nhắm tới:** *premature convergence* – LLM chọn phương án hợp lý đầu tiên rồi "đánh bóng" nó.
 - **Phase 1 – Diverge (không critic):** chọn 5 trong 15 "cognitive frame" (hardware engineer, regulator, 10-year-old, competitor, biology, logistics, game design, markets, inversion, $0/1h, infinite budget/10y, remove load-bearing assumption, speedrunner, ant colony, 3am on-call); spawn **5 Agent/Task call song song, cô lập** (không thấy nhau → tránh anchoring), mỗi nhánh trả JSON 6 ý tưởng ngắn. Với bài code: 4 frame code/design + 1 wild.
 - **Phase 2 – Focus (critic bật):** 1 call chấm novelty/viability/fit (0–10, trọng số 0.35/0.40/0.25), gắn cờ **trap** (ý tưởng hấp dẫn nhưng chi phí ẩn); 1 call cluster theo "góc nhìn"; 3 call song song **deepen** top-3 (sketch, rủi ro chịu tải, bước đầu tiên, ý con).
@@ -84,6 +94,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 - **Khác ToT (Yao 2023):** nhánh **cô lập** (ToT chia sẻ context), phân nhánh bằng **đổi vantage point** chứ không phải đổi bước kế tiếp, generator/critic là **2 call tách biệt** với system prompt đối lập.
 
 ### Bằng chứng & phê bình
+
 | Nguồn | Nội dung |
 |---|---|
 | EVALS.md / preprint (tự báo cáo) | 6 bài kỹ thuật (LRU cache, LLM hang CLI, rate limiter + leader election, bug 0.1%, tách monolith Rails, đặt tên feature-flag); judge = LLM "skeptical staff engineer" (không nêu model); ADHD thắng 5/6; Δ: breadth +4.17, novelty +5.17, **trap detection +7.67**, actionability +3.00, builder usefulness +0.83 |
@@ -93,6 +104,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 | ADOPTERS.md (16 entry, tự duy trì) | Đáng tin nhất là entry có PR merge: repowire (#313), mythify, godaudits, godplans (có **control arm** và từ chối một số tính năng), han; `multi` port đa model (mỗi frame một họ model); phần còn lại là fork/cài đặt |
 
 ### Bài học cho kho này
+
 1. Là hiện thân gọn của **parallelization (sectioning) + evaluator-optimizer** trong 5 pattern của Anthropic (mục 1), dùng đúng cho bài *open-ended* chứ không phải thực thi.
 2. **Cô lập context giữa các nhánh** là điểm thiết kế đáng tái dùng khi chạy subagent song song (mục 5): subagent không nên thấy output nhau nếu muốn đa dạng.
 3. Tách generator/critic bằng call riêng + rubric số + trap list → mẫu tốt cho "design review" trước khi vào Ralph loop.
@@ -102,6 +114,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 **Nguồn:** https://github.com/UditAkhourii/adhd (README, SKILL.md, EVALS.md, ADOPTERS.md) · https://adhdstack.github.io/ · https://github.com/UditAkhourii · https://trendshift.io/repositories/39300 · https://thenewstack.io/claude-code-adhd/ · https://dudarik.com/en/blog/adhd/ · https://explainx.ai/skills/UditAkhourii/adhd/adhd · https://futureagi.com/blog/what-is-tree-of-thoughts-prompting-2026/ · https://arxiv.org/html/2605.06040v1 (Novelty-based ToT) · https://arxiv.org/html/2605.28566v2 (ToT as heuristic search)
 
 ## 9. Nguồn (mục 1–7)
+
 - https://www.anthropic.com/research/building-effective-agents
 - https://docs.spring.io/spring-ai/reference/api/effective-agents.html (diễn giải lại 5 pattern)
 - https://atlan.com/know/ai-agent/what-is-an-agent-loop/ · https://blogs.oracle.com/developers/what-is-the-ai-agent-loop-the-core-architecture-behind-autonomous-ai-systems

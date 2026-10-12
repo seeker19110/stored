@@ -1,6 +1,7 @@
 # 08 · Awesome Lists, Repo học tập & Repo nổi tiếng nhất GitHub
 
 ## 1. Repo nhiều sao nhất toàn GitHub (9–10/2026, ước lượng)
+
 | # | Repo | ★ | Nội dung |
 |---|---|---|---|
 | 1 | codecrafters-io/build-your-own-x | ~547–552k | Tự xây lại công nghệ từ đầu (DB, OS, compiler…) |
@@ -14,6 +15,7 @@
 Theo dõi tự động: `EvanLi/Github-Ranking` (cập nhật hằng ngày), gitstarclub.com/rankings.
 
 ## 2. Awesome list theo chủ đề của kho này
+
 | Chủ đề | Repo | Ghi chú |
 |---|---|---|
 | LLM apps / agents thực hành | `Shubhamsaboo/awesome-llm-apps` (~105k★) | 100+ agent, skill, RAG app có code |
@@ -30,6 +32,7 @@ Theo dõi tự động: `EvanLi/Github-Ranking` (cập nhật hằng ngày), git
 | GitHub topics | github.com/topics/agent-skills · /claude-skills · /awesome-ai · /ai-agents | Khám phá theo tag |
 
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
+
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.
 2. ReAct (Yao 2022), Reflexion (Shinn 2023), *Landscape of Emerging AI Agent Architectures* (2024).
 3. Manus – *Context Engineering for AI Agents: Lessons from Building Manus* (2025).
@@ -39,6 +42,7 @@ Theo dõi tự động: `EvanLi/Github-Ranking` (cập nhật hằng ngày), git
 7. Refactoring UI · Laws of UX.
 
 ## Nguồn
+
 - https://gitstarclub.com/rankings · https://www.countly.net/most-starred-github-repositories-june-2026 · https://www.stackscan.com/blog/github-statistics · https://github.com/EvanLi/Github-Ranking · https://www.firecrawl.dev/blog/best-github-repos
 - https://github.com/Shubhamsaboo/awesome-llm-apps · https://github.com/hesreallyhim/awesome-claude-code · https://github.com/rohitg00/awesome-claude-code-toolkit · https://claudefa.st/blog/tools/resources/awesome-claude-code · https://github.com/topics/agent-skills · https://github.com/topics/claude-skills
 - https://github.com/kaushikb11/awesome-llm-agents · https://github.com/aloth/awesome-ai-agents

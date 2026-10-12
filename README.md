@@ -35,73 +35,89 @@
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
 | — | [WORKFLOW.md](WORKFLOW.md) | **Quy trình khi nhận link**: nghiên cứu đa nguồn → phân tích → cập nhật kho |
+| — | [.github/workflows/lint.yml](.github/workflows/lint.yml) · [scripts/check_catalog.py](scripts/check_catalog.py) | CI: markdownlint (cấu hình `.markdownlint-cli2.yaml`) + kiểm tra catalog JSON/CSV; check bắt buộc cho `main` |
 
 ---
 
 ## 🔭 Bức tranh tổng thể (tóm tắt phân tích)
 
 ### 1. Coding agent đã trở thành "mặt tiền" của AI cho lập trình viên
+
 - Nhóm **CLI agent mã nguồn mở** bùng nổ: OpenCode (~210k★), DeepSeek Harness (~200k★ chỉ sau 2 tuần, 8/2026), Codex CLI (~127k★), Gemini CLI (~107k★), Cline (~69k★), OpenHands (~90k★). Claude Code (~148k★) phổ biến nhưng **không** mã nguồn mở.
 - **Benchmark bão hòa**: SWE-bench Verified đạt ~97% (Claude Opus 5 + mini-SWE-agent, 9/2026) và Vals ngừng chấm model mới; chuyển sang **SWE-bench Pro** (top ~65%). Số sao ≠ chất lượng sản xuất.
 - Xu hướng kiến trúc: **"harness"** (vòng lặp + công cụ + ngữ cảnh) quan trọng hơn bản thân model; DeepSeek Harness biến mọi thứ thành plugin, mini-SWE-agent chứng minh 100 dòng code đủ để >74% SWE-bench.
 
 ### 2. Framework agent: từ "framework chiến tranh" sang hợp nhất và chuẩn hóa
+
 - LangGraph dẫn đầu về lượt tải (34.5M/tháng PyPI) dù ít sao hơn AutoGen/CrewAI; AutoGen + Semantic Kernel hợp nhất thành **Microsoft Agent Framework** (GA 4/2026).
 - OpenAI Agents SDK, PydanticAI, smolagents là nhóm "nhẹ, typed, tối giản" đang lên.
 - OpenClaw (~390k★, assistant cá nhân tự host) cho thấy nhu cầu "agent cá nhân chạy trên máy mình" cực lớn.
 
 ### 3. Vòng lặp agentic (agentic loop) là khái niệm trung tâm
+
 - Anthropic: *"agent = LLM dùng tool trong vòng lặp dựa trên phản hồi môi trường"*; 5 workflow: prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer.
 - ReAct (2022) và Plan-and-Execute là 2 hình dạng vòng lặp chủ đạo; Reflexion thêm tự-phê-bình.
 - **Ralph Wiggum loop** (`while :; do cat PROMPT.md | claude; done`) → được Anthropic đóng gói thành plugin `ralph-loop` dùng Stop hook; hội tụ tốt khi task **có thể kiểm chứng** (test/lint/build).
 - **Context engineering / harness engineering** trở thành kỹ năng cốt lõi: KV-cache hit rate, nén/chọn/cô lập ngữ cảnh, git worktree để chạy song song nhiều agent.
 
 ### 4. Giao thức mở đang định hình "hệ điều hành agent"
+
 - **MCP** (tool/data ↔ agent, >10k server, đã vào Agentic AI Foundation/Linux Foundation 12/2025).
 - **A2A** (agent ↔ agent, v1.0 3/2026, >150 tổ chức).
 - **AG-UI** (agent ↔ giao diện người dùng, CopilotKit khởi xướng, được AWS/Microsoft/Oracle tích hợp).
 - **Agent Skills / SKILL.md** (10/2025, chuẩn mở 12/2025, agentskills.io) đang thay thế `.cursorrules`; `AGENTS.md` là lớp hướng dẫn chung cho nhiều tool.
 
 ### 5. UI/UX & design: "sở hữu mã nguồn" và chống "AI slop"
+
 - **shadcn/ui** (~115–121k★) thắng nhờ mô hình copy-paste; từ 7/2026 mặc định dùng **Base UI** thay Radix.
 - Design tool mở: Penpot (~61k★, thay Figma), Excalidraw (~134k★), tldraw (~51k★), Onlook (visual editor cho React).
 - AI sinh UI: v0.app, Lovable, Bolt (đóng), Google Stitch, MagicPath; **Taste Skill** (~46k★) là skill chống giao diện "generic" cho coding agent.
 - Lớp "agentic UI": CopilotKit, assistant-ui, Vercel AI SDK + AI Elements.
 
 ### 6. Eval & observability là mảnh ghép bắt buộc để lên production
+
 - Langfuse (tracing, MIT core) + Promptfoo (CI gate, red-team) + DeepEval/Ragas (metric) là stack miễn phí phổ biến.
 
 ### 7. Hạ tầng quanh agent đang chuẩn hóa thành các lớp riêng
+
 - **Memory** (Mem0, Graphiti, Letta), **sandbox** (E2B Firecracker, Modal gVisor), **browser** (Browser Use ~114k★, Stagehand), **guardrails** (NeMo, LLM Guard) tách khỏi framework agent; OWASP đã có Top 10 riêng cho Agentic (12/2025) và MCP (2026).
 - **Spec-driven development** (Spec Kit, Kiro, BMAD) và **AI code review** (CodeRabbit, Greptile, Qodo) khép kín vòng: spec → agent code → review bot → checklist deploy.
 
 ### 8. Voice, multimodal và data agent đã đủ chín để tự host
+
 - Pipecat/LiveKit + Whisper + Kokoro/Chatterbox cho voice agent mở; ComfyUI thắng cuộc đua UI sinh ảnh; DuckDB (40k★) + Vanna/PandasAI + marimo là stack "hỏi dữ liệu bằng ngôn ngữ tự nhiên".
 - Docs-for-AI: llms.txt vẫn là đề xuất (adoption 2–10%), Context7 (MCP) mới là cách coding agent lấy docs; prompt engineering chuyển thành **context engineering + DSPy**.
 - Việt Nam: PhoGPT/underthesea là nền, ViGen (dataset quốc gia) và loạt hackathon 2026 cho thấy cộng đồng chuyển từ outsourcing sang AI building.
 
 ### 9. "Skills-as-orchestrator" và "ideation-as-skill" là hai mẫu mới đáng theo dõi
+
 - **OpenMontage** (67k★) không có orchestrator bằng code: agent đọc AGENT_GUIDE, đi qua 7 stage cố định với director skill, JSON schema, approval gate per-stage, registry runtime và decision log append-only. Đây là bản mở rộng của SKILL.md sang workflow sáng tạo nhiều provider.
 - **ADHD** (4.4k★) đóng gói parallelization + evaluator thành một skill cho bài open-ended: 5 nhánh cô lập dưới các "cognitive frame", critic chấm/prune/deepen; chi phí 5–10×, bằng chứng tự báo cáo và giới chuyên gia còn đòi thêm proof.
 
 ### 10. Plugin "không code" trở thành đơn vị phân phối tri thức nghề nghiệp
+
 - `anthropics/knowledge-work-plugins`: 123 plugin toàn markdown + JSON (skills, .mcp.json), 101 trong đó là vendor pin theo commit sha. Plugin `sales` tăng từ 9 lên 36 skill trong một tháng. Skill `call-prep` là mẫu chuẩn về tool-agnostic + guardrail chống prompt injection ("data, never instructions"). Chi phí thật của plugin là context mỗi lượt.
 
 ### 11. Skill "mang theo kit + kiểm chứng bằng máy" là thế hệ skill mới
+
 - `wheresryan22/anatomy` (3.8k★ sau 2 ngày): skill vẽ minh họa isometric không chỉ là prompt mà kèm thư viện hình học không phụ thuộc, audit hình học, headless-Chrome screenshot, đếm line-end và bộ eval; sizing (Figure/Hero/Epic) trước khi làm để kiểm soát chi phí. Cùng tinh thần với OpenMontage (mục 19) và deployment-checklist (mục 09): agent phải **chứng minh** output.
 
 ### 12. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
+
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
 
 ### 13. Autonomous workflow = loop có ràng buộc + harness có bộ nhớ ngoài + trigger không cần người
+
 - Anthropic (11/2025, 3/2026): progress file + feature list JSON + git + browser test; planner/generator/evaluator; **harness có hạn sử dụng** (Opus 4.5/4.6 làm reset và sprint trở nên thừa). Claude Code tách ba tầng lập lịch: Routines (cloud, ≥1h), Desktop tasks, `/loop` (7 ngày, 50 task, jitter). gh-aw đưa "prompt-as-workflow" lên GitHub Actions với `safe-outputs`. Mọi loop tự trị cần 4 số: max vòng, ngân sách (circuit breaker 80/90/100%), timeout, ngày hết hạn. Xem mục 21.
 
 ### 14. "Hiểu codebase" trở thành plugin trending: tất định + LLM
+
 - `Egonex-AI/Understand-Anything` (85,9k★, +2.331★/ngày): Tree-sitter cho cấu trúc (tất định, incremental) + LLM cho ngữ nghĩa, pipeline 7 agent có `graph-reviewer`, một lõi nhiều host (Claude Code, Cursor, Codex, Copilot, Gemini CLI…), output tiếng Việt. Cùng ngày `anthropics/claude-plugins-official` (+2.172★/ngày) cho thấy kênh phân phối "cài plugin" đang thắng "chép prompt". Xem mục 01 §3b, mục 20 §2b.
 
 ---
 
 ## 🧭 Cách dùng kho này
+
 1. Đọc README của chuyên mục để nắm bối cảnh và bảng so sánh.
 2. Dùng `data/projects.json` khi cần lọc/tra cứu bằng script.
 3. Thêm dự án mới theo [TEMPLATE.md](TEMPLATE.md); luôn ghi ngày và nguồn cho số sao.
@@ -109,5 +125,6 @@
 4. Mọi nhận định "nổi tiếng/dẫn đầu" đều gắn mốc thời gian 10/2026 – cần cập nhật định kỳ (gợi ý: mỗi quý).
 
 ## ⚠️ Lưu ý về độ tin cậy
+
 - Nhiều nguồn là blog so sánh/SEO; các con số đã được đối chiếu chéo nhưng vẫn là ước lượng.
 - Một số sự kiện chưa xác minh độc lập được đánh dấu **(chưa xác minh)** trong từng mục (ví dụ: Flowise bị archive 8/2026, A2A chuyển vào AAIF 8/2026).

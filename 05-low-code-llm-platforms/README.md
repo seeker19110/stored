@@ -12,4 +12,5 @@
 **Chọn thế nào:** tự động hóa quy trình nhiều SaaS → n8n; app chat/RAG cho doanh nghiệp → Dify; dev Python cần tùy biến → Langflow.
 
 ## Nguồn
+
 - https://www.knowlee.ai/blog/dify-alternatives-2026 · https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026 · https://www.jahanzaib.ai/blog/flowise-vs-dify-vs-n8n-ai-agents · https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026 · https://makerstack.co/reviews/langflow-review/ · https://enterprisedna.co/directories/compare/dify-vs-flowise-vs-langflow/
