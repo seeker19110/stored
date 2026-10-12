@@ -242,3 +242,8 @@
 
 - github.com/yihui-dev/awesome-opus5-5-videos (clone đầy đủ, HEAD e6c7eee "853 total": README.md, data/videos.json, prompts/*.md, LICENSE MIT; trang GitHub 4,6k★ qua shields, ảnh 4,3k/443 fork) · skillry.dev/ai-videos/opus-5-5 (homepage thương mại) · x.com/yihui_indie
 - So sánh: github.com/athemeroy/awesome-opus-5-5-videos (529★ qua shields) · trendshift.io; bài quảng cáo woshipm.com, pasqualepillitteri.it (nhiều ngôn ngữ)
+
+## Bổ sung 2026-10-12 (rà soát lần 2 các repo của chủ kho → mục 23 §8, §8.1)
+
+- Clone nông (depth 30) 18/19 repo trên HEAD (`case-study-ft41` private, không clone được): `.github/workflows/*.yml` (đếm `uses:` ghim SHA, khối `permissions:`), `.github/dependabot.yml`, `.claude/settings.json` (model, deny, hook Stop), `package.json`/`pyproject.toml`/`Dockerfile`, `ai-gateway/{server.js,lib/app.js,.env.example}`, `Hermes-Agents/bridge/{server,http_security}.py`, `Plugin-4-Hermes/{bridge/server.py,manage.py}`, `Claude-Red/.github/workflows/skill-optimize-apply.yml`, `design-os-3d-blender/.agents/mcp_config.json`, `system-design-notes` (git log)
+- Đối chiếu upstream: github.com/morluto/rea (HEAD 13/10/2026, `package.json` 6.4.0) · github.com/SnailSploit/claude-red (HEAD `a8de813`, 12/10/2026)

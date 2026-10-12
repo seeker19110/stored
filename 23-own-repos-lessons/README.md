@@ -10,6 +10,7 @@
 - **Ba tư tưởng xuyên suốt** đáng đưa thành chuẩn của kho này: (1) *model quyết định, code hành động* — mọi trường "đã làm" do code điền (`verified_by`), lời khai của model không phải bằng chứng; (2) *cổng máy thay lời hứa* — Stop hook đọc **file trạng thái**, chuỗi đỏ cùng chữ ký, trần số vòng, không tin `<promise>`; (3) *adopt-from-outside ba cột* — khi học repo ngoài: đã có & sâu hơn / nông hơn / chưa có, "grep cổng đang chạy, đừng đọc văn xuôi".
 - Kho hiện **thiếu hẳn** vài nhóm mà các repo này đã khảo sát kỹ: LLM gateway/subscription routing, policy-as-code & SBOM & hash-lock, vòng đời hook Claude Code đầy đủ, 3D/Blender agent, red-team skill pack (dual-use), framework "công ty AI" (MetaGPT, ChatDev, DeerFlow, ruflo), bộ plugin lớn (ECC, superpowers, compound-engineering, impeccable).
 - Hai điểm kho bị phản biện trực tiếp: **Ralph loop** (`<promise>` là lời khai → thay bằng tín hiệu file + trần + chuỗi đỏ) và nhận định **"cài plugin thắng chép prompt"** (hai repo của chủ kho chọn *vendor skill có lock* thay vì cài plugin).
+- **§8.1** (rà soát lần 2, 12/10/2026) là ma trận vệ sinh đo trên HEAD: ghim SHA action dao động từ 0/42 (X-Agents) tới 39/39 (xboss); ai-gateway mặc định fail-open trên `0.0.0.0`; reveser chậm upstream 4 phiên bản lớn.
 - **§7b** là chỉ mục ngược: với từng repo chủ sở hữu, kho gợi ý mục/dự án nên tích hợp (ví dụ: code knowledge graph trước khi sửa, quét skill mới, enforce ở tầng dưới prompt).
 
 ---
@@ -280,11 +281,42 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 
 > Ghi như dữ kiện đánh giá; việc sửa thuộc về từng repo. Các chỉnh sửa kho làm theo đợt audit này nằm trong lịch sử git, không lưu ở đây.
 
-- `case-study-ft41/AGENTS.md` bị `next dev` ghi đè.
-- `dhcb/.claude/settings.json` còn `"model": "opusplan"`, trong khi ADR-0007 của khung ghi CLI đã bỏ giá trị này.
-- `X-Scanner` thiếu `auto-complete-guard.sh`.
-- Bảng giá model lệch giữa khung drop-in và xgold.
-- Hermes-Agents vendor từ `gsd-build/get-shit-done` (đã archive; bản tiếp nối `open-gsd/gsd-core`); ADR của xboss còn ghi URL và số liệu ECC cũ (mục 20 §3d).
+- `case-study-ft41/AGENTS.md` bị `next dev` ghi đè. *(Lần 2: repo private, clone không được, chưa kiểm lại.)*
+- `dhcb/.claude/settings.json` còn `"model": "opusplan"`, trong khi ADR-0007 của khung ghi CLI đã bỏ giá trị này. *(Lần 2: vẫn còn; Xgold và xboss-manager cũng còn.)*
+- `X-Scanner` thiếu `auto-complete-guard.sh`. *(Lần 2: vẫn thiếu, Stop hook chỉ có `usage-guard.sh` + `telemetry-record.sh`, dù repo có 39 commit trong ngày 12–13/10.)*
+- Bảng giá model lệch giữa khung drop-in và xgold. *(Lần 2: Xgold không có `scripts/model-rates.json`; chỉ khung có.)*
+- Hermes-Agents vendor từ `gsd-build/get-shit-done` (đã archive; bản tiếp nối `open-gsd/gsd-core`); ADR của xboss còn ghi URL và số liệu ECC cũ (mục 20 §3d). *(Lần 2: `skills/sketch` và `skills/spike` vẫn trỏ `gsd-build`; ADR-0013 của xboss đã đổi URL sang `affaan-m/ECC` nhưng vẫn ghi v2.2.2, upstream v2.2.3.)*
+
+### 8.1 Rà soát lần 2 — ma trận vệ sinh (clone nông, đọc 2026-10-12)
+
+> Đo bằng lệnh trên HEAD, không đọc văn xuôi: đếm `uses:` ghim 40 ký tự SHA, workflow thiếu khối `permissions:` cấp đầu, hệ sinh thái trong `dependabot.yml`, file LICENSE/SECURITY. Chuẩn so sánh là chính `projects-template` (25/25 action ghim SHA, mọi workflow có `permissions:`, Dependabot npm + github-actions + pip). 18/19 repo đọc được; `case-study-ft41` là private nên clone thất bại.
+
+| Repo | HEAD | Action ghim SHA | Thiếu `permissions:` cấp đầu | Dependabot | LICENSE · SECURITY | Dữ kiện đáng chú ý |
+|---|---|---|---|---|---|---|
+| projects-template | 12/10 | 25/25 | – | npm, actions, pip | có · có | Chuẩn tham chiếu; settings ghi `claude-sonnet-5`, còn xboss đã dùng `claude-sonnet-5-5` |
+| xboss | 13/10 | 39/39 | – | npm, actions | không · có | Vệ sinh tốt nhất cùng khung; ECC lock v2.2.2 |
+| Sales-Hunter | 9/10 | 23/23 | – | uv, actions | có · có | Không có lỗ hổng vệ sinh đáng kể |
+| Dhcb-Tools | 10/10 | 28/28 | – | actions, pip | có · có | `requires-python >=3.9` (3.9 hết hỗ trợ 10/2025) |
+| qlkh | 13/9 | 29/29 | – | **không** | không · không | CI 14 job mạnh nhưng thiếu LICENSE, SECURITY, Dependabot; im một tháng |
+| X-Studio | 11/10 | 3/3 | – | **không** | không · không | 115 file test, một workflow `verify.yml` |
+| X-Scanner | 13/10 | 2/2 | – | **không** | không · có | Xem §8 (thiếu cổng `/auto-complete`) |
+| X-Agents | 12/10 | **0/42** | ci, eval-record, pr-policy (có ở cấp job) | uv, actions | có · có | Lệch chuẩn khung về ghim SHA; Dockerfile `python:3.13-slim` không ghim digest |
+| dhcb | 12/10 | **5/21** | – | npm, actions | không · có | `permissions.deny` rỗng; Stop chỉ `usage-guard.sh`; CLAUDE.md 336 dòng; TypeScript `^5.2.2` (xboss/Xgold 6.0.3) |
+| Hermes-Agents | 5/10 | **0/11** | – | **không** | có · không | Bridge mặc định `127.0.0.1` + `http_security.py` (kiểm Host, `hmac.compare_digest`, giới hạn body 2 MB, 8 request đồng thời) |
+| Plugin-4-Hermes | 31/8 | không có CI | – | không | có · không | Bridge 290 dòng là bản cũ, **không có** lớp `http_security` của Hermes-Agents; `manage.py` nội suy `host` vào chuỗi mã Python (Hermes-Agents đã chuyển sang `sys.argv`) |
+| ai-gateway | 5/9 | **0/6** | ci | **không** | có · không | Mặc định `HOST=0.0.0.0`; không đặt `GATEWAY_API_KEY`/`GATEWAY_ADMIN_TOKEN` thì **chỉ cảnh báo** (fail-open): chat, `/mcp`, `/api/claude/oauth/*`, `/metrics` mở cho mọi người gọi tới cổng; `engines.node >=18` (Node 18 hết hỗ trợ 4/2025) trong khi Dockerfile dùng `node:22-alpine` |
+| Xgold | 6/9 | **0/19** | ci, codeql, lighthouse-ci | npm | có · có | `model: opusplan`; không có `auto-complete-guard.sh`; chậm 5 tuần so với khung (ADR-0007…0012) |
+| xboss-manager | 6/9 | **0/20** | ci, codeql, lighthouse-ci | npm | có · có | Commit cuối trùng message với Xgold; như Xgold; 1 file test |
+| design-os-3d-blender | 6/9 | không có CI | – | không | có · không | 86 file test headless nhưng **không có workflow**; MCP `uvx blender-mcp` không ghim phiên bản |
+| reveser | 20/7 | **0/38** | ci | không | có · có | Mirror ở `rea-agents` 2.1.0; upstream `morluto/rea` đã 6.4.0 (≥200 commit, HEAD 13/10/2026) |
+| Claude-Red | 29/8 | 2/12 | codeql, skill-optimize-apply, skill-preview | không | có · có | Chậm upstream 9 commit (`a8de813`, 12/10); `skill-optimize-apply.yml` chạy trên `issue_comment` với `contents: write` mà không kiểm `author_association`. Lỗi này **kế thừa nguyên từ upstream** |
+| system-design-notes | 12/8 | không có CI | – | không | không · không | Git log cho thấy tác giả là Gaurav Kumar (bản web tại pagefy.io, upstream GitHub chưa xác minh); nội dung và 392 ảnh trích từ sách có bản quyền, repo không có LICENSE |
+
+**Đọc ma trận:**
+
+- Khung drop-in đã đặt chuẩn (ghim SHA, `permissions:`, Dependabot cho actions), nhưng chuẩn này **không lan tự động**. Ba repo sinh sau khung có vệ sinh tốt (xboss, Sales-Hunter, Dhcb-Tools). Ba repo đứng ngoài khung (X-Agents, ai-gateway, reveser) và hai repo đóng băng từ 6/9 (Xgold, xboss-manager) vẫn ghim action theo tag.
+- Lớp biên mạng không đồng đều: Hermes-Agents là mẫu tốt (loopback + kiểm Host + so hằng thời gian). ai-gateway có đủ cơ chế token nhưng **mặc định mở**. Plugin-4-Hermes là bản tiền thân chưa được vá.
+- Mirror/fork trôi xa upstream: reveser chậm 4 phiên bản lớn, Claude-Red chậm 9 commit. Khi dẫn hai repo này, kho dẫn upstream (quy tắc mirror của WORKFLOW).
 
 ---
 
