@@ -11,7 +11,7 @@
 | # | Chuyên mục | Nội dung chính |
 |---|-----------|----------------|
 | 01 | [AI Coding Agents](01-ai-coding-agents/README.md) | OpenCode, Claude Code, Codex CLI, Gemini CLI, Cline, Aider, DeepSeek Harness, OpenHands, SWE-agent, Cursor, Windsurf/Devin, Copilot, Jules; benchmark SWE-bench; **case study Understand-Anything** (85,9k★, codebase → knowledge graph) |
-| 02 | [Agent Frameworks](02-agent-frameworks/README.md) | LangGraph, CrewAI, AutoGen → MS Agent Framework, OpenAI Agents SDK, LangChain, LlamaIndex, Semantic Kernel, smolagents, Haystack, PydanticAI, OpenClaw |
+| 02 | [Agent Frameworks](02-agent-frameworks/README.md) | **+ case study OpenCompany** (nhân viên AI đóng gói sản phẩm, 12/10/2026), họ "công ty AI" (Paperclip, MetaGPT, ChatDev, OpenOPC), Hermes Agent · LangGraph, CrewAI, AutoGen → MS Agent Framework, OpenAI Agents SDK, LangChain, LlamaIndex, Semantic Kernel, smolagents, Haystack, PydanticAI, OpenClaw |
 | 03 | [Agentic Patterns & Loops](03-agentic-patterns-loops/README.md) | 5 workflow của Anthropic, ReAct, Plan-Execute, Reflexion, Ralph Wiggum loop, context engineering, harness engineering, multi-agent + git worktrees; **case study ADHD** (parallel divergent ideation skill) |
 | 04 | [Protocols & Standards](04-protocols-standards/README.md) | MCP, A2A, AG-UI, Agent Skills (SKILL.md), AGENTS.md, .cursorrules |
 | 05 | [Low-code LLM Platforms](05-low-code-llm-platforms/README.md) | n8n, Dify, Langflow, Flowise |
@@ -125,6 +125,10 @@
 - Audit 19 repo của chủ kho (mục 23) cho thấy một hệ sinh thái nhất quán đã chạy thật nhiều tháng: khung drop-in cho Claude Code → "công ty AI" → gateway thuê bao → sản phẩm (dhcb, xboss, Dhcb-Tools). Ba nguyên tắc rút ra: (1) mọi trường "đã làm" do code điền (`verified_by`), lời khai model không phải bằng chứng; (2) Stop hook đọc **file trạng thái**, chuỗi đỏ cùng chữ ký ≥3 → BLOCKED, trần số vòng — phản biện trực tiếp `<promise>` của Ralph (mục 03); (3) **subagent không lồng subagent**, dispatch từ phiên chính, mỗi việc giao ghi `model_tier` và side effect.
 - Nhận định §14 "cài plugin đang thắng" cần nuance: trong vận hành repo và phiên cloud, **vendor skill có lock** (ECC → `.claude/ecc/lock.json`) thắng plugin vì plugin bật qua `settings.json` không nạp trên claude.ai/code và `~/.claude` mất theo container (mục 20 §3b).
 - Kho đã bổ sung theo audit: Hermes Agent + họ "công ty AI" (02), hook lifecycle + 3 tầng + T0–T4 (03), `.mcpb`/đa harness (04), eval replay/EDD/mutation/negative control (07), LLM gateway (10 §6), policy-as-code/SBOM/hash-lock/loopback/red-team dual-use (12), quality-gate stack + open-code-review (13), 3D/video/scan (14/19), pháp lý BIM VN (18), ECC & plugin pack (20), repair cap/outbox/status-freshness (21), WORKFLOW "grep cổng đang chạy".
+
+### 17. "Công ty AI" tách đôi: thư viện cho dev và sản phẩm "nhân viên AI" chạy nền
+
+- `zeenie-ai/OpenCompany` (995★, ex-MachinaOS; link người dùng 12/10/2026) cùng Paperclip (~100k★) và OpenOPC cho thấy nhánh *sản phẩm end-user*: nhân viên = đội lead/specialist chạy nền theo trigger, skill là SKILL.md sửa được, durable qua Temporal. Pattern đáng giữ: topology là ranh giới uỷ quyền, ẩn tool uỷ quyền khỏi model, tách context/memory. Nhưng bus-factor 1, README lệch mã, secret dev commit sẵn, 0 thảo luận HN/Reddit → **theo dõi, chưa dùng production** (mục 02 §4).
 
 ---
 

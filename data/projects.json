@@ -2593,9 +2593,9 @@
       "repo": "FoundationAgents/MetaGPT",
       "category": "agent-framework",
       "license": "MIT",
-      "stars": null,
+      "stars": 70800,
       "open_source": true,
-      "notes": "Công ty phần mềm đa vai trò theo SOP; ~60k★ (theo docs nội bộ, chưa xác minh)",
+      "notes": "Công ty phần mềm đa vai trò theo SOP; ★ trang GitHub 12/10/2026",
       "section": "02"
     },
     {
@@ -2603,9 +2603,9 @@
       "repo": "OpenBMB/ChatDev",
       "category": "agent-framework",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 34500,
       "open_source": true,
-      "notes": "Chat-chain giữa vai trò CEO/CTO/dev/tester; ~27k★ (theo docs nội bộ, chưa xác minh)",
+      "notes": "Chat-chain giữa vai trò CEO/CTO/dev/tester; ★ trang GitHub 12/10/2026",
       "section": "02"
     },
     {
@@ -2613,9 +2613,9 @@
       "repo": "bytedance/deer-flow",
       "category": "agent-framework",
       "license": "MIT",
-      "stars": null,
+      "stars": 83700,
       "open_source": true,
-      "notes": "Deep research đa agent trên LangGraph; ~18k★ (theo docs nội bộ, chưa xác minh); X-Agents đối chiếu",
+      "notes": "Deep research/\"SuperAgent harness\" đa agent trên LangGraph; ★ trang GitHub 12/10/2026; X-Agents đối chiếu",
       "section": "02"
     },
     {
@@ -2653,9 +2653,9 @@
       "repo": "Pythagora-io/gpt-pilot",
       "category": "agent-framework",
       "license": "MIT",
-      "stars": null,
+      "stars": 33600,
       "open_source": true,
-      "notes": "Dev AI theo bước, hỏi người khi kẹt; ~33k★ (theo docs nội bộ, chưa xác minh)",
+      "notes": "Dev AI theo bước; ngừng bảo trì; cảnh báo mã độc core/telemetry (chưa xác minh); ★ 12/10/2026",
       "section": "02"
     },
     {
@@ -2877,6 +2877,36 @@
       "open_source": true,
       "notes": "MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh)",
       "section": "14"
+    },
+    {
+      "name": "OpenCompany (ex-MachinaOS)",
+      "repo": "zeenie-ai/OpenCompany",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 995,
+      "open_source": true,
+      "notes": "App desktop/self-host 'nhân viên AI' = lead + specialist trên canvas React Flow; trigger Gmail/Telegram/WhatsApp/Stripe/cron; Temporal; 86 SKILL.md; 171 plugin; bus-factor 1; .env secret dev commit sẵn; đọc 2026-10-12",
+      "section": "02"
+    },
+    {
+      "name": "Paperclip",
+      "repo": "paperclipai/paperclip",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 100500,
+      "open_source": true,
+      "notes": "Quản lý agent như nhân viên: org chart, budget, heartbeat; lớn nhất họ 'công ty AI' 2026; ★ 12/10/2026",
+      "section": "02"
+    },
+    {
+      "name": "OpenOPC",
+      "repo": "HKUDS/OpenOPC",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 1800,
+      "open_source": true,
+      "notes": "One-person company: tự dựng org chart, uỷ việc cho Claude Code/Codex/Cursor; ★ 12/10/2026",
+      "section": "02"
     }
   ]
 }
