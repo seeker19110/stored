@@ -112,3 +112,31 @@
 - github.com/Dodaios/Dodaios (URL cũ github.com/PersonalJarvis/PersonalJarvis), clone đầy đủ lịch sử, commit e28f53f (11/10/2026): README.md, AGENTS.md, NOTICE, LICENSE, TRADEMARK.md, jarvis.toml.example, jarvis/safety/{risk_tier,command_impact,tool_executor}.py, jarvis/core/config.py (SafetyConfig), docs/product/privacy-safety-and-support/safety-and-approvals.md, docs/LLM-CONTEXT.md, .github/workflows/, git log/shortlog/tag
 - pypi.org/project/personal-jarvis (3.1.1, 10/10/2026; attestation repo Dodaios) · personaljarvis.ai · github.com/alvinreal/awesome-opensource-ai/pull/788 · github.com/slavakurilyak/awesome-ai-agents/issues/637 · fork/mirror trùng tên: github.com/lxcruz404/PersonalJarvis, github.com/Makkelory/PersonalJarvis · không thấy thảo luận HN/Reddit (tìm 12/10/2026)
 - So sánh (★ trang GitHub 12/10/2026): github.com/pingdotgg/t3code, github.com/BloopAI/vibe-kanban, github.com/smtg-ai/claude-squad, github.com/open-jarvis/OpenJarvis; Orca (github.com/stablyai/orca, số sao 10k–43k tùy nguồn, chưa xác minh): aitoolsatlas.ai, linkedin.com/company/stably-dev; bài so sánh ADE: agentsroom.dev, codeagentswarm.com, nimbalyst.com (3 bài), augmentcode.com/tools/best-ai-coding-agent-desktop-apps, paralect.com/stack/top-agentic-ides, superset.sh/compare, parallelcode.app/compare
+
+## Bổ sung 2026-10-12 (mksglu/context-mode → mục 03 §4, §8b; mục 12)
+
+- github.com/mksglu/context-mode, clone đầy đủ lịch sử (v1.0.169, 2.228 commit): README.md, BENCHMARK.md, CLAUDE.md, LICENSE (ELv2), stats.json, src/{executor,server,cli}.ts, hooks/core/{routing,formatters}.mjs, hooks/posttooluse.mjs, .github/workflows/update-stats.yml; trang GitHub (26,8k★, 12/10/2026)
+- npmjs.com/package/context-mode · news.ycombinator.com/item?id=47193064 (570 điểm, 107 bình luận) · context-mode.com/insight
+- Nguyên lý: anthropic.com/engineering/code-execution-with-mcp (4/11/2025; nhắc Cloudflare "Code Mode")
+- So sánh (★ trang GitHub 12/10/2026): github.com/rtk-ai/rtk, github.com/thedotmack/claude-mem, github.com/oraios/serena
+
+## Bổ sung 2026-10-12 (Edge0-AI/Audio8_TTS → mục 14 §3, §3b)
+
+- github.com/edge0-ai/audio8_tts (clone đầy đủ, 73 commit): README.md, NOTICE, LICENSE, audio8_tts_*.py, onnx_runtime*/, sglang_omni/; trang GitHub (1,6k★, 12/10/2026)
+- huggingface.co/Audio8/Audio8-TTS-Preview-0.6b (Apache-2.0) · huggingface.co/Audio8/Audio8-TTS-Preview-0.1b (Audio8 Community License v1.0) · audio8-ai.github.io/Audio8_TTS
+- Bên thứ ba: deepinfra.com/Audio8/Audio8-TTS-Preview-0.6b, github.com/john-rocky/coreai-model-zoo/pull/47, github.com/0xShug0/audio.cpp (docs/community_models/audio8_tts.md), hackernoon.com, creativeaishow.com, nexustrade.io (bài nghe thử không chính thức)
+- Fish Audio S2 Pro license: huggingface.co/fishaudio/s2-pro/blob/main/LICENSE.md, fish.audio/fr/blog/what-we-mean-by-open-source-for-s2
+
+## Bổ sung 2026-10-12 (ảnh README mattpocock/skills → mục 20 §3c)
+
+- github.com/mattpocock/skills (clone đầy đủ, 545 commit): README.md, SCOPE.md, .out-of-scope/*.md, .agents/adr/*.md, CLAUDE.md, skills/**/SKILL.md (38), skills/misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh, .claude-plugin/*.json, .github/workflows/; trang GitHub (287,2k★, 12/10/2026)
+- skills.sh/mattpocock/skills · skills.sh/mattpocock/skills/grilling (listing cũ ghi 174,7k★) · aihero.dev/s/skills-newsletter · không tìm thấy review/critique độc lập (tìm 12/10/2026)
+
+## Bổ sung 2026-10-12 (HarnessMD/munder-difflin → mục 02 §4b, mục 01 §1.3)
+
+- github.com/harnessmd/munder-difflin (clone đầy đủ, 1.394 commit): README.md, HIVE.md, TELEMETRY.md, SECURITY.md, LICENSE, LICENSE-ASSETS, src/shared/agentProvider.ts, src/main/analytics.ts, test/ (131 file); trang GitHub (8,7k★, 12/10/2026); github.com/chaitanyagiri/munder-difflin (URL cũ)
+- trendshift.io/repositories/46562 · producthunt.com/products/munder-difflin · harnessmd.com · munderdiffl.in
+
+## Bổ sung 2026-10-12 (ảnh "28 repo cho motion graphics" của Charlie Hills → mục 22 §9b)
+
+- Số sao/license đọc trang GitHub 12/10/2026: github.com/{mrdoob/three.js, juliangarnier/anime, pmndrs/react-three-fiber, airbnb/lottie-web, greensock/GSAP, FFmpeg/FFmpeg, 3b1b/manim, ManimCommunity/manim, motion-canvas/motion-canvas, redotvideo/revideo, shadcn-ui/ui, DavidHDev/react-bits, magicuidesign/magicui, ibelick/motion-primitives, 21st-dev/magic-mcp, openai/whisper, Tonejs/Tone.js, katspaugh/wavesurfer.js, elevenlabs/skills, anthropics/skills, ahujasid/mcp-for-blender (cũ blender-mcp), CloudAI-X/threejs-skills, Dakkshin/after-effects-mcp}; 6 repo còn lại theo mục 22 §1

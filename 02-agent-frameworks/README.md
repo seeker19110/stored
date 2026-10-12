@@ -76,6 +76,45 @@
 - Ba pattern đưa sang mục 03: topology = ranh giới uỷ quyền, ẩn tool uỷ quyền khỏi model (chỉ đưa roster), tách context/memory. Cùng ý với X-Agents "model quyết định, code hành động" (mục 23).
 - Trạng thái: **theo dõi, chưa khuyến nghị production**; nếu thử: Docker, đổi secret `.env`, dùng model cloud; xem lại sau 3–6 tháng (contributor thứ hai, SECURITY.md, bản ký số).
 
+## 4b. Case study: Munder Difflin (HarnessMD) – "văn phòng" agent CLI có avatar (link từ người dùng, 2026-10-12)
+
+> Nguồn: https://github.com/harnessmd/munder-difflin. Đã clone đầy đủ lịch sử (1.394 commit): README, `HIVE.md`, `TELEMETRY.md`, `SECURITY.md`, `LICENSE`/`LICENSE-ASSETS`, `src/shared/agentProvider.ts`, `src/main/analytics.ts`, `test/`. Cùng với đó là trang GitHub, trendshift và Product Hunt.
+
+### Hồ sơ nhanh
+
+| Mục | Giá trị (đọc 2026-10-12) |
+|---|---|
+| Repo | `HarnessMD/munder-difflin`, nhưng README, link release và lệnh clone vẫn trỏ `chaitanyagiri/munder-difflin` → đã chuyển sang org mới. Site harnessmd.com, munderdiffl.in. Tên nhại "Dunder Mifflin" (*The Office*), agent điều phối tên "Michael" |
+| Tác giả | Chaitanya Giri: 1.053/1.394 commit (2 email); có 4 người khác góp 27–56 commit |
+| Tuổi / phiên bản | Commit đầu 31/5/2026; v0.5.3 "pre-release"; badge #1 Repository of the Day trên trendshift, #5 Product of the Day trên Product Hunt |
+| Quy mô | Electron + React + TypeScript + Pixi.js + xterm.js + node-pty; ~66,8k dòng TS trong `src/`; 131 file test |
+| License / mô hình | Code MIT; art asset tách riêng (`LICENSE-ASSETS`). **Open-core**: bản Pro US$150/năm (giảm theo sức mua, thấp nhất ~US$100) có sidebar Tasks/Inbox/Automations, ghi âm cuộc họp "Stapler"… |
+| Số liệu | **8,7k★**, 1,2k fork, 34 watcher, 114 issue + 125 PR mở |
+| Lịch sử commit | **75 commit `seo-engine: day N AM/PM…`**: một agent viết bài SEO/blog theo lịch rồi commit thẳng vào repo sản phẩm (thư mục `blog/`, `seo/`) |
+
+### Cơ chế
+
+- **Mỗi terminal là một agent:** chạy CLI thật (`claude`, `codex`, `agy`, `grok`, `kimi`, `qwen`, `opencode`, `crush`, `pi`, `copilot`, Cursor hoặc lệnh tuỳ ý) trong PTY. Dùng subscription có sẵn, chịu giới hạn theo giờ của từng gói; hỗ trợ thêm BYOK và model local (Ollama, LM Studio, vLLM). Mỗi agent tuỳ chọn một git worktree riêng.
+- **"Hive" = repo git chứa file thuần:** agent ghi vào `outbox/`, router giao vào `inbox/` của người nhận; blackboard `board.md` chỉ có một người ghi; `tasks.json` là sổ giao việc; event log chỉ ghi thêm. **Chỉ harness commit git** (single-committer), nhờ vậy tránh lỗi hỏng `index.lock` khi nhiều agent cùng ghi. Chỉ request/query/propose mới bắt buộc trả lời; có trần số bước chuyển để hai agent không đá qua đá lại mãi.
+- **GOD agent (Michael):** người dùng chỉ nói chuyện với Michael; Michael phân việc, tự xử việc thường, chỉ đẩy việc "critical" (chi tiền, thao tác phá huỷ, đổi phạm vi) vào hàng chờ duyệt. Ngoài ra có **circuit breaker** steer → constrain → stop khi agent lặp, bão lỗi hoặc vượt ngân sách token; chi phí thật đọc từ transcript; span OTel.
+- **Memory:** markdown của từng agent được gom thành "palace" chung có tìm kiếm ngữ nghĩa và cơ chế nén. README gọi đây là "fastest memory layer in the world" nhưng không có benchmark **(chưa xác minh)**.
+- **Phụ:** dictation toàn hệ thống (Whisper chạy local), avatar trên sàn văn phòng 2D, IDE Monaco, kanban có ticket key, kích hoạt qua Slack/webhook, catalog 227 skill.
+
+### Đọc cổng thật
+
+| Tuyên bố | Code / docs | Nhận xét |
+|---|---|---|
+| "Autonomy with a leash: spend, scope and destructive operations come back to you" | `HIVE.md`: "Its escalation policy (what counts as 'critical') lives in its **system prompt** and is the primary control surface — tune the prompt, not the code" | Cổng duyệt là **phán đoán của LLM**, không phải code. Prompt injection hoặc model nhầm thì thao tác phá huỷ vẫn chạy. Khác với cổng máy (mục 23) và khác với cách OpenCompany giới hạn bằng topology (§4) |
+| Chế độ auto của từng agent | `agentProvider.ts`: Claude Code và Grok chạy với `--permission-mode bypassPermissions`, Cursor với `--dangerously-skip-permissions`, Gemini với `--yolo`. Riêng **Codex đã được sửa** từ `--dangerously-bypass-approvals-and-sandbox` sang `-a never -s workspace-write` + `--add-dir` (comment giải thích, có test `auto-mode-sandbox.test.cjs`) | Ngoài Codex, ở chế độ auto **không agent nào có sandbox hay cổng hỏi**; an toàn chỉ còn dựa vào lời dặn trong prompt của Michael. Nên chạy trong VM/container (mục 11) hoặc dùng Codex |
+| Telemetry "anonymous" | `TELEMETRY.md` + `analytics.ts`: PostHog, **bật sẵn (opt-out)**, allowlist sự kiện (`app_launched`, `agent_spawned`, `message_sent` chỉ đếm, không có nội dung), `$ip: null`, tôn trọng `DO_NOT_TRACK`; key chỉ chèn vào bản build chính thức | Minh bạch hơn mức trung bình: tài liệu là hợp đồng và allowlist được thực thi bằng code. Nhưng mặc định vẫn là bật |
+| "Free, open source" | Lõi MIT; nhiều tính năng điều hành (sidebar Pro, Stapler) nằm trong bản Pro trả phí | Open-core, giống context-mode (mục 03 §8b) |
+
+### Đánh giá
+
+- **Đáng học:** (1) **hive bằng file + một người commit duy nhất**: giao tiếp giữa agent đọc được, diff được, không cần message broker; (2) chặn trả lời qua lại bằng loại thông điệp + trần số bước; (3) circuit breaker có 3 nấc thay vì kill ngay; (4) `TELEMETRY.md` là hợp đồng có allowlist trong code; (5) sửa Codex từ "bypass toàn bộ" sang "sandbox + `--add-dir`" là ví dụ đúng về giữ sandbox khi cần ghi thêm thư mục.
+- **Rủi ro:** cổng "critical" là LLM; bypass permission mặc định cho các CLI ngoài Codex; pre-release (0.5.x) nhưng có tới 125 PR mở; repo vừa đổi chủ; commit SEO tự động làm loãng lịch sử; chưa có đánh giá độc lập về chất lượng phối hợp nhiều agent.
+- **So sánh:** cùng họ "công ty/văn phòng AI" với OpenCompany (§4), Paperclip, OpenOPC, và cùng nhóm ADE ở mục 01 §1.3 (Personal Jarvis, T3 Code, Claude Squad). Điểm khác biệt là dồn mọi CLI về **một** agent điều phối bằng giọng nói/chat và hiển thị như một văn phòng.
+
 ## 5. Nguồn
 
 - https://www.firecrawl.dev/blog/best-open-source-agent-frameworks
@@ -88,3 +127,4 @@
 - https://github.com/NousResearch/hermes-agent · https://github.com/FoundationAgents/MetaGPT · https://github.com/OpenBMB/ChatDev · https://github.com/bytedance/deer-flow · https://github.com/ag2ai/ag2 · https://github.com/camel-ai/camel · https://github.com/VRSEN/agency-swarm · https://github.com/Pythagora-io/gpt-pilot · https://github.com/ruvnet/ruflo (đọc qua docs nội bộ của X-Agents/Hermes-Agents, 2026-10-12)
 - OpenCompany (đọc 2026-10-12): https://github.com/zeenie-ai/OpenCompany (README, CONTRIBUTING, CLAUDE.md, LICENSE, releases, issues #128 #129 #132–134 #143 #145, `docs-internal/{agent_teams,employee_teams,normal_mode,memory_compaction,agent_context_flow}.md`, RFC-0001..0003, `server/nodes/README.md`, `server/skills/**/SKILL.md`, `client/src/features/home/hire/starters.json`) · https://opencompany.sh · https://docs.opencompany.sh · https://reporank.net/en/repo/zeenie-ai-opencompany.html · https://www.opensourcealternatives.to/item/opencompany · https://cloudnews.tech/machinaos-wants-to-bring-the-ai-personal-assistant-from-the-cloud-to-your-own-server/ · https://www.everydev.ai/developers/zeenie-ai (chưa xác minh) · https://github.com/paperclipai/paperclip · https://github.com/HKUDS/OpenOPC · https://github.com/tinyhumansai/opencompany (trùng tên)
 - https://github.com/openclaw/openclaw · https://www.digitalocean.com/resources/articles/what-is-openclaw · https://www.freecodecamp.org/news/how-to-build-and-secure-a-personal-ai-agent-with-openclaw/
+- Munder Difflin (2026-10-12): https://github.com/harnessmd/munder-difflin (clone đầy đủ; README, HIVE.md, TELEMETRY.md, src/shared/agentProvider.ts, src/main/analytics.ts) · https://github.com/chaitanyagiri/munder-difflin (URL cũ) · https://trendshift.io/repositories/46562 · https://www.producthunt.com/products/munder-difflin · https://harnessmd.com · https://munderdiffl.in
