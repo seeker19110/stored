@@ -59,7 +59,8 @@
       "quality-gate",
       "policy-as-code",
       "agent-workspace",
-      "context-optimization"
+      "context-optimization",
+      "app-launcher"
     ],
     "count": null
   },
@@ -4389,6 +4390,26 @@
       "open_source": true,
       "notes": "82–83 skill bug bounty, scope chặt; ★ đọc 12/10/2026",
       "section": "12"
+    },
+    {
+      "name": "ArtCraft Launcher",
+      "repo": "storytold/craft-launcher",
+      "category": "app-launcher",
+      "license": "MIT OR Apache-2.0",
+      "stars": 1560,
+      "open_source": true,
+      "notes": "Cài/cập nhật 12 app Craft (Rust, egui); catalog đóng storytold/*, SHA-256 bắt buộc, ghim Team ID chỉ trên macOS; CI chạy test; ~76% commit Claude đồng tác giả; ★ đọc 12/10/2026",
+      "section": "01"
+    },
+    {
+      "name": "Omnigent",
+      "repo": "omnigent-ai/omnigent",
+      "category": "agent-workspace",
+      "license": "Apache-2.0",
+      "stars": 10760,
+      "open_source": true,
+      "notes": "Meta-harness của Databricks bọc Claude Code/Codex/Cursor/OpenCode…; policy 3 tầng, sandbox đám mây; alpha, 7 GHSA, analytics bật mặc định; ★ đọc 12/10/2026",
+      "section": "01"
     }
   ]
 }

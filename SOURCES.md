@@ -184,3 +184,16 @@
 
 - github.com/EvanThomasLuke/Awesome-AI-Security-Skills (README, 22 commit; 112★, 12/10/2026) · github.com/EvanThomasLuke
 - Trang repo + commits Atom của các mục được kiểm: trailofbits/skills, trailofbits/skills-curated, NVIDIA/SkillSpector, cisco-ai-defense/skill-scanner, anthropics/claude-code-security-review, cloudflare/security-audit-skill, google/mantis, elastic/agent-skills, ghostsecurity/skills, semgrep/skills, mukul975/Anthropic-Cybersecurity-Skills, elementalsouls/Claude-BugHunter, blacklanternsecurity/red-run, DeepBitsTechnology/claude-plugins, Netflix-Skunkworks/railguard-skill, Mindgard/ai-ide-skills, AILiteracyLab/Claude-Security-Audit, zhaoxuya520/reverse-skill · raw.githubusercontent.com/SnailSploit/Claude-Red/main/CHANGELOG.md
+
+## Bổ sung 2026-10-12 (link storytold/craft-launcher → mục 01 §3e)
+
+- github.com/storytold/craft-launcher (clone đầy đủ, 99 commit không merge, 75 có trailer Claude; HEAD 1aaf7b2): AGENTS.md, crates/core/src/{catalog,feed,release}.rs, crates/native/src/{install,source,backend}.rs, .github/workflows/ci.yml, packaging/windows/sign.ps1; issue #90, PR #51, #203, #208, #213; trang GitHub (~1,6k★, 12/10/2026) · github.com/storytold/craft-launcher-assets · github.com/storytold · github.com/echelon
+- getartcraft.com/apps · github.com/storytold/artcraft-services/pull/70 · news.ycombinator.com/item?id=49958850, 49981449, 50010170, 50039007 (craftsuite.net, không chính thức) · omgubuntu.co.uk, techspot.com, petapixel.com, phoronix.com (10/2026)
+- So sánh (★ 12/10/2026): ImranR98/Obtainium, LykosAI/StabilityMatrix, pinokiocomputer/pinokio, mijorus/gearlever
+
+## Bổ sung 2026-10-12 (link omnigent-ai/omnigent → mục 01 §3f)
+
+- github.com/omnigent-ai/omnigent (clone đầy đủ, 4.686 commit; HEAD 87f6f08): README, AGENTS.md, docs/POLICIES.md, omnigent/cli.py, omnigent/server/routes/accounts_auth.py, omnigent/tools/manager.py, omnigent/telemetry/client.py, omnigent/runtime/telemetry.py; /security/advisories; trang GitHub (~10,8k★, 12/10/2026)
+- pypi.org/project/omnigent · pypistats.org/api/packages/omnigent/recent · omnigent.ai · databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents · docs.databricks.com/aws/en/omnigent · app.opencve.io/cve/CVE-2026-62674 (ánh xạ CVE ↔ GHSA chưa xác minh)
+- itbrief.co.uk (18/6/2026) · atlan.com/know/ai-agent/databricks/what-is-databricks-omnigent-meta-harness · news.ycombinator.com/item?id=48518176; bỏ qua aiindigo.com (mô tả sai sản phẩm)
+- So sánh (★ 12/10/2026): OpenHands/OpenHands, langchain-ai/langgraph, BloopAI/vibe-kanban, smtg-ai/claude-squad

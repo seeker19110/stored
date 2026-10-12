@@ -43,6 +43,7 @@ Lớp **không phải agent** mà là "bàn làm việc" bọc các CLI agent �
 | **Vibe Kanban** | github.com/BloopAI/vibe-kanban | Apache-2.0 | ~28,3k | Bảng kanban, mỗi thẻ = một agent trong worktree riêng | README ghi **đang sunset**, chuyển cho cộng đồng |
 | **Orca** | github.com/stablyai/orca | MIT | chưa rõ (10k–43k tùy nguồn) | Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree, chọn bản thắng để merge | Số sao các nguồn lệch nhau ~4× → **(chưa xác minh)** |
 | **Munder Difflin** | github.com/HarnessMD/munder-difflin (cũ: chaitanyagiri/…) | MIT (open-core, Pro US$150/năm) | 8,7k | "Văn phòng" agent: mỗi CLI một PTY + avatar, agent điều phối "Michael", hive bằng file + git | Chế độ auto chạy `bypassPermissions` (trừ Codex); xem mục 02 §4b |
+| **Omnigent** | github.com/omnigent-ai/omnigent | Apache-2.0 | ~10,8k | "Meta-harness" của Databricks: server + web/desktop/mobile bọc Claude Code, Codex, Cursor, OpenCode, Pi…; policy ba tầng, sandbox đám mây, chia sẻ phiên | Case study §3f; alpha, 7 GHSA trong 4 tháng |
 | **Claude Squad** | github.com/smtg-ai/claude-squad | AGPL-3.0 | ~8,6k | TUI trên tmux + git worktree, quản lý Claude Code/Codex/OpenCode/Amp | Nhẹ nhất, chỉ terminal |
 | **Conductor** | Melty Labs (đóng) | thương mại | – | App Mac, agent song song mỗi cái một worktree, panel review diff | Chỉ macOS (theo bài so sánh, chưa xác minh) |
 
@@ -180,6 +181,82 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - **Mẫu làm việc đáng ghi:** nhiều phiên Claude Code song song, mỗi phiên một git worktree (mục 03); plan riêng + ảnh chụp ứng dụng gốc làm spec; dùng công cụ trưởng thành (FFmpeg) làm oracle để kiểm codec tự viết — cùng ý với "test oracle" của ManimGX (mục 22 §9c).
 - **Bối cảnh trình dựng video mở** (★ 12/10/2026): OpenCut 93,7k★ (đang viết lại lõi bằng Rust), LosslessCut 44,5k★, Shotcut 15,4k★, Olive 9,1k★, OpenShot 6,6k★, Kdenlive 5,8k★ (bản mirror GitHub).
 
+## 3e. Case study: ArtCraft Launcher (`storytold/craft-launcher`) — trình cài đặt cho bộ Craft App Suite (link người dùng gửi, 2026-10-12)
+
+> Tiếp nối §3d: cùng tác giả, cùng cách làm bằng agent, nhưng là phần mềm **cài phần mềm khác** nên câu hỏi chính là chuỗi tin cậy khi tải về. Đọc clone đầy đủ (99 commit, HEAD `1aaf7b2`) và mã ở `crates/core`, `crates/native`; nguồn ngoài tra cùng ngày.
+
+### 3e.1 Hồ sơ nhanh
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `storytold/craft-launcher` · **~1,6k★**, 538 fork, 86 issue + 22 PR mở; tạo 9/10/2026; license **MIT OR Apache-2.0** (GitHub chỉ nhận ra Apache-2.0); logo/tên ArtCraft là thương hiệu, không theo MIT/Apache |
+| Định vị | "One place to install, update and open every app in the Craft App Suite, rebuilt in pure Rust": cài, cập nhật, mở 12 app (PhotoCraft, FilmCraft, LightCraft, VectorCraft, PdfCraft, WordCraft, DeckCraft, GridCraft, CADCraft, SoundCraft…); **early alpha** |
+| Tác giả | Brandon Thomas (`echelon`; bio: founder ArtCraft, Storyteller.ai, FakeYou) và org `storytold` ("ArtCraft", ~36,5k follower, 58 repo; PhotoCraft ~51k★ sau ~12 ngày). Pháp nhân trong MSI: Learning Machines LLC |
+| Phát hành | 7 bản, v0.1.0 (10/10) → **v0.3.2** (11/10/2026); MSI x64/x86/arm64 + portable, DMG universal đã ký và notarize, AppImage/deb/rpm/flatpak/tar.gz (x86_64, aarch64, riscv64), FreeBSD, bản web WASM |
+| Quy mô | ~22,8k dòng Rust, 308 `#[test]`; egui/eframe, không Electron/Tauri/webview; `unsafe_code = "forbid"`, clippy cấm `unwrap/expect/panic` ngoài test |
+| Ai viết | 33 tên tác giả; **75/99 commit không phải merge (~76%) có trailer Claude đồng tác giả**. Commit đầu (`initial version`, 9/10 19:25) 12 dòng; 1 giờ 43 phút sau commit thứ hai thêm **136 file, 15.652 dòng** — cùng mẫu "chuẩn bị ngoài lịch sử công khai" như FilmCraft **(suy luận, chưa xác minh)** |
+
+### 3e.2 Chuỗi tin cậy khi tải về, đối chiếu mã
+
+| Lớp | Mã thật (`1aaf7b2`) | Nhận xét |
+|---|---|---|
+| Danh mục app | Cố định trong `core/src/catalog.rs`, mọi repo dạng `storytold/<app>` (có test khẳng định) | Không có cách thêm app ngoài qua cấu hình |
+| Feed phiên bản | `GET https://api.storyteller.ai/v1/craft_apps/release_info` (server của công ty), rơi về GitHub releases khi cần. Từ **PR #208** (12/10, đóng issue #90): `repo_renames` từ feed chỉ được trỏ trong `storytold/`, link tải ngoài GitHub bị loại | Trước #208, feed có thể chuyển hướng một app sang repo của người khác (#90, rà tĩnh, chưa có khai thác) |
+| Checksum | Mỗi file phải khớp SHA-256 (digest của feed/GitHub, hoặc dòng trong `SHA256SUMS.txt` của release); release **không có** checksum thì từ chối cài (#208); không tải được file SUMS là lỗi, không hạ cấp kiểm tra | Chống file hỏng/CDN sai, **không** chống kẻ chiếm được tài khoản phát hành: checksum nằm cùng chỗ với file |
+| Chữ ký | **macOS:** `codesign --verify --deep -R` ghim Team ID `DJ6XS33FX8` (PR #51), chữ ký ad-hoc hoặc của dev khác bị từ chối. **Windows:** MSI được ký Authenticode lúc đóng gói (`packaging/windows/sign.ps1`), nhưng launcher **không kiểm** chữ ký trước khi chạy `msiexec`. **Linux/FreeBSD:** chỉ checksum | Chỉ macOS có xác thực nguồn gốc thật |
+| Quyền | Linux/FreeBSD cài hệ thống qua `pkexec` (hộp mật khẩu polkit); MSI của launcher cài per-user, không UAC; không bao giờ thay app đang chạy | Không leo quyền ngầm; PR mở #68 (cài im lặng sau một lần hỏi), #209 (mở rộng quyền D-Bus Flatpak) sẽ đổi điều này |
+| Quy tắc cho agent | `AGENTS.md` (PR #213, 12/10): **agent không bao giờ merge hay approve** thay đổi thêm app, nguồn tải hoặc đường cài cho repo ngoài `storytold/`; agent review chỉ được gắn cờ ở đầu review (chủ repo, tuổi, lịch sử, build có ký không) rồi dừng. Sinh ra sau PR #203 "MarkupCraft" từ tài khoản 5 ngày tuổi, build không ký | Cổng bằng văn xuôi, chưa có kiểm tra máy (CODEOWNERS, check CI chặn hàng mới trong catalog) |
+
+### 3e.3 Đánh giá
+
+- **Khác FilmCraft ở chỗ quan trọng:** CI chạy `fmt --check`, `clippy -D warnings`, `cargo test` trên Ubuntu + Windows và kiểm wasm cho **mọi PR** (FilmCraft §3d.3 không có cổng test). Quy tắc "never crash", "mọi thứ từ mạng là thù địch" (giới hạn kích thước, `get()` thay vì index) được ép bằng lint chứ không chỉ viết ra.
+- **Điểm mạnh:** catalog đóng, checksum bắt buộc, ghim Team ID trên macOS, `AGENTS.md` ghi bẫy thực chiến cho agent chạy song song (mỗi agent một `CARGO_TARGET_DIR`, ghi `Cargo.toml` ra file tạm rồi `mv`). Mẫu "agent không được tự cấp quyền cho bên thứ ba" đáng chép cho mọi repo có catalog/marketplace (mục 12, mục 20).
+- **Rủi ro:** (1) 3 ngày tuổi, ~76% commit do agent đồng tác giả, nhịp merge rất nhanh; (2) Windows/Linux chỉ có checksum cùng nguồn; nếu tài khoản GitHub hoặc `api.storyteller.ai` bị chiếm thì launcher cài theo; (3) nhiều PR mở mở rộng quyền (cài im lặng, store plugin #113, quản lý MCP server #133); (4) rủi ro pháp lý của cả bộ app ("clean-room" bản sao Adobe/Microsoft, trade dress) vẫn bỏ ngỏ theo báo chí; (5) repo/trang tải không chính thức (ví dụ `craftsuite.net` trên Show HN) dễ gây nhầm: chỉ tải từ release của `storytold/*`.
+- **So sánh** (★ 12/10/2026): Obtainium 20,4k★ (Android, cài app bất kỳ từ GitHub/GitLab releases), StabilityMatrix 8,9k★ (quản lý UI Stable Diffusion), Pinokio 8,2k★ (cài app AI bằng script cộng đồng, bề mặt tin cậy rộng hơn nhiều), Gear Lever 2,3k★ (quản lý AppImage). License của bốn dự án này **(chưa xác minh trong đợt này)**. Gần nhất về mô hình là launcher một hãng đóng như Adobe Creative Cloud desktop, JetBrains Toolbox.
+- **Tích hợp:** dùng làm **mẫu tham khảo** cho trình cập nhật đa nền tảng bằng Rust (`core` thuần, build được wasm; `native` tách riêng; fixture JSON release thật cho test chọn asset). Muốn tái dùng mã: MIT hoặc Apache-2.0 tuỳ chọn, nhưng **không** dùng logo/tên ArtCraft. Nếu cài app Craft bằng launcher trên Windows/Linux, kiểm thêm chữ ký MSI hoặc so `SHA256SUMS.txt` với một nguồn thứ hai.
+
+## 3f. Case study: Omnigent — "meta-harness" của Databricks cho mọi coding agent (link người dùng gửi, 2026-10-12)
+
+> Đọc clone đầy đủ (4.686 commit, HEAD `87f6f08`) và đối chiếu mã ở các điểm README chỉ tuyên bố: mặc định bind, auth, telemetry, policy, công cụ agent tự có. Nguồn ngoài tra cùng ngày.
+
+### 3f.1 Hồ sơ nhanh
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `omnigent-ai/omnigent` · **~10,8k★**, 1,7k fork; ~700 issue mở, ~1,2k PR mở; tạo 11/6/2026; license **Apache-2.0** (đóng góp cần DCO, không CLA) |
+| Định vị | "Open-source meta-harness": một lớp điều phối chung trên Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, Devin, Kiro, Goose, Qwen, Kimi… và agent tự viết bằng YAML; trạng thái **alpha** |
+| Chủ dự án | **Databricks** (PyPI: "Databricks, Inc."; bài ra mắt trên blog Databricks 13/6/2026 của Matei Zaharia, Kasey Uhlenhuth, Corey Zumar). Lõi commit là người MLflow (Pat Sukprasert, Serena Ruan, Tomu Hirata, Corey Zumar); trang chủ ghi thêm Neon. Bản managed "Omnigent on Databricks" đang Beta |
+| Phát hành | PyPI `omnigent`, 40 phiên bản, ổn định mới nhất **v0.17.0** (5–6/10/2026), nightly `0.18.0.devYYYYMMDD`; Homebrew tap; app desktop macOS (Electron), app mobile; ~39k lượt tải PyPI/tháng (pypistats) |
+| Quy mô | ~523k dòng Python trong `omnigent/` + web UI (pnpm), SDK, `deploy/` cho Docker, Render, Railway, Fly, Modal, Cloudflare, k8s, Databricks Apps; 2.230 file `test_*.py`; **114 file trong `.github/workflows/`** (CI, e2e, flake-stress, benchmark, scorecard, triage tự động) |
+| Ai viết | 280 tên tác giả; **~90% commit có trailer `Co-authored-by: Isaac`** (`isaac@databricks.com`, coding agent nội bộ của Databricks **(suy từ email, chưa xác minh)**), 484 commit có trailer Claude, 398 của bot `omni-resolve-agent[bot]` (được `maintainer-approval.yml` coi là tác giả tin cậy) |
+
+### 3f.2 Nó làm gì
+
+- **Một server + nhiều mặt tiền:** `omnigent` mở phiên trong terminal và web UI tại `localhost:6767`; cùng phiên theo người dùng sang trình duyệt, điện thoại, app desktop. Lệnh `omnigent claude|codex|cursor|opencode|hermes|pi…` bọc CLI gốc trong tmux; harness "SDK" chạy qua `omnigent run agent.yaml`.
+- **Trộn agent:** một phiên có thể có sub-agent khác hãng. Ví dụ đi kèm: **Polly** (tech lead không viết code, giao việc cho Claude Code/Codex/Pi trong git worktree song song, rồi gửi diff cho reviewer **khác hãng** với người viết), **Debby** (hai "đầu" Claude + GPT, `/debate`), **Deep Research**.
+- **Cộng tác:** chia sẻ phiên (mặc định chỉ đọc), co-drive (lệnh của đồng đội chạy **trên máy bạn**), fork phiên sang máy khác.
+- **Sandbox đám mây:** Modal, Daytona, E2B, Blaxel, CoreWeave, Kubernetes, NVIDIA OpenShell, microsandbox… hoặc server tự cấp sandbox mỗi phiên (*managed hosts*); trên máy local dùng `bwrap` (Linux, bắt buộc) hoặc `seatbelt` (macOS). Windows chỉ có Job Object: **không cô lập file/mạng**.
+- **Policy:** ALLOW / DENY / ASK ở ba tầng (server → agent YAML → phiên), DENY ngắt sớm; builtin như hỏi trước lệnh shell, giới hạn số tool call, trần chi phí USD có ngưỡng cảnh báo; viết thêm bằng CEL hoặc hàm Python.
+
+### 3f.3 Cổng thật, đối chiếu mã
+
+| README / cảm nhận | Mã thật (`87f6f08`) | Nhận xét |
+|---|---|---|
+| Server local không cần đăng nhập | `--host` mặc định `127.0.0.1`; bind loopback → chế độ một người dùng không login; bind non-loopback mà không cấu hình auth → **tự bật accounts** và cảnh báo (`cli.py`) | Mặc định an toàn |
+| "Mở IP LAN của máy trên điện thoại (`http://192.168.x.x:6767`)" | Với bind mặc định loopback, IP LAN không vào được; phải `--host 0.0.0.0`, lúc đó auth tự bật | README đơn giản hoá; không phải lỗ hổng |
+| Deploy lên server rồi đăng nhập | `POST /setup` **không xác thực**: người đầu tiên mở URL tạo tài khoản admin (mô hình Immich/Jellyfin), sau đó trả 409 | Khoảng hở giữa lúc deploy và lúc admin tự claim; đặt sẵn `OMNIGENT_ACCOUNTS_INIT_ADMIN_PASSWORD` để đóng |
+| "Nói với agent để thêm policy" | Agent luôn có `sys_add_policy` (chỉ **thêm**, không gỡ) và builtin `ask_on_add_policy` để bắt duyệt cả việc thêm | Thiết kế đúng hướng: agent chỉ siết được, không nới |
+| (README không nói) | Agent **luôn** có 4 công cụ `sys_scheduled_task_*` để tự tạo/sửa/xoá tác vụ định kỳ, không cần spec bật | Agent tự lên lịch chạy lại chính nó → đáng gắn policy ASK cho các tool này (mục 21) |
+| "Telemetry ẩn danh mặc định bật" | Hai hệ khác nhau: analytics sử dụng **bật** (tắt bằng `DO_NOT_TRACK=1`, `OMNIGENT_DISABLE_TELEMETRY=true`, `OMNIGENT_ANALYTICS=0` hoặc `telemetry: false`; tự tắt trong CI; cấu hình kéo từ `config.omnigent-telemetry.io`); tracing OpenTelemetry **tắt** trừ khi `OMNIGENT_TELEMETRY_ENABLED` | README đúng; tắt trước khi dùng trong môi trường nhạy cảm |
+| Bảo mật | Trang advisories có **7 GHSA (3 critical, 4 high)**: ghi đè bundle chia sẻ → RCE trên runner, bộ phân tích lệnh shell fail-open (sửa ở #3559), thoát `os_env.cwd`, RCE qua policy YAML (6/2026 và 9/2026). CVE-2026-62674/75/76 (CVSS 9,0/8,8) gắn với đợt 6/2026 theo OpenCVE **(chưa xác minh)** | Điểm yếu lặp lại: bundle/agent chia sẻ và parser policy. Chỉ chạy bundle từ nguồn tin cậy; cập nhật thường xuyên |
+
+### 3f.4 Đánh giá
+
+- **Điểm mạnh:** đứng sau là một tổ chức lớn với nhịp phát hành hằng tuần; mặc định mạng và auth cẩn thận hơn phần lớn ADE trong §1.3; policy engine nhiều tầng có trần chi phí là thứ T3 Code, Vibe Kanban, Claude Squad không có; harness bench (`tests/harness_bench`) đo ma trận năng lực của từng harness thay vì tin tài liệu vendor; review chéo khác hãng (Polly) là mẫu đáng chép (mục 03).
+- **Rủi ro:** (1) alpha, ~1,9k issue + PR mở, codebase rất lớn và phần lớn do agent viết → bề mặt tấn công rộng, 7 advisory trong 4 tháng; (2) co-drive và chia sẻ quyền Edit cho phép người khác chạy lệnh trên máy bạn; (3) Windows không có sandbox file/mạng; (4) analytics bật mặc định; (5) bản managed trên Databricks hẹp hơn bản mở (không policy Python, sandbox không dùng key model riêng) theo docs Databricks.
+- **So với nhóm ADE (§1.3):** T3 Code, Vibe Kanban, Claude Squad là "bàn làm việc" cho một người; Omnigent là **server nhiều người dùng có governance**, gần một nền tảng hơn. OpenHands (~90,7k★, MIT) là agent riêng chứ không bọc agent khác; LangGraph (~43,1k★, MIT) là thư viện viết agent bằng code.
+- **Tích hợp:** `uv tool install omnigent` (Python 3.12+), hoặc `brew install omnigent-ai/tap/omnigent`; tránh `curl … | sh` trên máy dùng chung. Cấu hình an toàn tối thiểu: giữ bind loopback, hoặc deploy với `OMNIGENT_ACCOUNTS_INIT_ADMIN_PASSWORD` + OIDC; bật `ask_on_os_tools` và `cost_budget` ở tầng server; thêm policy ASK cho `sys_scheduled_task_*`; đặt `DO_NOT_TRACK=1`; trên Linux cài `bubblewrap`. License Apache-2.0 nhúng được, giữ `NOTICE`.
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
@@ -197,3 +274,5 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - https://www.vals.ai/benchmarks/swebench · https://arxiv.org/pdf/2609.08149 (SWE-Bench Pro Verified)
 - https://codeant.ai/blogs/best-ai-code-editor-cursor-vs-windsurf-vs-copilot · https://www.developersdigest.tech/blog/ai-coding-tools-pricing-2026 · https://levelop.dev/blog/the-best-ai-coding-agents-in-2026-a-practical-ranking-for-working-developers
 - §3d FilmCraft (12/10/2026): https://github.com/storytold/filmcraft (lịch sử git đầy đủ; ROADMAP.md, docs/target-app-parity.md, docs/gaps.md, CLAUDE.md, assets/app-icon/README.md; /releases; /issues) · https://getartcraft.com/apps/filmcraft · https://news.ycombinator.com/item?id=49959605 · https://www.it-connect.tech/photocraft-filmcraft-lightcraft-adobes-suite-rebuilt-in-rust-by-claude-opus-5-5-agents/ · PetaPixel, Gizmodo, Phoronix, TweakTown (10/2026) · repo nhái: https://github.com/filmcraft-app/filmcraft · so sánh: https://github.com/OpenCut-app/OpenCut, https://github.com/mifi/lossless-cut, https://github.com/mltframework/shotcut, https://github.com/olive-editor/olive, https://github.com/OpenShot/openshot-qt, https://github.com/KDE/kdenlive
+- §3e ArtCraft Launcher (12/10/2026): https://github.com/storytold/craft-launcher (clone đầy đủ, HEAD 1aaf7b2; AGENTS.md, crates/core/src/{catalog,feed,release}.rs, crates/native/src/{install,source,backend}.rs, .github/workflows/ci.yml, packaging/windows/sign.ps1) · issue #90, PR #51, #203, #208, #213 · https://github.com/storytold/craft-launcher-assets · https://github.com/storytold · https://github.com/echelon · https://getartcraft.com/apps · https://github.com/storytold/artcraft-services/pull/70 · https://news.ycombinator.com/item?id=49958850 · https://news.ycombinator.com/item?id=49981449 · https://news.ycombinator.com/item?id=50010170 · https://news.ycombinator.com/item?id=50039007 (craftsuite.net, không chính thức) · https://www.omgubuntu.co.uk/2026/10/artcraft-free-photoshop-ai-clone · https://www.techspot.com/news/114136-software-over-developer-uses-ai-build-free-adobe.html · so sánh: https://github.com/ImranR98/Obtainium, https://github.com/LykosAI/StabilityMatrix, https://github.com/pinokiocomputer/pinokio, https://github.com/mijorus/gearlever
+- §3f Omnigent (12/10/2026): https://github.com/omnigent-ai/omnigent (clone đầy đủ, HEAD 87f6f08; README, AGENTS.md, docs/POLICIES.md, omnigent/cli.py, omnigent/server/routes/accounts_auth.py, omnigent/tools/manager.py, omnigent/telemetry/client.py, omnigent/runtime/telemetry.py) · https://github.com/omnigent-ai/omnigent/security/advisories · https://app.opencve.io/cve/CVE-2026-62674 · https://pypi.org/project/omnigent/ · https://pypistats.org/api/packages/omnigent/recent · https://omnigent.ai · https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents · https://docs.databricks.com/aws/en/omnigent/ · https://itbrief.co.uk/story/databricks-launches-open-source-omnigent-for-ai-agents · https://atlan.com/know/ai-agent/databricks/what-is-databricks-omnigent-meta-harness/ · https://news.ycombinator.com/item?id=48518176 · so sánh: https://github.com/OpenHands/OpenHands, https://github.com/langchain-ai/langgraph, https://github.com/BloopAI/vibe-kanban, https://github.com/smtg-ai/claude-squad
