@@ -10,7 +10,7 @@
 
 | # | Chuyên mục | Nội dung chính |
 |---|-----------|----------------|
-| 01 | [AI Coding Agents](01-ai-coding-agents/README.md) | OpenCode, Claude Code, Codex CLI, Gemini CLI, Cline, Aider, DeepSeek Harness, OpenHands, SWE-agent, Cursor, Windsurf/Devin, Copilot, Jules; benchmark SWE-bench; **case study Understand-Anything** (85,9k★, codebase → knowledge graph) |
+| 01 | [AI Coding Agents](01-ai-coding-agents/README.md) | OpenCode, Claude Code, Codex CLI, Gemini CLI, Cline, Aider, DeepSeek Harness, OpenHands, SWE-agent, Cursor, Windsurf/Devin, Copilot, Jules; benchmark SWE-bench; **case study Understand-Anything** (85,9k★, codebase → knowledge graph); **agent workspace/ADE** (T3 Code, Orca, Vibe Kanban, Claude Squad) + **case study Personal Jarvis** (Dodaios, "super-app" desktop: ADE + voice + computer use, đọc cổng an toàn thật) |
 | 02 | [Agent Frameworks](02-agent-frameworks/README.md) | **+ case study OpenCompany** (nhân viên AI đóng gói sản phẩm, 12/10/2026), họ "công ty AI" (Paperclip, MetaGPT, ChatDev, OpenOPC), Hermes Agent · LangGraph, CrewAI, AutoGen → MS Agent Framework, OpenAI Agents SDK, LangChain, LlamaIndex, Semantic Kernel, smolagents, Haystack, PydanticAI, OpenClaw |
 | 03 | [Agentic Patterns & Loops](03-agentic-patterns-loops/README.md) | 5 workflow của Anthropic, ReAct, Plan-Execute, Reflexion, Ralph Wiggum loop, context engineering, harness engineering, multi-agent + git worktrees; **case study ADHD** (parallel divergent ideation skill) |
 | 04 | [Protocols & Standards](04-protocols-standards/README.md) | MCP, A2A, AG-UI, Agent Skills (SKILL.md), AGENTS.md, .cursorrules |
@@ -48,6 +48,7 @@
 - Nhóm **CLI agent mã nguồn mở** bùng nổ: OpenCode (~210k★), DeepSeek Harness (~200k★ chỉ sau 2 tuần, 8/2026), Codex CLI (~127k★), Gemini CLI (~107k★), Cline (~69k★), OpenHands (~90k★). Claude Code (~148k★) phổ biến nhưng **không** mã nguồn mở.
 - **Benchmark bão hòa**: SWE-bench Verified đạt ~97% (Claude Opus 5 + mini-SWE-agent, 9/2026) và Vals ngừng chấm model mới; chuyển sang **SWE-bench Pro** (top ~65%). Số sao ≠ chất lượng sản xuất.
 - Xu hướng kiến trúc: **"harness"** (vòng lặp + công cụ + ngữ cảnh) quan trọng hơn bản thân model; DeepSeek Harness biến mọi thứ thành plugin, mini-SWE-agent chứng minh 100 dòng code đủ để >74% SWE-bench.
+- Lớp mới phía trên agent: **agent workspace / ADE** chạy nhiều CLI agent song song, mỗi agent một pane/worktree (T3 Code ~27k★, Vibe Kanban ~28k★ đang sunset, Claude Squad ~8,6k★); cực "super-app" là Personal Jarvis (183★, gộp thêm giọng nói + computer use) — README hứa "mọi thay đổi hệ thống đều chờ duyệt" nhưng mặc định thật là `approval_mode = "bypass"` (mục 01 §3c).
 
 ### 2. Framework agent: từ "framework chiến tranh" sang hợp nhất và chuẩn hóa
 

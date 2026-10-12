@@ -26,12 +26,13 @@ d=json.load(open('data/projects.json',encoding='utf-8'))
 with open('data/projects.csv','w',newline='',encoding='utf-8') as f:
     w=csv.writer(f); w.writerow(['name','repo','url','category','license','stars_est','open_source','section','notes'])
     for p in d['projects']:
-        w.writerow([p['name'],p.get('repo') or '',p.get('url') or (f"https://github.com/{p['repo']}" if p.get('repo') else ''),p['category'],p.get('license') or '',p['stars'] if p['stars'] is not None else '',p['open_source'],p['section'],p['notes']])
+        w.writerow([p['name'],p.get('repo') or '',p.get('url') or '',p['category'],p.get('license') or '',p['stars'] if p['stars'] is not None else '',p['open_source'],p['section'],p['notes']])
 PY
 ```
 
 ## Quy ước
 
 - Số sao luôn kèm ngày và nguồn; dùng `null` nếu không có số tin cậy.
+- Cột `url` của CSV chỉ điền khi JSON có `url` riêng; dự án chỉ có `repo` để trống (đừng suy ra URL GitHub, sẽ làm đổi mọi dòng cũ).
 - Nhận định chưa kiểm chứng độc lập ghi rõ **(chưa xác minh)**.
 - Ưu tiên nguồn chính thức (repo, docs, paper) hơn blog so sánh.
