@@ -2,6 +2,8 @@
 
 > Tổng hợp và phân tích các dự án nổi bật (chủ yếu trên GitHub) về lập trình, AI coding agent, agent framework, agentic loop, giao thức agent, low-code LLM, UI/UX & design, đánh giá/quan sát LLM, và các "awesome list" học tập.
 >
+> **Phạm vi:** kho chỉ lưu hồ sơ repo và đánh giá để các dự án khác tham khảo và tích hợp; không chứa code hay công cụ để dùng (xem [WORKFLOW.md](WORKFLOW.md)).
+>
 > **Ngày khảo sát:** 2026-10-12 · **Phương pháp:** tìm kiếm web + đối chiếu nhiều nguồn (blog so sánh, trang GitHub, tài liệu chính thức, bài báo học thuật). Số sao GitHub là **ước lượng tại thời điểm khảo sát** (Q3–Q4/2026) và sai lệch giữa các nguồn; xem từng mục để biết nguồn.
 
 ---
@@ -137,7 +139,7 @@
 - Đã đọc trang GitHub từng repo (sao, license, lần hoạt động gần nhất, archived) cho 12 chuyên mục mỏng: 04, 05, 07, 08, 11, 12, 13, 15, 16, 17, 18, 20. Catalog tăng từ 316 lên 411 mục.
 - **Repo nổi tiếng đã chết hoặc chuyển chỗ** (nên sửa link cũ): METR/vivaria (archive 7/10/2026), anthropics/courses (archive 15/9/2026), gsd-build/get-shit-done (archive 26/6/2026 → open-gsd/gsd-core), Azure/PyRIT → microsoft/PyRIT, IBM ACP nhập vào A2A, Prompt Flow nghỉ hưu 4/2027; đứng yên: openai/evals, HELM, gitingest, Lighthouse CI, prompt-eng-interactive-tutorial (từ 4/2024). Đổi tên: lobe-chat → lobehub, Chat2DB → OtterMind, everything-claude-code → affaan-m/ECC, anthropic-cookbook → claude-cookbooks.
 - **License không OSI hoặc có điều kiện** phổ biến ở nhóm sản phẩm hoàn chỉnh: Open WebUI (giữ thương hiệu khi >50 người dùng), LobeHub, FastGPT, Chat2DB (source-available từ v5.3.0), SQLBot; AGPL ở Firecrawl, Cherry Studio, Metabase, Renovate. Nhóm thư viện/hạ tầng (sqlglot, instructor, MCP SDK, gVisor, Firecracker) gần như toàn MIT/Apache.
-- **Công cụ bảo mật cũng là chuỗi cung ứng:** Trivy bị cài backdoor 3/2026 (CVE-2026-33634) → ghim Action theo SHA, như quy tắc ở mục 12 §3. Việc cần làm cho repo của chủ kho: đổi nguồn vendor GSD sang gsd-core, cập nhật URL/số liệu ECC trong ADR xboss, theo dõi phương án thay Lighthouse CI (mục 13 §4c, mục 20 §3d).
+- **Công cụ bảo mật cũng là chuỗi cung ứng:** Trivy bị cài backdoor 3/2026 (CVE-2026-33634) → ghim Action theo SHA, như quy tắc ở mục 12 §3. Khi tích hợp: vendor GSD từ bản tiếp nối gsd-core thay vì repo đã archive, dùng URL `affaan-m/ECC`, và lưu ý Lighthouse CI đứng yên từ 6/2025 (mục 13 §4c, mục 20 §3d).
 
 ### 19. Kiểm số liệu viral bằng git và cổng thật (5 link/ảnh ngày 12/10/2026)
 
@@ -148,7 +150,7 @@
 
 ## 🧭 Cách dùng kho này
 
-1. Đọc README của chuyên mục để nắm bối cảnh và bảng so sánh.
+1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
 2. Dùng `data/projects.json` khi cần lọc/tra cứu bằng script.
 3. Thêm dự án mới theo [TEMPLATE.md](TEMPLATE.md); luôn ghi ngày và nguồn cho số sao.
    Khi gửi link mới, kho được cập nhật theo [WORKFLOW.md](WORKFLOW.md) (đọc nguồn gốc, tác giả, nguồn ngoài, dự án tương tự, phân tích, ghi vào kho).

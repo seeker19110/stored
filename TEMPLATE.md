@@ -13,6 +13,7 @@ Sao chép khối dưới vào README của chuyên mục phù hợp (hoặc tạ
 | ★ (ngày) | ~N ★ (YYYY-MM-DD, nguồn: …) |
 | Vì sao đáng tham khảo | 2–4 gạch đầu dòng: điểm khác biệt, bài học kiến trúc, cách áp dụng |
 | Hạn chế / rủi ro | … |
+| Tích hợp | Cách dùng từ dự án khác: gói/lệnh cài, API hoặc giao thức, điều kiện license khi nhúng, cấu hình an toàn tối thiểu |
 | Liên quan | mục NN, dự án X, Y |
 | Nguồn | URL đã đọc |
 ```
