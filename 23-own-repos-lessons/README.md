@@ -242,32 +242,15 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 
 ---
 
-## 8. Kho cần sửa/bổ sung gì (áp dụng trong cùng PR)
+## 8. Lỗi phát hiện trong các repo (đọc 2026-10-12)
 
-| Mục kho | Vấn đề | Việc làm |
-|---|---|---|
-| 03 §3 Ralph loop | `<promise>` là lời khai; `/goal` cũng là tín hiệu yếu | Thêm ghi chú phản biện + trỏ tới ba cổng máy (2.2); thêm bảng hook lifecycle |
-| 03 §5 multi-agent | Thiếu phát hiện "subagent không có tool Agent", trần 5 subagent, route 2 trục | Bổ sung |
-| 04 §4 instruction files | Thiếu `.agents/rules`, `.agents/workflows`, `.agents/mcp_config.json` (Antigravity), CLAUDE.md `@import`, bridge GEMINI.md/.clinerules/.windsurfrules/.cursor/rules/copilot-instructions, Hermes`metadata.hermes` | Bổ sung |
-| 02 framework | Thiếu MetaGPT, ChatDev, DeerFlow, ruflo, AG2, CAMEL, agency-swarm, gpt-pilot, Hermes Agent | Thêm hàng (★ theo docs nội bộ) |
-| 07 eval | Thiếu eval record/replay-in-CI, GAIA, Terminal-Bench 2, τ-bench, Agent-as-a-Judge | Bổ sung |
-| 10 | Thiếu nhóm LLM gateway/router; agent-memory, langmem; ghi chú "không pgvector", "Anthropic không có embedding API" | Thêm §6 |
-| 12 §3 | Chỉ liệt kê tên; thiếu policy-as-code, SBOM/license gate, hash-lock, mutation; thiếu red-team skill pack (dual-use) | Thêm hàng + tiểu mục |
-| 13 | Thiếu "quality gate stack" (Playwright CI, Lighthouse CI, release-please, rulesets, Dependabot grouping, WIP cap), open-code-review, Next 16/TS 6/Tailwind 4 | Bổ sung |
-| 14/19 | Không có 3D/Blender; thiếu video factory + model video (Wan, LTX-2) + scan tài liệu | Bổ sung |
-| 20 | Thiếu ECC, superpowers, compound-engineering, mattpocock/skills, garden-skills, impeccable; **xu hướng §14 "cài plugin thắng" bị phản biện** bởi vendor-có-lock | Bổ sung + ghi phản biện |
-| 21 | Thiếu C compiler song song, auto mode, STOP_HOOK_BLOCK_CAP, Codex Goals, opusplan bị bỏ, keeper, DORA baseline trước khi bật tự trị | Bổ sung |
-| 08, 18 | Alex Xu notes + 25 paper; ai-engineering-from-scratch; VN: ND13/DPIA, SePay, "kỹ thuật agentic viết bằng tiếng Việt" | Bổ sung |
-| WORKFLOW.md | Bản của kho lỏng hơn adopt-from-outside | Thêm 3 cột, "grep cổng đang chạy", kiểm mâu thuẫn, cảnh báo nguồn dựng |
-| 01/02 (đợt 2) | Hermes Agent và Antigravity chỉ xuất hiện như tên host; Hermes là framework đầy đủ | Thêm hàng Hermes Agent ở 02, ghi `claude -p` headless + Antigravity ở 01/10 |
-| 03 (đợt 2) | Thiếu bẫy "subagent không lồng subagent" (xboss TRAPS §7, Hermes `delegate_task`); thiếu `model_tier` T0–T4 + enum side-effect + nhánh A/B; thiếu fact-forcing gate/protect-config như lớp thi hành thật | Bổ sung |
-| 13 (đợt 2) | Thiếu alibaba/open-code-review, mẫu tự xin Copilot review, Lighthouse CI; stack Python (uv/ruff/pyright/pip-audit) và JS (oxlint/knip/jscpd/release-please) | Bổ sung |
-| 20 (đợt 2) | ECC (~214k★ theo ADR xboss, chưa xác minh) vắng mặt; "cài plugin thắng chép prompt" cần nuance: phiên cloud không nạp plugin repo, `~/.claude` mất → vendor có lock | Bổ sung + ghi phản biện |
-| 21 (đợt 2) | Thiếu "3 repair attempts", outbox/lease/fencing (Sales-Hunter ADR-0010), status-freshness CI, AI Delivery Loop | Bổ sung |
-| 07 (đợt 2) | Thiếu mutation test tự viết, negative control bắt buộc, EDD pass@k/pass^k, Santa Method | Bổ sung |
-| 04/11/12 (đợt 2) | Thiếu `.mcpb`, MCP prompts/completion; agent điều khiển app desktop qua bridge loopback; RE agents (REA); mô hình an toàn loopback | Bổ sung |
-| 18 (đợt 2) | Thiếu pháp lý BIM/hoá đơn/nhật ký thi công điện tử (NĐ 217/2026, 207/2026, 70/2025) và nhánh "AI cho AEC/BIM" | Bổ sung (đánh dấu chưa xác minh) |
-| Lỗi tìm thấy trong repo của chủ kho (không thuộc kho) | `case-study-ft41/AGENTS.md` bị `next dev` ghi đè; `dhcb/.claude/settings.json` còn `"model": "opusplan"` (ADR-0007 của khung nói CLI đã bỏ); `X-Scanner` thiếu `auto-complete-guard.sh`; bảng giá model lệch giữa khung và xgold | Báo lại chủ kho |
+> Ghi như dữ kiện đánh giá; việc sửa thuộc về từng repo. Các chỉnh sửa kho làm theo đợt audit này nằm trong lịch sử git, không lưu ở đây.
+
+- `case-study-ft41/AGENTS.md` bị `next dev` ghi đè.
+- `dhcb/.claude/settings.json` còn `"model": "opusplan"`, trong khi ADR-0007 của khung ghi CLI đã bỏ giá trị này.
+- `X-Scanner` thiếu `auto-complete-guard.sh`.
+- Bảng giá model lệch giữa khung drop-in và xgold.
+- Hermes-Agents vendor từ `gsd-build/get-shit-done` (đã archive; bản tiếp nối `open-gsd/gsd-core`); ADR của xboss còn ghi URL và số liệu ECC cũ (mục 20 §3d).
 
 ---
 

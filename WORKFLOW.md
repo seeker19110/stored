@@ -1,5 +1,14 @@
 # Quy trình vận hành kho (WORKFLOW)
 
+## Phạm vi kho
+
+Quy ước do người dùng đặt ra (2026-10-12): **kho `stored` chỉ lưu hồ sơ repo và đánh giá, để các dự án khác tham khảo và tích hợp.**
+
+- **Có trong kho:** hồ sơ và đánh giá từng repo (README chuyên mục), catalog máy-đọc-được (`data/projects.json`, `data/projects.csv`), nguồn (`SOURCES.md`), cùng quy trình và mẫu giữ những thứ đó nhất quán.
+- **Không đặt trong kho:** code, skill, plugin hay công cụ để dùng (chúng thuộc dự án tích hợp); danh sách việc cần làm cho repo khác; nhật ký sửa kho (đã có lịch sử git). Phát hiện về một repo được ghi thành dữ kiện đánh giá kèm ngày đọc; việc sửa làm ở chính repo đó.
+- **Hạ tầng của kho** chỉ gồm phần giữ dữ liệu đúng: CI `markdownlint` và `scripts/check_catalog.py`.
+- **Dự án khác dùng kho:** đọc README chuyên mục để xem đánh giá; lọc `data/projects.json` theo `category`, `license`, `open_source`, số sao để chọn ứng viên. Trước khi tích hợp, kiểm lại ngày đọc và mọi chỗ ghi **(chưa xác minh)**.
+
 ## Khi người dùng gửi một link (repo, bài viết, sản phẩm)
 
 Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đều phải được nghiên cứu kỹ từ nhiều nguồn khác, rồi cập nhật vào kho `stored`.**
@@ -10,7 +19,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
 2. **Hồ sơ tác giả/tổ chức**: profile, dự án liên quan, kênh (blog/YouTube/X), độ uy tín.
 3. **Nguồn bên ngoài**: tìm web về dự án (bài viết, thảo luận, review, HN/Reddit/dev.to, paper); ghi rõ nguồn nào là chính thức, nguồn nào là blog.
 4. **Dự án tương tự / thay thế**: ít nhất 2–4 lựa chọn cùng loại, so sánh quy mô, cách tiếp cận, license, điểm khác biệt.
-5. **Phân tích**: giá trị cốt lõi, bài học kiến trúc, cách ghép vào các mục khác của kho, hạn chế/rủi ro (license, tuổi đời, bảo trì, mâu thuẫn trong tài liệu), gợi ý hành động.
+5. **Phân tích**: giá trị cốt lõi, bài học kiến trúc, cách ghép vào các mục khác của kho, hạn chế/rủi ro (license, tuổi đời, bảo trì, mâu thuẫn trong tài liệu), điều kiện khi tích hợp (license khi nhúng, cấu hình an toàn tối thiểu, phương án thay thế).
 6. **Cập nhật kho**:
    - README của chuyên mục phù hợp (hoặc tạo chuyên mục mới `NN-…/README.md`) theo [TEMPLATE.md](TEMPLATE.md);
    - `data/projects.json` (+ sinh lại `data/projects.csv`);

@@ -215,7 +215,7 @@ plugin-name/
 
 - **Mạnh:** skill ngắn (grill-me chỉ 1 dòng gọi `grilling`), ghép được, lập luận dựa trên sách kỹ thuật kinh điển; quản trị phạm vi rất kỷ luật; đã vào marketplace chính thức của Anthropic.
 - **Hạn chế:** chưa thấy đánh giá độc lập (tìm 12/10/2026 không ra review/critique), bằng chứng hiệu quả chủ yếu là kinh nghiệm cá nhân + số sao/lượt cài; đậm chất TypeScript/GitHub; skill thay đổi hằng ngày → plugin tự cập nhật có thể đổi hành vi giữa hai phiên.
-- **Cho kho/chủ kho:** (1) đã có repo vendor bằng lock + tiền tố `mp-` (mục 23) → giữ cách này thay cho plugin tự cập nhật nếu cần ổn định; (2) chép mẫu **`SCOPE.md` + `.out-of-scope/`** cho repo skill/harness riêng, vì nó chặn phình skill tốt hơn mọi review; (3) `/grill-with-docs` sinh glossary + ADR là đầu vào tốt cho spec-driven (mục 13) và Ralph loop (mục 03); (4) so với ADHD (mục 03 §8), grilling hội tụ về **một** hiểu biết chung, còn ADHD cố ý phân kỳ.
+- **Khi tích hợp:** (1) nếu cần hành vi ổn định, vendor skill bằng lock + tiền tố `mp-` (mẫu ở mục 23) thay cho plugin tự cập nhật; (2) chép mẫu **`SCOPE.md` + `.out-of-scope/`** cho repo skill/harness riêng, vì nó chặn phình skill tốt hơn mọi review; (3) `/grill-with-docs` sinh glossary + ADR là đầu vào tốt cho spec-driven (mục 13) và Ralph loop (mục 03); (4) so với ADHD (mục 03 §8), grilling hội tụ về **một** hiểu biết chung, còn ADHD cố ý phân kỳ.
 
 ## 3d. Số liệu thật của các skill pack lớn (đã xác minh 2026-10-12)
 
@@ -237,7 +237,7 @@ plugin-name/
 **Nhận xét:**
 
 - Ba pack lớn nhất nay đều quanh 280–300k★: superpowers (298k), mattpocock/skills (287,2k, §3c), ECC (277,6k). Số sao không phản ánh độ chín (superpowers chỉ 684 commit); pack đáng tin hơn là pack **có test hoặc eval chạy trong CI**: ECC, superpowers, addyosmani, compound-engineering, gsd-core.
-- **Việc cần làm cho repo của chủ kho:** theo §3b, Hermes-Agents vendor từ `gsd-build/get-shit-done` (đã archive) → chuyển nguồn sang `open-gsd/gsd-core` và cập nhật lock; xboss nên đổi URL ECC sang `affaan-m/ECC` (URL cũ vẫn chuyển hướng) và cập nhật số liệu trong ADR (v2.2.3: 71/311/97 thay cho 68/293/94).
+- **Nguồn đã đổi, cần biết khi tích hợp:** `gsd-build/get-shit-done` đã archive, bản tiếp nối là `open-gsd/gsd-core` (Hermes-Agents ở mục 23 vẫn vendor từ nguồn cũ, đọc 12/10/2026); ECC chuyển sang `affaan-m/ECC` (URL cũ vẫn chuyển hướng), v2.2.3 có 71/311/97 so với 68/293/94 ghi trong ADR của xboss.
 - `ruvnet/claude-flow` chuyển hướng sang `ruvnet/ruflo` (đã có trong catalog, mục 02).
 
 ## 4. Nguồn
