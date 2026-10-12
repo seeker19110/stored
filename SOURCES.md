@@ -224,3 +224,9 @@
 - github.com/braedonsaunders/codeflow (clone đầy đủ, 215 commit, HEAD b0e82d1; chạy `node --test`: 231 pass, 1 skip): README.md, index.html, cli/codeflow.mjs, card/ (action.yml, lib/analyzer.js, README.md), .github/workflows/test.yml, codeql.yml; trang GitHub (~5,4k★, 820 fork, 12/10/2026) · codeflow-five.vercel.app · github.com/braedonsaunders
 - themenonlab.blog/blog/codeflow-github-architecture-visualizer (blog) · skills.sh/akillness/jeo-skills/codeflow (skill bọc lại, bên thứ ba); không tìm thấy thảo luận HN/Reddit
 - So sánh (★ 12/10/2026): ahmedkhaleel2004/gitdiagram (18,1k), sverweij/dependency-cruiser (7,3k), MaibornWolff/codecharta (547)
+
+## Bổ sung 2026-10-12 (link BitterSecurity/Decepticon → mục 12 §3g)
+
+- github.com/BitterSecurity/Decepticon (clone đầy đủ, 1.324 commit, v1.4.0; KHÔNG build/chạy): README.md, SECURITY.md, TELEMETRY.md, docker-compose.yml, packages/decepticon/decepticon/middleware/{roe,egress,hitl,engagement}.py; trang GitHub (~6,0k★, 1,1k fork, 12/10/2026)
+- Lệch tên tổ chức: github.com/PurpleAILAB/Decepticon (cũ, còn trong SECURITY.md và docs/benchmark-comparison.md) · sponsor PurpleCHOIms · decepticon.red · app.decepticon.red
+- Benchmark/so sánh (tự công bố): docs/benchmark-comparison.md · github.com/xbow-engineering/validation-benchmarks · github.com/usestrix/strix · github.com/GreyDGL/PentestGPT · github.com/westonbrown/Cyber-AutoAgent · arXiv 2607.13085, 2605.21497
