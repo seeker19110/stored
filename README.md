@@ -31,6 +31,7 @@
 | 19 | [Agentic Video & Media](19-agentic-video-media/README.md) | **OpenMontage** (67k★, agent là orchestrator: director skills + schema + gate + cost tracker), làn sóng video/motion skills cho Claude Code, Open-Sora, HunyuanVideo, CogVideoX, Remotion |
 | 20 | [Claude Plugins Ecosystem](20-claude-plugins-ecosystem/README.md) | **anthropics/knowledge-work-plugins** (29k★, 123 plugin: 22 theo vai trò + 101 vendor), **claude-plugins-official** (37,7k★, 31 plugin nội bộ + >135 vendor, quy ước `renames`/skill-bundle), giải phẫu plugin/SKILL.md/marketplace.json, so sánh với Cursor/Copilot/OpenAI Apps |
 | 21 | [Autonomous Workflows](21-autonomous-workflows/README.md) | **Harness dài hạn của Anthropic** (11/2025 & 3/2026), Claude Code Routines vs Desktop tasks vs `/loop` (jitter, 7 ngày, loop.md), GitHub Agentic Workflows (gh-aw), durable execution (Temporal, Restate, Inngest, DBOS, LangGraph), Activepieces/Kestra/Windmill/Huginn, lịch sử AutoGPT/BabyAGI, failure modes + circuit breaker, METR |
+| 22 | [Motion Design & Animation](22-motion-design-animation/README.md) | **16 repo "video as code"**: HyperFrames (61k★), Remotion (63k★) + skills, GSAP skills, Motion, LottieFiles skill; skill pack launch video / hậu kỳ / hoạt hình (product-launch-motion, motion-graphics-skills, claude-motion-design, hyperframes-student-kit, Barty-Bart, animate, claude-motion, claude-remotion-skill), **motionmaxxing**; kiểm chứng từng claim của bài đăng viral |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -113,6 +114,10 @@
 ### 14. "Hiểu codebase" trở thành plugin trending: tất định + LLM
 
 - `Egonex-AI/Understand-Anything` (85,9k★, +2.331★/ngày): Tree-sitter cho cấu trúc (tất định, incremental) + LLM cho ngữ nghĩa, pipeline 7 agent có `graph-reviewer`, một lõi nhiều host (Claude Code, Cursor, Codex, Copilot, Gemini CLI…), output tiếng Việt. Cùng ngày `anthropics/claude-plugins-official` (+2.172★/ngày) cho thấy kênh phân phối "cài plugin" đang thắng "chép prompt". Xem mục 01 §3b, mục 20 §2b.
+
+### 15. Motion design "video as code": engine chính thức + lớp skill có gu
+
+- Hai engine (HyperFrames HTML thuần của HeyGen, Remotion React) và ba skill chính thức (remotion/skills, gsap-skills, LottieFiles motion-design-skill) là nền; 10 skill cộng đồng 1–3 tuần tuổi ra đời ngay sau Opus 5.5 (22/9/2026) bọc thêm "gu" + gate: storyboard duyệt trước render, timeline.json là nguồn sự thật, contact sheet 1 frame/beat, lint/LUFS bằng script, "không claim done khi chưa re-render". Bài đăng viral phóng đại (link sản phẩm, 120fps, mili-giây, "Netflix engineers"); số ★ aggregator ở mục 19 lệch ~100 lần → đã sửa. Xem mục 22.
 
 ---
 

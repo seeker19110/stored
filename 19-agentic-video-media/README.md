@@ -60,20 +60,20 @@
 |---|---|---|
 | zhuyansen/awesome-claude-video-skills | ~55k | Danh sách skill video cho Claude |
 | allenv0/SCM | ~47k | |
-| howseen-ai/claude-motion-design | ~45k | Motion design bằng skill |
+| howseen-ai/claude-motion-design | ~45k **(sai — thực tế 450★ ngày 12/10, xem mục 22)** | Motion design bằng skill; Playwright + ffmpeg |
 | guanmo-ai/awesome-ai-motion · gongnyang/awesome-ai-motion | ~30k · ~10.5k | |
 | joeseesun/opus-video-prompts · zhuyansen/awesome-opus-5.5-video | ~27.5k · ~15.6k | Prompt video cho Claude Opus |
 | adunext/adu-motion-video · unclejobs-ai/motion-video-skill | ~24k · ~11.6k | |
 | FavioVazquez/showtime · Remocn/remocn-studio | ~23k · ~16k | |
 | ferndesk/no-slop-motion | ~0.9k | Chống "motion slop" (so với Taste Skill, mục 06) |
 
-**Nhận định:** số liệu chỉ từ một trang aggregator và tăng rất nhanh → cần xác minh từng repo; nhưng xu hướng rõ: *video/motion được đóng gói thành skill cho coding agent* thay vì app riêng. OpenMontage là bản "full pipeline" của xu hướng này.
+**Nhận định:** số liệu chỉ từ một trang aggregator và tăng rất nhanh → cần xác minh từng repo (đã kiểm: claude-motion-design thực tế 450★, tức bảng này có thể lệch ~100 lần — **không dùng các số ★ ở bảng này**; 16 repo motion/video đã xác minh ở mục 22); nhưng xu hướng rõ: *video/motion được đóng gói thành skill cho coding agent* thay vì app riêng. OpenMontage là bản "full pipeline" của xu hướng này.
 
 ## 3. Model & công cụ video mở liên quan
 
 | Dự án | ★ (ước lượng) | Ghi chú |
 |---|---|---|
-| Remotion | – | Video bằng React; engine compose của OpenMontage (license riêng cho công ty) |
+| Remotion | 63,4k (12/10/2026) | Video bằng React; engine compose của OpenMontage (license riêng cho công ty ≥4 người; chi tiết mục 22) |
 | Open-Sora 2.0 | ~24k | Nhiều sao nhất nhóm model; 11B |
 | CogVideoX-1.5 | ~12.5k | Apache-2.0, 16GB VRAM |
 | HunyuanVideo (Tencent) | ~11.9k | 60–80GB VRAM, license cộng đồng |

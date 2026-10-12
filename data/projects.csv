@@ -189,8 +189,8 @@ OpenMontage,calesthio/OpenMontage,https://github.com/calesthio/OpenMontage,agent
 Crucix,calesthio/Crucix,https://github.com/calesthio/Crucix,personal-agent,,12100,True,19,Agent giám sát nguồn dữ liệu; cùng tác giả OpenMontage
 generative-media-skills,calesthio/generative-media-skills,https://github.com/calesthio/generative-media-skills,agentic-video,,199,True,19,Skills sinh ảnh/video/audio cho coding agent
 awesome-claude-video-skills,zhuyansen/awesome-claude-video-skills,https://github.com/zhuyansen/awesome-claude-video-skills,agentic-video,,55000,True,19,"Số từ trendshift, chưa xác minh"
-claude-motion-design,howseen-ai/claude-motion-design,https://github.com/howseen-ai/claude-motion-design,agentic-video,,45000,True,19,"Số từ trendshift, chưa xác minh"
-Remotion,remotion-dev/remotion,https://github.com/remotion-dev/remotion,agentic-video,Remotion License,,True,19,Video bằng React
+claude-motion-design,howseen-ai/claude-motion-design,https://github.com/howseen-ai/claude-motion-design,motion-design,,450,True,22,"Skill Playwright+ffmpeg tmix, beat/drop detection numpy; 450★ (số 45k ở aggregator là sai)"
+Remotion,remotion-dev/remotion,https://github.com/remotion-dev/remotion,video-engine,Remotion License,63400,True,22,"Video bằng React, đơn vị frame; Lambda; free ≤3 nhân viên, Company License; MCP deprecated"
 Open-Sora,hpcaitech/Open-Sora,https://github.com/hpcaitech/Open-Sora,agentic-video,Apache-2.0,24100,True,19,
 HunyuanVideo,Tencent-Hunyuan/HunyuanVideo,https://github.com/Tencent-Hunyuan/HunyuanVideo,agentic-video,Tencent Community,11900,True,19,
 CogVideoX,zai-org/CogVideo,https://github.com/zai-org/CogVideo,agentic-video,Apache-2.0,12500,True,19,
@@ -216,3 +216,17 @@ Huginn,huginn/huginn,https://github.com/huginn/huginn,workflow-automation,MIT,49
 AutoGPT,Significant-Gravitas/AutoGPT,https://github.com/Significant-Gravitas/AutoGPT,autonomous-agent-history,MIT + Polyform,187000,True,21,3/2023 Toran Bruce Richards; nay là nền tảng builder agent
 BabyAGI,yoheinakajima/babyagi,https://github.com/yoheinakajima/babyagi,autonomous-agent-history,MIT,,True,21,Loop tạo/ưu tiên/thực thi task (4/2023); bản gốc archive 9/2024
 AgentGPT,reworkd/AgentGPT,https://github.com/reworkd/AgentGPT,autonomous-agent-history,GPL-3.0,35000,True,21,Agent trên trình duyệt; dừng phát triển 11/2023
+HyperFrames,heygen-com/hyperframes,https://github.com/heygen-com/hyperframes,video-engine,Apache-2.0,61100,True,22,HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0
+remotion-dev/skills,remotion-dev/skills,https://github.com/remotion-dev/skills,motion-design,,5000,True,22,12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo
+gsap-skills,greensock/gsap-skills,https://github.com/greensock/gsap-skills,motion-design,MIT,16200,True,22,8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow)
+Motion (ex Framer Motion),motiondivision/motion,https://github.com/motiondivision/motion,animation-library,MIT,34000,True,22,React/Vue/vanilla; WAAPI hybrid; Motion+ trả phí; npx motion-ai + MCP; v14.1.0
+LottieFiles motion-design-skill,LottieFiles/motion-design-skill,https://github.com/LottieFiles/motion-design-skill,motion-design,MIT,2100,True,22,"Nguyên lý motion UI (Disney 12, 4 personality, bảng timing); thư viện-agnostic; 4 commit"
+product-launch-motion,AbubakrChan/product-launch-motion,https://github.com/AbubakrChan/product-launch-motion,motion-design,MIT,162,True,22,"1 skill launch video: 14 bước, VO word-sync, camera rig GSAP, grade; HyperFrames/Remotion"
+motion-graphics-skills,charlie947/motion-graphics-skills,https://github.com/charlie947/motion-graphics-skills,motion-design,MIT,214,True,22,"15 skill (apple-launch-film, animated-chart, reel-export…); cần HyperFrames/ffmpeg"
+hyperframes-student-kit,nateherkai/hyperframes-student-kit,https://github.com/nateherkai/hyperframes-student-kit,motion-design,,1300,True,22,"Workspace 15 skill: cut-silences/cut-mistakes theo transcript, 406 draft card; issue upload file local"
+Barty-Bart/motion-graphics,Barty-Bart/motion-graphics,https://github.com/Barty-Bart/motion-graphics,motion-design,MIT,610,True,22,"motion-broll biến hình theo từ (Playwright+ffmpeg, ProRes 4444), object-separation SAM 2.1 local, 3 explainer"
+animate,cth9191/animate,https://github.com/cth9191/animate,motion-design,MIT,507,True,22,"Canvas procedural, 7 style thủ công, storyboard gate, Playwright→ffmpeg, audio sinh trong code"
+claude-motion,whaleyxbt/claude-motion,https://github.com/whaleyxbt/claude-motion,motion-design,MIT,325,True,22,"4 skill: taste bằng số, review-loop contact sheet, sound engine Python, web-sims 60fps; Remotion"
+claude-remotion-skill,haidrrrry/claude-remotion-skill,https://github.com/haidrrrry/claude-remotion-skill,motion-design,MIT,390,True,22,"1 skill Remotion, 10 rule chống flat/linear, verify bắt buộc; README SEO"
+motion-dev-animations-skill,199-biotechnologies/motion-dev-animations-skill,https://github.com/199-biotechnologies/motion-dev-animations-skill,motion-design,MIT,160,True,22,"Skill Motion.dev nhắm v11 (cũ), dừng 11/2025"
+motionmaxxing,Tejashmakwana/motionmaxxing,https://github.com/Tejashmakwana/motionmaxxing,motion-design,Apache-2.0,114,True,22,"Skill director/critic: brand capture, protocol 10 bước, gate G0–G5, moments.jsonl 716 dòng; 2 commit 6/10/2026"

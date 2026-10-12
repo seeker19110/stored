@@ -47,7 +47,10 @@
       "durable-execution",
       "workflow-automation",
       "scheduling",
-      "autonomous-agent-history"
+      "autonomous-agent-history",
+      "motion-design",
+      "video-engine",
+      "animation-library"
     ]
   },
   "projects": [
@@ -1967,22 +1970,22 @@
     {
       "name": "claude-motion-design",
       "repo": "howseen-ai/claude-motion-design",
-      "category": "agentic-video",
+      "category": "motion-design",
       "license": null,
-      "stars": 45000,
+      "stars": 450,
       "open_source": true,
-      "notes": "Số từ trendshift, chưa xác minh",
-      "section": "19"
+      "notes": "Skill Playwright+ffmpeg tmix, beat/drop detection numpy; 450★ (số 45k ở aggregator là sai)",
+      "section": "22"
     },
     {
       "name": "Remotion",
       "repo": "remotion-dev/remotion",
-      "category": "agentic-video",
+      "category": "video-engine",
       "license": "Remotion License",
-      "stars": null,
+      "stars": 63400,
       "open_source": true,
-      "notes": "Video bằng React",
-      "section": "19"
+      "notes": "Video bằng React, đơn vị frame; Lambda; free ≤3 nhân viên, Company License; MCP deprecated",
+      "section": "22"
     },
     {
       "name": "Open-Sora",
@@ -2236,6 +2239,146 @@
       "open_source": true,
       "notes": "Agent trên trình duyệt; dừng phát triển 11/2023",
       "section": "21"
+    },
+    {
+      "name": "HyperFrames",
+      "repo": "heygen-com/hyperframes",
+      "category": "video-engine",
+      "license": "Apache-2.0",
+      "stars": 61100,
+      "open_source": true,
+      "notes": "HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0",
+      "section": "22"
+    },
+    {
+      "name": "remotion-dev/skills",
+      "repo": "remotion-dev/skills",
+      "category": "motion-design",
+      "license": null,
+      "stars": 5000,
+      "open_source": true,
+      "notes": "12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo",
+      "section": "22"
+    },
+    {
+      "name": "gsap-skills",
+      "repo": "greensock/gsap-skills",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 16200,
+      "open_source": true,
+      "notes": "8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow)",
+      "section": "22"
+    },
+    {
+      "name": "Motion (ex Framer Motion)",
+      "repo": "motiondivision/motion",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 34000,
+      "open_source": true,
+      "notes": "React/Vue/vanilla; WAAPI hybrid; Motion+ trả phí; npx motion-ai + MCP; v14.1.0",
+      "section": "22"
+    },
+    {
+      "name": "LottieFiles motion-design-skill",
+      "repo": "LottieFiles/motion-design-skill",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 2100,
+      "open_source": true,
+      "notes": "Nguyên lý motion UI (Disney 12, 4 personality, bảng timing); thư viện-agnostic; 4 commit",
+      "section": "22"
+    },
+    {
+      "name": "product-launch-motion",
+      "repo": "AbubakrChan/product-launch-motion",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 162,
+      "open_source": true,
+      "notes": "1 skill launch video: 14 bước, VO word-sync, camera rig GSAP, grade; HyperFrames/Remotion",
+      "section": "22"
+    },
+    {
+      "name": "motion-graphics-skills",
+      "repo": "charlie947/motion-graphics-skills",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 214,
+      "open_source": true,
+      "notes": "15 skill (apple-launch-film, animated-chart, reel-export…); cần HyperFrames/ffmpeg",
+      "section": "22"
+    },
+    {
+      "name": "hyperframes-student-kit",
+      "repo": "nateherkai/hyperframes-student-kit",
+      "category": "motion-design",
+      "license": null,
+      "stars": 1300,
+      "open_source": true,
+      "notes": "Workspace 15 skill: cut-silences/cut-mistakes theo transcript, 406 draft card; issue upload file local",
+      "section": "22"
+    },
+    {
+      "name": "Barty-Bart/motion-graphics",
+      "repo": "Barty-Bart/motion-graphics",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 610,
+      "open_source": true,
+      "notes": "motion-broll biến hình theo từ (Playwright+ffmpeg, ProRes 4444), object-separation SAM 2.1 local, 3 explainer",
+      "section": "22"
+    },
+    {
+      "name": "animate",
+      "repo": "cth9191/animate",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 507,
+      "open_source": true,
+      "notes": "Canvas procedural, 7 style thủ công, storyboard gate, Playwright→ffmpeg, audio sinh trong code",
+      "section": "22"
+    },
+    {
+      "name": "claude-motion",
+      "repo": "whaleyxbt/claude-motion",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 325,
+      "open_source": true,
+      "notes": "4 skill: taste bằng số, review-loop contact sheet, sound engine Python, web-sims 60fps; Remotion",
+      "section": "22"
+    },
+    {
+      "name": "claude-remotion-skill",
+      "repo": "haidrrrry/claude-remotion-skill",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 390,
+      "open_source": true,
+      "notes": "1 skill Remotion, 10 rule chống flat/linear, verify bắt buộc; README SEO",
+      "section": "22"
+    },
+    {
+      "name": "motion-dev-animations-skill",
+      "repo": "199-biotechnologies/motion-dev-animations-skill",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 160,
+      "open_source": true,
+      "notes": "Skill Motion.dev nhắm v11 (cũ), dừng 11/2025",
+      "section": "22"
+    },
+    {
+      "name": "motionmaxxing",
+      "repo": "Tejashmakwana/motionmaxxing",
+      "category": "motion-design",
+      "license": "Apache-2.0",
+      "stars": 114,
+      "open_source": true,
+      "notes": "Skill director/critic: brand capture, protocol 10 bước, gate G0–G5, moments.jsonl 716 dòng; 2 commit 6/10/2026",
+      "section": "22"
     }
   ]
 }
