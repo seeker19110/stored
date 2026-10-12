@@ -167,7 +167,7 @@ plugin-name/
 | impeccable | – | "Taste" cho frontend (mục 06) | case-study-ft41 |
 | **oh-my-hermes** (OMH) | rlaope/oh-my-hermes | Workflow pack: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill, jit-learn, deep-interview | Hermes-Agents vendor 6 skill |
 | agent-skills | addyosmani/agent-skills | incremental-implementation, source-driven, **doubt-driven development**, context-engineering | Hermes-Agents vendor |
-| wshobson/agents · gsd-build/get-shit-done · trycua/cua | – | Agent/skill pack phổ biến | Hermes-Agents vendor |
+| wshobson/agents · gsd-build/get-shit-done · trycua/cua | – | Agent/skill pack phổ biến; **GSD đã archive 26/6/2026 → open-gsd/gsd-core** (§3d) | Hermes-Agents vendor |
 | claude-red | SnailSploit/claude-red | 78 skill red-team (dual-use, mục 12) | fork `seeker19110/Claude-Red` |
 
 **Phản biện nhận định "cài plugin đang thắng chép prompt" (xu hướng §14 README):** hai repo của chủ kho (xboss ADR-0013, X-Agents `vendor_skills.py` + `*.lock.json`, Hermes-Agents `install.py`) chọn **vendor skill có lock** thay vì cài plugin, vì: (1) phiên cloud claude.ai/code **không nạp plugin bật qua `settings.json`**, `~/.claude` mất khi container thu hồi; (2) chỉ một phần nhỏ skill liên quan stack (56/293); (3) cần ghi đè và test được (`tests/ecc-vendor.test.ts`); (4) provenance: kiểm LICENSE, `name:` trùng thư mục, từ chối symlink, lock sha256. Kết luận sửa lại: *plugin thắng ở phân phối; vendor-có-lock thắng ở vận hành repo và CI.*
@@ -217,6 +217,29 @@ plugin-name/
 - **Hạn chế:** chưa thấy đánh giá độc lập (tìm 12/10/2026 không ra review/critique), bằng chứng hiệu quả chủ yếu là kinh nghiệm cá nhân + số sao/lượt cài; đậm chất TypeScript/GitHub; skill thay đổi hằng ngày → plugin tự cập nhật có thể đổi hành vi giữa hai phiên.
 - **Cho kho/chủ kho:** (1) đã có repo vendor bằng lock + tiền tố `mp-` (mục 23) → giữ cách này thay cho plugin tự cập nhật nếu cần ổn định; (2) chép mẫu **`SCOPE.md` + `.out-of-scope/`** cho repo skill/harness riêng, vì nó chặn phình skill tốt hơn mọi review; (3) `/grill-with-docs` sinh glossary + ADR là đầu vào tốt cho spec-driven (mục 13) và Ralph loop (mục 03); (4) so với ADHD (mục 03 §8), grilling hội tụ về **một** hiểu biết chung, còn ADHD cố ý phân kỳ.
 
+## 3d. Số liệu thật của các skill pack lớn (đã xác minh 2026-10-12)
+
+Đối chiếu bảng §3b (số theo docs nội bộ) với trang GitHub:
+
+| Repo | ★ (12/10) | License | Phát hành / hoạt động gần nhất | Quy mô & điểm chất lượng | Lưu ý |
+|---|---|---|---|---|---|
+| **obra/superpowers** | 298k | MIT | v7.0.0 (10/10/2026) | Lõi nhỏ 15 skill (brainstorm → plan → TDD → review), test bằng `npm test` và harness eval "drill", hỗ trợ 16 harness | 298k★ trên chỉ 684 commit — sao vượt xa lượng code; 142 PR mở |
+| **affaan-m/ECC** (URL cũ everything-claude-code chuyển hướng về đây) | 277,6k | MIT | v2.2.3 (1/10/2026), commit 12/10 | README: 71 agent, 311 skill, 97 command; có `tests/` và release gate chạy trên Linux/macOS/Windows | Con số 214k★ trong ADR xboss là ảnh chụp 6/2026; số command tự mâu thuẫn (97 và 95); cồng kềnh — cách vendor chọn lọc của xboss là hợp lý |
+| **addyosmani/agent-skills** | 105,3k | MIT | commit 10/10/2026 | 25 skill, 4 persona, 9 command, 7 checklist; 25 ca routing-eval và CI kiểm hợp lệ | Tăng 5–7k★/tuần trong 7/2026; không có release; có eval nhưng không có unit test |
+| **wshobson/agents** | 40,5k | MIT | commit 4/10/2026 | Marketplace plugin đa harness: 94 plugin, 202 agent, 184 skill, 105 command; `make validate STRICT=1` và eval | Phần lớn là file prompt; không nêu test suite; không có release |
+| **davila7/claude-code-templates** | 32,6k | MIT | commit 12/10/2026 | Một CLI cài hơn 100 agent, command, hook, setting, MCP; ghi nguồn upstream | Commit gần đây chủ yếu do bot cập nhật dữ liệu; 277 PR mở; không thấy test |
+| **VoltAgent/awesome-claude-code-subagents** | 25,7k | MIT | commit 11/10/2026 | 161+ subagent trong 10 nhóm, thêm qua PR theo chính sách kiểm duyệt | Chỉ là prompt, không test; phần About ghi "100+" lệch với README "161+" |
+| **EveryInc/compound-engineering-plugin** | 25,5k | MIT | v3.30.5 (11/10/2026) | 36 skill cho 14 agent host; có CI và `tests/`; phát hành semver đều | Quy trình theo quan điểm riêng của một công ty |
+| **SuperClaude-Org/SuperClaude_Framework** | 23,9k | MIT | v4.3.0 (22/3/2026), commit 27/9 | 30 command, 20 agent, 7 mode, 8 MCP server; test chạy trên GitHub Actions | Chậm lại: không release từ 3/2026; chỉ cho Claude Code; phụ thuộc nhiều MCP |
+| **open-gsd/gsd-core** (kế nhiệm gsd-build/get-shit-done) | 10,4k (repo cũ 64,3k) | MIT | commit 12/10/2026 | Meta-prompting, context engineering, spec-driven; Vitest, workflow CI, `TESTING-STANDARDS.md`, hơn 10 runtime | **Repo cũ đã archive 26/6/2026**, sao không chuyển theo |
+| **rlaope/oh-my-hermes** | 3,3k | MIT | commit 12/10/2026 | Plugin Hermes Agent với 108 skill | Nhỏ, gắn với Hermes Agent |
+
+**Nhận xét:**
+
+- Ba pack lớn nhất nay đều quanh 280–300k★: superpowers (298k), mattpocock/skills (287,2k, §3c), ECC (277,6k). Số sao không phản ánh độ chín (superpowers chỉ 684 commit); pack đáng tin hơn là pack **có test hoặc eval chạy trong CI**: ECC, superpowers, addyosmani, compound-engineering, gsd-core.
+- **Việc cần làm cho repo của chủ kho:** theo §3b, Hermes-Agents vendor từ `gsd-build/get-shit-done` (đã archive) → chuyển nguồn sang `open-gsd/gsd-core` và cập nhật lock; xboss nên đổi URL ECC sang `affaan-m/ECC` (URL cũ vẫn chuyển hướng) và cập nhật số liệu trong ADR (v2.2.3: 71/311/97 thay cho 68/293/94).
+- `ruvnet/claude-flow` chuyển hướng sang `ruvnet/ruflo` (đã có trong catalog, mục 02).
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
@@ -225,3 +248,4 @@ plugin-name/
 - claude-plugins-official: https://github.com/anthropics/claude-plugins-official (README, `.claude-plugin/marketplace.json`) · https://code.claude.com/docs/en/plugins/anthropic-marketplaces · https://code.claude.com/docs/en/plugins/security · https://claude.com/marketplace/plugins
 - https://thenewstack.io/anthropic-brings-plugins-to-cowork/ · https://agentscamp.com/guides/getting-started/claude-knowledge-work-plugins · https://claude-world.com/articles/anthropic-knowledge-work-plugins-overview/ · https://claudecowork.im/plugins · https://claudecowork.im/blog/claude-cowork-new-plugins-feb-2026 · https://aitoolly.com/ai-news/article/2026-05-26-anthropic-introduces-open-source-knowledge-work-plugins-to-customize-claude-cowork-for-professional · https://integratedcognition.com/blog/anthropics-enterprise-expansion-advancing-claude-cowork-with-new-plugins-and-integrations · https://awesomeclaudeplugins.com/anthropics/knowledge-work-plugins · https://agentindex.app/tool/anthropics-knowledge-work-plugins/
 - mattpocock/skills (2026-10-12): https://github.com/mattpocock/skills (clone đầy đủ; README, SCOPE.md, .out-of-scope/, skills/**/SKILL.md, skills/misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh) · https://skills.sh/mattpocock/skills · https://skills.sh/mattpocock/skills/grilling · https://www.aihero.dev/s/skills-newsletter
+- §3d (12/10/2026): https://github.com/obra/superpowers · https://github.com/affaan-m/ECC · https://github.com/affaan-m/everything-claude-code · https://github.com/addyosmani/agent-skills · https://github.com/wshobson/agents · https://github.com/davila7/claude-code-templates · https://github.com/VoltAgent/awesome-claude-code-subagents · https://github.com/EveryInc/compound-engineering-plugin · https://github.com/SuperClaude-Org/SuperClaude_Framework · https://github.com/gsd-build/get-shit-done · https://github.com/open-gsd/gsd-core · https://github.com/rlaope/oh-my-hermes · https://github.com/ruvnet/ruflo · https://skillrank.it.com/briefings/2026-07-12
