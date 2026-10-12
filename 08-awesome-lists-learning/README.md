@@ -40,6 +40,7 @@ Theo dõi tự động: `EvanLi/Github-Ranking` (cập nhật hằng ngày), git
 5. Geoffrey Huntley – *Ralph* (ghuntley.com/ralph) + README plugin `ralph-wiggum`.
 6. agentskills.io spec · modelcontextprotocol.io spec · a2a-protocol.org spec · docs.ag-ui.com.
 7. Refactoring UI · Laws of UX.
+8. Alex Xu – *System Design Interview* Vol 1&2 (ghi chú 28 chương trong `seeker19110/system-design-notes`, kèm ~25 link paper gốc: Dynamo, Bigtable, Raft, Kafka…; upstream/license chưa rõ) · `ai-engineering-from-scratch` (được dhcb `2026-10-05-ai-engineering-source-inventory.md` liệt kê; chưa xác minh).
 
 ## Nguồn
 

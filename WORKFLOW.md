@@ -25,6 +25,10 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
 - Ưu tiên bằng chứng trực tiếp (file trong repo, trang chính thức) hơn bài tổng hợp.
 - Ghi lại các mâu thuẫn phát hiện được (ví dụ README nói A nhưng file thật là B).
 - Không sao chép nguyên văn nội dung dài của dự án; tóm tắt + trích dẫn ngắn + link.
+- **Grep cổng đang chạy, đừng đọc văn xuôi** (từ `projects-template/docs/framework/adopt-from-outside.md`, 2026-10-12): với repo có harness, đọc `settings.json`, hook, CI, script trước; README chỉ là tuyên bố.
+- **Ba cột khi học repo ngoài**: với mỗi cơ chế ghi *kho đã có & sâu hơn / đã có nhưng nông hơn / chưa có*; chỉ cột 2–3 mới sinh việc.
+- **Cảnh báo nguồn dựng**: số sao/tên dự án lấy từ bài tổng hợp hoặc docs nội bộ của repo khác phải ghi "(theo docs nội bộ, chưa xác minh)"; mục 19 từng ghi sai ~100× vì tin aggregator.
+- **Mirror/fork**: nếu repo là clone không sửa (ví dụ `reveser` = `morluto/rea`), cite upstream, không ghi là của chủ kho.
 
 ## Cập nhật định kỳ
 

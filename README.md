@@ -32,6 +32,7 @@
 | 20 | [Claude Plugins Ecosystem](20-claude-plugins-ecosystem/README.md) | **anthropics/knowledge-work-plugins** (29k★, 123 plugin: 22 theo vai trò + 101 vendor), **claude-plugins-official** (37,7k★, 31 plugin nội bộ + >135 vendor, quy ước `renames`/skill-bundle), giải phẫu plugin/SKILL.md/marketplace.json, so sánh với Cursor/Copilot/OpenAI Apps |
 | 21 | [Autonomous Workflows](21-autonomous-workflows/README.md) | **Harness dài hạn của Anthropic** (11/2025 & 3/2026), Claude Code Routines vs Desktop tasks vs `/loop` (jitter, 7 ngày, loop.md), GitHub Agentic Workflows (gh-aw), durable execution (Temporal, Restate, Inngest, DBOS, LangGraph), Activepieces/Kestra/Windmill/Huginn, lịch sử AutoGPT/BabyAGI, failure modes + circuit breaker, METR |
 | 22 | [Motion Design & Animation](22-motion-design-animation/README.md) | **16 repo "video as code"**: HyperFrames (61k★), Remotion (63k★) + skills, GSAP skills, Motion, LottieFiles skill; skill pack launch video / hậu kỳ / hoạt hình (product-launch-motion, motion-graphics-skills, claude-motion-design, hyperframes-student-kit, Barty-Bart, animate, claude-motion, claude-remotion-skill), **motionmaxxing**; kiểm chứng từng claim của bài đăng viral |
+| 23 | [Bài học từ repo của chủ kho](23-own-repos-lessons/README.md) | Audit **19 repo** seeker19110/donghanhcungban (2026-10-12): khung drop-in Claude Code (hook lifecycle có test, **ba cổng máy** thay `<promise>`, 3 tầng/2 trục, subagent không lồng), "công ty AI" X-Agents (`verified_by` do code điền), xboss (vendor ECC có lock, fact-forcing gate, `/hoc`, AI Delivery Loop), Dhcb-Tools (Revit/AutoCAD MCP, agent khép vòng), Sales-Hunter (model_tier T0–T4, outbox/lease), Hermes-Agents (112 skill), ai-gateway; danh sách tool ngoài kho còn thiếu + lỗi phát hiện trong các repo |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -118,6 +119,12 @@
 ### 15. Motion design "video as code": engine chính thức + lớp skill có gu
 
 - Hai engine (HyperFrames HTML thuần của HeyGen, Remotion React) và ba skill chính thức (remotion/skills, gsap-skills, LottieFiles motion-design-skill) là nền; 10 skill cộng đồng 1–3 tuần tuổi ra đời ngay sau Opus 5.5 (22/9/2026) bọc thêm "gu" + gate: storyboard duyệt trước render, timeline.json là nguồn sự thật, contact sheet 1 frame/beat, lint/LUFS bằng script, "không claim done khi chưa re-render". Bài đăng viral phóng đại (link sản phẩm, 120fps, mili-giây, "Netflix engineers"); số ★ aggregator ở mục 19 lệch ~100 lần → đã sửa. Xem mục 22.
+
+### 16. Harness tiếng Việt của chủ kho: "model quyết định, code hành động" và cổng máy thay lời hứa
+
+- Audit 19 repo của chủ kho (mục 23) cho thấy một hệ sinh thái nhất quán đã chạy thật nhiều tháng: khung drop-in cho Claude Code → "công ty AI" → gateway thuê bao → sản phẩm (dhcb, xboss, Dhcb-Tools). Ba nguyên tắc rút ra: (1) mọi trường "đã làm" do code điền (`verified_by`), lời khai model không phải bằng chứng; (2) Stop hook đọc **file trạng thái**, chuỗi đỏ cùng chữ ký ≥3 → BLOCKED, trần số vòng — phản biện trực tiếp `<promise>` của Ralph (mục 03); (3) **subagent không lồng subagent**, dispatch từ phiên chính, mỗi việc giao ghi `model_tier` và side effect.
+- Nhận định §14 "cài plugin đang thắng" cần nuance: trong vận hành repo và phiên cloud, **vendor skill có lock** (ECC → `.claude/ecc/lock.json`) thắng plugin vì plugin bật qua `settings.json` không nạp trên claude.ai/code và `~/.claude` mất theo container (mục 20 §3b).
+- Kho đã bổ sung theo audit: Hermes Agent + họ "công ty AI" (02), hook lifecycle + 3 tầng + T0–T4 (03), `.mcpb`/đa harness (04), eval replay/EDD/mutation/negative control (07), LLM gateway (10 §6), policy-as-code/SBOM/hash-lock/loopback/red-team dual-use (12), quality-gate stack + open-code-review (13), 3D/video/scan (14/19), pháp lý BIM VN (18), ECC & plugin pack (20), repair cap/outbox/status-freshness (21), WORKFLOW "grep cổng đang chạy".
 
 ---
 

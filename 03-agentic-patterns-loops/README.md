@@ -43,6 +43,8 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 - **Khi nào hội tụ:** prompt chính xác + tiêu chí **kiểm chứng được** (tests pass, lint sạch, build ok). Prompt mơ hồ → lạc.
 - **Phê bình:** phù hợp greenfield; để loop tự merge/tag là rủi ro khi người khác phụ thuộc vào output (orbi.build: "passed 28 tests, then failed review").
 - **Triển khai cộng đồng:** `frankbria/ralph-claude-code` (exit detection thông minh), nhiều guide tại awesomeclaude.ai, paddo.dev.
+- **Phản biện từ repo của chủ kho (projects-template PR #287 "ba cổng máy cho /auto-complete", xboss, 2026-10-12 — mục 23 §2.2):** `<promise>` string (và `/goal`) là **lời khai của model**, không phải bằng chứng. Thay bằng: (1) Stop hook đọc **file trạng thái** do script/CI điền (test, lint, build) chứ không đọc output của model; (2) **chuỗi đỏ cùng chữ ký** — cùng một failure lặp N lần (xboss: 3 repair) thì dừng và báo BLOCKED thay vì lặp tiếp; (3) **trần số vòng** (`STOP_HOOK_BLOCK_CAP`, mặc định 8 ở projects-template) + fingerprint sha256 để Stop hook không chạy lại cổng tĩnh trên cùng diff; (4) **evidence gate**: muốn kết thúc phải nêu đường dẫn bằng chứng tồn tại thật.
+- **Vòng đời hook Claude Code dùng thật** (bảng từ `projects-template/.claude/settings.json`, xboss, dhcb): `SessionStart` (nạp PROGRESS.md + git state, `additionalContext`) · `PreToolUse` (`permissionDecision: deny|ask` — risk-zone gate "fact-forcing": lần đầu sửa file vùng rủi ro phải nêu 4 dữ kiện; protect-config; block `curl | sh`) · `PostToolUse` (telemetry, nhắc file dùng chung) · `Stop` (cổng tĩnh theo file đổi, đọc `stop_hook_active` để tránh đệ quy) · `SubagentStop` · `PreCompact`; mọi hook có biến env tắt có chủ đích và **có test** (`tests/claude-hooks.test.ts`). Kho trước đây chỉ biết Stop hook của Ralph.
 - **Xem thêm mục 21 (Autonomous Workflows):** `/loop` đã được xác minh trên docs chính thức (cron 5 trường, jitter, hết hạn 7 ngày, tối đa 50 task, `loop.md`); Routines cloud (≥1 giờ, trigger lịch/API/GitHub); hai bài harness dài hạn của Anthropic (11/2025, 3/2026).
 
 ## 4. Context engineering & harness engineering
@@ -61,6 +63,11 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 - **Hợp đồng giao diện:** sinh OpenAPI/spec trước khi chạy song song để tránh drift (mầm của "spec-driven development").
 - **Giới hạn:** thêm agent chỉ khi còn sức review; 4–5 agent → RAM; 10+ → ngân sách context mỗi agent.
 - **Hướng dẫn:** `FlorianBruniaux/claude-code-ultimate-guide` (agent-teams.md), thepromptshelf.dev (6 pattern), developersdigest.tech.
+- **Bẫy đã mắc thật (mục 23, 3 repo độc lập cùng ghi):** **subagent không có tool Agent** — subagent không lồng subagent (Claude Code; Hermes `delegate_task` cũng ≤10 con, không lồng) → mô hình "coordinator gọi worker" chỉ chạy khi *phiên chính* dispatch; coordinator viết thành subagent sẽ im lặng không làm gì (xboss TRAPS §7). projects-template thêm **trần 5 subagent** đồng thời.
+- **Điều phối 3 tầng, chọn theo 2 trục** (projects-template `orchestration-3-tier.md`, xboss `CLAUDE.md` bảng `route:`): phiên chính viết đặc tả → coordinator (model mạnh, effort thấp) → worker theo **độ phức tạp × độ kín của đặc tả** (`complex-implementer` Opus·high / `spec-executor` Opus·low / `standard-worker` Sonnet / `mechanical-worker` Haiku); luật cứng "thiếu đặc tả thì hỏi". `scripts/model-capability-tiers.json` tách tier khỏi tên model vendor.
+- **Hợp đồng giao việc cho subagent** (Sales-Hunter `SUBAGENT-TASK-CONVENTION.md`): mỗi task pack ghi `model_tier` **T0–T4** (T4 = người duyệt trước merge; side effect mạng/publish/ToS ≥ T3), enum `external_side_effects` (none / ingest-network / publish / account-change), subagent **không tự nâng tier**; **nhánh A** (1 việc lớn = 1 remote branch, subtask = commit, tiết kiệm cold-start) là mặc định, **nhánh B** (mỗi subtask một worktree) chỉ khi song song thật và path không chồng.
+- **Học từ repo ngoài theo 3 cột** (`adopt-from-outside.md`): với mỗi cơ chế của repo ngoài ghi *đã có & sâu hơn / đã có nhưng nông hơn / chưa có*; **"grep cổng đang chạy, đừng đọc văn xuôi"** (đọc `settings.json`, hook, CI thay vì README); kiểm mâu thuẫn README↔file; cảnh báo nguồn do AI dựng.
+- **Kỷ luật sổ sách**: `TRAPS.md` (bẫy đã mắc thật: ngày/PR/cách rà/chốt chặn) tách khỏi ADR; `/hoc` (xboss) xếp bài học theo **mức bền**: máy kiểm được & lặp ≥2 → cổng CI; bẫy → TRAPS; theo vùng file → rule path-scoped; quy trình → skill; toàn dự án → CLAUDE.md; kiến trúc → ADR.
 
 ## 6. Checklist thiết kế agent loop (rút ra)
 
@@ -71,6 +78,8 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 5. Tách generator/evaluator; evaluator nên có công cụ độc lập.
 6. Cô lập tài nguyên (worktree, sandbox) khi chạy song song.
 7. Người review ở cuối vòng; không để loop tự merge vào main.
+8. Tín hiệu dừng do **code điền** (file trạng thái, exit code, `verified_by`), không do model khai; chuỗi đỏ cùng chữ ký ≥3 → BLOCKED.
+9. Không giả định subagent lồng được subagent; dispatch từ phiên chính; ghi `model_tier` và side effect cho mỗi việc giao.
 
 ## 8. Case study: ADHD – Parallel Divergent Ideation (link từ người dùng, 2026-10-12)
 
@@ -115,6 +124,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 
 ## 9. Nguồn (mục 1–7)
 
+- Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)
 - https://www.anthropic.com/research/building-effective-agents
 - https://docs.spring.io/spring-ai/reference/api/effective-agents.html (diễn giải lại 5 pattern)
 - https://atlan.com/know/ai-agent/what-is-an-agent-loop/ · https://blogs.oracle.com/developers/what-is-the-ai-agent-loop-the-core-architecture-behind-autonomous-ai-systems

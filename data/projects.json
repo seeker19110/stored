@@ -50,8 +50,16 @@
       "autonomous-agent-history",
       "motion-design",
       "video-engine",
-      "animation-library"
-    ]
+      "animation-library",
+      "own-repo",
+      "llm-gateway",
+      "harness-pack",
+      "aec-bim",
+      "reverse-engineering",
+      "quality-gate",
+      "policy-as-code"
+    ],
+    "count": null
   },
   "projects": [
     {
@@ -2379,6 +2387,496 @@
       "open_source": true,
       "notes": "Skill director/critic: brand capture, protocol 10 bước, gate G0–G5, moments.jsonl 716 dòng; 2 commit 6/10/2026",
       "section": "22"
+    },
+    {
+      "name": "projects-template",
+      "repo": "seeker19110/projects-template",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Khung drop-in cho Claude Code/Codex/Gemini/Cursor: hook lifecycle có test, ba cổng máy cho /auto-complete (PR #287), 3-tier orchestration 2 trục, adopt-from-outside 3 cột, TRAPS.md; đọc 2026-10-12",
+      "section": "23"
+    },
+    {
+      "name": "xboss-manager",
+      "repo": "seeker19110/xboss-manager",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Tiền thân khung; AI-HARNESS-AND-COMPANY-SPEC ~2.700 dòng (C1–C7, P1–P12, R0–R9, G0–G8); rulesets-as-code",
+      "section": "23"
+    },
+    {
+      "name": "case-study-ft41",
+      "repo": "seeker19110/case-study-ft41",
+      "category": "own-repo",
+      "license": "– (private)",
+      "stars": null,
+      "open_source": false,
+      "notes": "Next.js 16 áp khung: CI/DevSecOps đầy đủ, Dependabot gom nhóm + WIP cap, model-rates.json; bẫy next dev ghi đè AGENTS.md",
+      "section": "23"
+    },
+    {
+      "name": "X-Agents",
+      "repo": "seeker19110/X-Agents",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "\"Công ty AI\" Python: bus SQLite, gateway Antigravity, verified_by do code điền, eval record/replay CI, human gate 24h, keeper; đối chiếu 12 framework",
+      "section": "23"
+    },
+    {
+      "name": "X-Studio",
+      "repo": "seeker19110/X-Studio",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Fork X-Agents cho xưởng video: 14 agent/24 skill, FFmpeg + edge-tts + Playwright, render cache SHA-256, MotionSpec, qc.py; research video factory, Wan/LTX-2",
+      "section": "23"
+    },
+    {
+      "name": "qlkh",
+      "repo": "donghanhcungban/qlkh",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Quản lý khóa học (Python hexagonal + React): 14 job CI (OPA/conftest, syft SBOM, pip-audit, mutmut, import-linter, hash-lock), fitness function AST",
+      "section": "23"
+    },
+    {
+      "name": "dhcb",
+      "repo": "seeker19110/dhcb",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Gia sư AI Việt⇄Anh production (Node 22, React 19, Postgres, Gemini Live): open-code-review rule.json, ECC chuyển thể chọn lọc, ProposedAction + safetyGuard, SePay; settings.json còn opusplan",
+      "section": "23"
+    },
+    {
+      "name": "Xgold",
+      "repo": "seeker19110/Xgold",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "App giá vàng/bạc (Next 16, Supabase): 15 ADR, Playwright CI 4 worker, Lighthouse CI, 3-tier orchestration",
+      "section": "23"
+    },
+    {
+      "name": "X-Scanner",
+      "repo": "seeker19110/X-Scanner",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "App scan tài liệu Flutter; áp khung qua GitHub Action pin SHA; preamble giới hạn bằng chứng; thiếu auto-complete-guard.sh",
+      "section": "23"
+    },
+    {
+      "name": "ai-gateway (seeker19110)",
+      "repo": "seeker19110/ai-gateway",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Gateway LLM Node 3 dep: pool đa tài khoản, cooldown theo lỗi, OpenAI-compatible, MCP Streamable HTTP /mcp, Prometheus",
+      "section": "23"
+    },
+    {
+      "name": "Plugin-4-Hermes",
+      "repo": "seeker19110/Plugin-4-Hermes",
+      "category": "own-repo",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Plugin model-provider cho Hermes Agent qua OAuth Google Antigravity; bridge :8100; vùng xám ToS",
+      "section": "23"
+    },
+    {
+      "name": "Hermes-Agents",
+      "repo": "donghanhcungban/hermes-agents",
+      "category": "own-repo",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Gói mở rộng Hermes Agent: provider Antigravity/claude -p/Codex CLI, engineering-workbench, grill-tab, 112 SKILL.md (vendor có provenance + tự viết: evidence-driven-delivery, project-harness-engineering, safe-ai-state-authority, ai-eval-evidence-integrity)",
+      "section": "23"
+    },
+    {
+      "name": "xboss",
+      "repo": "seeker19110/xboss",
+      "category": "own-repo",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Quản lý tiến độ MEP/ACMV (Next 16 + Postgres raw SQL): vendor ECC có lock (ADR-0013), 5 hook bash có test, OCR review theo đường dẫn, /hoc, AI Delivery Loop, 17+ cổng tĩnh, mutation test tự viết, TRAPS/sổ nợ",
+      "section": "23"
+    },
+    {
+      "name": "Dhcb-Tools",
+      "repo": "seeker19110/Dhcb-Tools",
+      "category": "aec-bim",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Add-in Revit 2022–2027 + AutoCAD (68 lệnh), HTTP bridge loopback có token, MCP server + .mcpb, AI offline Ollama qwen3, kiểm IDS 1.0/BCF 2.1; agent khép vòng dryRun→confirm→snapshot",
+      "section": "23"
+    },
+    {
+      "name": "reveser (mirror morluto/rea)",
+      "repo": "seeker19110/reveser",
+      "category": "reverse-engineering",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Clone không sửa của morluto/rea 2.1.0; cite upstream khi dẫn",
+      "section": "23"
+    },
+    {
+      "name": "Sales-Hunter",
+      "repo": "seeker19110/Sales-Hunter",
+      "category": "own-repo",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Khung vận hành agent cho affiliate Shopee/TikTok (Python stdlib, uv/ruff/pyright): model_tier T0–T4, enum side-effect, nhánh A/B, durable publication outbox/lease/fencing, status-freshness CI, validate_repo.py",
+      "section": "23"
+    },
+    {
+      "name": "design-os-3d-blender",
+      "repo": "seeker19110/design-os-3d-blender",
+      "category": "own-repo",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Agent điều khiển Blender (mirror jangtrinh): sentinel AGENT_OK/FAIL, verify ladder, gate hash-bound, robot arm 38 STL, 93 test headless; research image→3D",
+      "section": "23"
+    },
+    {
+      "name": "Claude-Red (fork)",
+      "repo": "seeker19110/Claude-Red",
+      "category": "security",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Fork SnailSploit/claude-red v0.3.0: 78 SKILL.md red-team dual-use, manifest claude-skills.json; chỉ dùng khi có ủy quyền",
+      "section": "23"
+    },
+    {
+      "name": "system-design-notes",
+      "repo": "seeker19110/system-design-notes",
+      "category": "learning",
+      "license": "– (chưa rõ)",
+      "stars": null,
+      "open_source": true,
+      "notes": "Ghi chú System Design Interview (Alex Xu) 28 chương + ~25 link paper gốc; upstream/license chưa rõ",
+      "section": "23"
+    },
+    {
+      "name": "Hermes Agent",
+      "repo": "NousResearch/hermes-agent",
+      "category": "personal-agent",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Agent mã mở CLI/TUI/Electron + gateway Telegram/Discord/Slack/WhatsApp + ACP; skills tự học, delegate_task ≤10 con không lồng, plugin model-provider; docs llms.txt (theo docs nội bộ, chưa xác minh)",
+      "section": "02"
+    },
+    {
+      "name": "MetaGPT",
+      "repo": "FoundationAgents/MetaGPT",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Công ty phần mềm đa vai trò theo SOP; ~60k★ (theo docs nội bộ, chưa xác minh)",
+      "section": "02"
+    },
+    {
+      "name": "ChatDev",
+      "repo": "OpenBMB/ChatDev",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Chat-chain giữa vai trò CEO/CTO/dev/tester; ~27k★ (theo docs nội bộ, chưa xác minh)",
+      "section": "02"
+    },
+    {
+      "name": "DeerFlow",
+      "repo": "bytedance/deer-flow",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Deep research đa agent trên LangGraph; ~18k★ (theo docs nội bộ, chưa xác minh); X-Agents đối chiếu",
+      "section": "02"
+    },
+    {
+      "name": "AG2",
+      "repo": "ag2ai/ag2",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Fork cộng đồng AutoGen 0.2 (11/2024)",
+      "section": "02"
+    },
+    {
+      "name": "CAMEL",
+      "repo": "camel-ai/camel",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Role-playing agent, data gen, OWL; ~13k★ (theo docs nội bộ, chưa xác minh)",
+      "section": "02"
+    },
+    {
+      "name": "agency-swarm",
+      "repo": "VRSEN/agency-swarm",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Agency = agent có vai trò + luồng giao tiếp định sẵn",
+      "section": "02"
+    },
+    {
+      "name": "gpt-pilot",
+      "repo": "Pythagora-io/gpt-pilot",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Dev AI theo bước, hỏi người khi kẹt; ~33k★ (theo docs nội bộ, chưa xác minh)",
+      "section": "02"
+    },
+    {
+      "name": "ruflo (claude-flow)",
+      "repo": "ruvnet/ruflo",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Swarm orchestration cho Claude Code; tuyên bố hiệu năng chưa kiểm chứng",
+      "section": "02"
+    },
+    {
+      "name": "Everything Claude Code (ECC)",
+      "repo": "affaan-m/everything-claude-code",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock",
+      "section": "20"
+    },
+    {
+      "name": "superpowers",
+      "repo": "obra/superpowers",
+      "category": "harness-pack",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu",
+      "section": "20"
+    },
+    {
+      "name": "compound-engineering-plugin",
+      "repo": "EveryInc/compound-engineering-plugin",
+      "category": "harness-pack",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Plugin research→plan→work→review→compound",
+      "section": "20"
+    },
+    {
+      "name": "oh-my-hermes",
+      "repo": "rlaope/oh-my-hermes",
+      "category": "harness-pack",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill",
+      "section": "20"
+    },
+    {
+      "name": "agent-skills (addyosmani)",
+      "repo": "addyosmani/agent-skills",
+      "category": "harness-pack",
+      "license": "–",
+      "stars": null,
+      "open_source": true,
+      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering",
+      "section": "20"
+    },
+    {
+      "name": "claude-red",
+      "repo": "SnailSploit/claude-red",
+      "category": "security",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền",
+      "section": "12"
+    },
+    {
+      "name": "LiteLLM",
+      "repo": "BerriAI/litellm",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Proxy OpenAI-compatible 100+ provider, budget, key ảo; ~60,9k★ (theo docs nội bộ, chưa xác minh)",
+      "section": "10"
+    },
+    {
+      "name": "Portkey Gateway",
+      "repo": "Portkey-AI/gateway",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Gateway nhanh, fallback/retry/load-balance",
+      "section": "10"
+    },
+    {
+      "name": "one-api",
+      "repo": "songquanpeng/one-api",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Quản lý key, quota, nhiều kênh",
+      "section": "10"
+    },
+    {
+      "name": "Helicone",
+      "repo": "Helicone/helicone",
+      "category": "llm-gateway",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Proxy + observability",
+      "section": "10"
+    },
+    {
+      "name": "open-code-review (ocr)",
+      "repo": "alibaba/open-code-review",
+      "category": "code-review",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Review AI theo luật glob đường dẫn (rule.json, first-match-wins), ocr delegate không cần API key; xboss/dhcb dùng",
+      "section": "13"
+    },
+    {
+      "name": "release-please",
+      "repo": "googleapis/release-please",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Conventional commits → changelog + release PR",
+      "section": "13"
+    },
+    {
+      "name": "oxlint",
+      "repo": "oxc-project/oxc",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Linter JS/TS viết bằng Rust",
+      "section": "13"
+    },
+    {
+      "name": "knip",
+      "repo": "webpro-nl/knip",
+      "category": "quality-gate",
+      "license": "ISC",
+      "stars": null,
+      "open_source": true,
+      "notes": "Tìm file/export/dependency chết",
+      "section": "13"
+    },
+    {
+      "name": "jscpd",
+      "repo": "kucherenko/jscpd",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Phát hiện code trùng lặp",
+      "section": "13"
+    },
+    {
+      "name": "uv",
+      "repo": "astral-sh/uv",
+      "category": "quality-gate",
+      "license": "Apache-2.0/MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Package manager Python nhanh (Astral)",
+      "section": "13"
+    },
+    {
+      "name": "ruff",
+      "repo": "astral-sh/ruff",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Linter/formatter Python (Astral)",
+      "section": "13"
+    },
+    {
+      "name": "OPA / conftest",
+      "repo": "open-policy-agent/conftest",
+      "category": "policy-as-code",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng",
+      "section": "12"
+    },
+    {
+      "name": "syft",
+      "repo": "anchore/syft",
+      "category": "policy-as-code",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Sinh SBOM (CycloneDX/SPDX)",
+      "section": "12"
+    },
+    {
+      "name": "REA – Reverse Engineer Anything",
+      "repo": "morluto/rea",
+      "category": "reverse-engineering",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "CLI + MCP server 95 tool cho agent dịch ngược (Hopper/Ghidra, CDP, JS replay sandbox); Evidence v2, authority fail-closed; npm rea-agents 2.1.0",
+      "section": "11"
+    },
+    {
+      "name": "blender-mcp",
+      "repo": "ahujasid/blender-mcp",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh)",
+      "section": "14"
     }
   ]
 }

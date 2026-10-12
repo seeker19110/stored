@@ -161,6 +161,11 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 4. **Kiểm chứng ngoài**: evaluator riêng, browser test, feature list chỉ đổi `passes` (mục 2), "evidence or it's a FAIL" (mục 09).
 5. **Hạn sử dụng**: 7 ngày của `/loop`, tối đa 50 task, sprint contract, ghi model + ngày vào harness.
 6. **Observability** (mục 07): trace mỗi vòng, đếm tool call lặp, chi phí theo run.
+7. **Tối đa N repair cùng failure** (xboss AI Delivery Loop: 3; projects-template: chuỗi đỏ cùng chữ ký) → chuyển WAITING/BLOCKED, không lặp tiếp.
+8. **Side effect đối ngoại đi qua outbox** (Sales-Hunter ADR-0010): ghi intent trước khi gọi, lease + fencing token, `outcome_unknown` → reconcile bằng read-back thay vì retry mù, pause mặc định, cooldown sống qua restart; "đã đăng" chỉ tính khi có receipt đọc lại.
+9. **Tài liệu trạng thái phải tươi bằng máy**: CI kiểm SHA ghi trong PROGRESS/STATUS là tổ tiên của HEAD và nhánh nêu tên còn tồn tại (xboss, Sales-Hunter) — chống "nhật ký tự khai".
+
+**Từ repo của chủ kho (mục 23):** projects-template đo **DORA baseline trước khi bật tự trị** và có `maintain-run.sh` + `threat-model-maintain-cron.md` cho cron bảo trì; X-Agents có `keeper` (canary dependency, ví dụ urllib3) và **human gate 24h** cho đề xuất đối ngoại; Anthropic đã bỏ `opusplan` (projects-template ADR-0007) nhưng dhcb/xboss vẫn còn trong `settings.json`; Claude Code có **auto mode** và `STOP_HOOK_BLOCK_CAP`; Codex có **Goals** (mục tiêu dài hạn) — so sánh trong `projects-template/docs/reports/2026-10-12-doi-chieu-vong-lap-coding.md`; bài "C compiler bằng nhiều Claude song song" được đối chiếu như ví dụ tự trị có harness mạnh.
 
 **Giới hạn năng lực (để đặt kỳ vọng):** METR ước độ dài task agent hoàn thành tự trị (50% tin cậy) tăng gấp đôi ~**7 tháng** trong 6 năm; agent gần 100% với task người làm <4 phút nhưng <10% với task >4 giờ (số từ nguồn thứ cấp dẫn METR 2025, có bản cập nhật 5/2026 — kiểm tra metr.org). Lỗi cộng dồn: 95%/bước × 30 bước ≈ 21% chạy sạch (0,95³⁰) — lý do phải chia nhỏ + kiểm chứng từng bước.
 
@@ -181,11 +186,13 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 4. **Routine prompt phải tự đủ** và **chỉ đề xuất** với hành động đối ngoại (đồng bộ với skill `call-prep` ở mục 20: scheduled run only proposes).
 5. **Xét lại harness khi đổi model** — mỗi guardrail là một giả định về điểm yếu của model cũ.
 6. Có thể đóng gói checklist mục 09 + prompt bảo trì `loop.md` thành một plugin (mục 20) để chạy bằng Routine mỗi sáng.
+7. **AI Delivery Loop** (xboss) là state machine đáng chuẩn hoá: Frame → Research → Spec → Ready → Build → Verify → PR → Reconcile; 1 vòng = 1 PR; goal file có risk register + iteration log; PR `feat` phải link spec đã "Approved for implementation".
 
 ---
 
 ## 11. Nguồn
 
+- Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)
 - Anthropic: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents (26/11/2025) · https://www.anthropic.com/engineering/harness-design-long-running-apps (24/3/2026) · https://www.anthropic.com/engineering/building-effective-agents
 - Claude Code docs: https://code.claude.com/docs/en/scheduled-tasks · https://code.claude.com/docs/en/routines · https://code.claude.com/docs/en/desktop-scheduled-tasks · https://code.claude.com/docs/en/github-actions · https://code.claude.com/docs/en/goal · https://code.claude.com/docs/en/channels
 - Routines (thứ cấp): prosperinai.substack.com, makerkit.dev, claudefa.st, alexdunlop.com, automatonagency.com, swapbiswas.com, apito.ai
