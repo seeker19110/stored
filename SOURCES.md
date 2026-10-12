@@ -230,3 +230,10 @@
 - github.com/BitterSecurity/Decepticon (clone đầy đủ, 1.324 commit, v1.4.0; KHÔNG build/chạy): README.md, SECURITY.md, TELEMETRY.md, docker-compose.yml, packages/decepticon/decepticon/middleware/{roe,egress,hitl,engagement}.py; trang GitHub (~6,0k★, 1,1k fork, 12/10/2026)
 - Lệch tên tổ chức: github.com/PurpleAILAB/Decepticon (cũ, còn trong SECURITY.md và docs/benchmark-comparison.md) · sponsor PurpleCHOIms · decepticon.red · app.decepticon.red
 - Benchmark/so sánh (tự công bố): docs/benchmark-comparison.md · github.com/xbow-engineering/validation-benchmarks · github.com/usestrix/strix · github.com/GreyDGL/PentestGPT · github.com/westonbrown/Cyber-AutoAgent · arXiv 2607.13085, 2605.21497
+
+## Bổ sung 2026-10-12 (ảnh "Top Code Knowledge Graph Tools" → mục 16 §2d)
+
+- github.com/Graphify-Labs/graphify (clone đầy đủ, 2.324 commit từ 3/4/2026, Apache-2.0: README.md, LICENSE/LICENSE-MIT/NOTICE, BENCHMARKS.md, graphify/install.py; trang GitHub 126k★ qua shields, YC S26, app.graphify.com) · pypi.org/project/graphifyy
+- github.com/colbymchenry/codegraph (clone đầy đủ, 1.428 commit từ 18/1/2026, MIT: README.md, TELEMETRY.md, install.sh, src/telemetry/, src/installer/; trang GitHub 74k★ qua shields; npm @colbymchenry/codegraph; getcodegraph.com)
+- Số sao kiểm bằng img.shields.io/github/stars: graphify 126k, codegraph 74k, Understand-Anything 86k (12/10/2026) — số ảnh (125k/73k/85k) khớp
+- Understand-Anything: xem mục 01 §3b (đã có). Trang dẫn ảnh (quảng cáo): betterstack.com, augmentcode.com, mindstudio.ai, dev.co
