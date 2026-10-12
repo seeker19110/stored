@@ -47,6 +47,94 @@ Theo dõi tự động: `EvanLi/Github-Ranking` (cập nhật hằng ngày), git
 
 Thứ tự gợi ý cho người mới: `generative-ai-for-beginners` (bản tiếng Việt) → `ai-agents-for-beginners` → `agents-course` (có bài chấm) → `LLMs-from-scratch` hoặc `nanochat` nếu muốn hiểu bên trong model.
 
+## 2c. Kiểm ảnh "AI Engineer Interview Questions" (ảnh người dùng gửi, 2026-10-12)
+
+> Infographic 20 ô, mỗi ô một câu hỏi + câu trả lời 1–2 dòng, ghi tên **Rathnakumar Udayakumar (@rathanuday)**. Kiểm từng câu trả lời với nguồn gốc (paper, docs nhà cung cấp, OWASP) và chỉ chỗ trong kho có câu trả lời sâu hơn.
+
+### 2c.1 Hồ sơ nguồn
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Người đăng | Rathnakumar Udayakumar (LinkedIn `rathanuday`, ~48,9k follower theo trang bài đăng). Nền tảng **quản lý sản phẩm**, không phải kỹ sư ML: theo ZoomInfo từng là Senior PM ở IBM, Product Lead ở Clara Analytics, Product Leader ở Netradyne, nay đồng sáng lập Open Atlas và Nextazy **(nguồn tổng hợp bên thứ ba, chưa xác minh)**; có 2 sách tự xuất bản (*Product Management 101*, *The ABCs of Data Science*). GitHub `rathanuday` không có repo công khai |
+| Kiểu nội dung | Infographic giải thích AI/LLM (agent, RAG, failure mode, câu hỏi phỏng vấn) trên LinkedIn; cuối bài thường quảng bá dịch vụ tư vấn visa O-1/EB-1A và cộng đồng Open Atlas |
+| Gốc của ảnh | Không tìm thấy bài gốc đã đánh chỉ mục; không thấy bản sớm hơn ghi tên người khác. Tự thiết kế hay đăng lại: **(chưa xác minh)** |
+
+### 2c.2 Từng ô: đúng tới đâu, thiếu gì, đọc thêm ở đâu
+
+Ký hiệu: ✅ đúng và đủ cho mức "câu trả lời 30 giây" · ⚠️ đúng nhưng thiếu ý mà người phỏng vấn sẽ hỏi tiếp · ❌ sai hoặc lỗi thời.
+
+| # | Câu hỏi | Ảnh trả lời | Đánh giá | Ý cần bổ sung khi trả lời thật | Đọc sâu trong kho |
+|---|---|---|---|---|---|
+| 01 | LLM là gì, hoạt động ra sao | Dự đoán token kế tiếp, transformer, dữ liệu lớn | ⚠️ | Chỉ đúng với giai đoạn pretrain; model chat còn qua **post-training** (SFT, RLHF/RLAIF, DPO). Nên nói thêm tokenizer và cửa sổ ngữ cảnh | mục 08 §2b (`LLMs-from-scratch`, `nanochat`) |
+| 02 | Kiến trúc transformer | Self-Attention → Feed-Forward → Add & Norm; "xử lý song song" | ⚠️ | Sơ đồ đặt Add & Norm **một lần ở cuối**, trong khi mỗi sublayer (attention, FFN) đều có residual + norm riêng; paper gốc dùng post-LN, LLM hiện đại dùng **pre-LN/RMSNorm**. Thiếu multi-head, positional encoding (RoPE), causal mask. "Song song" đúng khi train/prefill, còn **sinh token vẫn tuần tự** (KV cache) | mục 08 §2b; mục 10 §1 (inference) |
+| 03 | RAG là gì, vì sao dùng | Truy xuất dữ liệu ngoài để grounding, giảm hallucination | ✅ | Giảm chứ không loại bỏ hallucination; truy xuất sai sinh lỗi mới. Nêu lý do thứ hai: dữ liệu mới/riêng tư mà không cần huấn luyện lại | mục 10 §3 |
+| 04 | Embedding hoạt động ra sao | Văn bản → vector nhiều chiều mang nghĩa | ✅ | So bằng cosine/dot product; query và tài liệu phải dùng **cùng model**; đổi model là phải embed lại toàn bộ | mục 10 §2, mục 18 (embedding tiếng Việt) |
+| 05 | Fine-tuning khác prompting | Prompting ở inference, fine-tuning đổi trọng số | ⚠️ | Thiếu lựa chọn thứ ba là RAG và tiêu chí chọn: prompting → RAG (thiếu kiến thức) → fine-tuning (thiếu hành vi/định dạng, cần rẻ hơn ở quy mô). Nhắc LoRA/PEFT | mục 17 §2, mục 07 (Overmind: trace → LoRA) |
+| 06 | Đánh giá hệ LLM/RAG | Accuracy, relevance, faithfulness, correctness, human eval | ⚠️ | Tách **eval truy xuất** (recall@k, MRR) và **eval sinh** (faithfulness, answer relevance); cần golden dataset; LLM-as-judge phải hiệu chỉnh với nhãn người; chạy eval trong CI | mục 07 |
+| 07 | Metric phổ biến | BLEU/ROUGE, faithfulness, relevance, context precision/recall, human eval | ⚠️ | BLEU/ROUGE đo trùng n-gram, **tương quan kém với đánh giá của người** cho văn bản mở; chỉ hợp với dịch/tóm tắt có đáp án. Thiếu LLM-as-judge, pass@k (code), tỉ lệ hoàn thành task (agent), chi phí và độ trễ | mục 07 (Ragas, DeepEval, Promptfoo, Inspect AI) |
+| 08 | Xử lý hallucination | RAG nguồn tin cậy, trích dẫn, guardrail, kiểm output, người duyệt | ✅ | Trích dẫn cũng có thể bịa → kiểm trích dẫn khớp đoạn nguồn; cho phép model trả "không biết"; structured output + validate schema | mục 12 §2, mục 17 §2b |
+| 09 | Agent là gì | Plan → Act → Observe, dùng tool, vòng phản hồi | ✅ | Đây là ReAct. Thiếu **điều kiện dừng** và ngân sách (số bước, token, tiền) — câu hỏi tiếp theo hay gặp | mục 03 §1–2, mục 21 §8 |
+| 10 | Thiết kế multi-agent | Vai trò, giao thức, bộ nhớ chung, điều phối | ⚠️ | Thiếu câu "**có nên dùng không**": Anthropic khuyên "tìm giải pháp đơn giản nhất, chỉ thêm phức tạp khi cần"; theo bài về hệ research của họ, agent đơn tốn ~4× và multi-agent ~15× token so với chat. Nêu A2A, cách cô lập (git worktree) và cách gộp kết quả | mục 03 §1, §5; mục 04 §3 |
+| 11 | Tool calling | LLM gọi API, hàm, hệ thống ngoài | ⚠️ | Chính xác hơn: model chỉ **sinh lời gọi có cấu trúc** (tên + JSON tham số); **ứng dụng** thực thi và trả kết quả (ngoại lệ: "server tool" như web search do nhà cung cấp chạy). Điểm này quyết định chỗ đặt kiểm quyền. Nêu MCP | mục 04 §2, mục 12 |
+| 12 | Xây context cho agent | Bộ nhớ ngắn hạn, dài hạn, kiến thức truy xuất | ⚠️ | Thiếu **context engineering**: output tool chiếm phần lớn cửa sổ, compaction/tóm tắt, context rot, giữ dữ liệu lớn ngoài cửa sổ | mục 03 §4, §8b (context-mode); mục 10 §4 |
+| 13 | MLOps | CI/CD, model registry, monitoring, retrain, versioning | ✅ | Với ứng dụng LLM gọi API: **version prompt**, ghim phiên bản model, eval chạy trong CI thay cho retrain | mục 07, mục 13 §4 |
+| 14 | Giám sát production | Độ trễ, lỗi, chi phí, drift, chất lượng output, alert | ✅ | Thêm **tracing** từng bước agent (OpenTelemetry GenAI), phản hồi người dùng làm tín hiệu chất lượng | mục 07 (Langfuse, Phoenix, OpenLLMetry) |
+| 15 | Xử lý dữ liệu | Nguồn tin cậy, làm sạch, privacy, bộ eval | ✅ | Thêm phân quyền tài liệu khi truy xuất (người dùng chỉ thấy tài liệu họ được phép xem) | mục 12 |
+| 16 | Model drift | Phân phối dữ liệu đổi; kiểm thống kê, phân phối embedding | ✅ | Với API: nhà cung cấp **đổi model ngầm** sau alias → ghim phiên bản cụ thể và chạy lại eval khi nâng cấp | mục 07 |
+| 17 | Responsible AI | Fairness, bias, minh bạch, tuân thủ, người giám sát | ⚠️ | Không nhắc **bảo mật**: prompt injection là LLM01 trong OWASP Top 10 for LLM 2025; agent có tool làm rủi ro này thành hành động thật | mục 12 §1 |
+| 18 | Hệ RAG end-to-end | Ingest → Embed → Store → Retrieve → Generate | ⚠️ | Thiếu các bước tạo khác biệt: chunking có cấu trúc, **hybrid search** (BM25 + vector), **reranking**, viết lại query, lọc theo quyền, cache, eval từng khâu | mục 10 §2–3 (GraphRAG, LightRAG), mục 08 §2b (`RAG_Techniques`) |
+| 19 | Thách thức mở rộng | Độ trễ, chi phí, lưu trữ, serving, độ bền | ✅ | Nêu đòn bẩy cụ thể: **prompt caching**, batching, chọn model theo tầng (router), streaming, giới hạn tốc độ | mục 10 §1, §6 (gateway/router) |
+| 20 | Bài toán mở | Làm rõ, yêu cầu, giải pháp, trade-off, lặp | ✅ | Khung chung của system design; thêm "đo bằng gì" (eval) trước khi chọn kiến trúc | mục 08 §3 (Alex Xu) |
+
+**Tổng:** 10 ✅, 10 ⚠️, 0 ❌. Không ô nào sai hẳn; điểm yếu là câu trả lời dừng ở định nghĩa, trong khi phỏng vấn thật hỏi tiếp "khi nào không dùng", "đo bằng gì", "hỏng thế nào".
+
+### 2c.3 Chủ đề ảnh bỏ sót (thường gặp năm 2026)
+
+- **Bảo mật LLM/agent:** prompt injection (trực tiếp và gián tiếp qua tài liệu RAG, output tool), quyền tối thiểu cho tool, sandbox → mục 12, mục 11.
+- **Structured output** và validate schema → mục 17 §2b.
+- **Kinh tế token:** prompt caching, chọn model theo tầng, ước chi phí một tác vụ → mục 10 §6.
+- **Inference:** KV cache, quantization, batching liên tục (vLLM, SGLang) → mục 10 §1.
+- **Giao thức agent:** MCP, A2A, Agent Skills → mục 04.
+- **Coding agent và harness:** vòng lặp agent dài hạn, cổng kiểm bằng máy, git worktree → mục 01, 03, 21.
+
+### 2c.4 Tài liệu ôn phỏng vấn tương tự
+
+★ và lần push cuối đọc qua GitHub search ngày 12/10/2026; không repo nào archive.
+
+| Tài liệu | ★ | License | Push cuối | Có câu trả lời thật? | Ghi chú |
+|---|---|---|---|---|---|
+| Chip Huyen, *AI Engineering* (O'Reilly, ebook 12/2024, bản in 1/2025) + `chiphuyen/aie-book` | 17,8k | không LICENSE | 7/2026 | Có (sách) | Nền tảng tốt nhất cho cả 20 ô; repo chỉ là tài liệu đi kèm (mục 08 §2b) |
+| `KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub` | 1,1k | Apache-2.0 | 2/2026 | **Có**, 115 câu trong `Interview_QA/` | Có quảng cáo sách trả phí |
+| `amitshekhariitbhu/ai-engineering-interview-questions` | 3,4k | Apache-2.0 | 12/10/2026 | Chủ yếu danh sách câu hỏi, link ra blog/video | Phủ chủ đề mới nhất: MCP, LLMOps, eval, safety |
+| `alexeygrigorev/data-science-interviews` | 10,2k | CC-BY-4.0 | 9/2026 | Có | ML/DS cổ điển, ít LLM |
+| `chiphuyen/ml-interviews-book` | 4,8k | không LICENSE | 3/2025 | Phần lớn chỉ câu hỏi | Sách miễn phí 2021, trước thời LLM |
+| `Devinterview-io/llms-interview-questions` | 1,1k | không LICENSE | 2/2026 | 15/63 câu trong README | Phần còn lại sau tường phí devinterview.io |
+| `llmgenai/LLMInterviewQuestions` | 2,0k | không LICENSE | 2/2025 | **Không**, đáp án trong khoá trả phí | Tránh |
+
+Gợi ý: sách *AI Engineering* cho nền tảng → KalyanKS để luyện câu trả lời viết sẵn → danh sách amitshekhar để rà chủ đề mới → các mục kho ở cột "Đọc sâu" để có ý trade-off/đo/hỏng.
+
+### 2c.5 Dùng ảnh thế nào
+
+Tốt làm **checklist chủ đề** trong một trang; không đủ làm câu trả lời. Khi ôn, với mỗi ô hãy chuẩn bị thêm ba ý: một trade-off (khi nào không dùng), một cách đo, một kiểu hỏng; cột "Đọc sâu trong kho" ở bảng §2c.2 chỉ chỗ có sẵn các ý đó.
+
+## 2d. Repo "khoá học" là phễu quảng cáo: `cporter202/automate-for-growth` (ảnh người dùng gửi, 2026-10-12)
+
+> Ảnh chụp README "🚀 Automate Content for Growth — The Complete Course for Scaling Your Social Media Presence" (11 module, nút Star 829, Buy me a coffee, avatar "Chris Porter"). Repo tìm được qua GitHub search, clone đầy đủ để đọc.
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `cporter202/automate-for-growth` · **~894★**, 228 fork; tạo 5/12/2025, **push cuối 9/12/2025**; 9 commit trong 4 ngày, 1 tác giả; **không có LICENSE**; homepage viralwavestudio.com |
+| Nội dung thật | 16 file Markdown (~39k từ), **không có code**; 11 module (video Sora 2, "brand authority", đăng đa nền tảng, bulk content, blog, analytics, API, team, case study) |
+| Mục đích | Hướng người đọc tới **ViralWave Studio**: 41 link tới viralwavestudio.com, 7 tới `api.viralwavestudio.com`; thư mục `ai-content-generation-tool/` tự gọi sản phẩm là "#1 AI Content Generation Tool" kèm mã giảm 15%; module API chỉ có ví dụ gọi API của chính sản phẩm đó |
+| Liên hệ tác giả – sản phẩm | Repo không công bố quan hệ giữa tác giả (Facebook `chris.porter.7731`) và ViralWave Studio **(chưa xác minh là chủ sản phẩm hay affiliate)**; ảnh trong README lưu trên Firebase project `facesift` |
+| Case study | Không tên, không nguồn: "0 → 4.000 follower trong 90 ngày", "engagement 6,8%", "US$25.000 doanh thu"; 3 link trong cả module. **Không kiểm chứng được** |
+
+**Đánh giá:** không phải tài liệu học về tự động hoá nội dung mà là tài liệu bán hàng đặt trên GitHub; số sao không nói gì về chất lượng (repo bỏ dở từ 12/2025, ảnh của video quảng bá vẫn kêu gọi star). Không có LICENSE nên về mặt pháp lý không được phép tái sử dụng nội dung.
+
+**Muốn tự động hoá nội dung mạng xã hội thật thì đọc:** n8n, Activepieces (mục 05, mục 21 §6) để dựng pipeline đăng bài; mục 19 và 22 cho sinh video/motion; mục 12 trước khi giao token tài khoản mạng xã hội cho bất kỳ dịch vụ bên thứ ba nào.
+
+**Dấu hiệu nhận ra "khoá học" kiểu này:** đa số link trỏ về một sản phẩm, không có code chạy được, không LICENSE, case study không tên, commit dồn trong vài ngày rồi dừng, README đặt lời kêu gọi star và donate trước mục lục.
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.
@@ -64,3 +152,5 @@ Thứ tự gợi ý cho người mới: `generative-ai-for-beginners` (bản ti�
 - https://github.com/Shubhamsaboo/awesome-llm-apps · https://github.com/hesreallyhim/awesome-claude-code · https://github.com/rohitg00/awesome-claude-code-toolkit · https://claudefa.st/blog/tools/resources/awesome-claude-code · https://github.com/topics/agent-skills · https://github.com/topics/claude-skills
 - https://github.com/kaushikb11/awesome-llm-agents · https://github.com/aloth/awesome-ai-agents
 - §2b (12/10/2026): https://github.com/microsoft/generative-ai-for-beginners · https://github.com/rasbt/LLMs-from-scratch · https://github.com/mlabonne/llm-course · https://github.com/microsoft/ai-agents-for-beginners · https://github.com/labmlai/annotated_deep_learning_paper_implementations · https://github.com/karpathy/nanochat · https://github.com/karpathy/nanoGPT · https://github.com/karpathy/llm.c · https://github.com/huggingface/agents-course · https://github.com/NirDiamant/RAG_Techniques · https://github.com/NirDiamant/GenAI_Agents · https://github.com/chiphuyen/aie-book · https://github.com/datawhalechina/happy-llm (34,3k★, tiếng Trung, CC BY-NC-SA)
+- §2c ảnh "AI Engineer Interview Questions" (12/10/2026): https://www.linkedin.com/in/rathanuday · https://www.linkedin.com/posts/rathanuday_ai-agents-dont-fail-because-theyre-not-activity-7411823219176865792-xB4z · https://www.zoominfo.com/p/Rathnakumar-Udayakumar/-1632233212 (bên thứ ba) · https://www.goodreads.com/author/show/29625821.Rathnakumar_Udayakumar · kiểm nội dung: https://arxiv.org/abs/1706.03762 (§3.1 post-LN) · https://arxiv.org/abs/2002.04745 (Pre-LN) · https://arxiv.org/abs/2302.13971 (LLaMA, RMSNorm) · https://arxiv.org/abs/2303.16634 (G-Eval: BLEU/ROUGE tương quan thấp với người) · https://www.anthropic.com/engineering/building-effective-agents · https://www.anthropic.com/engineering/multi-agent-research-system (4×/15× token) · https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview · https://genai.owasp.org/llmrisk/llm01-prompt-injection/ · tài liệu ôn: https://github.com/chiphuyen/aie-book, https://github.com/KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub, https://github.com/amitshekhariitbhu/ai-engineering-interview-questions, https://github.com/alexeygrigorev/data-science-interviews, https://github.com/chiphuyen/ml-interviews-book, https://github.com/Devinterview-io/llms-interview-questions, https://github.com/llmgenai/LLMInterviewQuestions
+- §2d (12/10/2026): https://github.com/cporter202/automate-for-growth (clone đầy đủ, 9 commit, HEAD 2cc3193) · https://viralwavestudio.com · bản sao 0★: arnelnrose/automate_for_growth, klikydigital/automate-for-growth

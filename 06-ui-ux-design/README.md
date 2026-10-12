@@ -97,7 +97,7 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 
 | Nhóm | Ví dụ | Khác biệt với Anatomy |
 |---|---|---|
-| Skill sơ đồ "diagram-as-code" | Mermaid skills (design-doc-mermaid ~44k install), Excalidraw skills (~28.7k install, Kroki/CLI export), Garry Tan `diagram` (Mermaid → Excalidraw editable), `diagram-design` (41 loại, branded) | Sơ đồ 2D trừu tượng; Anatomy là **minh họa vật thể 3D-isometric có mô phỏng** |
+| Skill sơ đồ "diagram-as-code" | Mermaid skills (design-doc-mermaid ~44k install), Excalidraw skills (~28.7k install, Kroki/CLI export), Garry Tan `diagram` (Mermaid → Excalidraw editable), `diagram-design` (44 loại, branded; xem §7b) | Sơ đồ 2D trừu tượng; Anatomy là **minh họa vật thể 3D-isometric có mô phỏng** |
 | Skill thẩm mỹ frontend | Taste Skill (mục 4 ở trên), Refactoring UI skill, `ibelick/ui-skills` (~9.4k★, directory chứa Anatomy cùng animated-sprites, animation-vocabulary, antfu-design, beautiful-shadows) | Anatomy nằm ở nhánh "visual/craft" của cùng hệ sinh thái |
 | Motion/video skills | claude-motion-design, awesome-claude-video-skills (mục 19) | Video/animation thay vì SVG tương tác |
 
@@ -110,6 +110,38 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 5. Liên hệ: mục 04 (chuẩn Agent Skills, cài qua `skills` CLI), mục 06 §4 (Taste Skill), mục 19 (motion skills), mục 09 (kiểm chứng bằng máy).
 
 **Nguồn:** https://github.com/wheresryan22/anatomy (README, SKILL.md, releases/v1.0.0, commits) · https://github.com/wheresryan22 · https://github.com/wheresryan22/anatomy-figures · https://x.com/wheresryan22/status/2108948624004526516 · https://www.ui-skills.com/skills/wheresryan22/anatomy · https://www.skills.sh/wheresryan22/anatomy/anatomy · https://skillselion.com/guides/best-diagram-skills-for-claude-code · https://aipptskill.com/blog/ai-diagram-skills-guide/ · https://open-design.ai/skills/diagram/ · https://skillselion.com/guides/diagram-design-skill-claude-code-guide
+
+## 7b. Case study: diagram-design — skill vẽ sơ đồ "editorial" theo thương hiệu (ảnh + link người dùng gửi, 2026-10-12)
+
+> Đọc clone đầy đủ (287 commit, HEAD `80c8f28`, plugin 2.6.75) và đối chiếu các con số trong ảnh chụp README.
+
+### 7b.1 Hồ sơ nhanh
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `cathrynlavery/diagram-design` · **~51,8k★**, 3,3k fork, 87 issue + PR mở; tạo 16/4/2026; license **MIT**; trang diagramdesign.dev |
+| Mô tả | "An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand. 44 diagram types. No shadows. No Mermaid slop." |
+| Tác giả | Cathryn Lavery (LittleMight; email commit `@bestself.co`, tức BestSelf Co.); tác giả chính 122/287 commit (hai email), bot release 63, tổng 51 tên tác giả. 78/250 commit không merge (~31%) có trailer Claude |
+| Host | Claude Code (marketplace `/plugin`), Codex, GitHub Copilot, Factory Droid, Claude Cowork (mirror nội bộ tổ chức), OpenCode, Pi; hoặc `npx skills add cathrynlavery/diagram-design` (chỉ skill, không có lệnh `/export-diagram`, `/import-mermaid`, `/profile`, `/doctor`) |
+
+**Đối chiếu ảnh:** "44 diagram types" **đúng** (44 file `references/type-*.md`); "stars 49k" là số cũ, nay ~51,8k; "version 2.6.74" đã lên 2.6.75 cùng ngày (bot bump mỗi lần merge vào `main`); "Skills 9.3K" là số lượt cài theo skills.sh **(chưa xác minh)**; "CI passing" đúng nghĩa: `ci.yml` chạy trên mọi PR. "#1 Repository Of The Day" là huy hiệu GitHub Trending, không kiểm được ngày.
+
+### 7b.2 Cách hoạt động (đọc `SKILL.md`, 393 dòng, và `references/`)
+
+- **Cổng thương hiệu trước sơ đồ đầu tiên:** nếu token style vẫn mặc định (paper `#f5f5f5`, ink `#2d3142`, accent `#bf4520`), skill **dừng và hỏi** lấy brand từ đâu (URL website, skill có sẵn, thư mục design system, dán token, giữ mặc định, profile đã lưu). Profile lưu ở `~/.diagram-design/profiles/`.
+- **Triết lý "xoá trước":** mật độ mục tiêu 4/10, trên 9 node thì tách thành hai sơ đồ, màu nhấn chỉ cho 1–2 node; mục "khi nào **không** dùng" (danh sách → bảng, sơ đồ một hình → viết câu).
+- **Output:** một file HTML tự chứa với SVG inline; xuất PNG (cần Playwright trong Python, skill kiểm trước khi chạy) và SVG đứng riêng. Nhập từ `.drawio`, Mermaid, `.excalidraw`.
+- **Kiểm bằng máy:** `scripts/` có 30 `verify-*.py` và 39 `test-*.py` (hình học, tương phản màu, a11y, sankey, treemap, waterfall…), fixture "đối nghịch" (`sample-adversarial.mmd`, `waterfall-plausible-wrong.html`); `.maintainer-policy.json` liệt kê cổng local, gồm `claude plugin validate . --strict` ghim phiên bản CLI.
+- **Riêng tư:** `PRIVACY.md` nói không server, không analytics, không telemetry; luồng ra ngoài duy nhất là Google Fonts khi mở file (bỏ link thì dùng font hệ thống) và trang web người dùng chỉ định khi lấy brand.
+
+### 7b.3 Đánh giá
+
+- **Điểm mạnh:** đúng mẫu "skill kèm kit + verifier + fixture đối nghịch" như Anatomy (§7), nhưng phạm vi rộng hơn (44 loại, chart lẫn schematic) và đóng gói cho 6+ host với version đồng bộ; luật thẩm mỹ cụ thể đến mức kiểm được.
+- **Rủi ro:** (1) phụ thuộc Google Fonts khi xem file (tài liệu nội bộ nhạy cảm nên bỏ link font); (2) PNG cần Playwright + Chromium; (3) bản `npx skills` không tự cập nhật; (4) skill dài (393 dòng + hàng chục reference) nên tốn context mỗi lần nạp, dù reference chỉ nạp khi cần; (5) chưa thấy đánh giá độc lập về chất lượng sơ đồ so với Mermaid.
+- **Khi nào dùng:** sơ đồ cho tài liệu đọc lâu, slide, bài viết, cần đúng brand. Với sơ đồ sống trong repo (review được bằng diff, render trên GitHub), Mermaid vẫn tiện hơn.
+- **Tích hợp:** MIT, chép/vendor được; giữ `THIRD_PARTY_LICENSES.md` (icon Tabler, MIT). Cấu hình tối thiểu: chạy onboarding một lần cho mỗi dự án, lưu profile; tắt Google Fonts cho tài liệu nội bộ.
+
+**Nguồn §7b:** https://github.com/cathrynlavery/diagram-design (clone đầy đủ, HEAD 80c8f28; README, SKILL.md, references/type-*.md, references/export.md, scripts/, .maintainer-policy.json, .github/workflows/ci.yml, PRIVACY.md, THIRD_PARTY_LICENSES.md) · https://diagramdesign.dev · https://skillselion.com/guides/diagram-design-skill-claude-code-guide
 
 ## 8. Nguồn (mục 1–6)
 

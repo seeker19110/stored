@@ -197,3 +197,17 @@
 - pypi.org/project/omnigent · pypistats.org/api/packages/omnigent/recent · omnigent.ai · databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents · docs.databricks.com/aws/en/omnigent · app.opencve.io/cve/CVE-2026-62674 (ánh xạ CVE ↔ GHSA chưa xác minh)
 - itbrief.co.uk (18/6/2026) · atlan.com/know/ai-agent/databricks/what-is-databricks-omnigent-meta-harness · news.ycombinator.com/item?id=48518176; bỏ qua aiindigo.com (mô tả sai sản phẩm)
 - So sánh (★ 12/10/2026): OpenHands/OpenHands, langchain-ai/langgraph, BloopAI/vibe-kanban, smtg-ai/claude-squad
+
+## Bổ sung 2026-10-12 (ảnh "AI Engineer Interview Questions" → mục 08 §2c)
+
+- Người đăng: linkedin.com/in/rathanuday (~48,9k follower theo trang bài đăng) · zoominfo.com (bên thứ ba, chưa xác minh) · goodreads.com/author/show/29625821; không tìm thấy bài gốc của ảnh
+- Kiểm nội dung: arxiv.org/abs/1706.03762 · arxiv.org/abs/2002.04745 · arxiv.org/abs/2302.13971 · arxiv.org/abs/2303.16634 · anthropic.com/engineering/building-effective-agents · anthropic.com/engineering/multi-agent-research-system · platform.claude.com/docs/en/agents-and-tools/tool-use/overview · genai.owasp.org/llmrisk/llm01-prompt-injection
+- Tài liệu ôn (★ 12/10/2026): chiphuyen/aie-book, KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub, amitshekhariitbhu/ai-engineering-interview-questions, alexeygrigorev/data-science-interviews, chiphuyen/ml-interviews-book, Devinterview-io/llms-interview-questions, llmgenai/LLMInterviewQuestions
+
+## Bổ sung 2026-10-12 (ảnh + link cathrynlavery/diagram-design → mục 06 §7b)
+
+- github.com/cathrynlavery/diagram-design (clone đầy đủ, 287 commit, HEAD 80c8f28): README, skills/diagram-design/SKILL.md, references/type-*.md (44), references/export.md, scripts/ (30 verify, 39 test), .maintainer-policy.json, ci.yml, PRIVACY.md, THIRD_PARTY_LICENSES.md; trang GitHub (~51,8k★, 12/10/2026) · diagramdesign.dev
+
+## Bổ sung 2026-10-12 (ảnh "Automate Content for Growth" → mục 08 §2d)
+
+- github.com/cporter202/automate-for-growth (clone đầy đủ, 9 commit, HEAD 2cc3193; ~894★, 12/10/2026) · viralwavestudio.com · facebook.com/chris.porter.7731 (link trong repo)

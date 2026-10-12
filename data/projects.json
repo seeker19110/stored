@@ -4410,6 +4410,56 @@
       "open_source": true,
       "notes": "Meta-harness của Databricks bọc Claude Code/Codex/Cursor/OpenCode…; policy 3 tầng, sandbox đám mây; alpha, 7 GHSA, analytics bật mặc định; ★ đọc 12/10/2026",
       "section": "01"
+    },
+    {
+      "name": "diagram-design",
+      "repo": "cathrynlavery/diagram-design",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 51800,
+      "open_source": true,
+      "notes": "Skill sơ đồ HTML+SVG theo brand, 44 loại, cổng onboarding brand, 30 verifier, không telemetry (chỉ Google Fonts); 6+ host; ★ đọc 12/10/2026",
+      "section": "06"
+    },
+    {
+      "name": "automate-for-growth",
+      "repo": "cporter202/automate-for-growth",
+      "category": "learning",
+      "license": null,
+      "stars": 894,
+      "open_source": false,
+      "notes": "'Khoá học' tự động hoá mạng xã hội thực chất là phễu quảng cáo ViralWave Studio; không code, không LICENSE, dừng từ 12/2025; tránh; ★ đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "LLM Interview Questions and Answers Hub",
+      "repo": "KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub",
+      "category": "learning",
+      "license": "Apache-2.0",
+      "stars": 1078,
+      "open_source": true,
+      "notes": "115 câu hỏi phỏng vấn LLM có câu trả lời viết sẵn; ★ đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "ai-engineering-interview-questions",
+      "repo": "amitshekhariitbhu/ai-engineering-interview-questions",
+      "category": "learning",
+      "license": "Apache-2.0",
+      "stars": 3400,
+      "open_source": true,
+      "notes": "Danh sách câu hỏi AI engineering (RAG, agent, MCP, LLMOps, eval, safety), chủ yếu link ra ngoài; ★ đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "data-science-interviews",
+      "repo": "alexeygrigorev/data-science-interviews",
+      "category": "learning",
+      "license": "CC-BY-4.0",
+      "stars": 10177,
+      "open_source": true,
+      "notes": "Câu hỏi + đáp án DS/ML cổ điển, ít LLM; ★ đọc 12/10/2026",
+      "section": "08"
     }
   ]
 }
