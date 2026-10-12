@@ -57,7 +57,8 @@
       "aec-bim",
       "reverse-engineering",
       "quality-gate",
-      "policy-as-code"
+      "policy-as-code",
+      "agent-workspace"
     ],
     "count": null
   },
@@ -2907,6 +2908,66 @@
       "open_source": true,
       "notes": "One-person company: tự dựng org chart, uỷ việc cho Claude Code/Codex/Cursor; ★ 12/10/2026",
       "section": "02"
+    },
+    {
+      "name": "Personal Jarvis",
+      "repo": "Dodaios/Dodaios",
+      "category": "personal-agent",
+      "license": "Apache-2.0",
+      "stars": 183,
+      "open_source": true,
+      "notes": "Super-app desktop: ADE nhiều pane (call sign T1/T2) + voice/wake word + computer use + agent nền; đổi tên từ PersonalJarvis/PersonalJarvis 10/2026; ≤1.6.0 MIT; mặc định approval_mode=bypass; ★ 12/10/2026",
+      "section": "01"
+    },
+    {
+      "name": "T3 Code",
+      "repo": "pingdotgg/t3code",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": 27100,
+      "open_source": true,
+      "notes": "Agent harness control surface (web/desktop/mobile) cho coding agent trên máy mình; ★ 12/10/2026",
+      "section": "01"
+    },
+    {
+      "name": "Vibe Kanban",
+      "repo": "BloopAI/vibe-kanban",
+      "category": "agent-workspace",
+      "license": "Apache-2.0",
+      "stars": 28300,
+      "open_source": true,
+      "notes": "Kanban, mỗi thẻ một agent trong worktree; README ghi đang sunset; ★ 12/10/2026",
+      "section": "01"
+    },
+    {
+      "name": "Claude Squad",
+      "repo": "smtg-ai/claude-squad",
+      "category": "agent-workspace",
+      "license": "AGPL-3.0",
+      "stars": 8600,
+      "open_source": true,
+      "notes": "TUI tmux + git worktree quản lý nhiều CLI agent; ★ 12/10/2026",
+      "section": "01"
+    },
+    {
+      "name": "Orca",
+      "repo": "stablyai/orca",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree; số sao 10k–43k tùy nguồn (chưa xác minh)",
+      "section": "01"
+    },
+    {
+      "name": "OpenJarvis",
+      "repo": "open-jarvis/OpenJarvis",
+      "category": "personal-agent",
+      "license": "Apache-2.0",
+      "stars": 11000,
+      "open_source": true,
+      "notes": "Stanford Hazy Research/SAIL: framework agent cá nhân local-first, đo năng lượng/latency/cost; trùng tên với Personal Jarvis; ★ 12/10/2026",
+      "section": "01"
     }
   ]
 }

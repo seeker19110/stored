@@ -32,6 +32,19 @@
 | **Google Jules** | Google | Cloud async agent | free 15 task/ngày | Tốt cho test & PR trên repo Python |
 | **OpenAI Codex (cloud)** | OpenAI | Cloud agent | trong ChatGPT Plus $20 / Pro $100+ | Chạy song song nhiều task trong sandbox |
 
+### 1.3 Agent workspace / ADE – chạy nhiều coding agent song song (thêm 2026-10-12)
+
+Lớp **không phải agent** mà là "bàn làm việc" bọc các CLI agent ở bảng 1.1/1.2: mỗi agent một pane/worktree, so sánh kết quả, review diff. ★ đọc trên trang GitHub 12/10/2026 trừ khi ghi khác.
+
+| Dự án | Repo | License | ★ | Cách tiếp cận | Ghi chú |
+|---|---|---|---|---|---|
+| **Personal Jarvis** | github.com/Dodaios/Dodaios (cũ: PersonalJarvis/PersonalJarvis) | Apache-2.0 (≤1.6.0 là MIT) | 183 | "Super-app": ADE nhiều pane + giọng nói/wake word + computer use + agent nền có memory + marketplace | Case study §3c; Python + React, 1 tác giả chính |
+| **T3 Code** | github.com/pingdotgg/t3code | MIT | ~27,1k | "Agent harness control surface": điều khiển agent trên máy mình qua web/desktop/mobile | Personal Jarvis mượn code thread/timeline và trang Computers (NOTICE) |
+| **Vibe Kanban** | github.com/BloopAI/vibe-kanban | Apache-2.0 | ~28,3k | Bảng kanban, mỗi thẻ = một agent trong worktree riêng | README ghi **đang sunset**, chuyển cho cộng đồng |
+| **Orca** | github.com/stablyai/orca | MIT | chưa rõ (10k–43k tùy nguồn) | Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree, chọn bản thắng để merge | Số sao các nguồn lệch nhau ~4× → **(chưa xác minh)** |
+| **Claude Squad** | github.com/smtg-ai/claude-squad | AGPL-3.0 | ~8,6k | TUI trên tmux + git worktree, quản lý Claude Code/Codex/OpenCode/Amp | Nhẹ nhất, chỉ terminal |
+| **Conductor** | Melty Labs (đóng) | thương mại | – | App Mac, agent song song mỗi cái một worktree, panel review diff | Chỉ macOS (theo bài so sánh, chưa xác minh) |
+
 ## 2. Benchmark & cách đánh giá
 
 | Benchmark | Trạng thái 10/2026 | Top |
@@ -88,6 +101,46 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - **Rủi ro / lưu ý:** phần lớn bài viết bên ngoài là aggregator/khuyến mãi, chưa có đánh giá độc lập về độ chính xác graph; một trang trending (trendingrepo.com) gắn cờ "có thể star-farming" cho bản owner cũ — **chưa xác minh**, nhưng tốc độ +2k★/ngày sau 5 tháng ra mắt là bất thường và đáng theo dõi (so sánh ADHD, Anatomy, OpenMontage ở mục 03/06/19 đều có đợt sóng tương tự). Chi phí token lần đầu; graph lớn cần lfs; 200 PR mở cho thấy maintainer quá tải.
 - **Vị trí trong kho:** công cụ "đọc hiểu codebase" cho coding agent, cùng nhóm với Context7/llms.txt (mục 16) và memory có cấu trúc (mục 10). Đáng thử cho onboarding dự án lạ và review tác động diff trước khi vào Ralph loop (mục 03).
 
+## 3c. Case study: Personal Jarvis (Dodaios) – "super-app" agent cho desktop (ảnh README người dùng gửi, 2026-10-12)
+
+> Nguồn: ảnh chụp README người dùng gửi. Nghiên cứu bằng clone đầy đủ lịch sử (commit `e28f53f`, 11/10/2026), đọc `README.md`, `AGENTS.md`, `NOTICE`, `LICENSE`, `jarvis.toml.example`, `jarvis/safety/*`, `jarvis/core/config.py`, `.github/workflows/`; trang GitHub, PyPI, personaljarvis.ai; tìm HN/Reddit (không thấy thảo luận độc lập).
+
+### 3c.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (đọc 2026-10-12) |
+|---|---|
+| Repo | https://github.com/Dodaios/Dodaios — **đổi tên từ `PersonalJarvis/PersonalJarvis`** 10–11/10/2026 (PR #525, #526, #530; URL cũ vẫn redirect). PyPI `personal-jarvis` còn trỏ homepage về URL cũ, nhưng attestation bản 3.1.1 ghi repo Dodaios |
+| Tác giả | Ruben Lütke (Đức): **5.777/5.839 commit** (~99%); 3 người khác 10–14 commit; 2 commit ký "Claude" |
+| Tuổi / nhịp | Commit đầu 19/6/2026 → 105 ngày có commit, đỉnh **264 commit/ngày** (1/7/2026); 71 tag, v3.1.1 (10/10/2026); 378 commit "auto-save WIP via Claude stop-hook" |
+| Quy mô | ~664k dòng Python trong `jarvis/` (74 package con), frontend React, 2.564 file `test_*.py`, 23 workflow GitHub Actions, `CHANGELOG.md` 212 KB |
+| License | **Apache-2.0** từ 2.0.0 (commit 27/8/2026 "switch from MIT to Apache 2.0"); bản ≤1.6.0 vẫn MIT. Có `TRADEMARK.md` (không liên kết Marvel/Disney…) |
+| Số liệu GitHub | 183★, 70 fork, 4 watcher, 33 issue, 56 PR mở; 20 topic (`claude-code`, `computer-use`, `wake-word`, `mcp`…) |
+| Cài đặt | `irm …/install.ps1 \| iex` / `curl … install.sh \| bash`, installer .exe/.dmg/AppImage (macOS chưa notarize, Windows chờ SignPath), hoặc `pip install personal-jarvis` + `jarvis serve` (headless, cổng 47821) |
+
+### 3c.2 Nó làm gì (theo README, đã đối chiếu thư mục)
+
+- **Agentic IDE**: nhiều pane terminal thật, mỗi pane chạy một CLI (Claude Code, Codex, OpenCode, Kimi Code, GLM, Grok Build, Antigravity, Cursor CLI, DeepSeek Harness); pane có **call sign T1, T2…** để ra lệnh bằng giọng ("Tell T1 to write the tests"), gửi cùng một task cho nhiều pane rồi so sánh. Dùng subscription có sẵn của người dùng (`jarvis/claude_auth.py`, `codex_auth.py`, `*_quota_state.py`).
+- **Jarvis Agents**: agent sống lâu, mỗi agent một chat không kết thúc, ghi chú riêng ("self-learning"), routine theo lịch; mission dài chạy trong **git worktree**, tách worker song song, qua bước review. Có phần chuyển thể từ `NousResearch/hermes-agent` (`third_party/hermes-agent`, MIT).
+- **Giọng nói**: wake word tự chọn, hội thoại ngắt lời được, dictation vào mọi app, gọi điện (Twilio); STT/TTS chạy offline được (Silero VAD).
+- **Computer use** desktop + trình duyệt; **marketplace** >40 plugin/MCP/skill/CLI; memory dạng **wiki local** có trích dẫn; Routines; Appshots; "Jarvis Verse" 3D; pet trên desktop; kênh Telegram/Discord; CLI `jarvis` + API local.
+
+### 3c.3 Đọc cổng thật thay vì văn xuôi (mục 23, WORKFLOW)
+
+| Tuyên bố README | Code / cấu hình thật | Nhận xét |
+|---|---|---|
+| "Every action passes a risk check with four levels: safe, monitor, ask and block. Anything that could change your system waits for your approval" | `jarvis/safety/risk_tier.py`: thứ tự **blacklist → whitelist → tier mặc định của tool** (+ hook `risk_tier_for_args`). `config.py`: `approval_mode` mặc định **`"bypass"`**, `default_tier = "safe"`; chỉ tier `ask` mới hỏi | Mặc định là **không hỏi** cho việc do app tự chạy; README nói ngược lại. Docs `safety-and-approvals.md` có thừa nhận kết nối kế thừa "monitor default" chạy không hỏi |
+| Blacklist chặn lệnh nguy hiểm | `fnmatch` trên chuỗi `"<tool> <args>"` và `"<args>"`; blacklist mặc định chỉ 5 mẫu (`format *`, `rm -rf /`, `del /f /s /q C:\`…). Docstring ghi audit 8/8/2026 phát hiện **mọi mẫu blacklist mặc định từng "chết"** với `run_shell` | Glob khớp chuỗi dễ né (`rm -rf ~`, khoảng trắng kép, `bash -c`) |
+| Lệnh phá huỷ sẽ hỏi trước | `command_impact.py` tách `&&`, `;`, `\|` và xếp loại read/modify/destructive — **nhưng chỉ chạy ở bước 3**; whitelist mặc định có `"git log *"`, `"git diff *"` và **thắng trước** | `fnmatchcase("git log -1; rm -rf ~/x", "git log *") == True` → lệnh nối sau whitelist được hạ xuống `safe`, bỏ qua bộ phân loại (phân tích tĩnh 12/10/2026, **chưa chạy thử trong app**) |
+| — | `AGENTS.md` là file hướng dẫn duy nhất; `.claude/{agents,skills}` và `.codex/agents/*.toml` là bản sinh, CI (`scripts/ci/check_agents_md.py`) chặn `CLAUDE.md` | Mẫu "một nguồn, nhiều host" giống mục 04/20 |
+| — | `AGENTS.md` §1 "Traps no one guesses": working tree **dùng chung** giữa nhiều phiên agent (cấm `git add -A`); probe vào app thật **tốn tiền thật** (5 lượt test từng tốn $6,82); cấm Chrome headless (từng ghim CPU 100%); mọi reconnect phải jitter (từng cạn cổng ephemeral) | Sổ bẫy cụ thể, có mã AP-n/BUG-n — cùng tinh thần `TRAPS.md` mục 03/23 |
+
+### 3c.4 Đánh giá
+
+- **Điểm mạnh:** gom ADE + voice + computer use + agent nền vào một app local, không cần tài khoản, dùng lại subscription sẵn có; ghi công bên thứ ba cẩn thận (`NOTICE` liệt kê T3 Code, hermes-agent, Silero); `AGENTS.md` là ví dụ tốt về sổ bẫy thực chiến cho codebase do agent viết; có release bot, scorecard, attestation, nhiều workflow smoke đa nền tảng.
+- **Rủi ro:** (1) **bus factor = 1** và nhịp 50–260 commit/ngày cho thấy phần lớn code do agent sinh — 664k dòng Python sau ~4 tháng khó audit; (2) mặc định `bypass` + whitelist thắng bộ phân loại lệnh là khoảng hở thật cho app có quyền điều khiển máy (mục 12); (3) cài bằng `curl | bash`/`irm | iex`, binary macOS chưa notarize, Windows chưa ký; (4) đổi tên repo, đổi license MIT→Apache trong 4 tháng → link/PyPI chưa đồng bộ; (5) cộng đồng nhỏ (183★), chưa có review độc lập — phần tính năng đều là **tự công bố**; (6) trùng tên với `open-jarvis/OpenJarvis` (Stanford, ~11k★, Apache-2.0, local-first nhưng thiên về framework + đo hiệu năng/năng lượng) và nhiều fork/mirror `*/PersonalJarvis`.
+- **So với nhóm ADE (§1.3):** T3 Code/Orca/Claude Squad chỉ làm "bàn điều phối" và giữ phạm vi hẹp; Personal Jarvis là cực "làm tất cả", gần OpenClaw/Hermes Agent (mục 02) hơn là một IDE. Chọn T3 Code hoặc Claude Squad nếu chỉ cần chạy agent song song; thử Personal Jarvis nếu muốn điều khiển bằng giọng nói, nhưng đặt `approval_mode = "ask"` và xoá whitelist `git log *`/`git diff *` (hoặc chỉ whitelist lệnh không tham số) trước khi giao quyền computer use.
+- **Bài học đem về kho:** (a) **call sign cho pane** là giao diện điều phối bằng giọng rẻ mà hiệu quả; (b) allowlist kiểu glob trên chuỗi lệnh phải chạy **sau** bộ tách lệnh nối, không trước (mục 12 §4); (c) stop-hook auto-commit WIP là lưới an toàn, nhưng sinh 378 commit nhiễu → nên squash trước khi merge.
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
@@ -100,5 +153,7 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - https://github.com/OpenHands/OpenHands · https://github.com/SWE-agent/mini-swe-agent · https://github.com/SWE-agent
 - https://arxiv.org/html/2604.03515v2 (Inside the Scaffold) · https://arxiv.org/pdf/2609.00006 (Harness Engineering)
 - Understand-Anything: https://github.com/Egonex-AI/Understand-Anything · https://github.com/Egonex-AI · https://trendshift.io/repositories/23482 · https://betterstack.com/community/guides/ai/understand-anything/ · https://www.augmentcode.com/learn/understand-anything-71k-stars · https://mcpmarket.com/tools/skills/understand-anything-code-graph · https://github.com/GoodDingo/understand-anything · understand-anything.com
+- Personal Jarvis: https://github.com/Dodaios/Dodaios (clone đầy đủ, commit e28f53f) · https://github.com/PersonalJarvis/PersonalJarvis (URL cũ) · https://pypi.org/project/personal-jarvis/ · https://personaljarvis.ai · https://github.com/alvinreal/awesome-opensource-ai/pull/788 · https://github.com/slavakurilyak/awesome-ai-agents/issues/637
+- ADE so sánh: https://github.com/pingdotgg/t3code · https://github.com/BloopAI/vibe-kanban · https://github.com/smtg-ai/claude-squad · https://github.com/open-jarvis/OpenJarvis · https://agentsroom.dev/blog/best-multi-agent-coding-tools · https://www.codeagentswarm.com/en/guides/best-tools-to-run-multiple-ai-coding-agents · https://nimbalyst.com/blog/best-multi-agent-desktop-apps-claude-code-codex-2026/ · https://aitoolsatlas.ai/tools/orca-stably/review (Orca, số sao chưa xác minh)
 - https://www.vals.ai/benchmarks/swebench · https://arxiv.org/pdf/2609.08149 (SWE-Bench Pro Verified)
 - https://codeant.ai/blogs/best-ai-code-editor-cursor-vs-windsurf-vs-copilot · https://www.developersdigest.tech/blog/ai-coding-tools-pricing-2026 · https://levelop.dev/blog/the-best-ai-coding-agents-in-2026-a-practical-ranking-for-working-developers
