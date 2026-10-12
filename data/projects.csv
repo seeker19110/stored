@@ -430,3 +430,5 @@ claude-code-security-review,anthropics/claude-code-security-review,,security,MIT
 security-audit-skill (Cloudflare),cloudflare/security-audit-skill,,security,MIT,28600,True,12,"1 skill, yêu cầu sandbox OS; ★ đọc 12/10/2026"
 Anthropic-Cybersecurity-Skills (cộng đồng),mukul975/Anthropic-Cybersecurity-Skills,,security,Apache-2.0,34300,True,12,~817 skill; không liên quan Anthropic; ★ đọc 12/10/2026
 Claude-BugHunter,elementalsouls/Claude-BugHunter,,security,MIT + CC-BY-4.0,5000,True,12,"82–83 skill bug bounty, scope chặt; ★ đọc 12/10/2026"
+ArtCraft Launcher,storytold/craft-launcher,,app-launcher,MIT OR Apache-2.0,1560,True,01,"Cài/cập nhật 12 app Craft (Rust, egui); catalog đóng storytold/*, SHA-256 bắt buộc, ghim Team ID chỉ trên macOS; CI chạy test; ~76% commit Claude đồng tác giả; ★ đọc 12/10/2026"
+Omnigent,omnigent-ai/omnigent,,agent-workspace,Apache-2.0,10760,True,01,"Meta-harness của Databricks bọc Claude Code/Codex/Cursor/OpenCode…; policy 3 tầng, sandbox đám mây; alpha, 7 GHSA, analytics bật mặc định; ★ đọc 12/10/2026"
