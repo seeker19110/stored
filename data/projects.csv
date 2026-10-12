@@ -250,13 +250,13 @@ design-os-3d-blender,seeker19110/design-os-3d-blender,,own-repo,MIT,,True,23,"Ag
 Claude-Red (fork),seeker19110/Claude-Red,,security,MIT,,True,23,"Fork SnailSploit/claude-red v0.3.0: 78 SKILL.md red-team dual-use, manifest claude-skills.json; chỉ dùng khi có ủy quyền"
 system-design-notes,seeker19110/system-design-notes,,learning,– (chưa rõ),,True,23,Ghi chú System Design Interview (Alex Xu) 28 chương + ~25 link paper gốc; upstream/license chưa rõ
 Hermes Agent,NousResearch/hermes-agent,,personal-agent,–,,True,02,"Agent mã mở CLI/TUI/Electron + gateway Telegram/Discord/Slack/WhatsApp + ACP; skills tự học, delegate_task ≤10 con không lồng, plugin model-provider; docs llms.txt (theo docs nội bộ, chưa xác minh)"
-MetaGPT,FoundationAgents/MetaGPT,,agent-framework,MIT,,True,02,"Công ty phần mềm đa vai trò theo SOP; ~60k★ (theo docs nội bộ, chưa xác minh)"
-ChatDev,OpenBMB/ChatDev,,agent-framework,Apache-2.0,,True,02,"Chat-chain giữa vai trò CEO/CTO/dev/tester; ~27k★ (theo docs nội bộ, chưa xác minh)"
-DeerFlow,bytedance/deer-flow,,agent-framework,MIT,,True,02,"Deep research đa agent trên LangGraph; ~18k★ (theo docs nội bộ, chưa xác minh); X-Agents đối chiếu"
+MetaGPT,FoundationAgents/MetaGPT,,agent-framework,MIT,70800,True,02,Công ty phần mềm đa vai trò theo SOP; ★ trang GitHub 12/10/2026
+ChatDev,OpenBMB/ChatDev,,agent-framework,Apache-2.0,34500,True,02,Chat-chain giữa vai trò CEO/CTO/dev/tester; ★ trang GitHub 12/10/2026
+DeerFlow,bytedance/deer-flow,,agent-framework,MIT,83700,True,02,"Deep research/""SuperAgent harness"" đa agent trên LangGraph; ★ trang GitHub 12/10/2026; X-Agents đối chiếu"
 AG2,ag2ai/ag2,,agent-framework,Apache-2.0,,True,02,Fork cộng đồng AutoGen 0.2 (11/2024)
 CAMEL,camel-ai/camel,,agent-framework,Apache-2.0,,True,02,"Role-playing agent, data gen, OWL; ~13k★ (theo docs nội bộ, chưa xác minh)"
 agency-swarm,VRSEN/agency-swarm,,agent-framework,MIT,,True,02,Agency = agent có vai trò + luồng giao tiếp định sẵn
-gpt-pilot,Pythagora-io/gpt-pilot,,agent-framework,MIT,,True,02,"Dev AI theo bước, hỏi người khi kẹt; ~33k★ (theo docs nội bộ, chưa xác minh)"
+gpt-pilot,Pythagora-io/gpt-pilot,,agent-framework,MIT,33600,True,02,Dev AI theo bước; ngừng bảo trì; cảnh báo mã độc core/telemetry (chưa xác minh); ★ 12/10/2026
 ruflo (claude-flow),ruvnet/ruflo,,agent-framework,MIT,,True,02,Swarm orchestration cho Claude Code; tuyên bố hiệu năng chưa kiểm chứng
 Everything Claude Code (ECC),affaan-m/everything-claude-code,,harness-pack,MIT,,True,20,"v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock"
 superpowers,obra/superpowers,,harness-pack,–,,True,20,Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu
@@ -279,3 +279,6 @@ OPA / conftest,open-policy-agent/conftest,,policy-as-code,Apache-2.0,,True,12,Po
 syft,anchore/syft,,policy-as-code,Apache-2.0,,True,12,Sinh SBOM (CycloneDX/SPDX)
 REA – Reverse Engineer Anything,morluto/rea,,reverse-engineering,MIT,,True,11,"CLI + MCP server 95 tool cho agent dịch ngược (Hopper/Ghidra, CDP, JS replay sandbox); Evidence v2, authority fail-closed; npm rea-agents 2.1.0"
 blender-mcp,ahujasid/blender-mcp,,protocol,MIT,,True,14,"MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh)"
+OpenCompany (ex-MachinaOS),zeenie-ai/OpenCompany,,agent-framework,MIT,995,True,02,App desktop/self-host 'nhân viên AI' = lead + specialist trên canvas React Flow; trigger Gmail/Telegram/WhatsApp/Stripe/cron; Temporal; 86 SKILL.md; 171 plugin; bus-factor 1; .env secret dev commit sẵn; đọc 2026-10-12
+Paperclip,paperclipai/paperclip,,agent-framework,MIT,100500,True,02,"Quản lý agent như nhân viên: org chart, budget, heartbeat; lớn nhất họ 'công ty AI' 2026; ★ 12/10/2026"
+OpenOPC,HKUDS/OpenOPC,,agent-framework,MIT,1800,True,02,"One-person company: tự dựng org chart, uỷ việc cho Claude Code/Codex/Cursor; ★ 12/10/2026"
