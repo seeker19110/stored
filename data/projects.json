@@ -4490,6 +4490,26 @@
       "open_source": true,
       "notes": "Agent red team tự chủ (LangGraph, 16 agent, Kali sandbox, Sliver C2, Neo4j KG); RoE hai lớp (parser advisory + nftables/DNS egress allowlist), HITL, audit HMAC; telemetry opt-in (research = corpus suy luận có mask); dual-use chỉ dùng khi được ủy quyền; CLI mount docker.sock host; XBOW 98% tự công bố; ★ ~6k đọc 12/10/2026",
       "section": "12"
+    },
+    {
+      "name": "Graphify",
+      "repo": "Graphify-Labs/graphify",
+      "category": "codebase-knowledge",
+      "license": "Apache-2.0",
+      "stars": 126000,
+      "open_source": true,
+      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "codegraph",
+      "repo": "colbymchenry/codegraph",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 74000,
+      "open_source": true,
+      "notes": "Code knowledge graph local (SQLite+FTS, kernel Rust) auto-sync qua file-watch cho agent MCP; release có npm provenance/attest nhưng installer curl|sh; telemetry MẶC ĐỊNH BẬT (opt-out DO_NOT_TRACK); gần như 1 tác giả; waitlist getcodegraph.com; ★ shields 74k 12/10/2026",
+      "section": "16"
     }
   ]
 }
