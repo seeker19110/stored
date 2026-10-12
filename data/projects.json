@@ -58,7 +58,8 @@
       "reverse-engineering",
       "quality-gate",
       "policy-as-code",
-      "agent-workspace"
+      "agent-workspace",
+      "context-optimization"
     ],
     "count": null
   },
@@ -2876,7 +2877,7 @@
       "license": "MIT",
       "stars": null,
       "open_source": true,
-      "notes": "MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh)",
+      "notes": "MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh); repo nay redirect về ahujasid/mcp-for-blender (30,5k★, 12/10/2026)",
       "section": "14"
     },
     {
@@ -2968,6 +2969,276 @@
       "open_source": true,
       "notes": "Stanford Hazy Research/SAIL: framework agent cá nhân local-first, đo năng lượng/latency/cost; trùng tên với Personal Jarvis; ★ 12/10/2026",
       "section": "01"
+    },
+    {
+      "name": "context-mode",
+      "repo": "mksglu/context-mode",
+      "category": "context-optimization",
+      "license": "Elastic-2.0",
+      "stars": 26800,
+      "open_source": false,
+      "notes": "Source-available (ELv2): MCP + hook chặn curl/WebFetch, Think in Code, FTS5/BM25/RRF, khôi phục phiên; 17 client; 'sandbox' = tiến trình con toàn quyền; số 98% đo byte; ★ 12/10/2026",
+      "section": "03"
+    },
+    {
+      "name": "RTK",
+      "repo": "rtk-ai/rtk",
+      "category": "context-optimization",
+      "license": "Apache-2.0",
+      "stars": 83100,
+      "open_source": true,
+      "notes": "Binary Rust lọc output CLI qua hook rewrite (git status → rtk git status), 60–90% output bash; ★ 12/10/2026",
+      "section": "03"
+    },
+    {
+      "name": "claude-mem",
+      "repo": "thedotmack/claude-mem",
+      "category": "agent-memory",
+      "license": "Apache-2.0",
+      "stars": 99900,
+      "open_source": true,
+      "notes": "5 hook ghi phiên, AI nén thành observation, SQLite FTS5 + Chroma; Cloud Sync tuỳ chọn; ★ 12/10/2026",
+      "section": "03"
+    },
+    {
+      "name": "Serena",
+      "repo": "oraios/serena",
+      "category": "context-optimization",
+      "license": "GPL-3.0",
+      "stars": 30200,
+      "open_source": true,
+      "notes": "MCP toolkit mức symbol qua LSP (>40 ngôn ngữ); SolidLSP là MIT; ★ 12/10/2026",
+      "section": "03"
+    },
+    {
+      "name": "Audio8 TTS",
+      "repo": "Edge0-AI/Audio8_TTS",
+      "category": "speech",
+      "license": "Apache-2.0",
+      "stars": 1600,
+      "open_source": true,
+      "notes": "DualAR (theo Fish S2 Pro) 0.6B, clone zero-shot 11 ngôn ngữ (không có vi), ONNX INT4 CPU ~1 GiB, SGLang Omni; weights 0.1B dùng Audio8 Community License (trần doanh thu US$2M); không watermark; ★ 12/10/2026",
+      "section": "14"
+    },
+    {
+      "name": "Fish Audio S2 Pro",
+      "repo": "fishaudio/fish-speech",
+      "category": "speech",
+      "license": "Fish Audio Research License",
+      "stars": null,
+      "open_source": false,
+      "notes": "DualAR 4,6B; weights open nhưng cấm thương mại nếu không có hợp đồng",
+      "section": "14"
+    },
+    {
+      "name": "mattpocock/skills",
+      "repo": "mattpocock/skills",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 287200,
+      "open_source": true,
+      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026",
+      "section": "20"
+    },
+    {
+      "name": "three.js",
+      "repo": "mrdoob/three.js",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 116300,
+      "open_source": true,
+      "notes": "Thư viện 3D WebGL/WebGPU; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "anime.js",
+      "repo": "juliangarnier/anime",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 73500,
+      "open_source": true,
+      "notes": "Engine animation JS nhẹ; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "react-three-fiber",
+      "repo": "pmndrs/react-three-fiber",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 32900,
+      "open_source": true,
+      "notes": "Renderer React cho three.js; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "lottie-web",
+      "repo": "airbnb/lottie-web",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 32200,
+      "open_source": true,
+      "notes": "Render animation After Effects (Lottie JSON) trên web; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "GSAP",
+      "repo": "greensock/GSAP",
+      "category": "animation-library",
+      "license": "GreenSock Standard License",
+      "stars": 29100,
+      "open_source": false,
+      "notes": "Timeline animation; license riêng no-charge, không OSI; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "FFmpeg",
+      "repo": "FFmpeg/FFmpeg",
+      "category": "video-engine",
+      "license": "LGPL-2.1+",
+      "stars": 65000,
+      "open_source": true,
+      "notes": "Mirror GitHub; cắt/ghép/encode video, phần lớn pipeline video-as-code dựa vào; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Manim (Community)",
+      "repo": "ManimCommunity/manim",
+      "category": "video-engine",
+      "license": "MIT",
+      "stars": 41500,
+      "open_source": true,
+      "notes": "Animation toán học; bản gốc 3b1b/manim 94,9k★; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Motion Canvas",
+      "repo": "motion-canvas/motion-canvas",
+      "category": "video-engine",
+      "license": "MIT",
+      "stars": 19300,
+      "open_source": true,
+      "notes": "Animation explainer bằng code TS, preview live; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Revideo",
+      "repo": "redotvideo/revideo",
+      "category": "video-engine",
+      "license": "MIT",
+      "stars": 4100,
+      "open_source": true,
+      "notes": "Fork Motion Canvas, render headless/API; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "React Bits",
+      "repo": "DavidHDev/react-bits",
+      "category": "ui-library",
+      "license": "MIT + Commons Clause",
+      "stars": 49000,
+      "open_source": false,
+      "notes": "Component React có animation; Commons Clause cấm bán lại; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Magic UI",
+      "repo": "magicuidesign/magicui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 22600,
+      "open_source": true,
+      "notes": "Component animated copy-paste; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Motion Primitives",
+      "repo": "ibelick/motion-primitives",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 6500,
+      "open_source": true,
+      "notes": "UI kit animation trên Motion; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Magic MCP (21st.dev)",
+      "repo": "21st-dev/magic-mcp",
+      "category": "ai-ui-generator",
+      "license": "ISC",
+      "stars": 6000,
+      "open_source": true,
+      "notes": "Sinh UI từ thư viện component 21st; nay là 'the 21st MCP'; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Tone.js",
+      "repo": "Tonejs/Tone.js",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 14800,
+      "open_source": true,
+      "notes": "Web Audio: nhạc/âm thanh sinh bằng code; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "wavesurfer.js",
+      "repo": "katspaugh/wavesurfer.js",
+      "category": "animation-library",
+      "license": "BSD-3-Clause",
+      "stars": 10400,
+      "open_source": true,
+      "notes": "Hiển thị waveform audio; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "ElevenLabs skills",
+      "repo": "elevenlabs/skills",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 484,
+      "open_source": true,
+      "notes": "Skill cho API giọng/nhạc/SFX ElevenLabs; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "anthropics/skills",
+      "repo": "anthropics/skills",
+      "category": "plugin-marketplace",
+      "license": "Apache-2.0 (một phần source-available)",
+      "stars": 180700,
+      "open_source": true,
+      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "threejs-skills",
+      "repo": "CloudAI-X/threejs-skills",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 3500,
+      "open_source": true,
+      "notes": "Skill three.js cho Claude Code; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "after-effects-mcp",
+      "repo": "Dakkshin/after-effects-mcp",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 730,
+      "open_source": true,
+      "notes": "MCP điều khiển After Effects qua ExtendScript; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "section": "22"
+    },
+    {
+      "name": "Munder Difflin",
+      "repo": "HarnessMD/munder-difflin",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": 8700,
+      "open_source": true,
+      "notes": "Văn phòng agent CLI (PTY + avatar Pixi.js), agent điều phối Michael, hive bằng file + single-committer git; cổng 'critical' nằm trong prompt; auto mode bypassPermissions (trừ Codex); open-core Pro; ★ 12/10/2026",
+      "section": "02"
     }
   ]
 }

@@ -55,6 +55,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 | Bài học Manus | Rebuild framework 4 lần; **KV-cache hit rate** là metric quan trọng nhất; đừng để agent tự viết lại todo.md (tốn ~30% token) → dùng planner sub-agent, inject khi cần | philschmid.de part 2, Medium |
 | Harness engineering (OpenAI/Anthropic thuật ngữ) | Harness = hệ thống cho phép model hành động như agent: repo map, AGENTS.md, runtime control, sandbox | arXiv 2609.00006, 2606.20683, preprints 202603.1756 |
 | MemoHarness / structured memory | Harness tự học từ kinh nghiệm | arXiv 2607.14159, 2603.13258 |
+| Think in Code / Code execution with MCP | Model viết code lọc dữ liệu trong môi trường thực thi, chỉ đưa kết quả vào context (Anthropic 11/2025: 150k → 2k token; Cloudflare "Code Mode"); đóng gói thành plugin: **context-mode** (§8b), RTK, claude-mem, Serena | anthropic.com/engineering/code-execution-with-mcp, §8b |
 
 ## 5. Multi-agent coding song song (thực hành 2026)
 
@@ -123,6 +124,72 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 5. Liên hệ: mục 04 (SKILL.md), mục 07 (LLM-as-judge), mục 17 (frame = persona prompting có chủ đích "distort perspective, not supply expertise").
 
 **Nguồn:** https://github.com/UditAkhourii/adhd (README, SKILL.md, EVALS.md, ADOPTERS.md) · https://adhdstack.github.io/ · https://github.com/UditAkhourii · https://trendshift.io/repositories/39300 · https://thenewstack.io/claude-code-adhd/ · https://dudarik.com/en/blog/adhd/ · https://explainx.ai/skills/UditAkhourii/adhd/adhd · https://futureagi.com/blog/what-is-tree-of-thoughts-prompting-2026/ · https://arxiv.org/html/2605.06040v1 (Novelty-based ToT) · https://arxiv.org/html/2605.28566v2 (ToT as heuristic search)
+
+## 8b. Case study: context-mode – giữ output tool ngoài cửa sổ ngữ cảnh (link từ người dùng, 2026-10-12)
+
+> Nguồn: link https://github.com/mksglu/context-mode. Nghiên cứu bằng clone đầy đủ lịch sử (v1.0.169, 2.228 commit): `README.md`, `BENCHMARK.md`, `CLAUDE.md`, `LICENSE`, `stats.json`, `src/executor.ts`, `src/server.ts`, `src/cli.ts`, `hooks/core/{routing,formatters}.mjs`, `.github/workflows/`; trang GitHub; thread HN #47193064; so với bài Anthropic *Code execution with MCP* và các tool cùng loại.
+
+### Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (đọc 2026-10-12) |
+|---|---|
+| Repo | https://github.com/mksglu/context-mode · npm `context-mode` · plugin marketplace Claude Code (`/plugin marketplace add mksglu/context-mode`) |
+| Tác giả | Mert Köseoğlu: ~1.371/2.228 commit; 544 commit là bot `ci: update install stats`; ~6 contributor có 15–36 commit |
+| Tuổi / nhịp | Commit đầu 23/2/2026, 229 ngày có commit, 198 tag (v1.0.x) |
+| Quy mô | ~26,7k dòng TypeScript trong `src/`; adapter cho **17 client** (Claude Code, Codex, Gemini CLI, Copilot VS Code/JetBrains/CLI, Cursor, OpenCode, KiloCode, OpenClaw, Kiro, Zed, Pi, OMP, Antigravity…) |
+| License | **Elastic License 2.0** (source-available, **không phải OSI open source**): được dùng/sửa/phân phối, cấm cung cấp dưới dạng dịch vụ hosted/managed |
+| Số liệu | **26,8k★**, 1,9k fork, 104 watcher, 173 issue + 172 PR mở; HN #1 (570 điểm, 107 bình luận) |
+| Badge "users" | `stats.json`: "671.8k+ users" = **lượt tải npm (626,3k) + marketplace (45,5k)** → là số lượt cài, không phải số người dùng. Dải logo "Used across teams at" (Microsoft, Google, Meta…) đều link `#`, không có bằng chứng **(chưa xác minh)** |
+
+### Cơ chế (đọc code)
+
+| Lớp | Cơ chế | Điểm đáng học |
+|---|---|---|
+| **Think in Code** | Tool MCP `ctx_execute` / `ctx_execute_file` / `ctx_batch_execute` chạy script ở 12 ngôn ngữ; chỉ **stdout** vào context | Cùng ý tưởng với bài *Code execution with MCP* của Anthropic (4/11/2025, 150k → 2k token, −98,7%) và "Code Mode" của Cloudflare: model viết code lọc dữ liệu thay vì đọc dữ liệu thô |
+| **Knowledge base** | `ctx_index` / `ctx_fetch_and_index` chia markdown theo heading vào **SQLite FTS5**; tìm bằng BM25 (Porter) + trigram, gộp bằng **Reciprocal Rank Fusion**, rerank theo khoảng cách từ, sửa lỗi gõ Levenshtein; cache URL TTL 24h; dọn sau 14 ngày | RAG lexical không cần vector DB (so mục 10) |
+| **Định tuyến cưỡng bức** | Hook `PreToolUse` **deny** `curl`/`wget`, HTTP inline (`fetch('http`, `requests.get(`…), `WebFetch`; Bash có output >20 dòng và Read để phân tích được chuyển sang `ctx_*`. Với Claude Code, `formatters.mjs` dùng deny + lý do thay vì `updatedInput` (comment ghi CC v2.1.x bỏ qua rewrite lệnh Bash) | Có hook: ~98% tiết kiệm theo tác giả; chỉ có file hướng dẫn (Zed, Antigravity): ~60%, "~60% compliance" |
+| **Progressive throttling** | `ctx_search` lần 1–3 bình thường, 4–8 giảm kết quả + cảnh báo, **từ 9 trở đi chặn** và bắt dùng `ctx_batch_execute` | Ngân sách gọi tool cứng, không chỉ dặn trong prompt |
+| **Session continuity** | 5–6 hook (PostToolUse, UserPromptSubmit, Stop, PreCompact, SessionStart) ghi sự kiện (file sửa, git, task, lỗi, quyết định) vào SQLite; sau compaction **không đổ lại** mà index FTS5 rồi truy xuất theo BM25; không `--continue` thì xoá dữ liệu phiên cũ | Tách "context" và "memory" giống OpenCompany (mục 5) và claude-mem |
+| **Redaction** | `posttooluse.mjs` che `token`, `secret`, `password`, `api_key`, `cookie`… trong `tool_input` của `mcp__*` trước khi lưu DB | Nên có ở mọi hook ghi log |
+
+### Đối chiếu tuyên bố với code (đọc cổng thật, mục 23)
+
+| Tuyên bố | Thực tế | Nhận xét |
+|---|---|---|
+| "Raw data stays in a **sandboxed** subprocess… processed in **complete isolation**" (mục Privacy) | `executor.ts` `#buildSafeEnv`: copy **toàn bộ** `process.env` rồi bỏ một denylist (`BASH_FUNC_*`, `COMPlus_*`, `GIT_SSH_COMMAND`, `GIT_ASKPASS`…); có `shell: true`; không giới hạn filesystem/mạng; mặc định **không có timeout** (issue #406, để host lo) | "Sandbox" chỉ là **ranh giới tiến trình + ranh giới context**, không phải sandbox bảo mật. Chính mục Security của README thừa nhận: "not a full OS sandbox — treat approving any execution tool as approving arbitrary code". Hai mục README mâu thuẫn nhau |
+| "Credential passthrough… without exposing them to the conversation" | Đúng là token (`GITHUB_TOKEN`, AWS…) không in vào context, nhưng script do model viết **có** quyền dùng chúng | Thành ra rủi ro prompt injection → exfiltration giống Bash |
+| Chặn `curl`/`WebFetch` vì "tốn context" | Hook đẩy truy cập mạng từ tool host (Bash/WebFetch, có thể nằm trong sandbox và luật quyền của host) sang tool MCP `ctx_execute` "full network access", chạy trong tiến trình MCP server. Dự án từng phải vá đúng kiểu thoát này cho file (#852, `ctx_execute_file` giới hạn trong project root) | **Phân tích tĩnh, chưa kiểm chứng trên từng host**: với host sandbox Bash nhưng không sandbox MCP server, cài context-mode có thể **nới** ranh giới mạng/FS. README khuyên "keep host-level sandboxing enabled" nhưng không nói sandbox host có phủ tiến trình MCP hay không. Lớp an toàn bù lại: đọc lại luật `deny` của `.claude/settings.json` và áp vào `ctx_*`, tách lệnh nối `&&`/`;`/`\|` trước khi so (đúng thứ tự mà Personal Jarvis làm sai, mục 01 §3c) |
+| "Nothing leaves your machine. No telemetry" | Không tìm thấy telemetry trong `src/`; có gọi `registry.npmjs.org/context-mode/latest` để kiểm phiên bản; `ctx insight` chỉ **mở trình duyệt** tới `context-mode.com/insight` (dashboard hosted B2B: "per-engineer productive rate… CTO, EM, CISO, FinOps") | Đúng về dữ liệu, nhưng đang hình thành mô hình **open-core**: lõi ELv2 + dashboard thương mại |
+| "315 KB → 5.4 KB, 98%"; "session từ ~30 phút thành ~3 giờ" | `BENCHMARK.md`: 21 kịch bản, đo **byte vào context**, không đo chất lượng câu trả lời; tác giả nói trên HN "We haven't run formal benchmarks on answer quality yet". Có kịch bản chỉ tiết kiệm 13% (Playwright network requests) | Con số giảm byte là thật nhưng không chứng minh agent làm việc tốt hơn |
+
+### Phản biện bên ngoài (HN #47193064, 570 điểm)
+
+- **Mất thông tin:** benchmark giả định model luôn viết đúng code tóm tắt; hook quá hung hăng với output nhỏ; "information preservation is a real issue".
+- **Phạm vi:** một người thử thấy hook **không chặn được response của MCP server bên thứ ba** — chỉ áp cho tool có sẵn và CLI wrapper (tác giả phản bác, chưa ngã ngũ). README hiện chỉ "nhắc lại" (re-inject) hướng dẫn bọc MCP ngoài vào `ctx_execute` mỗi 10 lần gọi (`CONTEXT_MODE_EXTERNAL_MCP_NUDGE_EVERY`).
+- **Lựa chọn khác:** subagent (cô lập context sẵn có trong Claude Code), redirect output ra file, CLI thay MCP, RTK; "stats say subagents didn't benefit from it".
+- **Trình bày:** vài người nghi bài đăng và phản hồi do LLM viết; claim "Bun nhanh 3–5×" không liên quan vì LLM mới là nút cổ chai.
+
+### So sánh với công cụ cùng mục tiêu (★ trang GitHub 12/10/2026)
+
+| Công cụ | ★ | License | Cách giảm context | Khác context-mode |
+|---|---|---|---|---|
+| **context-mode** | 26,8k | ELv2 | Chạy code + index FTS5 + hook chặn/chuyển tool + khôi phục phiên | Bao trọn nhiều lớp, cưỡng bức qua hook |
+| **RTK** (rtk-ai/rtk) | 83,1k | Apache-2.0 | Binary Rust, hook viết lại `git status` → `rtk git status`, lọc/gộp/cắt/khử trùng output CLI; lưu output đầy đủ khi lệnh lỗi | Chỉ lọc output lệnh shell, không đổi tool, không cần MCP; README tự nói 90% output bash **không** có nghĩa là giảm 90% hoá đơn |
+| **claude-mem** (thedotmack) | 99,9k | Apache-2.0 | 5 hook ghi lại phiên, AI nén thành observation, SQLite FTS5 + Chroma, 4 tool MCP truy xuất 3 lớp | Tập trung **memory giữa các phiên**; có Cloud Sync tuỳ chọn (cmem.ai) |
+| **Serena** (oraios) | ~30,2k | GPL-3.0 (SolidLSP MIT) | Tool MCP mức **symbol** qua LSP (>40 ngôn ngữ): tìm/sửa theo hàm/class thay vì đọc cả file | Giảm context khi **đọc code**, không phải khi xử lý log/web |
+| **Code execution with MCP** (Anthropic) / **Code Mode** (Cloudflare) | – | mẫu thiết kế | Đưa MCP server thành API code, agent viết code gọi và lọc trong môi trường thực thi | Là **nguyên lý** gốc; Anthropic nhấn mạnh cần sandbox + giới hạn tài nguyên + giám sát — đúng phần context-mode còn mỏng |
+| **Có sẵn trong Claude Code** | – | – | Subagent (context riêng, chỉ trả tóm tắt), `/compact`, chuyển output dài ra file | Không cài thêm, không thêm bề mặt tấn công |
+
+### Bài học cho kho này
+
+1. **Ngân sách context là cổng máy, không phải lời dặn:** hook chặn + throttling cứng (lần 9 bị chặn) hiệu quả hơn "hãy tiết kiệm" trong `CLAUDE.md` (~98% so với ~60% theo tác giả, chưa có đánh giá độc lập).
+2. **Think in Code** đáng áp dụng ngay **không cần cài gì**: với log/CSV/test output, bảo agent viết script in ra kết quả tổng hợp thay vì `cat`. Đây là cùng một kỹ thuật với bài của Anthropic.
+3. **Đừng gọi tiến trình con là sandbox.** Muốn cô lập thật thì dùng sandbox của host hoặc E2B/Daytona/container (mục 11); và kiểm tra xem plugin MCP có đưa tool ra **ngoài** sandbox của host không (mục 12).
+4. **Đo chất lượng, không chỉ đo byte:** trước khi áp cho team, chạy A/B trên vài task thật (pass@1, số lượt sửa, chi phí) có/không có context-mode — giống khuyến nghị cho ADHD (§8).
+5. **License ELv2** ổn cho dùng nội bộ, nhưng không được đóng gói thành dịch vụ hosted; ghi vào checklist chọn tool (mục 09).
+6. Liên hệ: mục 10 (FTS5/BM25/RRF, memory), mục 11 (sandbox), mục 12 (allowlist + tách lệnh nối), mục 20 (plugin marketplace), mục 01 §1.3 (ADE).
+
+**Nguồn:** https://github.com/mksglu/context-mode (clone đầy đủ, v1.0.169) · https://www.npmjs.com/package/context-mode · https://news.ycombinator.com/item?id=47193064 · https://www.anthropic.com/engineering/code-execution-with-mcp · https://github.com/rtk-ai/rtk · https://github.com/thedotmack/claude-mem · https://github.com/oraios/serena · context-mode.com/insight
 
 ## 9. Nguồn (mục 1–7)
 

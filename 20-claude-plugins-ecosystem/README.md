@@ -163,7 +163,7 @@ plugin-name/
 | **ECC – Everything Claude Code** | affaan-m/everything-claude-code | v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ADR xboss ghi ~214k★ (6/2026) | xboss **vendor có lock** (`.claude/ecc/manifest.json` + `lock.json` sha256, tiền tố `ecc-`, 56/293 skill), dhcb chuyển thể chọn lọc |
 | superpowers | obra/superpowers | Bộ skill quy trình (brainstorm → plan → TDD → review) | projects-template đối chiếu |
 | compound-engineering | EveryInc/compound-engineering-plugin | Plugin "kỹ thuật tích luỹ" (research → plan → work → review → compound) | projects-template đối chiếu |
-| mattpocock/skills · garden-skills | mattpocock/skills · … | Skill nhỏ, có gu, cho TS | dhcb inventory |
+| mattpocock/skills · garden-skills | mattpocock/skills · … | Skill nhỏ, có gu; **287,2k★** đọc trang GitHub 12/10/2026, xem §3c | dhcb inventory; vendor có lock `mattpocock.lock.json` (mục 23) |
 | impeccable | – | "Taste" cho frontend (mục 06) | case-study-ft41 |
 | **oh-my-hermes** (OMH) | rlaope/oh-my-hermes | Workflow pack: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill, jit-learn, deep-interview | Hermes-Agents vendor 6 skill |
 | agent-skills | addyosmani/agent-skills | incremental-implementation, source-driven, **doubt-driven development**, context-engineering | Hermes-Agents vendor |
@@ -172,6 +172,51 @@ plugin-name/
 
 **Phản biện nhận định "cài plugin đang thắng chép prompt" (xu hướng §14 README):** hai repo của chủ kho (xboss ADR-0013, X-Agents `vendor_skills.py` + `*.lock.json`, Hermes-Agents `install.py`) chọn **vendor skill có lock** thay vì cài plugin, vì: (1) phiên cloud claude.ai/code **không nạp plugin bật qua `settings.json`**, `~/.claude` mất khi container thu hồi; (2) chỉ một phần nhỏ skill liên quan stack (56/293); (3) cần ghi đè và test được (`tests/ecc-vendor.test.ts`); (4) provenance: kiểm LICENSE, `name:` trùng thư mục, từ chối symlink, lock sha256. Kết luận sửa lại: *plugin thắng ở phân phối; vendor-có-lock thắng ở vận hành repo và CI.*
 
+## 3c. Case study: mattpocock/skills – "Skills For Real Engineers" (ảnh người dùng gửi, 2026-10-12)
+
+> Nguồn: ảnh README người dùng gửi + clone đầy đủ `github.com/mattpocock/skills` (545 commit): README, `SCOPE.md`, `.out-of-scope/*.md`, `.agents/adr/*.md`, `CLAUDE.md`, `skills/**/SKILL.md`, `.claude-plugin/{plugin,marketplace}.json`, `.github/workflows/`; trang GitHub; skills.sh.
+
+### Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (đọc 2026-10-12) |
+|---|---|
+| Tác giả | Matt Pocock (Total TypeScript, AI Hero; newsletter ~60k dev theo README): 499/545 commit; còn lại là commit ký "Claude", "Claude Sonnet 5", bot |
+| Tuổi | Commit đầu 3/2/2026; vẫn commit hằng ngày (9/10/2026); dùng **changesets** cho changelog |
+| License | MIT |
+| Số liệu | **287,2k★**, 24,1k fork, 1,5k watcher, 148 issue + 15 PR mở. Một listing skills.sh trước đó ghi 174,7k★ → tăng rất nhanh. Badge "Skills 27.4M" trong ảnh là **lượt cài trên skills.sh**, không phải số người dùng |
+| Quy mô | **38 SKILL.md**, ~1,5k dòng cho nhóm engineering: `engineering/` (20: grill-with-docs, to-spec, to-tickets, implement, tdd, diagnosing-bugs, code-review, improve-codebase-architecture, triage, wayfinder, wizard…), `productivity/` (7: grilling, grill-me, handoff, teach, writing-for-agents…), `misc/` (đóng băng), `in-progress/` |
+| Cài đặt | Claude Code: `claude plugin install mattpocock-skills@claude-plugins-official` (đã có trong marketplace chính thức, §2b), tự cập nhật; Codex/Copilot qua marketplace riêng; Gemini CLI/agent khác qua `npx skills@latest add` (copy file, cập nhật tay); sau đó chạy `/setup-matt-pocock-skills` một lần mỗi repo (chọn tracker, nhãn triage, nơi lưu docs) |
+
+### Triết lý: 4 failure mode → 4 nhóm skill
+
+| Failure mode | Skill sửa | Nguồn ý tưởng |
+|---|---|---|
+| Agent không làm đúng ý | `/grill-me`, `/grill-with-docs`: phỏng vấn theo **cây quyết định**, hỏi cả **frontier** (câu có tiền đề đã chốt) trong một vòng, mỗi câu kèm khuyến nghị và được viết sao cho "yes" = chấp nhận; **sự thật thì tự tra (dispatch subagent), quyết định thì hỏi người** | *Pragmatic Programmer* |
+| Agent quá dài dòng | **Ngôn ngữ chung** (glossary trong repo) + ADR, xây trong lúc grill: "materialization cascade" thay cho một câu dài | DDD (Evans) |
+| Code không chạy | `/tdd` (red-green-refactor, ghi mỗi seam bắt được gì và bỏ sót gì), `/diagnosing-bugs` (vòng gỡ lỗi có cổng theo pha; phải chứng minh mutation đã áp dụng trước khi tin test đỏ) | Pragmatic Programmer |
+| Ra "ball of mud" | `/to-spec` hỏi module nào bị chạm, `/improve-codebase-architecture` tìm chỗ "deepen module" (chạy vài ngày một lần, "a survey, not a rescue") | Ousterhout, Kent Beck |
+
+Định vị: phản đề của GSD/BMAD/Spec-Kit (mục 13), những bộ "sở hữu quy trình". Ở đây skill **nhỏ, ghép được**, người dùng giữ quyền điều khiển. Luật kiến trúc: skill **user-invoked** (orchestrate, chỉ chạy khi gõ `/…`, `disable-model-invocation: true`) có thể gọi skill **model-invoked** (chứa kỷ luật tái dùng), nhưng **không bao giờ** gọi skill user-invoked khác.
+
+### Quản trị repo (điểm đáng học nhất)
+
+- **`SCOPE.md` – thanh chắn 2 điều kiện:** issue chỉ được mở tiếp nếu (1) mô tả **failure quan sát được trong phiên thật** ("it would be better if…" không đủ) và (2) hợp triết lý: không trùng `.out-of-scope/`, không phải config option, nhánh riêng cho một harness hay tuỳ biến cá nhân. +1 không được tính.
+- **`.out-of-scope/*.md` – mỗi file một ý tưởng bị từ chối** kèm lý do và danh sách issue cũ (`new-skills.md`: **không nhận skill mới**, kể cả có sẵn branch; "nếu ghép được từ skill có sẵn thì không thêm skill"). `misc/` đóng băng, issue tự đóng. Issue thiếu thông tin: 1 vòng hỏi + nhãn `needs-info`, 14 ngày không trả lời thì đóng.
+- ADR trong `.agents/adr/` (vd. 0002 ship dưới dạng plugin Claude Code); workflow `triage-label.yml`, `needs-info.yml`, `release.yml`.
+
+### Đọc cổng thật
+
+| Tuyên bố | Thực tế | Nhận xét |
+|---|---|---|
+| `git-guardrails-claude-code` "blocks dangerous git commands (push, reset --hard…)" | `scripts/block-dangerous-git.sh`: `grep -qE` từng mẫu (`git push`, `reset --hard`…) trên **chuỗi lệnh thô** | Né được bằng `git -C . push`, khoảng trắng kép, alias; đồng thời chặn nhầm `echo "git push"`. Skill nằm trong `misc/` **đóng băng** → dùng làm ví dụ hook PreToolUse, đừng coi là cổng an toàn (so mục 12 §4 quy tắc 6) |
+| "They work with any model" | Phần lớn là prompt thuần nên đúng; `/setup-matt-pocock-skills` và tracker giả định có `gh`/`glab`; tự cập nhật chỉ có với Claude Code/Codex/Copilot | Bản copy qua skills.sh **không tự cập nhật** |
+
+### Đánh giá & áp dụng
+
+- **Mạnh:** skill ngắn (grill-me chỉ 1 dòng gọi `grilling`), ghép được, lập luận dựa trên sách kỹ thuật kinh điển; quản trị phạm vi rất kỷ luật; đã vào marketplace chính thức của Anthropic.
+- **Hạn chế:** chưa thấy đánh giá độc lập (tìm 12/10/2026 không ra review/critique), bằng chứng hiệu quả chủ yếu là kinh nghiệm cá nhân + số sao/lượt cài; đậm chất TypeScript/GitHub; skill thay đổi hằng ngày → plugin tự cập nhật có thể đổi hành vi giữa hai phiên.
+- **Cho kho/chủ kho:** (1) đã có repo vendor bằng lock + tiền tố `mp-` (mục 23) → giữ cách này thay cho plugin tự cập nhật nếu cần ổn định; (2) chép mẫu **`SCOPE.md` + `.out-of-scope/`** cho repo skill/harness riêng, vì nó chặn phình skill tốt hơn mọi review; (3) `/grill-with-docs` sinh glossary + ADR là đầu vào tốt cho spec-driven (mục 13) và Ralph loop (mục 03); (4) so với ADHD (mục 03 §8), grilling hội tụ về **một** hiểu biết chung, còn ADHD cố ý phân kỳ.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
@@ -179,3 +224,4 @@ plugin-name/
 - https://code.claude.com/docs/en/plugins · https://claude.com/plugins/ · https://claude.com/docs/plugins/overview
 - claude-plugins-official: https://github.com/anthropics/claude-plugins-official (README, `.claude-plugin/marketplace.json`) · https://code.claude.com/docs/en/plugins/anthropic-marketplaces · https://code.claude.com/docs/en/plugins/security · https://claude.com/marketplace/plugins
 - https://thenewstack.io/anthropic-brings-plugins-to-cowork/ · https://agentscamp.com/guides/getting-started/claude-knowledge-work-plugins · https://claude-world.com/articles/anthropic-knowledge-work-plugins-overview/ · https://claudecowork.im/plugins · https://claudecowork.im/blog/claude-cowork-new-plugins-feb-2026 · https://aitoolly.com/ai-news/article/2026-05-26-anthropic-introduces-open-source-knowledge-work-plugins-to-customize-claude-cowork-for-professional · https://integratedcognition.com/blog/anthropics-enterprise-expansion-advancing-claude-cowork-with-new-plugins-and-integrations · https://awesomeclaudeplugins.com/anthropics/knowledge-work-plugins · https://agentindex.app/tool/anthropics-knowledge-work-plugins/
+- mattpocock/skills (2026-10-12): https://github.com/mattpocock/skills (clone đầy đủ; README, SCOPE.md, .out-of-scope/, skills/**/SKILL.md, skills/misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh) · https://skills.sh/mattpocock/skills · https://skills.sh/mattpocock/skills/grilling · https://www.aihero.dev/s/skills-newsletter

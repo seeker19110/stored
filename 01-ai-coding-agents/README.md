@@ -42,6 +42,7 @@ Lớp **không phải agent** mà là "bàn làm việc" bọc các CLI agent �
 | **T3 Code** | github.com/pingdotgg/t3code | MIT | ~27,1k | "Agent harness control surface": điều khiển agent trên máy mình qua web/desktop/mobile | Personal Jarvis mượn code thread/timeline và trang Computers (NOTICE) |
 | **Vibe Kanban** | github.com/BloopAI/vibe-kanban | Apache-2.0 | ~28,3k | Bảng kanban, mỗi thẻ = một agent trong worktree riêng | README ghi **đang sunset**, chuyển cho cộng đồng |
 | **Orca** | github.com/stablyai/orca | MIT | chưa rõ (10k–43k tùy nguồn) | Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree, chọn bản thắng để merge | Số sao các nguồn lệch nhau ~4× → **(chưa xác minh)** |
+| **Munder Difflin** | github.com/HarnessMD/munder-difflin (cũ: chaitanyagiri/…) | MIT (open-core, Pro US$150/năm) | 8,7k | "Văn phòng" agent: mỗi CLI một PTY + avatar, agent điều phối "Michael", hive bằng file + git | Chế độ auto chạy `bypassPermissions` (trừ Codex); xem mục 02 §4b |
 | **Claude Squad** | github.com/smtg-ai/claude-squad | AGPL-3.0 | ~8,6k | TUI trên tmux + git worktree, quản lý Claude Code/Codex/OpenCode/Amp | Nhẹ nhất, chỉ terminal |
 | **Conductor** | Melty Labs (đóng) | thương mại | – | App Mac, agent song song mỗi cái một worktree, panel review diff | Chỉ macOS (theo bài so sánh, chưa xác minh) |
 

@@ -195,9 +195,55 @@
 
 ---
 
+## 9b. Kiểm chứng ảnh "Cài 28 repo này để dùng Claude Code cho motion graphics" (Charlie Hills, người dùng gửi 2026-10-12)
+
+> Ảnh khung explorer `motion-designer/` chia 28 repo thành 5 nhóm, ghi tổng **1.149.527★**. Tác giả là Charlie Hills, cũng là tác giả `charlie947/motion-graphics-skills` (§3.2). Số sao dưới đây đọc trang GitHub ngày 12/10/2026; 6 repo đã có ở §1 lấy lại số ở đó.
+
+| Nhóm (ảnh) | Repo thật | ★ ảnh → ★ 12/10 | License | Ghi chú |
+|---|---|---|---|---|
+| Engines | mrdoob/three.js | 116,2k → 116,3k | MIT | |
+| | juliangarnier/anime | 73,4k → 73,5k | MIT | |
+| | motiondivision/motion | 33,9k → 34,0k | MIT (Motion+ trả phí) | §2.6 |
+| | pmndrs/react-three-fiber | 32,8k → 32,9k | MIT | |
+| | airbnb/lottie-web | 32,2k → 32,2k | MIT | |
+| | greensock/GSAP | 28,9k → 29,1k | **GreenSock Standard "no-charge" License** (không phải OSI) | §2.4 |
+| Render | FFmpeg/FFmpeg | 64,9k → 65,0k | LGPL-2.1+ (một phần GPL) | Repo GitHub chỉ là mirror |
+| | remotion-dev/remotion | 62,7k → 63,4k | **Remotion License** (công ty ≥4 người phải trả phí) | §2.2 |
+| | heygen-com/hyperframes | 59,4k → 61,1k | Apache-2.0 | §2.1 |
+| | manim | 41,4k → 41,5k | MIT | Số trong ảnh là **ManimCommunity/manim**; bản gốc 3b1b/manim có 94,9k★ |
+| | motion-canvas/motion-canvas | 19,3k → 19,3k | MIT | |
+| | redotvideo/revideo | 4,1k → 4,1k | MIT | Fork của Motion Canvas, render headless |
+| UI parts | shadcn-ui/ui | 125,2k → 125,4k | MIT | Mục 06 |
+| | DavidHDev/react-bits | 48,7k → 49,0k | **MIT + Commons Clause** (cấm bán lại) | |
+| | magicuidesign/magicui | 22,5k → 22,6k | MIT | |
+| | ibelick/motion-primitives | 6,5k → 6,5k | MIT | |
+| | 21st-dev/magic-mcp | 6,0k → 6,0k | ISC | README: đã chuyển thành "the 21st MCP", repo chỉ giữ cấu hình cũ |
+| Sound | openai/whisper | 110,2k → 110,4k | MIT | Mục 14 |
+| | Tonejs/Tone.js | 14,8k → 14,8k | MIT | |
+| | katspaugh/wavesurfer.js | 10,4k → 10,4k | BSD-3-Clause | |
+| | elevenlabs/skills | 482 → 484 | MIT | Skill cho API ElevenLabs (trả phí/giới hạn gói free) |
+| Skills & MCP | anthropics/skills | 180,1k → 180,7k | Apache-2.0 phần lớn; docx/pdf/pptx/xlsx **source-available** | |
+| | "mcp-for-Blender" | (bị che) → 30,5k | MIT | `ahujasid/blender-mcp` nay redirect về **ahujasid/mcp-for-blender**; ~30,1k là số suy ra từ tổng của ảnh |
+| | greensock/gsap-skills | 16,1k → 16,2k | MIT | §2.4 |
+| | remotion-dev/skills | 4,9k → 5,0k | không có LICENSE | §2.3 |
+| | CloudAI-X/threejs-skills | 3,5k → 3,5k | README ghi MIT, repo không có trường license | |
+| | Dakkshin/after-effects-mcp | 719 → 730 | MIT | ExtendScript; cần Adobe After Effects có bản quyền |
+| | charlie947/motion-graphics-skills | 112 → 214 | MIT | **Repo của chính tác giả ảnh**, nhỏ hơn mọi repo khác trong danh sách hai bậc độ lớn |
+
+**Kết luận kiểm chứng**
+
+- **Số sao đúng:** cộng các số trong ảnh với ~30,1k của repo Blender ra đúng 1.149.527, khớp với snapshot vài ngày trước 12/10 (tổng hiện tại ~1,155M). Không phát hiện số bịa.
+- **Phóng đại ở cách đóng khung:** "Cài 28 repo này để dùng Claude Code" là sai về bản chất. Chỉ 9 mục là skill hoặc MCP cài vào Claude Code (anthropics/skills, gsap-skills, remotion/skills, threejs-skills, elevenlabs/skills, motion-graphics-skills, mcp-for-blender, after-effects-mcp, magic-mcp). Còn lại là **thư viện/engine** để agent viết code dùng (`npm i`, `pip install`, cài FFmpeg), không phải thứ "cài vào Claude Code". Tổng ★ là chỉ số độ nổi tiếng, không đo mức phù hợp cho motion graphics (shadcn/ui và whisper chiếm ~236k).
+- **License cần đọc trước khi dùng thương mại:** Remotion (công ty ≥4 người phải trả phí), GSAP (license riêng, không phải OSI), react-bits (Commons Clause), anthropics/skills (một phần source-available), FFmpeg (LGPL/GPL khi phân phối), After Effects (phần mềm trả phí).
+- **Thiếu so với mục này:** không có bước **quality gate** (storyboard duyệt trước, contact sheet, -14 LUFS) mà §9 coi là cốt lõi; cũng không có Lottie skill chính thức (`LottieFiles/motion-design-skill`, §2.5). Danh sách hợp làm **bản đồ thư viện**; quy trình thì theo §9.
+- **Chọn tối thiểu cho Claude Code:** một engine (HyperFrames *hoặc* Remotion) + skill chính thức của engine đó + GSAP skills + FFmpeg + Whisper (phụ đề) là đủ cho phần lớn video launch. Thêm three.js/R3F khi cần 3D, mcp-for-blender khi cần Blender.
+
+---
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes
 - Nhóm C/D: github.com/cth9191/animate (README, plugins/animate/skills/animate/SKILL.md, commits), github.com/cth9191, skillsdirectory.com/skills/cth9191-animate, skills.sh/cth9191/animate, github.com/whaleyxbt/claude-motion (README, .claude/skills/review-loop, motion-design, commits), github.com/whaleyxbt, skills.sh/whaleyxbt/claude-motion, x.com/N01ennn/status/2108182955671580771 (snippet), github.com/CoWork-OS/CoWork-OS/pull/403, github.com/haidrrrry/claude-remotion-skill (README, SKILL.md, references/motion-patterns.md, commits), skills.sh/haidrrrry/claude-remotion-skill, github.com/motiondivision/motion (tags, releases), registry.npmjs.org (motion, framer-motion, motion-v), motion.dev/blog/framer-motion-is-now-independent-introducing-motion, motion.dev/blog/introducing-motion-for-vue, motion.dev/docs/react, motion.dev/docs/gsap-vs-motion, motion.dev/plus, motion.dev/docs/ai-kit-install, github.com/199-biotechnologies/motion-dev-animations-skill (SKILL.md, DEPLOYMENT_STATUS.md, commits), github.com/199-biotechnologies, skills.sh/199-biotechnologies/motion-dev-animations-skill, agentskillshub.top/best/claude-video-skills, support.claude.com/ja/articles/17454997 (Claude Motion beta)
 - Nhóm E: github.com/heygen-com/hyperframes (README, commits), github.com/heygen-com, hyperframes.dev, hyperframes.heygen.com, developers.heygen.com/hyperframes-overview, heygen.com/blog (April/June/July 2026 release), registry.npmjs.org/hyperframes, repos.ecosyste.ms (5 repo), trendshift.io/repositories/28102, themenonlab.blog, silenceper.com, yuv.ai/blog/hyperframes-heygen, webreactiva.com/blog/hyperframes, github.com/remotion-dev/remotion (releases, LICENSE.md), remotion.dev (the-fundamentals, recorder, ai/skills, ai/mcp, blog), remotion.pro/license, github.com/remotion-dev/skills (README, commits), motionbox.io/blog/remotion-for-coding-agents, mer.vin (remotion agent skills), github.com/greensock/gsap-skills (commits), github.com/greensock, gittrend.io/repo/greensock/gsap-skills, gsap.com/blog/3-13, gsap.com/community/standard-license, blog.codepen.io (2025-05-05), github.com/LottieFiles/motion-design-skill (skills/motion-design/SKILL.md, commits), github.com/LottieFiles, trendshift.io/repositories/167710, lottiefiles.com/blog (Lottie Creator MCP, 15/4/2026), uichemy.com/design-skills/lottiefiles-motion-design
 - motionmaxxing: github.com/Tejashmakwana/motionmaxxing (README, SKILL.md, docs/KNOWN-LIMITS.md, commits), github.com/Tejashmakwana, finalmotion.video, skillsllm.com/skill/motionmaxxing, everydev.ai/tools/motionmaxxing, github.com/zhuyansen/awesome-claude-video-skills, github.com/charetterat/awesome-agent-motion-skills, github.com/topics/motionmaxxing
+- §9b (ảnh 28 repo của Charlie Hills, 2026-10-12): số sao đọc trang GitHub của 22 repo (three.js, anime, react-three-fiber, lottie-web, GSAP, FFmpeg, 3b1b/manim, ManimCommunity/manim, motion-canvas, revideo, shadcn-ui/ui, react-bits, magicui, motion-primitives, magic-mcp, whisper, Tone.js, wavesurfer.js, elevenlabs/skills, anthropics/skills, ahujasid/mcp-for-blender, CloudAI-X/threejs-skills, Dakkshin/after-effects-mcp); 6 repo còn lại lấy từ §1
