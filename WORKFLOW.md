@@ -15,6 +15,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
    - `SOURCES.md`; mục lục & phần tóm tắt trong `README.md` gốc nếu có nhận định mới;
    - ghi ngày khảo sát và đánh dấu **(chưa xác minh)** cho điều chưa kiểm chứng.
 7. **Commit & push** lên nhánh làm việc với message mô tả rõ dự án được thêm.
+8. **PR & auto-merge** (quy ước từ 2026-10-12): nhánh mặc định là `main`. Mỗi đợt cập nhật đi qua PR; **luôn bật auto-merge** cho PR ngay khi tạo. Nếu PR đã ở trạng thái "clean" (không có check chờ) thì GitHub không cho bật auto-merge → merge trực tiếp (merge commit). Sau khi merge, tạo lại nhánh làm việc từ `main` cho đợt kế tiếp.
 
 ### Tiêu chuẩn chất lượng
 - Mọi con số (sao, fork, commit, ngày) phải kèm ngày đọc.
