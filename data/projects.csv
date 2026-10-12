@@ -258,23 +258,23 @@ CAMEL,camel-ai/camel,,agent-framework,Apache-2.0,,True,02,"Role-playing agent, d
 agency-swarm,VRSEN/agency-swarm,,agent-framework,MIT,,True,02,Agency = agent có vai trò + luồng giao tiếp định sẵn
 gpt-pilot,Pythagora-io/gpt-pilot,,agent-framework,MIT,33600,True,02,Dev AI theo bước; ngừng bảo trì; cảnh báo mã độc core/telemetry (chưa xác minh); ★ 12/10/2026
 ruflo (claude-flow),ruvnet/ruflo,,agent-framework,MIT,,True,02,Swarm orchestration cho Claude Code; tuyên bố hiệu năng chưa kiểm chứng
-Everything Claude Code (ECC),affaan-m/everything-claude-code,,harness-pack,MIT,,True,20,"v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock"
-superpowers,obra/superpowers,,harness-pack,–,,True,20,Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu
-compound-engineering-plugin,EveryInc/compound-engineering-plugin,,harness-pack,–,,True,20,Plugin research→plan→work→review→compound
-oh-my-hermes,rlaope/oh-my-hermes,,harness-pack,–,,True,20,"Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill"
-agent-skills (addyosmani),addyosmani/agent-skills,,harness-pack,–,,True,20,"incremental-implementation, source-driven, doubt-driven development, context-engineering"
+Everything Claude Code (ECC),affaan-m/everything-claude-code,,harness-pack,MIT,277600,True,20,"v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock; URL chuyển hướng sang affaan-m/ECC; v2.2.3: 71 agent, 311 skill, 97 command (đọc 12/10/2026)"
+superpowers,obra/superpowers,,harness-pack,–,298000,True,20,"Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026)"
+compound-engineering-plugin,EveryInc/compound-engineering-plugin,,harness-pack,–,25500,True,20,Plugin research→plan→work→review→compound
+oh-my-hermes,rlaope/oh-my-hermes,,harness-pack,–,3300,True,20,"Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill"
+agent-skills (addyosmani),addyosmani/agent-skills,,harness-pack,–,105300,True,20,"incremental-implementation, source-driven, doubt-driven development, context-engineering"
 claude-red,SnailSploit/claude-red,,security,MIT,,True,12,78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền
 LiteLLM,BerriAI/litellm,,llm-gateway,MIT,,True,10,"Proxy OpenAI-compatible 100+ provider, budget, key ảo; ~60,9k★ (theo docs nội bộ, chưa xác minh)"
 Portkey Gateway,Portkey-AI/gateway,,llm-gateway,MIT,,True,10,"Gateway nhanh, fallback/retry/load-balance"
 one-api,songquanpeng/one-api,,llm-gateway,MIT,,True,10,"Quản lý key, quota, nhiều kênh"
 Helicone,Helicone/helicone,,llm-gateway,Apache-2.0,,True,10,Proxy + observability
-open-code-review (ocr),alibaba/open-code-review,,code-review,Apache-2.0,,True,13,"Review AI theo luật glob đường dẫn (rule.json, first-match-wins), ocr delegate không cần API key; xboss/dhcb dùng"
-release-please,googleapis/release-please,,quality-gate,Apache-2.0,,True,13,Conventional commits → changelog + release PR
-oxlint,oxc-project/oxc,,quality-gate,MIT,,True,13,Linter JS/TS viết bằng Rust
-knip,webpro-nl/knip,,quality-gate,ISC,,True,13,Tìm file/export/dependency chết
-jscpd,kucherenko/jscpd,,quality-gate,MIT,,True,13,Phát hiện code trùng lặp
-uv,astral-sh/uv,,quality-gate,Apache-2.0/MIT,,True,13,Package manager Python nhanh (Astral)
-ruff,astral-sh/ruff,,quality-gate,MIT,,True,13,Linter/formatter Python (Astral)
+open-code-review (ocr),alibaba/open-code-review,,code-review,Apache-2.0,46400,True,13,"Review AI theo luật glob đường dẫn (rule.json, first-match-wins), ocr delegate không cần API key; xboss/dhcb dùng; v1.12.13 (8/10/2026), ★ đọc 12/10/2026"
+release-please,googleapis/release-please,,quality-gate,Apache-2.0,7600,True,13,"Conventional commits → changelog + release PR; v17.11.2 (24/8/2026), ★ đọc 12/10/2026"
+oxlint,oxc-project/oxc,,quality-gate,MIT,23000,True,13,Linter JS/TS viết bằng Rust
+knip,webpro-nl/knip,,quality-gate,ISC,12400,True,13,Tìm file/export/dependency chết
+jscpd,kucherenko/jscpd,,quality-gate,MIT,6400,True,13,Phát hiện code trùng lặp
+uv,astral-sh/uv,,quality-gate,Apache-2.0/MIT,90600,True,13,Package manager Python nhanh (Astral)
+ruff,astral-sh/ruff,,quality-gate,MIT,50000,True,13,Linter/formatter Python (Astral)
 OPA / conftest,open-policy-agent/conftest,,policy-as-code,Apache-2.0,,True,12,Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng
 syft,anchore/syft,,policy-as-code,Apache-2.0,,True,12,Sinh SBOM (CycloneDX/SPDX)
 REA – Reverse Engineer Anything,morluto/rea,,reverse-engineering,MIT,,True,11,"CLI + MCP server 95 tool cho agent dịch ngược (Hopper/Ghidra, CDP, JS replay sandbox); Evidence v2, authority fail-closed; npm rea-agents 2.1.0"
@@ -315,3 +315,98 @@ anthropics/skills,anthropics/skills,,plugin-marketplace,Apache-2.0 (một phần
 threejs-skills,CloudAI-X/threejs-skills,,motion-design,MIT,3500,True,22,"Skill three.js cho Claude Code; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)"
 after-effects-mcp,Dakkshin/after-effects-mcp,,motion-design,MIT,730,True,22,"MCP điều khiển After Effects qua ExtendScript; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)"
 Munder Difflin,HarnessMD/munder-difflin,,agent-workspace,MIT,8700,True,02,"Văn phòng agent CLI (PTY + avatar Pixi.js), agent điều phối Michael, hive bằng file + single-committer git; cổng 'critical' nằm trong prompt; auto mode bypassPermissions (trừ Codex); open-core Pro; ★ 12/10/2026"
+PhoBERT,VinAIResearch/PhoBERT,,vietnam,MIT (base-v2: AGPL-3.0),809,True,18,Encoder RoBERTa tiếng Việt; HF ~130k tải/tháng (2 bản); ★/lượt tải đọc 12/10/2026
+vietnamese-bi-encoder (BKAI),,https://huggingface.co/bkai-foundation-models/vietnamese-bi-encoder,vietnam,Apache-2.0,,True,18,"Embedding RAG tiếng Việt, ~485k tải/tháng HF; ★/lượt tải đọc 12/10/2026"
+Vietnamese_Embedding (AITeamVN),,https://huggingface.co/AITeamVN/Vietnamese_Embedding,vietnam,Apache-2.0,,True,18,"BGE-M3 tinh chỉnh tiếng Việt, ~21,7k tải/tháng; ★/lượt tải đọc 12/10/2026"
+PhoWhisper,VinAIResearch/PhoWhisper,,speech,BSD-3-Clause,259,True,18,"Whisper tiếng Việt 844h, WER 4,67 VIVOS; ngừng từ 11/2024; ★/lượt tải đọc 12/10/2026"
+VieNeu-TTS,pnnbao97/VieNeu-TTS,,speech,Apache-2.0,2800,True,18,"TTS tiếng Việt clone giọng, chạy CPU; v4 đóng (API); ★/lượt tải đọc 12/10/2026"
+F5-TTS-Vietnamese,nguyenthienhy/F5-TTS-Vietnamese,,speech,MIT (weights CC-BY-NC-SA-4.0),174,True,18,Weights cấm thương mại; ★/lượt tải đọc 12/10/2026
+viXTTS,thinhlpg/vixtts-demo,,speech,MPL-2.0 (weights CPML),518,True,18,"XTTS-v2 tiếng Việt, không còn bảo trì; ★/lượt tải đọc 12/10/2026"
+SeaLLMs,DAMO-NLP-SG/SeaLLMs,,vietnam,SeaLLMs Terms of Use,176,False,18,"LLM Đông Nam Á (Alibaba DAMO), ngừng từ 7/2024; ★/lượt tải đọc 12/10/2026"
+VMLU,ZaloAI-Jaist/VMLU,,vietnam,MIT,83,True,18,Benchmark LLM tiếng Việt 10.880 câu/58 môn; leaderboard đóng băng 5/2024; ★/lượt tải đọc 12/10/2026
+generative-ai-for-beginners,microsoft/generative-ai-for-beginners,,learning,MIT,121200,True,08,"21 bài, có bản tiếng Việt; ★/lượt tải đọc 12/10/2026"
+LLMs-from-scratch,rasbt/LLMs-from-scratch,,learning,Apache-2.0,106400,True,08,Code sách Manning; ★/lượt tải đọc 12/10/2026
+llm-course,mlabonne/llm-course,,learning,Apache-2.0,83500,True,08,Lộ trình 3 nhánh + Colab; ★/lượt tải đọc 12/10/2026
+ai-agents-for-beginners,microsoft/ai-agents-for-beginners,,learning,MIT,77000,True,08,"18 bài agent, có bản tiếng Việt; ★/lượt tải đọc 12/10/2026"
+annotated_deep_learning_paper_implementations,labmlai/annotated_deep_learning_paper_implementations,,learning,MIT,67500,True,08,60+ paper PyTorch có chú thích; ★/lượt tải đọc 12/10/2026
+nanochat,karpathy/nanochat,,learning,MIT,58600,True,08,ChatGPT tối giản toàn chuỗi; thay nanoGPT (deprecated); ★/lượt tải đọc 12/10/2026
+agents-course,huggingface/agents-course,,learning,Apache-2.0,33500,True,08,Khoá agent HF có chứng chỉ; ★/lượt tải đọc 12/10/2026
+RAG_Techniques,NirDiamant/RAG_Techniques,,learning,Non-commercial (custom),29800,False,08,42+ notebook RAG; cấm thương mại; ★/lượt tải đọc 12/10/2026
+aie-book,chiphuyen/aie-book,,learning,,17800,False,08,Tài liệu kèm sách AI Engineering; không có LICENSE; ★/lượt tải đọc 12/10/2026
+MCP Python SDK,modelcontextprotocol/python-sdk,,protocol,MIT,24600,True,04,SDK chính thức; v2 phá vỡ tương thích; ★ đọc 12/10/2026
+MCP TypeScript SDK,modelcontextprotocol/typescript-sdk,,protocol,Apache-2.0 / MIT,13600,True,04,Spec 2026-07-28; v2 tách gói server/client; ★ đọc 12/10/2026
+MCP Inspector,modelcontextprotocol/inspector,,protocol,MIT → Apache-2.0,11100,True,04,Test MCP server UI + CLI; ★ đọc 12/10/2026
+MCP Registry,modelcontextprotocol/registry,,protocol,Apache-2.0,7300,True,04,"Registry chính thức, vẫn preview; ★ đọc 12/10/2026"
+MCP Apps (ext-apps),modelcontextprotocol/ext-apps,,protocol,Apache-2.0,2900,True,04,"Extension UI chính thức, thay mcp-ui; ★ đọc 12/10/2026"
+Agent Client Protocol,agentclientprotocol/agent-client-protocol,,protocol,Apache-2.0,4400,True,04,ACP của Zed: editor ↔ coding agent; ★ đọc 12/10/2026
+AGENTS.md,agentsmd/agents.md,,protocol,MIT,24900,True,04,"Định dạng mở, Agentic AI Foundation; 60k+ dự án; ★ đọc 12/10/2026"
+Open WebUI,open-webui/open-webui,,low-code,Open WebUI License (BSD-3 + branding),154000,False,05,Chat UI tự host lớn nhất; không gỡ thương hiệu khi >50 user/30 ngày; ★ đọc 12/10/2026
+LibreChat,danny-avila/LibreChat,,low-code,MIT,45600,True,05,"Chat đa provider, agent, MCP, OAuth2/LDAP; ★ đọc 12/10/2026"
+LobeHub,lobehub/lobehub,,low-code,LobeHub Community License,83200,False,05,Trước là lobe-chat; phái sinh cần license thương mại; ★ đọc 12/10/2026
+AnythingLLM,Mintplex-Labs/anything-llm,,low-code,MIT,67000,True,05,RAG + agent local-first; telemetry bật mặc định; ★ đọc 12/10/2026
+Cherry Studio,CherryHQ/cherry-studio,,low-code,AGPL-3.0,52600,True,05,Client desktop đa LLM; Enterprise đóng; ★ đọc 12/10/2026
+Sim,simstudioai/sim,,low-code,Apache-2.0,29800,True,05,"Canvas workflow agent, 1.000+ tích hợp; ★ đọc 12/10/2026"
+FastGPT,labring/FastGPT,,low-code,FastGPT Open Source License,29800,False,05,RAG + workflow; cấm SaaS khi chưa có license; ★ đọc 12/10/2026
+Coze Studio,coze-dev/coze-studio,,low-code,Apache-2.0,21700,True,05,Agent builder ByteDance; commit cuối 29/7/2026; ★ đọc 12/10/2026
+Inspect AI,UKGovernmentBEIS/inspect_ai,,eval-observability,MIT,3000,True,07,UK AISI; METR chuyển từ Vivaria sang; 200+ eval dựng sẵn; ★ đọc 12/10/2026
+lm-evaluation-harness,EleutherAI/lm-evaluation-harness,,eval-observability,MIT,14200,True,07,Backend HF Open LLM Leaderboard; không có eval agent; ★ đọc 12/10/2026
+Harbor (Terminal-Bench),harbor-framework/harbor,,eval-observability,Apache-2.0,6030,True,07,Runner chính thức Terminal-Bench 2.0+; TB tới 4.0 (8/2026); ★ đọc 12/10/2026
+tau2-bench,sierra-research/tau2-bench,,eval-observability,MIT,2200,True,07,τ²/τ³-bench tool–agent–user; cần LLM giả lập người dùng; ★ đọc 12/10/2026
+Opik,comet-ml/opik,,eval-observability,Apache-2.0,22500,True,07,Trace + LLM-judge; bản tự host không quản lý user; ★ đọc 12/10/2026
+MLflow,mlflow/mlflow,,eval-observability,Apache-2.0,28400,True,07,"Linux Foundation; tracing OTel, LLM judge, prompt, gateway; ★ đọc 12/10/2026"
+OpenLLMetry,traceloop/openllmetry,,eval-observability,Apache-2.0,7500,True,07,Instrument GenAI chuẩn OTel; ServiceNow mua Traceloop 3/2026; ★ đọc 12/10/2026
+Laminar,lmnr-ai/lmnr,,eval-observability,Apache-2.0,3400,True,07,Trace/eval/replay agent; YC S24; ★ đọc 12/10/2026
+OpenCompass,open-compass/opencompass,,eval-observability,Apache-2.0,7500,True,07,"Shanghai AI Lab; 100+ dataset, CompassRank; ★ đọc 12/10/2026"
+Lighteval,huggingface/lighteval,,eval-observability,MIT,2600,True,07,Hugging Face; backend ưu tiên Inspect; ★ đọc 12/10/2026
+UI-TARS-desktop,bytedance/UI-TARS-desktop,,browser-agent,Apache-2.0,39200,True,11,Agent GUI desktop trên VLM UI-TARS + Agent TARS CLI; ★ đọc 12/10/2026
+Cua,trycua/cua,,browser-agent,MIT (một phần FSL-1.1-MIT/AGPL),29500,True,11,"Hạ tầng computer use, VM Lume, Cua Bench; ★ đọc 12/10/2026"
+Agent S,simular-ai/Agent-S,,browser-agent,Apache-2.0,12600,True,11,"Agent S3 72,6% OSWorld (tự báo cáo); ★ đọc 12/10/2026"
+Firecrawl,firecrawl/firecrawl,,browser-agent,AGPL-3.0,190700,True,11,"Scrape/crawl/search cho LLM, MCP; SDK MIT; ★ đọc 12/10/2026"
+Crawl4AI,unclecode/crawl4ai,,browser-agent,Apache-2.0,85400,True,11,Crawler xuất Markdown cho LLM; ★ đọc 12/10/2026
+Chrome DevTools MCP,ChromeDevTools/chrome-devtools-mcp,,browser-agent,Apache-2.0,53300,True,11,MCP chính thức điều khiển/soi Chrome; telemetry bật mặc định; ★ đọc 12/10/2026
+gVisor,google/gvisor,,sandbox,Apache-2.0,19600,True,11,Kernel user-space runsc cho container; ★ đọc 12/10/2026
+Firecracker,firecracker-microvm/firecracker,,sandbox,Apache-2.0,37300,True,11,microVM của AWS Lambda; nền E2B; ★ đọc 12/10/2026
+sandbox-runtime,anthropics/sandbox-runtime,,sandbox,Apache-2.0,5500,True,11,"Sandbox OS cho Claude Code: Seatbelt/bubblewrap, mạng chặn mặc định; ★ đọc 12/10/2026"
+garak,NVIDIA/garak,,security,Apache-2.0,9500,True,12,Máy quét lỗ hổng LLM của NVIDIA; ★ đọc 12/10/2026
+PyRIT,microsoft/PyRIT,,security,MIT,4600,True,12,Red-team AI tạo sinh; Azure/PyRIT archive 27/3/2026; ★ đọc 12/10/2026
+PurpleLlama,meta-llama/PurpleLlama,,security,MIT (code); Llama licenses (weights),4400,True,12,"Llama Guard, Prompt Guard, CodeShield, CyberSecEval; ★ đọc 12/10/2026"
+Semgrep,semgrep/semgrep,,security,LGPL-2.1 (engine),17000,True,12,SAST; rule theo Semgrep Rules License (không OSI); ★ đọc 12/10/2026
+OSV-Scanner,google/osv-scanner,,security,Apache-2.0,11200,True,12,Quét dependency/container theo OSV.dev; ★ đọc 12/10/2026
+Trivy,aquasecurity/trivy,,security,Apache-2.0,38400,True,12,Bị xâm nhập 3/2026 (CVE-2026-33634): ghim Action theo SHA; ★ đọc 12/10/2026
+cosign,sigstore/cosign,,security,Apache-2.0,6400,True,12,Ký keyless Fulcio/Rekor; ★ đọc 12/10/2026
+OpenSSF Scorecard,ossf/scorecard,,security,Apache-2.0,5800,True,12,Điểm sức khoẻ bảo mật repo (heuristic); ★ đọc 12/10/2026
+agent-scan,snyk/agent-scan,,security,Apache-2.0,3100,True,12,"Trước là mcp-scan; quét MCP/skill, chạy trong sandbox; ★ đọc 12/10/2026"
+pyright,microsoft/pyright,,quality-gate,MIT,15700,True,13,Type checker Python; ★ đọc 12/10/2026
+Biome,biomejs/biome,,quality-gate,MIT / Apache-2.0,25900,True,13,"Format + lint JS/TS, 500+ rule; ★ đọc 12/10/2026"
+Renovate,renovatebot/renovate,,quality-gate,AGPL-3.0,22700,True,13,Cập nhật dependency 90+ trình quản lý gói; ★ đọc 12/10/2026
+pre-commit,pre-commit/pre-commit,,quality-gate,MIT,15600,True,13,Hook git đa ngôn ngữ; chạy lại trong CI; ★ đọc 12/10/2026
+reviewdog,reviewdog/reviewdog,,quality-gate,MIT,9700,True,13,Kết quả linter → comment review PR; ★ đọc 12/10/2026
+StrykerJS,stryker-mutator/stryker-js,,quality-gate,Apache-2.0,3200,True,13,Mutation testing JS/TS; ★ đọc 12/10/2026
+Lighthouse CI,GoogleChrome/lighthouse-ci,,quality-gate,Apache-2.0,7100,True,13,Commit cuối 26/6/2025 (đứng yên); ★ đọc 12/10/2026
+WrenAI,Canner/WrenAI,,data,Apache-2.0,17900,True,15,"Text-to-SQL qua semantic layer, engine Rust, MCP; ★ đọc 12/10/2026"
+DB-GPT,eosphoros-ai/DB-GPT,,data,MIT,20100,True,15,"Text2SQL, RAG, AWEL; phát hành thưa; ★ đọc 12/10/2026"
+Chat2DB,OtterMind/Chat2DB,,data,Modified Apache-2.0 (source-available từ v5.3.0),28300,False,15,Chuyển từ chat2db/Chat2DB; cấm host cho bên thứ ba; ★ đọc 12/10/2026
+SQLBot,dataease/SQLBot,,data,FIT2CLOUD Open Source License,6900,False,15,"Text-to-SQL có phân quyền dữ liệu, MCP; ★ đọc 12/10/2026"
+Apache Superset,apache/superset,,data,Apache-2.0,75100,True,15,"BI ASF, MCP server trong repo; ★ đọc 12/10/2026"
+Metabase,metabase/metabase,,data,AGPL-3.0,49600,True,15,BI + Metabot tự host bằng key riêng; ★ đọc 12/10/2026
+sqlglot,tobymao/sqlglot,,data,MIT,9700,True,15,Parser/transpiler SQL 30+ dialect; dùng kiểm SQL do LLM sinh; ★ đọc 12/10/2026
+DataHub,datahub-project/datahub,,data,Apache-2.0,12800,True,15,"Metadata/ngữ cảnh dữ liệu cho agent, MCP; ★ đọc 12/10/2026"
+VitePress,vuejs/vitepress,,docs,MIT,18400,True,16,SSG Vite + Vue; v2 alpha; ★ đọc 12/10/2026
+mdBook,rust-lang/mdBook,,docs,MPL-2.0,22200,True,16,Dựng The Rust Book; ★ đọc 12/10/2026
+Sphinx,sphinx-doc/sphinx,,docs,BSD-2-Clause,8100,True,16,Docs Python; chưa release 2026; ★ đọc 12/10/2026
+Zensical,zensical/zensical,,docs,MIT,5900,True,16,Kế nhiệm Material for MkDocs; 0.0.x; ★ đọc 12/10/2026
+Docsify,docsifyjs/docsify,,docs,MIT,31500,True,16,Render Markdown phía client; v5.0.0; ★ đọc 12/10/2026
+Repomix,yamadashy/repomix,,codebase-knowledge,MIT,28800,True,16,"Gói repo cho AI, Secretlint, MCP (`--sandbox`); ★ đọc 12/10/2026"
+DeepWiki-Open,AsyncFuncAI/deepwiki-open,,codebase-knowledge,MIT,18200,True,16,"Wiki AI tự host, có README tiếng Việt; ★ đọc 12/10/2026"
+Gitingest,coderamp-labs/gitingest,,codebase-knowledge,MIT,15900,True,16,Main đứng từ 16/8/2025; ★ đọc 12/10/2026
+Instructor,567-labs/instructor,,prompt,MIT,14000,True,17,"Structured output kiểm bằng Pydantic, đa provider; ★ đọc 12/10/2026"
+Outlines,dottxt-ai/outlines,,prompt,Apache-2.0,15900,True,17,Ràng buộc lúc decode (JSON Schema/regex/grammar); ★ đọc 12/10/2026
+Guidance,guidance-ai/guidance,,prompt,MIT,21800,True,17,Sinh có ràng buộc; không commit từ 5/2026; ★ đọc 12/10/2026
+BAML,BoundaryML/baml,,prompt,Apache-2.0,9400,True,17,"DSL prompt function có kiểu, codegen đa ngôn ngữ; ★ đọc 12/10/2026"
+Claude Cookbooks,anthropics/claude-cookbooks,,prompt,MIT,53400,True,17,Trước là anthropic-cookbook; ★ đọc 12/10/2026
+OpenAI Cookbook,openai/openai-cookbook,,prompt,MIT,76600,True,17,Ví dụ chính thức OpenAI API; ★ đọc 12/10/2026
+wshobson/agents,wshobson/agents,,harness-pack,MIT,40500,True,20,"94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026"
+claude-code-templates,davila7/claude-code-templates,,harness-pack,MIT,32600,True,20,CLI cài 100+ thành phần Claude Code; ★ đọc 12/10/2026
+awesome-claude-code-subagents,VoltAgent/awesome-claude-code-subagents,,harness-pack,MIT,25700,True,20,"161+ subagent, 10 nhóm; ★ đọc 12/10/2026"
+SuperClaude Framework,SuperClaude-Org/SuperClaude_Framework,,harness-pack,MIT,23900,True,20,"30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026"
+gsd-core,open-gsd/gsd-core,,harness-pack,MIT,10400,True,20,"Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026"

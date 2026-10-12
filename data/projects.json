@@ -2675,9 +2675,9 @@
       "repo": "affaan-m/everything-claude-code",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": null,
+      "stars": 277600,
       "open_source": true,
-      "notes": "v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock",
+      "notes": "v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock; URL chuyển hướng sang affaan-m/ECC; v2.2.3: 71 agent, 311 skill, 97 command (đọc 12/10/2026)",
       "section": "20"
     },
     {
@@ -2685,9 +2685,9 @@
       "repo": "obra/superpowers",
       "category": "harness-pack",
       "license": "–",
-      "stars": null,
+      "stars": 298000,
       "open_source": true,
-      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu",
+      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026)",
       "section": "20"
     },
     {
@@ -2695,7 +2695,7 @@
       "repo": "EveryInc/compound-engineering-plugin",
       "category": "harness-pack",
       "license": "–",
-      "stars": null,
+      "stars": 25500,
       "open_source": true,
       "notes": "Plugin research→plan→work→review→compound",
       "section": "20"
@@ -2705,7 +2705,7 @@
       "repo": "rlaope/oh-my-hermes",
       "category": "harness-pack",
       "license": "–",
-      "stars": null,
+      "stars": 3300,
       "open_source": true,
       "notes": "Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill",
       "section": "20"
@@ -2715,7 +2715,7 @@
       "repo": "addyosmani/agent-skills",
       "category": "harness-pack",
       "license": "–",
-      "stars": null,
+      "stars": 105300,
       "open_source": true,
       "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering",
       "section": "20"
@@ -2775,9 +2775,9 @@
       "repo": "alibaba/open-code-review",
       "category": "code-review",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 46400,
       "open_source": true,
-      "notes": "Review AI theo luật glob đường dẫn (rule.json, first-match-wins), ocr delegate không cần API key; xboss/dhcb dùng",
+      "notes": "Review AI theo luật glob đường dẫn (rule.json, first-match-wins), ocr delegate không cần API key; xboss/dhcb dùng; v1.12.13 (8/10/2026), ★ đọc 12/10/2026",
       "section": "13"
     },
     {
@@ -2785,9 +2785,9 @@
       "repo": "googleapis/release-please",
       "category": "quality-gate",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 7600,
       "open_source": true,
-      "notes": "Conventional commits → changelog + release PR",
+      "notes": "Conventional commits → changelog + release PR; v17.11.2 (24/8/2026), ★ đọc 12/10/2026",
       "section": "13"
     },
     {
@@ -2795,7 +2795,7 @@
       "repo": "oxc-project/oxc",
       "category": "quality-gate",
       "license": "MIT",
-      "stars": null,
+      "stars": 23000,
       "open_source": true,
       "notes": "Linter JS/TS viết bằng Rust",
       "section": "13"
@@ -2805,7 +2805,7 @@
       "repo": "webpro-nl/knip",
       "category": "quality-gate",
       "license": "ISC",
-      "stars": null,
+      "stars": 12400,
       "open_source": true,
       "notes": "Tìm file/export/dependency chết",
       "section": "13"
@@ -2815,7 +2815,7 @@
       "repo": "kucherenko/jscpd",
       "category": "quality-gate",
       "license": "MIT",
-      "stars": null,
+      "stars": 6400,
       "open_source": true,
       "notes": "Phát hiện code trùng lặp",
       "section": "13"
@@ -2825,7 +2825,7 @@
       "repo": "astral-sh/uv",
       "category": "quality-gate",
       "license": "Apache-2.0/MIT",
-      "stars": null,
+      "stars": 90600,
       "open_source": true,
       "notes": "Package manager Python nhanh (Astral)",
       "section": "13"
@@ -2835,7 +2835,7 @@
       "repo": "astral-sh/ruff",
       "category": "quality-gate",
       "license": "MIT",
-      "stars": null,
+      "stars": 50000,
       "open_source": true,
       "notes": "Linter/formatter Python (Astral)",
       "section": "13"
@@ -3239,6 +3239,956 @@
       "open_source": true,
       "notes": "Văn phòng agent CLI (PTY + avatar Pixi.js), agent điều phối Michael, hive bằng file + single-committer git; cổng 'critical' nằm trong prompt; auto mode bypassPermissions (trừ Codex); open-core Pro; ★ 12/10/2026",
       "section": "02"
+    },
+    {
+      "name": "PhoBERT",
+      "repo": "VinAIResearch/PhoBERT",
+      "category": "vietnam",
+      "license": "MIT (base-v2: AGPL-3.0)",
+      "stars": 809,
+      "open_source": true,
+      "notes": "Encoder RoBERTa tiếng Việt; HF ~130k tải/tháng (2 bản); ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "vietnamese-bi-encoder (BKAI)",
+      "url": "https://huggingface.co/bkai-foundation-models/vietnamese-bi-encoder",
+      "category": "vietnam",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Embedding RAG tiếng Việt, ~485k tải/tháng HF; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "Vietnamese_Embedding (AITeamVN)",
+      "url": "https://huggingface.co/AITeamVN/Vietnamese_Embedding",
+      "category": "vietnam",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "BGE-M3 tinh chỉnh tiếng Việt, ~21,7k tải/tháng; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "PhoWhisper",
+      "repo": "VinAIResearch/PhoWhisper",
+      "category": "speech",
+      "license": "BSD-3-Clause",
+      "stars": 259,
+      "open_source": true,
+      "notes": "Whisper tiếng Việt 844h, WER 4,67 VIVOS; ngừng từ 11/2024; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "VieNeu-TTS",
+      "repo": "pnnbao97/VieNeu-TTS",
+      "category": "speech",
+      "license": "Apache-2.0",
+      "stars": 2800,
+      "open_source": true,
+      "notes": "TTS tiếng Việt clone giọng, chạy CPU; v4 đóng (API); ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "F5-TTS-Vietnamese",
+      "repo": "nguyenthienhy/F5-TTS-Vietnamese",
+      "category": "speech",
+      "license": "MIT (weights CC-BY-NC-SA-4.0)",
+      "stars": 174,
+      "open_source": true,
+      "notes": "Weights cấm thương mại; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "viXTTS",
+      "repo": "thinhlpg/vixtts-demo",
+      "category": "speech",
+      "license": "MPL-2.0 (weights CPML)",
+      "stars": 518,
+      "open_source": true,
+      "notes": "XTTS-v2 tiếng Việt, không còn bảo trì; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "SeaLLMs",
+      "repo": "DAMO-NLP-SG/SeaLLMs",
+      "category": "vietnam",
+      "license": "SeaLLMs Terms of Use",
+      "stars": 176,
+      "open_source": false,
+      "notes": "LLM Đông Nam Á (Alibaba DAMO), ngừng từ 7/2024; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "VMLU",
+      "repo": "ZaloAI-Jaist/VMLU",
+      "category": "vietnam",
+      "license": "MIT",
+      "stars": 83,
+      "open_source": true,
+      "notes": "Benchmark LLM tiếng Việt 10.880 câu/58 môn; leaderboard đóng băng 5/2024; ★/lượt tải đọc 12/10/2026",
+      "section": "18"
+    },
+    {
+      "name": "generative-ai-for-beginners",
+      "repo": "microsoft/generative-ai-for-beginners",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 121200,
+      "open_source": true,
+      "notes": "21 bài, có bản tiếng Việt; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "LLMs-from-scratch",
+      "repo": "rasbt/LLMs-from-scratch",
+      "category": "learning",
+      "license": "Apache-2.0",
+      "stars": 106400,
+      "open_source": true,
+      "notes": "Code sách Manning; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "llm-course",
+      "repo": "mlabonne/llm-course",
+      "category": "learning",
+      "license": "Apache-2.0",
+      "stars": 83500,
+      "open_source": true,
+      "notes": "Lộ trình 3 nhánh + Colab; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "ai-agents-for-beginners",
+      "repo": "microsoft/ai-agents-for-beginners",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 77000,
+      "open_source": true,
+      "notes": "18 bài agent, có bản tiếng Việt; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "annotated_deep_learning_paper_implementations",
+      "repo": "labmlai/annotated_deep_learning_paper_implementations",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 67500,
+      "open_source": true,
+      "notes": "60+ paper PyTorch có chú thích; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "nanochat",
+      "repo": "karpathy/nanochat",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 58600,
+      "open_source": true,
+      "notes": "ChatGPT tối giản toàn chuỗi; thay nanoGPT (deprecated); ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "agents-course",
+      "repo": "huggingface/agents-course",
+      "category": "learning",
+      "license": "Apache-2.0",
+      "stars": 33500,
+      "open_source": true,
+      "notes": "Khoá agent HF có chứng chỉ; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "RAG_Techniques",
+      "repo": "NirDiamant/RAG_Techniques",
+      "category": "learning",
+      "license": "Non-commercial (custom)",
+      "stars": 29800,
+      "open_source": false,
+      "notes": "42+ notebook RAG; cấm thương mại; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "aie-book",
+      "repo": "chiphuyen/aie-book",
+      "category": "learning",
+      "license": null,
+      "stars": 17800,
+      "open_source": false,
+      "notes": "Tài liệu kèm sách AI Engineering; không có LICENSE; ★/lượt tải đọc 12/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "MCP Python SDK",
+      "repo": "modelcontextprotocol/python-sdk",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 24600,
+      "open_source": true,
+      "notes": "SDK chính thức; v2 phá vỡ tương thích; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "MCP TypeScript SDK",
+      "repo": "modelcontextprotocol/typescript-sdk",
+      "category": "protocol",
+      "license": "Apache-2.0 / MIT",
+      "stars": 13600,
+      "open_source": true,
+      "notes": "Spec 2026-07-28; v2 tách gói server/client; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "MCP Inspector",
+      "repo": "modelcontextprotocol/inspector",
+      "category": "protocol",
+      "license": "MIT → Apache-2.0",
+      "stars": 11100,
+      "open_source": true,
+      "notes": "Test MCP server UI + CLI; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "MCP Registry",
+      "repo": "modelcontextprotocol/registry",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 7300,
+      "open_source": true,
+      "notes": "Registry chính thức, vẫn preview; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "MCP Apps (ext-apps)",
+      "repo": "modelcontextprotocol/ext-apps",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 2900,
+      "open_source": true,
+      "notes": "Extension UI chính thức, thay mcp-ui; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "Agent Client Protocol",
+      "repo": "agentclientprotocol/agent-client-protocol",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 4400,
+      "open_source": true,
+      "notes": "ACP của Zed: editor ↔ coding agent; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "AGENTS.md",
+      "repo": "agentsmd/agents.md",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 24900,
+      "open_source": true,
+      "notes": "Định dạng mở, Agentic AI Foundation; 60k+ dự án; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "Open WebUI",
+      "repo": "open-webui/open-webui",
+      "category": "low-code",
+      "license": "Open WebUI License (BSD-3 + branding)",
+      "stars": 154000,
+      "open_source": false,
+      "notes": "Chat UI tự host lớn nhất; không gỡ thương hiệu khi >50 user/30 ngày; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "LibreChat",
+      "repo": "danny-avila/LibreChat",
+      "category": "low-code",
+      "license": "MIT",
+      "stars": 45600,
+      "open_source": true,
+      "notes": "Chat đa provider, agent, MCP, OAuth2/LDAP; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "LobeHub",
+      "repo": "lobehub/lobehub",
+      "category": "low-code",
+      "license": "LobeHub Community License",
+      "stars": 83200,
+      "open_source": false,
+      "notes": "Trước là lobe-chat; phái sinh cần license thương mại; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "AnythingLLM",
+      "repo": "Mintplex-Labs/anything-llm",
+      "category": "low-code",
+      "license": "MIT",
+      "stars": 67000,
+      "open_source": true,
+      "notes": "RAG + agent local-first; telemetry bật mặc định; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Cherry Studio",
+      "repo": "CherryHQ/cherry-studio",
+      "category": "low-code",
+      "license": "AGPL-3.0",
+      "stars": 52600,
+      "open_source": true,
+      "notes": "Client desktop đa LLM; Enterprise đóng; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Sim",
+      "repo": "simstudioai/sim",
+      "category": "low-code",
+      "license": "Apache-2.0",
+      "stars": 29800,
+      "open_source": true,
+      "notes": "Canvas workflow agent, 1.000+ tích hợp; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "FastGPT",
+      "repo": "labring/FastGPT",
+      "category": "low-code",
+      "license": "FastGPT Open Source License",
+      "stars": 29800,
+      "open_source": false,
+      "notes": "RAG + workflow; cấm SaaS khi chưa có license; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Coze Studio",
+      "repo": "coze-dev/coze-studio",
+      "category": "low-code",
+      "license": "Apache-2.0",
+      "stars": 21700,
+      "open_source": true,
+      "notes": "Agent builder ByteDance; commit cuối 29/7/2026; ★ đọc 12/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Inspect AI",
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 3000,
+      "open_source": true,
+      "notes": "UK AISI; METR chuyển từ Vivaria sang; 200+ eval dựng sẵn; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "lm-evaluation-harness",
+      "repo": "EleutherAI/lm-evaluation-harness",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 14200,
+      "open_source": true,
+      "notes": "Backend HF Open LLM Leaderboard; không có eval agent; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Harbor (Terminal-Bench)",
+      "repo": "harbor-framework/harbor",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 6030,
+      "open_source": true,
+      "notes": "Runner chính thức Terminal-Bench 2.0+; TB tới 4.0 (8/2026); ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "tau2-bench",
+      "repo": "sierra-research/tau2-bench",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 2200,
+      "open_source": true,
+      "notes": "τ²/τ³-bench tool–agent–user; cần LLM giả lập người dùng; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Opik",
+      "repo": "comet-ml/opik",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 22500,
+      "open_source": true,
+      "notes": "Trace + LLM-judge; bản tự host không quản lý user; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "MLflow",
+      "repo": "mlflow/mlflow",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 28400,
+      "open_source": true,
+      "notes": "Linux Foundation; tracing OTel, LLM judge, prompt, gateway; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "OpenLLMetry",
+      "repo": "traceloop/openllmetry",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 7500,
+      "open_source": true,
+      "notes": "Instrument GenAI chuẩn OTel; ServiceNow mua Traceloop 3/2026; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Laminar",
+      "repo": "lmnr-ai/lmnr",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 3400,
+      "open_source": true,
+      "notes": "Trace/eval/replay agent; YC S24; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "OpenCompass",
+      "repo": "open-compass/opencompass",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 7500,
+      "open_source": true,
+      "notes": "Shanghai AI Lab; 100+ dataset, CompassRank; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Lighteval",
+      "repo": "huggingface/lighteval",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 2600,
+      "open_source": true,
+      "notes": "Hugging Face; backend ưu tiên Inspect; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "UI-TARS-desktop",
+      "repo": "bytedance/UI-TARS-desktop",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 39200,
+      "open_source": true,
+      "notes": "Agent GUI desktop trên VLM UI-TARS + Agent TARS CLI; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "Cua",
+      "repo": "trycua/cua",
+      "category": "browser-agent",
+      "license": "MIT (một phần FSL-1.1-MIT/AGPL)",
+      "stars": 29500,
+      "open_source": true,
+      "notes": "Hạ tầng computer use, VM Lume, Cua Bench; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "Agent S",
+      "repo": "simular-ai/Agent-S",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 12600,
+      "open_source": true,
+      "notes": "Agent S3 72,6% OSWorld (tự báo cáo); ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "Firecrawl",
+      "repo": "firecrawl/firecrawl",
+      "category": "browser-agent",
+      "license": "AGPL-3.0",
+      "stars": 190700,
+      "open_source": true,
+      "notes": "Scrape/crawl/search cho LLM, MCP; SDK MIT; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "Crawl4AI",
+      "repo": "unclecode/crawl4ai",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 85400,
+      "open_source": true,
+      "notes": "Crawler xuất Markdown cho LLM; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "Chrome DevTools MCP",
+      "repo": "ChromeDevTools/chrome-devtools-mcp",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 53300,
+      "open_source": true,
+      "notes": "MCP chính thức điều khiển/soi Chrome; telemetry bật mặc định; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "gVisor",
+      "repo": "google/gvisor",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 19600,
+      "open_source": true,
+      "notes": "Kernel user-space runsc cho container; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "Firecracker",
+      "repo": "firecracker-microvm/firecracker",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 37300,
+      "open_source": true,
+      "notes": "microVM của AWS Lambda; nền E2B; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "sandbox-runtime",
+      "repo": "anthropics/sandbox-runtime",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 5500,
+      "open_source": true,
+      "notes": "Sandbox OS cho Claude Code: Seatbelt/bubblewrap, mạng chặn mặc định; ★ đọc 12/10/2026",
+      "section": "11"
+    },
+    {
+      "name": "garak",
+      "repo": "NVIDIA/garak",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 9500,
+      "open_source": true,
+      "notes": "Máy quét lỗ hổng LLM của NVIDIA; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "PyRIT",
+      "repo": "microsoft/PyRIT",
+      "category": "security",
+      "license": "MIT",
+      "stars": 4600,
+      "open_source": true,
+      "notes": "Red-team AI tạo sinh; Azure/PyRIT archive 27/3/2026; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "PurpleLlama",
+      "repo": "meta-llama/PurpleLlama",
+      "category": "security",
+      "license": "MIT (code); Llama licenses (weights)",
+      "stars": 4400,
+      "open_source": true,
+      "notes": "Llama Guard, Prompt Guard, CodeShield, CyberSecEval; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "Semgrep",
+      "repo": "semgrep/semgrep",
+      "category": "security",
+      "license": "LGPL-2.1 (engine)",
+      "stars": 17000,
+      "open_source": true,
+      "notes": "SAST; rule theo Semgrep Rules License (không OSI); ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "OSV-Scanner",
+      "repo": "google/osv-scanner",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 11200,
+      "open_source": true,
+      "notes": "Quét dependency/container theo OSV.dev; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "Trivy",
+      "repo": "aquasecurity/trivy",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 38400,
+      "open_source": true,
+      "notes": "Bị xâm nhập 3/2026 (CVE-2026-33634): ghim Action theo SHA; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "cosign",
+      "repo": "sigstore/cosign",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 6400,
+      "open_source": true,
+      "notes": "Ký keyless Fulcio/Rekor; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "OpenSSF Scorecard",
+      "repo": "ossf/scorecard",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 5800,
+      "open_source": true,
+      "notes": "Điểm sức khoẻ bảo mật repo (heuristic); ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "agent-scan",
+      "repo": "snyk/agent-scan",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 3100,
+      "open_source": true,
+      "notes": "Trước là mcp-scan; quét MCP/skill, chạy trong sandbox; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "pyright",
+      "repo": "microsoft/pyright",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 15700,
+      "open_source": true,
+      "notes": "Type checker Python; ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Biome",
+      "repo": "biomejs/biome",
+      "category": "quality-gate",
+      "license": "MIT / Apache-2.0",
+      "stars": 25900,
+      "open_source": true,
+      "notes": "Format + lint JS/TS, 500+ rule; ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Renovate",
+      "repo": "renovatebot/renovate",
+      "category": "quality-gate",
+      "license": "AGPL-3.0",
+      "stars": 22700,
+      "open_source": true,
+      "notes": "Cập nhật dependency 90+ trình quản lý gói; ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "pre-commit",
+      "repo": "pre-commit/pre-commit",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 15600,
+      "open_source": true,
+      "notes": "Hook git đa ngôn ngữ; chạy lại trong CI; ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "reviewdog",
+      "repo": "reviewdog/reviewdog",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 9700,
+      "open_source": true,
+      "notes": "Kết quả linter → comment review PR; ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "StrykerJS",
+      "repo": "stryker-mutator/stryker-js",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 3200,
+      "open_source": true,
+      "notes": "Mutation testing JS/TS; ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Lighthouse CI",
+      "repo": "GoogleChrome/lighthouse-ci",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 7100,
+      "open_source": true,
+      "notes": "Commit cuối 26/6/2025 (đứng yên); ★ đọc 12/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "WrenAI",
+      "repo": "Canner/WrenAI",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 17900,
+      "open_source": true,
+      "notes": "Text-to-SQL qua semantic layer, engine Rust, MCP; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "DB-GPT",
+      "repo": "eosphoros-ai/DB-GPT",
+      "category": "data",
+      "license": "MIT",
+      "stars": 20100,
+      "open_source": true,
+      "notes": "Text2SQL, RAG, AWEL; phát hành thưa; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "Chat2DB",
+      "repo": "OtterMind/Chat2DB",
+      "category": "data",
+      "license": "Modified Apache-2.0 (source-available từ v5.3.0)",
+      "stars": 28300,
+      "open_source": false,
+      "notes": "Chuyển từ chat2db/Chat2DB; cấm host cho bên thứ ba; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "SQLBot",
+      "repo": "dataease/SQLBot",
+      "category": "data",
+      "license": "FIT2CLOUD Open Source License",
+      "stars": 6900,
+      "open_source": false,
+      "notes": "Text-to-SQL có phân quyền dữ liệu, MCP; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "Apache Superset",
+      "repo": "apache/superset",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 75100,
+      "open_source": true,
+      "notes": "BI ASF, MCP server trong repo; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "Metabase",
+      "repo": "metabase/metabase",
+      "category": "data",
+      "license": "AGPL-3.0",
+      "stars": 49600,
+      "open_source": true,
+      "notes": "BI + Metabot tự host bằng key riêng; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "sqlglot",
+      "repo": "tobymao/sqlglot",
+      "category": "data",
+      "license": "MIT",
+      "stars": 9700,
+      "open_source": true,
+      "notes": "Parser/transpiler SQL 30+ dialect; dùng kiểm SQL do LLM sinh; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "DataHub",
+      "repo": "datahub-project/datahub",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 12800,
+      "open_source": true,
+      "notes": "Metadata/ngữ cảnh dữ liệu cho agent, MCP; ★ đọc 12/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "VitePress",
+      "repo": "vuejs/vitepress",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 18400,
+      "open_source": true,
+      "notes": "SSG Vite + Vue; v2 alpha; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "mdBook",
+      "repo": "rust-lang/mdBook",
+      "category": "docs",
+      "license": "MPL-2.0",
+      "stars": 22200,
+      "open_source": true,
+      "notes": "Dựng The Rust Book; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "Sphinx",
+      "repo": "sphinx-doc/sphinx",
+      "category": "docs",
+      "license": "BSD-2-Clause",
+      "stars": 8100,
+      "open_source": true,
+      "notes": "Docs Python; chưa release 2026; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "Zensical",
+      "repo": "zensical/zensical",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 5900,
+      "open_source": true,
+      "notes": "Kế nhiệm Material for MkDocs; 0.0.x; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "Docsify",
+      "repo": "docsifyjs/docsify",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 31500,
+      "open_source": true,
+      "notes": "Render Markdown phía client; v5.0.0; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "Repomix",
+      "repo": "yamadashy/repomix",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 28800,
+      "open_source": true,
+      "notes": "Gói repo cho AI, Secretlint, MCP (`--sandbox`); ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "DeepWiki-Open",
+      "repo": "AsyncFuncAI/deepwiki-open",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 18200,
+      "open_source": true,
+      "notes": "Wiki AI tự host, có README tiếng Việt; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "Gitingest",
+      "repo": "coderamp-labs/gitingest",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 15900,
+      "open_source": true,
+      "notes": "Main đứng từ 16/8/2025; ★ đọc 12/10/2026",
+      "section": "16"
+    },
+    {
+      "name": "Instructor",
+      "repo": "567-labs/instructor",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 14000,
+      "open_source": true,
+      "notes": "Structured output kiểm bằng Pydantic, đa provider; ★ đọc 12/10/2026",
+      "section": "17"
+    },
+    {
+      "name": "Outlines",
+      "repo": "dottxt-ai/outlines",
+      "category": "prompt",
+      "license": "Apache-2.0",
+      "stars": 15900,
+      "open_source": true,
+      "notes": "Ràng buộc lúc decode (JSON Schema/regex/grammar); ★ đọc 12/10/2026",
+      "section": "17"
+    },
+    {
+      "name": "Guidance",
+      "repo": "guidance-ai/guidance",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 21800,
+      "open_source": true,
+      "notes": "Sinh có ràng buộc; không commit từ 5/2026; ★ đọc 12/10/2026",
+      "section": "17"
+    },
+    {
+      "name": "BAML",
+      "repo": "BoundaryML/baml",
+      "category": "prompt",
+      "license": "Apache-2.0",
+      "stars": 9400,
+      "open_source": true,
+      "notes": "DSL prompt function có kiểu, codegen đa ngôn ngữ; ★ đọc 12/10/2026",
+      "section": "17"
+    },
+    {
+      "name": "Claude Cookbooks",
+      "repo": "anthropics/claude-cookbooks",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 53400,
+      "open_source": true,
+      "notes": "Trước là anthropic-cookbook; ★ đọc 12/10/2026",
+      "section": "17"
+    },
+    {
+      "name": "OpenAI Cookbook",
+      "repo": "openai/openai-cookbook",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 76600,
+      "open_source": true,
+      "notes": "Ví dụ chính thức OpenAI API; ★ đọc 12/10/2026",
+      "section": "17"
+    },
+    {
+      "name": "wshobson/agents",
+      "repo": "wshobson/agents",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 40500,
+      "open_source": true,
+      "notes": "94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026",
+      "section": "20"
+    },
+    {
+      "name": "claude-code-templates",
+      "repo": "davila7/claude-code-templates",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 32600,
+      "open_source": true,
+      "notes": "CLI cài 100+ thành phần Claude Code; ★ đọc 12/10/2026",
+      "section": "20"
+    },
+    {
+      "name": "awesome-claude-code-subagents",
+      "repo": "VoltAgent/awesome-claude-code-subagents",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 25700,
+      "open_source": true,
+      "notes": "161+ subagent, 10 nhóm; ★ đọc 12/10/2026",
+      "section": "20"
+    },
+    {
+      "name": "SuperClaude Framework",
+      "repo": "SuperClaude-Org/SuperClaude_Framework",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 23900,
+      "open_source": true,
+      "notes": "30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026",
+      "section": "20"
+    },
+    {
+      "name": "gsd-core",
+      "repo": "open-gsd/gsd-core",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 10400,
+      "open_source": true,
+      "notes": "Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026",
+      "section": "20"
     }
   ]
 }
