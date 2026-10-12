@@ -4289,6 +4289,26 @@
       "open_source": true,
       "notes": "Framework agent TypeScript; chủ các list awesome-*; ★ đọc 12/10/2026",
       "section": "02"
+    },
+    {
+      "name": "FilmCraft",
+      "repo": "storytold/filmcraft",
+      "category": "agentic-video",
+      "license": "MIT OR Apache-2.0",
+      "stars": 10900,
+      "open_source": true,
+      "notes": "NLE Rust ~343k dòng trong 11 ngày, ~72% commit Claude đồng tác giả, 94 tác giả; CI không chạy test, crash khi mở trên vài máy; ★ đọc 12/10/2026",
+      "section": "01"
+    },
+    {
+      "name": "OpenCut",
+      "repo": "OpenCut-app/OpenCut",
+      "category": "video-engine",
+      "license": null,
+      "stars": 93700,
+      "open_source": true,
+      "notes": "Trình dựng video mở, đang viết lại lõi bằng Rust; ★ đọc 12/10/2026",
+      "section": "01"
     }
   ]
 }

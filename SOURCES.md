@@ -173,3 +173,9 @@
 
 - github.com/VoltAgent/official-mcp-servers (README, CONTRIBUTING, lịch sử commit; 302★) · repos.ecosyste.ms (metadata 201 repo trong list) · trang GitHub từng repo được kiểm (PostHog/mcp, semgrep/mcp, browserbase, elevenlabs, JetBrains, langfuse, ahujasid/mcp-for-blender, google/mcp…)
 - So sánh: github.com/modelcontextprotocol/servers, github.com/punkpeye/awesome-mcp-servers, github.com/wong2/awesome-mcp-servers, glama.ai/mcp/servers, smithery.ai
+
+## Bổ sung 2026-10-12 (ảnh FilmCraft "Premiere Pro → viết lại bằng Rust" → mục 01 §3d)
+
+- github.com/storytold/filmcraft (lịch sử git đầy đủ, 1.015 commit không merge, 735 có trailer Claude): ROADMAP.md, docs/target-app-parity.md, docs/gaps.md, CLAUDE.md, assets/app-icon/README.md, /releases, /issues; trang GitHub (~10,9k★, 12/10/2026) · getartcraft.com/apps/filmcraft
+- news.ycombinator.com/item?id=49959605 · it-connect.tech (PhotoCraft/FilmCraft/LightCraft) · PetaPixel, Gizmodo, Phoronix, TweakTown (10/2026); không tìm thấy bài tiếng Việt gốc của ảnh
+- Repo nhái cần tránh: github.com/filmcraft-app/filmcraft · So sánh (★ 12/10/2026): OpenCut, LosslessCut, Shotcut, Olive, OpenShot, Kdenlive

@@ -142,6 +142,44 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - **So với nhóm ADE (§1.3):** T3 Code/Orca/Claude Squad chỉ làm "bàn điều phối" và giữ phạm vi hẹp; Personal Jarvis là cực "làm tất cả", gần OpenClaw/Hermes Agent (mục 02) hơn là một IDE. Chọn T3 Code hoặc Claude Squad nếu chỉ cần chạy agent song song; thử Personal Jarvis nếu muốn điều khiển bằng giọng nói, nhưng đặt `approval_mode = "ask"` và xoá whitelist `git log *`/`git diff *` (hoặc chỉ whitelist lệnh không tham số) trước khi giao quyền computer use.
 - **Bài học đem về kho:** (a) **call sign cho pane** là giao diện điều phối bằng giọng rẻ mà hiệu quả; (b) allowlist kiểu glob trên chuỗi lệnh phải chạy **sau** bộ tách lệnh nối, không trước (mục 12 §4); (c) stop-hook auto-commit WIP là lưới an toàn, nhưng sinh 378 commit nhiễu → nên squash trước khi merge.
 
+## 3d. Case study: FilmCraft — "Premiere Pro viết lại bằng Rust, 343K dòng từ 6 dòng, 11 ngày" (ảnh người dùng gửi, 2026-10-12)
+
+> Kiểm từng con số trong ảnh bằng lịch sử git đầy đủ của repo, tài liệu `ROADMAP.md`, `docs/target-app-parity.md`, `docs/gaps.md` và issue tracker; nguồn ngoài tra cùng ngày.
+
+### 3d.1 Hồ sơ nhanh
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `storytold/filmcraft` · **~10,9k★**, 4,3k fork, 1.757 commit, 299 issue mở, 131 PR mở; license MIT OR Apache-2.0 |
+| Định vị | "An open-source, nonlinear video editor written from scratch in pure Rust" (bản cũ ghi "clean-room reimplementation of Adobe Premiere Pro") |
+| Tác giả | Brandon Thomas (`echelon`), ArtCraft / Storyteller.ai; một trong loạt "Crafting Apps" dựng lại bộ Adobe (PhotoCraft, VectorCraft, LightCraft…). Biểu tượng cú là icon thật của dự án, vẽ bằng ArtCraft |
+| Phát hành | v0.1.0 (2/10) → v0.6.0 (11/10/2026), 0.7.0 đang chuẩn bị; binary Windows, macOS, Linux, FreeBSD, web |
+| Đón nhận | PetaPixel, Gizmodo, Phoronix, TweakTown ("Software is over"), HN — chính tác giả viết "super early alpha… not anywhere close to ready" |
+
+### 3d.2 Ba con số trong ảnh, đối chiếu repo
+
+| Ảnh nói | Thực tế | Kết luận |
+|---|---|---|
+| **343K dòng** | `docs/target-app-parity.md`: "measured 2026-10-10: 45 crates + 3 apps, ~343,000 lines of Rust, 2,520 `#[test]` functions"; đếm lại 12/10: 392.739 dòng `.rs`, khoảng 340,7k dòng không trống, không comment | Đúng |
+| **"từ 6 dòng"** | Là **commit đầu tiên** (`16489ce`, 30/9/2026): 2 dòng `.gitignore` + 4 dòng README — **không phải một prompt 6 dòng**. Chính commit đó ignore thư mục `plan/`; `CLAUDE.md` bảo agent làm theo `plan/execution-plan.md`, tài liệu kiến trúc và ảnh chụp Premiere làm mẫu — tất cả không công khai. 11 phút sau đã có skeleton workspace, 67 phút sau có 68 file `.rs` (giao diện egui, decoder H.264 CABAC, MCP server) | Gây hiểu lầm; nhiều khả năng có công chuẩn bị trước lịch sử công khai **(chưa xác minh)** |
+| **11 ngày** | 30/9 → 10/10/2026 là 11 ngày, khớp tài liệu | Đúng về thời gian, nhưng không phải "một người + AI": **94 tên tác giả**; tài liệu ghi 243 PR từ 5/10 "most from community contributors' agents"; riêng 10–11/10 có 820 commit |
+| **"??% con số giấu kín"** | Không tìm thấy nguồn của ảnh **(chưa xác minh)**. Ứng viên: số tự đánh giá của dự án (~86% "feature breadth", ~56% "ready for real work"), hoặc tỉ lệ commit do Claude đồng tác giả: **735/1.015 commit không phải merge (~72%)**, phần lớn ghi "Claude Opus 5.5"; nhánh `worktree-agent-…` cho thấy nhiều phiên Claude Code chạy song song trong git worktree | — |
+
+### 3d.3 Chạy được tới đâu
+
+- **Làm được nhiều thật:** codec tự viết (H.264 mã hoá/giải mã; HEVC, AV1 giải mã; ProRes, AAC, VP9, Opus, DNxHD, MPEG-2/AC-3), FFmpeg chỉ dùng làm **oracle cho test** chứ không nằm trong sản phẩm; giao diện egui, compositor wgpu theo linear light; trao đổi FCP7 XML, FCPXML, OTIO, EDL, AAF, OMF; multicam, chỉnh màu, keyframe, phụ đề; hơn 650 lệnh mà agent gọi được qua MCP.
+- **Không có cổng test:** `ROADMAP.md` tự ghi "no workflow runs the tests today" — CI chỉ có release và đóng gói, 2.520 test tồn tại nhưng không chặn merge.
+- **Crash khi mở** trên macOS 12, Intel UHD, Windows 11 (`docs/gaps.md` G4; issue #468, #512, #380, #1290…), export treo.
+- **Thiếu:** import `.prproj` (chặn bản beta), plugin VST3/AU/OpenFX, xuất HEVC/AV1 bằng phần mềm, phần lớn tính năng AI.
+- **"Parity" tự đo:** "Effects 100%" nghĩa là effect có mặt và qua test; "Menus 92%" là diff nhãn menu — chưa đo độ trung thực so với Premiere (harness fidelity còn "upcoming"). Dự án tự ước cần thêm 400–700 giờ agent mới tới beta.
+- **Cảnh báo tải về:** repo nhái `filmcraft-app/filmcraft` (2★) có README "Download filmcraft" kèm link `.7z`/`.run` — kiểu mồi malware quen thuộc **(chưa xác minh)**; chỉ tải từ release của `storytold/filmcraft` hoặc getartcraft.com.
+
+### 3d.4 Bài học
+
+- **Số dòng đo tốc độ sinh code, không đo chất lượng.** Cổng thật của một NLE là: CI chạy test trên PR, mở được trên máy phổ thông, import được project thật, export không treo. FilmCraft tự viết đúng các thiếu sót này trong ROADMAP — điểm cộng về trung thực, nhưng bài đăng viral thì bỏ qua.
+- **Mẫu làm việc đáng ghi:** nhiều phiên Claude Code song song, mỗi phiên một git worktree (mục 03); plan riêng + ảnh chụp ứng dụng gốc làm spec; dùng công cụ trưởng thành (FFmpeg) làm oracle để kiểm codec tự viết — cùng ý với "test oracle" của ManimGX (mục 22 §9c).
+- **Bối cảnh trình dựng video mở** (★ 12/10/2026): OpenCut 93,7k★ (đang viết lại lõi bằng Rust), LosslessCut 44,5k★, Shotcut 15,4k★, Olive 9,1k★, OpenShot 6,6k★, Kdenlive 5,8k★ (bản mirror GitHub).
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
@@ -158,3 +196,4 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - ADE so sánh: https://github.com/pingdotgg/t3code · https://github.com/BloopAI/vibe-kanban · https://github.com/smtg-ai/claude-squad · https://github.com/open-jarvis/OpenJarvis · https://agentsroom.dev/blog/best-multi-agent-coding-tools · https://www.codeagentswarm.com/en/guides/best-tools-to-run-multiple-ai-coding-agents · https://nimbalyst.com/blog/best-multi-agent-desktop-apps-claude-code-codex-2026/ · https://aitoolsatlas.ai/tools/orca-stably/review (Orca, số sao chưa xác minh)
 - https://www.vals.ai/benchmarks/swebench · https://arxiv.org/pdf/2609.08149 (SWE-Bench Pro Verified)
 - https://codeant.ai/blogs/best-ai-code-editor-cursor-vs-windsurf-vs-copilot · https://www.developersdigest.tech/blog/ai-coding-tools-pricing-2026 · https://levelop.dev/blog/the-best-ai-coding-agents-in-2026-a-practical-ranking-for-working-developers
+- §3d FilmCraft (12/10/2026): https://github.com/storytold/filmcraft (lịch sử git đầy đủ; ROADMAP.md, docs/target-app-parity.md, docs/gaps.md, CLAUDE.md, assets/app-icon/README.md; /releases; /issues) · https://getartcraft.com/apps/filmcraft · https://news.ycombinator.com/item?id=49959605 · https://www.it-connect.tech/photocraft-filmcraft-lightcraft-adobes-suite-rebuilt-in-rust-by-claude-opus-5-5-agents/ · PetaPixel, Gizmodo, Phoronix, TweakTown (10/2026) · repo nhái: https://github.com/filmcraft-app/filmcraft · so sánh: https://github.com/OpenCut-app/OpenCut, https://github.com/mifi/lossless-cut, https://github.com/mltframework/shotcut, https://github.com/olive-editor/olive, https://github.com/OpenShot/openshot-qt, https://github.com/KDE/kdenlive

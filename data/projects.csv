@@ -420,3 +420,5 @@ manim_skill,adithya-s-k/manim_skill,,motion-design,MIT,1200,True,22,Skill agent 
 official-mcp-servers (VoltAgent),VoltAgent/official-mcp-servers,,awesome-list,MIT,302,True,04,"297 mục MCP chính chủ; 11/201 repo đã archive, không có kiểm tra tự động; ★ đọc 12/10/2026"
 awesome-mcp-servers (punkpeye),punkpeye/awesome-mcp-servers,,awesome-list,MIT,96200,True,04,"Danh sách MCP lớn nhất, không lọc chính chủ; ★ đọc 12/10/2026"
 VoltAgent,VoltAgent/voltagent,,agent-framework,MIT,10800,True,02,Framework agent TypeScript; chủ các list awesome-*; ★ đọc 12/10/2026
+FilmCraft,storytold/filmcraft,,agentic-video,MIT OR Apache-2.0,10900,True,01,"NLE Rust ~343k dòng trong 11 ngày, ~72% commit Claude đồng tác giả, 94 tác giả; CI không chạy test, crash khi mở trên vài máy; ★ đọc 12/10/2026"
+OpenCut,OpenCut-app/OpenCut,,video-engine,,93700,True,01,"Trình dựng video mở, đang viết lại lõi bằng Rust; ★ đọc 12/10/2026"
