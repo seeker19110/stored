@@ -10,6 +10,7 @@
 - **Ba tư tưởng xuyên suốt** đáng đưa thành chuẩn của kho này: (1) *model quyết định, code hành động* — mọi trường "đã làm" do code điền (`verified_by`), lời khai của model không phải bằng chứng; (2) *cổng máy thay lời hứa* — Stop hook đọc **file trạng thái**, chuỗi đỏ cùng chữ ký, trần số vòng, không tin `<promise>`; (3) *adopt-from-outside ba cột* — khi học repo ngoài: đã có & sâu hơn / nông hơn / chưa có, "grep cổng đang chạy, đừng đọc văn xuôi".
 - Kho hiện **thiếu hẳn** vài nhóm mà các repo này đã khảo sát kỹ: LLM gateway/subscription routing, policy-as-code & SBOM & hash-lock, vòng đời hook Claude Code đầy đủ, 3D/Blender agent, red-team skill pack (dual-use), framework "công ty AI" (MetaGPT, ChatDev, DeerFlow, ruflo), bộ plugin lớn (ECC, superpowers, compound-engineering, impeccable).
 - Hai điểm kho bị phản biện trực tiếp: **Ralph loop** (`<promise>` là lời khai → thay bằng tín hiệu file + trần + chuỗi đỏ) và nhận định **"cài plugin thắng chép prompt"** (hai repo của chủ kho chọn *vendor skill có lock* thay vì cài plugin).
+- **§7b** là chỉ mục ngược: với từng repo chủ sở hữu, kho gợi ý mục/dự án nên tích hợp (ví dụ: code knowledge graph trước khi sửa, quét skill mới, enforce ở tầng dưới prompt).
 
 ---
 
@@ -239,6 +240,39 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 - **Desktop/AEC:** Autodesk Revit 2027 MCP Server, revit-mcp mã mở, pyRevit, RevitBatchProcessor, buildingSMART IDS 1.0 + 334 ca test, BCF-XML 2.1, IfcOpenShell/IfcTester, `.mcpb` manifest Claude Desktop, Ollama structured outputs (mục 04/11/10/18).
 - **Vận hành:** outbox/lease/fencing cho side effect, status-freshness CI, repository contract validator, AI Delivery Loop "3 repair", sổ nợ, `/hoc` (mục 21/09).
 - **Pháp lý VN (theo docs nội bộ, chưa xác minh):** NĐ 70/2025 (hoá đơn điện tử), NĐ 217/2026 (BIM bắt buộc), NĐ 207/2026 (nhật ký thi công điện tử), TT 09/2024; Postgres RLS (crunchydata/aws) (mục 18).
+
+---
+
+## 7b. Gợi ý tích hợp từ kho cho từng repo chủ sở hữu
+
+> Chỉ mục ngược của §7: §7 ghi *repo có gì mà kho thiếu*; mục này ghi *kho có gì mà repo nên lấy*. Mỗi gợi ý trỏ tới một mục/dự án đã khảo sát trong kho (đọc 2026-10-12). **Đây là ứng viên để cân nhắc, chưa phải việc phải làm** — trước khi nhúng, theo WORKFLOW: kiểm lại ngày đọc, license khi nhúng, và cấu hình an toàn tối thiểu. Dấu ✓ = repo đã có cơ chế tương đương, chỉ nên đối chiếu.
+
+| Repo | Gợi ý tích hợp (mục kho) | Vì sao / điều kiện |
+|---|---|---|
+| **projects-template** | (1) Sinh **code knowledge graph** cho agent đọc trước khi sửa: Graphify (Apache-2.0, nhãn EXTRACTED/INFERRED) hoặc codegraph — **mục 16 §2d**. (2) **agent-scan** (snyk) quét skill/MCP mỗi lần thêm — **mục 12 §3d**. (3) Template RoE/threat-model của AI Red Teaming Guide — **mục 12 §3f** | Khung đã có ba cổng máy + hook; thêm bước "bản đồ phụ thuộc" và "quét skill mới" khép kín vòng adopt-from-outside. codegraph: tắt telemetry (`DO_NOT_TRACK=1`); template §3f viết lại, chưa có LICENSE |
+| **xboss-manager** (SPEC) | Đối chiếu spec an toàn với **cổng RoE hai lớp của Decepticon** (parser advisory + egress nftables/DNS) và **OWASP Agentic Top 10** — **mục 12 §3g, §1** | Spec C1–C7/G0–G8 đang mô tả gate ở tầng prompt; Decepticon cho mẫu enforce ở tầng mạng (ranh giới thật), đáng thêm vào SPEC |
+| **case-study-ft41** (Next16 + CI) | Ghim Action theo SHA + kiểm checksum (bài học Trivy), cosign, OSV-Scanner, OpenSSF Scorecard — **mục 12 §3d**; dependency-cruiser chặn kiến trúc xấu trong CI — **mục 16 §2c** | Đã có rulesets-as-code; bổ sung gate chuỗi cung ứng và gate import-graph (dependency-cruiser dùng được làm cổng CI, khác CodeFlow chỉ để xem) |
+| **X-Agents** ("công ty AI") | (1) Mẫu middleware **Decepticon** (HITL cho hành động tác động cao, audit ledger HMAC, untrusted-output) — **mục 12 §3g**. (2) **promptfoo** cho eval record/replay — **mục 07**. (3) Graphify/codegraph làm "trí nhớ code" cho agent — **mục 16 §2d** | ✓ đã có verified_by + human gate 24h; Decepticon cho ngôn ngữ chuẩn hoá về gate+audit; promptfoo thay eval tự viết |
+| **X-Studio** (video agent) | Engine thật ở **mục 22**: HyperFrames/Remotion (§2), quality gate kiểu **motionmaxxing**/claude-motion (§8, §5); **data/videos.json của awesome-opus5-5-videos** làm tập prompt tham khảo (§8b); ManimGX cho explainer (§9c) | ✓ đã có MotionSpec/qc.py; đối chiếu với storyboard-gate + timeline-as-truth + LUFS gate của mục 22; §8b chỉ là prompt, cần engine để render |
+| **qlkh** (14 job CI) | ✓ Rất mạnh rồi; chỉ thêm **agent-scan**/Semgrep khi có skill/MCP mới — **mục 12 §3d**; badge sức khoẻ **CodeFlow card** — **mục 16 §2c** | Đã có OPA/syft/mutmut/import-linter; hai gợi ý này là bổ sung nhẹ, không trùng |
+| **dhcb** (gia sư AI, Gemini Live) | (1) Guardrails **NeMo/LLM Guard** + lọc prompt-injection — **mục 12 §2**. (2) Codebase graph để onboard tính năng — **mục 16 §2d**. (3) Voice/multimodal nếu mở rộng nói — **mục 14** | Sản phẩm production có người dùng thật → guardrails input/output là lớp nên có; ✓ đã có ProposedAction+safetyGuard, guardrails bổ trợ ở tầng nội dung |
+| **Xgold** (Next16, charts) | dependency-cruiser gate + CodeFlow xem kiến trúc — **mục 16 §2c**; đối chiếu dataviz palette khi vẽ chart | ✓ đã có Playwright CI; gợi ý nhẹ |
+| **X-Scanner** (Flutter scan tài liệu) | Mô hình **VLM/multimodal** cho OCR/hiểu tài liệu — **mục 14**; đối chiếu agent-scan nếu thêm skill | Lõi là đọc tài liệu → mục 14 là nơi chọn model |
+| **ai-gateway** (LLM gateway) | So với **LiteLLM** (mà Decepticon dùng làm management plane) và nhóm LLM gateway — **mục 10 §6**; thêm OWASP LLM Top 10 + guardrails ở biên — **mục 12 §1–§2**; benchmark định tuyến bằng promptfoo — **mục 07** | Nhóm "LLM gateway" kho mới có từ repo này; đối chiếu LiteLLM để học bảng lỗi→cooldown và fallback tier |
+| **Plugin-4-Hermes / Hermes-Agents** | **codegraph hỗ trợ sẵn Hermes Agent** trong danh sách agent — **mục 16 §2d**; thêm Graphify cho skill-authoring | Tích hợp trực tiếp: codegraph liệt kê Hermes Agent là host được hỗ trợ; thử MCP server của nó với bridge :8100 |
+| **xboss** (giàu harness nhất) | **CodeFlow card** badge sức khoẻ (§16 §2c); Graphify/codegraph cho 2.002 file (§16 §2d); **agent-scan** quét 5 hook + vendor ECC (§12 §3d); đối chiếu protect-config với egress-allowlist của Decepticon (§12 §3g) | ✓ repo đã có fact-forcing gate + mutation test; các gợi ý là lớp quan sát/bảo mật bổ sung cho codebase lớn |
+| **Dhcb-Tools** (Revit/AutoCAD bridge) | Đối chiếu mô hình **loopback bridge an toàn** và **egress allowlist** của Decepticon — **mục 12 §3b, §3g** | ✓ đã khép vòng dryRun→confirm + token loopback; Decepticon cho thêm mẫu chặn ở tầng mạng và chuỗi xác nhận theo lệnh |
+| **reveser** (mirror `morluto/rea`) | Đối chiếu với **Reverser/REA + Ghidra của Decepticon** (§12 §3g); quét bằng SkillSpector/mantis trước khi chạy tool lạ (§12 §3e) | **Cite upstream `morluto/rea`** khi dẫn; cùng họ reverse-engineering agent, học Evidence v2 ↔ audit ledger |
+| **Sales-Hunter** (pipeline affiliate) | Durable execution outbox/lease (✓ đã có, mục 21); thêm guardrails output + egress allowlist khi có client mạng thật — **mục 12 §2, §3g** | ✓ model_tier T0–T4 tốt; khi nối mạng thật, chặn egress ngoài allowlist là bước nên có |
+| **design-os-3d-blender** | Research 3D/marketplace (mục 19); ManimGX nếu cần render toán/kỹ thuật — **mục 22 §9c** | ✓ đã có verify ladder + sentinel; gợi ý nhẹ |
+| **Claude-Red** (red-team skill pack) | Quét bằng **SkillSpector/cisco skill-scanner/agent-scan** trước khi cài (§12 §3e); **Decepticon** là bản "chạy được" cùng mục đích (§12 §3g); template out-brief của AI Red Teaming Guide (§12 §3f) | Dual-use: giữ scope trong SECURITY.md; chạy trong sandbox (mục 11); chỉ dùng khi được ủy quyền |
+| **system-design-notes** | Thấp: không có tích hợp tự động; có thể dựng knowledge graph bằng Graphify để tra chéo chương/paper (mục 16 §2d) | Repo là ghi chú tĩnh; làm rõ upstream trước |
+
+**Ba gợi ý xuyên suốt (áp cho hầu hết repo có agent):**
+
+1. **Bản đồ code cho agent** (Graphify/codegraph, mục 16 §2d) đứng trước mọi vòng sửa lớn — rẻ hơn để agent grep lại từ đầu.
+2. **Quét skill/MCP mới** (agent-scan/SkillSpector, mục 12 §3d–§3e) mỗi lần adopt-from-outside — khớp quy tắc "đọc install.sh/hook trước khi cài" của kho.
+3. **Enforce ở tầng dưới prompt** (egress allowlist, HITL, audit ledger kiểu Decepticon §3g) cho repo nào để agent chạm mạng hoặc hành động không đảo ngược.
 
 ---
 
