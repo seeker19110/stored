@@ -237,3 +237,8 @@
 - github.com/colbymchenry/codegraph (clone đầy đủ, 1.428 commit từ 18/1/2026, MIT: README.md, TELEMETRY.md, install.sh, src/telemetry/, src/installer/; trang GitHub 74k★ qua shields; npm @colbymchenry/codegraph; getcodegraph.com)
 - Số sao kiểm bằng img.shields.io/github/stars: graphify 126k, codegraph 74k, Understand-Anything 86k (12/10/2026) — số ảnh (125k/73k/85k) khớp
 - Understand-Anything: xem mục 01 §3b (đã có). Trang dẫn ảnh (quảng cáo): betterstack.com, augmentcode.com, mindstudio.ai, dev.co
+
+## Bổ sung 2026-10-12 (ảnh "Awesome Opus 5.5 Videos" → mục 22 §8b)
+
+- github.com/yihui-dev/awesome-opus5-5-videos (clone đầy đủ, HEAD e6c7eee "853 total": README.md, data/videos.json, prompts/*.md, LICENSE MIT; trang GitHub 4,6k★ qua shields, ảnh 4,3k/443 fork) · skillry.dev/ai-videos/opus-5-5 (homepage thương mại) · x.com/yihui_indie
+- So sánh: github.com/athemeroy/awesome-opus-5-5-videos (529★ qua shields) · trendshift.io; bài quảng cáo woshipm.com, pasqualepillitteri.it (nhiều ngôn ngữ)

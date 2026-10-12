@@ -181,6 +181,29 @@
 - **Giới hạn tự khai (docs/KNOWN-LIMITS.md):** "9/10 blind A/B" là thế hệ trước, 1 rater, 5 brief ("signal, not benchmark"); moments.jsonl do 6 AI analyst agent giải mã, **unverified**, phim nguồn private; G1/G4 chấm bằng mắt; `lint.mjs` chỉ thấy DOM; `look.py` đếm cut dư; ElevenLabs music timing không ổn; brand capture fail trên trang login/anti-headless; WebGL 7–11 fps 1080p. Coverage: skillsllm (scan PASSED 7/10), everydev, 2 awesome-list (một list mô tả sai là dùng Remotion).
 - **Vị trí:** cùng lớp với claude-motion (C2) và product-launch-motion (A1) nhưng là **một protocol end-to-end có brand capture + dataset timing + gate script**; mới nhất, nhỏ nhất, ít kiểm chứng nhất.
 
+## 8b. awesome-opus5-5-videos (ảnh người dùng gửi, 2026-10-12) — danh mục prompt video "viral"
+
+> Đã clone repo (HEAD `e6c7eee`, 12/10/2026), đọc README, LICENSE, `data/videos.json` và mẫu file trong `prompts/`. Số sao kiểm qua shields.
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo | https://github.com/yihui-dev/awesome-opus5-5-videos · homepage `skillry.dev/ai-videos/opus-5-5` |
+| Loại | awesome-list + bộ dữ liệu prompt (không có code chạy) |
+| License | MIT (file LICENSE); README ghi video/prompt thuộc về người tạo, gỡ theo yêu cầu qua issue |
+| ★ (ngày) | 4,6k★ (shields, 12/10/2026); ảnh chụp lúc 4,3k★ / 443 fork |
+| Người đóng góp | 2: `yihui-dev` (Yihui) và tài khoản "claude" |
+| Quy mô | Ảnh ghi "282 prompt"; HEAD hiện có **853 file** trong `prompts/` và 853 mục trong `data/videos.json`, 523 mục có bản làm lại trên Skillry — repo tăng nhanh sau thời điểm chụp |
+
+**Nội dung thật (đã đọc, không theo ảnh):** không phải skill/engine mà là **awesome-list + dataset prompt**. Mỗi file `prompts/*.md` ghi category, "remake built with" (Canvas/SVG/Three.js), tác giả, link **bài X gốc**, và khối prompt. `data/videos.json` là bản máy-đọc-được với các trường `slug, author, post_url, category, tech_tags, prompt, prompt_partial, poster_url, skillry_url, added, has_remake`; cờ `prompt_partial` đánh dấu prompt chỉ đăng một phần (**trung thực đáng khen**).
+
+**Đồng điệu với §0 và §7:** README tự ghi "mỗi video là **nhờ Opus 5.5 viết animation thành code** (HTML, Canvas, SVG, Three.js) rồi quay màn hình" — **không có model sinh video**. Đúng cảnh báo của kho: Opus 5.5 xuất code chứ không xuất video; hàng trăm prompt "showreel" na ná nhau cho sản phẩm giống nhau.
+
+**Điểm mạnh:** dataset có provenance (mỗi mục link bài gốc), cờ `prompt_partial`, chính sách gỡ qua issue, MIT, JSON lọc được theo `category`/`tech_tags`.
+
+**Hạn chế / cờ:** là **phễu về skillry.dev** (thương mại, "xem remake side-by-side", `utm_campaign` ở mọi link); khung "viral"; video/preview là nội dung creator được **rehost** (gỡ qua issue); catalog do agent dựng (contributor `claude`), số liệu mô tả tự công bố → đối chiếu `data/videos.json` khi trích. So sánh: `athemeroy/awesome-opus-5-5-videos` (529★, "1000+ video" dạng guide, không kèm dataset JSON).
+
+**Tích hợp:** coi `data/videos.json` là **tập prompt tham khảo** — lọc theo `tech_tags` để lấy ví dụ, nhưng luôn mở `post_url` kiểm lại và để ý `prompt_partial`. Bản thân repo không render gì; cần một engine/skill thật ở §2–§6 để dựng. Đừng coi là bằng chứng "Opus 5.5 sinh video".
+
 ---
 
 ## 9. Phân tích & khuyến nghị
