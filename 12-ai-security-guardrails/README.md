@@ -71,6 +71,51 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 - Với repo dùng MCP/skill: chạy `agent-scan` (trong sandbox) mỗi khi thêm server hoặc skill mới; dùng garak hoặc PyRIT khi cần red-team model/app có ủy quyền.
 - AgentDojo (§4) chỉ có 910★ (MIT, commit cuối 2/6/2026) nhưng vẫn là benchmark prompt injection chuẩn.
 
+### 3e. Danh sách "Awesome-AI-Security-Skills" (ảnh người dùng gửi, 2026-10-12) — đọc trước khi cài
+
+> Chỉ đọc trang repo, README và lịch sử commit; **không chạy** skill hay script nào.
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `EvanThomasLuke/Awesome-AI-Security-Skills` · 112★, 30 fork, 22 commit (chỉ chủ repo), 10/3 → 22/9/2026; **không có LICENSE** (repo chỉ có README) |
+| Chủ | Evan Luke ("AI Hacking and Alignment"), cũng làm Awesome-AI-Hacking-Agents (705★) |
+| Lời cảnh báo của chính list | "I have not manually verified all of these. Running skills from others can compromise your machine." |
+| Quy mô | 58 link trong 7 nhóm (57 duy nhất; bountyforge bị lặp): Security 28, Skill Scanners 5, Workflows/Toolkits 10, Rules/Guardrails 4, Related Lists 2, Other 2, Todo 7 |
+
+**Các mục đáng chú ý (đã đọc từng repo):**
+
+| Repo | ★ | License | Commit cuối | Nội dung | Chạy code / rủi ro | Ghi chú |
+|---|---|---|---|---|---|---|
+| **trailofbits/skills** | 7,5k | CC-BY-SA-4.0 | 9/10/2026 | Marketplace 44 plugin | Script theo plugin **(chưa xác minh)** | Không có câu về ủy quyền |
+| **trailofbits/skills-curated** | 513 | CC-BY-SA-4.0 | 14/7/2026 | 29 plugin đã duyệt | Script, command | "we read every line of hooks and scripts" — mẫu kiểm duyệt đáng học |
+| **NVIDIA/SkillSpector** | 20k | Apache-2.0 | 9/10/2026 | Máy quét skill (CLI + MCP) | Phân tích tĩnh, gửi nội dung file cho LLM | Tự ghi "not a sandbox" |
+| **cisco-ai-defense/skill-scanner** | 2,6k | Apache-2.0 | 9/10/2026 | Máy quét skill v2.2.2 | Tĩnh + LLM | Tự ghi "best-effort" |
+| **anthropics/claude-code-security-review** | 6,3k | MIT | 11/2/2026 | GitHub Action + `/security-review` | Python chạy trong CI | Tự ghi "not hardened against prompt injection"; đứng từ 2/2026 |
+| **cloudflare/security-audit-skill** | 28,6k | MIT | 14/9/2026 | 1 skill + validator Node | Yêu cầu sandbox hệ điều hành | Mới nằm ở mục Todo của list |
+| **google/mantis** | 2,4k | Apache-2.0 | 6/10/2026 | Skill + harness test | **Chạy code do nó sinh ra** | "not an officially supported Google product"; tự khuyên chạy cô lập |
+| **elastic/agent-skills** | 593 | Apache-2.0 | 10/9/2026 | 26 skill (4 về bảo mật) | Script cài đặt | Hướng dẫn least-privilege tốt |
+| **ghostsecurity/skills** | 411 | Apache-2.0 | 28/9/2026 | 2 plugin, 8 skill | Tải binary Go từ release, MITM proxy, test app đang chạy | Không có câu về ủy quyền |
+| **mukul975/Anthropic-Cybersecurity-Skills** | 34,3k | Apache-2.0 | 31/8/2026 | ~817 skill (list ghi 754) | Một số script phụ | Dùng tên Anthropic nhưng tự ghi "not affiliated with Anthropic"; có câu về ủy quyền |
+| **elementalsouls/Claude-BugHunter** | 5k | MIT + CC-BY-4.0 | 12/10/2026 | 82–83 skill, 15 command | Installer, CLI Python, Burp MCP, `.githooks` | Ngôn ngữ scope chặt |
+| **blacklanternsecurity/red-run** | 286 | GPL-3.0 | 1/4/2026 | Agent team + MCP nmap/shell | **Hook SessionStart, server reverse shell, `--yolo`** | "CTF and lab use only" |
+| **DeepBitsTechnology/claude-plugins** | 49 | Apache-2.0 | 13/7/2026 | MCP remote cho phân tích binary | **Tải mẫu lên `mcp.deepbits.com`** | Dữ liệu rời khỏi máy |
+| `SnailSploit/Claude-Red` | 7,4k | MIT | 19/9/2026 | 78 skill, vẫn v0.3.0 | `install.sh`, `convert_skills.py` | Khớp §3c; SECURITY.md có câu về ủy quyền/CFAA |
+
+**Cờ đỏ trong list:**
+
+- **Không có LICENSE:** chính list, `Netflix-Skunkworks/railguard-skill` (README dẫn LICENSE.md nhưng 404), Eyadkelleh (README nói MIT), wrsmith108, BehiSecc, pashov, bountyforge, YARAHQ, mcpeak, vulhunt-re, ComposioHQ. License hạn chế: semgrep/skills (Semgrep Rules License), `tanweai/wooyun-legacy` (CC BY-NC-SA, tự ghi không còn bảo trì), `wiz-sec-public/secure-rules-files` (CC BY-NC-ND), prompt-security/clawsec (AGPL).
+- **Khoảng 18 mục không commit hơn 6 tháng**, ví dụ secure-rules-files (12/2025), `project-codeguard/rules` (1/2026, đã chuyển cho CoSAI), claude-code-security-review (2/2026), red-run (4/2026).
+- **Link hỏng, đổi tên, mạo danh:** `Repello-AI/skill-check` trả 404; Netropolitan chuyển hướng sang `AILiteracyLab/Claude-Security-Audit` (0★, 1 commit) mà `install.sh` **sửa `~/.claude/settings.json`** và tải từ URL cũ; Eyadkelleh đổi tên thành awesome-skills-security, chứa mẫu webshell (antivirus sẽ báo); `vinayaklatthe/microsoft-security-skills` là repo cá nhân nhưng LICENSE ghi "Copyright (c) Microsoft Corporation"; `zhaoxuya520/reverse-skill` có 41,2k★ trên chỉ 181 commit của tài khoản cá nhân (tỉ lệ bất thường, **chưa xác minh** sao ảo), script PowerShell tải toolchain và có nội dung vượt EDR. Ảnh ghi "Masrivan" — tên đúng là `Masriyan`, nay 22 skill (list ghi 15).
+- **Nội dung tấn công không có câu về ủy quyền** (theo README): `Mindgard/ai-ide-skills` (payload copy-paste), `ljagiello/ctf-skills`, ghostsecurity.
+
+**Cách dùng an toàn:**
+
+1. Ưu tiên nguồn có kiểm duyệt (trailofbits/skills-curated đọc từng dòng hook/script; elastic; cloudflare).
+2. Quét trước khi cài bằng SkillSpector, cisco skill-scanner hoặc `snyk/agent-scan` (§3d) — nhưng đều là quét tĩnh "best-effort", không thay được sandbox.
+3. Tự đọc mọi `install.sh`, hook (SessionStart, PreToolUse), lệnh sửa `~/.claude/settings.json`, MCP remote nhận dữ liệu; chạy trong VM/container không có secret (mục 11 §3b, `anthropics/sandbox-runtime`).
+4. Vendor có lock sha256 thay vì cài thẳng (mục 20 §3b).
+5. Skill tấn công chỉ dùng trong phạm vi được ủy quyền (pentest có hợp đồng, CTF, lab) và ghi scope vào skill, như điều kiện ở §3c.
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.
@@ -84,3 +129,4 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 - https://www.getmaxim.ai/articles/best-ai-guardrails-tools-in-2026/ · https://appsecsanta.com/nemo-guardrails · https://appsecsanta.com/llm-guard · https://dev.to/agdex_ai/best-ai-agent-security-guardrails-tools-in-2026-llm-guard-vs-nemo-vs-guardrails-ai-5e5d · https://www.turingpost.com/p/aisecuritytools
 - arXiv 2601.10440 · 2507.21170 · 2510.19169 · 2609.06543 · 2604.21477 · 2606.31227 · 2603.20953
 - §3d (12/10/2026): https://github.com/NVIDIA/garak · https://github.com/microsoft/PyRIT · https://github.com/Azure/PyRIT · https://github.com/meta-llama/PurpleLlama · https://github.com/semgrep/semgrep · https://github.com/opengrep/opengrep · https://github.com/google/osv-scanner · https://github.com/aquasecurity/trivy · https://www.wiz.io/blog/trivy-compromised-teampcp-supply-chain-attack · https://trust.barracuda.com/security/information/trivy-supply-chain-compromise · https://stack.watch/vuln/CVE-2026-33634/ · https://github.com/sigstore/cosign · https://github.com/ossf/scorecard · https://github.com/snyk/agent-scan · https://github.com/protectai/rebuff · https://github.com/lakeraai · https://github.com/splx-ai/agentic-radar · https://github.com/ethz-spylab/agentdojo
+- §3e (12/10/2026): https://github.com/EvanThomasLuke/Awesome-AI-Security-Skills (README, lịch sử commit) · https://github.com/EvanThomasLuke · trang repo + commits Atom của: trailofbits/skills, trailofbits/skills-curated, NVIDIA/SkillSpector, cisco-ai-defense/skill-scanner, anthropics/claude-code-security-review, cloudflare/security-audit-skill, google/mantis, elastic/agent-skills, ghostsecurity/skills, semgrep/skills, mukul975/Anthropic-Cybersecurity-Skills, elementalsouls/Claude-BugHunter, blacklanternsecurity/red-run, DeepBitsTechnology/claude-plugins, Netflix-Skunkworks/railguard-skill, Mindgard/ai-ide-skills, ljagiello/ctf-skills, Masriyan/Claude-Code-CyberSecurity-Skill, AILiteracyLab/Claude-Security-Audit, vinayaklatthe/microsoft-security-skills, zhaoxuya520/reverse-skill, wiz-sec-public/secure-rules-files, project-codeguard/rules · https://raw.githubusercontent.com/SnailSploit/Claude-Red/main/CHANGELOG.md

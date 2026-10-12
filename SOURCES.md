@@ -156,3 +156,31 @@
 - Mục 17 §2b: github.com/{567-labs/instructor, dottxt-ai/outlines, guidance-ai/guidance, BoundaryML/baml, anthropics/claude-cookbooks, openai/openai-cookbook, anthropics/courses, anthropics/prompt-eng-interactive-tutorial, microsoft/promptflow, microsoft/LLMLingua}
 - Mục 18 §4c: github.com/VinAIResearch/PhoBERT, huggingface.co/bkai-foundation-models/vietnamese-bi-encoder, huggingface.co/AITeamVN/Vietnamese_Embedding, github.com/VinAIResearch/PhoWhisper và các nguồn khác trong mục 18
 - Mục 20 §3d: github.com/{obra/superpowers, affaan-m/ECC, addyosmani/agent-skills, wshobson/agents, davila7/claude-code-templates, VoltAgent/awesome-claude-code-subagents, EveryInc/compound-engineering-plugin, SuperClaude-Org/SuperClaude_Framework, gsd-build/get-shit-done, open-gsd/gsd-core, rlaope/oh-my-hermes} · skillrank.it.com/briefings/2026-07-12
+
+## Bổ sung 2026-10-12 (overmind-core/overmind → mục 07, case study Overmind)
+
+- github.com/overmind-core/overmind (clone đầy đủ, 82 commit): README.md, .env.example, docker-compose.yml, overbae/settings.py, overbae/api/auth_registration.py, overbae/services/project_invites.py, overbae/services/mcp/{catalog,context}.py, overmind/overmind/{analytics,config}.py, .agents/hooks/guards.py, .claude/settings.json; trang GitHub (632★, 12/10/2026), /releases (v0.1.3, 7/10/2026)
+- pypi.org/project/overmind (0.1.85) · pypistats.org/packages/overmind · trendshift.io/repositories/274765 · overmindlab.ai/pricing · overmindlab.ai/about · tech.eu (seed £2M, 11/2/2026) · osneycapital.com/portfolio/overmind · digg.com/ai/fj6px48f · themenonlab.blog (review 5/10/2026) · opensourcealternatives.to/item/overmind
+- Trùng tên: github.com/DarthSim/overmind, github.com/cerebral/overmind, github.com/overmindtech/cli (overmind.tech, công ty khác) · startupintros.com (seed US$6M của overmind.tech)
+
+## Bổ sung 2026-10-12 (academa-labs/manimgx → mục 22 §9c)
+
+- github.com/academa-labs/manimgx (clone đầy đủ, 185 commit): README.md, benchmarks/{README.md,results.json}, skills/manimgx/SKILL.md, docs/content/user-guide/coming-from-manim-ce.md, tests/oracles.py, .github/workflows/ai.yaml, pyproject.toml; trang GitHub (~774★, 12/10/2026)
+- manimgx.academa.ai (+ llms.txt) · pypi.org/project/manimgx (0.1.1) · news.ycombinator.com/item?id=50037852 (Show HN, 8 điểm) · news.ycombinator.com/item?id=49091703 (Academa Studio) · academa.ai/team
+- So sánh (★ trang GitHub 12/10/2026): 3b1b/manim, ManimCommunity/manim, AzurIce/ranim, maloyan/manim-web, HarleyCoops/Math-To-Manim, adithya-s-k/manim_skill, abhiemj/manim-mcp-server, TIGER-AI-Lab/TheoremExplainAgent
+
+## Bổ sung 2026-10-12 (ảnh "Official MCP Servers" của VoltAgent → mục 04 §2c)
+
+- github.com/VoltAgent/official-mcp-servers (README, CONTRIBUTING, lịch sử commit; 302★) · repos.ecosyste.ms (metadata 201 repo trong list) · trang GitHub từng repo được kiểm (PostHog/mcp, semgrep/mcp, browserbase, elevenlabs, JetBrains, langfuse, ahujasid/mcp-for-blender, google/mcp…)
+- So sánh: github.com/modelcontextprotocol/servers, github.com/punkpeye/awesome-mcp-servers, github.com/wong2/awesome-mcp-servers, glama.ai/mcp/servers, smithery.ai
+
+## Bổ sung 2026-10-12 (ảnh FilmCraft "Premiere Pro → viết lại bằng Rust" → mục 01 §3d)
+
+- github.com/storytold/filmcraft (lịch sử git đầy đủ, 1.015 commit không merge, 735 có trailer Claude): ROADMAP.md, docs/target-app-parity.md, docs/gaps.md, CLAUDE.md, assets/app-icon/README.md, /releases, /issues; trang GitHub (~10,9k★, 12/10/2026) · getartcraft.com/apps/filmcraft
+- news.ycombinator.com/item?id=49959605 · it-connect.tech (PhotoCraft/FilmCraft/LightCraft) · PetaPixel, Gizmodo, Phoronix, TweakTown (10/2026); không tìm thấy bài tiếng Việt gốc của ảnh
+- Repo nhái cần tránh: github.com/filmcraft-app/filmcraft · So sánh (★ 12/10/2026): OpenCut, LosslessCut, Shotcut, Olive, OpenShot, Kdenlive
+
+## Bổ sung 2026-10-12 (ảnh "Awesome-AI-Security-Skills" → mục 12 §3e)
+
+- github.com/EvanThomasLuke/Awesome-AI-Security-Skills (README, 22 commit; 112★, 12/10/2026) · github.com/EvanThomasLuke
+- Trang repo + commits Atom của các mục được kiểm: trailofbits/skills, trailofbits/skills-curated, NVIDIA/SkillSpector, cisco-ai-defense/skill-scanner, anthropics/claude-code-security-review, cloudflare/security-audit-skill, google/mantis, elastic/agent-skills, ghostsecurity/skills, semgrep/skills, mukul975/Anthropic-Cybersecurity-Skills, elementalsouls/Claude-BugHunter, blacklanternsecurity/red-run, DeepBitsTechnology/claude-plugins, Netflix-Skunkworks/railguard-skill, Mindgard/ai-ide-skills, AILiteracyLab/Claude-Security-Audit, zhaoxuya520/reverse-skill · raw.githubusercontent.com/SnailSploit/Claude-Red/main/CHANGELOG.md

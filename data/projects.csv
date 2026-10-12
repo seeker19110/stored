@@ -33,7 +33,7 @@ OpenClaw,openclaw/openclaw,,personal-agent,MIT,390000,True,02,Trợ lý cá nhâ
 Ralph Wiggum loop (plugin),anthropics/claude-code,https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md,pattern-loop,n/a,,True,03,Stop-hook loop; tác giả kỹ thuật: Geoffrey Huntley 7/2025
 ralph-claude-code,frankbria/ralph-claude-code,,pattern-loop,,,True,03,Loop với exit detection
 claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,,learning,,,True,03,"agent teams, workflows"
-MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,87000,True,04,AAIF / Linux Foundation
+MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,91200,True,04,"AAIF / Linux Foundation; README chỉ còn 7 reference server, trỏ sang Registry (12/10/2026)"
 FastMCP,prefecthq/fastmcp,,protocol,Apache-2.0,23000,True,04,Python MCP framework
 A2A,a2aproject/A2A,,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
 AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,,True,04,Agent ↔ UI; CopilotKit
@@ -263,7 +263,7 @@ superpowers,obra/superpowers,,harness-pack,–,298000,True,20,"Bộ skill quy tr
 compound-engineering-plugin,EveryInc/compound-engineering-plugin,,harness-pack,–,25500,True,20,Plugin research→plan→work→review→compound
 oh-my-hermes,rlaope/oh-my-hermes,,harness-pack,–,3300,True,20,"Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill"
 agent-skills (addyosmani),addyosmani/agent-skills,,harness-pack,–,105300,True,20,"incremental-implementation, source-driven, doubt-driven development, context-engineering"
-claude-red,SnailSploit/claude-red,,security,MIT,,True,12,78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền
+claude-red,SnailSploit/claude-red,,security,MIT,7400,True,12,"78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill (12/10/2026)"
 LiteLLM,BerriAI/litellm,,llm-gateway,MIT,,True,10,"Proxy OpenAI-compatible 100+ provider, budget, key ảo; ~60,9k★ (theo docs nội bộ, chưa xác minh)"
 Portkey Gateway,Portkey-AI/gateway,,llm-gateway,MIT,,True,10,"Gateway nhanh, fallback/retry/load-balance"
 one-api,songquanpeng/one-api,,llm-gateway,MIT,,True,10,"Quản lý key, quota, nhiều kênh"
@@ -410,3 +410,23 @@ claude-code-templates,davila7/claude-code-templates,,harness-pack,MIT,32600,True
 awesome-claude-code-subagents,VoltAgent/awesome-claude-code-subagents,,harness-pack,MIT,25700,True,20,"161+ subagent, 10 nhóm; ★ đọc 12/10/2026"
 SuperClaude Framework,SuperClaude-Org/SuperClaude_Framework,,harness-pack,MIT,23900,True,20,"30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026"
 gsd-core,open-gsd/gsd-core,,harness-pack,MIT,10400,True,20,"Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026"
+Overmind,overmind-core/overmind,,eval-observability,AGPL-3.0 (platform) / MIT (SDK),632,True,07,Trace → dataset → eval → fine-tune LoRA (Modal); MCP có cost_class; tự host vẫn cần OpenRouter/Modal/S3; ★ đọc 12/10/2026
+OpenPipe ART,OpenPipe/ART,,eval-observability,,10800,True,07,RL (GRPO) huấn luyện agent; đối chiếu với Overmind; ★ đọc 12/10/2026
+ManimGX,academa-labs/manimgx,,video-engine,MIT (wheel GPL-3.0+ vì x264),774,True,22,"API Manim CE trên lõi Rust/wgpu, chạy cả trình duyệt; `manimgx inspect` cho agent; benchmark tự đo; ★ đọc 12/10/2026"
+ranim,AzurIce/ranim,,animation-library,MIT,655,True,22,"Engine animation Rust/wgpu, API Rust; ★ đọc 12/10/2026"
+manim-web,maloyan/manim-web,,animation-library,MIT,484,True,22,Port Manim sang TypeScript; ★ đọc 12/10/2026
+Math-To-Manim,HarleyCoops/Math-To-Manim,,motion-design,MIT,2800,True,22,Văn bản/ảnh → scene Manim bằng LLM; ★ đọc 12/10/2026
+manim_skill,adithya-s-k/manim_skill,,motion-design,MIT,1200,True,22,Skill agent cho Manim; commit cuối 1/2026; ★ đọc 12/10/2026
+official-mcp-servers (VoltAgent),VoltAgent/official-mcp-servers,,awesome-list,MIT,302,True,04,"297 mục MCP chính chủ; 11/201 repo đã archive, không có kiểm tra tự động; ★ đọc 12/10/2026"
+awesome-mcp-servers (punkpeye),punkpeye/awesome-mcp-servers,,awesome-list,MIT,96200,True,04,"Danh sách MCP lớn nhất, không lọc chính chủ; ★ đọc 12/10/2026"
+VoltAgent,VoltAgent/voltagent,,agent-framework,MIT,10800,True,02,Framework agent TypeScript; chủ các list awesome-*; ★ đọc 12/10/2026
+FilmCraft,storytold/filmcraft,,agentic-video,MIT OR Apache-2.0,10900,True,01,"NLE Rust ~343k dòng trong 11 ngày, ~72% commit Claude đồng tác giả, 94 tác giả; CI không chạy test, crash khi mở trên vài máy; ★ đọc 12/10/2026"
+OpenCut,OpenCut-app/OpenCut,,video-engine,,93700,True,01,"Trình dựng video mở, đang viết lại lõi bằng Rust; ★ đọc 12/10/2026"
+Awesome-AI-Security-Skills,EvanThomasLuke/Awesome-AI-Security-Skills,,awesome-list,,112,False,12,"58 link skill bảo mật, không có LICENSE, tự cảnh báo chưa kiểm; ★ đọc 12/10/2026"
+Trail of Bits skills,trailofbits/skills,,security,CC-BY-SA-4.0,7500,True,12,Marketplace 44 plugin; bản curated đọc từng dòng hook; ★ đọc 12/10/2026
+SkillSpector,NVIDIA/SkillSpector,,security,Apache-2.0,20000,True,12,"Quét skill tĩnh + LLM, không phải sandbox; ★ đọc 12/10/2026"
+skill-scanner (Cisco),cisco-ai-defense/skill-scanner,,security,Apache-2.0,2600,True,12,Quét skill best-effort; ★ đọc 12/10/2026
+claude-code-security-review,anthropics/claude-code-security-review,,security,MIT,6300,True,12,Action + /security-review; không chống prompt injection; commit cuối 2/2026; ★ đọc 12/10/2026
+security-audit-skill (Cloudflare),cloudflare/security-audit-skill,,security,MIT,28600,True,12,"1 skill, yêu cầu sandbox OS; ★ đọc 12/10/2026"
+Anthropic-Cybersecurity-Skills (cộng đồng),mukul975/Anthropic-Cybersecurity-Skills,,security,Apache-2.0,34300,True,12,~817 skill; không liên quan Anthropic; ★ đọc 12/10/2026
+Claude-BugHunter,elementalsouls/Claude-BugHunter,,security,MIT + CC-BY-4.0,5000,True,12,"82–83 skill bug bounty, scope chặt; ★ đọc 12/10/2026"
