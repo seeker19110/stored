@@ -4189,6 +4189,26 @@
       "open_source": true,
       "notes": "Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026",
       "section": "20"
+    },
+    {
+      "name": "Overmind",
+      "repo": "overmind-core/overmind",
+      "category": "eval-observability",
+      "license": "AGPL-3.0 (platform) / MIT (SDK)",
+      "stars": 632,
+      "open_source": true,
+      "notes": "Trace → dataset → eval → fine-tune LoRA (Modal); MCP có cost_class; tự host vẫn cần OpenRouter/Modal/S3; ★ đọc 12/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "OpenPipe ART",
+      "repo": "OpenPipe/ART",
+      "category": "eval-observability",
+      "license": null,
+      "stars": 10800,
+      "open_source": true,
+      "notes": "RL (GRPO) huấn luyện agent; đối chiếu với Overmind; ★ đọc 12/10/2026",
+      "section": "07"
     }
   ]
 }

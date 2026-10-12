@@ -156,3 +156,9 @@
 - Mục 17 §2b: github.com/{567-labs/instructor, dottxt-ai/outlines, guidance-ai/guidance, BoundaryML/baml, anthropics/claude-cookbooks, openai/openai-cookbook, anthropics/courses, anthropics/prompt-eng-interactive-tutorial, microsoft/promptflow, microsoft/LLMLingua}
 - Mục 18 §4c: github.com/VinAIResearch/PhoBERT, huggingface.co/bkai-foundation-models/vietnamese-bi-encoder, huggingface.co/AITeamVN/Vietnamese_Embedding, github.com/VinAIResearch/PhoWhisper và các nguồn khác trong mục 18
 - Mục 20 §3d: github.com/{obra/superpowers, affaan-m/ECC, addyosmani/agent-skills, wshobson/agents, davila7/claude-code-templates, VoltAgent/awesome-claude-code-subagents, EveryInc/compound-engineering-plugin, SuperClaude-Org/SuperClaude_Framework, gsd-build/get-shit-done, open-gsd/gsd-core, rlaope/oh-my-hermes} · skillrank.it.com/briefings/2026-07-12
+
+## Bổ sung 2026-10-12 (overmind-core/overmind → mục 07, case study Overmind)
+
+- github.com/overmind-core/overmind (clone đầy đủ, 82 commit): README.md, .env.example, docker-compose.yml, overbae/settings.py, overbae/api/auth_registration.py, overbae/services/project_invites.py, overbae/services/mcp/{catalog,context}.py, overmind/overmind/{analytics,config}.py, .agents/hooks/guards.py, .claude/settings.json; trang GitHub (632★, 12/10/2026), /releases (v0.1.3, 7/10/2026)
+- pypi.org/project/overmind (0.1.85) · pypistats.org/packages/overmind · trendshift.io/repositories/274765 · overmindlab.ai/pricing · overmindlab.ai/about · tech.eu (seed £2M, 11/2/2026) · osneycapital.com/portfolio/overmind · digg.com/ai/fj6px48f · themenonlab.blog (review 5/10/2026) · opensourcealternatives.to/item/overmind
+- Trùng tên: github.com/DarthSim/overmind, github.com/cerebral/overmind, github.com/overmindtech/cli (overmind.tech, công ty khác) · startupintros.com (seed US$6M của overmind.tech)

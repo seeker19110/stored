@@ -410,3 +410,5 @@ claude-code-templates,davila7/claude-code-templates,,harness-pack,MIT,32600,True
 awesome-claude-code-subagents,VoltAgent/awesome-claude-code-subagents,,harness-pack,MIT,25700,True,20,"161+ subagent, 10 nhóm; ★ đọc 12/10/2026"
 SuperClaude Framework,SuperClaude-Org/SuperClaude_Framework,,harness-pack,MIT,23900,True,20,"30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026"
 gsd-core,open-gsd/gsd-core,,harness-pack,MIT,10400,True,20,"Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026"
+Overmind,overmind-core/overmind,,eval-observability,AGPL-3.0 (platform) / MIT (SDK),632,True,07,Trace → dataset → eval → fine-tune LoRA (Modal); MCP có cost_class; tự host vẫn cần OpenRouter/Modal/S3; ★ đọc 12/10/2026
+OpenPipe ART,OpenPipe/ART,,eval-observability,,10800,True,07,RL (GRPO) huấn luyện agent; đối chiếu với Overmind; ★ đọc 12/10/2026
