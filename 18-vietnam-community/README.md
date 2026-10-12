@@ -42,6 +42,13 @@
 | Viblo, TopDev, ITviec, Dạy Nhau Học, Tôi đi code dạo | Cộng đồng/nội dung | Chia sẻ kỹ thuật, tuyển dụng |
 | Xu hướng 2026 | – | Dev VN chuyển từ outsourcing sang "AI building"; dự án hướng ngành: sản xuất, logistics, TMĐT, nông nghiệp |
 
+## 4b. Kỹ thuật agentic & pháp lý số tại VN (từ repo của chủ kho, mục 23, 2026-10-12)
+
+- **Engineering agentic viết bằng tiếng Việt**: 19 repo của `seeker19110`/`donghanhcungban` (xboss, projects-template, X-Agents, dhcb, Dhcb-Tools, Sales-Hunter…) có CLAUDE.md, ADR, TRAPS.md, hook, skill, commit toàn tiếng Việt — bằng chứng rằng harness tiếng Việt chạy được với Claude Code/Codex/Hermes; 7 skill tiếng Việt cho kỹ sư Revit/AutoCAD (`Dhcb-Tools/skills`), 112 SKILL.md trong Hermes-Agents (vendor + tự viết).
+- **AI cho AEC/BIM**: Dhcb-Tools (Revit/AutoCAD MCP + IDS/BCF), xboss (quản lý tiến độ MEP/ACMV) — nhánh ứng dụng theo ngành ít thấy trong các awesome list.
+- **Pháp lý (theo docs nội bộ của các repo, chưa xác minh văn bản gốc):** NĐ 13/2023 bảo vệ dữ liệu cá nhân + DPIA (dhcb `security-audit-20260927.md`); **NĐ 217/2026** BIM bắt buộc công trình cấp II từ 1/7/2026; **NĐ 207/2026** nhật ký thi công điện tử, dấu hoàn công; TT 09/2024; NĐ 70/2025 hoá đơn điện tử; NĐ 06/2021 → 35/2023 quản lý chất lượng công trình. Thanh toán: **SePay** (webhook chuyển khoản VietQR) dùng trong dhcb.
+- Model VN nên theo dõi thêm: nhóm Hermes/Antigravity dùng Gemini 3.x làm model chính cho tiếng Việt (quan sát trong config, chưa có benchmark).
+
 ## 5. Gợi ý bổ sung tiếp
 
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.

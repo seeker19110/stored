@@ -82,6 +82,8 @@
 | codebase-video (plugin Claude Code) | – | Biến codebase thành video thuyết minh, agent khác verify claim |
 | vimax-agnes | – | Pipeline idea → story → scene → video, free tier |
 | FRAMEWORKERS (arXiv 2608.29814), *Agentic Artifact Creation* (2608.28122) | – | Nghiên cứu multi-agent cho sản xuất video |
+| LTX-2 (Lightricks), Wan 2.2 | – | X-Studio chọn cho "xưởng video" (mục 23 §3.2): render cache SHA-256, MotionSpec, `qc.py` kiểm LUFS/độ dài/khung; nghiên cứu `RESEARCH-VIDEO-FACTORIES.md` so sánh video factory mở |
+| codebase-video, vimax-agnes, MoneyPrinterTurbo | – | Xem thêm "video factory" trong X-Studio docs |
 
 ## 4. Nguồn
 

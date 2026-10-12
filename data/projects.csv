@@ -1,232 +1,281 @@
 name,repo,url,category,license,stars_est,open_source,section,notes
-OpenCode,sst/opencode,https://github.com/sst/opencode,coding-agent,MIT,210000,True,01,CLI/TUI agent đa model; #1 nhóm mở 9/2026
-DeepSeek Harness,deepseek-ai/deepseek-harness,https://github.com/deepseek-ai/deepseek-harness,coding-agent,MIT,200000,True,01,Ra mắt 13/8/2026; mọi thứ là plugin; developer preview
-Claude Code,anthropics/claude-code,https://github.com/anthropics/claude-code,coding-tool-commercial,proprietary,148000,False,01,"CLI/IDE/web; hooks, skills, subagents, ralph-loop plugin"
-OpenAI Codex CLI,openai/codex,https://github.com/openai/codex,coding-agent,Apache-2.0,127000,True,01,Rust; sandbox; multi-agent
-Gemini CLI,google-gemini/gemini-cli,https://github.com/google-gemini/gemini-cli,coding-agent,Apache-2.0,107000,True,01,
-OpenHands,OpenHands/OpenHands,https://github.com/OpenHands/OpenHands,coding-agent,MIT,90000,True,01,Cũ: OpenDevin / All-Hands-AI
-Cline,cline/cline,https://github.com/cline/cline,coding-agent,Apache-2.0,69000,True,01,VS Code extension; plan/act
-Aider,Aider-AI/aider,https://github.com/Aider-AI/aider,coding-agent,Apache-2.0,49000,True,01,Commit cuối 5/2026
-SWE-agent,SWE-agent/SWE-agent,https://github.com/SWE-agent/SWE-agent,coding-agent,MIT,20500,True,01,Princeton
-mini-SWE-agent,SWE-agent/mini-swe-agent,https://github.com/SWE-agent/mini-swe-agent,coding-agent,MIT,8400,True,01,100 dòng; >74% SWE-bench Verified; harness chuẩn của Vals
-Goose,block/goose,https://github.com/block/goose,coding-agent,Apache-2.0,,True,01,MCP-first
-Roo Code,RooCodeInc/Roo-Code,https://github.com/RooCodeInc/Roo-Code,coding-agent,Apache-2.0,,True,01,Fork Cline
+OpenCode,sst/opencode,,coding-agent,MIT,210000,True,01,CLI/TUI agent đa model; #1 nhóm mở 9/2026
+DeepSeek Harness,deepseek-ai/deepseek-harness,,coding-agent,MIT,200000,True,01,Ra mắt 13/8/2026; mọi thứ là plugin; developer preview
+Claude Code,anthropics/claude-code,,coding-tool-commercial,proprietary,148000,False,01,"CLI/IDE/web; hooks, skills, subagents, ralph-loop plugin"
+OpenAI Codex CLI,openai/codex,,coding-agent,Apache-2.0,127000,True,01,Rust; sandbox; multi-agent
+Gemini CLI,google-gemini/gemini-cli,,coding-agent,Apache-2.0,107000,True,01,
+OpenHands,OpenHands/OpenHands,,coding-agent,MIT,90000,True,01,Cũ: OpenDevin / All-Hands-AI
+Cline,cline/cline,,coding-agent,Apache-2.0,69000,True,01,VS Code extension; plan/act
+Aider,Aider-AI/aider,,coding-agent,Apache-2.0,49000,True,01,Commit cuối 5/2026
+SWE-agent,SWE-agent/SWE-agent,,coding-agent,MIT,20500,True,01,Princeton
+mini-SWE-agent,SWE-agent/mini-swe-agent,,coding-agent,MIT,8400,True,01,100 dòng; >74% SWE-bench Verified; harness chuẩn của Vals
+Goose,block/goose,,coding-agent,Apache-2.0,,True,01,MCP-first
+Roo Code,RooCodeInc/Roo-Code,,coding-agent,Apache-2.0,,True,01,Fork Cline
 Cursor,,https://cursor.com,coding-tool-commercial,proprietary,,False,01,$20/$60/$200; cloud agents; SKILL.md từ 2.4
 Windsurf / Devin Desktop,,https://windsurf.com,coding-tool-commercial,proprietary,,False,01,Cognition
 Devin,,https://devin.ai,coding-tool-commercial,proprietary,,False,01,
 GitHub Copilot,,https://github.com/features/copilot,coding-tool-commercial,proprietary,,False,01,$10/$19/$39
 Google Jules,,https://jules.google,coding-tool-commercial,proprietary,,False,01,Async cloud agent
-LangChain,langchain-ai/langchain,https://github.com/langchain-ai/langchain,agent-framework,MIT,130000,True,02,
-LangGraph,langchain-ai/langgraph,https://github.com/langchain-ai/langgraph,agent-framework,MIT,40000,True,02,34.5M tải/tháng; dẫn đầu adoption
-AutoGen,microsoft/autogen,https://github.com/microsoft/autogen,agent-framework,MIT,60000,True,02,Maintenance; kế nhiệm = Microsoft Agent Framework (GA 4/2026)
-Microsoft Agent Framework,microsoft/agent-framework,https://github.com/microsoft/agent-framework,agent-framework,MIT,,True,02,AutoGen + Semantic Kernel
-CrewAI,crewAIInc/crewAI,https://github.com/crewAIInc/crewAI,agent-framework,MIT,57000,True,02,Role-based crews
-OpenAI Agents SDK,openai/openai-agents-python,https://github.com/openai/openai-agents-python,agent-framework,MIT,29000,True,02,"handoffs, guardrails"
-LlamaIndex,run-llama/llama_index,https://github.com/run-llama/llama_index,agent-framework,MIT,48000,True,02,RAG/data framework
-Semantic Kernel,microsoft/semantic-kernel,https://github.com/microsoft/semantic-kernel,agent-framework,MIT,28000,True,02,Hợp vào Agent Framework
-smolagents,huggingface/smolagents,https://github.com/huggingface/smolagents,agent-framework,Apache-2.0,26000,True,02,code-agent
-Haystack,deepset-ai/haystack,https://github.com/deepset-ai/haystack,agent-framework,Apache-2.0,20000,True,02,
-PydanticAI,pydantic/pydantic-ai,https://github.com/pydantic/pydantic-ai,agent-framework,MIT,16000,True,02,typed
-Google ADK,google/adk-python,https://github.com/google/adk-python,agent-framework,Apache-2.0,,True,02,A2A native
-Mastra,mastra-ai/mastra,https://github.com/mastra-ai/mastra,agent-framework,Apache-2.0,,True,02,TypeScript
-OpenClaw,openclaw/openclaw,https://github.com/openclaw/openclaw,personal-agent,MIT,390000,True,02,Trợ lý cá nhân tự host; foundation độc lập
+LangChain,langchain-ai/langchain,,agent-framework,MIT,130000,True,02,
+LangGraph,langchain-ai/langgraph,,agent-framework,MIT,40000,True,02,34.5M tải/tháng; dẫn đầu adoption
+AutoGen,microsoft/autogen,,agent-framework,MIT,60000,True,02,Maintenance; kế nhiệm = Microsoft Agent Framework (GA 4/2026)
+Microsoft Agent Framework,microsoft/agent-framework,,agent-framework,MIT,,True,02,AutoGen + Semantic Kernel
+CrewAI,crewAIInc/crewAI,,agent-framework,MIT,57000,True,02,Role-based crews
+OpenAI Agents SDK,openai/openai-agents-python,,agent-framework,MIT,29000,True,02,"handoffs, guardrails"
+LlamaIndex,run-llama/llama_index,,agent-framework,MIT,48000,True,02,RAG/data framework
+Semantic Kernel,microsoft/semantic-kernel,,agent-framework,MIT,28000,True,02,Hợp vào Agent Framework
+smolagents,huggingface/smolagents,,agent-framework,Apache-2.0,26000,True,02,code-agent
+Haystack,deepset-ai/haystack,,agent-framework,Apache-2.0,20000,True,02,
+PydanticAI,pydantic/pydantic-ai,,agent-framework,MIT,16000,True,02,typed
+Google ADK,google/adk-python,,agent-framework,Apache-2.0,,True,02,A2A native
+Mastra,mastra-ai/mastra,,agent-framework,Apache-2.0,,True,02,TypeScript
+OpenClaw,openclaw/openclaw,,personal-agent,MIT,390000,True,02,Trợ lý cá nhân tự host; foundation độc lập
 Ralph Wiggum loop (plugin),anthropics/claude-code,https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md,pattern-loop,n/a,,True,03,Stop-hook loop; tác giả kỹ thuật: Geoffrey Huntley 7/2025
-ralph-claude-code,frankbria/ralph-claude-code,https://github.com/frankbria/ralph-claude-code,pattern-loop,,,True,03,Loop với exit detection
-claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,https://github.com/FlorianBruniaux/claude-code-ultimate-guide,learning,,,True,03,"agent teams, workflows"
-MCP servers (reference),modelcontextprotocol/servers,https://github.com/modelcontextprotocol/servers,protocol,MIT,87000,True,04,AAIF / Linux Foundation
-FastMCP,prefecthq/fastmcp,https://github.com/prefecthq/fastmcp,protocol,Apache-2.0,23000,True,04,Python MCP framework
-A2A,a2aproject/A2A,https://github.com/a2aproject/A2A,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
-AG-UI,ag-ui-protocol/ag-ui,https://github.com/ag-ui-protocol/ag-ui,protocol,MIT,,True,04,Agent ↔ UI; CopilotKit
+ralph-claude-code,frankbria/ralph-claude-code,,pattern-loop,,,True,03,Loop với exit detection
+claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,,learning,,,True,03,"agent teams, workflows"
+MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,87000,True,04,AAIF / Linux Foundation
+FastMCP,prefecthq/fastmcp,,protocol,Apache-2.0,23000,True,04,Python MCP framework
+A2A,a2aproject/A2A,,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
+AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,,True,04,Agent ↔ UI; CopilotKit
 Agent Skills spec,,https://agentskills.io,protocol,open standard,,True,04,SKILL.md; chuẩn mở 18/12/2025
-awesome-agent-skills,VoltAgent/awesome-agent-skills,https://github.com/VoltAgent/awesome-agent-skills,awesome-list,,,True,04,1000+ skills
-n8n,n8n-io/n8n,https://github.com/n8n-io/n8n,low-code,Sustainable Use,207000,False,05,fair-code
-Dify,langgenius/dify,https://github.com/langgenius/dify,low-code,Apache-2.0 (modified),158000,True,05,
-Langflow,langflow-ai/langflow,https://github.com/langflow-ai/langflow,low-code,MIT,145000,True,05,
-Flowise,FlowiseAI/Flowise,https://github.com/FlowiseAI/Flowise,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
-shadcn/ui,shadcn-ui/ui,https://github.com/shadcn-ui/ui,ui-library,MIT,118000,True,06,Base UI mặc định từ 7/2026
-MUI,mui/material-ui,https://github.com/mui/material-ui,ui-library,MIT,93000,True,06,
-Radix UI,radix-ui/primitives,https://github.com/radix-ui/primitives,ui-library,MIT,,True,06,nguồn lệch 19k–35k
-Base UI,mui/base-ui,https://github.com/mui/base-ui,ui-library,MIT,10600,True,06,
-Mantine,mantinedev/mantine,https://github.com/mantinedev/mantine,ui-library,MIT,28000,True,06,
-Vuetify,vuetifyjs/vuetify,https://github.com/vuetifyjs/vuetify,ui-library,MIT,41000,True,06,
-Storybook,storybookjs/storybook,https://github.com/storybookjs/storybook,ui-library,MIT,,True,06,
-Excalidraw,excalidraw/excalidraw,https://github.com/excalidraw/excalidraw,design-tool,MIT,134000,True,06,
-Penpot,penpot/penpot,https://github.com/penpot/penpot,design-tool,MPL-2.0,61000,True,06,Figma alternative
-tldraw,tldraw/tldraw,https://github.com/tldraw/tldraw,design-tool,tldraw license,51000,True,06,
-Onlook,onlook-dev/onlook,https://github.com/onlook-dev/onlook,design-tool,Apache-2.0,,True,06,Visual editor React
+awesome-agent-skills,VoltAgent/awesome-agent-skills,,awesome-list,,,True,04,1000+ skills
+n8n,n8n-io/n8n,,low-code,Sustainable Use,207000,False,05,fair-code
+Dify,langgenius/dify,,low-code,Apache-2.0 (modified),158000,True,05,
+Langflow,langflow-ai/langflow,,low-code,MIT,145000,True,05,
+Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
+shadcn/ui,shadcn-ui/ui,,ui-library,MIT,118000,True,06,Base UI mặc định từ 7/2026
+MUI,mui/material-ui,,ui-library,MIT,93000,True,06,
+Radix UI,radix-ui/primitives,,ui-library,MIT,,True,06,nguồn lệch 19k–35k
+Base UI,mui/base-ui,,ui-library,MIT,10600,True,06,
+Mantine,mantinedev/mantine,,ui-library,MIT,28000,True,06,
+Vuetify,vuetifyjs/vuetify,,ui-library,MIT,41000,True,06,
+Storybook,storybookjs/storybook,,ui-library,MIT,,True,06,
+Excalidraw,excalidraw/excalidraw,,design-tool,MIT,134000,True,06,
+Penpot,penpot/penpot,,design-tool,MPL-2.0,61000,True,06,Figma alternative
+tldraw,tldraw/tldraw,,design-tool,tldraw license,51000,True,06,
+Onlook,onlook-dev/onlook,,design-tool,Apache-2.0,,True,06,Visual editor React
 v0.app,,https://v0.app,ai-ui-generator,proprietary,,False,06,Vercel
 Lovable,,https://lovable.dev,ai-ui-generator,proprietary,,False,06,
-bolt.diy,stackblitz-labs/bolt.diy,https://github.com/stackblitz-labs/bolt.diy,ai-ui-generator,MIT,,True,06,Bản mở của Bolt.new
+bolt.diy,stackblitz-labs/bolt.diy,,ai-ui-generator,MIT,,True,06,Bản mở của Bolt.new
 Google Stitch,,https://stitch.withgoogle.com,ai-ui-generator,proprietary,,False,06,
-Taste Skill,Leonxlnx/taste-skill,https://github.com/Leonxlnx/taste-skill,design-skill,,46000,True,06,Chống AI-slop UI
-CopilotKit,CopilotKit/CopilotKit,https://github.com/CopilotKit/CopilotKit,agentic-ui,MIT,,True,06,$27M 5/2026
-assistant-ui,assistant-ui/assistant-ui,https://github.com/assistant-ui/assistant-ui,agentic-ui,MIT,,True,06,
-Vercel AI SDK,vercel/ai,https://github.com/vercel/ai,agentic-ui,Apache-2.0,,True,06,+ AI Elements
-Langfuse,langfuse/langfuse,https://github.com/langfuse/langfuse,eval-observability,MIT (core),,True,07,
-Promptfoo,promptfoo/promptfoo,https://github.com/promptfoo/promptfoo,eval-observability,MIT,,True,07,red-team
-DeepEval,confident-ai/deepeval,https://github.com/confident-ai/deepeval,eval-observability,Apache-2.0,,True,07,
-Ragas,explodinggradients/ragas,https://github.com/explodinggradients/ragas,eval-observability,Apache-2.0,,True,07,
-Arize Phoenix,Arize-ai/phoenix,https://github.com/Arize-ai/phoenix,eval-observability,ELv2,,False,07,source-available
-build-your-own-x,codecrafters-io/build-your-own-x,https://github.com/codecrafters-io/build-your-own-x,learning,CC0,550000,True,08,#1 GitHub
-freeCodeCamp,freeCodeCamp/freeCodeCamp,https://github.com/freeCodeCamp/freeCodeCamp,learning,BSD-3,455000,True,08,
-developer-roadmap,kamranahmedse/developer-roadmap,https://github.com/kamranahmedse/developer-roadmap,learning,custom,365000,True,08,
-system-design-primer,donnemartin/system-design-primer,https://github.com/donnemartin/system-design-primer,learning,CC BY 4.0,365000,True,08,
-awesome-llm-apps,Shubhamsaboo/awesome-llm-apps,https://github.com/Shubhamsaboo/awesome-llm-apps,awesome-list,Apache-2.0,105000,True,08,
-awesome-claude-code,hesreallyhim/awesome-claude-code,https://github.com/hesreallyhim/awesome-claude-code,awesome-list,,45000,True,08,37k–55k tùy nguồn
-awesome-mcp-servers,wong2/awesome-mcp-servers,https://github.com/wong2/awesome-mcp-servers,awesome-list,,,True,08,
-awesome-generative-ui,narrowin/awesome-generative-ui,https://github.com/narrowin/awesome-generative-ui,awesome-list,,,True,08,
-awesome-design-systems,klaufel/awesome-design-systems,https://github.com/klaufel/awesome-design-systems,awesome-list,,,True,08,
-design-resources-for-developers,bradtraversy/design-resources-for-developers,https://github.com/bradtraversy/design-resources-for-developers,awesome-list,MIT,,True,08,
-Github-Ranking,EvanLi/Github-Ranking,https://github.com/EvanLi/Github-Ranking,awesome-list,,,True,08,Cập nhật hằng ngày
-deployment-checklist,PinoyFreeCoder/deployment-checklist,https://github.com/PinoyFreeCoder/deployment-checklist,checklist,không rõ (cho phép copy/fork),48,True,09,"Pre-deploy web/mobile; base.md ~130 mục + laravel/nextjs/django; agent.md trả GO/NO-GO với bằng chứng; tạo 26/9/2026, không LICENSE; link từ người dùng"
-OWASP CheatSheetSeries,OWASP/CheatSheetSeries,https://github.com/OWASP/CheatSheetSeries,checklist,CC BY-SA 4.0,,True,09,
-Front-End-Checklist,thedaviddias/Front-End-Checklist,https://github.com/thedaviddias/Front-End-Checklist,checklist,MIT,,True,09,
-production-readiness-checklist,MarinJursic/production-readiness-checklist,https://github.com/MarinJursic/production-readiness-checklist,checklist,MIT,40,True,09,"10.042 control, scanner CLI prc (read-only), AI advisory-only; so sánh với deployment-checklist"
-mcp-project-planner,PinoyFreeCoder/mcp-project-planner,https://github.com/PinoyFreeCoder/mcp-project-planner,protocol,,1,True,09,Remote MCP server gợi ý repo/API/tech stack; cùng tác giả deployment-checklist
-owasp-asvs-checklist,shenril/owasp-asvs-checklist,https://github.com/shenril/owasp-asvs-checklist,checklist,MIT,,True,09,ASVS 5.0 audit checklist (xlsx/ods)
-owasp-asvs-wstg-checklist,jeremychoi/owasp-asvs-wstg-checklist,https://github.com/jeremychoi/owasp-asvs-wstg-checklist,checklist,,,True,09,Map ASVS ↔ WSTG
-Ollama,ollama/ollama,https://github.com/ollama/ollama,inference,MIT,175000,True,10,Wrapper llama.cpp; API OpenAI-compatible
-llama.cpp,ggml-org/llama.cpp,https://github.com/ggml-org/llama.cpp,inference,MIT,100000,True,10,Engine nền; sao lệch 85k–130k
-vLLM,vllm-project/vllm,https://github.com/vllm-project/vllm,inference,Apache-2.0,85000,True,10,Serving production
-SGLang,sgl-project/sglang,https://github.com/sgl-project/sglang,inference,Apache-2.0,25000,True,10,RadixAttention
-Milvus,milvus-io/milvus,https://github.com/milvus-io/milvus,vector-db,Apache-2.0,42000,True,10,
-Qdrant,qdrant/qdrant,https://github.com/qdrant/qdrant,vector-db,Apache-2.0,,True,10,Rust; filtering
-Chroma,chroma-core/chroma,https://github.com/chroma-core/chroma,vector-db,Apache-2.0,,True,10,
-Weaviate,weaviate/weaviate,https://github.com/weaviate/weaviate,vector-db,BSD-3,,True,10,
-pgvector,pgvector/pgvector,https://github.com/pgvector/pgvector,vector-db,PostgreSQL,,True,10,
-LanceDB,lancedb/lancedb,https://github.com/lancedb/lancedb,vector-db,Apache-2.0,,True,10,
-GraphRAG,microsoft/graphrag,https://github.com/microsoft/graphrag,rag,MIT,,True,10,
-LightRAG,HKUDS/LightRAG,https://github.com/HKUDS/LightRAG,rag,MIT,,True,10,
-RAGFlow,infiniflow/ragflow,https://github.com/infiniflow/ragflow,rag,Apache-2.0,,True,10,
-Mem0,mem0ai/mem0,https://github.com/mem0ai/mem0,agent-memory,Apache-2.0,65600,True,10,18/9/2026
-Graphiti (Zep),getzep/graphiti,https://github.com/getzep/graphiti,agent-memory,Apache-2.0,31000,True,10,temporal KG
-Letta,letta-ai/letta,https://github.com/letta-ai/letta,agent-memory,Apache-2.0,24800,True,10,MemGPT
-cognee,topoteretes/cognee,https://github.com/topoteretes/cognee,agent-memory,Apache-2.0,30000,True,10,
-Browser Use,browser-use/browser-use,https://github.com/browser-use/browser-use,browser-agent,MIT,114000,True,11,9/2026
-agent-browser,vercel-labs/agent-browser,https://github.com/vercel-labs/agent-browser,browser-agent,,29500,False,11,CLI Rust
-Stagehand,browserbase/stagehand,https://github.com/browserbase/stagehand,browser-agent,MIT,25600,True,11,v4 CDP
-Skyvern,Skyvern-AI/skyvern,https://github.com/Skyvern-AI/skyvern,browser-agent,AGPL-3.0,,True,11,
-Playwright MCP,microsoft/playwright-mcp,https://github.com/microsoft/playwright-mcp,browser-agent,Apache-2.0,,True,11,accessibility tree
-E2B,e2b-dev/E2B,https://github.com/e2b-dev/E2B,sandbox,Apache-2.0,,True,11,Firecracker microVM
-Modal,modal-labs/modal-client,https://github.com/modal-labs/modal-client,sandbox,Apache-2.0 (SDK),,True,11,gVisor; GPU
-Daytona,daytonaio/daytona,https://github.com/daytonaio/daytona,sandbox,,,False,11,Trạng thái mở chưa rõ từ 6/2026
-NeMo Guardrails,NVIDIA/NeMo-Guardrails,https://github.com/NVIDIA/NeMo-Guardrails,security,Apache-2.0,,True,12,Colang rails
-LLM Guard,protectai/llm-guard,https://github.com/protectai/llm-guard,security,MIT,,True,12,~35 scanner
-Guardrails AI,guardrails-ai/guardrails,https://github.com/guardrails-ai/guardrails,security,Apache-2.0,,True,12,
-OWASP MCP Top 10,OWASP/www-project-mcp-top-10,https://github.com/OWASP/www-project-mcp-top-10,security,CC,,True,12,
-gitleaks,gitleaks/gitleaks,https://github.com/gitleaks/gitleaks,security,MIT,,True,12,secret scan
-trufflehog,trufflesecurity/trufflehog,https://github.com/trufflesecurity/trufflehog,security,AGPL-3.0,,True,12,secret scan
-React,facebook/react,https://github.com/facebook/react,frontend,MIT,251000,True,13,11/10/2026
-Vue,vuejs/core,https://github.com/vuejs/core,frontend,MIT,208000,True,13,
-Next.js,vercel/next.js,https://github.com/vercel/next.js,frontend,MIT,130000,True,13,
-Angular,angular/angular,https://github.com/angular/angular,frontend,MIT,95000,True,13,
-Svelte,sveltejs/svelte,https://github.com/sveltejs/svelte,frontend,MIT,78000,True,13,
-Nuxt,nuxt/nuxt,https://github.com/nuxt/nuxt,frontend,MIT,54000,True,13,
-Astro,withastro/astro,https://github.com/withastro/astro,frontend,MIT,45500,True,13,
-Vite,vitejs/vite,https://github.com/vitejs/vite,frontend,MIT,,True,13,
-FastAPI,fastapi/fastapi,https://github.com/fastapi/fastapi,backend,MIT,100000,True,13,
-NestJS,nestjs/nest,https://github.com/nestjs/nest,backend,MIT,76800,True,13,10/2026
-Hono,honojs/hono,https://github.com/honojs/hono,backend,MIT,32500,True,13,
-Django,django/django,https://github.com/django/django,backend,BSD-3,,True,13,
-Spring Boot,spring-projects/spring-boot,https://github.com/spring-projects/spring-boot,backend,Apache-2.0,,True,13,
-Flutter,flutter/flutter,https://github.com/flutter/flutter,mobile,BSD-3,,True,13,
-React Native,facebook/react-native,https://github.com/facebook/react-native,mobile,MIT,,True,13,+ Expo
-Kotlin Multiplatform,JetBrains/kotlin,https://github.com/JetBrains/kotlin,mobile,Apache-2.0,,True,13,
-Kubernetes,kubernetes/kubernetes,https://github.com/kubernetes/kubernetes,devops,Apache-2.0,,True,13,
-OpenTofu,opentofu/opentofu,https://github.com/opentofu/opentofu,devops,MPL-2.0,,True,13,Fork Terraform
-Terraform,hashicorp/terraform,https://github.com/hashicorp/terraform,devops,BSL-1.1,,True,13,
-Argo CD,argoproj/argo-cd,https://github.com/argoproj/argo-cd,devops,Apache-2.0,,True,13,CNCF graduated
-Dagger,dagger/dagger,https://github.com/dagger/dagger,devops,Apache-2.0,,True,13,
-GitHub Spec Kit,github/spec-kit,https://github.com/github/spec-kit,spec-driven,MIT,,True,13,specify/plan/tasks/implement
-BMAD-METHOD,bmad-code-org/BMAD-METHOD,https://github.com/bmad-code-org/BMAD-METHOD,spec-driven,MIT,,True,13,role agents
-OpenSpec,Fission-AI/OpenSpec,https://github.com/Fission-AI/OpenSpec,spec-driven,MIT,,True,13,
+Taste Skill,Leonxlnx/taste-skill,,design-skill,,46000,True,06,Chống AI-slop UI
+CopilotKit,CopilotKit/CopilotKit,,agentic-ui,MIT,,True,06,$27M 5/2026
+assistant-ui,assistant-ui/assistant-ui,,agentic-ui,MIT,,True,06,
+Vercel AI SDK,vercel/ai,,agentic-ui,Apache-2.0,,True,06,+ AI Elements
+Langfuse,langfuse/langfuse,,eval-observability,MIT (core),,True,07,
+Promptfoo,promptfoo/promptfoo,,eval-observability,MIT,,True,07,red-team
+DeepEval,confident-ai/deepeval,,eval-observability,Apache-2.0,,True,07,
+Ragas,explodinggradients/ragas,,eval-observability,Apache-2.0,,True,07,
+Arize Phoenix,Arize-ai/phoenix,,eval-observability,ELv2,,False,07,source-available
+build-your-own-x,codecrafters-io/build-your-own-x,,learning,CC0,550000,True,08,#1 GitHub
+freeCodeCamp,freeCodeCamp/freeCodeCamp,,learning,BSD-3,455000,True,08,
+developer-roadmap,kamranahmedse/developer-roadmap,,learning,custom,365000,True,08,
+system-design-primer,donnemartin/system-design-primer,,learning,CC BY 4.0,365000,True,08,
+awesome-llm-apps,Shubhamsaboo/awesome-llm-apps,,awesome-list,Apache-2.0,105000,True,08,
+awesome-claude-code,hesreallyhim/awesome-claude-code,,awesome-list,,45000,True,08,37k–55k tùy nguồn
+awesome-mcp-servers,wong2/awesome-mcp-servers,,awesome-list,,,True,08,
+awesome-generative-ui,narrowin/awesome-generative-ui,,awesome-list,,,True,08,
+awesome-design-systems,klaufel/awesome-design-systems,,awesome-list,,,True,08,
+design-resources-for-developers,bradtraversy/design-resources-for-developers,,awesome-list,MIT,,True,08,
+Github-Ranking,EvanLi/Github-Ranking,,awesome-list,,,True,08,Cập nhật hằng ngày
+deployment-checklist,PinoyFreeCoder/deployment-checklist,,checklist,không rõ (cho phép copy/fork),48,True,09,"Pre-deploy web/mobile; base.md ~130 mục + laravel/nextjs/django; agent.md trả GO/NO-GO với bằng chứng; tạo 26/9/2026, không LICENSE; link từ người dùng"
+OWASP CheatSheetSeries,OWASP/CheatSheetSeries,,checklist,CC BY-SA 4.0,,True,09,
+Front-End-Checklist,thedaviddias/Front-End-Checklist,,checklist,MIT,,True,09,
+production-readiness-checklist,MarinJursic/production-readiness-checklist,,checklist,MIT,40,True,09,"10.042 control, scanner CLI prc (read-only), AI advisory-only; so sánh với deployment-checklist"
+mcp-project-planner,PinoyFreeCoder/mcp-project-planner,,protocol,,1,True,09,Remote MCP server gợi ý repo/API/tech stack; cùng tác giả deployment-checklist
+owasp-asvs-checklist,shenril/owasp-asvs-checklist,,checklist,MIT,,True,09,ASVS 5.0 audit checklist (xlsx/ods)
+owasp-asvs-wstg-checklist,jeremychoi/owasp-asvs-wstg-checklist,,checklist,,,True,09,Map ASVS ↔ WSTG
+Ollama,ollama/ollama,,inference,MIT,175000,True,10,Wrapper llama.cpp; API OpenAI-compatible
+llama.cpp,ggml-org/llama.cpp,,inference,MIT,100000,True,10,Engine nền; sao lệch 85k–130k
+vLLM,vllm-project/vllm,,inference,Apache-2.0,85000,True,10,Serving production
+SGLang,sgl-project/sglang,,inference,Apache-2.0,25000,True,10,RadixAttention
+Milvus,milvus-io/milvus,,vector-db,Apache-2.0,42000,True,10,
+Qdrant,qdrant/qdrant,,vector-db,Apache-2.0,,True,10,Rust; filtering
+Chroma,chroma-core/chroma,,vector-db,Apache-2.0,,True,10,
+Weaviate,weaviate/weaviate,,vector-db,BSD-3,,True,10,
+pgvector,pgvector/pgvector,,vector-db,PostgreSQL,,True,10,
+LanceDB,lancedb/lancedb,,vector-db,Apache-2.0,,True,10,
+GraphRAG,microsoft/graphrag,,rag,MIT,,True,10,
+LightRAG,HKUDS/LightRAG,,rag,MIT,,True,10,
+RAGFlow,infiniflow/ragflow,,rag,Apache-2.0,,True,10,
+Mem0,mem0ai/mem0,,agent-memory,Apache-2.0,65600,True,10,18/9/2026
+Graphiti (Zep),getzep/graphiti,,agent-memory,Apache-2.0,31000,True,10,temporal KG
+Letta,letta-ai/letta,,agent-memory,Apache-2.0,24800,True,10,MemGPT
+cognee,topoteretes/cognee,,agent-memory,Apache-2.0,30000,True,10,
+Browser Use,browser-use/browser-use,,browser-agent,MIT,114000,True,11,9/2026
+agent-browser,vercel-labs/agent-browser,,browser-agent,,29500,False,11,CLI Rust
+Stagehand,browserbase/stagehand,,browser-agent,MIT,25600,True,11,v4 CDP
+Skyvern,Skyvern-AI/skyvern,,browser-agent,AGPL-3.0,,True,11,
+Playwright MCP,microsoft/playwright-mcp,,browser-agent,Apache-2.0,,True,11,accessibility tree
+E2B,e2b-dev/E2B,,sandbox,Apache-2.0,,True,11,Firecracker microVM
+Modal,modal-labs/modal-client,,sandbox,Apache-2.0 (SDK),,True,11,gVisor; GPU
+Daytona,daytonaio/daytona,,sandbox,,,False,11,Trạng thái mở chưa rõ từ 6/2026
+NeMo Guardrails,NVIDIA/NeMo-Guardrails,,security,Apache-2.0,,True,12,Colang rails
+LLM Guard,protectai/llm-guard,,security,MIT,,True,12,~35 scanner
+Guardrails AI,guardrails-ai/guardrails,,security,Apache-2.0,,True,12,
+OWASP MCP Top 10,OWASP/www-project-mcp-top-10,,security,CC,,True,12,
+gitleaks,gitleaks/gitleaks,,security,MIT,,True,12,secret scan
+trufflehog,trufflesecurity/trufflehog,,security,AGPL-3.0,,True,12,secret scan
+React,facebook/react,,frontend,MIT,251000,True,13,11/10/2026
+Vue,vuejs/core,,frontend,MIT,208000,True,13,
+Next.js,vercel/next.js,,frontend,MIT,130000,True,13,
+Angular,angular/angular,,frontend,MIT,95000,True,13,
+Svelte,sveltejs/svelte,,frontend,MIT,78000,True,13,
+Nuxt,nuxt/nuxt,,frontend,MIT,54000,True,13,
+Astro,withastro/astro,,frontend,MIT,45500,True,13,
+Vite,vitejs/vite,,frontend,MIT,,True,13,
+FastAPI,fastapi/fastapi,,backend,MIT,100000,True,13,
+NestJS,nestjs/nest,,backend,MIT,76800,True,13,10/2026
+Hono,honojs/hono,,backend,MIT,32500,True,13,
+Django,django/django,,backend,BSD-3,,True,13,
+Spring Boot,spring-projects/spring-boot,,backend,Apache-2.0,,True,13,
+Flutter,flutter/flutter,,mobile,BSD-3,,True,13,
+React Native,facebook/react-native,,mobile,MIT,,True,13,+ Expo
+Kotlin Multiplatform,JetBrains/kotlin,,mobile,Apache-2.0,,True,13,
+Kubernetes,kubernetes/kubernetes,,devops,Apache-2.0,,True,13,
+OpenTofu,opentofu/opentofu,,devops,MPL-2.0,,True,13,Fork Terraform
+Terraform,hashicorp/terraform,,devops,BSL-1.1,,True,13,
+Argo CD,argoproj/argo-cd,,devops,Apache-2.0,,True,13,CNCF graduated
+Dagger,dagger/dagger,,devops,Apache-2.0,,True,13,
+GitHub Spec Kit,github/spec-kit,,spec-driven,MIT,,True,13,specify/plan/tasks/implement
+BMAD-METHOD,bmad-code-org/BMAD-METHOD,,spec-driven,MIT,,True,13,role agents
+OpenSpec,Fission-AI/OpenSpec,,spec-driven,MIT,,True,13,
 Kiro,,https://kiro.dev,spec-driven,proprietary,,False,13,AWS IDE
 CodeRabbit,,https://www.coderabbit.ai,code-review,proprietary,,False,13,$24/$48
 Greptile,,https://www.greptile.com,code-review,proprietary,,False,13,
-Qodo Merge,qodo-ai/pr-agent,https://github.com/qodo-ai/pr-agent,code-review,AGPL-3.0,,True,13,self-host
-Pipecat,pipecat-ai/pipecat,https://github.com/pipecat-ai/pipecat,voice,BSD-2,15500,True,14,
-LiveKit Agents,livekit/agents,https://github.com/livekit/agents,voice,Apache-2.0,13000,True,14,
-TEN Framework,TEN-framework/ten-framework,https://github.com/TEN-framework/ten-framework,voice,Apache-2.0,11000,True,14,
-Whisper,openai/whisper,https://github.com/openai/whisper,speech,MIT,,True,14,
-faster-whisper,SYSTRAN/faster-whisper,https://github.com/SYSTRAN/faster-whisper,speech,MIT,,True,14,
-whisper.cpp,ggml-org/whisper.cpp,https://github.com/ggml-org/whisper.cpp,speech,MIT,,True,14,
-Kokoro TTS,hexgrad/kokoro,https://github.com/hexgrad/kokoro,speech,Apache-2.0,,True,14,82M
-Chatterbox,resemble-ai/chatterbox,https://github.com/resemble-ai/chatterbox,speech,MIT,,True,14,voice clone
-Qwen3-VL,QwenLM/Qwen3-VL,https://github.com/QwenLM/Qwen3-VL,vlm,Apache-2.0,20100,True,14,
-LLaVA-NeXT,LLaVA-VL/LLaVA-NeXT,https://github.com/LLaVA-VL/LLaVA-NeXT,vlm,Apache-2.0,4700,True,14,
-ComfyUI,comfyanonymous/ComfyUI,https://github.com/comfyanonymous/ComfyUI,image-gen,GPL-3.0,130000,True,14,122k–136k
-Stable Diffusion WebUI,AUTOMATIC1111/stable-diffusion-webui,https://github.com/AUTOMATIC1111/stable-diffusion-webui,image-gen,AGPL-3.0,164000,True,14,dừng phát triển
-Fooocus,lllyasviel/Fooocus,https://github.com/lllyasviel/Fooocus,image-gen,GPL-3.0,53400,True,14,LTS
-DuckDB,duckdb/duckdb,https://github.com/duckdb/duckdb,data,MIT,40000,True,15,8/2026
-Polars,pola-rs/polars,https://github.com/pola-rs/polars,data,MIT,,True,15,
-PandasAI,sinaptik-ai/pandas-ai,https://github.com/sinaptik-ai/pandas-ai,data,MIT (trừ ee/),23900,True,15,
-Vanna,vanna-ai/vanna,https://github.com/vanna-ai/vanna,data,MIT,23700,True,15,text-to-SQL
-marimo,marimo-team/marimo,https://github.com/marimo-team/marimo,data,Apache-2.0,22500,True,15,
-Jupyter AI,jupyterlab/jupyter-ai,https://github.com/jupyterlab/jupyter-ai,data,BSD-3,,True,15,
-Ibis,ibis-project/ibis,https://github.com/ibis-project/ibis,data,Apache-2.0,6600,True,15,
-Data Formulator,microsoft/data-formulator,https://github.com/microsoft/data-formulator,data,MIT,,True,15,
-MindsDB,mindsdb/mindsdb,https://github.com/mindsdb/mindsdb,data,Elastic-2.0,,True,15,
-Open Interpreter,openinterpreter/open-interpreter,https://github.com/openinterpreter/open-interpreter,data,AGPL-3.0,,True,15,
-Docusaurus,facebook/docusaurus,https://github.com/facebook/docusaurus,docs,MIT,,True,16,
-Material for MkDocs,squidfunk/mkdocs-material,https://github.com/squidfunk/mkdocs-material,docs,MIT,,True,16,kế nhiệm Zensical
-Starlight,withastro/starlight,https://github.com/withastro/starlight,docs,MIT,,True,16,
-Fumadocs,fuma-nama/fumadocs,https://github.com/fuma-nama/fumadocs,docs,MIT,,True,16,
-Context7,upstash/context7,https://github.com/upstash/context7,docs,MIT (server),,True,16,MCP docs
-llms.txt,AnswerDotAI/llms-txt,https://github.com/AnswerDotAI/llms-txt,docs,Apache-2.0,,True,16,đề xuất 9/2024
-Prompt Engineering Guide,dair-ai/Prompt-Engineering-Guide,https://github.com/dair-ai/Prompt-Engineering-Guide,prompt,MIT,78500,True,17,9/2026
-DSPy,stanfordnlp/dspy,https://github.com/stanfordnlp/dspy,prompt,MIT,38500,True,17,v3.3.1
-awesome-chatgpt-prompts,f/awesome-chatgpt-prompts,https://github.com/f/awesome-chatgpt-prompts,prompt,CC0,,True,17,
-system-prompts-and-models-of-ai-tools,x1xhlol/system-prompts-and-models-of-ai-tools,https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools,prompt,,,True,17,bộ sưu tập system prompt
-TextGrad,zou-group/textgrad,https://github.com/zou-group/textgrad,prompt,MIT,,True,17,
-PhoGPT,VinAIResearch/PhoGPT,https://github.com/VinAIResearch/PhoGPT,vietnam,custom,,True,18,VinAI
-underthesea,undertheseanlp/underthesea,https://github.com/undertheseanlp/underthesea,vietnam,GPL-3.0,,True,18,v9.5.0 5/2026
-VnCoreNLP,vncorenlp/VnCoreNLP,https://github.com/vncorenlp/VnCoreNLP,vietnam,GPL-3.0,,True,18,
-awsome-vietnamese-nlp,vndee/awsome-vietnamese-nlp,https://github.com/vndee/awsome-vietnamese-nlp,vietnam,,,True,18,
-Vistral,Viet-Mistral/Vistral-7B-Chat,https://github.com/Viet-Mistral/Vistral-7B-Chat,vietnam,Apache-2.0,,True,18,HF
-ADHD (adhd-agent),UditAkhourii/adhd,https://github.com/UditAkhourii/adhd,reasoning-skill,MIT,4400,True,03,Skill parallel divergent ideation (5 frame cô lập → critic → deepen top-3); 5–10× chi phí; eval tự báo cáo 5/6; link từ người dùng 2026-10-12
-neuroarxiv,UditAkhourii/neuroarxiv,https://github.com/UditAkhourii/neuroarxiv,reasoning-skill,MIT,434,True,03,Skill check prior art arXiv; cùng tác giả ADHD
-OpenMontage,calesthio/OpenMontage,https://github.com/calesthio/OpenMontage,agentic-video,AGPL-3.0,67100,True,19,"Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12"
-Crucix,calesthio/Crucix,https://github.com/calesthio/Crucix,personal-agent,,12100,True,19,Agent giám sát nguồn dữ liệu; cùng tác giả OpenMontage
-generative-media-skills,calesthio/generative-media-skills,https://github.com/calesthio/generative-media-skills,agentic-video,,199,True,19,Skills sinh ảnh/video/audio cho coding agent
-awesome-claude-video-skills,zhuyansen/awesome-claude-video-skills,https://github.com/zhuyansen/awesome-claude-video-skills,agentic-video,,55000,True,19,"Số từ trendshift, chưa xác minh"
-claude-motion-design,howseen-ai/claude-motion-design,https://github.com/howseen-ai/claude-motion-design,motion-design,,450,True,22,"Skill Playwright+ffmpeg tmix, beat/drop detection numpy; 450★ (số 45k ở aggregator là sai)"
-Remotion,remotion-dev/remotion,https://github.com/remotion-dev/remotion,video-engine,Remotion License,63400,True,22,"Video bằng React, đơn vị frame; Lambda; free ≤3 nhân viên, Company License; MCP deprecated"
-Open-Sora,hpcaitech/Open-Sora,https://github.com/hpcaitech/Open-Sora,agentic-video,Apache-2.0,24100,True,19,
-HunyuanVideo,Tencent-Hunyuan/HunyuanVideo,https://github.com/Tencent-Hunyuan/HunyuanVideo,agentic-video,Tencent Community,11900,True,19,
-CogVideoX,zai-org/CogVideo,https://github.com/zai-org/CogVideo,agentic-video,Apache-2.0,12500,True,19,
-knowledge-work-plugins,anthropics/knowledge-work-plugins,https://github.com/anthropics/knowledge-work-plugins,plugin-marketplace,Apache-2.0,29200,True,20,123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12
-claude-plugins-community,anthropics/claude-plugins-community,https://github.com/anthropics/claude-plugins-community,plugin-marketplace,Apache-2.0,4600,True,20,Mirror read-only marketplace cộng đồng
-claude-plugins-official,anthropics/claude-plugins-official,https://github.com/anthropics/claude-plugins-official,plugin-marketplace,,37700,True,20,"Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026)"
-Anatomy,wheresryan22/anatomy,https://github.com/wheresryan22/anatomy,design-skill,MIT,3800,True,06,Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12
-anatomy-figures,wheresryan22/anatomy-figures,https://github.com/wheresryan22/anatomy-figures,design-skill,MIT,10,True,06,51–52 máy isometric dạng React/custom elements
-ui-skills,ibelick/ui-skills,https://github.com/ibelick/ui-skills,design-skill,,9400,True,06,Directory skill UI/visual/motion cho coding agent
-Understand-Anything,Egonex-AI/Understand-Anything,https://github.com/Egonex-AI/Understand-Anything,codebase-knowledge,MIT,85900,True,01,"Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026)"
-gh-aw (GitHub Agentic Workflows),githubnext/gh-aw,https://github.com/githubnext/gh-aw,scheduling,MIT,5400,True,21,Markdown+frontmatter → .lock.yml GitHub Actions; engine Copilot/Claude/Codex/Gemini/Pi; safe-outputs
+Qodo Merge,qodo-ai/pr-agent,,code-review,AGPL-3.0,,True,13,self-host
+Pipecat,pipecat-ai/pipecat,,voice,BSD-2,15500,True,14,
+LiveKit Agents,livekit/agents,,voice,Apache-2.0,13000,True,14,
+TEN Framework,TEN-framework/ten-framework,,voice,Apache-2.0,11000,True,14,
+Whisper,openai/whisper,,speech,MIT,,True,14,
+faster-whisper,SYSTRAN/faster-whisper,,speech,MIT,,True,14,
+whisper.cpp,ggml-org/whisper.cpp,,speech,MIT,,True,14,
+Kokoro TTS,hexgrad/kokoro,,speech,Apache-2.0,,True,14,82M
+Chatterbox,resemble-ai/chatterbox,,speech,MIT,,True,14,voice clone
+Qwen3-VL,QwenLM/Qwen3-VL,,vlm,Apache-2.0,20100,True,14,
+LLaVA-NeXT,LLaVA-VL/LLaVA-NeXT,,vlm,Apache-2.0,4700,True,14,
+ComfyUI,comfyanonymous/ComfyUI,,image-gen,GPL-3.0,130000,True,14,122k–136k
+Stable Diffusion WebUI,AUTOMATIC1111/stable-diffusion-webui,,image-gen,AGPL-3.0,164000,True,14,dừng phát triển
+Fooocus,lllyasviel/Fooocus,,image-gen,GPL-3.0,53400,True,14,LTS
+DuckDB,duckdb/duckdb,,data,MIT,40000,True,15,8/2026
+Polars,pola-rs/polars,,data,MIT,,True,15,
+PandasAI,sinaptik-ai/pandas-ai,,data,MIT (trừ ee/),23900,True,15,
+Vanna,vanna-ai/vanna,,data,MIT,23700,True,15,text-to-SQL
+marimo,marimo-team/marimo,,data,Apache-2.0,22500,True,15,
+Jupyter AI,jupyterlab/jupyter-ai,,data,BSD-3,,True,15,
+Ibis,ibis-project/ibis,,data,Apache-2.0,6600,True,15,
+Data Formulator,microsoft/data-formulator,,data,MIT,,True,15,
+MindsDB,mindsdb/mindsdb,,data,Elastic-2.0,,True,15,
+Open Interpreter,openinterpreter/open-interpreter,,data,AGPL-3.0,,True,15,
+Docusaurus,facebook/docusaurus,,docs,MIT,,True,16,
+Material for MkDocs,squidfunk/mkdocs-material,,docs,MIT,,True,16,kế nhiệm Zensical
+Starlight,withastro/starlight,,docs,MIT,,True,16,
+Fumadocs,fuma-nama/fumadocs,,docs,MIT,,True,16,
+Context7,upstash/context7,,docs,MIT (server),,True,16,MCP docs
+llms.txt,AnswerDotAI/llms-txt,,docs,Apache-2.0,,True,16,đề xuất 9/2024
+Prompt Engineering Guide,dair-ai/Prompt-Engineering-Guide,,prompt,MIT,78500,True,17,9/2026
+DSPy,stanfordnlp/dspy,,prompt,MIT,38500,True,17,v3.3.1
+awesome-chatgpt-prompts,f/awesome-chatgpt-prompts,,prompt,CC0,,True,17,
+system-prompts-and-models-of-ai-tools,x1xhlol/system-prompts-and-models-of-ai-tools,,prompt,,,True,17,bộ sưu tập system prompt
+TextGrad,zou-group/textgrad,,prompt,MIT,,True,17,
+PhoGPT,VinAIResearch/PhoGPT,,vietnam,custom,,True,18,VinAI
+underthesea,undertheseanlp/underthesea,,vietnam,GPL-3.0,,True,18,v9.5.0 5/2026
+VnCoreNLP,vncorenlp/VnCoreNLP,,vietnam,GPL-3.0,,True,18,
+awsome-vietnamese-nlp,vndee/awsome-vietnamese-nlp,,vietnam,,,True,18,
+Vistral,Viet-Mistral/Vistral-7B-Chat,,vietnam,Apache-2.0,,True,18,HF
+ADHD (adhd-agent),UditAkhourii/adhd,,reasoning-skill,MIT,4400,True,03,Skill parallel divergent ideation (5 frame cô lập → critic → deepen top-3); 5–10× chi phí; eval tự báo cáo 5/6; link từ người dùng 2026-10-12
+neuroarxiv,UditAkhourii/neuroarxiv,,reasoning-skill,MIT,434,True,03,Skill check prior art arXiv; cùng tác giả ADHD
+OpenMontage,calesthio/OpenMontage,,agentic-video,AGPL-3.0,67100,True,19,"Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12"
+Crucix,calesthio/Crucix,,personal-agent,,12100,True,19,Agent giám sát nguồn dữ liệu; cùng tác giả OpenMontage
+generative-media-skills,calesthio/generative-media-skills,,agentic-video,,199,True,19,Skills sinh ảnh/video/audio cho coding agent
+awesome-claude-video-skills,zhuyansen/awesome-claude-video-skills,,agentic-video,,55000,True,19,"Số từ trendshift, chưa xác minh"
+claude-motion-design,howseen-ai/claude-motion-design,,motion-design,,450,True,22,"Skill Playwright+ffmpeg tmix, beat/drop detection numpy; 450★ (số 45k ở aggregator là sai)"
+Remotion,remotion-dev/remotion,,video-engine,Remotion License,63400,True,22,"Video bằng React, đơn vị frame; Lambda; free ≤3 nhân viên, Company License; MCP deprecated"
+Open-Sora,hpcaitech/Open-Sora,,agentic-video,Apache-2.0,24100,True,19,
+HunyuanVideo,Tencent-Hunyuan/HunyuanVideo,,agentic-video,Tencent Community,11900,True,19,
+CogVideoX,zai-org/CogVideo,,agentic-video,Apache-2.0,12500,True,19,
+knowledge-work-plugins,anthropics/knowledge-work-plugins,,plugin-marketplace,Apache-2.0,29200,True,20,123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12
+claude-plugins-community,anthropics/claude-plugins-community,,plugin-marketplace,Apache-2.0,4600,True,20,Mirror read-only marketplace cộng đồng
+claude-plugins-official,anthropics/claude-plugins-official,,plugin-marketplace,,37700,True,20,"Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026)"
+Anatomy,wheresryan22/anatomy,,design-skill,MIT,3800,True,06,Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12
+anatomy-figures,wheresryan22/anatomy-figures,,design-skill,MIT,10,True,06,51–52 máy isometric dạng React/custom elements
+ui-skills,ibelick/ui-skills,,design-skill,,9400,True,06,Directory skill UI/visual/motion cho coding agent
+Understand-Anything,Egonex-AI/Understand-Anything,,codebase-knowledge,MIT,85900,True,01,"Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026)"
+gh-aw (GitHub Agentic Workflows),githubnext/gh-aw,,scheduling,MIT,5400,True,21,Markdown+frontmatter → .lock.yml GitHub Actions; engine Copilot/Claude/Codex/Gemini/Pi; safe-outputs
 Claude Code Routines,,https://code.claude.com/docs/en/routines,scheduling,,,False,21,"Cloud scheduled agent của Anthropic: trigger cron/API/GitHub, min 1h, không hỏi quyền; research preview 14/4/2026"
 Claude Code /loop & scheduled tasks,,https://code.claude.com/docs/en/scheduled-tasks,scheduling,,,False,21,"Cron trong session: CronCreate/List/Delete, jitter, 7 ngày, 50 task, loop.md"
-Temporal,temporalio/temporal,https://github.com/temporalio/temporal,durable-execution,MIT,,True,21,"Durable workflow + activity, worker dài hạn; Signals/Updates/Versioning"
-Restate,restatedev/restate,https://github.com/restatedev/restate,durable-execution,BUSL-1.1,,True,21,"Durable functions, một binary tự host"
-Inngest,inngest/inngest,https://github.com/inngest/inngest,durable-execution,Apache-2.0 (server),,True,21,"Durable function qua HTTP endpoint, hợp TypeScript/serverless"
-DBOS,dbos-inc/dbos-transact-py,https://github.com/dbos-inc/dbos-transact-py,durable-execution,MIT,,True,21,Durable execution trên Postgres (có bản TS)
+Temporal,temporalio/temporal,,durable-execution,MIT,,True,21,"Durable workflow + activity, worker dài hạn; Signals/Updates/Versioning"
+Restate,restatedev/restate,,durable-execution,BUSL-1.1,,True,21,"Durable functions, một binary tự host"
+Inngest,inngest/inngest,,durable-execution,Apache-2.0 (server),,True,21,"Durable function qua HTTP endpoint, hợp TypeScript/serverless"
+DBOS,dbos-inc/dbos-transact-py,,durable-execution,MIT,,True,21,Durable execution trên Postgres (có bản TS)
 Vercel Workflow,,https://vercel.com/docs/workflow,durable-execution,,,False,21,Durable function trong Vercel
-Activepieces,activepieces/activepieces,https://github.com/activepieces/activepieces,workflow-automation,MIT,24700,True,21,"n8n alternative agent-first, ~400 MCP server"
-Kestra,kestra-io/kestra,https://github.com/kestra-io/kestra,workflow-automation,Apache-2.0,28400,True,21,"Orchestration YAML declarative, AI Agents & RAG task, MCP server"
-Windmill,windmill-labs/windmill,https://github.com/windmill-labs/windmill,workflow-automation,AGPL-3.0,18000,True,21,"Code-first scripts/flows, AI sinh script"
-Huginn,huginn/huginn,https://github.com/huginn/huginn,workflow-automation,MIT,49000,True,21,"Agent tự host Ruby, tiền LLM, chuẩn lâu năm"
-AutoGPT,Significant-Gravitas/AutoGPT,https://github.com/Significant-Gravitas/AutoGPT,autonomous-agent-history,MIT + Polyform,187000,True,21,3/2023 Toran Bruce Richards; nay là nền tảng builder agent
-BabyAGI,yoheinakajima/babyagi,https://github.com/yoheinakajima/babyagi,autonomous-agent-history,MIT,,True,21,Loop tạo/ưu tiên/thực thi task (4/2023); bản gốc archive 9/2024
-AgentGPT,reworkd/AgentGPT,https://github.com/reworkd/AgentGPT,autonomous-agent-history,GPL-3.0,35000,True,21,Agent trên trình duyệt; dừng phát triển 11/2023
-HyperFrames,heygen-com/hyperframes,https://github.com/heygen-com/hyperframes,video-engine,Apache-2.0,61100,True,22,HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0
-remotion-dev/skills,remotion-dev/skills,https://github.com/remotion-dev/skills,motion-design,,5000,True,22,12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo
-gsap-skills,greensock/gsap-skills,https://github.com/greensock/gsap-skills,motion-design,MIT,16200,True,22,8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow)
-Motion (ex Framer Motion),motiondivision/motion,https://github.com/motiondivision/motion,animation-library,MIT,34000,True,22,React/Vue/vanilla; WAAPI hybrid; Motion+ trả phí; npx motion-ai + MCP; v14.1.0
-LottieFiles motion-design-skill,LottieFiles/motion-design-skill,https://github.com/LottieFiles/motion-design-skill,motion-design,MIT,2100,True,22,"Nguyên lý motion UI (Disney 12, 4 personality, bảng timing); thư viện-agnostic; 4 commit"
-product-launch-motion,AbubakrChan/product-launch-motion,https://github.com/AbubakrChan/product-launch-motion,motion-design,MIT,162,True,22,"1 skill launch video: 14 bước, VO word-sync, camera rig GSAP, grade; HyperFrames/Remotion"
-motion-graphics-skills,charlie947/motion-graphics-skills,https://github.com/charlie947/motion-graphics-skills,motion-design,MIT,214,True,22,"15 skill (apple-launch-film, animated-chart, reel-export…); cần HyperFrames/ffmpeg"
-hyperframes-student-kit,nateherkai/hyperframes-student-kit,https://github.com/nateherkai/hyperframes-student-kit,motion-design,,1300,True,22,"Workspace 15 skill: cut-silences/cut-mistakes theo transcript, 406 draft card; issue upload file local"
-Barty-Bart/motion-graphics,Barty-Bart/motion-graphics,https://github.com/Barty-Bart/motion-graphics,motion-design,MIT,610,True,22,"motion-broll biến hình theo từ (Playwright+ffmpeg, ProRes 4444), object-separation SAM 2.1 local, 3 explainer"
-animate,cth9191/animate,https://github.com/cth9191/animate,motion-design,MIT,507,True,22,"Canvas procedural, 7 style thủ công, storyboard gate, Playwright→ffmpeg, audio sinh trong code"
-claude-motion,whaleyxbt/claude-motion,https://github.com/whaleyxbt/claude-motion,motion-design,MIT,325,True,22,"4 skill: taste bằng số, review-loop contact sheet, sound engine Python, web-sims 60fps; Remotion"
-claude-remotion-skill,haidrrrry/claude-remotion-skill,https://github.com/haidrrrry/claude-remotion-skill,motion-design,MIT,390,True,22,"1 skill Remotion, 10 rule chống flat/linear, verify bắt buộc; README SEO"
-motion-dev-animations-skill,199-biotechnologies/motion-dev-animations-skill,https://github.com/199-biotechnologies/motion-dev-animations-skill,motion-design,MIT,160,True,22,"Skill Motion.dev nhắm v11 (cũ), dừng 11/2025"
-motionmaxxing,Tejashmakwana/motionmaxxing,https://github.com/Tejashmakwana/motionmaxxing,motion-design,Apache-2.0,114,True,22,"Skill director/critic: brand capture, protocol 10 bước, gate G0–G5, moments.jsonl 716 dòng; 2 commit 6/10/2026"
+Activepieces,activepieces/activepieces,,workflow-automation,MIT,24700,True,21,"n8n alternative agent-first, ~400 MCP server"
+Kestra,kestra-io/kestra,,workflow-automation,Apache-2.0,28400,True,21,"Orchestration YAML declarative, AI Agents & RAG task, MCP server"
+Windmill,windmill-labs/windmill,,workflow-automation,AGPL-3.0,18000,True,21,"Code-first scripts/flows, AI sinh script"
+Huginn,huginn/huginn,,workflow-automation,MIT,49000,True,21,"Agent tự host Ruby, tiền LLM, chuẩn lâu năm"
+AutoGPT,Significant-Gravitas/AutoGPT,,autonomous-agent-history,MIT + Polyform,187000,True,21,3/2023 Toran Bruce Richards; nay là nền tảng builder agent
+BabyAGI,yoheinakajima/babyagi,,autonomous-agent-history,MIT,,True,21,Loop tạo/ưu tiên/thực thi task (4/2023); bản gốc archive 9/2024
+AgentGPT,reworkd/AgentGPT,,autonomous-agent-history,GPL-3.0,35000,True,21,Agent trên trình duyệt; dừng phát triển 11/2023
+HyperFrames,heygen-com/hyperframes,,video-engine,Apache-2.0,61100,True,22,HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0
+remotion-dev/skills,remotion-dev/skills,,motion-design,,5000,True,22,12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo
+gsap-skills,greensock/gsap-skills,,motion-design,MIT,16200,True,22,8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow)
+Motion (ex Framer Motion),motiondivision/motion,,animation-library,MIT,34000,True,22,React/Vue/vanilla; WAAPI hybrid; Motion+ trả phí; npx motion-ai + MCP; v14.1.0
+LottieFiles motion-design-skill,LottieFiles/motion-design-skill,,motion-design,MIT,2100,True,22,"Nguyên lý motion UI (Disney 12, 4 personality, bảng timing); thư viện-agnostic; 4 commit"
+product-launch-motion,AbubakrChan/product-launch-motion,,motion-design,MIT,162,True,22,"1 skill launch video: 14 bước, VO word-sync, camera rig GSAP, grade; HyperFrames/Remotion"
+motion-graphics-skills,charlie947/motion-graphics-skills,,motion-design,MIT,214,True,22,"15 skill (apple-launch-film, animated-chart, reel-export…); cần HyperFrames/ffmpeg"
+hyperframes-student-kit,nateherkai/hyperframes-student-kit,,motion-design,,1300,True,22,"Workspace 15 skill: cut-silences/cut-mistakes theo transcript, 406 draft card; issue upload file local"
+Barty-Bart/motion-graphics,Barty-Bart/motion-graphics,,motion-design,MIT,610,True,22,"motion-broll biến hình theo từ (Playwright+ffmpeg, ProRes 4444), object-separation SAM 2.1 local, 3 explainer"
+animate,cth9191/animate,,motion-design,MIT,507,True,22,"Canvas procedural, 7 style thủ công, storyboard gate, Playwright→ffmpeg, audio sinh trong code"
+claude-motion,whaleyxbt/claude-motion,,motion-design,MIT,325,True,22,"4 skill: taste bằng số, review-loop contact sheet, sound engine Python, web-sims 60fps; Remotion"
+claude-remotion-skill,haidrrrry/claude-remotion-skill,,motion-design,MIT,390,True,22,"1 skill Remotion, 10 rule chống flat/linear, verify bắt buộc; README SEO"
+motion-dev-animations-skill,199-biotechnologies/motion-dev-animations-skill,,motion-design,MIT,160,True,22,"Skill Motion.dev nhắm v11 (cũ), dừng 11/2025"
+motionmaxxing,Tejashmakwana/motionmaxxing,,motion-design,Apache-2.0,114,True,22,"Skill director/critic: brand capture, protocol 10 bước, gate G0–G5, moments.jsonl 716 dòng; 2 commit 6/10/2026"
+projects-template,seeker19110/projects-template,,own-repo,–,,True,23,"Khung drop-in cho Claude Code/Codex/Gemini/Cursor: hook lifecycle có test, ba cổng máy cho /auto-complete (PR #287), 3-tier orchestration 2 trục, adopt-from-outside 3 cột, TRAPS.md; đọc 2026-10-12"
+xboss-manager,seeker19110/xboss-manager,,own-repo,–,,True,23,"Tiền thân khung; AI-HARNESS-AND-COMPANY-SPEC ~2.700 dòng (C1–C7, P1–P12, R0–R9, G0–G8); rulesets-as-code"
+case-study-ft41,seeker19110/case-study-ft41,,own-repo,– (private),,False,23,"Next.js 16 áp khung: CI/DevSecOps đầy đủ, Dependabot gom nhóm + WIP cap, model-rates.json; bẫy next dev ghi đè AGENTS.md"
+X-Agents,seeker19110/X-Agents,,own-repo,–,,True,23,"""Công ty AI"" Python: bus SQLite, gateway Antigravity, verified_by do code điền, eval record/replay CI, human gate 24h, keeper; đối chiếu 12 framework"
+X-Studio,seeker19110/X-Studio,,own-repo,–,,True,23,"Fork X-Agents cho xưởng video: 14 agent/24 skill, FFmpeg + edge-tts + Playwright, render cache SHA-256, MotionSpec, qc.py; research video factory, Wan/LTX-2"
+qlkh,donghanhcungban/qlkh,,own-repo,–,,True,23,"Quản lý khóa học (Python hexagonal + React): 14 job CI (OPA/conftest, syft SBOM, pip-audit, mutmut, import-linter, hash-lock), fitness function AST"
+dhcb,seeker19110/dhcb,,own-repo,–,,True,23,"Gia sư AI Việt⇄Anh production (Node 22, React 19, Postgres, Gemini Live): open-code-review rule.json, ECC chuyển thể chọn lọc, ProposedAction + safetyGuard, SePay; settings.json còn opusplan"
+Xgold,seeker19110/Xgold,,own-repo,–,,True,23,"App giá vàng/bạc (Next 16, Supabase): 15 ADR, Playwright CI 4 worker, Lighthouse CI, 3-tier orchestration"
+X-Scanner,seeker19110/X-Scanner,,own-repo,–,,True,23,App scan tài liệu Flutter; áp khung qua GitHub Action pin SHA; preamble giới hạn bằng chứng; thiếu auto-complete-guard.sh
+ai-gateway (seeker19110),seeker19110/ai-gateway,,llm-gateway,MIT,,True,23,"Gateway LLM Node 3 dep: pool đa tài khoản, cooldown theo lỗi, OpenAI-compatible, MCP Streamable HTTP /mcp, Prometheus"
+Plugin-4-Hermes,seeker19110/Plugin-4-Hermes,,own-repo,MIT,,True,23,Plugin model-provider cho Hermes Agent qua OAuth Google Antigravity; bridge :8100; vùng xám ToS
+Hermes-Agents,donghanhcungban/hermes-agents,,own-repo,MIT,,True,23,"Gói mở rộng Hermes Agent: provider Antigravity/claude -p/Codex CLI, engineering-workbench, grill-tab, 112 SKILL.md (vendor có provenance + tự viết: evidence-driven-delivery, project-harness-engineering, safe-ai-state-authority, ai-eval-evidence-integrity)"
+xboss,seeker19110/xboss,,own-repo,–,,True,23,"Quản lý tiến độ MEP/ACMV (Next 16 + Postgres raw SQL): vendor ECC có lock (ADR-0013), 5 hook bash có test, OCR review theo đường dẫn, /hoc, AI Delivery Loop, 17+ cổng tĩnh, mutation test tự viết, TRAPS/sổ nợ"
+Dhcb-Tools,seeker19110/Dhcb-Tools,,aec-bim,Apache-2.0,,True,23,"Add-in Revit 2022–2027 + AutoCAD (68 lệnh), HTTP bridge loopback có token, MCP server + .mcpb, AI offline Ollama qwen3, kiểm IDS 1.0/BCF 2.1; agent khép vòng dryRun→confirm→snapshot"
+reveser (mirror morluto/rea),seeker19110/reveser,,reverse-engineering,MIT,,True,23,Clone không sửa của morluto/rea 2.1.0; cite upstream khi dẫn
+Sales-Hunter,seeker19110/Sales-Hunter,,own-repo,Apache-2.0,,True,23,"Khung vận hành agent cho affiliate Shopee/TikTok (Python stdlib, uv/ruff/pyright): model_tier T0–T4, enum side-effect, nhánh A/B, durable publication outbox/lease/fencing, status-freshness CI, validate_repo.py"
+design-os-3d-blender,seeker19110/design-os-3d-blender,,own-repo,MIT,,True,23,"Agent điều khiển Blender (mirror jangtrinh): sentinel AGENT_OK/FAIL, verify ladder, gate hash-bound, robot arm 38 STL, 93 test headless; research image→3D"
+Claude-Red (fork),seeker19110/Claude-Red,,security,MIT,,True,23,"Fork SnailSploit/claude-red v0.3.0: 78 SKILL.md red-team dual-use, manifest claude-skills.json; chỉ dùng khi có ủy quyền"
+system-design-notes,seeker19110/system-design-notes,,learning,– (chưa rõ),,True,23,Ghi chú System Design Interview (Alex Xu) 28 chương + ~25 link paper gốc; upstream/license chưa rõ
+Hermes Agent,NousResearch/hermes-agent,,personal-agent,–,,True,02,"Agent mã mở CLI/TUI/Electron + gateway Telegram/Discord/Slack/WhatsApp + ACP; skills tự học, delegate_task ≤10 con không lồng, plugin model-provider; docs llms.txt (theo docs nội bộ, chưa xác minh)"
+MetaGPT,FoundationAgents/MetaGPT,,agent-framework,MIT,,True,02,"Công ty phần mềm đa vai trò theo SOP; ~60k★ (theo docs nội bộ, chưa xác minh)"
+ChatDev,OpenBMB/ChatDev,,agent-framework,Apache-2.0,,True,02,"Chat-chain giữa vai trò CEO/CTO/dev/tester; ~27k★ (theo docs nội bộ, chưa xác minh)"
+DeerFlow,bytedance/deer-flow,,agent-framework,MIT,,True,02,"Deep research đa agent trên LangGraph; ~18k★ (theo docs nội bộ, chưa xác minh); X-Agents đối chiếu"
+AG2,ag2ai/ag2,,agent-framework,Apache-2.0,,True,02,Fork cộng đồng AutoGen 0.2 (11/2024)
+CAMEL,camel-ai/camel,,agent-framework,Apache-2.0,,True,02,"Role-playing agent, data gen, OWL; ~13k★ (theo docs nội bộ, chưa xác minh)"
+agency-swarm,VRSEN/agency-swarm,,agent-framework,MIT,,True,02,Agency = agent có vai trò + luồng giao tiếp định sẵn
+gpt-pilot,Pythagora-io/gpt-pilot,,agent-framework,MIT,,True,02,"Dev AI theo bước, hỏi người khi kẹt; ~33k★ (theo docs nội bộ, chưa xác minh)"
+ruflo (claude-flow),ruvnet/ruflo,,agent-framework,MIT,,True,02,Swarm orchestration cho Claude Code; tuyên bố hiệu năng chưa kiểm chứng
+Everything Claude Code (ECC),affaan-m/everything-claude-code,,harness-pack,MIT,,True,20,"v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock"
+superpowers,obra/superpowers,,harness-pack,–,,True,20,Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu
+compound-engineering-plugin,EveryInc/compound-engineering-plugin,,harness-pack,–,,True,20,Plugin research→plan→work→review→compound
+oh-my-hermes,rlaope/oh-my-hermes,,harness-pack,–,,True,20,"Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill"
+agent-skills (addyosmani),addyosmani/agent-skills,,harness-pack,–,,True,20,"incremental-implementation, source-driven, doubt-driven development, context-engineering"
+claude-red,SnailSploit/claude-red,,security,MIT,,True,12,78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền
+LiteLLM,BerriAI/litellm,,llm-gateway,MIT,,True,10,"Proxy OpenAI-compatible 100+ provider, budget, key ảo; ~60,9k★ (theo docs nội bộ, chưa xác minh)"
+Portkey Gateway,Portkey-AI/gateway,,llm-gateway,MIT,,True,10,"Gateway nhanh, fallback/retry/load-balance"
+one-api,songquanpeng/one-api,,llm-gateway,MIT,,True,10,"Quản lý key, quota, nhiều kênh"
+Helicone,Helicone/helicone,,llm-gateway,Apache-2.0,,True,10,Proxy + observability
+open-code-review (ocr),alibaba/open-code-review,,code-review,Apache-2.0,,True,13,"Review AI theo luật glob đường dẫn (rule.json, first-match-wins), ocr delegate không cần API key; xboss/dhcb dùng"
+release-please,googleapis/release-please,,quality-gate,Apache-2.0,,True,13,Conventional commits → changelog + release PR
+oxlint,oxc-project/oxc,,quality-gate,MIT,,True,13,Linter JS/TS viết bằng Rust
+knip,webpro-nl/knip,,quality-gate,ISC,,True,13,Tìm file/export/dependency chết
+jscpd,kucherenko/jscpd,,quality-gate,MIT,,True,13,Phát hiện code trùng lặp
+uv,astral-sh/uv,,quality-gate,Apache-2.0/MIT,,True,13,Package manager Python nhanh (Astral)
+ruff,astral-sh/ruff,,quality-gate,MIT,,True,13,Linter/formatter Python (Astral)
+OPA / conftest,open-policy-agent/conftest,,policy-as-code,Apache-2.0,,True,12,Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng
+syft,anchore/syft,,policy-as-code,Apache-2.0,,True,12,Sinh SBOM (CycloneDX/SPDX)
+REA – Reverse Engineer Anything,morluto/rea,,reverse-engineering,MIT,,True,11,"CLI + MCP server 95 tool cho agent dịch ngược (Hopper/Ghidra, CDP, JS replay sandbox); Evidence v2, authority fail-closed; npm rea-agents 2.1.0"
+blender-mcp,ahujasid/blender-mcp,,protocol,MIT,,True,14,"MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh)"

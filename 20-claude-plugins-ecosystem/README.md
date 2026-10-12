@@ -156,8 +156,25 @@ plugin-name/
 
 **Điểm chung:** tất cả hội tụ về **MCP cho tool + SKILL.md/AGENTS.md cho tri thức** (mục 04); khác nhau ở lớp đóng gói và kênh phân phối.
 
+## 3b. Bộ plugin/skill pack lớn ngoài Anthropic (từ docs nội bộ 19 repo của chủ kho, mục 23, 2026-10-12)
+
+| Gói | Repo | Quy mô (theo docs nội bộ, chưa xác minh) | Cách chủ kho dùng |
+|---|---|---|---|
+| **ECC – Everything Claude Code** | affaan-m/everything-claude-code | v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ADR xboss ghi ~214k★ (6/2026) | xboss **vendor có lock** (`.claude/ecc/manifest.json` + `lock.json` sha256, tiền tố `ecc-`, 56/293 skill), dhcb chuyển thể chọn lọc |
+| superpowers | obra/superpowers | Bộ skill quy trình (brainstorm → plan → TDD → review) | projects-template đối chiếu |
+| compound-engineering | EveryInc/compound-engineering-plugin | Plugin "kỹ thuật tích luỹ" (research → plan → work → review → compound) | projects-template đối chiếu |
+| mattpocock/skills · garden-skills | mattpocock/skills · … | Skill nhỏ, có gu, cho TS | dhcb inventory |
+| impeccable | – | "Taste" cho frontend (mục 06) | case-study-ft41 |
+| **oh-my-hermes** (OMH) | rlaope/oh-my-hermes | Workflow pack: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill, jit-learn, deep-interview | Hermes-Agents vendor 6 skill |
+| agent-skills | addyosmani/agent-skills | incremental-implementation, source-driven, **doubt-driven development**, context-engineering | Hermes-Agents vendor |
+| wshobson/agents · gsd-build/get-shit-done · trycua/cua | – | Agent/skill pack phổ biến | Hermes-Agents vendor |
+| claude-red | SnailSploit/claude-red | 78 skill red-team (dual-use, mục 12) | fork `seeker19110/Claude-Red` |
+
+**Phản biện nhận định "cài plugin đang thắng chép prompt" (xu hướng §14 README):** hai repo của chủ kho (xboss ADR-0013, X-Agents `vendor_skills.py` + `*.lock.json`, Hermes-Agents `install.py`) chọn **vendor skill có lock** thay vì cài plugin, vì: (1) phiên cloud claude.ai/code **không nạp plugin bật qua `settings.json`**, `~/.claude` mất khi container thu hồi; (2) chỉ một phần nhỏ skill liên quan stack (56/293); (3) cần ghi đè và test được (`tests/ecc-vendor.test.ts`); (4) provenance: kiểm LICENSE, `name:` trùng thư mục, từ chối symlink, lock sha256. Kết luận sửa lại: *plugin thắng ở phân phối; vendor-có-lock thắng ở vận hành repo và CI.*
+
 ## 4. Nguồn
 
+- Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
 - https://github.com/anthropics/knowledge-work-plugins (README, `.claude-plugin/marketplace.json`, `sales/`, `sales/.mcp.json`, `sales/skills/call-prep/SKILL.md`, `engineering/`, `cowork-plugin-management/`, commits) · https://github.com/anthropics/claude-plugins-community · https://github.com/anthropics
 - https://code.claude.com/docs/en/plugins · https://claude.com/plugins/ · https://claude.com/docs/plugins/overview
 - claude-plugins-official: https://github.com/anthropics/claude-plugins-official (README, `.claude-plugin/marketplace.json`) · https://code.claude.com/docs/en/plugins/anthropic-marketplaces · https://code.claude.com/docs/en/plugins/security · https://claude.com/marketplace/plugins
