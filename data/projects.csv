@@ -263,7 +263,7 @@ superpowers,obra/superpowers,,harness-pack,–,298000,True,20,"Bộ skill quy tr
 compound-engineering-plugin,EveryInc/compound-engineering-plugin,,harness-pack,–,25500,True,20,Plugin research→plan→work→review→compound
 oh-my-hermes,rlaope/oh-my-hermes,,harness-pack,–,3300,True,20,"Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill"
 agent-skills (addyosmani),addyosmani/agent-skills,,harness-pack,–,105300,True,20,"incremental-implementation, source-driven, doubt-driven development, context-engineering"
-claude-red,SnailSploit/claude-red,,security,MIT,,True,12,78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền
+claude-red,SnailSploit/claude-red,,security,MIT,7400,True,12,"78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill (12/10/2026)"
 LiteLLM,BerriAI/litellm,,llm-gateway,MIT,,True,10,"Proxy OpenAI-compatible 100+ provider, budget, key ảo; ~60,9k★ (theo docs nội bộ, chưa xác minh)"
 Portkey Gateway,Portkey-AI/gateway,,llm-gateway,MIT,,True,10,"Gateway nhanh, fallback/retry/load-balance"
 one-api,songquanpeng/one-api,,llm-gateway,MIT,,True,10,"Quản lý key, quota, nhiều kênh"
@@ -422,3 +422,11 @@ awesome-mcp-servers (punkpeye),punkpeye/awesome-mcp-servers,,awesome-list,MIT,96
 VoltAgent,VoltAgent/voltagent,,agent-framework,MIT,10800,True,02,Framework agent TypeScript; chủ các list awesome-*; ★ đọc 12/10/2026
 FilmCraft,storytold/filmcraft,,agentic-video,MIT OR Apache-2.0,10900,True,01,"NLE Rust ~343k dòng trong 11 ngày, ~72% commit Claude đồng tác giả, 94 tác giả; CI không chạy test, crash khi mở trên vài máy; ★ đọc 12/10/2026"
 OpenCut,OpenCut-app/OpenCut,,video-engine,,93700,True,01,"Trình dựng video mở, đang viết lại lõi bằng Rust; ★ đọc 12/10/2026"
+Awesome-AI-Security-Skills,EvanThomasLuke/Awesome-AI-Security-Skills,,awesome-list,,112,False,12,"58 link skill bảo mật, không có LICENSE, tự cảnh báo chưa kiểm; ★ đọc 12/10/2026"
+Trail of Bits skills,trailofbits/skills,,security,CC-BY-SA-4.0,7500,True,12,Marketplace 44 plugin; bản curated đọc từng dòng hook; ★ đọc 12/10/2026
+SkillSpector,NVIDIA/SkillSpector,,security,Apache-2.0,20000,True,12,"Quét skill tĩnh + LLM, không phải sandbox; ★ đọc 12/10/2026"
+skill-scanner (Cisco),cisco-ai-defense/skill-scanner,,security,Apache-2.0,2600,True,12,Quét skill best-effort; ★ đọc 12/10/2026
+claude-code-security-review,anthropics/claude-code-security-review,,security,MIT,6300,True,12,Action + /security-review; không chống prompt injection; commit cuối 2/2026; ★ đọc 12/10/2026
+security-audit-skill (Cloudflare),cloudflare/security-audit-skill,,security,MIT,28600,True,12,"1 skill, yêu cầu sandbox OS; ★ đọc 12/10/2026"
+Anthropic-Cybersecurity-Skills (cộng đồng),mukul975/Anthropic-Cybersecurity-Skills,,security,Apache-2.0,34300,True,12,~817 skill; không liên quan Anthropic; ★ đọc 12/10/2026
+Claude-BugHunter,elementalsouls/Claude-BugHunter,,security,MIT + CC-BY-4.0,5000,True,12,"82–83 skill bug bounty, scope chặt; ★ đọc 12/10/2026"

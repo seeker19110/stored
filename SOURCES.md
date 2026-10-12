@@ -179,3 +179,8 @@
 - github.com/storytold/filmcraft (lịch sử git đầy đủ, 1.015 commit không merge, 735 có trailer Claude): ROADMAP.md, docs/target-app-parity.md, docs/gaps.md, CLAUDE.md, assets/app-icon/README.md, /releases, /issues; trang GitHub (~10,9k★, 12/10/2026) · getartcraft.com/apps/filmcraft
 - news.ycombinator.com/item?id=49959605 · it-connect.tech (PhotoCraft/FilmCraft/LightCraft) · PetaPixel, Gizmodo, Phoronix, TweakTown (10/2026); không tìm thấy bài tiếng Việt gốc của ảnh
 - Repo nhái cần tránh: github.com/filmcraft-app/filmcraft · So sánh (★ 12/10/2026): OpenCut, LosslessCut, Shotcut, Olive, OpenShot, Kdenlive
+
+## Bổ sung 2026-10-12 (ảnh "Awesome-AI-Security-Skills" → mục 12 §3e)
+
+- github.com/EvanThomasLuke/Awesome-AI-Security-Skills (README, 22 commit; 112★, 12/10/2026) · github.com/EvanThomasLuke
+- Trang repo + commits Atom của các mục được kiểm: trailofbits/skills, trailofbits/skills-curated, NVIDIA/SkillSpector, cisco-ai-defense/skill-scanner, anthropics/claude-code-security-review, cloudflare/security-audit-skill, google/mantis, elastic/agent-skills, ghostsecurity/skills, semgrep/skills, mukul975/Anthropic-Cybersecurity-Skills, elementalsouls/Claude-BugHunter, blacklanternsecurity/red-run, DeepBitsTechnology/claude-plugins, Netflix-Skunkworks/railguard-skill, Mindgard/ai-ide-skills, AILiteracyLab/Claude-Security-Audit, zhaoxuya520/reverse-skill · raw.githubusercontent.com/SnailSploit/Claude-Red/main/CHANGELOG.md

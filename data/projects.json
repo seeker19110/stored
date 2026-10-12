@@ -2725,9 +2725,9 @@
       "repo": "SnailSploit/claude-red",
       "category": "security",
       "license": "MIT",
-      "stars": null,
+      "stars": 7400,
       "open_source": true,
-      "notes": "78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền",
+      "notes": "78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill (12/10/2026)",
       "section": "12"
     },
     {
@@ -4309,6 +4309,86 @@
       "open_source": true,
       "notes": "Trình dựng video mở, đang viết lại lõi bằng Rust; ★ đọc 12/10/2026",
       "section": "01"
+    },
+    {
+      "name": "Awesome-AI-Security-Skills",
+      "repo": "EvanThomasLuke/Awesome-AI-Security-Skills",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 112,
+      "open_source": false,
+      "notes": "58 link skill bảo mật, không có LICENSE, tự cảnh báo chưa kiểm; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "Trail of Bits skills",
+      "repo": "trailofbits/skills",
+      "category": "security",
+      "license": "CC-BY-SA-4.0",
+      "stars": 7500,
+      "open_source": true,
+      "notes": "Marketplace 44 plugin; bản curated đọc từng dòng hook; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "SkillSpector",
+      "repo": "NVIDIA/SkillSpector",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 20000,
+      "open_source": true,
+      "notes": "Quét skill tĩnh + LLM, không phải sandbox; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "skill-scanner (Cisco)",
+      "repo": "cisco-ai-defense/skill-scanner",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 2600,
+      "open_source": true,
+      "notes": "Quét skill best-effort; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "claude-code-security-review",
+      "repo": "anthropics/claude-code-security-review",
+      "category": "security",
+      "license": "MIT",
+      "stars": 6300,
+      "open_source": true,
+      "notes": "Action + /security-review; không chống prompt injection; commit cuối 2/2026; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "security-audit-skill (Cloudflare)",
+      "repo": "cloudflare/security-audit-skill",
+      "category": "security",
+      "license": "MIT",
+      "stars": 28600,
+      "open_source": true,
+      "notes": "1 skill, yêu cầu sandbox OS; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "Anthropic-Cybersecurity-Skills (cộng đồng)",
+      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 34300,
+      "open_source": true,
+      "notes": "~817 skill; không liên quan Anthropic; ★ đọc 12/10/2026",
+      "section": "12"
+    },
+    {
+      "name": "Claude-BugHunter",
+      "repo": "elementalsouls/Claude-BugHunter",
+      "category": "security",
+      "license": "MIT + CC-BY-4.0",
+      "stars": 5000,
+      "open_source": true,
+      "notes": "82–83 skill bug bounty, scope chặt; ★ đọc 12/10/2026",
+      "section": "12"
     }
   ]
 }
