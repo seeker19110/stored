@@ -1,0 +1,896 @@
+{
+  "meta": {
+    "snapshot_date": "2026-10-12",
+    "note": "stars là ước lượng từ nhiều nguồn thứ cấp (blog so sánh, trang GitHub cache); null = không có số tin cậy. Xem SOURCES.md.",
+    "categories": [
+      "coding-agent",
+      "coding-tool-commercial",
+      "agent-framework",
+      "personal-agent",
+      "pattern-loop",
+      "protocol",
+      "low-code",
+      "ui-library",
+      "design-tool",
+      "ai-ui-generator",
+      "design-skill",
+      "agentic-ui",
+      "eval-observability",
+      "awesome-list",
+      "learning",
+      "checklist"
+    ]
+  },
+  "projects": [
+    {
+      "name": "OpenCode",
+      "repo": "sst/opencode",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 210000,
+      "open_source": true,
+      "notes": "CLI/TUI agent đa model; #1 nhóm mở 9/2026",
+      "section": "01"
+    },
+    {
+      "name": "DeepSeek Harness",
+      "repo": "deepseek-ai/deepseek-harness",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 200000,
+      "open_source": true,
+      "notes": "Ra mắt 13/8/2026; mọi thứ là plugin; developer preview",
+      "section": "01"
+    },
+    {
+      "name": "Claude Code",
+      "repo": "anthropics/claude-code",
+      "category": "coding-tool-commercial",
+      "license": "proprietary",
+      "stars": 148000,
+      "open_source": false,
+      "notes": "CLI/IDE/web; hooks, skills, subagents, ralph-loop plugin",
+      "section": "01"
+    },
+    {
+      "name": "OpenAI Codex CLI",
+      "repo": "openai/codex",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 127000,
+      "open_source": true,
+      "notes": "Rust; sandbox; multi-agent",
+      "section": "01"
+    },
+    {
+      "name": "Gemini CLI",
+      "repo": "google-gemini/gemini-cli",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 107000,
+      "open_source": true,
+      "notes": "",
+      "section": "01"
+    },
+    {
+      "name": "OpenHands",
+      "repo": "OpenHands/OpenHands",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 90000,
+      "open_source": true,
+      "notes": "Cũ: OpenDevin / All-Hands-AI",
+      "section": "01"
+    },
+    {
+      "name": "Cline",
+      "repo": "cline/cline",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 69000,
+      "open_source": true,
+      "notes": "VS Code extension; plan/act",
+      "section": "01"
+    },
+    {
+      "name": "Aider",
+      "repo": "Aider-AI/aider",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 49000,
+      "open_source": true,
+      "notes": "Commit cuối 5/2026",
+      "section": "01"
+    },
+    {
+      "name": "SWE-agent",
+      "repo": "SWE-agent/SWE-agent",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 20500,
+      "open_source": true,
+      "notes": "Princeton",
+      "section": "01"
+    },
+    {
+      "name": "mini-SWE-agent",
+      "repo": "SWE-agent/mini-swe-agent",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 8400,
+      "open_source": true,
+      "notes": "100 dòng; >74% SWE-bench Verified; harness chuẩn của Vals",
+      "section": "01"
+    },
+    {
+      "name": "Goose",
+      "repo": "block/goose",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "MCP-first",
+      "section": "01"
+    },
+    {
+      "name": "Roo Code",
+      "repo": "RooCodeInc/Roo-Code",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Fork Cline",
+      "section": "01"
+    },
+    {
+      "name": "Cursor",
+      "repo": null,
+      "url": "https://cursor.com",
+      "category": "coding-tool-commercial",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "$20/$60/$200; cloud agents; SKILL.md từ 2.4",
+      "section": "01"
+    },
+    {
+      "name": "Windsurf / Devin Desktop",
+      "repo": null,
+      "url": "https://windsurf.com",
+      "category": "coding-tool-commercial",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Cognition",
+      "section": "01"
+    },
+    {
+      "name": "Devin",
+      "repo": null,
+      "url": "https://devin.ai",
+      "category": "coding-tool-commercial",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "",
+      "section": "01"
+    },
+    {
+      "name": "GitHub Copilot",
+      "repo": null,
+      "url": "https://github.com/features/copilot",
+      "category": "coding-tool-commercial",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "$10/$19/$39",
+      "section": "01"
+    },
+    {
+      "name": "Google Jules",
+      "repo": null,
+      "url": "https://jules.google",
+      "category": "coding-tool-commercial",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Async cloud agent",
+      "section": "01"
+    },
+    {
+      "name": "LangChain",
+      "repo": "langchain-ai/langchain",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 130000,
+      "open_source": true,
+      "notes": "",
+      "section": "02"
+    },
+    {
+      "name": "LangGraph",
+      "repo": "langchain-ai/langgraph",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 40000,
+      "open_source": true,
+      "notes": "34.5M tải/tháng; dẫn đầu adoption",
+      "section": "02"
+    },
+    {
+      "name": "AutoGen",
+      "repo": "microsoft/autogen",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 60000,
+      "open_source": true,
+      "notes": "Maintenance; kế nhiệm = Microsoft Agent Framework (GA 4/2026)",
+      "section": "02"
+    },
+    {
+      "name": "Microsoft Agent Framework",
+      "repo": "microsoft/agent-framework",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "AutoGen + Semantic Kernel",
+      "section": "02"
+    },
+    {
+      "name": "CrewAI",
+      "repo": "crewAIInc/crewAI",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 57000,
+      "open_source": true,
+      "notes": "Role-based crews",
+      "section": "02"
+    },
+    {
+      "name": "OpenAI Agents SDK",
+      "repo": "openai/openai-agents-python",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 29000,
+      "open_source": true,
+      "notes": "handoffs, guardrails",
+      "section": "02"
+    },
+    {
+      "name": "LlamaIndex",
+      "repo": "run-llama/llama_index",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 48000,
+      "open_source": true,
+      "notes": "RAG/data framework",
+      "section": "02"
+    },
+    {
+      "name": "Semantic Kernel",
+      "repo": "microsoft/semantic-kernel",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 28000,
+      "open_source": true,
+      "notes": "Hợp vào Agent Framework",
+      "section": "02"
+    },
+    {
+      "name": "smolagents",
+      "repo": "huggingface/smolagents",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 26000,
+      "open_source": true,
+      "notes": "code-agent",
+      "section": "02"
+    },
+    {
+      "name": "Haystack",
+      "repo": "deepset-ai/haystack",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 20000,
+      "open_source": true,
+      "notes": "",
+      "section": "02"
+    },
+    {
+      "name": "PydanticAI",
+      "repo": "pydantic/pydantic-ai",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 16000,
+      "open_source": true,
+      "notes": "typed",
+      "section": "02"
+    },
+    {
+      "name": "Google ADK",
+      "repo": "google/adk-python",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "A2A native",
+      "section": "02"
+    },
+    {
+      "name": "Mastra",
+      "repo": "mastra-ai/mastra",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "TypeScript",
+      "section": "02"
+    },
+    {
+      "name": "OpenClaw",
+      "repo": "openclaw/openclaw",
+      "category": "personal-agent",
+      "license": "MIT",
+      "stars": 390000,
+      "open_source": true,
+      "notes": "Trợ lý cá nhân tự host; foundation độc lập",
+      "section": "02"
+    },
+    {
+      "name": "Ralph Wiggum loop (plugin)",
+      "repo": "anthropics/claude-code",
+      "url": "https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md",
+      "category": "pattern-loop",
+      "license": "n/a",
+      "stars": null,
+      "open_source": true,
+      "notes": "Stop-hook loop; tác giả kỹ thuật: Geoffrey Huntley 7/2025",
+      "section": "03"
+    },
+    {
+      "name": "ralph-claude-code",
+      "repo": "frankbria/ralph-claude-code",
+      "category": "pattern-loop",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "Loop với exit detection",
+      "section": "03"
+    },
+    {
+      "name": "claude-code-ultimate-guide",
+      "repo": "FlorianBruniaux/claude-code-ultimate-guide",
+      "category": "learning",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "agent teams, workflows",
+      "section": "03"
+    },
+    {
+      "name": "MCP servers (reference)",
+      "repo": "modelcontextprotocol/servers",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 87000,
+      "open_source": true,
+      "notes": "AAIF / Linux Foundation",
+      "section": "04"
+    },
+    {
+      "name": "FastMCP",
+      "repo": "prefecthq/fastmcp",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 23000,
+      "open_source": true,
+      "notes": "Python MCP framework",
+      "section": "04"
+    },
+    {
+      "name": "A2A",
+      "repo": "a2aproject/A2A",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "v1.0 3/2026; Linux Foundation",
+      "section": "04"
+    },
+    {
+      "name": "AG-UI",
+      "repo": "ag-ui-protocol/ag-ui",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Agent ↔ UI; CopilotKit",
+      "section": "04"
+    },
+    {
+      "name": "Agent Skills spec",
+      "repo": null,
+      "url": "https://agentskills.io",
+      "category": "protocol",
+      "license": "open standard",
+      "stars": null,
+      "open_source": true,
+      "notes": "SKILL.md; chuẩn mở 18/12/2025",
+      "section": "04"
+    },
+    {
+      "name": "awesome-agent-skills",
+      "repo": "VoltAgent/awesome-agent-skills",
+      "category": "awesome-list",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "1000+ skills",
+      "section": "04"
+    },
+    {
+      "name": "n8n",
+      "repo": "n8n-io/n8n",
+      "category": "low-code",
+      "license": "Sustainable Use",
+      "stars": 207000,
+      "open_source": false,
+      "notes": "fair-code",
+      "section": "05"
+    },
+    {
+      "name": "Dify",
+      "repo": "langgenius/dify",
+      "category": "low-code",
+      "license": "Apache-2.0 (modified)",
+      "stars": 158000,
+      "open_source": true,
+      "notes": "",
+      "section": "05"
+    },
+    {
+      "name": "Langflow",
+      "repo": "langflow-ai/langflow",
+      "category": "low-code",
+      "license": "MIT",
+      "stars": 145000,
+      "open_source": true,
+      "notes": "",
+      "section": "05"
+    },
+    {
+      "name": "Flowise",
+      "repo": "FlowiseAI/Flowise",
+      "category": "low-code",
+      "license": "Apache-2.0",
+      "stars": 55500,
+      "open_source": true,
+      "notes": "Trạng thái chưa rõ (archive 8/2026?)",
+      "section": "05"
+    },
+    {
+      "name": "shadcn/ui",
+      "repo": "shadcn-ui/ui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 118000,
+      "open_source": true,
+      "notes": "Base UI mặc định từ 7/2026",
+      "section": "06"
+    },
+    {
+      "name": "MUI",
+      "repo": "mui/material-ui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 93000,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Radix UI",
+      "repo": "radix-ui/primitives",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "nguồn lệch 19k–35k",
+      "section": "06"
+    },
+    {
+      "name": "Base UI",
+      "repo": "mui/base-ui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 10600,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Mantine",
+      "repo": "mantinedev/mantine",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 28000,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Vuetify",
+      "repo": "vuetifyjs/vuetify",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 41000,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Storybook",
+      "repo": "storybookjs/storybook",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Excalidraw",
+      "repo": "excalidraw/excalidraw",
+      "category": "design-tool",
+      "license": "MIT",
+      "stars": 134000,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Penpot",
+      "repo": "penpot/penpot",
+      "category": "design-tool",
+      "license": "MPL-2.0",
+      "stars": 61000,
+      "open_source": true,
+      "notes": "Figma alternative",
+      "section": "06"
+    },
+    {
+      "name": "tldraw",
+      "repo": "tldraw/tldraw",
+      "category": "design-tool",
+      "license": "tldraw license",
+      "stars": 51000,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Onlook",
+      "repo": "onlook-dev/onlook",
+      "category": "design-tool",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "Visual editor React",
+      "section": "06"
+    },
+    {
+      "name": "v0.app",
+      "repo": null,
+      "url": "https://v0.app",
+      "category": "ai-ui-generator",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Vercel",
+      "section": "06"
+    },
+    {
+      "name": "Lovable",
+      "repo": null,
+      "url": "https://lovable.dev",
+      "category": "ai-ui-generator",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "bolt.diy",
+      "repo": "stackblitz-labs/bolt.diy",
+      "category": "ai-ui-generator",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Bản mở của Bolt.new",
+      "section": "06"
+    },
+    {
+      "name": "Google Stitch",
+      "repo": null,
+      "url": "https://stitch.withgoogle.com",
+      "category": "ai-ui-generator",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Taste Skill",
+      "repo": "Leonxlnx/taste-skill",
+      "category": "design-skill",
+      "license": null,
+      "stars": 46000,
+      "open_source": true,
+      "notes": "Chống AI-slop UI",
+      "section": "06"
+    },
+    {
+      "name": "CopilotKit",
+      "repo": "CopilotKit/CopilotKit",
+      "category": "agentic-ui",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "$27M 5/2026",
+      "section": "06"
+    },
+    {
+      "name": "assistant-ui",
+      "repo": "assistant-ui/assistant-ui",
+      "category": "agentic-ui",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "06"
+    },
+    {
+      "name": "Vercel AI SDK",
+      "repo": "vercel/ai",
+      "category": "agentic-ui",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "+ AI Elements",
+      "section": "06"
+    },
+    {
+      "name": "Langfuse",
+      "repo": "langfuse/langfuse",
+      "category": "eval-observability",
+      "license": "MIT (core)",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "07"
+    },
+    {
+      "name": "Promptfoo",
+      "repo": "promptfoo/promptfoo",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "red-team",
+      "section": "07"
+    },
+    {
+      "name": "DeepEval",
+      "repo": "confident-ai/deepeval",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "07"
+    },
+    {
+      "name": "Ragas",
+      "repo": "explodinggradients/ragas",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "07"
+    },
+    {
+      "name": "Arize Phoenix",
+      "repo": "Arize-ai/phoenix",
+      "category": "eval-observability",
+      "license": "ELv2",
+      "stars": null,
+      "open_source": false,
+      "notes": "source-available",
+      "section": "07"
+    },
+    {
+      "name": "build-your-own-x",
+      "repo": "codecrafters-io/build-your-own-x",
+      "category": "learning",
+      "license": "CC0",
+      "stars": 550000,
+      "open_source": true,
+      "notes": "#1 GitHub",
+      "section": "08"
+    },
+    {
+      "name": "freeCodeCamp",
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "category": "learning",
+      "license": "BSD-3",
+      "stars": 455000,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "developer-roadmap",
+      "repo": "kamranahmedse/developer-roadmap",
+      "category": "learning",
+      "license": "custom",
+      "stars": 365000,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "system-design-primer",
+      "repo": "donnemartin/system-design-primer",
+      "category": "learning",
+      "license": "CC BY 4.0",
+      "stars": 365000,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "awesome-llm-apps",
+      "repo": "Shubhamsaboo/awesome-llm-apps",
+      "category": "awesome-list",
+      "license": "Apache-2.0",
+      "stars": 105000,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "awesome-claude-code",
+      "repo": "hesreallyhim/awesome-claude-code",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 45000,
+      "open_source": true,
+      "notes": "37k–55k tùy nguồn",
+      "section": "08"
+    },
+    {
+      "name": "awesome-mcp-servers",
+      "repo": "wong2/awesome-mcp-servers",
+      "category": "awesome-list",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "awesome-generative-ui",
+      "repo": "narrowin/awesome-generative-ui",
+      "category": "awesome-list",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "awesome-design-systems",
+      "repo": "klaufel/awesome-design-systems",
+      "category": "awesome-list",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "design-resources-for-developers",
+      "repo": "bradtraversy/design-resources-for-developers",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "08"
+    },
+    {
+      "name": "Github-Ranking",
+      "repo": "EvanLi/Github-Ranking",
+      "category": "awesome-list",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "Cập nhật hằng ngày",
+      "section": "08"
+    },
+    {
+      "name": "deployment-checklist",
+      "repo": "PinoyFreeCoder/deployment-checklist",
+      "category": "checklist",
+      "license": "không rõ (cho phép copy/fork)",
+      "stars": 48,
+      "open_source": true,
+      "notes": "Pre-deploy web/mobile; base.md ~130 mục + laravel/nextjs/django; agent.md trả GO/NO-GO với bằng chứng; tạo 26/9/2026, không LICENSE; link từ người dùng",
+      "section": "09"
+    },
+    {
+      "name": "OWASP CheatSheetSeries",
+      "repo": "OWASP/CheatSheetSeries",
+      "category": "checklist",
+      "license": "CC BY-SA 4.0",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "09"
+    },
+    {
+      "name": "Front-End-Checklist",
+      "repo": "thedaviddias/Front-End-Checklist",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "",
+      "section": "09"
+    },
+    {
+      "name": "production-readiness-checklist",
+      "repo": "MarinJursic/production-readiness-checklist",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 40,
+      "open_source": true,
+      "notes": "10.042 control, scanner CLI prc (read-only), AI advisory-only; so sánh với deployment-checklist",
+      "section": "09"
+    },
+    {
+      "name": "mcp-project-planner",
+      "repo": "PinoyFreeCoder/mcp-project-planner",
+      "category": "protocol",
+      "license": null,
+      "stars": 1,
+      "open_source": true,
+      "notes": "Remote MCP server gợi ý repo/API/tech stack; cùng tác giả deployment-checklist",
+      "section": "09"
+    },
+    {
+      "name": "owasp-asvs-checklist",
+      "repo": "shenril/owasp-asvs-checklist",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "ASVS 5.0 audit checklist (xlsx/ods)",
+      "section": "09"
+    },
+    {
+      "name": "owasp-asvs-wstg-checklist",
+      "repo": "jeremychoi/owasp-asvs-wstg-checklist",
+      "category": "checklist",
+      "license": null,
+      "stars": null,
+      "open_source": true,
+      "notes": "Map ASVS ↔ WSTG",
+      "section": "09"
+    }
+  ]
+}

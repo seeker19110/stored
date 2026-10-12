@@ -1,0 +1,87 @@
+name,repo,url,category,license,stars_est,open_source,section,notes
+OpenCode,sst/opencode,https://github.com/sst/opencode,coding-agent,MIT,210000,True,01,CLI/TUI agent đa model; #1 nhóm mở 9/2026
+DeepSeek Harness,deepseek-ai/deepseek-harness,https://github.com/deepseek-ai/deepseek-harness,coding-agent,MIT,200000,True,01,Ra mắt 13/8/2026; mọi thứ là plugin; developer preview
+Claude Code,anthropics/claude-code,https://github.com/anthropics/claude-code,coding-tool-commercial,proprietary,148000,False,01,"CLI/IDE/web; hooks, skills, subagents, ralph-loop plugin"
+OpenAI Codex CLI,openai/codex,https://github.com/openai/codex,coding-agent,Apache-2.0,127000,True,01,Rust; sandbox; multi-agent
+Gemini CLI,google-gemini/gemini-cli,https://github.com/google-gemini/gemini-cli,coding-agent,Apache-2.0,107000,True,01,
+OpenHands,OpenHands/OpenHands,https://github.com/OpenHands/OpenHands,coding-agent,MIT,90000,True,01,Cũ: OpenDevin / All-Hands-AI
+Cline,cline/cline,https://github.com/cline/cline,coding-agent,Apache-2.0,69000,True,01,VS Code extension; plan/act
+Aider,Aider-AI/aider,https://github.com/Aider-AI/aider,coding-agent,Apache-2.0,49000,True,01,Commit cuối 5/2026
+SWE-agent,SWE-agent/SWE-agent,https://github.com/SWE-agent/SWE-agent,coding-agent,MIT,20500,True,01,Princeton
+mini-SWE-agent,SWE-agent/mini-swe-agent,https://github.com/SWE-agent/mini-swe-agent,coding-agent,MIT,8400,True,01,100 dòng; >74% SWE-bench Verified; harness chuẩn của Vals
+Goose,block/goose,https://github.com/block/goose,coding-agent,Apache-2.0,,True,01,MCP-first
+Roo Code,RooCodeInc/Roo-Code,https://github.com/RooCodeInc/Roo-Code,coding-agent,Apache-2.0,,True,01,Fork Cline
+Cursor,,https://cursor.com,coding-tool-commercial,proprietary,,False,01,$20/$60/$200; cloud agents; SKILL.md từ 2.4
+Windsurf / Devin Desktop,,https://windsurf.com,coding-tool-commercial,proprietary,,False,01,Cognition
+Devin,,https://devin.ai,coding-tool-commercial,proprietary,,False,01,
+GitHub Copilot,,https://github.com/features/copilot,coding-tool-commercial,proprietary,,False,01,$10/$19/$39
+Google Jules,,https://jules.google,coding-tool-commercial,proprietary,,False,01,Async cloud agent
+LangChain,langchain-ai/langchain,https://github.com/langchain-ai/langchain,agent-framework,MIT,130000,True,02,
+LangGraph,langchain-ai/langgraph,https://github.com/langchain-ai/langgraph,agent-framework,MIT,40000,True,02,34.5M tải/tháng; dẫn đầu adoption
+AutoGen,microsoft/autogen,https://github.com/microsoft/autogen,agent-framework,MIT,60000,True,02,Maintenance; kế nhiệm = Microsoft Agent Framework (GA 4/2026)
+Microsoft Agent Framework,microsoft/agent-framework,https://github.com/microsoft/agent-framework,agent-framework,MIT,,True,02,AutoGen + Semantic Kernel
+CrewAI,crewAIInc/crewAI,https://github.com/crewAIInc/crewAI,agent-framework,MIT,57000,True,02,Role-based crews
+OpenAI Agents SDK,openai/openai-agents-python,https://github.com/openai/openai-agents-python,agent-framework,MIT,29000,True,02,"handoffs, guardrails"
+LlamaIndex,run-llama/llama_index,https://github.com/run-llama/llama_index,agent-framework,MIT,48000,True,02,RAG/data framework
+Semantic Kernel,microsoft/semantic-kernel,https://github.com/microsoft/semantic-kernel,agent-framework,MIT,28000,True,02,Hợp vào Agent Framework
+smolagents,huggingface/smolagents,https://github.com/huggingface/smolagents,agent-framework,Apache-2.0,26000,True,02,code-agent
+Haystack,deepset-ai/haystack,https://github.com/deepset-ai/haystack,agent-framework,Apache-2.0,20000,True,02,
+PydanticAI,pydantic/pydantic-ai,https://github.com/pydantic/pydantic-ai,agent-framework,MIT,16000,True,02,typed
+Google ADK,google/adk-python,https://github.com/google/adk-python,agent-framework,Apache-2.0,,True,02,A2A native
+Mastra,mastra-ai/mastra,https://github.com/mastra-ai/mastra,agent-framework,Apache-2.0,,True,02,TypeScript
+OpenClaw,openclaw/openclaw,https://github.com/openclaw/openclaw,personal-agent,MIT,390000,True,02,Trợ lý cá nhân tự host; foundation độc lập
+Ralph Wiggum loop (plugin),anthropics/claude-code,https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md,pattern-loop,n/a,,True,03,Stop-hook loop; tác giả kỹ thuật: Geoffrey Huntley 7/2025
+ralph-claude-code,frankbria/ralph-claude-code,https://github.com/frankbria/ralph-claude-code,pattern-loop,,,True,03,Loop với exit detection
+claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,https://github.com/FlorianBruniaux/claude-code-ultimate-guide,learning,,,True,03,"agent teams, workflows"
+MCP servers (reference),modelcontextprotocol/servers,https://github.com/modelcontextprotocol/servers,protocol,MIT,87000,True,04,AAIF / Linux Foundation
+FastMCP,prefecthq/fastmcp,https://github.com/prefecthq/fastmcp,protocol,Apache-2.0,23000,True,04,Python MCP framework
+A2A,a2aproject/A2A,https://github.com/a2aproject/A2A,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
+AG-UI,ag-ui-protocol/ag-ui,https://github.com/ag-ui-protocol/ag-ui,protocol,MIT,,True,04,Agent ↔ UI; CopilotKit
+Agent Skills spec,,https://agentskills.io,protocol,open standard,,True,04,SKILL.md; chuẩn mở 18/12/2025
+awesome-agent-skills,VoltAgent/awesome-agent-skills,https://github.com/VoltAgent/awesome-agent-skills,awesome-list,,,True,04,1000+ skills
+n8n,n8n-io/n8n,https://github.com/n8n-io/n8n,low-code,Sustainable Use,207000,False,05,fair-code
+Dify,langgenius/dify,https://github.com/langgenius/dify,low-code,Apache-2.0 (modified),158000,True,05,
+Langflow,langflow-ai/langflow,https://github.com/langflow-ai/langflow,low-code,MIT,145000,True,05,
+Flowise,FlowiseAI/Flowise,https://github.com/FlowiseAI/Flowise,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
+shadcn/ui,shadcn-ui/ui,https://github.com/shadcn-ui/ui,ui-library,MIT,118000,True,06,Base UI mặc định từ 7/2026
+MUI,mui/material-ui,https://github.com/mui/material-ui,ui-library,MIT,93000,True,06,
+Radix UI,radix-ui/primitives,https://github.com/radix-ui/primitives,ui-library,MIT,,True,06,nguồn lệch 19k–35k
+Base UI,mui/base-ui,https://github.com/mui/base-ui,ui-library,MIT,10600,True,06,
+Mantine,mantinedev/mantine,https://github.com/mantinedev/mantine,ui-library,MIT,28000,True,06,
+Vuetify,vuetifyjs/vuetify,https://github.com/vuetifyjs/vuetify,ui-library,MIT,41000,True,06,
+Storybook,storybookjs/storybook,https://github.com/storybookjs/storybook,ui-library,MIT,,True,06,
+Excalidraw,excalidraw/excalidraw,https://github.com/excalidraw/excalidraw,design-tool,MIT,134000,True,06,
+Penpot,penpot/penpot,https://github.com/penpot/penpot,design-tool,MPL-2.0,61000,True,06,Figma alternative
+tldraw,tldraw/tldraw,https://github.com/tldraw/tldraw,design-tool,tldraw license,51000,True,06,
+Onlook,onlook-dev/onlook,https://github.com/onlook-dev/onlook,design-tool,Apache-2.0,,True,06,Visual editor React
+v0.app,,https://v0.app,ai-ui-generator,proprietary,,False,06,Vercel
+Lovable,,https://lovable.dev,ai-ui-generator,proprietary,,False,06,
+bolt.diy,stackblitz-labs/bolt.diy,https://github.com/stackblitz-labs/bolt.diy,ai-ui-generator,MIT,,True,06,Bản mở của Bolt.new
+Google Stitch,,https://stitch.withgoogle.com,ai-ui-generator,proprietary,,False,06,
+Taste Skill,Leonxlnx/taste-skill,https://github.com/Leonxlnx/taste-skill,design-skill,,46000,True,06,Chống AI-slop UI
+CopilotKit,CopilotKit/CopilotKit,https://github.com/CopilotKit/CopilotKit,agentic-ui,MIT,,True,06,$27M 5/2026
+assistant-ui,assistant-ui/assistant-ui,https://github.com/assistant-ui/assistant-ui,agentic-ui,MIT,,True,06,
+Vercel AI SDK,vercel/ai,https://github.com/vercel/ai,agentic-ui,Apache-2.0,,True,06,+ AI Elements
+Langfuse,langfuse/langfuse,https://github.com/langfuse/langfuse,eval-observability,MIT (core),,True,07,
+Promptfoo,promptfoo/promptfoo,https://github.com/promptfoo/promptfoo,eval-observability,MIT,,True,07,red-team
+DeepEval,confident-ai/deepeval,https://github.com/confident-ai/deepeval,eval-observability,Apache-2.0,,True,07,
+Ragas,explodinggradients/ragas,https://github.com/explodinggradients/ragas,eval-observability,Apache-2.0,,True,07,
+Arize Phoenix,Arize-ai/phoenix,https://github.com/Arize-ai/phoenix,eval-observability,ELv2,,False,07,source-available
+build-your-own-x,codecrafters-io/build-your-own-x,https://github.com/codecrafters-io/build-your-own-x,learning,CC0,550000,True,08,#1 GitHub
+freeCodeCamp,freeCodeCamp/freeCodeCamp,https://github.com/freeCodeCamp/freeCodeCamp,learning,BSD-3,455000,True,08,
+developer-roadmap,kamranahmedse/developer-roadmap,https://github.com/kamranahmedse/developer-roadmap,learning,custom,365000,True,08,
+system-design-primer,donnemartin/system-design-primer,https://github.com/donnemartin/system-design-primer,learning,CC BY 4.0,365000,True,08,
+awesome-llm-apps,Shubhamsaboo/awesome-llm-apps,https://github.com/Shubhamsaboo/awesome-llm-apps,awesome-list,Apache-2.0,105000,True,08,
+awesome-claude-code,hesreallyhim/awesome-claude-code,https://github.com/hesreallyhim/awesome-claude-code,awesome-list,,45000,True,08,37k–55k tùy nguồn
+awesome-mcp-servers,wong2/awesome-mcp-servers,https://github.com/wong2/awesome-mcp-servers,awesome-list,,,True,08,
+awesome-generative-ui,narrowin/awesome-generative-ui,https://github.com/narrowin/awesome-generative-ui,awesome-list,,,True,08,
+awesome-design-systems,klaufel/awesome-design-systems,https://github.com/klaufel/awesome-design-systems,awesome-list,,,True,08,
+design-resources-for-developers,bradtraversy/design-resources-for-developers,https://github.com/bradtraversy/design-resources-for-developers,awesome-list,MIT,,True,08,
+Github-Ranking,EvanLi/Github-Ranking,https://github.com/EvanLi/Github-Ranking,awesome-list,,,True,08,Cập nhật hằng ngày
+deployment-checklist,PinoyFreeCoder/deployment-checklist,https://github.com/PinoyFreeCoder/deployment-checklist,checklist,không rõ (cho phép copy/fork),48,True,09,"Pre-deploy web/mobile; base.md ~130 mục + laravel/nextjs/django; agent.md trả GO/NO-GO với bằng chứng; tạo 26/9/2026, không LICENSE; link từ người dùng"
+OWASP CheatSheetSeries,OWASP/CheatSheetSeries,https://github.com/OWASP/CheatSheetSeries,checklist,CC BY-SA 4.0,,True,09,
+Front-End-Checklist,thedaviddias/Front-End-Checklist,https://github.com/thedaviddias/Front-End-Checklist,checklist,MIT,,True,09,
+production-readiness-checklist,MarinJursic/production-readiness-checklist,https://github.com/MarinJursic/production-readiness-checklist,checklist,MIT,40,True,09,"10.042 control, scanner CLI prc (read-only), AI advisory-only; so sánh với deployment-checklist"
+mcp-project-planner,PinoyFreeCoder/mcp-project-planner,https://github.com/PinoyFreeCoder/mcp-project-planner,protocol,,1,True,09,Remote MCP server gợi ý repo/API/tech stack; cùng tác giả deployment-checklist
+owasp-asvs-checklist,shenril/owasp-asvs-checklist,https://github.com/shenril/owasp-asvs-checklist,checklist,MIT,,True,09,ASVS 5.0 audit checklist (xlsx/ods)
+owasp-asvs-wstg-checklist,jeremychoi/owasp-asvs-wstg-checklist,https://github.com/jeremychoi/owasp-asvs-wstg-checklist,checklist,,,True,09,Map ASVS ↔ WSTG
