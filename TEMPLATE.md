@@ -18,6 +18,7 @@ Sao chép khối dưới vào README của chuyên mục phù hợp (hoặc tạ
 ```
 
 ## Sinh lại CSV từ JSON
+
 ```bash
 python3 -I - <<'PY'
 import json,csv
@@ -30,6 +31,7 @@ PY
 ```
 
 ## Quy ước
+
 - Số sao luôn kèm ngày và nguồn; dùng `null` nếu không có số tin cậy.
 - Nhận định chưa kiểm chứng độc lập ghi rõ **(chưa xác minh)**.
 - Ưu tiên nguồn chính thức (repo, docs, paper) hơn blog so sánh.

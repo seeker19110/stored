@@ -1,6 +1,7 @@
 # Nguồn đã sử dụng (khảo sát 2026-10-12)
 
 ## Chính thức / repo / paper
+
 - https://www.anthropic.com/research/building-effective-agents
 - https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md
 - https://github.com/OpenHands/OpenHands · https://github.com/SWE-agent/mini-swe-agent · https://github.com/SWE-agent
@@ -22,6 +23,7 @@
 - https://refactoringui.com/ · https://designsystemsrepo.com/design-systems/ · https://designsystems.surf/design-systems · https://www.tasteskill.dev/
 
 ## Blog so sánh / roundup (độ tin cậy trung bình, dùng để đối chiếu số sao)
+
 - Coding agents: pinggy.io, morphllm.com, openhands.dev/blog, stoneforge.ai, andrew.ooo, opensourcealternatives.to, ayautomate.com, dev.to/sonotommy, codesota.com, theaiagentindex.com, mindstudio.ai, flowtivity.ai
 - Commercial tools: codeant.ai, dev.to/truongandev, developersdigest.tech, devtoollab.com, buildmvpfast.com, levelop.dev, pecollective.com, crazyrouter.com
 - Frameworks: firecrawl.dev, pickaxe.co, aimagicx.com, uvik.net, openagents.org, unifiedplatforms.com, the-agent-report.com, o-mega.ai, dreaming.press, langchain.com/resources, cordum.io, turion.ai, ai-agentsplus.com, stackone.com
@@ -34,6 +36,7 @@
 - Rankings: gitstarclub.com, countly.net, stackscan.com, hostinger.com, firecrawl.dev/blog/best-github-repos, fungies.io, eluminoustechnologies.com, kaggle.com (2026 most starred dataset)
 
 ## Bổ sung 2026-10-12 (mục 10–13)
+
 - Local LLM: dev.to/sreeraj-sreenivasan, blog.starmorph.com, openalternative.co, storagereview.com, deepresearch.ninja, digitalapplied.com, fungies.io, techsy.io, phosailabs.com, maketocreate.com
 - Vector DB: atlan.com, firecrawl.dev, lakefs.io, aimultiple.com, vdf.ai, marktechpost.com, iternal.ai, karthikeyanrathinam.medium.com
 - Agent memory: atlan.com, dev.to/plur9, developersdigest.tech, thegenios.com, niteagent.com, futurepicker.com, contextstudios.ai, medium.com/@wasowski.jarek, baeseokjae.github.io
@@ -47,6 +50,7 @@
 - Code review: dupple.com, morphllm.com, stork.ai, screencli.sh, wetheflywheel.com, blog.codercops.com, codepick.dev, cursor-alternatives.com
 
 ## Bổ sung 2026-10-12 (mục 14–18)
+
 - Voice: micdrop.dev, livekit.com/blog, forasoft.com, github.com/pipecat-ai/pipecat, techsy.io, grokipedia.com, dograh.com
 - TTS: ocdevel.com, pinggy.io, tryspeakeasy.io, localaimaster.com, spheron.network, secondtalent.com, openvoxai.com, texttolab.com
 - VLM/image: github.com/QwenLM/Qwen3-VL, github.com/LLaVA-VL/LLaVA-NeXT, github.com/EvolvingLMMs-Lab/LLaVA-OneVision-2, en.wikipedia.org (ComfyUI, Automatic1111, Fooocus), github.com/lllyasviel/Fooocus, insiderllm.com, meetrix.io, dev.to/jovan_chan
@@ -56,16 +60,20 @@
 - Việt Nam: emergentmind.com (PhoGPT), arXiv 2509.26189 / 2608.25478, ai.stanford.edu/blog/crossing-linguistic-horizon, aisean.org, huggingface.co/Vi-VLM, github.com/vndee/awsome-vietnamese-nlp, pypi.org/project/underthesea, github.com/undertheseanlp/underthesea, aclanthology.org/N18-5012, sotatek.com (ViGen), technode.global, morsoftware.com, vietnam.vn, openhackathons.org
 
 ## Bổ sung 2026-10-12 (link người dùng: ADHD, OpenMontage)
+
 - ADHD: github.com/UditAkhourii/adhd (README, SKILL.md, EVALS.md, ADOPTERS.md), adhdstack.github.io, github.com/UditAkhourii, trendshift.io/repositories/39300, thenewstack.io/claude-code-adhd, dudarik.com/en/blog/adhd, explainx.ai/skills/UditAkhourii/adhd, futureagi.com (ToT 2026), arXiv 2605.06040 / 2605.28566
 - OpenMontage: github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits), github.com/calesthio, pinggy.io, knightli.com, dev.to/andrew-ooo, hysenlabs.com, opensourcealternatives.to, explainx.ai, visionstory.ai, tosea.ai, blog.brightcoding.dev, github.com/THU-MAIC/OpenMAIC/discussions/346, github.com/volcengine/OpenViking/discussions/1083, trendshift.io/topics/ai-video, atlascloud.ai, agenticvideos.org, arXiv 2608.29814 / 2608.28122
 
 ## Bổ sung 2026-10-12 (link người dùng: knowledge-work-plugins)
+
 - github.com/anthropics/knowledge-work-plugins (README, .claude-plugin/marketplace.json, sales/, sales/.mcp.json, sales/skills/call-prep/SKILL.md, engineering/, cowork-plugin-management/, commits), github.com/anthropics/claude-plugins-community, code.claude.com/docs/en/plugins, claude.com/plugins, thenewstack.io/anthropic-brings-plugins-to-cowork, agentscamp.com (knowledge-work-plugins guide), claude-world.com, claudecowork.im, aitoolly.com, integratedcognition.com, awesomeclaudeplugins.com, agentindex.app
 
 ## Bổ sung 2026-10-12 (link người dùng: anatomy)
+
 - github.com/wheresryan22/anatomy (README, SKILL.md, releases/v1.0.0, commits), github.com/wheresryan22, github.com/wheresryan22/anatomy-figures, x.com/wheresryan22 (launch post 10/10/2026), ui-skills.com, skills.sh, skillselion.com, aipptskill.com, open-design.ai/skills/diagram, mcpmarket.com (excalidraw/mermaid skills), claudeskills.info
 
 ## Bổ sung 2026-10-12 (yêu cầu "autonomous workflow" → mục 21)
+
 - Anthropic: anthropic.com/engineering/effective-harnesses-for-long-running-agents (26/11/2025), anthropic.com/engineering/harness-design-long-running-apps (24/3/2026); code.claude.com/docs/en/scheduled-tasks, /routines, /desktop-scheduled-tasks, /github-actions, /goal, /channels
 - Routines (thứ cấp): prosperinai.substack.com, makerkit.dev, claudefa.st, alexdunlop.com, automatonagency.com, swapbiswas.com, apito.ai, popularaitools.ai
 - gh-aw: github.com/githubnext/gh-aw, github.com/githubnext/gh-aw-workshop
@@ -76,5 +84,6 @@
 - Harness thứ cấp: preprints.org/manuscript/202603.1756, gist.github.com/0xK8oX, pub.towardsai.net, ai-eval.org, ai-heroes.co, theaiautomators.com, victorinollc.com, agentsdesign.dev, arXiv 2607.14159
 
 ## Bổ sung 2026-10-12 (ảnh trending người dùng: Understand-Anything, claude-plugins-official)
+
 - Understand-Anything: github.com/Egonex-AI/Understand-Anything (README, cấu trúc repo), github.com/Egonex-AI, github.com/GoodDingo/understand-anything, trendshift.io/repositories/23482, betterstack.com/community/guides/ai/understand-anything, augmentcode.com/learn/understand-anything-71k-stars, mcpmarket.com, awesomeskill.ai, trendingrepo.com, x.com/Sumanth_077
 - claude-plugins-official: github.com/anthropics/claude-plugins-official (README, .claude-plugin/marketplace.json), code.claude.com/docs/en/plugins (overview, anthropic-marketplaces, security, measure), claude.com/marketplace/plugins

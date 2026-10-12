@@ -3,6 +3,7 @@
 > Nền tảng kỹ thuật "cổ điển" mà agent/AI tooling đứng trên. Số sao ước lượng 2026 (nguồn lệch).
 
 ## 1. Frontend
+
 | Framework | Repo | ★ | Ghi chú |
 |---|---|---|---|
 | React | facebook/react | ~251k (11/10/2026) | React 19; nền của Next.js, shadcn/ui |
@@ -17,6 +18,7 @@
 | TanStack (Query/Router/Start) | TanStack/* | – | Full-stack TS mới nổi |
 
 ## 2. Backend
+
 | Framework | Repo | ★ | Ghi chú |
 |---|---|---|---|
 | FastAPI | fastapi/fastapi | ~100k | Mặc định cho API AI/Python |
@@ -29,6 +31,7 @@
 | Go (Gin, Fiber), Rust (Axum, Actix) | – | – | Hiệu năng cao |
 
 ## 3. Mobile / cross-platform
+
 | Framework | Chia sẻ | Phù hợp |
 |---|---|---|
 | **Flutter** | UI + logic (Dart) | UI tùy biến, mobile + web + desktop |
@@ -38,6 +41,7 @@
 | Capacitor/Ionic, Tauri Mobile | Web → native | Web team |
 
 ## 4. DevOps / Platform
+
 | Lĩnh vực | Công cụ | Ghi chú |
 |---|---|---|
 | Container | Docker, Podman | |
@@ -50,6 +54,7 @@
 | Danh sách | `bregman-arie/devops-exercises`, CNCF Landscape | |
 
 ## 5. Spec-driven development (SDD) cho AI coding
+
 | Công cụ | Repo / nhà cung cấp | License | Cách tiếp cận | Nhận xét |
 |---|---|---|---|---|
 | **GitHub Spec Kit** | github/spec-kit | MIT | CLI + template: `specify → plan → tasks → implement`, chạy trên agent có sẵn (Copilot, Claude Code, Cursor, Gemini CLI) | Trung lập nhất; còn breaking changes |
@@ -61,6 +66,7 @@
 **Liên hệ mục 03:** spec là "hợp đồng" để chạy nhiều agent song song và là tiêu chí dừng cho loop.
 
 ## 6. AI code review
+
 | Công cụ | Giá | Thế mạnh | Hạn chế |
 |---|---|---|---|
 | **CodeRabbit** | $24 / $48 dev/tháng; free public repo | All-rounder ít nhiễu; hỗ trợ 4 Git host | |
@@ -71,6 +77,7 @@
 | Bito, Macroscope | – | | |
 
 ## 7. Nguồn
+
 - https://www.solutelabs.com/blog/top-frontend-web-frameworks · https://www.intuz.com/best-frontend-frameworks/ · https://findarepo.com/categories/web-frameworks/ · https://wasp.sh/resources/2026/02/24/best-frameworks-web-dev-2026 · https://github.com/vanodevium/node-framework-stars · https://encore.dev/articles/best-typescript-backend-frameworks · https://www.hirenodejs.com/blog/nodejs-frameworks-compared-2026 · https://rankingdevs.com/best-backend-tools
 - https://www.javacodegeeks.com/2026/02/kotlin-multiplatform-vs-flutter-vs-react-native-the-2026-cross-platform-reality.html · https://www.drizz.dev/post/cross-platform-mobile-development · https://mobisoftinfotech.com/resources/blog/cross-platform-app-development-flutter-vs-react-native-vs-native-apps
 - https://spacelift.io/blog/gitops-tools · https://www.pulumi.com/blog/best-kubernetes-iac-tools-2026/ · https://www.qovery.com/blog/best-devops-automation-tools · https://oghabi.it/en-us/blog/devops-2026-trends-overview/ · https://medium.com/@h.stoychev87/devops-cloud-platform-tools-by-category-for-2026-68ed92103c17

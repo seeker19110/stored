@@ -7,6 +7,7 @@
 ## 1. anthropics/knowledge-work-plugins ⭐ (link từ người dùng)
 
 ### 1.1 Hồ sơ nhanh
+
 | Thuộc tính | Giá trị (đọc 2026-10-12) |
 |---|---|
 | Repo | https://github.com/anthropics/knowledge-work-plugins · marketplace web: claude.com/plugins |
@@ -18,12 +19,14 @@
 | Cài đặt | Cowork: Customize → Plugins hoặc claude.com/plugins. Claude Code: `claude plugin marketplace add anthropics/knowledge-work-plugins` → `claude plugin install sales@knowledge-work-plugins` |
 
 ### 1.2 Quy mô thật (từ `.claude-plugin/marketplace.json`)
+
 - **123 plugin**: 22 local (trong repo) + **101 external** (pin theo commit `sha`, nguồn git-subdir/URL của vendor).
 - **22 local:** productivity, enterprise-search, cowork-plugin-management, sales, finance, data, legal, marketing, customer-support, product-management, bio-research, engineering, human-resources, design, operations, small-business, pdf-viewer + partner-built: slack-by-salesforce, apollo, common-room, brand-voice (Tribe AI), zoom-plugin.
 - **101 external (vendor):** Figma, Canva, Adobe, Miro, Box, Dropbox, Airtable, Zapier, Intercom, HubSpot, ZoomInfo, Lusha, Monday, Datadog, Grafana, Honeycomb, SigNoz, Langfuse, Qdrant, ClickHouse, CockroachDB, PlanetScale, Prisma, Auth0, Twilio, Cloudinary, Fastly, Buildkite, Render, Hostinger, Wix, Base44, Browser-Use, Desktop Commander, Qodo, StackHawk, Vanta, Carta ×3, NetSuite ×2, QuickBooks, Airwallex, LSEG, S&P Global, BlackRock, Vanguard, Coursera, Unity, Pendo ×3, Amazon Selling Partner, GovTribe, security-guidance…
 - **Nhận xét:** repo đã chuyển từ "11 plugin theo vai trò" thành **marketplace vendor-first** (hơn 80% là plugin bên thứ ba). Các bài viết nói 11/15/17/24 plugin đều là snapshot cũ. Không có trường `version`; chỉ một số plugin có `category`.
 
 ### 1.3 Cấu trúc một plugin (chuẩn Claude Code / Cowork)
+
 ```
 plugin-name/
 ├── .claude-plugin/plugin.json   # manifest: name, description, metadata
@@ -34,14 +37,17 @@ plugin-name/
 ├── hooks/                       # (tùy chọn) – Cowork only
 ├── CONNECTORS.md · README.md · LICENSE
 ```
+
 - *"Every component is file-based — markdown and JSON, no code, no infrastructure, no build steps."*
 - Ví dụ `sales/.mcp.json`: 23 MCP server HTTP (Slack có OAuth clientId/callbackPort; HubSpot, Salesforce, Close, Clay, ZoomInfo, Gong, Fireflies, Zoom, Otter, Calendly, Apollo, Outreach, Lusha, Crunchbase, Notion, Atlassian, Microsoft 365…); **3 entry Google (Calendar, Gmail, Drive) có `url` rỗng** → không kết nối được như hiện tại.
 - Thực tế: hầu hết plugin Anthropic **chỉ có `skills/`**, không có `commands/` hay `agents/` (dù README nhắc sub-agent); chỉ plugin brand-voice của partner có agent. Hooks/sub-agent chỉ chạy trong Cowork.
 
 ### 1.4 Plugin `sales` – ví dụ về độ sâu
+
 36 skill chia 5 nhóm: *Your day* (setup, daily-briefing, call-prep, call-summary, inbox-sweep, schedule-meeting, log-activity, end-of-day, weekly-wrap) · *Accounts & prospecting* (account-research, account-context, stakeholder-map, draft-outreach, lead-triage, route-lead, account-tiering, account-plan, expansion-whitespace) · *Deals* (deal-review, deal-advance-gap, deal-signals, deal-slip-scenario, close-plan, handle-objection, competitive-intelligence, create-an-asset, update-opportunity) · *Pipeline & forecast* (pipeline-review, crm-hygiene-check, forecast, team-pipeline, rep-context, win-loss-review) · *Customers* (customer-health, customer-voice, renewal-radar). Snapshot 8/9/2026 chỉ có 9 skill → **tăng 4× trong một tháng**.
 
 ### 1.5 Giải phẫu một SKILL.md tốt (`sales/skills/call-prep`, ~150 dòng)
+
 - Frontmatter tối giản: `name`, `description` chứa **cụm kích hoạt** ("prep me for [meeting]", "what do I need before my [time] call").
 - **Tool-agnostic:** nói theo *loại* connector (calendar, crm, transcripts, email, docs, chat), tool cụ thể chỉ là ví dụ; nếu 2 tool cùng vai trò → ưu tiên tool khớp domain email CRM hoặc hỏi.
 - Quy trình 6 bước: Ground (kiểm tra tool nào đang nối, lấy stage/qualification framework từ **schema CRM live**) → Resolve meeting → Account history → Attendee profiles → Call plan (mục tiêu, 3–5 câu discovery, objection) → Output (artifact brief hoặc text).
@@ -53,12 +59,15 @@ plugin-name/
   - *"An empty answer or 0 calls searched means no Gong coverage, not 'nothing happened.'"* · *"Never summarize from a search preview."* · *"Work silently between tool calls and batch independent reads."*
 
 ### 1.6 Plugin `engineering` (liên quan coding)
+
 6 skill: code-review, incident-response, system-design, tech-debt, testing-strategy, documentation; command: `/standup`, `/review`, `/debug`, `/architecture`, `/incident`, `/deploy-checklist`; connector: GitHub/GitLab, Linear/Jira/Asana, Datadog/New Relic, PagerDuty/Opsgenie, Slack/Teams, Notion/Confluence; cá nhân hóa qua `.claude/settings.local.json` (name, techStack, defaultBranch, deployProcess). So sánh: `/deploy-checklist` ở đây nhẹ hơn nhiều so với `PinoyFreeCoder/deployment-checklist` (mục 09).
 
 ### 1.7 `cowork-plugin-management` – meta-plugin
+
 2 skill: `create-cowork-plugin` (tạo plugin mới theo cấu trúc chuẩn) và `cowork-plugin-customizer` (sửa plugin có sẵn: swap connector trong `.mcp.json`, thêm ngữ cảnh công ty vào skill, chỉnh workflow). README khuyến khích **fork là cách dùng chính**.
 
 ### 1.8 Đánh giá & hạn chế
+
 | Nguồn | Nội dung |
 |---|---|
 | The New Stack (30/1/2026) | "Anthropic brings plugins to Cowork" – mang khả năng mở rộng của Claude Code (skills, connectors, commands, sub-agents) sang người không phải dev |
@@ -67,6 +76,7 @@ plugin-name/
 | Quan sát khi đọc repo | Số liệu plugin lệch mạnh giữa nguồn; Google connectors url rỗng; tốc độ thêm vendor plugin rất nhanh (Pendo, Hostinger, Render, Carta, Qodo, Vanguard, GovTribe trong 3 tuần) → chất lượng/curation phụ thuộc review nội bộ Anthropic |
 
 ### 1.9 Bài học cho kho này
+
 1. **Skill = quy trình + guardrail, không phải prompt**: call-prep là mẫu chuẩn về cách viết skill production (ground trước, fallback cho từng connector, output cố định, danh sách "không được làm").
 2. **Tool-agnostic bằng category** giúp một skill chạy với nhiều stack; tái dùng khi viết SKILL.md nội bộ.
 3. **Prompt-injection defense ở tầng skill** (mục 12): coi mọi nội dung lấy về là dữ liệu; hành động phát sinh phải được duyệt; scheduled run chỉ đề xuất.
@@ -77,6 +87,7 @@ plugin-name/
 ---
 
 ## 2. Ba marketplace chính thức của Anthropic
+
 | Marketplace | Repo | Nội dung | ★ |
 |---|---|---|---|
 | **claude-plugins-official** | anthropics/claude-plugins-official | Marketplace mặc định của Claude Code (tự thêm lần đầu mở terminal); ~170+ plugin: 31 nội bộ Anthropic + plugin đối tác/cộng đồng; chi tiết mục 2b | **37,7k** (+2.172★/ngày theo ảnh trending 12/10) |
@@ -91,6 +102,7 @@ plugin-name/
 > Nguồn: ảnh trending người dùng gửi (+2.172★/ngày); đọc README, `.claude-plugin/marketplace.json` (100k ký tự đầu / 190k), docs code.claude.com/docs/en/plugins.
 
 ### 2b.1 Hồ sơ nhanh
+
 | Thuộc tính | Giá trị |
 |---|---|
 | Số liệu | **37,7k★**, 4,2k fork, 230 watcher, 4.383 commit, ~1k issue mở, 87 PR mở; Apache-2.0 (mỗi plugin có license riêng) |
@@ -100,6 +112,7 @@ plugin-name/
 | Cảnh báo README | Anthropic **không kiểm soát** MCP server/file/phần mềm trong plugin, không bảo đảm hoạt động đúng hay không đổi; xem homepage từng plugin trước khi cài |
 
 ### 2b.2 31 plugin nội bộ (đọc từ marketplace.json)
+
 | Nhóm | Plugin |
 |---|---|
 | Quy trình code | `commit-commands` (commit/push/PR), `code-review` (multi-agent, confidence scoring), `feature-dev` (agent chuyên biệt), `code-simplifier`, `code-modernization`, `claude-security` (quét lỗ hổng + patch đã kiểm chứng) |
@@ -110,6 +123,7 @@ plugin-name/
 | Khác | `frontend-design` (mục 06), `math-olympiad` (giải toán + xác minh đối kháng), `cwc-makers` (Cardputer) |
 
 ### 2b.3 Plugin bên ngoài (>135, pin theo git URL) – theo `category`
+
 - **development**: AWS (aws-agents, aws-core, aws-amplify, aws-startup-advisor…), huggingface-skills, expo, firecrawl, greptile, codspeed, deepeval, lovable, base44, appwrite, buildkite, chrome-devtools-mcp, gitkraken, datarobot-agent-skills…
 - **productivity**: atlassian, box, dropbox, intercom, clay, apollo, coderabbit, exa, desktop-commander, intuit-quickbooks, legalzoom, carta-*…
 - **database**: databricks, clickhouse, bigquery-data-analytics, cockroachdb, convex, duckdb-skills, cloud-sql-*, alloydb, firestore-native, looker, aiven…
@@ -119,16 +133,19 @@ plugin-name/
 - Vài entry không có `category` (ai-plugins, atlan, brightdata-plugin, cloudinary, fastly-agent-toolkit) → catalog chưa đồng nhất.
 
 ### 2b.4 Hai quy ước kỹ thuật đáng tái dùng
+
 1. **Tên plugin là bất biến**: đổi `name` gây `plugin-not-found` cho người đã cài; đổi nhãn thì dùng `displayName`; bắt buộc đổi thì thêm vào map `renames` cấp cao nhất của `marketplace.json` (`"old-name": "new-name"`).
 2. **Skill-bundle không có plugin.json**: entry marketplace khai `strict: false` + mảng `skills` (đường dẫn tương đối `source.path`, mỗi thư mục phải có `SKILL.md`), nguồn `git-subdir` pin `ref` + `sha`; mỗi skill đăng ký thành `<plugin>:<skill>`. Cho phép vendor ship skill ngay trong SDK repo của họ mà không cần bọc plugin.
 
 ### 2b.5 Nhận xét
+
 - Đây là **"app store" thực tế của Claude Code**: 31 plugin nội bộ là chuẩn tham chiếu (đặc biệt `code-review`, `claude-security`, `hookify`, `claude-code-setup`), phần còn lại là vendor skill pin sha — cùng mô hình với knowledge-work-plugins (mục 1) nhưng nghiêng về developer.
 - Docs nhấn mạnh **chi phí ngữ cảnh**: plugin bật là có mặt mọi session (tên + mô tả skill/agent/command vào context mỗi lượt); marketplace chính thức hiển thị "Context cost" trước khi cài; có `claude plugin disable`, nhóm "Not used recently". → chỉ bật plugin đang dùng.
 - Tốc độ ★ (+2.172/ngày) song hành với Understand-Anything (+2.331/ngày, mục 01 §3b): cả hai đều hưởng lợi từ việc Claude Code tự thêm marketplace và từ làn sóng "cài plugin thay vì viết prompt".
 - Rủi ro: ~1k issue mở và 87 PR chờ; plugin bên ngoài chạy với quyền người dùng; hãy đọc `plugins/security` trong docs trước khi cài plugin có MCP server.
 
 ## 3. So sánh hệ sinh thái mở rộng (10/2026)
+
 | Nền tảng | Đơn vị mở rộng | Định dạng | Phân phối |
 |---|---|---|---|
 | Claude (Cowork, Claude Code, claude.ai) | Plugin = skills + agents + hooks + MCP | Markdown + JSON, không code | 3 marketplace Anthropic + tự host |
@@ -136,9 +153,11 @@ plugin-name/
 | GitHub Copilot | Extensions, agents, SKILL.md, MCP | Markdown/API | GitHub Marketplace |
 | OpenAI ChatGPT | Apps SDK (MCP + UI), GPTs, Codex skills | MCP + React | ChatGPT app directory |
 | Gemini | Gems, Gemini CLI extensions (MCP + GEMINI.md) | Markdown + JSON | GitHub |
+
 **Điểm chung:** tất cả hội tụ về **MCP cho tool + SKILL.md/AGENTS.md cho tri thức** (mục 04); khác nhau ở lớp đóng gói và kênh phân phối.
 
 ## 4. Nguồn
+
 - https://github.com/anthropics/knowledge-work-plugins (README, `.claude-plugin/marketplace.json`, `sales/`, `sales/.mcp.json`, `sales/skills/call-prep/SKILL.md`, `engineering/`, `cowork-plugin-management/`, commits) · https://github.com/anthropics/claude-plugins-community · https://github.com/anthropics
 - https://code.claude.com/docs/en/plugins · https://claude.com/plugins/ · https://claude.com/docs/plugins/overview
 - claude-plugins-official: https://github.com/anthropics/claude-plugins-official (README, `.claude-plugin/marketplace.json`) · https://code.claude.com/docs/en/plugins/anthropic-marketplaces · https://code.claude.com/docs/en/plugins/security · https://claude.com/marketplace/plugins

@@ -1,9 +1,11 @@
 # Quy trình vận hành kho (WORKFLOW)
 
 ## Khi người dùng gửi một link (repo, bài viết, sản phẩm)
+
 Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đều phải được nghiên cứu kỹ từ nhiều nguồn khác, rồi cập nhật vào kho `stored`.**
 
 ### Các bước bắt buộc
+
 1. **Đọc nguồn gốc**: README, cấu trúc thư mục thật (không tin README mô tả), file chính (docs, agent/prompt, CONTRIBUTING, LICENSE), lịch sử commit, issues/PR, releases.
 2. **Hồ sơ tác giả/tổ chức**: profile, dự án liên quan, kênh (blog/YouTube/X), độ uy tín.
 3. **Nguồn bên ngoài**: tìm web về dự án (bài viết, thảo luận, review, HN/Reddit/dev.to, paper); ghi rõ nguồn nào là chính thức, nguồn nào là blog.
@@ -18,11 +20,13 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
 8. **PR & auto-merge** (quy ước từ 2026-10-12): nhánh mặc định là `main`. Mỗi đợt cập nhật đi qua PR; **luôn bật auto-merge** cho PR ngay khi tạo. Nếu PR đã ở trạng thái "clean" (không có check chờ) thì GitHub không cho bật auto-merge → merge trực tiếp (merge commit). Sau khi merge, tạo lại nhánh làm việc từ `main` cho đợt kế tiếp.
 
 ### Tiêu chuẩn chất lượng
+
 - Mọi con số (sao, fork, commit, ngày) phải kèm ngày đọc.
 - Ưu tiên bằng chứng trực tiếp (file trong repo, trang chính thức) hơn bài tổng hợp.
 - Ghi lại các mâu thuẫn phát hiện được (ví dụ README nói A nhưng file thật là B).
 - Không sao chép nguyên văn nội dung dài của dự án; tóm tắt + trích dẫn ngắn + link.
 
 ## Cập nhật định kỳ
+
 - Mỗi quý: rà lại số sao, trạng thái bảo trì (archive, đổi tên, mua lại), license của các dự án đầu bảng.
 - Khi một chuẩn/giao thức ra phiên bản mới (MCP, A2A, AG-UI, Agent Skills): cập nhật mục 04.

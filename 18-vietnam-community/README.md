@@ -3,6 +3,7 @@
 > Model tiếng Việt mã mở, toolkit NLP, dữ liệu, cộng đồng và sự kiện. Nhiều mục chỉ có 1 nguồn, cần bổ sung khi có link cụ thể (theo WORKFLOW.md).
 
 ## 1. Model ngôn ngữ tiếng Việt mã mở
+
 | Model | Tổ chức | Ghi chú |
 |---|---|---|
 | **PhoGPT** (PhoGPT-4B, 4B-Chat, 7B5) | VinAI Research | Chuỗi LLM tiếng Việt mở 2023; vẫn được dùng làm baseline nghiên cứu 2026 (VietBinoculars, VietAIDetector) |
@@ -15,6 +16,7 @@
 | Qwen/Gemma/Llama bản đa ngôn ngữ | – | Thường tốt hơn model VN chuyên biệt ở quy mô lớn |
 
 ## 2. Toolkit NLP tiếng Việt
+
 | Toolkit | Repo | Ghi chú |
 |---|---|---|
 | **underthesea** | undertheseanlp/underthesea | v9.5.0 (5/2026); từ v9.3 định vị là "Agentic AI Toolkit" có NLP tiếng Việt: tách từ, POS, NER, phân loại, sentiment |
@@ -23,11 +25,13 @@
 | **awsome-vietnamese-nlp** | vndee/awsome-vietnamese-nlp | Danh sách tổng hợp tài nguyên NLP tiếng Việt – điểm khởi đầu |
 
 ## 3. Dữ liệu & benchmark
+
 - **ViGen** (10/2025): bộ dữ liệu tiếng Việt mã mở "đầu tiên" gắn với Chiến lược AI quốc gia đến 2030, lộ trình 2026–2027; SotaTek và nhiều doanh nghiệp đóng góp.
 - Stanford CRFM *Crossing Linguistic Horizons*: đánh giá toàn diện LLM tiếng Việt.
 - VietBinoculars / VietAIDetector (2025–2026): phát hiện văn bản AI tiếng Việt.
 
 ## 4. Tổ chức, cộng đồng, sự kiện
+
 | Tên | Loại | Ghi chú |
 |---|---|---|
 | VinAI Research (Hùng Bùi) | Lab | NeurIPS/ICML, mở PhoGPT, PhoBERT |
@@ -39,10 +43,12 @@
 | Xu hướng 2026 | – | Dev VN chuyển từ outsourcing sang "AI building"; dự án hướng ngành: sản xuất, logistics, TMĐT, nông nghiệp |
 
 ## 5. Gợi ý bổ sung tiếp
+
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.
 - Theo dõi: Hugging Face `vinai`, `VietAI`, `Vi-VLM`, `GreenNode`; GitHub topic `vietnamese-nlp`.
 
 ## 6. Nguồn
+
 - https://www.emergentmind.com/topics/phogpt · https://arxiv.org/html/2509.26189v2 · https://arxiv.org/html/2608.25478 · https://ai.stanford.edu/blog/crossing-linguistic-horizon/ · https://aisean.org/resources/ · https://huggingface.co/Vi-VLM/Vistral-V-7B · https://github.com/vndee/awsome-vietnamese-nlp
 - https://pypi.org/project/underthesea/ · https://github.com/undertheseanlp/underthesea · https://aclanthology.org/N18-5012/
 - https://www.sotatek.com/newsroom/sotatek-contributes-to-vigen-vietnams-first-open-source-vietnamese-language-dataset-for-ai/ · https://technode.global/2026/06/18/vietnams-developers-are-moving-from-outsourcing-to-ai-building/ · https://morsoftware.com/news/codex-community-hackathon-hanoi-2026 · https://www.vietnam.vn/en/khoi-dong-cuoc-thi-vietnam-ai-open-hackathon-2026 · https://www.vietnam.vn/en/lam-chu-ai-va-phat-trien-phan-mem-nguon-mo-an-toan · https://www.openhackathons.org/s/siteevent/a0CUP00004VRMiz2AH/se000492
