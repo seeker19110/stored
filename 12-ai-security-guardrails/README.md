@@ -116,6 +116,61 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 4. Vendor có lock sha256 thay vì cài thẳng (mục 20 §3b).
 5. Skill tấn công chỉ dùng trong phạm vi được ủy quyền (pentest có hợp đồng, CTF, lab) và ghi scope vào skill, như điều kiện ở §3c.
 
+### 3f. "AI Red Teaming: The Complete Guide" (ảnh người dùng gửi, 2026-10-12)
+
+> Đã clone toàn bộ repo (97 commit, HEAD `7b7dde8`, 11/10/2026), đọc README tiếng Anh, `CHANGELOG.md`, `resources-validation.md`, 8 template và 2 workflow CI; đối chiếu trang bán hàng và một số nhận định với nguồn ngoài.
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / URL | https://github.com/requie/AI-Red-Teaming-Guide |
+| Mô tả 1 dòng | Một README dài ~3.580 dòng (kèm bản ES/ZH/FR) gom phương pháp, khung chuẩn, kỹ thuật tấn công, công cụ, case study và template cho red-team hệ thống AI |
+| Loại | learning (tài liệu, không phải công cụ) |
+| License | Badge và mục License trong README ghi **MIT**, nhưng repo **không có file LICENSE** và sidebar GitHub không hiện license (12/10/2026) |
+| ★ (ngày) | 971★, 181 fork, 11 watcher, 2 PR mở (2026-10-12, trang GitHub) |
+| Tác giả | Tarique Smith (`requie`, New York), đồng sáng lập và Chief Research Officer của **Cogensec**; 87/97 commit là của tác giả (gồm 26 merge commit), 10 commit còn lại đến từ PR của các vendor công cụ (promptfoo, NeuralTrust, Pallma/Verno Labs, DeepKeep, Darkmoon, Ziran, aiArch). Repo khác: `requie/LLMSecurityGuide` (156★, dừng 2/2026), `Cogensec/Gideon` (34★), `Cogensec/agentegrity` (6★) |
+| Lịch sử | Commit đầu 29/10/2025 ("Add files via upload", cả bài đưa lên một lần); 25 commit trong 10/2026 (bản v1.2.0 "Q4 refresh", dịch lại ES/ZH/FR) |
+
+**Nội dung (đối chiếu với ảnh):** ảnh là phần đầu README và khớp với file thật: banner, thanh ngôn ngữ, 10 badge "Trusted by practitioners at", khối "Join the Global Red Teaming Network" (Cogensec), badge MIT / "Updated October 2026", và banner RedTeamKit đang hiện dở ở cuối ảnh. Phần thân có:
+
+- Khung chuẩn: NIST AI RMF, OWASP GenAI Red Teaming Guide, OWASP Agentic Top 10, MITRE ATLAS, CSA Agentic AI Red Teaming, Microsoft Agentic Failure-Mode Taxonomy v2.0 (Microsoft công bố 4/6/2026, khớp).
+- Phương pháp 4 pha (lập kế hoạch và threat model → thực thi → chấm điểm → báo cáo), các mục riêng cho MCP, computer-use, RAG, voice/multimodal, fine-tuning, coding agent và CI/CD, A2A.
+- Bảng so sánh 27 công cụ (16 mã mở, 11 thương mại/dịch vụ), 6 attack tree map theo mã ASI của OWASP Agentic, thang mức độ hại kèm SLA triage, quickstart 30/60/90 ngày, harness eval mẫu (YAML + Python).
+- Case study 2023–2026, trong đó có các vụ mới đã có nguồn báo chí: agent OpenAI truy cập cổng thống kê Medicare của Úc khi đánh giá nội bộ (6/2026, công bố 9/2026), "Comment and Control" (prompt injection vào Claude Code, Gemini CLI, Copilot trong CI), chiến dịch chuỗi cung ứng MCP "Deadbugz".
+- 8 template trong `templates/`: rules of engagement, threat modeling workshop, vulnerability report, model/system security card, PR checklist, case study, stakeholder readout, test-case library. Đây là phần dùng lại được nhiều nhất.
+
+**Điểm tốt:**
+
+- `resources-validation.md` gắn mỗi nguồn ngoài một ngày kiểm và nhãn *Evidence-backed / Vendor-described / Author-described*; với công cụ do chính vendor gửi PR, guide ghi rõ số liệu là của vendor. Cách gắn nhãn này giống quy ước **(chưa xác minh)** của kho.
+- Hai nhận định đã kiểm ngẫu nhiên đều đúng: OpenAI mua Promptfoo (công bố 9/3/2026, không công bố giá) và vụ Medicare (OpenAI xin lỗi trước phiên điều trần của quốc hội Úc).
+- Workflow `ai-redteam-regression.yml` chạy garak với `OPENAI_API_KEY` **chỉ khi push lên `main` hoặc chạy tay**, không bao giờ chạy trên `pull_request`, và chạy trong thư mục trống để file trong PR không đè được gói `garak`. Đây là mẫu đúng cho "secret không chạm code của PR".
+- Harness eval mẫu tự ghi rõ là minh hoạ: chỉ dò từ chối bằng từ khoá tiếng Anh và PII dạng email/SSN, khuyên thay bằng judge model đã hiệu chỉnh.
+
+**Hạn chế và cờ đỏ:**
+
+- **Guide của một người kiêm kênh bán hàng.** README có 3 banner RedTeamKit ("$249 one-time · Lifetime updates · Built by the author of this guide", "7 production npm packages"), mục "Featured Commercial Platform: AVERSYN by Cogensec" đứng đầu phần công cụ thương mại và gắn ⭐ trong bảng so sánh, cùng link "Join the network" về cogensec.com. Guide có ghi tác giả là đồng sáng lập Cogensec, nhưng xếp hạng công cụ không trung lập.
+- **Mô tả sản phẩm trong README lệch với trang bán:** ngày 12/10/2026 `airedteamkit.com` bán theo bậc $99 / $299 / $799, cập nhật 12 tháng, không nhắc tới gói npm nào; README vẫn ghi "$249 one-time · Lifetime updates" và "7 production npm packages".
+- **Badge "Trusted by practitioners at"** gồm Microsoft, Google, Meta, OpenAI, Anthropic, NVIDIA, IBM, Amazon, HackerOne, Cisco. Dòng chữ nhỏ bên dưới nói chỉ là "individual practitioners reference this guide; inclusion does not imply official endorsement". Không có bằng chứng nào kèm theo; coi như quảng cáo.
+- "Grounded in real-world experience from Microsoft's 100+ AI product red teams": đó là kinh nghiệm trong paper của Microsoft ("Lessons From Red Teaming 100 Generative AI Products", arXiv 2501.07238), không phải của tác giả guide.
+- License mơ hồ (chỉ ghi trong README, không có file); Gideon của Cogensec mô tả không thống nhất ("defensive security assistant" ở phần nguồn, còn repo tự gọi là "Red Teaming Agent"); bus factor 1; link-check CI để `fail: false`.
+
+**Dự án tương tự (2026-10-12):**
+
+| Tài liệu | Quy mô | License | Khác biệt |
+|---|---|---|---|
+| OWASP GenAI Red Teaming Guide (1/2025) | Tài liệu chính thức của OWASP | CC BY-SA **(chưa xác minh)** | Trung lập vendor, nhưng không có bảng công cụ hay template điền sẵn |
+| CSA Agentic AI Red Teaming Guide (28/5/2025) | Tài liệu của Cloud Security Alliance | Theo điều khoản CSA | Sâu về agent, chưa có các sự cố 2026 |
+| Japan AISI, *Guide to Red Teaming Methodology on AI Safety* v1.10 (31/3/2025) | Tài liệu cơ quan nhà nước | Trang AISI | Quy trình tổ chức red-team, ít kỹ thuật |
+| `cloudstreet-dev/AI-Red-Teaming` | 4★, 15 commit | CC0 | Sách do Claude viết, có app dễ bị tấn công để thực hành |
+| `Vect0rdecay/ai-red-team-course` | 36★, 41 commit | Không thấy LICENSE | Khoá 8 tuần cho người làm web/API/cloud pentest chuyển sang AI |
+
+**Cách dùng từ dự án khác:**
+
+1. Dùng làm **mục lục và checklist**, không làm nguồn chuẩn: mỗi nhận định quan trọng, mở link gốc trong `resources-validation.md` và kiểm lại.
+2. Lấy 8 template trong `templates/` làm khung (rules of engagement, vulnerability report, model/system security card). License chưa rõ → viết lại theo ý mình và ghi nguồn, đừng chép nguyên văn, cho tới khi repo có file LICENSE.
+3. Học mẫu workflow chạy scan có secret chỉ trên sự kiện tin cậy (push `main`, `workflow_dispatch`) cho CI có red-team.
+4. Chọn công cụ từ bảng so sánh của kho này (§3d: garak, PyRIT, PurpleLlama; mục 07: promptfoo) thay vì bảng trong guide, vì guide đặt sản phẩm của tác giả lên đầu. RedTeamKit và AVERSYN là sản phẩm đóng, chưa ai đánh giá độc lập.
+5. Mọi bài test trong guide chỉ chạy trên hệ thống mình sở hữu hoặc được ủy quyền, như điều kiện ở §3c (guide cũng ghi vậy ở phần Disclaimer).
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.
@@ -130,3 +185,4 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 - arXiv 2601.10440 · 2507.21170 · 2510.19169 · 2609.06543 · 2604.21477 · 2606.31227 · 2603.20953
 - §3d (12/10/2026): https://github.com/NVIDIA/garak · https://github.com/microsoft/PyRIT · https://github.com/Azure/PyRIT · https://github.com/meta-llama/PurpleLlama · https://github.com/semgrep/semgrep · https://github.com/opengrep/opengrep · https://github.com/google/osv-scanner · https://github.com/aquasecurity/trivy · https://www.wiz.io/blog/trivy-compromised-teampcp-supply-chain-attack · https://trust.barracuda.com/security/information/trivy-supply-chain-compromise · https://stack.watch/vuln/CVE-2026-33634/ · https://github.com/sigstore/cosign · https://github.com/ossf/scorecard · https://github.com/snyk/agent-scan · https://github.com/protectai/rebuff · https://github.com/lakeraai · https://github.com/splx-ai/agentic-radar · https://github.com/ethz-spylab/agentdojo
 - §3e (12/10/2026): https://github.com/EvanThomasLuke/Awesome-AI-Security-Skills (README, lịch sử commit) · https://github.com/EvanThomasLuke · trang repo + commits Atom của: trailofbits/skills, trailofbits/skills-curated, NVIDIA/SkillSpector, cisco-ai-defense/skill-scanner, anthropics/claude-code-security-review, cloudflare/security-audit-skill, google/mantis, elastic/agent-skills, ghostsecurity/skills, semgrep/skills, mukul975/Anthropic-Cybersecurity-Skills, elementalsouls/Claude-BugHunter, blacklanternsecurity/red-run, DeepBitsTechnology/claude-plugins, Netflix-Skunkworks/railguard-skill, Mindgard/ai-ide-skills, ljagiello/ctf-skills, Masriyan/Claude-Code-CyberSecurity-Skill, AILiteracyLab/Claude-Security-Audit, vinayaklatthe/microsoft-security-skills, zhaoxuya520/reverse-skill, wiz-sec-public/secure-rules-files, project-codeguard/rules · https://raw.githubusercontent.com/SnailSploit/Claude-Red/main/CHANGELOG.md
+- §3f (12/10/2026): https://github.com/requie/AI-Red-Teaming-Guide (clone đầy đủ, HEAD `7b7dde8`: README.md, CHANGELOG.md, resources-validation.md, templates/, .github/workflows/) · https://github.com/requie · https://github.com/requie/LLMSecurityGuide · https://github.com/Cogensec/Gideon · https://airedteamkit.com/ · https://tarique-io.lovable.app/ · https://huggingface.co/spaces/Cogensec/README · https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/ · https://futurumgroup.com/?p=87434 · https://news.bloomberglaw.com/us-law-week/openai-buying-ai-security-startup-promptfoo-to-safeguard-agents · https://www.canberratimes.com.au/story/9359341/openai-apologises-for-medicare-hack-creates-task-force/ · https://aisi.go.jp/assets/pdf/E1_ai_safety_RT_v1.10_en.pdf · https://github.com/cloudstreet-dev/AI-Red-Teaming · https://github.com/Vect0rdecay/ai-red-team-course

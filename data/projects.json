@@ -4460,6 +4460,16 @@
       "open_source": true,
       "notes": "Câu hỏi + đáp án DS/ML cổ điển, ít LLM; ★ đọc 12/10/2026",
       "section": "08"
+    },
+    {
+      "name": "AI-Red-Teaming-Guide",
+      "repo": "requie/AI-Red-Teaming-Guide",
+      "category": "learning",
+      "license": null,
+      "stars": 971,
+      "open_source": true,
+      "notes": "Guide red-team AI một người viết (README ~3.580 dòng + ES/ZH/FR, 8 template); README ghi MIT nhưng không có file LICENSE; quảng cáo sản phẩm của tác giả (RedTeamKit, AVERSYN/Cogensec); ★ đọc 12/10/2026",
+      "section": "12"
     }
   ]
 }
