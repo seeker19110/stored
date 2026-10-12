@@ -61,3 +61,6 @@
 
 ## Bổ sung 2026-10-12 (link người dùng: knowledge-work-plugins)
 - github.com/anthropics/knowledge-work-plugins (README, .claude-plugin/marketplace.json, sales/, sales/.mcp.json, sales/skills/call-prep/SKILL.md, engineering/, cowork-plugin-management/, commits), github.com/anthropics/claude-plugins-community, code.claude.com/docs/en/plugins, claude.com/plugins, thenewstack.io/anthropic-brings-plugins-to-cowork, agentscamp.com (knowledge-work-plugins guide), claude-world.com, claudecowork.im, aitoolly.com, integratedcognition.com, awesomeclaudeplugins.com, agentindex.app
+
+## Bổ sung 2026-10-12 (link người dùng: anatomy)
+- github.com/wheresryan22/anatomy (README, SKILL.md, releases/v1.0.0, commits), github.com/wheresryan22, github.com/wheresryan22/anatomy-figures, x.com/wheresryan22 (launch post 10/10/2026), ui-skills.com, skills.sh, skillselion.com, aipptskill.com, open-design.ai/skills/diagram, mcpmarket.com (excalidraw/mermaid skills), claudeskills.info

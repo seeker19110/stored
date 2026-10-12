@@ -197,3 +197,6 @@ CogVideoX,zai-org/CogVideo,https://github.com/zai-org/CogVideo,agentic-video,Apa
 knowledge-work-plugins,anthropics/knowledge-work-plugins,https://github.com/anthropics/knowledge-work-plugins,plugin-marketplace,Apache-2.0,29200,True,20,123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12
 claude-plugins-community,anthropics/claude-plugins-community,https://github.com/anthropics/claude-plugins-community,plugin-marketplace,Apache-2.0,4600,True,20,Mirror read-only marketplace cộng đồng
 claude-plugins-official,anthropics/claude-plugins-official,https://github.com/anthropics/claude-plugins-official,plugin-marketplace,,,True,20,"Marketplace chính thức, tự thêm khi mở Claude Code"
+Anatomy,wheresryan22/anatomy,https://github.com/wheresryan22/anatomy,design-skill,MIT,3800,True,06,Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12
+anatomy-figures,wheresryan22/anatomy-figures,https://github.com/wheresryan22/anatomy-figures,design-skill,MIT,10,True,06,51–52 máy isometric dạng React/custom elements
+ui-skills,ibelick/ui-skills,https://github.com/ibelick/ui-skills,design-skill,,9400,True,06,Directory skill UI/visual/motion cho coding agent

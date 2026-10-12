@@ -2035,6 +2035,36 @@
       "open_source": true,
       "notes": "Marketplace chính thức, tự thêm khi mở Claude Code",
       "section": "20"
+    },
+    {
+      "name": "Anatomy",
+      "repo": "wheresryan22/anatomy",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 3800,
+      "open_source": true,
+      "notes": "Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12",
+      "section": "06"
+    },
+    {
+      "name": "anatomy-figures",
+      "repo": "wheresryan22/anatomy-figures",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 10,
+      "open_source": true,
+      "notes": "51–52 máy isometric dạng React/custom elements",
+      "section": "06"
+    },
+    {
+      "name": "ui-skills",
+      "repo": "ibelick/ui-skills",
+      "category": "design-skill",
+      "license": null,
+      "stars": 9400,
+      "open_source": true,
+      "notes": "Directory skill UI/visual/motion cho coding agent",
+      "section": "06"
     }
   ]
 }

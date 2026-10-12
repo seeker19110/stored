@@ -15,7 +15,7 @@
 | 03 | [Agentic Patterns & Loops](03-agentic-patterns-loops/README.md) | 5 workflow của Anthropic, ReAct, Plan-Execute, Reflexion, Ralph Wiggum loop, context engineering, harness engineering, multi-agent + git worktrees; **case study ADHD** (parallel divergent ideation skill) |
 | 04 | [Protocols & Standards](04-protocols-standards/README.md) | MCP, A2A, AG-UI, Agent Skills (SKILL.md), AGENTS.md, .cursorrules |
 | 05 | [Low-code LLM Platforms](05-low-code-llm-platforms/README.md) | n8n, Dify, Langflow, Flowise |
-| 06 | [UI/UX & Design](06-ui-ux-design/README.md) | shadcn/ui, Radix, Base UI, MUI, Mantine; Penpot, Excalidraw, tldraw, Onlook; v0, Lovable, Bolt, Stitch; Taste Skill, Refactoring UI, Laws of UX; CopilotKit, assistant-ui, Vercel AI SDK |
+| 06 | [UI/UX & Design](06-ui-ux-design/README.md) | shadcn/ui, Radix, Base UI, MUI, Mantine; Penpot, Excalidraw, tldraw, Onlook; v0, Lovable, Bolt, Stitch; Taste Skill, Refactoring UI, Laws of UX; CopilotKit, assistant-ui, Vercel AI SDK; **case study Anatomy** (skill minh họa isometric tương tác) |
 | 07 | [Eval & Observability](07-eval-observability/README.md) | Langfuse, Promptfoo, DeepEval, Ragas, Arize Phoenix |
 | 08 | [Awesome Lists & Learning](08-awesome-lists-learning/README.md) | build-your-own-x, freeCodeCamp, system-design-primer, developer-roadmap, awesome-llm-apps, awesome-claude-code, awesome-agent-skills, awesome-mcp-servers, awesome-design-systems… |
 | 09 | [Engineering Checklists](09-engineering-checklists/README.md) | **PinoyFreeCoder/deployment-checklist** (pre-deploy web/mobile, agent.md trả GO/NO-GO) so với MarinJursic/production-readiness-checklist (10k control + scanner), OWASP ASVS/MASVS, Front-End-Checklist |
@@ -86,7 +86,10 @@
 ### 10. Plugin "không code" trở thành đơn vị phân phối tri thức nghề nghiệp
 - `anthropics/knowledge-work-plugins`: 123 plugin toàn markdown + JSON (skills, .mcp.json), 101 trong đó là vendor pin theo commit sha. Plugin `sales` tăng từ 9 lên 36 skill trong một tháng. Skill `call-prep` là mẫu chuẩn về tool-agnostic + guardrail chống prompt injection ("data, never instructions"). Chi phí thật của plugin là context mỗi lượt.
 
-### 11. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
+### 11. Skill "mang theo kit + kiểm chứng bằng máy" là thế hệ skill mới
+- `wheresryan22/anatomy` (3.8k★ sau 2 ngày): skill vẽ minh họa isometric không chỉ là prompt mà kèm thư viện hình học không phụ thuộc, audit hình học, headless-Chrome screenshot, đếm line-end và bộ eval; sizing (Figure/Hero/Epic) trước khi làm để kiểm soát chi phí. Cùng tinh thần với OpenMontage (mục 19) và deployment-checklist (mục 09): agent phải **chứng minh** output.
+
+### 12. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
 
 ---
