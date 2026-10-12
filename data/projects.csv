@@ -33,7 +33,7 @@ OpenClaw,openclaw/openclaw,,personal-agent,MIT,390000,True,02,Trợ lý cá nhâ
 Ralph Wiggum loop (plugin),anthropics/claude-code,https://github.com/anthropics/claude-code/blob/main/plugins/ralph-wiggum/README.md,pattern-loop,n/a,,True,03,Stop-hook loop; tác giả kỹ thuật: Geoffrey Huntley 7/2025
 ralph-claude-code,frankbria/ralph-claude-code,,pattern-loop,,,True,03,Loop với exit detection
 claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,,learning,,,True,03,"agent teams, workflows"
-MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,87000,True,04,AAIF / Linux Foundation
+MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,91200,True,04,"AAIF / Linux Foundation; README chỉ còn 7 reference server, trỏ sang Registry (12/10/2026)"
 FastMCP,prefecthq/fastmcp,,protocol,Apache-2.0,23000,True,04,Python MCP framework
 A2A,a2aproject/A2A,,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
 AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,,True,04,Agent ↔ UI; CopilotKit
@@ -412,3 +412,11 @@ SuperClaude Framework,SuperClaude-Org/SuperClaude_Framework,,harness-pack,MIT,23
 gsd-core,open-gsd/gsd-core,,harness-pack,MIT,10400,True,20,"Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026"
 Overmind,overmind-core/overmind,,eval-observability,AGPL-3.0 (platform) / MIT (SDK),632,True,07,Trace → dataset → eval → fine-tune LoRA (Modal); MCP có cost_class; tự host vẫn cần OpenRouter/Modal/S3; ★ đọc 12/10/2026
 OpenPipe ART,OpenPipe/ART,,eval-observability,,10800,True,07,RL (GRPO) huấn luyện agent; đối chiếu với Overmind; ★ đọc 12/10/2026
+ManimGX,academa-labs/manimgx,,video-engine,MIT (wheel GPL-3.0+ vì x264),774,True,22,"API Manim CE trên lõi Rust/wgpu, chạy cả trình duyệt; `manimgx inspect` cho agent; benchmark tự đo; ★ đọc 12/10/2026"
+ranim,AzurIce/ranim,,animation-library,MIT,655,True,22,"Engine animation Rust/wgpu, API Rust; ★ đọc 12/10/2026"
+manim-web,maloyan/manim-web,,animation-library,MIT,484,True,22,Port Manim sang TypeScript; ★ đọc 12/10/2026
+Math-To-Manim,HarleyCoops/Math-To-Manim,,motion-design,MIT,2800,True,22,Văn bản/ảnh → scene Manim bằng LLM; ★ đọc 12/10/2026
+manim_skill,adithya-s-k/manim_skill,,motion-design,MIT,1200,True,22,Skill agent cho Manim; commit cuối 1/2026; ★ đọc 12/10/2026
+official-mcp-servers (VoltAgent),VoltAgent/official-mcp-servers,,awesome-list,MIT,302,True,04,"297 mục MCP chính chủ; 11/201 repo đã archive, không có kiểm tra tự động; ★ đọc 12/10/2026"
+awesome-mcp-servers (punkpeye),punkpeye/awesome-mcp-servers,,awesome-list,MIT,96200,True,04,"Danh sách MCP lớn nhất, không lọc chính chủ; ★ đọc 12/10/2026"
+VoltAgent,VoltAgent/voltagent,,agent-framework,MIT,10800,True,02,Framework agent TypeScript; chủ các list awesome-*; ★ đọc 12/10/2026

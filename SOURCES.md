@@ -162,3 +162,14 @@
 - github.com/overmind-core/overmind (clone đầy đủ, 82 commit): README.md, .env.example, docker-compose.yml, overbae/settings.py, overbae/api/auth_registration.py, overbae/services/project_invites.py, overbae/services/mcp/{catalog,context}.py, overmind/overmind/{analytics,config}.py, .agents/hooks/guards.py, .claude/settings.json; trang GitHub (632★, 12/10/2026), /releases (v0.1.3, 7/10/2026)
 - pypi.org/project/overmind (0.1.85) · pypistats.org/packages/overmind · trendshift.io/repositories/274765 · overmindlab.ai/pricing · overmindlab.ai/about · tech.eu (seed £2M, 11/2/2026) · osneycapital.com/portfolio/overmind · digg.com/ai/fj6px48f · themenonlab.blog (review 5/10/2026) · opensourcealternatives.to/item/overmind
 - Trùng tên: github.com/DarthSim/overmind, github.com/cerebral/overmind, github.com/overmindtech/cli (overmind.tech, công ty khác) · startupintros.com (seed US$6M của overmind.tech)
+
+## Bổ sung 2026-10-12 (academa-labs/manimgx → mục 22 §9c)
+
+- github.com/academa-labs/manimgx (clone đầy đủ, 185 commit): README.md, benchmarks/{README.md,results.json}, skills/manimgx/SKILL.md, docs/content/user-guide/coming-from-manim-ce.md, tests/oracles.py, .github/workflows/ai.yaml, pyproject.toml; trang GitHub (~774★, 12/10/2026)
+- manimgx.academa.ai (+ llms.txt) · pypi.org/project/manimgx (0.1.1) · news.ycombinator.com/item?id=50037852 (Show HN, 8 điểm) · news.ycombinator.com/item?id=49091703 (Academa Studio) · academa.ai/team
+- So sánh (★ trang GitHub 12/10/2026): 3b1b/manim, ManimCommunity/manim, AzurIce/ranim, maloyan/manim-web, HarleyCoops/Math-To-Manim, adithya-s-k/manim_skill, abhiemj/manim-mcp-server, TIGER-AI-Lab/TheoremExplainAgent
+
+## Bổ sung 2026-10-12 (ảnh "Official MCP Servers" của VoltAgent → mục 04 §2c)
+
+- github.com/VoltAgent/official-mcp-servers (README, CONTRIBUTING, lịch sử commit; 302★) · repos.ecosyste.ms (metadata 201 repo trong list) · trang GitHub từng repo được kiểm (PostHog/mcp, semgrep/mcp, browserbase, elevenlabs, JetBrains, langfuse, ahujasid/mcp-for-blender, google/mcp…)
+- So sánh: github.com/modelcontextprotocol/servers, github.com/punkpeye/awesome-mcp-servers, github.com/wong2/awesome-mcp-servers, glama.ai/mcp/servers, smithery.ai

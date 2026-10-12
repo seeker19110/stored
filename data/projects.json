@@ -415,9 +415,9 @@
       "repo": "modelcontextprotocol/servers",
       "category": "protocol",
       "license": "MIT",
-      "stars": 87000,
+      "stars": 91200,
       "open_source": true,
-      "notes": "AAIF / Linux Foundation",
+      "notes": "AAIF / Linux Foundation; README chỉ còn 7 reference server, trỏ sang Registry (12/10/2026)",
       "section": "04"
     },
     {
@@ -4209,6 +4209,86 @@
       "open_source": true,
       "notes": "RL (GRPO) huấn luyện agent; đối chiếu với Overmind; ★ đọc 12/10/2026",
       "section": "07"
+    },
+    {
+      "name": "ManimGX",
+      "repo": "academa-labs/manimgx",
+      "category": "video-engine",
+      "license": "MIT (wheel GPL-3.0+ vì x264)",
+      "stars": 774,
+      "open_source": true,
+      "notes": "API Manim CE trên lõi Rust/wgpu, chạy cả trình duyệt; `manimgx inspect` cho agent; benchmark tự đo; ★ đọc 12/10/2026",
+      "section": "22"
+    },
+    {
+      "name": "ranim",
+      "repo": "AzurIce/ranim",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 655,
+      "open_source": true,
+      "notes": "Engine animation Rust/wgpu, API Rust; ★ đọc 12/10/2026",
+      "section": "22"
+    },
+    {
+      "name": "manim-web",
+      "repo": "maloyan/manim-web",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 484,
+      "open_source": true,
+      "notes": "Port Manim sang TypeScript; ★ đọc 12/10/2026",
+      "section": "22"
+    },
+    {
+      "name": "Math-To-Manim",
+      "repo": "HarleyCoops/Math-To-Manim",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 2800,
+      "open_source": true,
+      "notes": "Văn bản/ảnh → scene Manim bằng LLM; ★ đọc 12/10/2026",
+      "section": "22"
+    },
+    {
+      "name": "manim_skill",
+      "repo": "adithya-s-k/manim_skill",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 1200,
+      "open_source": true,
+      "notes": "Skill agent cho Manim; commit cuối 1/2026; ★ đọc 12/10/2026",
+      "section": "22"
+    },
+    {
+      "name": "official-mcp-servers (VoltAgent)",
+      "repo": "VoltAgent/official-mcp-servers",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 302,
+      "open_source": true,
+      "notes": "297 mục MCP chính chủ; 11/201 repo đã archive, không có kiểm tra tự động; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "awesome-mcp-servers (punkpeye)",
+      "repo": "punkpeye/awesome-mcp-servers",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 96200,
+      "open_source": true,
+      "notes": "Danh sách MCP lớn nhất, không lọc chính chủ; ★ đọc 12/10/2026",
+      "section": "04"
+    },
+    {
+      "name": "VoltAgent",
+      "repo": "VoltAgent/voltagent",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 10800,
+      "open_source": true,
+      "notes": "Framework agent TypeScript; chủ các list awesome-*; ★ đọc 12/10/2026",
+      "section": "02"
     }
   ]
 }

@@ -240,6 +240,46 @@
 
 ---
 
+## 9c. Case study: ManimGX — API Manim CE trên lõi Rust/wgpu, làm cho agent (link người dùng, 2026-10-12)
+
+> Clone đầy đủ (185 commit), đọc README, `benchmarks/`, `skills/manimgx/SKILL.md`, tài liệu "Coming from Manim CE", `tests/oracles.py`, workflow CI; nguồn ngoài tra cùng ngày.
+
+### Hồ sơ nhanh
+
+| Mục | Thông tin (12/10/2026) |
+|---|---|
+| Repo | `academa-labs/manimgx` · **~774★**, 50 fork; 0 issue; v0.1.0 và v0.1.1 cùng ngày 7/10/2026 |
+| Định vị | "Blazingly fast 3D animation engine for agents, compatible with Manim CE's API": **không phải fork** ManimGL hay Manim CE mà là engine Rust + wgpu mới, nhận code Python viết theo API Manim CE; chạy cả trong trình duyệt (Pyodide + WebGPU, gói npm `manimgx`) |
+| License | Code **MIT**; **wheel native là GPL-3.0-or-later** tổng thể vì gói x264; FFmpeg LGPL-2.1; font Noto |
+| Yêu cầu | Python ≥3.13; không cần cài LaTeX (LaTeX → Typst qua mitex); Linux không có GPU thì render bằng lavapipe (Mesa) trên CPU |
+| Tác giả | Academa, Inc. (Mỹ): Sina Atalay (tác giả RenderCV, 17,7k★) và Abdullah Geduk; 185 commit từ 27/3/2026, chỉ 2 người. Công ty bán sản phẩm đóng song song: bài giảng STEM do LLM sinh và **Academa Studio** (editor Manim AI trả phí — bị bình luận HN 7/2026 chê dùng tên Manim/3B1B cho sản phẩm đóng) |
+| Quy mô | Rust ~18k dòng, Python ~46k dòng, test ~58k dòng (974 file) |
+| Đón nhận | Show HN 10/10/2026: 8 điểm, 3 bình luận; chưa có review độc lập |
+
+### Điểm đáng học cho video do agent viết
+
+- **Cài bằng một prompt:** "Follow https://manimgx.academa.ai/llms.txt. Install ManimGX, make a 3D animation…" — llms.txt + `skills/manimgx/SKILL.md` (62 dòng) là toàn bộ phần "hướng dẫn agent".
+- **Vòng phản hồi máy `manimgx inspect`:** storyboard + kiểm tra layout 2D (chồng lấn, tràn khung) ở thời điểm chọn (`-t 0.5,end`), không cần render video. SKILL.md tự nói rõ đây là kiểm tra *lấy mẫu* và cảnh 3D chỉ có storyboard, không kiểm layout — trung thực hơn phần lớn skill ở §3–§5.
+- **API có kiểu đầy đủ:** ty bắt được keyword sai (`m.Circle(colour=...)`); lúc chạy, phần lớn mobject **lặng lẽ bỏ qua** keyword lạ, nên agent không chạy type checker sẽ không biết mình gõ sai.
+- **Gộp plugin:** `self.say("…[x squared]…", anim1, anim2)` khớp animation với lời thoại (thay manim-voiceover); `next_section` + `manimgx present` thay manim-slides; phụ đề xuất cạnh video.
+- **Test bằng "oracle":** `tests/oracles.py` cài lại từng đại lượng bằng thuật toán chậm nhưng hiển nhiên đúng (de Casteljau, `numpy.roots`, tích phân số) và có corpus đối chiếu với Manim CE; badge coverage công khai.
+- **AI trong CI tách quyền:** workflow `ai.yaml` gọi Claude qua `claude-code-action` trên Amazon Bedrock bằng OIDC (không lưu key); với issue từ người ngoài, model chỉ đọc issue như dữ liệu và trả bản nháp, **một job khác không có model** mới đăng trả lời; PR từ fork thì chỉ đọc.
+
+### Đọc benchmark "nhanh hơn ManimCE 90,6 lần" (`benchmarks/README.md`, `results.json`)
+
+| Claim | Dữ liệu trong repo | Ghi chú |
+|---|---|---|
+| 36,2 s video render trong 3,08 s; nhanh hơn ManimCE 90,6×, ManimGL 11,5×, Blender Workbench 18,7× | Tổng 5 cảnh 1080p60 trên một Apple M4 Pro, đo 7/10/2026 với ManimGX 0.1.0, ManimCE 0.21.0, ManimGL 1.7.2, Blender 5.2.2 | Do chính tác giả đo; có đủ 45 lần chạy và script chạy lại → **minh bạch, tái lập được** |
+| Tỉ lệ 90,6× so với ManimCE | Cảnh `orbit` (mặt 3D 48×48, camera quay) chiếm 211,8 s/278,8 s của ManimCE — renderer Cairo chạy CPU | Bỏ cảnh này, tỉ lệ còn khoảng **35×** (67,0 s / 1,89 s). Ở 2 cảnh 2D, ManimCE (11,9 s) còn nhanh hơn ManimGL (25,1 s) |
+| Cùng một việc | ManimGX và ManimGL lấy trung bình 3 lần chạy; ManimCE và Blender chỉ chạy 1 lần. ManimGX mã hoá khung đứng yên một lần (cảnh `matrix`: 243 frame cho 433 frame thời lượng), engine khác mã hoá đủ mọi frame | Hai điểm lệch nhỏ, có ghi trong README benchmark; không đổi kết luận "nhanh hơn một bậc" |
+| "Compatible with Manim CE's API" | Trang "Coming from Manim CE": khung video dọc 9:16 rộng 8 đơn vị (CE: 4,5); các animation cùng lúc trên một mobject **cộng dồn**; `rotate` là quay vật rắn; `.animate` áp khi animation bắt đầu; **gói LaTeX và `\def` không chuyển được** sang Typst | Tương thích *tên và tham số*, không tương thích *hành vi*: scene CE cũ dùng LaTeX nặng hoặc dựa vào thứ tự animation sẽ phải sửa |
+
+### Đánh giá & áp dụng
+
+- Đây là "Manim cho agent" đầu tiên có đủ ba thứ: cài bằng prompt, vòng kiểm tra máy trước khi render, và chạy trong trình duyệt — đúng nguyên tắc §9 "agent phải chứng minh output". Hợp với pipeline giảng dạy toán/khoa học (mục 19) và explainer kiểu `manim-math` của `cth9191/animate` (§5.1).
+- **Rủi ro:** mới 5 ngày tuổi (v0.1.x), chỉ 2 người, bắt buộc Python ≥3.13; wheel là GPL nên cần lưu ý khi đóng gói cùng sản phẩm đóng; công ty có sản phẩm thương mại song song nên hướng phát triển có thể lệch về Studio.
+- **Bên cạnh:** Manim CE 41,5k★ (v0.22.0, 8/10/2026) vẫn là chuẩn khi cần đúng hành vi CE và hệ plugin; ManimGL 94,9k★; `AzurIce/ranim` 655★ (cũng Rust/wgpu nhưng API Rust); `maloyan/manim-web` 484★ (port TypeScript); agent sinh Manim: `HarleyCoops/Math-To-Manim` 2,8k★, `adithya-s-k/manim_skill` 1,2k★ (commit cuối 1/2026), `abhiemj/manim-mcp-server` 649★ (đứng từ 5/2025), TheoremExplainAgent 1,5k★ (ACL 2025).
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes
@@ -247,3 +287,4 @@
 - Nhóm E: github.com/heygen-com/hyperframes (README, commits), github.com/heygen-com, hyperframes.dev, hyperframes.heygen.com, developers.heygen.com/hyperframes-overview, heygen.com/blog (April/June/July 2026 release), registry.npmjs.org/hyperframes, repos.ecosyste.ms (5 repo), trendshift.io/repositories/28102, themenonlab.blog, silenceper.com, yuv.ai/blog/hyperframes-heygen, webreactiva.com/blog/hyperframes, github.com/remotion-dev/remotion (releases, LICENSE.md), remotion.dev (the-fundamentals, recorder, ai/skills, ai/mcp, blog), remotion.pro/license, github.com/remotion-dev/skills (README, commits), motionbox.io/blog/remotion-for-coding-agents, mer.vin (remotion agent skills), github.com/greensock/gsap-skills (commits), github.com/greensock, gittrend.io/repo/greensock/gsap-skills, gsap.com/blog/3-13, gsap.com/community/standard-license, blog.codepen.io (2025-05-05), github.com/LottieFiles/motion-design-skill (skills/motion-design/SKILL.md, commits), github.com/LottieFiles, trendshift.io/repositories/167710, lottiefiles.com/blog (Lottie Creator MCP, 15/4/2026), uichemy.com/design-skills/lottiefiles-motion-design
 - motionmaxxing: github.com/Tejashmakwana/motionmaxxing (README, SKILL.md, docs/KNOWN-LIMITS.md, commits), github.com/Tejashmakwana, finalmotion.video, skillsllm.com/skill/motionmaxxing, everydev.ai/tools/motionmaxxing, github.com/zhuyansen/awesome-claude-video-skills, github.com/charetterat/awesome-agent-motion-skills, github.com/topics/motionmaxxing
 - §9b (ảnh 28 repo của Charlie Hills, 2026-10-12): số sao đọc trang GitHub của 22 repo (three.js, anime, react-three-fiber, lottie-web, GSAP, FFmpeg, 3b1b/manim, ManimCommunity/manim, motion-canvas, revideo, shadcn-ui/ui, react-bits, magicui, motion-primitives, magic-mcp, whisper, Tone.js, wavesurfer.js, elevenlabs/skills, anthropics/skills, ahujasid/mcp-for-blender, CloudAI-X/threejs-skills, Dakkshin/after-effects-mcp); 6 repo còn lại lấy từ §1
+- §9c ManimGX (12/10/2026): https://github.com/academa-labs/manimgx (clone đầy đủ: README.md, benchmarks/{README.md,results.json}, skills/manimgx/SKILL.md, docs/content/user-guide/coming-from-manim-ce.md, tests/oracles.py, .github/workflows/ai.yaml, pyproject.toml) · https://manimgx.academa.ai · https://manimgx.academa.ai/llms.txt · https://pypi.org/project/manimgx/ · https://news.ycombinator.com/item?id=50037852 · https://news.ycombinator.com/item?id=49091703 · https://academa.ai/team · https://github.com/rendercv/rendercv · https://github.com/3b1b/manim · https://github.com/ManimCommunity/manim · https://github.com/AzurIce/ranim · https://github.com/maloyan/manim-web · https://github.com/HarleyCoops/Math-To-Manim · https://github.com/adithya-s-k/manim_skill · https://github.com/abhiemj/manim-mcp-server · https://github.com/TIGER-AI-Lab/TheoremExplainAgent
