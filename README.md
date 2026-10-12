@@ -10,7 +10,7 @@
 
 | # | Chuyên mục | Nội dung chính |
 |---|-----------|----------------|
-| 01 | [AI Coding Agents](01-ai-coding-agents/README.md) | OpenCode, Claude Code, Codex CLI, Gemini CLI, Cline, Aider, DeepSeek Harness, OpenHands, SWE-agent, Cursor, Windsurf/Devin, Copilot, Jules; benchmark SWE-bench |
+| 01 | [AI Coding Agents](01-ai-coding-agents/README.md) | OpenCode, Claude Code, Codex CLI, Gemini CLI, Cline, Aider, DeepSeek Harness, OpenHands, SWE-agent, Cursor, Windsurf/Devin, Copilot, Jules; benchmark SWE-bench; **case study Understand-Anything** (85,9k★, codebase → knowledge graph) |
 | 02 | [Agent Frameworks](02-agent-frameworks/README.md) | LangGraph, CrewAI, AutoGen → MS Agent Framework, OpenAI Agents SDK, LangChain, LlamaIndex, Semantic Kernel, smolagents, Haystack, PydanticAI, OpenClaw |
 | 03 | [Agentic Patterns & Loops](03-agentic-patterns-loops/README.md) | 5 workflow của Anthropic, ReAct, Plan-Execute, Reflexion, Ralph Wiggum loop, context engineering, harness engineering, multi-agent + git worktrees; **case study ADHD** (parallel divergent ideation skill) |
 | 04 | [Protocols & Standards](04-protocols-standards/README.md) | MCP, A2A, AG-UI, Agent Skills (SKILL.md), AGENTS.md, .cursorrules |
@@ -29,7 +29,8 @@
 | 17 | [Prompt Engineering](17-prompt-engineering/README.md) | DAIR Prompt Engineering Guide, Anthropic prompt docs, DSPy, TextGrad, bộ sưu tập system prompt |
 | 18 | [Hệ sinh thái Việt Nam](18-vietnam-community/README.md) | PhoGPT, Vistral, URA-LLaMA; underthesea, VnCoreNLP; ViGen; VinAI, VietAI, Zalo AI, hackathon 2026 |
 | 19 | [Agentic Video & Media](19-agentic-video-media/README.md) | **OpenMontage** (67k★, agent là orchestrator: director skills + schema + gate + cost tracker), làn sóng video/motion skills cho Claude Code, Open-Sora, HunyuanVideo, CogVideoX, Remotion |
-| 20 | [Claude Plugins Ecosystem](20-claude-plugins-ecosystem/README.md) | **anthropics/knowledge-work-plugins** (29k★, 123 plugin: 22 theo vai trò + 101 vendor), giải phẫu plugin/SKILL.md/marketplace.json, 3 marketplace Anthropic, so sánh với Cursor/Copilot/OpenAI Apps |
+| 20 | [Claude Plugins Ecosystem](20-claude-plugins-ecosystem/README.md) | **anthropics/knowledge-work-plugins** (29k★, 123 plugin: 22 theo vai trò + 101 vendor), **claude-plugins-official** (37,7k★, 31 plugin nội bộ + >135 vendor, quy ước `renames`/skill-bundle), giải phẫu plugin/SKILL.md/marketplace.json, so sánh với Cursor/Copilot/OpenAI Apps |
+| 21 | [Autonomous Workflows](21-autonomous-workflows/README.md) | **Harness dài hạn của Anthropic** (11/2025 & 3/2026), Claude Code Routines vs Desktop tasks vs `/loop` (jitter, 7 ngày, loop.md), GitHub Agentic Workflows (gh-aw), durable execution (Temporal, Restate, Inngest, DBOS, LangGraph), Activepieces/Kestra/Windmill/Huginn, lịch sử AutoGPT/BabyAGI, failure modes + circuit breaker, METR |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
 | — | [TEMPLATE.md](TEMPLATE.md) | Mẫu để thêm dự án mới vào kho |
@@ -91,6 +92,12 @@
 
 ### 12. Checklist "máy đọc được" cho agent là xu hướng DevSecOps mới
 - `PinoyFreeCoder/deployment-checklist`: cùng một checklist, người tick tay hoặc agent audit repo và trả **GO/NO-GO** với bằng chứng file:dòng; minh họa evaluator pattern + nguyên tắc "evidence or it's a FAIL", report-only, con người ký cuối.
+
+### 13. Autonomous workflow = loop có ràng buộc + harness có bộ nhớ ngoài + trigger không cần người
+- Anthropic (11/2025, 3/2026): progress file + feature list JSON + git + browser test; planner/generator/evaluator; **harness có hạn sử dụng** (Opus 4.5/4.6 làm reset và sprint trở nên thừa). Claude Code tách ba tầng lập lịch: Routines (cloud, ≥1h), Desktop tasks, `/loop` (7 ngày, 50 task, jitter). gh-aw đưa "prompt-as-workflow" lên GitHub Actions với `safe-outputs`. Mọi loop tự trị cần 4 số: max vòng, ngân sách (circuit breaker 80/90/100%), timeout, ngày hết hạn. Xem mục 21.
+
+### 14. "Hiểu codebase" trở thành plugin trending: tất định + LLM
+- `Egonex-AI/Understand-Anything` (85,9k★, +2.331★/ngày): Tree-sitter cho cấu trúc (tất định, incremental) + LLM cho ngữ nghĩa, pipeline 7 agent có `graph-reviewer`, một lõi nhiều host (Claude Code, Cursor, Codex, Copilot, Gemini CLI…), output tiếng Việt. Cùng ngày `anthropics/claude-plugins-official` (+2.172★/ngày) cho thấy kênh phân phối "cài plugin" đang thắng "chép prompt". Xem mục 01 §3b, mục 20 §2b.
 
 ---
 

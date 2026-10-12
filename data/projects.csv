@@ -196,7 +196,23 @@ HunyuanVideo,Tencent-Hunyuan/HunyuanVideo,https://github.com/Tencent-Hunyuan/Hun
 CogVideoX,zai-org/CogVideo,https://github.com/zai-org/CogVideo,agentic-video,Apache-2.0,12500,True,19,
 knowledge-work-plugins,anthropics/knowledge-work-plugins,https://github.com/anthropics/knowledge-work-plugins,plugin-marketplace,Apache-2.0,29200,True,20,123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12
 claude-plugins-community,anthropics/claude-plugins-community,https://github.com/anthropics/claude-plugins-community,plugin-marketplace,Apache-2.0,4600,True,20,Mirror read-only marketplace cộng đồng
-claude-plugins-official,anthropics/claude-plugins-official,https://github.com/anthropics/claude-plugins-official,plugin-marketplace,,,True,20,"Marketplace chính thức, tự thêm khi mở Claude Code"
+claude-plugins-official,anthropics/claude-plugins-official,https://github.com/anthropics/claude-plugins-official,plugin-marketplace,,37700,True,20,"Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026)"
 Anatomy,wheresryan22/anatomy,https://github.com/wheresryan22/anatomy,design-skill,MIT,3800,True,06,Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12
 anatomy-figures,wheresryan22/anatomy-figures,https://github.com/wheresryan22/anatomy-figures,design-skill,MIT,10,True,06,51–52 máy isometric dạng React/custom elements
 ui-skills,ibelick/ui-skills,https://github.com/ibelick/ui-skills,design-skill,,9400,True,06,Directory skill UI/visual/motion cho coding agent
+Understand-Anything,Egonex-AI/Understand-Anything,https://github.com/Egonex-AI/Understand-Anything,codebase-knowledge,MIT,85900,True,01,"Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026)"
+gh-aw (GitHub Agentic Workflows),githubnext/gh-aw,https://github.com/githubnext/gh-aw,scheduling,MIT,5400,True,21,Markdown+frontmatter → .lock.yml GitHub Actions; engine Copilot/Claude/Codex/Gemini/Pi; safe-outputs
+Claude Code Routines,,https://code.claude.com/docs/en/routines,scheduling,,,False,21,"Cloud scheduled agent của Anthropic: trigger cron/API/GitHub, min 1h, không hỏi quyền; research preview 14/4/2026"
+Claude Code /loop & scheduled tasks,,https://code.claude.com/docs/en/scheduled-tasks,scheduling,,,False,21,"Cron trong session: CronCreate/List/Delete, jitter, 7 ngày, 50 task, loop.md"
+Temporal,temporalio/temporal,https://github.com/temporalio/temporal,durable-execution,MIT,,True,21,"Durable workflow + activity, worker dài hạn; Signals/Updates/Versioning"
+Restate,restatedev/restate,https://github.com/restatedev/restate,durable-execution,BUSL-1.1,,True,21,"Durable functions, một binary tự host"
+Inngest,inngest/inngest,https://github.com/inngest/inngest,durable-execution,Apache-2.0 (server),,True,21,"Durable function qua HTTP endpoint, hợp TypeScript/serverless"
+DBOS,dbos-inc/dbos-transact-py,https://github.com/dbos-inc/dbos-transact-py,durable-execution,MIT,,True,21,Durable execution trên Postgres (có bản TS)
+Vercel Workflow,,https://vercel.com/docs/workflow,durable-execution,,,False,21,Durable function trong Vercel
+Activepieces,activepieces/activepieces,https://github.com/activepieces/activepieces,workflow-automation,MIT,24700,True,21,"n8n alternative agent-first, ~400 MCP server"
+Kestra,kestra-io/kestra,https://github.com/kestra-io/kestra,workflow-automation,Apache-2.0,28400,True,21,"Orchestration YAML declarative, AI Agents & RAG task, MCP server"
+Windmill,windmill-labs/windmill,https://github.com/windmill-labs/windmill,workflow-automation,AGPL-3.0,18000,True,21,"Code-first scripts/flows, AI sinh script"
+Huginn,huginn/huginn,https://github.com/huginn/huginn,workflow-automation,MIT,49000,True,21,"Agent tự host Ruby, tiền LLM, chuẩn lâu năm"
+AutoGPT,Significant-Gravitas/AutoGPT,https://github.com/Significant-Gravitas/AutoGPT,autonomous-agent-history,MIT + Polyform,187000,True,21,3/2023 Toran Bruce Richards; nay là nền tảng builder agent
+BabyAGI,yoheinakajima/babyagi,https://github.com/yoheinakajima/babyagi,autonomous-agent-history,MIT,,True,21,Loop tạo/ưu tiên/thực thi task (4/2023); bản gốc archive 9/2024
+AgentGPT,reworkd/AgentGPT,https://github.com/reworkd/AgentGPT,autonomous-agent-history,GPL-3.0,35000,True,21,Agent trên trình duyệt; dừng phát triển 11/2023

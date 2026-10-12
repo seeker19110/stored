@@ -64,3 +64,17 @@
 
 ## Bổ sung 2026-10-12 (link người dùng: anatomy)
 - github.com/wheresryan22/anatomy (README, SKILL.md, releases/v1.0.0, commits), github.com/wheresryan22, github.com/wheresryan22/anatomy-figures, x.com/wheresryan22 (launch post 10/10/2026), ui-skills.com, skills.sh, skillselion.com, aipptskill.com, open-design.ai/skills/diagram, mcpmarket.com (excalidraw/mermaid skills), claudeskills.info
+
+## Bổ sung 2026-10-12 (yêu cầu "autonomous workflow" → mục 21)
+- Anthropic: anthropic.com/engineering/effective-harnesses-for-long-running-agents (26/11/2025), anthropic.com/engineering/harness-design-long-running-apps (24/3/2026); code.claude.com/docs/en/scheduled-tasks, /routines, /desktop-scheduled-tasks, /github-actions, /goal, /channels
+- Routines (thứ cấp): prosperinai.substack.com, makerkit.dev, claudefa.st, alexdunlop.com, automatonagency.com, swapbiswas.com, apito.ai, popularaitools.ai
+- gh-aw: github.com/githubnext/gh-aw, github.com/githubnext/gh-aw-workshop
+- Durable execution: hackernoon.com, zenml.io/blog/inngest-alternatives, langchain.com/resources/langgraph-vs-temporal, cordum.io, cadenya.com, appliedtechnologyindex.com, skill.re, arXiv 2607.19297
+- Automation OSS: pinggy.io, lyzr.ai, dev.to/badass_tech, automationatlas.io, blog.n8n.io, emergent.sh, usecarly.com, aidiscoverywire.com
+- AutoGPT/BabyAGI/AgentGPT: futureagi.com, datacamp.com, medium.com/@roseserene, fastcompany.com, bairesdev.com, ibm.com/think, lilianweng.github.io, arXiv 2404.11584
+- Failure modes: atlan.com, openempower.com, medium.com/@Quaxel, blogs.oracle.com, arXiv 2606.03115 (SPOQ), blog.traversaal.ai, watchtoweragents.com, sqmagazine.co.uk (METR), withtai.com, arXiv 2509.08646, arXiv 2603.05344
+- Harness thứ cấp: preprints.org/manuscript/202603.1756, gist.github.com/0xK8oX, pub.towardsai.net, ai-eval.org, ai-heroes.co, theaiautomators.com, victorinollc.com, agentsdesign.dev, arXiv 2607.14159
+
+## Bổ sung 2026-10-12 (ảnh trending người dùng: Understand-Anything, claude-plugins-official)
+- Understand-Anything: github.com/Egonex-AI/Understand-Anything (README, cấu trúc repo), github.com/Egonex-AI, github.com/GoodDingo/understand-anything, trendshift.io/repositories/23482, betterstack.com/community/guides/ai/understand-anything, augmentcode.com/learn/understand-anything-71k-stars, mcpmarket.com, awesomeskill.ai, trendingrepo.com, x.com/Sumanth_077
+- claude-plugins-official: github.com/anthropics/claude-plugins-official (README, .claude-plugin/marketplace.json), code.claude.com/docs/en/plugins (overview, anthropic-marketplaces, security, measure), claude.com/marketplace/plugins

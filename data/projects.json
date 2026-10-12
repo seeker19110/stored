@@ -42,7 +42,12 @@
       "vietnam",
       "reasoning-skill",
       "agentic-video",
-      "plugin-marketplace"
+      "plugin-marketplace",
+      "codebase-knowledge",
+      "durable-execution",
+      "workflow-automation",
+      "scheduling",
+      "autonomous-agent-history"
     ]
   },
   "projects": [
@@ -2031,9 +2036,9 @@
       "repo": "anthropics/claude-plugins-official",
       "category": "plugin-marketplace",
       "license": null,
-      "stars": null,
+      "stars": 37700,
       "open_source": true,
-      "notes": "Marketplace chính thức, tự thêm khi mở Claude Code",
+      "notes": "Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026)",
       "section": "20"
     },
     {
@@ -2065,6 +2070,169 @@
       "open_source": true,
       "notes": "Directory skill UI/visual/motion cho coding agent",
       "section": "06"
+    },
+    {
+      "name": "Understand-Anything",
+      "repo": "Egonex-AI/Understand-Anything",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 85900,
+      "open_source": true,
+      "notes": "Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026)",
+      "section": "01"
+    },
+    {
+      "name": "gh-aw (GitHub Agentic Workflows)",
+      "repo": "githubnext/gh-aw",
+      "category": "scheduling",
+      "license": "MIT",
+      "stars": 5400,
+      "open_source": true,
+      "notes": "Markdown+frontmatter → .lock.yml GitHub Actions; engine Copilot/Claude/Codex/Gemini/Pi; safe-outputs",
+      "section": "21"
+    },
+    {
+      "name": "Claude Code Routines",
+      "repo": null,
+      "category": "scheduling",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Cloud scheduled agent của Anthropic: trigger cron/API/GitHub, min 1h, không hỏi quyền; research preview 14/4/2026",
+      "section": "21",
+      "url": "https://code.claude.com/docs/en/routines"
+    },
+    {
+      "name": "Claude Code /loop & scheduled tasks",
+      "repo": null,
+      "category": "scheduling",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Cron trong session: CronCreate/List/Delete, jitter, 7 ngày, 50 task, loop.md",
+      "section": "21",
+      "url": "https://code.claude.com/docs/en/scheduled-tasks"
+    },
+    {
+      "name": "Temporal",
+      "repo": "temporalio/temporal",
+      "category": "durable-execution",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Durable workflow + activity, worker dài hạn; Signals/Updates/Versioning",
+      "section": "21"
+    },
+    {
+      "name": "Restate",
+      "repo": "restatedev/restate",
+      "category": "durable-execution",
+      "license": "BUSL-1.1",
+      "stars": null,
+      "open_source": true,
+      "notes": "Durable functions, một binary tự host",
+      "section": "21"
+    },
+    {
+      "name": "Inngest",
+      "repo": "inngest/inngest",
+      "category": "durable-execution",
+      "license": "Apache-2.0 (server)",
+      "stars": null,
+      "open_source": true,
+      "notes": "Durable function qua HTTP endpoint, hợp TypeScript/serverless",
+      "section": "21"
+    },
+    {
+      "name": "DBOS",
+      "repo": "dbos-inc/dbos-transact-py",
+      "category": "durable-execution",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Durable execution trên Postgres (có bản TS)",
+      "section": "21"
+    },
+    {
+      "name": "Vercel Workflow",
+      "repo": null,
+      "category": "durable-execution",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Durable function trong Vercel",
+      "section": "21",
+      "url": "https://vercel.com/docs/workflow"
+    },
+    {
+      "name": "Activepieces",
+      "repo": "activepieces/activepieces",
+      "category": "workflow-automation",
+      "license": "MIT",
+      "stars": 24700,
+      "open_source": true,
+      "notes": "n8n alternative agent-first, ~400 MCP server",
+      "section": "21"
+    },
+    {
+      "name": "Kestra",
+      "repo": "kestra-io/kestra",
+      "category": "workflow-automation",
+      "license": "Apache-2.0",
+      "stars": 28400,
+      "open_source": true,
+      "notes": "Orchestration YAML declarative, AI Agents & RAG task, MCP server",
+      "section": "21"
+    },
+    {
+      "name": "Windmill",
+      "repo": "windmill-labs/windmill",
+      "category": "workflow-automation",
+      "license": "AGPL-3.0",
+      "stars": 18000,
+      "open_source": true,
+      "notes": "Code-first scripts/flows, AI sinh script",
+      "section": "21"
+    },
+    {
+      "name": "Huginn",
+      "repo": "huginn/huginn",
+      "category": "workflow-automation",
+      "license": "MIT",
+      "stars": 49000,
+      "open_source": true,
+      "notes": "Agent tự host Ruby, tiền LLM, chuẩn lâu năm",
+      "section": "21"
+    },
+    {
+      "name": "AutoGPT",
+      "repo": "Significant-Gravitas/AutoGPT",
+      "category": "autonomous-agent-history",
+      "license": "MIT + Polyform",
+      "stars": 187000,
+      "open_source": true,
+      "notes": "3/2023 Toran Bruce Richards; nay là nền tảng builder agent",
+      "section": "21"
+    },
+    {
+      "name": "BabyAGI",
+      "repo": "yoheinakajima/babyagi",
+      "category": "autonomous-agent-history",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Loop tạo/ưu tiên/thực thi task (4/2023); bản gốc archive 9/2024",
+      "section": "21"
+    },
+    {
+      "name": "AgentGPT",
+      "repo": "reworkd/AgentGPT",
+      "category": "autonomous-agent-history",
+      "license": "GPL-3.0",
+      "stars": 35000,
+      "open_source": true,
+      "notes": "Agent trên trình duyệt; dừng phát triển 11/2023",
+      "section": "21"
     }
   ]
 }
