@@ -171,6 +171,61 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 4. Chọn công cụ từ bảng so sánh của kho này (§3d: garak, PyRIT, PurpleLlama; mục 07: promptfoo) thay vì bảng trong guide, vì guide đặt sản phẩm của tác giả lên đầu. RedTeamKit và AVERSYN là sản phẩm đóng, chưa ai đánh giá độc lập.
 5. Mọi bài test trong guide chỉ chạy trên hệ thống mình sở hữu hoặc được ủy quyền, như điều kiện ở §3c (guide cũng ghi vậy ở phần Disclaimer).
 
+### 3g. Decepticon — agent red team tự chủ chạy kill chain thật (dual-use, link người dùng gửi 2026-10-12)
+
+> Đã clone toàn bộ repo (1.324 commit, có `v1.4.0`), đọc README, SECURITY.md, TELEMETRY.md, `docker-compose.yml`, và middleware cổng RoE (`roe.py`, `egress.py`, `hitl.py`). **Không build, không chạy stack**; chỉ đọc code. Đây là công cụ tấn công tự động, chỉ dùng khi có ủy quyền.
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / URL | https://github.com/BitterSecurity/Decepticon · site: decepticon.red · app host: app.decepticon.red (sản phẩm thương mại) |
+| Mô tả 1 dòng | Framework agent red team tự chủ trên LangGraph/deepagents: 16 agent chuyên biệt chạy recon → khai thác → leo thang → lateral → C2 trong sandbox Kali, có RoE ép bằng máy và đồ thị tri thức Neo4j |
+| Loại | security (dual-use, offensive) |
+| License | Apache-2.0 (có file LICENSE) |
+| ★ (ngày) | ~6,0k★, 1,1k fork, 45 watcher, 11 issue / 5 PR mở (2026-10-12, trang GitHub); Trendshift badge |
+| Tác giả | Minseok CHOI (`PurpleCHOIms`); commit nhiều nhất là CHOI + `VoidChecksum`, có một số commit "Claude" và "Sisyphus" (agent) |
+| Hoạt động | Rất tích cực: 94 commit trong 10/2026, mốc gần nhất v1.4.0 (13/10/2026 theo lịch commit) |
+
+**Kiến trúc thật (đã đọc compose + middleware):**
+
+- **Hai mạng Docker tách biệt:** management plane (`decepticon-net`: LiteLLM, PostgreSQL, Neo4j, LangGraph) và `sandbox-net` (sandbox Kali + C2 + target). Mọi cổng dịch vụ bind `127.0.0.1`, không mở ra LAN. Workload nặng (BloodHound CE, Sliver C2, REA/Ghidra) chỉ bật khi orchestrator gọi `ops_start(...)` (ADR-0006), mặc định stack nguội.
+- **Sandbox hardening:** container Kali chạy root nhưng `cap_drop: ALL` rồi chỉ thêm tối thiểu (`NET_RAW`, `NET_ADMIN`, `SYS_PTRACE`…), `no-new-privileges: true`, `mem_limit 4g`, `pids_limit`. Tài liệu tự nêu `read_only` không bật được vì ~30 tool Kali cần ghi — hạn chế có ghi rõ.
+- **Điểm tin cậy cần lưu ý:** container **CLI mount `/var/run/docker.sock` của host** để lệnh `/web` dựng dashboard. Comment trong compose nói rõ "OSS scope: user == host owner; bản đa tenant không bao giờ expose docker.sock cho CLI của tenant". Nghĩa là: ai chạy được CLI OSS thì có quyền ngang host — hợp lý cho máy cá nhân, nhưng **không được** đặt bản OSS này cho nhiều người dùng chung.
+
+**Cổng RoE hai lớp (đúng mẫu mục 12 §4 và §3b):**
+
+- Lớp 1 — `roe.py`: parse văn bản lệnh so với `roe.json:machine_enforcement`, ba chế độ `audit` / `warn` / `enforce`, chèn `[ROE_REFUSED]` khi chặn. Code **tự ghi đây chỉ là tín hiệu fast-fail cho model, không phải ranh giới thật** (agent có thể giấu target sau biến, `$()`, DNS).
+- Lớp 2 — `egress.py`: biên dịch **cùng** khối `machine_enforcement` thành nftables connect-allowlist + DNS allowlist áp ở rìa mạng sandbox, nên gói ra host ngoài scope không rời được sandbox dù parser trượt. "Một định nghĩa scope, hai điểm thực thi" — đúng nguyên tắc tách kênh dữ liệu/lệnh, enforce ở tầng mạng.
+- Có `HITLApprovalMiddleware` cho hành động tác động cao, và audit ledger HMAC-chained ("đã thử gì, duyệt gì, chặn gì"). Cùng họ với `prompt_injection_shield`, `untrusted_output`, `egress` (chống exfil).
+
+**Telemetry (đọc TELEMETRY.md + `.env.example`):** mặc định **off**, opt-in. Hai mức: `basic` (chỉ metadata có cấu trúc: tool, severity/CWE/MITRE của finding — không gửi prompt/output/target) và `research` (gửi **chuỗi suy luận tấn công** của agent làm corpus huấn luyện, target/cred được mask). Tài liệu tự nói thẳng masking là pattern-based, **không phải ẩn danh** — tên công ty trong văn xuôi có thể lọt, và LLM có thể tái định danh từ ngữ cảnh. `BENCHMARK_MODE=1` ép telemetry off và chèn addendum "nới luật" cho CTF.
+
+**Benchmark (tự công bố, chưa có đánh giá độc lập):** XBOW validation-benchmarks 102/104 = 98,08% (black-box), kèm bảng so với Strix (96,15%), Shannon Lite (white-box 96,15%), PentestGPT (86,5%), Cyber-AutoAgent, XBOW thương mại (~85%). Có trace LangSmith per-challenge trong repo, nhưng số là của chính dự án — coi là **(chưa xác minh độc lập)**.
+
+**Mâu thuẫn / cờ:**
+
+- **Lệch tên tổ chức:** README và URL dùng `BitterSecurity/Decepticon`, nhưng `SECURITY.md`, `docs/benchmark-comparison.md` và nút Sponsor vẫn trỏ `PurpleAILAB/Decepticon` / `sponsors/PurpleCHOIms`. Dấu hiệu repo mới đổi tên tổ chức; link báo lỗ hổng trong SECURITY.md có thể 404 (chính file đã lường trước).
+- Vừa là OSS Apache-2.0 vừa là phễu cho sản phẩm host thương mại (app.decepticon.red, "Commercial product demo") và Sponsor — giống mẫu §3f, nhưng ở đây license rõ ràng và phần OSS là code chạy được, không phải chỉ README.
+- Mặc định LLM gọi ra API nhà cung cấp ngoài (Anthropic/OpenAI/Gemini…); muốn kín hoàn toàn phải cấu hình Ollama local. Egress allowlist chỉ chặn trong sandbox, không chặn management plane gọi LLM.
+
+**So sánh (★ đọc 12/10/2026, từ bảng của repo + kiểm chéo):**
+
+| Dự án | Cách tiếp cận | Khác Decepticon |
+|---|---|---|
+| `usestrix/strix` | Agent pentest black-box | Điểm XBOW tương đương (96%); Decepticon thêm C2 thật, AD/cloud, đồ thị tri thức |
+| `GreyDGL/PentestGPT` (USENIX '24) | Agent hội thoại dẫn pentest | Cũ hơn, không sandbox kill-chain đầy đủ |
+| `westonbrown/Cyber-AutoAgent` | Meta-agent | Phiên bản điểm cao đã archive |
+| `SnailSploit/Claude-Red` (§3c) | Skill pack tấn công cho Claude Code | Là skill rời cho agent sẵn có; Decepticon là stack agent trọn gói tự chạy |
+| garak / PyRIT (§3d) | Red-team **model/LLM** | Decepticon red-team **hệ thống/mạng**, không phải nội dung model |
+
+**Điều kiện tích hợp / cách dùng an toàn:**
+
+1. **Chỉ chạy khi có ủy quyền bằng văn bản** (pentest có hợp đồng/scope, CTF, lab của mình) — như Disclaimer và SECURITY.md của repo. Đây là công cụ chạy exploit thật, không phải máy quét.
+2. Luôn điền `roe.json:machine_enforcement` và chạy ở `mode=enforce`; dựa vào lớp egress (nftables + DNS allowlist) làm ranh giới scope, không dựa vào parser lệnh.
+3. **Không** deploy bản OSS cho nhiều người dùng chung: CLI mount docker.sock của host = quyền ngang host.
+4. Để telemetry `off` (mặc định) cho engagement có khách hàng; chỉ cân nhắc `basic`, và tránh `research` khi scope không cho phép chia sẻ corpus — masking không phải ẩn danh (tài liệu tự nói vậy).
+5. Muốn chạy kín: dùng provider local (Ollama) để prompt/kết quả không rời máy; mặc định các call LLM đi ra nhà cung cấp ngoài.
+6. Mọi con số benchmark coi là tuyên bố của dự án cho tới khi có bên thứ ba tái lập.
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.
@@ -185,4 +240,5 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 - arXiv 2601.10440 · 2507.21170 · 2510.19169 · 2609.06543 · 2604.21477 · 2606.31227 · 2603.20953
 - §3d (12/10/2026): https://github.com/NVIDIA/garak · https://github.com/microsoft/PyRIT · https://github.com/Azure/PyRIT · https://github.com/meta-llama/PurpleLlama · https://github.com/semgrep/semgrep · https://github.com/opengrep/opengrep · https://github.com/google/osv-scanner · https://github.com/aquasecurity/trivy · https://www.wiz.io/blog/trivy-compromised-teampcp-supply-chain-attack · https://trust.barracuda.com/security/information/trivy-supply-chain-compromise · https://stack.watch/vuln/CVE-2026-33634/ · https://github.com/sigstore/cosign · https://github.com/ossf/scorecard · https://github.com/snyk/agent-scan · https://github.com/protectai/rebuff · https://github.com/lakeraai · https://github.com/splx-ai/agentic-radar · https://github.com/ethz-spylab/agentdojo
 - §3e (12/10/2026): https://github.com/EvanThomasLuke/Awesome-AI-Security-Skills (README, lịch sử commit) · https://github.com/EvanThomasLuke · trang repo + commits Atom của: trailofbits/skills, trailofbits/skills-curated, NVIDIA/SkillSpector, cisco-ai-defense/skill-scanner, anthropics/claude-code-security-review, cloudflare/security-audit-skill, google/mantis, elastic/agent-skills, ghostsecurity/skills, semgrep/skills, mukul975/Anthropic-Cybersecurity-Skills, elementalsouls/Claude-BugHunter, blacklanternsecurity/red-run, DeepBitsTechnology/claude-plugins, Netflix-Skunkworks/railguard-skill, Mindgard/ai-ide-skills, ljagiello/ctf-skills, Masriyan/Claude-Code-CyberSecurity-Skill, AILiteracyLab/Claude-Security-Audit, vinayaklatthe/microsoft-security-skills, zhaoxuya520/reverse-skill, wiz-sec-public/secure-rules-files, project-codeguard/rules · https://raw.githubusercontent.com/SnailSploit/Claude-Red/main/CHANGELOG.md
+- §3g (12/10/2026): https://github.com/BitterSecurity/Decepticon (clone đầy đủ, 1.324 commit, có v1.4.0: README.md, SECURITY.md, TELEMETRY.md, docker-compose.yml, packages/decepticon/decepticon/middleware/{roe,egress,hitl,engagement}.py) · decepticon.red · app.decepticon.red · docs/benchmark-comparison.md (nội bộ repo) · https://github.com/PurpleAILAB/Decepticon (tên tổ chức cũ còn trong SECURITY.md/benchmark) · https://github.com/usestrix/strix · https://github.com/GreyDGL/PentestGPT · https://github.com/westonbrown/Cyber-AutoAgent · https://github.com/xbow-engineering/validation-benchmarks · arXiv 2607.13085, 2605.21497
 - §3f (12/10/2026): https://github.com/requie/AI-Red-Teaming-Guide (clone đầy đủ, HEAD `7b7dde8`: README.md, CHANGELOG.md, resources-validation.md, templates/, .github/workflows/) · https://github.com/requie · https://github.com/requie/LLMSecurityGuide · https://github.com/Cogensec/Gideon · https://airedteamkit.com/ · https://tarique-io.lovable.app/ · https://huggingface.co/spaces/Cogensec/README · https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/ · https://futurumgroup.com/?p=87434 · https://news.bloomberglaw.com/us-law-week/openai-buying-ai-security-startup-promptfoo-to-safeguard-agents · https://www.canberratimes.com.au/story/9359341/openai-apologises-for-medicare-hack-creates-task-force/ · https://aisi.go.jp/assets/pdf/E1_ai_safety_RT_v1.10_en.pdf · https://github.com/cloudstreet-dev/AI-Red-Teaming · https://github.com/Vect0rdecay/ai-red-team-course

@@ -4480,6 +4480,16 @@
       "open_source": true,
       "notes": "Bản đồ phụ thuộc/blast radius/health score trong một index.html, không LLM, không backend; chỉ gọi api.github.com; CLI loopback; GitHub Action card (tag v1 cũ → ghim SHA); ~47% commit do agent; ★ ~5,4k đọc 12/10/2026",
       "section": "16"
+    },
+    {
+      "name": "Decepticon",
+      "repo": "BitterSecurity/Decepticon",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 6000,
+      "open_source": true,
+      "notes": "Agent red team tự chủ (LangGraph, 16 agent, Kali sandbox, Sliver C2, Neo4j KG); RoE hai lớp (parser advisory + nftables/DNS egress allowlist), HITL, audit HMAC; telemetry opt-in (research = corpus suy luận có mask); dual-use chỉ dùng khi được ủy quyền; CLI mount docker.sock host; XBOW 98% tự công bố; ★ ~6k đọc 12/10/2026",
+      "section": "12"
     }
   ]
 }
