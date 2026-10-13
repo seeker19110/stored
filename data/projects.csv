@@ -453,3 +453,4 @@ make.com-automation-recipes,cporter202/make-com-automation-recipes,,awesome-list
 official-design-md (VoltAgent),VoltAgent/official-design-md,,awesome-list,MIT,519,True,06,11 DESIGN.md chính chủ; 1/11 qua linter Google sạch; mục VoltAgent là bản trích xuất đăng lại (13/10/2026)
 awesome-design-md,VoltAgent/awesome-design-md,,awesome-list,MIT,121000,True,06,84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026)
 DESIGN.md spec (Google),google-labs-code/design.md,,protocol,Apache-2.0,28000,True,06,"Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)"
+text-to-cad,earthtojake/text-to-cad,,harness-pack,MIT,20000,True,20,"Plugin CAD: 12 skill + MCP cadgen (build123d/OCP), STEP/STL/3MF, DFM/DfAM; telemetry PostHog bật mặc định (13/10/2026)"
