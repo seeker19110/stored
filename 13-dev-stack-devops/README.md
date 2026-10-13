@@ -14,8 +14,9 @@
 | Nuxt | nuxt/nuxt | ~54k | |
 | Astro | withastro/astro | ~45.5k | Islands, content-first |
 | SolidJS | solidjs/solid | ~32k | |
-| Vite | vitejs/vite | – | Build tool mặc định của hệ sinh thái; Rolldown |
-| TanStack (Query/Router/Start) | TanStack/* | – | Full-stack TS mới nổi |
+| Vite | vitejs/vite | ~83k (13/10/2026) | Build tool mặc định của hệ sinh thái; Rolldown; v8.3 |
+| TanStack (Query/Router/Start) | TanStack/* | Query ~50k (13/10/2026) | Full-stack TS mới nổi; Query có adapter React/Vue/Solid/Svelte/Angular/Preact |
+| Tailwind CSS | tailwindlabs/tailwindcss | ~98k (13/10/2026) | Utility-first CSS, v4.3 (cấu hình CSS-first); kiểm ảnh ở §6c |
 
 ## 2. Backend
 
@@ -150,6 +151,24 @@
 | espocrm/espocrm | ~3,5k | AGPL-3.0 | PHP | Nhẹ, dễ tuỳ biến |
 
 Đọc kỹ các repo này cho thấy chúng đều là **monolith** (một ứng dụng + PostgreSQL/MySQL + job queue), không phải 6 microservice như ảnh.
+
+## 6c. Kiểm ảnh "5 GitHub Repositories Every Frontend Developer Should Know" (codingwithparvez, ảnh người dùng gửi, 2026-10-13)
+
+Ảnh giới thiệu 5 repo, mỗi repo kèm thẻ, "Why it's useful", một đoạn mã và ảnh minh họa. Số liệu kiểm bằng shields.io và `npm view` ngày 13/10/2026.
+
+| Ô trong ảnh | Kết luận |
+|---|---|
+| ① **shadcn-ui/ui**: "Customizable UI components", thẻ React/TypeScript, "Add accessible components and own the code in your project", `import { Button } from "@/components/ui/button"` | ✅ Đúng mô hình copy mã vào dự án; đường dẫn import đúng mặc định CLI. ~125k★, MIT, CLI `shadcn` 4.21.4. Tính "accessible" đến từ primitive bên dưới (Base UI mặc định từ 7/2026, trước là Radix, xem mục 06) |
+| ② **TanStack/query**: thẻ React, `const { data, isLoading } = useQuery({ queryKey, queryFn })` | ⚠️ Thẻ chỉ ghi React, trong khi thư viện có adapter Vue, Solid, Svelte, Angular, Preact (`@tanstack/*-query` đều có trên npm). `isLoading` vẫn chạy ở v5 nhưng tài liệu hiện chỉ dạy `isPending` rồi `isError`. ~50k★, MIT, `@tanstack/react-query` 5.104.2 |
+| ③ **storybookjs/storybook**: thẻ React, `import type { Meta, StoryObj } from "@storybook/react"` + `satisfies Meta<typeof Button>` | ⚠️ Tài liệu Storybook 10.6 bảo import từ gói **framework** (`@storybook/react-vite`, `@storybook/nextjs`…), không phải gói renderer `@storybook/react`. Thẻ React thiếu Vue/Angular/Svelte/Web Components. `satisfies` đúng. ~91k★, MIT, v10.6.2 |
+| ④ **vitejs/vite**: `npm create vite@latest my-app` → `npm install` → `npm run dev`; màn hình "VITE v5.x ready in 320 ms", "Network: http://192.168.1.5:5173" | ⚠️ Lệnh đúng (create-vite 9.2.1 còn có cờ `--immediate` cài và chạy luôn). Màn hình cũ: bản hiện tại là **8.3.4**, và mặc định Vite in "Network: use `--host` to expose"; dòng địa chỉ LAN chỉ có khi chạy với `--host` (đọc mã `vite` 8.3.4). ~83k★, MIT |
+| ⑤ **tailwindlabs/tailwindcss**: "Utility-first CSS", JSX `className="min-h-screen bg-gray-950 text-white flex items-center justify-center"` | ✅ Mọi class có trong Tailwind 4.3.3. ~98k★, MIT |
+
+**Tổng: 2✅ / 3⚠️ / 0❌.**
+
+**Dùng ảnh thế nào:** danh sách đúng là 5 công cụ phổ biến, cả 5 đều MIT và còn hoạt động (commit trong ngày). Ba lỗi đều là lỗi "chụp lúc cũ hoặc chỉ nhìn React": sửa nhãn thành đa framework, đổi `isLoading` → `isPending`, import Storybook từ gói framework, cập nhật màn hình Vite. Tiêu đề "every frontend developer" thực ra là "dev React + Vite"; không có công cụ test (Vitest, Playwright) hay lint (ESLint, Biome) nào, xem §1 và §4b. Không tìm được bài gốc của codingwithparvez.
+
+**Nguồn của mục:** shields.io 13/10/2026 (5 repo: sao, license, commit cuối, release) · `npm view` 13/10/2026 (shadcn, @tanstack/{react,vue,svelte,solid,angular-query-experimental,preact}-query, storybook, @storybook/{react,react-vite,vue3-vite,angular,sveltekit,web-components-vite}, vite, create-vite, tailwindcss) · https://storybook.js.org/docs/writing-stories · https://tanstack.com/query/latest/docs/framework/react/guides/queries · mã `vite` 8.3.4 (`dist/node/chunks/node.js`, chuỗi "--host … to expose") và README `create-vite` 9.2.1.
 
 ## 7. Nguồn
 

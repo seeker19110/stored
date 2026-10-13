@@ -43,13 +43,13 @@ n8n,n8n-io/n8n,,low-code,Sustainable Use,207000,False,05,fair-code
 Dify,langgenius/dify,,low-code,Apache-2.0 (modified),158000,True,05,
 Langflow,langflow-ai/langflow,,low-code,MIT,145000,True,05,
 Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
-shadcn/ui,shadcn-ui/ui,,ui-library,MIT,118000,True,06,Base UI mặc định từ 7/2026
+shadcn/ui,shadcn-ui/ui,,ui-library,MIT,125000,True,06,Base UI mặc định từ 7/2026
 MUI,mui/material-ui,,ui-library,MIT,93000,True,06,
 Radix UI,radix-ui/primitives,,ui-library,MIT,,True,06,nguồn lệch 19k–35k
 Base UI,mui/base-ui,,ui-library,MIT,10600,True,06,
 Mantine,mantinedev/mantine,,ui-library,MIT,28000,True,06,
 Vuetify,vuetifyjs/vuetify,,ui-library,MIT,41000,True,06,
-Storybook,storybookjs/storybook,,ui-library,MIT,,True,06,
+Storybook,storybookjs/storybook,,ui-library,MIT,91000,True,06,
 Excalidraw,excalidraw/excalidraw,,design-tool,MIT,134000,True,06,
 Penpot,penpot/penpot,,design-tool,MPL-2.0,61000,True,06,Figma alternative
 tldraw,tldraw/tldraw,,design-tool,tldraw license,51000,True,06,
@@ -123,7 +123,7 @@ Angular,angular/angular,,frontend,MIT,95000,True,13,
 Svelte,sveltejs/svelte,,frontend,MIT,78000,True,13,
 Nuxt,nuxt/nuxt,,frontend,MIT,54000,True,13,
 Astro,withastro/astro,,frontend,MIT,45500,True,13,
-Vite,vitejs/vite,,frontend,MIT,,True,13,
+Vite,vitejs/vite,,frontend,MIT,83000,True,13,
 FastAPI,fastapi/fastapi,,backend,MIT,100000,True,13,
 NestJS,nestjs/nest,,backend,MIT,76800,True,13,10/2026
 Hono,honojs/hono,,backend,MIT,32500,True,13,
@@ -454,3 +454,6 @@ official-design-md (VoltAgent),VoltAgent/official-design-md,,awesome-list,MIT,51
 awesome-design-md,VoltAgent/awesome-design-md,,awesome-list,MIT,121000,True,06,84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026)
 DESIGN.md spec (Google),google-labs-code/design.md,,protocol,Apache-2.0,28000,True,06,"Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)"
 text-to-cad,earthtojake/text-to-cad,,harness-pack,MIT,20000,True,20,"Plugin CAD: 12 skill + MCP cadgen (build123d/OCP), STEP/STL/3MF, DFM/DfAM; telemetry PostHog bật mặc định (13/10/2026)"
+TanStack Query,TanStack/query,,frontend,MIT,50000,True,13,"Server state/cache; adapter React, Vue, Solid, Svelte, Angular, Preact; v5 dùng isPending; kiểm ảnh mục 13 §6c, 2026-10-13"
+Tailwind CSS,tailwindlabs/tailwindcss,,frontend,MIT,98000,True,13,"Utility-first CSS, v4.3.3 (13/10/2026); kiểm ảnh mục 13 §6c"
+OpenCreator (tên cũ KrillinAI),krillinai/OpenCreator,,agentic-video,Apache-2.0,13000,True,19,"Workspace sáng tạo AI trên Codex CLI: dịch/lồng tiếng video, tải video, sinh ảnh/video; daemon Fastify loopback + Electron; GPL-3.0 → Apache-2.0 9/2026; telemetry desktop bật mặc định; ảnh người dùng 2026-10-13"

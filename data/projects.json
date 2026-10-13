@@ -517,7 +517,7 @@
       "repo": "shadcn-ui/ui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 118000,
+      "stars": 125000,
       "open_source": true,
       "notes": "Base UI mặc định từ 7/2026",
       "section": "06"
@@ -577,7 +577,7 @@
       "repo": "storybookjs/storybook",
       "category": "ui-library",
       "license": "MIT",
-      "stars": null,
+      "stars": 91000,
       "open_source": true,
       "notes": "",
       "section": "06"
@@ -1320,7 +1320,7 @@
       "repo": "vitejs/vite",
       "category": "frontend",
       "license": "MIT",
-      "stars": null,
+      "stars": 83000,
       "open_source": true,
       "notes": "",
       "section": "13"
@@ -4631,6 +4631,36 @@
       "open_source": true,
       "notes": "Plugin CAD: 12 skill + MCP cadgen (build123d/OCP), STEP/STL/3MF, DFM/DfAM; telemetry PostHog bật mặc định (13/10/2026)",
       "section": "20"
+    },
+    {
+      "name": "TanStack Query",
+      "repo": "TanStack/query",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 50000,
+      "open_source": true,
+      "notes": "Server state/cache; adapter React, Vue, Solid, Svelte, Angular, Preact; v5 dùng isPending; kiểm ảnh mục 13 §6c, 2026-10-13",
+      "section": "13"
+    },
+    {
+      "name": "Tailwind CSS",
+      "repo": "tailwindlabs/tailwindcss",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 98000,
+      "open_source": true,
+      "notes": "Utility-first CSS, v4.3.3 (13/10/2026); kiểm ảnh mục 13 §6c",
+      "section": "13"
+    },
+    {
+      "name": "OpenCreator (tên cũ KrillinAI)",
+      "repo": "krillinai/OpenCreator",
+      "category": "agentic-video",
+      "license": "Apache-2.0",
+      "stars": 13000,
+      "open_source": true,
+      "notes": "Workspace sáng tạo AI trên Codex CLI: dịch/lồng tiếng video, tải video, sinh ảnh/video; daemon Fastify loopback + Electron; GPL-3.0 → Apache-2.0 9/2026; telemetry desktop bật mặc định; ảnh người dùng 2026-10-13",
+      "section": "19"
     }
   ]
 }
