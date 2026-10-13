@@ -54,6 +54,60 @@
 
 ---
 
+## 1b. krillinai/OpenCreator, tên cũ KrillinAI (ảnh README người dùng gửi, 2026-10-13)
+
+### 1b.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (đọc 2026-10-13) |
+|---|---|
+| Repo | https://github.com/krillinai/OpenCreator (link cũ `krillinai/KrillinAI` chuyển hướng về đây) · site open-creator.ai |
+| Mô tả (About) | "Formerly KrillinAI. Open-source AI workspace for creators, powered by Codex. Create videos, images, voice, avatars, translations, and edits with Agents in one place." |
+| ★ / fork | **~13k ★ · ~1,4k fork** (shields 13/10/2026; ảnh chụp ghi 11.5k/1.1k là số cũ) · 28 issue mở · 5 PR mở · bản phát hành v3.2.6 |
+| License | **Apache-2.0** từ 21/9/2026. Trước đó GPL-3.0: `LICENSE` gốc tạo 27/12/2024 là GPLv3; `runtime/krillinai/LICENSE` đổi GPLv3 → Apache ở commit bfbf59a ngày 29/9/2026 |
+| Tên gọi | KrillinAI → KlicStudio (khoảng 2025) → KrillinAI (đổi lại 12/9/2025) → OpenCreator (9/2026) |
+| Lịch sử | Commit đầu 17/12/2024; 936 commit; 358 commit từ 1/8/2026 (đọc git 13/10/2026). Huy hiệu Trendshift "#1 Repository of the Day" có thật, trang Trendshift không ghi ngày (chưa xác minh ngày) |
+| Ngôn ngữ | TypeScript ~82%, Go ~9% (ảnh chụp; Go là `runtime/krillinai`, lõi dịch video cũ) |
+
+### 1b.2 Kiến trúc (đọc README + mã)
+
+- **Không tự viết vòng lặp agent.** Dùng **Codex CLI** (app-server) làm động cơ; OpenCreator thêm daemon cục bộ, giao diện web và vỏ desktop. Chạy tác vụ thật cần đăng nhập ChatGPT hoặc API key (Codex hoặc nhà cung cấp tương thích OpenAI).
+- **Ba lớp:** `apps/web` (React 18 + Vite) → `apps/daemon` (Fastify, Runtime API + SSE, SQLite, lịch chạy, duyệt quyền, bộ nhớ) → Codex + bộ công cụ media (FFmpeg, yt-dlp, Whisper, dịch vụ AI). `apps/desktop` là Electron nạp lại đúng bản web.
+- **Một máy trạng thái cho hai giao diện:** thao tác trên workspace và lệnh trong hội thoại cùng đẩy sự kiện vào một máy trạng thái; mỗi lần sửa tạo phiên bản mới, không ghi đè.
+- **Daemon chỉ nghe loopback:** `server.listen({ host: '127.0.0.1', port: 0 })` (`apps/daemon/src/main.ts`), token tạm in ra stdout một lần.
+- **Skills:** 7 skill trong `skills/` điều khiển CLI KrillinAI (phụ đề, TTS, render ngang/dọc, ảnh bìa, kiểm kế hoạch pipeline). Mặc định dùng `$CODEX_HOME` chung, nên đổi skill/MCP ở đây là đổi cấu hình Codex toàn máy.
+- **CI:** `pnpm audit --audit-level high`, test daemon/desktop/web, actionlint cho workflow phát hành.
+
+### 1b.3 Kiểm ảnh README
+
+| Ô trong ảnh | Kết luận |
+|---|---|
+| "Formerly KrillinAI" | ✅ Đúng; còn một tên trung gian là KlicStudio |
+| "Open-source" | ⚠️ Mã Apache-2.0, nhưng tài khoản, gói đăng ký, tín dụng và "official model services" đi qua gateway `open-creator.ai` (mặc định trong `OPENCREATOR_GATEWAY_ORIGIN`, thanh toán Stripe). Tự cấu hình key riêng vẫn dùng được |
+| "powered by Codex" | ✅ Đúng như mã: Codex là nguồn sự thật cho vòng lặp agent, Skills, MCP |
+| "videos, images, voice, avatars, translations, and edits" | ⚠️ Digital Avatar và Auto Clips đang ghi "In development"; 10 công cụ còn lại ✅ Available |
+| 11.5k★ · 1.1k fork | ⚠️ Số cũ; nay ~13k / ~1,4k |
+| "#1 Repository of the Day" | ✅ Huy hiệu Trendshift #1 có thật; ngày đạt chưa xác minh |
+| 14 ngôn ngữ README | ✅ 13 bản dịch trong `docs/<lang>/` + tiếng Anh |
+| Ngôn ngữ mã TS/Go | ✅ Khớp cấu trúc repo |
+
+**Tổng: 5✅ / 3⚠️ / 0❌.** Ảnh không sai ô nào; điều đáng biết nằm ngoài ảnh (mục dưới).
+
+### 1b.4 Điều ảnh không nói
+
+- **Telemetry bật mặc định ở bản desktop chính thức.** `apps/desktop/src/main/telemetry.ts` gửi mỗi 6 giờ `install_id`, số lần mở, phút hoạt động, phiên bản, hệ điều hành, kiến trúc tới `https://admin.clawee.work/api/v1/public/desktop-usage`; `telemetryEnabled: true` trong `settings-store.ts`. Có công tắc tắt trong Cài đặt, mô tả nói rõ máy chủ ghi IP và không gửi nội dung dự án/file/hội thoại. README không nhắc. Quan hệ giữa domain `clawee.work` và dự án: chưa xác minh. Bản build từ nguồn không gửi (endpoint rỗng khi không phải bản chính thức).
+- **Đổi giấy phép GPL-3.0 → Apache-2.0 trên mã có 22 email tác giả khác nhau** (commit trước 8/2026). Repo không có CLA/DCO trong `CONTRIBUTING.md`. Đổi từ GPL sang giấy phép dễ dãi hơn thường cần đồng ý của người giữ bản quyền; repo không ghi đã xin (chưa xác minh). Ai phân phối lại phần mã cũ nên để ý.
+- **Trình tải video** nhận YouTube, TikTok, Douyin, Instagram… qua yt-dlp, có thể cần cookie nền tảng. Đây là công cụ, rủi ro điều khoản dịch vụ và bản quyền nằm ở người dùng.
+- **Đánh giá bên ngoài:** chưa thấy bài dùng thử độc lập. Bài aiindigo.com ("deep dive") đọc như quảng bá; bản mirror SourceForge vẫn ghi GPLv3 (ảnh chụp cũ).
+
+### 1b.5 Nhận xét & cách tận dụng
+
+- **So với OpenMontage (§1):** OpenMontage để agent làm orchestrator qua skill + schema + gate; OpenCreator đặt **máy trạng thái trong daemon** và cho agent (Codex) cùng giao diện trực quan đẩy sự kiện vào đó. Mẫu đáng học: một nguồn sự thật cho cả UI lẫn hội thoại, mỗi lần sửa là một phiên bản.
+- **Thế mạnh thật:** dịch phụ đề + lồng tiếng (14 ngôn ngữ nguồn, 101 ngôn ngữ đích theo README) có từ thời KrillinAI; giấy phép Apache-2.0 nay thoáng hơn AGPL của OpenMontage.
+- **Rủi ro:** phụ thuộc Codex CLI và tài khoản OpenAI/nhà cung cấp; telemetry mặc định bật; nguồn gốc giấy phép phần mã cũ; dự án đổi tên ba lần, tốc độ thay đổi cao (358 commit trong ~2,5 tháng).
+- **Gợi ý:** chạy bản web từ nguồn (`pnpm web:dev`, không gửi telemetry) với `CODEX_HOME` riêng để khỏi đụng cấu hình Codex chung; nếu dùng desktop, tắt "Send anonymous usage data".
+
+---
+
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
 
 | Repo | Số hiển thị (★?) | Ghi chú |
@@ -89,5 +143,6 @@
 
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video
 - https://pinggy.io/blog/openmontage_agentic_video_production/ · https://knightli.com/en/2026/06/22/openmontage-ai-video-production-guide/ · https://dev.to/andrew-ooo/openmontage-review-open-source-agentic-video-production-296l · https://hysenlabs.com/projects/calesthio-openmontage · https://www.opensourcealternatives.to/item/openmontage · https://explainx.ai/blog/openmontage-agentic-video-production-claude-code-2026 · https://www.visionstory.ai/open-source/openmontage · https://tosea.ai/blog/openmontage-agentic-video-production-guide · https://www.blog.brightcoding.dev/2026/10/10/calesthioopenmontage-agentic-video-production-from-natural-language
+- §1b OpenCreator (13/10/2026): https://github.com/krillinai/OpenCreator (clone đầy đủ, 936 commit, HEAD 2b80bca 13/10/2026; README, LICENSE, CONTRIBUTING.md, `apps/desktop/src/main/telemetry.ts`, `settings-store.ts`, `apps/daemon/src/main.ts`, `startup.ts`, `.github/workflows/ci.yml`, commit afe6aa4/4d29f87/bfbf59a/406dec8) · https://trendshift.io/repositories/13360 · https://sourceforge.net/projects/krillinai.mirror/ · https://aiindigo.com/blog/krillinai-deep-dive-technical-review · https://tessl.io/registry/skills/github/krillinai/KrillinAI/krillinai-tts/review
 - https://github.com/THU-MAIC/OpenMAIC/discussions/346 · https://github.com/volcengine/OpenViking/discussions/1083
 - https://trendshift.io/topics/ai-video · https://www.atlascloud.ai/blog/tips/github-ai-video-generator-skill-directory-free-tools-vs-paid-apis-2026 · https://agenticvideos.org/ · https://arxiv.org/pdf/2608.29814 · https://arxiv.org/pdf/2608.28122
