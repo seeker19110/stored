@@ -4731,6 +4731,56 @@
       "open_source": true,
       "notes": "14 skill cài bằng npx skills add; dẫn về app BlackTwist; không commit từ 5/2026",
       "section": "20"
+    },
+    {
+      "name": "agentmemory",
+      "repo": "rohitg00/agentmemory",
+      "category": "agent-memory",
+      "license": "Apache-2.0",
+      "stars": 29000,
+      "open_source": true,
+      "notes": "Bộ nhớ dài hạn cho coding agent qua hook + 54 MCP tool, BM25 + vector cục bộ + graph; chạy trên iii engine (engine ELv2); 95,2% R@5 LongMemEval-S là độ phủ truy xuất, không so được với số LoCoMo; 3.339/3.350 test pass sau build (tự chạy 13/10/2026); ảnh người dùng 2026-10-13",
+      "section": "10"
+    },
+    {
+      "name": "iii engine",
+      "repo": "iii-hq/iii",
+      "category": "durable-execution",
+      "license": "Elastic-2.0 (engine) / Apache-2.0 (SDK)",
+      "stars": 19000,
+      "open_source": false,
+      "notes": "Runtime worker/function/trigger thay Express+DB+queue+OTEL; nền của agentmemory; thư mục engine/ theo ELv2 nên không phải mã mở OSI",
+      "section": "10"
+    },
+    {
+      "name": "waoowaoo (tên cũ saturndec/waoowaoo)",
+      "repo": "waooAI/waoowaoo",
+      "category": "agentic-video",
+      "license": "Elastic-2.0",
+      "stars": 15000,
+      "open_source": false,
+      "notes": "v0.3–0.4.1: studio phim ngắn/truyện tranh động từ tiểu thuyết (CC BY-NC-SA 4.0); v0.5.0-beta.1 (9/2026) viết lại thành workspace ảnh/video + Assistant Codex CLI, ELv2, chỉ OpenRouter; app gắn Docker socket; không merge PR ngoài; link người dùng 2026-10-13",
+      "section": "19"
+    },
+    {
+      "name": "Toonflow",
+      "repo": "HBAI-Ltd/Toonflow-app",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 17000,
+      "open_source": true,
+      "notes": "Tiểu thuyết → kịch bản → ảnh/video phim ngắn; license theo GitHub là MIT, một trang tổng hợp ghi AGPL (chưa xác minh)",
+      "section": "19"
+    },
+    {
+      "name": "LocalMiniDrama",
+      "repo": "xuanyustudio/LocalMiniDrama",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 2000,
+      "open_source": true,
+      "notes": "Phim ngắn/truyện tranh động chạy offline, Vue3 + Node + SQLite, hỗ trợ Ollama",
+      "section": "19"
     }
   ]
 }

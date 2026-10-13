@@ -108,6 +108,55 @@
 
 ---
 
+## 1c. saturndec/waoowaoo (nay là waooAI/waoowaoo): từ "studio phim ngắn AI" thành workspace ảnh/video (link người dùng, 2026-10-13)
+
+> Người dùng gửi `saturndec/waoowaoo`. Repo đã chuyển sang tổ chức `waooAI/waoowaoo` (link cũ vẫn chuyển hướng; shields trả cùng số cho cả hai). Đã clone toàn bộ repo (27 commit, HEAD `dfec20e` 21/9/2026), đọc README các bản, `LICENSE` qua `git log`, `docs/INSTALL.md`, `docker-compose.yml`, `Dockerfile.codex-runtime`, `package.json`. Chưa chạy test vì cần MySQL, Redis và Temporal.
+
+### 1c.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `waooAI/waoowaoo` (tên cũ `saturndec/waoowaoo`) · ~15k★, ~3,2k fork · ~140 issue mở, **0 PR mở** · release ổn định mới nhất v0.4.1 (3/4/2026); tag `v0.5.0-beta.1` (5/9/2026); commit cuối 21/9/2026 |
+| Tác giả | "saturn" (`saturndec`, ~23 commit) và bot `waoowaoo-publisher` (4 commit). Mã được đẩy theo từng đợt phát hành, không có lịch sử phát triển chi tiết. Đội ngũ có bản web thương mại (waitlist tại waoowaoo.com) |
+| Đóng góp | README: nhóm lõi tự làm, PR từ ngoài chỉ để tham khảo, **không merge trực tiếp** |
+| Stack (v0.5) | Next.js 16 + React 19, MySQL + Prisma, **Temporal** (durable execution), Redis, MinIO riêng, NextAuth, Caddy (HTTPS cục bộ cổng 1443) |
+| Model | Bản preview chỉ mở cấu hình **OpenRouter**: GPT Image 2, các bản Nano Banana, Seedance, MiniMax H3/H3 Max. Người dùng tự trả phí qua key OpenRouter của mình |
+
+### 1c.2 Hai sản phẩm khác nhau dưới cùng một tên
+
+| | v0.3.0 → v0.4.1 (3–4/2026) | v0.5.0-beta.1 (9/2026) |
+|---|---|---|
+| Mô tả | "waoowaoo AI 影视 Studio": công cụ làm **phim ngắn/truyện tranh động** từ tiểu thuyết: phân tích kịch bản, sinh nhân vật và cảnh nhất quán, dựng phân cảnh thành video, lồng tiếng nhiều vai | "AI creative workspace for images and videos": Assistant bên phải + canvas để quản lý tài liệu tham chiếu, sinh ảnh/video, tinh chỉnh thành phiên bản mới |
+| Lồng tiếng / nhạc | Có | **Chưa có** trong bản preview |
+| Người làm | README ghi "hiện chỉ mình tôi phát triển" | "waoowaoo team", nhóm lõi |
+| Giấy phép | Không có file `LICENSE` tới 27/4/2026, sau đó **CC BY-NC-SA 4.0** (giấy phép nội dung, cấm thương mại) | **Elastic License 2.0**: dùng cá nhân/nội bộ, sửa và phân phối được; cấm cung cấp thành dịch vụ cho bên thứ ba. README tự ghi "source-available, not OSI-approved open source" |
+
+Bản v0.5 thay đổi gần như toàn bộ mã (2.372 file, +147k / −191k dòng so với bản trước). Phần lớn bài giới thiệu bên ngoài (sourcepulse, addrom, skillsllm) và nhiều bản sao vẫn mô tả sản phẩm cũ. Bản sao trên Gitee còn ghi MIT, **sai** với cả hai giấy phép thật.
+
+### 1c.3 Điều cần biết trước khi cài (đọc mã)
+
+- **Container của app được gắn Docker socket** (`/var/run/docker.sock`) để tự khởi container Assistant cho từng dự án. Quyền này tương đương quyền root trên máy host; `docs/INSTALL.md` cũng chỉ ghi "use a trusted local installation". Chỉ nên cài trên máy hoặc VM riêng.
+- **Assistant chạy OpenAI Codex CLI 0.146** trong container riêng (sandbox bubblewrap, giới hạn mặc định 2 CPU, 2 GB RAM, 256 tiến trình, tự tắt sau 15 phút rảnh).
+- **HTTPS cục bộ bằng CA riêng của Caddy**: quy trình cài yêu cầu tin `root.crt` trên máy. Phần này làm cẩn thận: prompt cài đặt bắt agent hỏi rồi mới tin chứng chỉ, không xuất `root.key`, không bỏ kiểm TLS.
+- **Cài kiểu "nhắn coding agent tự cài"**, ghim image theo digest bất biến của release. Prompt cài cũng cấm agent chạy tác vụ AI trả phí khi chưa được đồng ý và cấm hỏi key trong chat. Đây là mẫu prompt cài đặt đáng tham khảo.
+- **Có hai bản**: self-hosted (repo này, `BILLING_MODE=OFF`) và bản cloud có tính tiền (script test nhắc thư mục `ee/` không có trong repo).
+- **Bản preview**: README cảnh báo còn lỗi; dữ liệu giữa các bản beta trước đây không tương thích, phải xóa dữ liệu cũ khi nâng cấp.
+
+### 1c.4 So sánh & dùng thế nào
+
+| Dự án (shields 13/10/2026) | ★ · license | Khác waoowaoo |
+|---|---|---|
+| OpenMontage (§1) | ~68k · AGPL-3.0 | Agent điều phối pipeline video, mã mở OSI |
+| OpenCreator (§1b) | ~13k · Apache-2.0 | Workspace sáng tạo trên Codex CLI, mạnh về dịch/lồng tiếng |
+| `HBAI-Ltd/Toonflow-app` | ~17k · MIT theo GitHub (một trang tổng hợp ghi AGPL, chưa xác minh) | Gần với waoowaoo bản cũ nhất: tiểu thuyết → kịch bản → ảnh/video phim ngắn |
+| `xuanyustudio/LocalMiniDrama` | ~2k · MIT | Phim ngắn/truyện tranh động chạy offline, SQLite, hỗ trợ Ollama |
+
+- **Muốn đúng sản phẩm "tiểu thuyết → phim ngắn"** như phần lớn bài viết mô tả: đó là v0.4.1 (CC BY-NC-SA, cấm thương mại) hoặc Toonflow/LocalMiniDrama. Bản waoowaoo hiện tại đã đổi hướng thành workspace ảnh/video chung.
+- **Không nên** dùng waoowaoo làm nền cho dịch vụ bán cho khách (ELv2 cấm), cũng không nên gửi PR với hy vọng được merge.
+- **Đáng mượn:** prompt cài đặt cho agent (ghim digest, hỏi trước khi tin chứng chỉ và trước khi tốn tiền), và việc tách Assistant thành container có hạn mức tài nguyên.
+
+**Nguồn §1c:** https://github.com/waooAI/waoowaoo (clone đầy đủ, HEAD dfec20e; README.md, README_en.md, README_zh.md, bản README ở v0.4.1 `531de26`, LICENSE ở `8bc8eb3` và `41ec33d`, docs/INSTALL.md, docker-compose.yml, Dockerfile.codex-runtime, package.json) · https://github.com/saturndec/waoowaoo · https://www.waoowaoo.com/ · https://trendshift.io/repositories/22585 · https://www.sourcepulse.org/projects/25569794 · https://addrom.com/waoowaoo-ai-studio-self-hosted-ai-agent-platform-for-short-drama-and-film-video-production/ · https://skillsllm.com/skill/waoowaoo · https://gitee.com/chees_cn/waoowaoo · https://gittrend.io/repo/waooAI/waoowaoo · https://awesome.ecosyste.ms/projects/github.com%2FwaooAI%2Fwaoowaoo · https://www.elastic.co/licensing/elastic-license · https://github.com/HBAI-Ltd/Toonflow-app · https://github.com/xuanyustudio/LocalMiniDrama · https://www.sourcepulse.org/projects/23907340 · https://www.sourcepulse.org/projects/28710401
+
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
 
 | Repo | Số hiển thị (★?) | Ghi chú |
