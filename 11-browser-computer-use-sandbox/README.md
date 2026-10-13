@@ -16,6 +16,37 @@
 
 **Nhận định:** DOM/accessibility-tree rẻ và ổn định hơn vision; vision cần cho canvas/ứng dụng lạ. Chọn Browser Use để thử nhanh, Stagehand khi cần SDK có kiểm soát trong TypeScript.
 
+## 1b. Framework E2E test dùng agent: `tester-army/e2e` (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh social card GitHub "e2e — Next generation e2e testing framework for web and mobile apps" (35 contributor, used by 640, 9k★, 434 fork). Đã clone nông repo (HEAD `fc90644`, 12/10/2026) để đọc README, `AGENTS.md`, `SECURITY.md`, `docs/` và workflow CI.
+
+### e2e (TesterArmy)
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / URL | https://github.com/tester-army/e2e · docs https://e2e.tester.army/docs · npm `e2e` |
+| Mô tả 1 dòng | Framework E2E TypeScript cho web (chạy trên Playwright) và mobile (iOS simulator, Android emulator qua agent-device): trong cùng một test vừa có bước agent bằng ngôn ngữ tự nhiên (`agent.act`, `agent.assert`, `agent.waitFor`, `agent.extract`), vừa có locator và `expect` kiểu Playwright |
+| Loại | browser-agent / e2e-testing |
+| License | Apache-2.0 (NOTICE: © 2026 TesterArmy, Inc.) |
+| ★ (ngày) | ~9,7k★, 462 fork, 107 issue mở (13/10/2026, trang GitHub + shields.io); ảnh ghi 9k★/434 fork. Repo tạo 22/7/2026, push cuối 12/10/2026; khoảng 6,8k★ vào 6/10 theo bài về v0.18 (blog) → tăng nhanh sau khi ra mắt công khai đầu 10/2026 |
+| Vì sao đáng tham khảo | • **Cache phát lại đã kiểm** (`docs/cache.mdx`): chỉ lưu thao tác của `agent.act()` sau khi một bước kiểm sau đó xác nhận kết quả; lần chạy sau phát lại không gọi model; khi control hoặc trạng thái cuối không còn khớp thì giao lại cho agent; bản ghi nào dẫn tới lỗi thì bị xoá. Đây là cách giữ test agent rẻ và lặp lại được.<br>• Trộn bước agent với assertion tất định trong một test, nên phần cần chính xác (giá, trạng thái) vẫn kiểm bằng locator.<br>• Một API cho web và mobile; tích hợp chạy trên hạ tầng thuê (Kernel, Limrun, EAS, smol microVM), reporter GitHub PR, MCP server, skill cho coding agent; tài liệu đóng gói kèm npm để agent đọc offline.<br>• Model tự chọn qua Vercel AI SDK (BYO key); có hướng dẫn chuyển từ Playwright, Cypress, Selenium, Detox, Maestro.<br>• `AGENTS.md` theo nguyên tắc "code là hợp đồng": `d.ts` công khai, schema fixture, test đối chiếu mã lỗi với docs; Action trong CI ghim theo SHA |
+| Hạn chế / rủi ro | • **Pre-1.0** (gói `e2e` 0.20.0), API còn đổi; repo công khai chưa tới 3 tháng.<br>• **Telemetry bật mặc định** (PostHog EU; tắt bằng `e2e telemetry disable`, `E2E_TELEMETRY_DISABLED=1` hoặc `DO_NOT_TRACK=1`); docs nói không gửi nội dung test hay credential.<br>• `docs/security.mdx` tự nêu: `Secret` được che trong log/prompt nhưng **video và file tải về không che**; **bản ghi cache commit vào repo lưu giá trị đã gõ nguyên văn** (trừ secret); `basicAuth` trả lời 401 từ mọi origin; **không có allowlist origin**; test chạy với quyền hệ điều hành, **không sandbox** → chạy PR không tin cậy trong sandbox ngoài, không secret.<br>• Đăng nhập bằng thuê bao (ChatGPT, Copilot, OpenCode, SuperGrok qua OAuth, `docs/subscriptions.mdx`) có thể vướng điều khoản nhà cung cấp **(chưa xác minh)**.<br>• Tên npm `e2e` tạo từ 2014, nhiều khả năng được chuyển nhượng **(chưa xác minh)** → kiểm publisher trước khi cài.<br>• Công ty YC P26 (Oskar Kwaśniewski, Szymon Rybczak); con số "50+ khách trả phí, gọi vốn $1,2M" chỉ có trên LinkedIn **(chưa xác minh)** |
+| Tích hợp | `npm i -D e2e` (ghim phiên bản, kiểm publisher `tester-army`); đặt `E2E_TELEMETRY_DISABLED=1` trong CI; dùng tài khoản test riêng và dữ liệu giả vì video/cache không che; không commit cache nếu form có dữ liệu thật; chạy trong container/VM không secret cho PR từ fork; vẫn giữ assertion tất định cho luồng tiền/quyền. Dự án đã có Playwright + axe (mục 13) có thể thử e2e cho luồng UI hay đổi, giữ Playwright cho cổng a11y/hiệu năng |
+| Liên quan | mục 11 §1 (Stagehand, Playwright MCP), mục 13 (Playwright CI, Lighthouse CI, axe), mục 07 (eval), mục 12 (secret, sandbox) |
+| Nguồn | xem §4 và `SOURCES.md` (13/10/2026) |
+
+### So sánh với lựa chọn cùng loại (★ qua shields.io, 13/10/2026)
+
+| Dự án | ★ | License | Commit gần nhất | Cách tiếp cận | Khác e2e ở đâu |
+|---|---|---|---|---|---|
+| **microsoft/playwright** | ~98k | Apache-2.0 | 12/10/2026 | Test tất định bằng locator, đa trình duyệt | Không có bước agent; nền web của e2e |
+| **browserbase/stagehand** | ~26k | MIT | 12/10/2026 | SDK `act/extract/observe`, có cache tự phát lại | Thư viện tự động hoá trình duyệt, không phải test runner; chỉ web |
+| **mobile-dev-inc/Maestro** | ~16k | Apache-2.0 | 12/10/2026 | Flow YAML cho mobile và web | Tất định là chính; tính năng AI **(chưa xác minh)** |
+| **web-infra-dev/midscene** | ~15k | MIT | 13/10/2026 | Thao tác và assertion bằng AI dựa trên ảnh chụp; web (Playwright), Android (ADB), iOS (WDA); runner `@midscene/test` đang beta | Gần e2e nhất; thiên về vision |
+| **wix/Detox** | ~12k | MIT | 6/2026 | E2E gray-box cho React Native | Tất định, chỉ mobile React Native |
+
+**Nhận định:** e2e đáng thử khi test UI hay gãy vì đổi giao diện và đội cần cả web lẫn mobile; cơ chế "phát lại chỉ khi đã kiểm, xoá khi lỗi" là bài học dùng được cả ngoài framework này. Chưa nên dùng làm cổng chặn merge duy nhất: pre-1.0, telemetry bật sẵn, và docs bảo mật tự nhận còn lỗ (video, cache, origin). Mốc so sánh trung lập: Playwright cho cổng tất định, Midscene nếu cần giấy phép MIT và vision.
+
 ## 2. Computer use (điều khiển máy tính)
 
 | Nhà cung cấp / dự án | Ghi chú |
@@ -64,3 +95,4 @@
 - https://gist.github.com/kevinmichaelchen/9d77b8a681238cc45297dff969686175 · https://www.firecrawl.dev/blog/best-browser-agents · https://scrapfly.io/blog/posts/stagehand-vs-browser-use · https://agentscamp.com/guides/comparisons/browser-agents-compared-2026 · https://bug0.com/blog/expect-vs-agent-browser-vs-stagehand-vs-passmark · https://github.com/browserbase/stagehand · https://kanopylabs.com/blog/stagehand-vs-browserbase-vs-steel-browser-ai
 - https://www.superagent.sh/blog/ai-code-sandbox-benchmark-2026 · https://blog.logrocket.com/comparing-ai-agent-sandbox-platforms-e2b-modal-daytona-and-more/ · https://devtoollab.com/blog/best-ai-code-execution-sandboxes · https://bex.co/blog/2026/09/25/four-companies-one-sandbox-market-agent-code-execution · https://www.developersdigest.tech/blog/ai-agent-code-sandbox-comparison-2026 · https://www.beri.net/article/e2b-vs-modal-vs-daytona-agent-sandbox-pricing-isolation-2026 · https://particula.tech/blog/modal-vs-e2b-vs-daytona-vs-vercel-sandbox-ai-code-execution · https://arxiv.org/pdf/2606.08433
 - §3b (12/10/2026): https://github.com/bytedance/UI-TARS-desktop · https://github.com/trycua/cua · https://github.com/simular-ai/Agent-S · https://github.com/firecrawl/firecrawl · https://github.com/unclecode/crawl4ai · https://github.com/ChromeDevTools/chrome-devtools-mcp · https://github.com/google/gvisor · https://github.com/firecracker-microvm/firecracker · https://github.com/anthropics/sandbox-runtime · https://github.com/superradcompany/microsandbox · https://github.com/microsoft/OmniParser · https://github.com/browserless/browserless · https://github.com/jina-ai/reader · https://github.com/steel-dev/steel-browser
+- §1b e2e (13/10/2026): https://github.com/tester-army/e2e (clone nông, HEAD fc90644: README.md, AGENTS.md, SECURITY.md, NOTICE, docs/{cache,security,telemetry,subscriptions,models}.mdx, packages/e2e/package.json 0.20.0, .github/workflows) · https://e2e.tester.army/docs · https://ycombinator.com/companies/testerarmy · https://hn.svelte.dev/item/48586299 (Launch HN) · https://docs.expo.dev/guides/using-e2e/ · https://testdino.com/blog/playwright-vs-e2e (blog) · https://ai-tldr.dev/releases/tester-army-e2e-0-18/ (blog) · https://www.testmuai.com/blog/e2e-by-testerarmy/ (blog) · so sánh: https://github.com/web-infra-dev/midscene, https://midscenejs.com/midscene-test/overview, https://github.com/mobile-dev-inc/Maestro, https://github.com/wix/Detox

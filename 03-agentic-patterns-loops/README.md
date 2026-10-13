@@ -191,6 +191,41 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 
 **Nguồn:** https://github.com/mksglu/context-mode (clone đầy đủ, v1.0.169) · https://www.npmjs.com/package/context-mode · https://news.ycombinator.com/item?id=47193064 · https://www.anthropic.com/engineering/code-execution-with-mcp · https://github.com/rtk-ai/rtk · https://github.com/thedotmack/claude-mem · https://github.com/oraios/serena · context-mode.com/insight
 
+## 8c. Kiểm ảnh "How AI Agents Work: Agent = model + a harness that runs a loop" (ảnh người dùng gửi, 2026-10-13)
+
+> Sơ đồ một trang: Trigger → khung **Harness** chứa vòng 1 Build context → 2 LLM decides → ◇ "Answer now / goal met?" → 3 Act (tools) → 4 Observe → quay lại 1; bên trái là Memory (ngắn hạn = cửa sổ ngữ cảnh, dài hạn = lưu/truy xuất), Guardrails, Observability + Evals; đầu ra là answer / action taken / handoff.
+
+**Nguồn ảnh:** không ghi tác giả hay logo; không tìm thấy bài gốc đã đánh chỉ mục (13/10/2026). Chữ "LLM" ở dòng "turns an LLM into a working agent" bị vỡ ký tự, dấu hiệu thường gặp của ảnh do model sinh ảnh tạo ra **(chưa xác minh)**. Công thức "Agent = Model + Harness" xuất phát từ bài *The Anatomy of an Agent Harness* (Vivek Trivedy, LangChain, 3/2026): harness là mọi code, cấu hình và logic thực thi không phải là model. DataCamp ghi rõ đây là mô hình tư duy, không phải chuẩn.
+
+### Từng khối: đúng tới đâu
+
+Ký hiệu: ✅ đúng · ⚠️ đúng nhưng thiếu ý quan trọng · ❌ sai.
+
+| Khối | Ảnh nói | Đánh giá | Bổ sung / đọc sâu |
+|---|---|---|---|
+| Công thức | Agent = model + harness chạy vòng lặp | ✅ | Khớp Anthropic (*Building Effective Agents*: LLM dùng tool trong vòng lặp dựa trên phản hồi môi trường) và Simon Willison ("tools in a loop to achieve a goal") — §1 |
+| Trigger | user · event · schedule · another agent | ✅ | Lịch/cron và webhook: mục 21 (`/loop`, Routines) |
+| 1 · Build context | system prompt, tool schema, lịch sử, memory truy xuất, kết quả tool trước | ⚠️ | Thiếu **quản lý cửa sổ**: compaction/tóm tắt khi đầy, giữ output tool lớn ngoài cửa sổ, prefix ổn định cho KV/prompt cache — §4, §8b, checklist §6 mục 4 |
+| Memory | ngắn hạn = cửa sổ ngữ cảnh; dài hạn lưu/truy xuất (tự động hoặc qua tool) | ✅ | Trạng thái bền nên nằm trong file/repo chứ không trong phiên — checklist §6 mục 2; mục 10 §4 |
+| 2 · LLM decides | suy luận, chọn hành động | ✅ | — |
+| ◇ Answer now / goal met? | nhánh Yes → trả lời (có thể ngay vòng 1, 0 tool), No → gọi tool | ⚠️ | Trên thực tế không có bước kiểm riêng: harness đọc **output của model** — có khối tool call thì chạy tool, không có thì dừng (Claude API: `stop_reason` = `tool_use` hay `end_turn`). "Goal met?" vì vậy là **lời khai của model**. Thiếu hai nhánh dừng do harness quyết: hết **max steps/budget/token** (khối Guardrails không nối vào vòng) và **tiêu chí dừng kiểm bằng máy** (test, lint, exit code) — checklist §6 mục 1, 3, 8 |
+| 3 · Act (tools) | web search, code, file, API, DB, memory search, MCP, sub-agent | ⚠️ | Model chỉ **sinh lời gọi có cấu trúc**, harness mới thực thi (trừ server tool) → đây là chỗ đặt kiểm quyền và sandbox (mục 11 §3, mục 12). Thiếu gọi tool **song song** và lỗi tool trả lại thành observation |
+| 4 · Observe | kết quả quay lại ngữ cảnh, vòng chạy 0+ lần | ✅ | Output tool thường chiếm phần lớn cửa sổ → §8b (context-mode) |
+| Guardrails | quyền, người duyệt, max steps · budget, lỗi & retry, bọc mọi hành động | ✅ (nội dung) | Đặt đúng chỗ: hook trước/sau mỗi tool (PreToolUse/PostToolUse) — mục 20, mục 23; nhưng sơ đồ vẽ tách khỏi vòng nên không thấy nó **chặn** được nhánh nào |
+| Observability + Evals | trace, log, chi phí, độ trễ; "output có tốt không?" | ⚠️ | Eval chủ yếu chạy **ngoài** vòng runtime (bộ test offline, CI, replay), vẽ trong harness dễ hiểu nhầm là tự đánh giá lúc chạy. Trace theo chuẩn OpenTelemetry GenAI — mục 07 |
+| Final output | answer · action taken · handoff | ✅ | Handoff sang người/agent khác: mục 02, mục 04 (A2A) |
+
+**Tổng:** 7 ✅, 4 ⚠️, 0 ❌. Ảnh đúng ở mức "agent chạy thế nào" và đáng dùng để giải thích cho người mới; chỗ yếu nhất là nút dừng: nó gợi ý agent tự biết đã xong, trong khi harness tốt dừng theo **ngân sách** và **kiểm bằng máy**.
+
+### Thiếu so với harness thật (2026)
+
+- **Bền và chạy lại được:** checkpoint/resume sau crash, idempotency của tool có tác dụng phụ — mục 21 (durable execution).
+- **Cô lập:** sandbox/worktree cho tool chạy code và cho subagent song song — mục 11 §3, §5 ở trên.
+- **Phân lớp hướng dẫn:** system prompt + file luật repo (`AGENTS.md`/`CLAUDE.md`) + skill nạp theo nhu cầu — mục 04 (Agent Skills), mục 20.
+- **Nội dung ngoài là dữ liệu:** kết quả web/tool có thể chứa prompt injection; ảnh không nhắc — mục 12 §1.
+
+**Dùng ảnh thế nào:** tốt làm hình minh hoạ vòng ReAct có harness (§2); khi thiết kế thật thì đọc kèm checklist §6, đặc biệt mục 1 (dừng bằng máy) và mục 8 (tín hiệu dừng do code điền, không do model khai).
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)
@@ -204,3 +239,4 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 - https://www.philschmid.de/context-engineering-part-2 · https://snowan.gitbook.io/study-notes/ai-blogs/how-to-build-agent-harness
 - https://arxiv.org/pdf/2609.00006 · https://arxiv.org/pdf/2606.20683 · https://arxiv.org/pdf/2607.14159 · https://www.preprints.org/manuscript/202603.1756
 - https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/workflows/agent-teams.md · https://thepromptshelf.dev/blog/claude-code-multi-agent-orchestration-patterns-2026/ · https://www.developersdigest.tech/blog/git-worktrees-claude-code-parallel-agents-guide · https://www.aakashx.com/blog/parallel-claude-code-agents/
+- §8c ảnh "How AI Agents Work" (13/10/2026): https://langchain.com/blog/the-anatomy-of-an-agent-harness (Vivek Trivedy, 3/2026) · https://www.datacamp.com/blog/agent-harness · https://addyosmani.com/blog/agent-harness-engineering/ · https://blogs.oracle.com/developers/the-agent-loop-decoded-three-levels-every-agent-engineer-must-know · https://strandsagents.com/docs/learning/how-agents-really-work/ · https://www.anthropic.com/research/building-effective-agents · https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview (stop_reason, server tool)

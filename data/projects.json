@@ -4466,9 +4466,9 @@
       "repo": "requie/AI-Red-Teaming-Guide",
       "category": "learning",
       "license": null,
-      "stars": 971,
+      "stars": 977,
       "open_source": true,
-      "notes": "Guide red-team AI một người viết (README ~3.580 dòng + ES/ZH/FR, 8 template); README ghi MIT nhưng không có file LICENSE; quảng cáo sản phẩm của tác giả (RedTeamKit, AVERSYN/Cogensec); ★ đọc 12/10/2026",
+      "notes": "Guide red-team AI một người viết (README ~3.580 dòng + ES/ZH/FR, 8 template); README ghi MIT nhưng không có file LICENSE; quảng cáo sản phẩm của tác giả (RedTeamKit, AVERSYN/Cogensec); ★ đọc 12/10/2026; rà lại 13/10/2026: 977★, HEAD vẫn 7b7dde8, vẫn không LICENSE",
       "section": "12"
     },
     {
@@ -4520,6 +4520,57 @@
       "open_source": true,
       "notes": "Awesome-list + dataset prompt video Opus 5.5 (853 file prompts/ + data/videos.json, 523 có remake); 'video as code' không phải model sinh video; mỗi mục link bài X gốc, cờ prompt_partial; phễu về skillry.dev (thương mại, utm); catalog do agent dựng (contributor claude); ★ shields 4,6k 12/10/2026",
       "section": "22"
+    },
+    {
+      "name": "e2e (TesterArmy)",
+      "repo": "tester-army/e2e",
+      "url": "https://e2e.tester.army/docs",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 9700,
+      "open_source": true,
+      "section": "11",
+      "notes": "Framework E2E web (Playwright) + mobile (agent-device) trộn bước agent act/assert/waitFor/extract với locator+expect; cache phát lại chỉ khi đã kiểm, không gọi model khi replay; pre-1.0 (0.20.0); telemetry bật mặc định; video/cache không che dữ liệu, không allowlist origin, không sandbox; YC P26; ★ ~9,7k 13/10/2026"
+    },
+    {
+      "name": "Midscene.js",
+      "repo": "web-infra-dev/midscene",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 15000,
+      "open_source": true,
+      "section": "11",
+      "notes": "Thao tác/assertion bằng AI dựa trên ảnh chụp cho web (Playwright), Android (ADB), iOS (WDA); runner @midscene/test beta; đối thủ gần nhất của e2e; ★ ~15k 13/10/2026 (shields)"
+    },
+    {
+      "name": "Maestro",
+      "repo": "mobile-dev-inc/Maestro",
+      "category": "mobile",
+      "license": "Apache-2.0",
+      "stars": 16000,
+      "open_source": true,
+      "section": "11",
+      "notes": "E2E flow YAML cho mobile và web, tất định là chính; tính năng AI chưa xác minh; e2e có guide chuyển từ Maestro; ★ ~16k 13/10/2026 (shields)"
+    },
+    {
+      "name": "YesWeHack claude-kit",
+      "repo": "yeswehack/claude-kit",
+      "category": "security",
+      "license": "GPL-3.0",
+      "stars": 222,
+      "open_source": true,
+      "section": "12",
+      "notes": "Plugin Claude Code chính chủ YesWeHack: luật luôn bật qua hook SessionStart (chỉ cat file) + skill write/triage/gotchas (14 lớp lỗi) để báo cáo bug bounty chỉ từ bằng chứng; cài mặc định user scope → luật bug bounty chèn vào mọi dự án, nên chọn project scope; 4 commit 25/8/2026; ★ 222 13/10/2026"
+    },
+    {
+      "name": "aima-python",
+      "repo": "aimacode/aima-python",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 8800,
+      "open_source": true,
+      "section": "08",
+      "notes": "Code Python cho giáo trình AIMA (Russell & Norvig): search, logic, planning, học máy, agent — thay thế đúng cấu trúc cho infographic 'Layers of AI'; commit gần nhất 6/2026; ★ ~8,8k 13/10/2026 (shields)"
     }
   ]
 }

@@ -135,6 +135,49 @@ Tốt làm **checklist chủ đề** trong một trang; không đủ làm câu t
 
 **Dấu hiệu nhận ra "khoá học" kiểu này:** đa số link trỏ về một sản phẩm, không có code chạy được, không LICENSE, case study không tên, commit dồn trong vài ngày rồi dừng, README đặt lời kêu gọi star và donate trước mục lục.
 
+## 2e. Kiểm ảnh "Layers of AI: From classical methods to autonomous AI systems" (ảnh người dùng gửi, 2026-10-13)
+
+> Infographic 6 tầng xếp chồng, mũi tên đi lên, mỗi tầng 5 ô: Classical AI → Machine Learning → Neural Networks → Deep Learning → Generative AI → Agentic AI. Ghi nguồn **AIForLeaders.com**.
+
+### 2e.1 Hồ sơ nguồn
+
+| Mục | Thông tin (13/10/2026) |
+|---|---|
+| Nguồn | aiforleaders.com: newsletter AI hằng ngày cho lãnh đạo doanh nghiệp, do **Adam Danyal** sáng lập, đồng viết với Julia Danyal (theo FAQ của trang). Trang tự nhận "50K+ leaders" đăng ký và "1.6M+ on LinkedIn"; có link "Get AI Certified" sang chiefaileader.com (không ghi giá). Số liệu là tự công bố **(chưa xác minh)** |
+| Kiểu nội dung | Infographic phổ thông cho người không chuyên; bản "Layers of AI"/"7 Layers of AI" được nhiều tài khoản LinkedIn đăng lại, có bản kèm link đăng ký aiforleaders.com. Không tìm thấy bài gốc đã đánh chỉ mục |
+| Cách làm ảnh | Hai ô "Audio & Image Models" và "Multimodal Models" dùng **cùng một biểu tượng**, ô giữa tầng Classical AI chỉ ghi "AI" dưới biểu tượng kính lúp → nhiều khả năng ảnh do công cụ sinh ảnh dựng và không được soát lại **(chưa xác minh)** |
+
+### 2e.2 Từng tầng: đúng tới đâu
+
+Ký hiệu: ✅ đúng · ⚠️ đúng nhưng gây hiểu sai hoặc thiếu ý · ❌ sai.
+
+| Tầng | Ảnh ghi | Đánh giá | Chỗ cần sửa / bổ sung | Đọc sâu |
+|---|---|---|---|---|
+| Classical AI | Symbolic AI, Expert Systems, "AI" (kính lúp), Knowledge Representation, Logic & Reasoning | ⚠️ | Ô "AI" gần như chắc là **Search** (tìm kiếm trạng thái: A\*, minimax) bị ghi sai nhãn. Thiếu **planning cổ điển** (STRIPS 1971) — chính là gốc của ô "Planning" ở tầng trên cùng | AIMA (Russell & Norvig) |
+| Machine Learning | Supervised, Unsupervised, Classification, Reinforcement Learning, Regression | ⚠️ | Trộn hai trục: **kiểu học** (supervised, unsupervised, RL) và **bài toán** (classification, regression — đều là bài toán supervised). Thiếu đánh giá mô hình (train/test, overfitting) và các thuật toán không phải mạng nơ-ron (cây quyết định, SVM) | mục 08 §2b (`mlabonne/llm-course`) |
+| Neural Networks | Perceptrons, Cost Functions, Backpropagation, Activation Functions, Hidden Layers | ✅ | Hàm mất mát không riêng của mạng nơ-ron (hồi quy logistic cũng có); thiếu gradient descent/optimizer — động cơ thật của backprop | `labmlai/annotated_deep_learning_paper_implementations` (§2b) |
+| Deep Learning | Transformers, LSTMs, RNNs, CNNs, Autoencoders | ✅ | LSTM là một loại RNN (hai ô chồng nhau). Có thể thêm attention, huấn luyện quy mô lớn trên GPU | `rasbt/LLMs-from-scratch`, `karpathy/nanochat` (§2b) |
+| Generative AI | LLMs, Diffusion Models, Audio & Image Models, Multimodal Models, VAEs | ⚠️ | Hai ô trùng biểu tượng và chồng nghĩa (audio/image ⊂ multimodal). Thiếu **GAN** (họ mô hình sinh ảnh lớn trước diffusion). Thiếu **post-training** (SFT, RLHF/DPO) — chỗ tầng ML (RL) quay lại ở tầng trên | mục 14, 19, 22 (multimodal, video, motion) |
+| Agentic AI | Memory, Planning, Agents, Tool Use, Autonomous Execution | ⚠️ | Ô "Agents" nằm trong tầng "Agentic AI" là lặp lại tên. Thiếu thứ phân biệt hệ agent chạy được với demo: **vòng lặp + điều kiện dừng**, guardrail/người duyệt, eval, giao thức (MCP, A2A) | mục 03 (§8c ảnh "How AI Agents Work"), 02, 04, 21 |
+
+**Tổng:** 2 ✅, 4 ⚠️, 0 ❌. Các ô đều là khái niệm có thật; sai ở **cấu trúc** hơn là ở từng ô.
+
+### 2e.3 Sai ở cấu trúc "xếp tầng"
+
+1. **Bốn tầng dưới lồng nhau, hai tầng trên thì không.** Neural Networks ⊂ ML, Deep Learning ⊂ Neural Networks là quan hệ tập con thật (cách vẽ vòng tròn lồng nhau AI ⊃ ML ⊃ DL phổ biến trong giáo trình). Generative AI chỉ **phần lớn** nằm trong deep learning (mô hình sinh cũng có n-gram, HMM, GMM). Agentic AI không phải loại mô hình mà là **kiến trúc hệ thống**: model + harness chạy vòng lặp, dùng tool (mục 03 §1, §8c); nó có thể dùng model không sinh văn bản và cả thành phần cổ điển (planner, rule).
+2. **Mũi tên đi lên ngụ ý trình tự lịch sử, nhưng lịch sử không thẳng.** Perceptron (Rosenblatt, 1958) ra đời gần như cùng lúc với thuật ngữ "machine learning" (Samuel, 1959); "agent" và "planning" là khái niệm trung tâm của AI cổ điển (giáo trình AIMA định nghĩa AI là nghiên cứu "intelligent agents" từ 1995). Tầng "Agentic AI" năm 2024–2026 là cách cũ chạy trên model mới, không phải tầng mới xây trên Generative AI.
+3. **Tầng dưới không bị thay thế.** Hệ luật/expert system vẫn chạy nhiều phần mềm ra quyết định; trong agent hiện đại, phần "luật cứng" (quyền, ngân sách, cổng kiểm) chính là lớp cổ điển bọc quanh LLM.
+
+### 2e.4 Tài liệu tốt hơn cho cùng mục đích
+
+| Tài liệu | Quy mô / license | Vì sao |
+|---|---|---|
+| Russell & Norvig, *Artificial Intelligence: A Modern Approach* (AIMA, bản 4, 2020) + `aimacode/aima-python` | repo ~8,8k★ (13/10/2026, shields.io), MIT, commit gần nhất 6/2026 | Phủ đủ 6 tầng với quan hệ đúng (search, logic, planning, học máy, deep learning, agent); code Python cho từng thuật toán |
+| `microsoft/generative-ai-for-beginners` → `microsoft/ai-agents-for-beginners` | đã có ở §2b, có bản tiếng Việt | Hai tầng trên cùng, có bài thực hành |
+| `rasbt/LLMs-from-scratch`, `karpathy/nanochat` | đã có ở §2b | Hiểu Deep Learning → Generative AI từ bên trong |
+
+**Dùng ảnh thế nào:** được làm "bản đồ thuật ngữ" một trang cho người không chuyên. Khi giải thích lại, nói rõ hai tầng trên không phải tập con của tầng dưới, và đừng đọc mũi tên như dòng thời gian. Với người làm sản phẩm, ảnh "How AI Agents Work" (mục 03 §8c) hữu ích hơn vì nói agent chạy thế nào chứ không chỉ liệt kê tên.
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.
@@ -154,3 +197,4 @@ Tốt làm **checklist chủ đề** trong một trang; không đủ làm câu t
 - §2b (12/10/2026): https://github.com/microsoft/generative-ai-for-beginners · https://github.com/rasbt/LLMs-from-scratch · https://github.com/mlabonne/llm-course · https://github.com/microsoft/ai-agents-for-beginners · https://github.com/labmlai/annotated_deep_learning_paper_implementations · https://github.com/karpathy/nanochat · https://github.com/karpathy/nanoGPT · https://github.com/karpathy/llm.c · https://github.com/huggingface/agents-course · https://github.com/NirDiamant/RAG_Techniques · https://github.com/NirDiamant/GenAI_Agents · https://github.com/chiphuyen/aie-book · https://github.com/datawhalechina/happy-llm (34,3k★, tiếng Trung, CC BY-NC-SA)
 - §2c ảnh "AI Engineer Interview Questions" (12/10/2026): https://www.linkedin.com/in/rathanuday · https://www.linkedin.com/posts/rathanuday_ai-agents-dont-fail-because-theyre-not-activity-7411823219176865792-xB4z · https://www.zoominfo.com/p/Rathnakumar-Udayakumar/-1632233212 (bên thứ ba) · https://www.goodreads.com/author/show/29625821.Rathnakumar_Udayakumar · kiểm nội dung: https://arxiv.org/abs/1706.03762 (§3.1 post-LN) · https://arxiv.org/abs/2002.04745 (Pre-LN) · https://arxiv.org/abs/2302.13971 (LLaMA, RMSNorm) · https://arxiv.org/abs/2303.16634 (G-Eval: BLEU/ROUGE tương quan thấp với người) · https://www.anthropic.com/engineering/building-effective-agents · https://www.anthropic.com/engineering/multi-agent-research-system (4×/15× token) · https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview · https://genai.owasp.org/llmrisk/llm01-prompt-injection/ · tài liệu ôn: https://github.com/chiphuyen/aie-book, https://github.com/KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub, https://github.com/amitshekhariitbhu/ai-engineering-interview-questions, https://github.com/alexeygrigorev/data-science-interviews, https://github.com/chiphuyen/ml-interviews-book, https://github.com/Devinterview-io/llms-interview-questions, https://github.com/llmgenai/LLMInterviewQuestions
 - §2d (12/10/2026): https://github.com/cporter202/automate-for-growth (clone đầy đủ, 9 commit, HEAD 2cc3193) · https://viralwavestudio.com · bản sao 0★: arnelnrose/automate_for_growth, klikydigital/automate-for-growth
+- §2e ảnh "Layers of AI" (13/10/2026): https://aiforleaders.com (FAQ: Adam Danyal, Julia Danyal) · bản đăng lại trên LinkedIn: https://de.linkedin.com/in/meheli-sinha, https://sa.linkedin.com/in/alhadlaq · kiểm nội dung: https://cvw.cac.cornell.edu/AI-overview/machine-learning/functionality-and-implementation (sơ đồ lồng nhau là quy ước dạy học) · https://lib.conestogac.on.ca/genai/learn-more · https://aima.cs.berkeley.edu · https://github.com/aimacode/aima-python · https://langchain.com/blog/the-anatomy-of-an-agent-harness
