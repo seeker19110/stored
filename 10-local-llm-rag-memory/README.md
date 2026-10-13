@@ -87,6 +87,56 @@
 
 **Ghi chú từ repo của chủ kho (mục 23):** X-Agents chọn **không dùng pgvector** cho bộ nhớ nhỏ (SQLite + FTS đủ, tránh vận hành Postgres); Anthropic **không có embedding API** → embedding local (Ollama `nomic-embed-text`) hoặc Voyage.
 
+## 4b. Kiểm ảnh: rohitg00/agentmemory, bộ nhớ dài hạn cho coding agent (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh là danh sách thư mục trang repo trên điện thoại: `rohitg00/agentmemory` Public, Issues 217, commit gần nhất của `mvanhorn` "yesterday", các thư mục `.claude-plugin` (4 months ago), `.codex-plugin` (2 months ago), `.github`, `READMEs`, `assets`, `benchmark`, `deploy`, `docs`, `eval`, `examples/python`. Đã clone toàn bộ repo (568 commit, HEAD `36eb328` 13/10/2026), đọc README, `SECURITY.md`, `GOVERNANCE.md`, `MAINTAINERS.md`, `benchmark/LONGMEMEVAL.md`, `benchmark/COMPARISON.md`, rồi tự build và chạy test.
+
+### 4b.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `rohitg00/agentmemory` · ~29k★, ~2,6k fork, **Apache-2.0** · bản v0.9.30 · ~274 issue, ~287 PR mở · npm `@agentmemory/agentmemory` ~36,3k lượt tải/tháng (13/9–12/10/2026) |
+| Tác giả | Rohit Ghumare (`rohitg00`, ghi "Independent" trong `MAINTAINERS.md`): ~468/568 commit; 53 tên tác giả. Cũng là chủ `awesome-claude-code-toolkit` (mục 08). Commit đầu 25/2/2026 |
+| Làm gì | Ghi lại mọi lần agent dùng tool qua hook (PostToolUse, Stop/SessionEnd, SessionStart), nén thành bộ nhớ có cấu trúc, rồi đầu phiên sau tìm lại và chèn vào ngữ cảnh (mặc định ≤ 2.000 token) |
+| Tìm kiếm | BM25 (mặc định, không cần key) + vector (`all-MiniLM-L6-v2` chạy cục bộ khi đặt `EMBEDDING_PROVIDER=local`) + đồ thị tri thức (tùy chọn) |
+| Giao diện | 54 MCP tool, REST `:3111`, viewer `:3113`; plugin cho Claude Code, Codex, Cursor; adapter cho Copilot CLI, Gemini CLI, OpenCode, Hermes, OpenClaw, pi… (README ghi 20 adapter) |
+| Nền | Chạy trên **iii engine** (`iii-hq/iii`, ~19k★) bản ghim v0.22.1: iii thay Express, CSDL, hàng đợi, pm2 và OTEL. Lưu trạng thái bằng file (mặc định) hoặc Redis |
+
+### 4b.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| Thời điểm chụp | ⚠️ cũ | Mọi mốc thời gian khớp với ngày ~26/7/2026: commit "yesterday" của `mvanhorn` là `d8b5267` (Matt Van Horn, 25/7/2026, thêm cờ `--data-dir`); `.codex-plugin` sửa lần cuối 12/5; `.claude-plugin` 27/3. Ảnh cũ khoảng 2,5 tháng |
+| Issues 217 | ⚠️ cũ | Nay ~274 issue mở |
+| "mvanhorn" là người commit gần nhất | ⚠️ dễ hiểu sai | Matt Van Horn chỉ có 2 commit. Gần như toàn bộ mã do chủ repo viết; nay commit gần nhất là của Rohit Ghumare |
+| Các thư mục `.claude-plugin`, `.codex-plugin`, `benchmark`, `eval`, `deploy`… | ✅ | Còn đủ; thêm `.cursor-plugin`, `integrations/`, `packages/`, `website/` không thấy trong ảnh vì bị cắt ở "View all files" |
+| Public | ✅ | Apache-2.0 |
+
+**Tổng:** 2✅ / 3⚠️ / 0❌. Ảnh không sai, nhưng là ảnh danh sách file nên gần như không nói gì về sản phẩm; mọi ô ⚠️ đều do chụp từ 7/2026.
+
+### 4b.3 Điều ảnh không nói (đọc mã và tự chạy)
+
+- **Test:** README ghi "3,300+ tests passing". Tự chạy `npx vitest run` (không tính test tích hợp) ngày 13/10/2026: **3.339 pass, 7 fail, 4 skip / 3.350**. 6 ca fail ở `openclaw-connect.test.ts` là do chưa `npm run build`; build xong chạy lại thì 22/22 pass. Ca còn lại (`viewer-host`) fail vì sandbox không có IPv6 `::1`. Tuy vậy huy hiệu workflow `ci.yml` trên `main` đang **"failing"** (shields 13/10/2026; chưa xác minh job nào đỏ).
+- **Benchmark cần đọc kỹ.** 95,2% R@5 trên LongMemEval-S là **độ phủ truy xuất** (có ít nhất một phiên đúng trong top 5), không có LLM trả lời hay chấm. Bảng "vs Competitors" đặt số này cạnh Mem0 68,5% và Letta 83,2% đo trên **LoCoMo**, tức là hai benchmark và hai thước đo khác nhau. `benchmark/COMPARISON.md` tự ghi cảnh báo "apples vs oranges", nhưng bảng trong README thì không. Chính README cũng ghi MemPalace chỉ dùng vector đạt 96,6%, cao hơn agentmemory.
+- **Phụ thuộc engine không phải mã mở chuẩn OSI.** agentmemory là Apache-2.0, nhưng thư mục `engine/` của iii (phần chạy thật) theo **Elastic License 2.0**; SDK mới là Apache-2.0. Không chặn dùng nội bộ, nhưng cần lưu ý nếu định cung cấp dịch vụ cho bên thứ ba.
+- **Bảo mật mặc định khá:** REST, viewer và engine bind `127.0.0.1`; có `AGENTMEMORY_SECRET` (Bearer) khi triển khai từ xa; có bộ lọc bí mật trước khi lưu; telemetry của iii tắt mặc định (`III_TELEMETRY_ENABLED=false`); file iii tải bằng curl có kiểm SHA256 trong README. Điểm trừ: không commit lockfile (giải thích trong `SECURITY.md`), và `SECURITY.md` ghi "6 production deps" trong khi `package.json` có 10.
+- **Bộ nhớ ghi lại mọi lời gọi tool** của agent. Cần xem trước thư mục dữ liệu (`~/.local/share/agentmemory` trên Linux) có được backup/mã hóa theo chính sách của dự án không, nhất là repo có dữ liệu khách hàng.
+- **Một người duy trì:** `GOVERNANCE.md` theo mẫu MVG của Linux Foundation, tự nhận "single-maintainer reality" và có kế hoạch thêm maintainer.
+
+### 4b.4 So sánh & dùng thế nào
+
+| Hướng | Ví dụ (shields 13/10/2026) | Khác agentmemory |
+|---|---|---|
+| Bộ nhớ dạng API/fact-store | Mem0 (~67k★, Apache-2.0), supermemory (~31k★, MIT) | Dịch vụ/thư viện chung cho mọi app; agentmemory chuyên cho coding agent qua hook |
+| Agent tự quản bộ nhớ | Letta (~25k★, Apache-2.0) | Là runtime agent đầy đủ, không cắm vào Claude Code/Codex |
+| Bộ nhớ có sẵn của agent | `CLAUDE.md`/`MEMORY.md`, memory bank của Cline | Không cần server; đủ cho repo nhỏ, nhưng nạp nguyên văn vào ngữ cảnh |
+| Tự viết, có duyệt | agent-memory của X-Agents (mục 23 §3.1) | Bộ nhớ phải qua đề xuất → duyệt → ghi; agentmemory ghi tự động |
+
+- **Hợp khi:** dùng nhiều coding agent trên cùng dự án và muốn một kho nhớ chung, tìm được, chạy cục bộ.
+- **Với repo của chủ kho:** các repo đã dùng `PROGRESS.md`/`TRAPS.md`/`docs/work` làm "bộ nhớ có duyệt", và luật "nội dung ngoài là dữ liệu" (ADR-0009). Nếu thử agentmemory, nên giữ nó ở vai trò tra cứu, không thay các file đó; tắt chèn tự động đầu phiên ở repo nhạy cảm, và kiểm bộ lọc bí mật trước khi bật.
+
+**Nguồn §4b:** https://github.com/rohitg00/agentmemory (clone đầy đủ, HEAD 36eb328; README, SECURITY.md, GOVERNANCE.md, MAINTAINERS.md, package.json, benchmark/LONGMEMEVAL.md, benchmark/COMPARISON.md, test/openclaw-connect.test.ts, src/cli/engine-launch.ts) · https://www.npmjs.com/package/@agentmemory/agentmemory · https://api.npmjs.org/downloads/point/last-month/@agentmemory/agentmemory · https://trendshift.io/repositories/25123 · https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2 · https://github.com/iii-hq/iii (README mục License: engine ELv2, SDK Apache-2.0) · https://www.sourcepulse.org/projects/27459985 · https://tessl.io/registry/skills/github/rohitg00/agentmemory/agentmemory-architecture · https://arxiv.org/abs/2410.10813 (LongMemEval) · https://snap-stanford.github.io/LoCoMo/ · https://github.com/mem0ai/mem0 · https://github.com/letta-ai/letta · https://github.com/supermemoryai/supermemory
+
 ## 6. LLM gateway / router & "CLI thuê bao làm backend"
 
 | Dự án | Repo | License | ★ | Vai trò | Ghi chú |
