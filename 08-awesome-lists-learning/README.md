@@ -196,6 +196,52 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng gây hiểu sai hoặc thiếu ý
 
 **Dùng ảnh thế nào:** được làm "bản đồ thuật ngữ" một trang cho người không chuyên. Khi giải thích lại, nói rõ hai tầng trên không phải tập con của tầng dưới, và đừng đọc mũi tên như dòng thời gian. Với người làm sản phẩm, ảnh "How AI Agents Work" (mục 03 §8c) hữu ích hơn vì nói agent chạy thế nào chứ không chỉ liệt kê tên.
 
+## 2f. Kiểm ảnh "How to become an AI engineer in 2026" (Brij Kishore Pandey, ảnh người dùng gửi, 2026-10-13)
+
+> Trang **09 / 17** trong cùng carousel với hai trang đã kiểm ở mục 10 §3b ("10 / 17" RAG, "12 / 17" $0 stack), ký tên **Brij Kishore Pandey (@brijpandeyji)**. Ảnh chia 13 ô kỹ năng quanh dòng "AI Engineer 2026 — 13 areas. Ship systems, measure them, repeat." và khẩu hiệu cuối "Skip the math degree. Ship the system. Repeat." Logo nhận ra chắc chắn: OpenAI, Anthropic, Gemini, Meta, LlamaIndex, PostgreSQL, NVIDIA, Python, Docker, Git, vLLM, Hugging Face, Mistral, GitHub, X. Các logo còn lại (ô 04, 05, 07, 08, 10, 11) **(chưa xác minh)** là sản phẩm nào.
+
+### 2f.1 Từng ô
+
+| # | Ô | Nội dung trong ảnh | Đánh giá | Ghi chú |
+|---|---|---|---|---|
+| 01 | LLM fundamentals | Transformer, token; context window; sampling, reasoning model | ✅ | Đủ cho người dùng API. Đọc kèm: rasbt/LLMs-from-scratch (§2b) |
+| 02 | Prompt + context engineering | System prompt, few-shot; structured output; ghép context | ✅ | "Context assembly" đúng trọng tâm 2026 hơn "prompt engineering" thuần |
+| 03 | RAG systems | Embedding, chunking; hybrid search, rerank; GraphRAG | ✅ | Ô này có đủ hybrid search và rerank — đúng phần mà trang 10/17 bỏ sót |
+| 04 | Agentic systems | Tool use, MCP; memory, planning; multi-agent | ✅ | Thiếu ý "khi nào **không** nên dùng agent": workflow cố định thường rẻ và dễ kiểm hơn (mục 03) |
+| 05 | AI gateways + routing | Route model, fallback; theo dõi chi phí; rate limit | ✅ | Ví dụ mã mở: LiteLLM (~61k★), mục 10 |
+| 06 | Guardrails + safety | Phòng prompt injection; che PII; kiểm output | ⚠️ | Chữ "defense" dễ hiểu nhầm là chặn được. OWASP LLM01 ghi rõ chưa có cách phòng chống chắc chắn; cách làm thật là **giới hạn thiệt hại**: quyền tối thiểu cho tool, tách nội dung ngoài, người duyệt hành động rủi ro, test đối kháng (mục 12) |
+| 07 | Observability + evals | Tracing, LLM-as-judge; golden set; phát hiện drift | ✅ | LLM-as-judge phải hiệu chỉnh với nhãn người chấm trước khi tin (mục 07) |
+| 08 | Production AI engineering | Streaming, caching; async, rate limit; latency budget | ✅ | "Rate limits" lặp lại ô 05 |
+| 09 | Software engineering | Python async, FastAPI; Git, Docker, Postgres; test, CI/CD | ⚠️ | Đúng nhưng chỉ Python. Một phần lớn sản phẩm AI 2026 viết bằng TypeScript (Vercel AI SDK, Mastra, Next.js); nên biết ít nhất đọc được |
+| 10 | Inference + deployment | vLLM, quantization; serverless GPU; autoscaling | ✅ | Chỉ cần khi tự host model; đa số đội dùng API trước |
+| 11 | Multimodal | Vision, tài liệu; giọng nói, ảnh, video; OCR | ✅ | Xem mục 14 |
+| 12 | Ecosystem fluency | Model mở; paper, benchmark; Hugging Face | ✅ | Benchmark công khai hay bị nhiễm dữ liệu huấn luyện; tự đo trên golden set của mình (ô 07) đáng tin hơn |
+| 13 | Career compounding | Ship công khai; open source; viết và dạy | ✅ | |
+| — | "Skip the math degree" | Khẩu hiệu cuối | ⚠️ | Không cần bằng toán, nhưng **xác suất thống kê cơ bản** là bắt buộc để làm eval đúng: cỡ mẫu, khoảng tin cậy, so A/B, đọc phương sai giữa các lần chạy LLM |
+
+**Tổng:** 11 ✅, 3 ⚠️, không ô nào sai. Đây là trang tốt nhất trong ba trang của carousel đã kiểm.
+
+### 2f.2 Ảnh bỏ sót
+
+- **Fine-tuning và dataset engineering.** Không có ô nào nhắc. Sách *AI Engineering* (Chip Huyen, O'Reilly 2025) dành chương 7 cho "khi nào nên và không nên fine-tune" và một chương riêng cho dataset engineering. Kỹ năng quyết định "RAG hay fine-tune hay chỉ sửa prompt" là phần phân biệt AI engineer với người chỉ gọi API.
+- **Bảo mật chuỗi cung ứng của agent:** MCP server, skill, plugin cài từ nguồn ngoài; bí mật trong cấu hình agent (mục 12 §3e). Ô 06 chỉ nói về input/output của model.
+- **Thiết kế sản phẩm và UX cho AI:** hiển thị độ không chắc chắn, cho người dùng sửa và phản hồi, thu feedback làm dữ liệu eval (chương cuối của sách Chip Huyen).
+- **Dùng coding agent hằng ngày** (Claude Code, Codex, Cursor) — kỹ năng thực tế nhất của AI engineer 2026 nhưng ảnh không nhắc (mục 01).
+- **Pháp lý và quyền riêng tư** khi xử lý dữ liệu người dùng: GDPR, EU AI Act; ở Việt Nam là Nghị định 13/2023 về dữ liệu cá nhân.
+
+### 2f.3 Tài liệu tương tự để đối chiếu (★ qua shields.io, 13/10/2026)
+
+| Nguồn | ★ / dạng | Khác ảnh |
+|---|---|---|
+| chiphuyen/aie-book (sách *AI Engineering*) | ~18k, repo tài nguyên đi kèm sách | Có fine-tuning, dataset engineering, user feedback; nặng về eval |
+| roadmap.sh/ai-engineer (kamranahmedse/developer-roadmap, ~369k) | Roadmap tương tác | Định nghĩa AI engineer là người **dùng** model có sẵn, khác ML engineer/researcher; có mục câu hỏi "có cần bằng cấp không" |
+| patchy631/ai-engineering-hub | ~38k, MIT | Tập ví dụ code RAG/agent chạy được, bổ sung phần thực hành mà ảnh không có |
+| microsoft/generative-ai-for-beginners (§2b) | ~121k | Khoá có bài tập, có bản tiếng Việt |
+
+### 2f.4 Dùng ảnh thế nào
+
+Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng làm lộ trình học: thêm ô fine-tuning/dataset, sửa ô 06 thành "giới hạn thiệt hại prompt injection", và học thống kê cơ bản trước ô 07. Thứ tự học hợp lý: 01 → 02 → 09 → 03 → 07 → 04 → 06 → 05/08 → 10/11; ô 12–13 làm song song suốt.
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.
@@ -217,3 +263,4 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng gây hiểu sai hoặc thiếu ý
 - §2d (12/10/2026): https://github.com/cporter202/automate-for-growth (clone đầy đủ, 9 commit, HEAD 2cc3193) · https://viralwavestudio.com · bản sao 0★: arnelnrose/automate_for_growth, klikydigital/automate-for-growth
 - §2e ảnh "Layers of AI" (13/10/2026): https://aiforleaders.com (FAQ: Adam Danyal, Julia Danyal) · bản đăng lại trên LinkedIn: https://de.linkedin.com/in/meheli-sinha, https://sa.linkedin.com/in/alhadlaq · kiểm nội dung: https://cvw.cac.cornell.edu/AI-overview/machine-learning/functionality-and-implementation (sơ đồ lồng nhau là quy ước dạy học) · https://lib.conestogac.on.ca/genai/learn-more · https://aima.cs.berkeley.edu · https://github.com/aimacode/aima-python · https://langchain.com/blog/the-anatomy-of-an-agent-harness
 - §2d.1 (13/10/2026): https://github.com/cporter202/make-com-automation-recipes (clone đầy đủ, 4 commit, HEAD 6fa1e09; 16★ shields) · https://www.make.com/en/templates (gallery chính thức; thử https://www.make.com/templates/11218, /10893 → 200) · https://n8n.io/workflows
+- §2f ảnh Brij "How to become an AI engineer in 2026" (13/10/2026): https://genai.owasp.org/llmrisk/llm01-prompt-injection/ ("unclear if there are fool-proof methods of prevention") · https://roadmap.sh/ai-engineer · https://github.com/chiphuyen/aie-book (README: chương fine-tuning, dataset engineering) · https://github.com/patchy631/ai-engineering-hub · shields.io: aie-book ~18k, ai-engineering-hub ~38k MIT, developer-roadmap ~369k, litellm ~61k

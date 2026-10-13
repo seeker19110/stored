@@ -300,3 +300,8 @@
 - github.com/vxcontrol/pentagi (clone nông, HEAD 843dfeb 10/10/2026; đọc README.md, EULA.md, LICENSE, docker-compose.yml) · shields 13/10/2026 (~27k★, ~3,9k fork, MIT) · vxcontrol.com (Dubai)
 - Phát hiện: MIT + EULA (chỉ pentest có ủy quyền); admin/admin mặc định; docker-compose mặc định mount /var/run/docker.sock host (README khuyến nghị dind qua TLS thay thế); Go+React, PostgreSQL/pgvector, Neo4j/Graphiti, Langfuse
 - So sánh (shields 13/10/2026): usestrix/strix ~68k Apache-2.0 · GreyDGL/PentestGPT ~16k MIT · PurpleAILAB/Decepticon ~6k Apache-2.0
+
+## Bổ sung 2026-10-13 đợt 3 (ảnh Brij "How to become an AI engineer in 2026", trang 09/17 → mục 08 §2f)
+
+- genai.owasp.org/llmrisk/llm01-prompt-injection ("unclear if there are fool-proof methods of prevention"; 7 nhóm giảm thiểu) · roadmap.sh/ai-engineer (AI engineer = dùng model có sẵn, khác ML engineer/researcher)
+- github.com/chiphuyen/aie-book (README: when to finetune, dataset engineering; ~18k★) · github.com/patchy631/ai-engineering-hub (~38k★, MIT) · shields 13/10/2026: kamranahmedse/developer-roadmap ~369k, BerriAI/litellm ~61k
