@@ -4621,6 +4621,16 @@
       "open_source": true,
       "notes": "Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)",
       "section": "06"
+    },
+    {
+      "name": "text-to-cad",
+      "repo": "earthtojake/text-to-cad",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 20000,
+      "open_source": true,
+      "notes": "Plugin CAD: 12 skill + MCP cadgen (build123d/OCP), STEP/STL/3MF, DFM/DfAM; telemetry PostHog bật mặc định (13/10/2026)",
+      "section": "20"
     }
   ]
 }

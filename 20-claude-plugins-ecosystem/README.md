@@ -240,6 +240,62 @@ plugin-name/
 - **Nguồn đã đổi, cần biết khi tích hợp:** `gsd-build/get-shit-done` đã archive, bản tiếp nối là `open-gsd/gsd-core` (Hermes-Agents ở mục 23 vẫn vendor từ nguồn cũ, đọc 12/10/2026); ECC chuyển sang `affaan-m/ECC` (URL cũ vẫn chuyển hướng), v2.2.3 có 71/311/97 so với 68/293/94 ghi trong ADR của xboss.
 - `ruvnet/claude-flow` chuyển hướng sang `ruvnet/ruflo` (đã có trong catalog, mục 02).
 
+## 3e. Kiểm ảnh: earthtojake/text-to-cad, plugin CAD cho coding agent (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh là phần đầu README (logo "TEXT TO CAD", "Give your agent CAD superpowers.", 11 huy hiệu, đoạn mô tả). Đã clone toàn bộ repo (1.456 commit, HEAD `24573128c` 11/10/2026) và đọc README, `SECURITY.md`, `plugin.json`, `mcp.json`, `packages/cadgen/pyproject.toml`, `viewer/http_app.py`, các `skills/*/SKILL.md`.
+
+### 3e.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `earthtojake/text-to-cad` · ~20k★, ~1,9k fork, **MIT** · trang texttocad.dev · commit đầu 21/4/2026 |
+| Tác giả | earthtojake (Jake Fitzgerald; email phụ `@thompsonlabs.xyz`): ~1.160/1.456 commit. 628/1.111 commit không merge có trailer `Co-Authored-By: Claude`. Người đóng góp thứ hai Varun S G (44 commit) |
+| Nhịp | 17 commit tháng 4 → 475 tháng 8 → 346 tháng 9 → 59 trong 11 ngày đầu tháng 10 |
+| Kiến trúc | Plugin (manifest cho Claude Code, Codex, Cursor, Gemini, Grok) = 12 skill + MCP server `cad` chạy `uvx … cadgen==0.7.21 cadgen mcp` (ghim đúng phiên bản). Lõi Python `cadgen` (PyPI, 59 bản từ 0.4.1 ngày 11/8/2026; ~15,7k lượt tải/tháng theo pypistats) dựa trên **build123d 0.11** + **OCP/OpenCascade 7.9**; viewer web (Node workspace) |
+| 12 skill | CAD, step.parts, Engineering Drawing (PDF), DXF, URDF, SRDF, SDF, SendCutSend, DfAM Check, DFM, G-code (OrcaSlicer), Bambu Labs |
+| Định dạng | Nguồn là script Python build123d; đầu ra STEP (chính), STL, 3MF, GLB, DXF, PDF bản vẽ, G-code, URDF/SRDF/SDF |
+
+### 3e.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| STARS 19K | ⚠️ cũ | Nay ~20k (shields 13/10/2026) |
+| SKILLS 105.5K | ⚠️ cũ | Huy hiệu skills.sh nay 107,0K. Đó là số lượt cài qua `npx skills`, không phải người dùng thường xuyên |
+| TESTS PASSING | ✅ | Workflow `test.yml` trên `main` đang xanh; có 263 file `test_*.py` và các bước kiểm viewer bằng trình duyệt |
+| CADGEN V0.7.20 | ⚠️ cũ | PyPI và `VERSION` nay là 0.7.21 (11/10/2026). Ảnh chụp trong khoảng một hai ngày trước đó |
+| BUILD123D 0.11 · OPEN CASCADE 7.9 · PYTHON 3.11+ | ✅ | Khớp `pyproject.toml`: `build123d>=0.11.1,<0.12` (trần cố ý vì cadgen vá vào nội bộ build123d), `cadquery-ocp-novtk>=7.9,<8`, `requires-python >=3.11` |
+| NODE.JS 20+ | ✅ (chưa xác minh từng gói) | Chỉ cần cho viewer web và docs; người dùng plugin cần `uv`, không cần Node |
+| LICENSE MIT | ✅ | `LICENSE` và `pyproject.toml` đều MIT. Phụ thuộc chính build123d là Apache-2.0 |
+| "generating 3D models as STEP, GLB, STL or 3MF" | ✅ | Đúng; còn thiếu DXF, PDF, G-code và mô tả robot mà README liệt kê bên dưới |
+| "design for manufacturing checks" | ✅ | Skill DFM bắt mỗi phát hiện ghi phép đo + quy tắc áp dụng, thiếu quy tắc thì báo thiếu chứ không tự đặt. DfAM Check cấm ước lượng độ dày thành/góc overhang "bằng mắt hay từ ảnh render" |
+| "connects to … 3D printing, sheet metal and CNC fabrication services" | ⚠️ nói quá | SendCutSend chỉ là **kiểm trước khi upload** (người dùng tự đặt hàng). Bambu Labs chuyển file sang app chính thức Bambu Connect/Studio; skill ghi rõ agent "never controls a printer and never asks for access codes". Không có kết nối CNC tự động nào |
+| "supported by … Claude Code, Codex, Cursor, Gemini and Grok" | ✅ | Có manifest/hướng dẫn cài riêng cho cả năm; agent khác dùng `npx skills add` |
+
+**Tổng:** 7✅ / 4⚠️ / 0❌. Các ô ⚠️ chủ yếu là số đã cũ; ô đáng chú ý là chữ "connects", thực tế chỉ dừng ở kiểm file và chuyển sang app chính thức. Đó là thiết kế an toàn hơn, nhưng không phải "kết nối" như câu chữ gợi ý.
+
+### 3e.3 Điều ảnh không nói (đọc mã và README)
+
+- **Telemetry bật mặc định.** Gửi số lần gọi tool, lý do lỗi (một từ trong danh sách cố định), OS, app agent, quốc gia (server tính từ IP, nói là không giữ IP) về PostHog. README nói không gửi tên file, đường dẫn, nội dung hay prompt. Tắt bằng `uvx cadgen telemetry off` (xoá luôn dữ liệu đã gửi) hoặc `DO_NOT_TRACK=1`. Ngoài ra kiểm phiên bản mới mỗi ngày một lần (`CADGEN_UPDATE_CHECK=0` để tắt).
+- **Viewer cục bộ không xác thực**, chỉ bind `127.0.0.1`; `SECURITY.md` nói rõ không được bind ra ngoài. Điểm cộng: `http_app.py` có chống DNS-rebinding (từ chối Host không phải localhost) và yêu cầu header tự đặt để chặn POST cross-origin, như Jupyter.
+- **Agent chạy script Python** (build123d) ở máy, không sandbox. Đây là bản chất của CAD-as-code, nhưng cần lưu ý trong repo có dữ liệu nhạy cảm.
+- **Cài kiểu "nhắn agent tự cài"** là đường khuyến nghị. Có bản sao không chính chủ trên các thư mục skill (vd `aradotso/trending-skills` có "text-to-cad-harness"), nên cài đúng `earthtojake/text-to-cad` nhánh `latest`.
+- **Windows 11:** Smart App Control chặn module native chưa ký của OCP; phải tắt Smart App Control (chỉ bật lại được bằng cài lại Windows) hoặc chạy trong WSL.
+- **Trùng tên:** "Text-to-CAD" cũng là tên dịch vụ ML của Zoo (trước là KittyCAD). Hai thứ khác nhau: Zoo gọi model đám mây, còn text-to-cad này để agent viết mã CAD và chạy cục bộ.
+
+### 3e.4 So sánh & dùng thế nào
+
+| Hướng | Ví dụ (13/10/2026) | Khác text-to-cad |
+|---|---|---|
+| Thư viện CAD-as-code | `gumyr/build123d` (~3,4k★, Apache-2.0), `CadQuery/cadquery` (~5,9k★) | text-to-cad là lớp agent + kiểm tra + viewer đặt trên build123d |
+| Ứng dụng text-to-CAD | `Adam-CAD/CADAM` (~5,3k★, **GPL-3.0**), Zoo Text-to-CAD (đám mây, `KittyCAD/modeling-app` ~1,3k★ MIT) | Sinh hình qua model/app riêng thay vì coding agent sẵn có |
+| Agent điều khiển Blender | dự án của chủ kho `design-os-3d-blender` (mục 23 §6.1) | Blender là mesh, text-to-cad là B-rep/STEP; cả hai đều đặt cổng đo bằng máy (wall thickness, overhang) trước khi giao |
+
+- **Hợp khi:** cần phần cơ khí có kích thước đúng (STEP cho CNC/laser, 3MF cho in), bản vẽ kỹ thuật, hoặc mô tả robot URDF/SDF, và muốn agent tự kiểm DFM/DfAM bằng phép đo.
+- **Trước khi dùng:** tắt telemetry nếu thiết kế nhạy cảm; trên máy Windows dùng WSL; ghim `cadgen` như cấu hình mặc định đã làm, nâng bản có chủ đích.
+- **Với dự án Blender của chủ kho:** đáng mượn ý từ skill DFM/DfAM (mỗi phát hiện phải có phép đo + quy tắc được trích; thiếu quy tắc thì báo thiếu), khớp với `production-gate.py` đang có. Không nên thay Blender bằng text-to-cad cho phần render/animation.
+
+**Nguồn §3e:** https://github.com/earthtojake/text-to-cad (clone đầy đủ, HEAD 24573128c; README, SECURITY.md, AGENTS.md, plugin.json, mcp.json, skills.sh.json, packages/cadgen/pyproject.toml, packages/cadgen/src/cadgen/viewer/http_app.py, skills/{dfm,dfam-check,sendcutsend,bambu-labs,step-parts}/SKILL.md, .github/workflows/test.yml) · https://pypi.org/project/cadgen/ · https://pypistats.org/packages/cadgen · https://skills.sh/earthtojake/text-to-cad · https://www.texttocad.dev · https://www.sourcepulse.org/projects/28646096 · https://wikidocs.net/blog/@jaehong/12389/ · https://claudeskills.info/skills/aradotso/trending-skills/text-to-cad-harness/ · https://zoo.dev/blog/introducing-zoo · https://zoo.dev/docs/developer-tools/cli/manual/zoo_ml_text-to-cad · https://github.com/gumyr/build123d · https://github.com/CadQuery/cadquery · https://github.com/Adam-CAD/CADAM · https://github.com/KittyCAD/modeling-app
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

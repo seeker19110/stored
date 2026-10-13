@@ -314,3 +314,10 @@
 - github.com/google-labs-code/design.md (README, bản 0.4.0) · npmjs.com/package/@google/design.md (0.4.0, 27/7/2026) · blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/ (mở spec 21/4/2026) · the-decoder.com (bài về DESIGN.md) · shields 13/10/2026 (~28k★, Apache-2.0)
 - getdesign.md/request (DESIGN.md riêng $39, Website Starter Kit + DESIGN.md $249, trả một lần; đọc 13/10/2026)
 - 11 file tải về và chạy `npx @google/design.md@0.4.0 lint` (13/10/2026): ant.design/design.md · atlassian.design/DESIGN.md · clerk.com/design.md · juspay/blend-design-system DESIGN.md · microsoft/fast examples/design-system/DESIGN.md · mintlify.com/design.md · nuxt.com/design.md · oxidecomputer/design-system design.md · resend.com/design.md · vercel.com/design.md · VoltAgent/voltagent DESIGN.md
+
+## Bổ sung 2026-10-13 đợt 5 (ảnh README earthtojake/text-to-cad → mục 20 §3e)
+
+- github.com/earthtojake/text-to-cad (clone đầy đủ, 1.456 commit, HEAD 24573128c 11/10/2026; README, SECURITY.md, plugin.json, mcp.json, skills.sh.json, packages/cadgen/pyproject.toml, packages/cadgen/src/cadgen/viewer/http_app.py, skills/{dfm,dfam-check,sendcutsend,bambu-labs,step-parts}/SKILL.md, .github/workflows/test.yml) · shields 13/10/2026 (~20k★, ~1,9k fork, MIT; workflow test.yml "passing")
+- pypi.org/pypi/cadgen/json (0.7.21 ngày 11/10/2026; 59 bản từ 0.4.1 ngày 11/8/2026) · pypistats.org/api/packages/cadgen/recent (~15,7k lượt tải/tháng) · skills.sh/b/earthtojake/text-to-cad (107,0K)
+- Bên thứ ba: sourcepulse.org/projects/28646096 · wikidocs.net/blog/@jaehong/12389/ · claudeskills.info (bản sao "text-to-cad-harness" của aradotso/trending-skills) · zoo.dev/blog/introducing-zoo · zoo.dev/docs/developer-tools/cli/manual/zoo_ml_text-to-cad
+- So sánh (shields 13/10/2026): gumyr/build123d ~3,4k Apache-2.0 · CadQuery/cadquery ~5,9k · Adam-CAD/CADAM ~5,3k GPL-3.0 · KittyCAD/modeling-app ~1,3k MIT
