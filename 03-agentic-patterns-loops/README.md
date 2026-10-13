@@ -226,6 +226,36 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng thiếu ý quan trọng · ❌ sa
 
 **Dùng ảnh thế nào:** tốt làm hình minh hoạ vòng ReAct có harness (§2); khi thiết kế thật thì đọc kèm checklist §6, đặc biệt mục 1 (dừng bằng máy) và mục 8 (tín hiệu dừng do code điền, không do model khai).
 
+## 8d. Kiểm ảnh "Agentic AI Architecture: How Autonomous AI Systems Think, Decide & Act" (ảnh người dùng gửi, 2026-10-13)
+
+> Infographic dọc 5 tầng: Users/Clients → ① Access, Security & Governance → ② Agent Orchestration Framework (Session/State, "ReAct Loop" Perceive → Think → Decide → Act → Learn, Memory Manager, Planner) → ③ Data & Knowledge (ingestion, processing, vector store, hybrid search, knowledge graph) → ④ Action & Tool Execution (Tool Marketplace/Registry + 6 nhóm tool) → ⑤ Observability & Continuous Improvement → Business Outcomes.
+
+**Nguồn ảnh:** chỉ ghi "© 2026. All rights reserved." và khẩu hiệu "People × Data × AI × Real Impact", không có tên tác giả; không tìm thấy bài gốc đã đánh chỉ mục (13/10/2026). Bố cục và nội dung trùng mô-típ phổ biến "sense → plan → decide → execute → learn" của nhiều blog vendor (Tredence, TechJockey…).
+
+### Từng tầng: đúng tới đâu
+
+Ký hiệu: ✅ đúng · ⚠️ đúng nhưng thiếu ý quan trọng · ❌ sai hoặc thiếu hẳn.
+
+| Tầng / ô | Ảnh nói | Đánh giá | Bổ sung / đọc sâu |
+|---|---|---|---|
+| Users / Clients | web, mobile, Slack/Teams, API bên thứ ba | ✅ | Thiếu trigger không có người (cron, webhook, agent khác) như ảnh §8c; mục 21 |
+| ① Access, Security & Governance | API gateway → authN/authZ → rate limit → validation & guardrails → audit log; IdP SSO/OAuth2/SAML/OIDC | ⚠️ | Đúng cho cửa vào, nhưng guardrail chỉ đặt ở cửa vào. Rủi ro chính của agent nằm **sau** cổng: prompt injection đi vào qua tài liệu/kết quả tool (OWASP LLM01, ASI01), agent hành động thay người dùng nên cần quyền **theo từng tool**, ít nhất có thể (ASI03; MCP dùng OAuth 2.1 cho việc này), guardrail cả ở đầu ra và trước mỗi lời gọi tool. Rate limit theo request không thay được **ngân sách token/chi phí mỗi lượt chạy** — mục 12 §1 |
+| ② "ReAct Loop": Perceive → Think → Decide → Act → Learn | gọi đây là ReAct | ❌ (nhãn) | ReAct (Yao và cộng sự, 2022) là xen kẽ **Thought → Action → Observation**; không có bước "Learn". Năm bước trong ảnh là vòng sense–plan–act cổ điển. Agent không tự cải thiện trong lúc chạy: "học" thật là ghi memory (có kiểm soát) hoặc eval/tinh chỉnh **ngoài** runtime. Vòng cũng không có điều kiện dừng (xem §8c và checklist §6 mục 1) — §2 |
+| ② Memory Manager | short-term, long-term, episodic, semantic | ⚠️ | Trộn hai trục (thời gian và loại). Khung CoALA (Sumers và cộng sự, 2023) chia working memory + long-term gồm episodic, semantic, **procedural** (kỹ năng, quy trình, file luật — chính là `SKILL.md`/`AGENTS.md`). Thiếu kiểm soát ghi memory: memory bị đầu độc là ASI06 — mục 10 §4, mục 12 |
+| ② Session/State, Planner/Task Decomposer | quản lý phiên, chia việc | ✅ | Thiếu checkpoint/resume khi lỗi giữa chừng (durable execution, mục 21) |
+| **Tầng model** | không có | ❌ (thiếu hẳn) | Sơ đồ "AI nghĩ, quyết định, hành động" mà không có ô LLM nào. Kiến trúc thật có lớp model: gateway/router, fallback giữa nhà cung cấp, chọn model theo việc, prompt cache, ngân sách token — LLM gateway ở mục 10, mục 23 |
+| ③ Data & Knowledge | ingestion → cleaning/chunking/embedding/enrichment/metadata → vector store (Pinecone, Weaviate, Qdrant, Milvus, pgvector) → hybrid search; KG tuỳ chọn | ⚠️ | Năm vector store đều là sản phẩm thật, hybrid search là mặc định đúng. Thiếu: **rerank**; **lọc quyền theo tài liệu lúc truy xuất** (không có thì RAG làm lộ tài liệu người hỏi không được xem); đồng bộ tăng dần và xoá. Mũi tên vẽ dữ liệu chảy *vào* tool registry, trong khi thực tế retrieval là **một tool** agent gọi — mục 10 §3b |
+| ④ Tool Marketplace / Registry + 6 nhóm tool | ERP/CRM, DB, sandbox, REST/GraphQL, email/chat, browser/file/search | ⚠️ | Danh mục hợp lý nhưng không nhắc **MCP** (chuẩn kết nối tool phổ biến nhất 2026) hay A2A cho agent–agent. Thiếu **người duyệt** trước hành động không đảo ngược được (gửi email, ghi DB, thanh toán); sandbox chỉ ghi ở ô code execution, trong khi browser/file system cũng cần cô lập — mục 04, mục 11 §3, mục 12 (ASI02 tool misuse) |
+| ⑤ Observability & Continuous Improvement | tracing, metrics, eval, alert, cost | ✅ | Đủ ý. Hai điểm bổ sung: trace nên theo chuẩn OpenTelemetry GenAI; eval chủ yếu chạy **offline** (bộ test, CI, replay) chứ không phải tự chấm lúc chạy. "Continuous improvement" không có mũi tên quay về đâu — mục 07 |
+| Business Outcomes | productivity, decisions, compliance, growth, impact | ⚠️ | Khẩu hiệu, không có chỉ số đo; không giúp gì cho thiết kế |
+| Đa agent | không có | ⚠️ | Ảnh chỉ vẽ một agent; không có handoff, supervisor/worker hay A2A — mục 02, mục 04 |
+
+**Tổng:** 3 ✅, 6 ⚠️, 2 ❌. Ảnh đúng ở mức **danh mục khối** (hầu hết ô tồn tại thật), nhưng hai lỗi nặng: gọi vòng sense–plan–act là "ReAct" và **không có tầng model**. Ngoài ra bảo mật chỉ đặt ở cửa vào, trong khi rủi ro đặc thù của agent nằm ở dữ liệu và tool phía sau cổng.
+
+**Dùng ảnh thế nào:** được làm checklist "đã nghĩ tới khối này chưa" khi trình bày cho người không chuyên. Khi thiết kế thật: thêm tầng model; đổi nhãn vòng lặp cho đúng (Thought → Action → Observation, có điều kiện dừng bằng máy); dời guardrail và kiểm quyền vào **mỗi lời gọi tool**; thêm lọc quyền lúc truy xuất. So với ảnh §8c ("How AI Agents Work"), ảnh §8c ít khối hơn nhưng vẽ vòng lặp đúng hơn.
+
+**Nguồn §8d:** https://arxiv.org/abs/2210.03629 (ReAct, Yao et al.) · https://arxiv.org/abs/2309.02427 (CoALA, Sumers et al.) · https://genai.owasp.org/llmrisk/llm01-prompt-injection/ · https://genai.owasp.org (OWASP Top 10 for Agentic Applications, mục 12) · https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization (OAuth 2.1) · https://opentelemetry.io/docs/specs/semconv/gen-ai/ · https://www.tredence.com/blog/agentic-ai-architectures · https://www.techjockey.com/blog/?p=60555 · https://www.anthropic.com/research/building-effective-agents
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)

@@ -321,3 +321,8 @@
 - pypi.org/pypi/cadgen/json (0.7.21 ngày 11/10/2026; 59 bản từ 0.4.1 ngày 11/8/2026) · pypistats.org/api/packages/cadgen/recent (~15,7k lượt tải/tháng) · skills.sh/b/earthtojake/text-to-cad (107,0K)
 - Bên thứ ba: sourcepulse.org/projects/28646096 · wikidocs.net/blog/@jaehong/12389/ · claudeskills.info (bản sao "text-to-cad-harness" của aradotso/trending-skills) · zoo.dev/blog/introducing-zoo · zoo.dev/docs/developer-tools/cli/manual/zoo_ml_text-to-cad
 - So sánh (shields 13/10/2026): gumyr/build123d ~3,4k Apache-2.0 · CadQuery/cadquery ~5,9k · Adam-CAD/CADAM ~5,3k GPL-3.0 · KittyCAD/modeling-app ~1,3k MIT
+
+## Bổ sung 2026-10-13 đợt 6 (ảnh "Agentic AI Architecture: How Autonomous AI Systems Think, Decide & Act" → mục 03 §8d)
+
+- Không tìm thấy tác giả/bài gốc (ảnh chỉ ghi "© 2026. All rights reserved.", "People × Data × AI × Real Impact"); hai lượt WebSearch 13/10/2026 chỉ ra blog cùng mô-típ: tredence.com/blog/agentic-ai-architectures · techjockey.com/blog/?p=60555
+- Đối chiếu: arxiv.org/abs/2210.03629 (ReAct: Thought → Action → Observation) · arxiv.org/abs/2309.02427 (CoALA: working + episodic/semantic/procedural memory) · genai.owasp.org (LLM01, Top 10 for Agentic Applications ASI01–ASI06) · modelcontextprotocol.io/specification/2025-06-18/basic/authorization (OAuth 2.1) · opentelemetry.io/docs/specs/semconv/gen-ai/ · anthropic.com/research/building-effective-agents
