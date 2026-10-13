@@ -58,7 +58,7 @@ v0.app,,https://v0.app,ai-ui-generator,proprietary,,False,06,Vercel
 Lovable,,https://lovable.dev,ai-ui-generator,proprietary,,False,06,
 bolt.diy,stackblitz-labs/bolt.diy,,ai-ui-generator,MIT,,True,06,Bản mở của Bolt.new
 Google Stitch,,https://stitch.withgoogle.com,ai-ui-generator,proprietary,,False,06,
-Taste Skill,Leonxlnx/taste-skill,,design-skill,,46000,True,06,Chống AI-slop UI
+Taste Skill,Leonxlnx/taste-skill,,design-skill,MIT,46000,True,06,Chống AI-slop UI
 CopilotKit,CopilotKit/CopilotKit,,agentic-ui,MIT,,True,06,$27M 5/2026
 assistant-ui,assistant-ui/assistant-ui,,agentic-ui,MIT,,True,06,
 Vercel AI SDK,vercel/ai,,agentic-ui,Apache-2.0,,True,06,+ AI Elements
@@ -469,3 +469,4 @@ iii engine,iii-hq/iii,,durable-execution,Elastic-2.0 (engine) / Apache-2.0 (SDK)
 waoowaoo (tên cũ saturndec/waoowaoo),waooAI/waoowaoo,,agentic-video,Elastic-2.0,15000,False,19,"v0.3–0.4.1: studio phim ngắn/truyện tranh động từ tiểu thuyết (CC BY-NC-SA 4.0); v0.5.0-beta.1 (9/2026) viết lại thành workspace ảnh/video + Assistant Codex CLI, ELv2, chỉ OpenRouter; app gắn Docker socket; không merge PR ngoài; link người dùng 2026-10-13"
 Toonflow,HBAI-Ltd/Toonflow-app,,agentic-video,MIT,17000,True,19,"Tiểu thuyết → kịch bản → ảnh/video phim ngắn; license theo GitHub là MIT, một trang tổng hợp ghi AGPL (chưa xác minh)"
 LocalMiniDrama,xuanyustudio/LocalMiniDrama,,agentic-video,MIT,2000,True,19,"Phim ngắn/truyện tranh động chạy offline, Vue3 + Node + SQLite, hỗ trợ Ollama"
+UX/UI Agent Skills (XIAS),plugin87/ux-ui-agent-skills,,design-skill,MIT,1686,True,06,"25 skill + 52 cổng đo trên trình duyệt (tự chạy 49/52, 13/10/2026); 138 design system phần lớn lấy từ awesome-design-md và bergside/awesome-design-skills, không ghi nguồn"

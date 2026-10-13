@@ -193,6 +193,55 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 
 **Nguồn §7c:** https://github.com/VoltAgent/official-design-md (clone đầy đủ, HEAD 7236b05) · https://github.com/VoltAgent/awesome-design-md (clone nông, HEAD c7c1bad 12/10/2026; `design-md/voltagent/DESIGN.md`) · https://github.com/VoltAgent/voltagent (lịch sử `DESIGN.md`: bd74d743, 11/5/2026) · https://github.com/google-labs-code/design.md (README, bản 0.4.0) · https://www.npmjs.com/package/@google/design.md · https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/ · https://the-decoder.com/googles-open-source-design-md-gives-ai-agents-a-prompt-ready-blueprint-for-brand-consistent-design/ · https://getdesign.md/request · 11 file: ant.design/design.md · atlassian.design/DESIGN.md · clerk.com/design.md · github.com/juspay/blend-design-system (DESIGN.md) · github.com/microsoft/fast (examples/design-system/DESIGN.md) · mintlify.com/design.md · nuxt.com/design.md · github.com/oxidecomputer/design-system (design.md) · resend.com/design.md · vercel.com/design.md · github.com/VoltAgent/voltagent (DESIGN.md)
 
+## 7d. Kiểm ảnh: plugin87/ux-ui-agent-skills ("XIAS"), bộ skill biến Claude thành "Senior Design Architect" (ảnh + tên repo người dùng gửi, 2026-10-13)
+
+> Ảnh là phần đầu README: tagline "Turn Claude into a Senior Design Architect — 15+ years of expertise…", câu "138 brand-grade design systems… any framework and any design system", logo XIAS với ba số 52 · 25 · 14, huy hiệu Trendshift "#10 Repository Of The Day" và chữ phủ tiếng Việt "1.628 lập trình viên đã star". Đã clone toàn bộ repo (144 commit), đếm từng con số, đối chiếu 138 design system với hai kho MIT khác, và tự chạy bộ cổng của repo.
+
+### 7d.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `plugin87/ux-ui-agent-skills` · **1.686★**, 177 fork, 8 issue mở (GitHub search API) · license **MIT** (© 2026 Thientan Soparat) · bản **v2.9.8** (10/10/2026) |
+| Tác giả | Thientan Soparat (`plugin87`), 143/144 commit. Tài khoản có từ 2016; các repo khác của cùng người đều nhỏ: `figma-remote-server` (MCP Figma, 5★), `full-stack-design-skills` (10★), `homebrew-tap` |
+| Lịch sử | Tạo 16/3/2026 · v1.0.1 (6/6) đóng gói sẵn skill của **Taste Skill** · v1.1.0 (7/6) thêm 138 design system và gỡ skill Taste · v2.9.x tháng 10 thêm hook, máy chủ MCP, brew. Listing agentskill.work ghi 438★ ở bản 2.3.1 (khoảng 22/6/2026), tức sao tăng gấp 4 trong khoảng 3,5 tháng |
+| Phân phối | Plugin Claude Code (`.claude-plugin/`), `npx ux-ui-agent-skills init`, brew, máy chủ MCP (`ux-ui-mcp`). `AGENTS.md` cho Codex/Cursor/Copilot/Aider. npm: 7.178 lượt tải từ 1/6 đến 12/10/2026, 3.540 trong 30 ngày gần nhất |
+| Bên trong | `CLAUDE.md` 319 dòng (luật + bộ định tuyến yêu cầu) · 25 skill trong `.claude/skills/` · 14 file token DTCG · 11 file spec component · 16 adapter framework · 39 script cổng (Python + Node + Playwright/axe) · 3 hook (preflight, cổng nhanh khi ghi file, chặn dừng lượt khi chưa đo) |
+
+### 7d.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| "15+ years of expertise", "Senior Design Architect" | ⚠️ | Không phải kinh nghiệm của ai: đó là câu persona ở dòng 3 `CLAUDE.md` ("You are a Senior Design Architect with 15+ years… at the caliber of Apple, Google, Airbnb, and Stripe"). Persona không đo được; thứ đo được nằm ở cổng (ô "52") |
+| "138 brand-grade design systems" | ⚠️ | Đếm đúng **138** thư mục trong `design-systems/library/`. Nhưng **64** tên trùng `VoltAgent/awesome-design-md` (MIT), trong đó **60** file có ≥ 80% dòng trùng nguyên văn với một bản trong lịch sử kho đó (cùng khung 9 mục "Visual Theme & Atmosphere… Agent Prompt Guide"). **51** tên trùng `bergside/awesome-design-skills` (TypeUI, MIT, ~3,1k★): 49/51 giữ nguyên câu mô tả, màu lấy từ token gốc (vd brutalism `#DD614C`), văn được viết lại theo khung trên và mỏng hơn (trung vị 71 dòng so với 154 của cả thư viện). 24 mục còn lại chưa rõ nguồn (chưa xác minh). Repo **không ghi công hay chép bản quyền** của hai kho MIT này ở đâu cả; MIT yêu cầu giữ thông báo bản quyền khi phân phối lại phần đáng kể |
+| "any framework and any design system" | ⚠️ | Có 16 adapter (Angular, Vue, Svelte, Flutter, Jetpack Compose, React Native…) cộng React/Next/SwiftUI, nhưng cổng render chỉ chạy trên HTML và component React. Các framework khác là hướng dẫn dạng văn bản, không cổng nào kiểm |
+| Logo "52" (cổng khách quan) | ⚠️ 49/52 | Tự chạy `node scripts/accuracy_report.mjs` trên HEAD 62092bd (13/10/2026, Chromium 1194 thay cho Chrome): **49/52**, README ghi "52/52 or it fails". 3 cổng trượt: (1) hook: 3/19 test fail vì hook không nhận ra trình duyệt trong sandbox, do môi trường; (2) harness component: số "65" màu `rgb(157,150,142)` trên nền trắng chỉ đạt **2,92:1** (cần 3:1), không phụ thuộc font nên khả năng cao là lỗi thật; (3) mẫu checkout: tràn +9px ở 280px và hai nút "Place order"/"Back to delivery" bấm không có phản hồi (chưa xác minh có do font hay không). Mô tả repo trên GitHub còn ghi "**50** objective gates", lệch với README |
+| Logo "25" (skill chạy được) | ✅ | Đúng 25 `SKILL.md` trong `.claude/skills/` (ví dụ `/design-screen`, `/critique`, `/a11y-audit`, `/data-dashboard`, `/gate`) |
+| Logo "14" (file token DTCG) | ✅ | Đúng 14 file trong `tokens/`; `npm test` (validate token, tương phản, spec component, hardcode, tham chiếu theme, emoji, link) qua hết, `npm run test:unit` 49/49 pass |
+| Trendshift "#10 Repository Of The Day" | ✅ | Trang trendshift.io/repositories/24406 ghi "#10 on GitHub Trending". Đây là thứ hạng một ngày, không nói gì về chất lượng |
+| "1.628 lập trình viên đã star" (chữ phủ tiếng Việt) | ⚠️ cũ | Hôm nay 1.686★. Chữ do người đăng lại thêm vào, không có trên README; số sao không phải số "lập trình viên" |
+| "MIT license" | ✅ | `LICENSE` MIT. Xem lưu ý ghi công ở ô "138" |
+
+**Tổng:** 4✅ / 5⚠️ / 0❌. Phần mã của chính tác giả (cổng đo trên trình duyệt thật, hook chặn "báo xong khi chưa đo") là thật và chạy được. Phần "138 design systems" lại chủ yếu là dữ liệu của hai kho MIT khác, đóng gói lại mà không ghi nguồn.
+
+### 7d.3 So với các mục đã có
+
+| | XIAS | Taste Skill (§4) | `awesome-design-md` (§7c) | `ui-ux-pro-max-skill` |
+|---|---|---|---|---|
+| Bản chất | Luật + token + cổng đo + thư viện DESIGN.md | Luật "taste" chống AI slop | Kho DESIGN.md trích xuất từ website | Kho tra cứu style/palette cho agent |
+| Có cổng máy? | Có: 52 cổng (README ghi 34 cổng mở trình duyệt) (axe, tương phản theo trạng thái, phím, vùng chạm, 280px) | Không | Không (linter của Google là công cụ ngoài) | Không (chưa xác minh) |
+| Quan hệ | Từng đóng gói Taste Skill (v1.0.1), lấy 60+ file của awesome-design-md | Nguồn gốc ý "slop tells" | Nguồn của ~60 design system trong XIAS | Cùng ngách |
+
+Điểm XIAS hơn hẳn ba bên kia là **cổng đo trên bản render thật** và hook `Stop` buộc agent nói "UNMEASURED" khi chưa đo, đúng tinh thần "taste chỉ bền khi có cổng máy" ở §4.
+
+### 7d.4 Dùng thế nào
+
+- **Lấy phần cổng, không cần cả bộ:** các script `verify_states.mjs` (tương phản theo hover/focus/disabled), `verify_target_size.mjs`, `verify_overflow.mjs` (280px), `axe_audit.mjs`, `lint_intent.mjs` (nút xóa không được mang màu primary) có thể chạy độc lập trên HTML. Lưu ý chúng gọi `chromium.launch({ channel: 'chrome' })`: máy không có Chrome thì phải cài, hoặc nhiều cổng sẽ fail vì môi trường chứ không phải vì giao diện.
+- **Không dồn 319 dòng `CLAUDE.md` vào dự án đã có luật riêng:** bộ luật của XIAS (theme đơn, token theo ý định, không emoji) có thể xung đột với design system sẵn có. `npx ux-ui-agent-skills add <phần>` cho phép lấy từng phần.
+- **Thư viện 138 design system:** dùng để tham khảo như §7c. Muốn dùng thương mại thì lấy từ nguồn gốc (`awesome-design-md`, `bergside/awesome-design-skills`) để giữ đúng thông báo MIT, và nhớ đó là hệ thiết kế của thương hiệu khác.
+- **Tự chạy lại cổng sau khi cài:** README nói 52/52, nhưng bản HEAD chạy trong sandbox còn trượt ít nhất một cổng tương phản thật.
+
+**Nguồn §7d:** https://github.com/plugin87/ux-ui-agent-skills (clone đầy đủ, 144 commit, HEAD 62092bd 10/10/2026; README, CLAUDE.md, CHANGELOG.md, LICENSE, package.json, .claude-plugin/plugin.json, design-systems/library/, `git show b89881e:skills-lock.json`; tự chạy `npm test`, `npm run test:unit` 49/49, `node scripts/accuracy_report.mjs` 49/52, 13/10/2026) · GitHub search API 13/10/2026 (1.686★, 177 fork; repo khác của `plugin87`) · https://www.npmjs.com/package/ux-ui-agent-skills (api.npmjs.org: 3.540 lượt/30 ngày, 7.178 từ 1/6/2026) · https://trendshift.io/repositories/24406 · https://agentskill.work/en/skills/plugin87/ux-ui-agent-skills (438★, bản 2.3.1) · https://github.com/VoltAgent/awesome-design-md (clone, lịch sử `design-md/*/DESIGN.md`) · https://github.com/bergside/awesome-design-skills (clone; MIT © Bergside, `skills/*/SKILL.md`, `skills/*/DESIGN.md`) · https://tessl.io/registry/skills/github/bergside/awesome-design-skills/brutalism/evals · https://open-design.ai/systems/brutalism/ · https://github.com/Leonxlnx/taste-skill
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

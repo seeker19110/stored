@@ -669,7 +669,7 @@
       "name": "Taste Skill",
       "repo": "Leonxlnx/taste-skill",
       "category": "design-skill",
-      "license": null,
+      "license": "MIT",
       "stars": 46000,
       "open_source": true,
       "notes": "Chống AI-slop UI",
@@ -4781,6 +4781,16 @@
       "open_source": true,
       "notes": "Phim ngắn/truyện tranh động chạy offline, Vue3 + Node + SQLite, hỗ trợ Ollama",
       "section": "19"
+    },
+    {
+      "name": "UX/UI Agent Skills (XIAS)",
+      "repo": "plugin87/ux-ui-agent-skills",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 1686,
+      "open_source": true,
+      "notes": "25 skill + 52 cổng đo trên trình duyệt (tự chạy 49/52, 13/10/2026); 138 design system phần lớn lấy từ awesome-design-md và bergside/awesome-design-skills, không ghi nguồn",
+      "section": "06"
     }
   ]
 }
