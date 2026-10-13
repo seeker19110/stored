@@ -247,3 +247,24 @@
 
 - Clone nông (depth 30) 18/19 repo trên HEAD (`case-study-ft41` private, không clone được): `.github/workflows/*.yml` (đếm `uses:` ghim SHA, khối `permissions:`), `.github/dependabot.yml`, `.claude/settings.json` (model, deny, hook Stop), `package.json`/`pyproject.toml`/`Dockerfile`, `ai-gateway/{server.js,lib/app.js,.env.example}`, `Hermes-Agents/bridge/{server,http_security}.py`, `Plugin-4-Hermes/{bridge/server.py,manage.py}`, `Claude-Red/.github/workflows/skill-optimize-apply.yml`, `design-os-3d-blender/.agents/mcp_config.json`, `system-design-notes` (git log)
 - Đối chiếu upstream: github.com/morluto/rea (HEAD 13/10/2026, `package.json` 6.4.0) · github.com/SnailSploit/claude-red (HEAD `a8de813`, 12/10/2026)
+
+## Bổ sung 2026-10-13 (ảnh card GitHub `tester-army/e2e` → mục 11 §1b)
+
+- github.com/tester-army/e2e (clone nông, HEAD fc90644: README.md, AGENTS.md, SECURITY.md, NOTICE, docs/{cache,security,telemetry,subscriptions,models}.mdx, packages/e2e/package.json 0.20.0, .github/workflows; trang GitHub ~9,7k★, 462 fork, 13/10/2026) · e2e.tester.army/docs · ycombinator.com/companies/testerarmy · hn.svelte.dev/item/48586299 (Launch HN) · docs.expo.dev/guides/using-e2e
+- Blog/bên thứ ba: testdino.com/blog/playwright-vs-e2e · ai-tldr.dev/releases/tester-army-e2e-0-18 · testmuai.com/blog/e2e-by-testerarmy · everydev.ai/tools/e2e · notes.nicolasdeville.com/github/e2e
+- So sánh (★ qua img.shields.io, 13/10/2026): microsoft/playwright 98k · browserbase/stagehand 26k · mobile-dev-inc/Maestro 16k · web-infra-dev/midscene 15k · wix/Detox 12k
+
+## Bổ sung 2026-10-13 (ảnh "Layers of AI" → mục 08 §2e)
+
+- aiforleaders.com (FAQ: Adam Danyal, Julia Danyal; tự nhận 50K+ người đăng ký) · bản đăng lại LinkedIn (de.linkedin.com/in/meheli-sinha, sa.linkedin.com/in/alhadlaq)
+- Kiểm nội dung: cvw.cac.cornell.edu/AI-overview · lib.conestogac.on.ca/genai/learn-more · aima.cs.berkeley.edu · github.com/aimacode/aima-python (~8,8k★, shields 13/10/2026)
+
+## Bổ sung 2026-10-13 (link yeswehack/claude-kit → mục 12 §3h; link requie/AI-Red-Teaming-Guide rà lại → mục 12 §3f)
+
+- github.com/yeswehack/claude-kit (clone đầy đủ, 4 commit 25/8/2026, HEAD 3928c34; đọc mọi file; 222★, 32 fork, shields 13/10/2026) · yeswehack.com/fr/learn-bug-bounty/triager-grade-reports-claude-code · yeswehack.com/fr/learn-bug-bounty/write-effective-bug-bounty-reports
+- Bối cảnh "AI slop": bleepingcomputer.com (curl dừng bug bounty) · techradar.com · so sánh: elementalsouls/Claude-BugHunter (5k★), trailofbits/skills-curated (513★)
+- requie/AI-Red-Teaming-Guide: clone lại 13/10/2026, HEAD vẫn 7b7dde8 (không commit mới), 977★/184 fork, license shields "not specified"
+
+## Bổ sung 2026-10-13 (ảnh "How AI Agents Work" → mục 03 §8c)
+
+- langchain.com/blog/the-anatomy-of-an-agent-harness (Vivek Trivedy, 3/2026, gốc công thức "Agent = Model + Harness") · datacamp.com/blog/agent-harness · addyosmani.com/blog/agent-harness-engineering · blogs.oracle.com/developers/the-agent-loop-decoded-three-levels-every-agent-engineer-must-know · strandsagents.com/docs/learning/how-agents-really-work · platform.claude.com/docs/en/agents-and-tools/tool-use/overview
