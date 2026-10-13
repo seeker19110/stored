@@ -42,7 +42,7 @@
 
 ## 3b. Kiểm hai ảnh của Brij Kishore Pandey: "RAG Evolution" và "The $0 AI architecture stack" (ảnh người dùng gửi, 2026-10-13)
 
-> Hai trang của cùng một carousel 17 trang (ghi "10 / 17" và "12 / 17"), ký tên **Brij Kishore Pandey (@brijpandeyji)**, người viết nội dung AI phổ thông trên LinkedIn/X. Không tìm thấy bài gốc đã đánh chỉ mục (13/10/2026); đánh giá dựa trên nội dung ảnh, đối chiếu docs chính thức.
+> Hai trang của cùng một carousel 17 trang (ghi "10 / 17" và "12 / 17"), ký tên **Brij Kishore Pandey (@brijpandeyji)**, người viết nội dung AI phổ thông trên LinkedIn/X. Không tìm thấy bài gốc đã đánh chỉ mục (13/10/2026); đánh giá dựa trên nội dung ảnh, đối chiếu docs chính thức. Trang 09/17 ("How to become an AI engineer in 2026") kiểm ở mục 08 §2f.
 
 ### 3b.1 "Classic RAG vs GraphRAG vs Agentic RAG"
 
