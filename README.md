@@ -149,7 +149,6 @@
 - **Danh sách "đã tuyển chọn" cũng cần kiểm:** "Official MCP Servers" (mục 04 §2c) có 11/201 repo đã archive; "Awesome-AI-Security-Skills" (mục 12 §3e) không có LICENSE, có link 404, repo mạo danh và script sửa cấu hình Claude Code. Quy tắc: đọc `install.sh`/hook và trạng thái archive trước khi cài bất cứ thứ gì từ một list.
 - **Guide "complete" cũng có thể là phễu bán hàng** (mục 12 §3f): `requie/AI-Red-Teaming-Guide` gom đủ khung chuẩn, kỹ thuật và template, có ngày kiểm từng nguồn, nhưng đặt sản phẩm của tác giả lên đầu bảng công cụ, gắn badge 10 hãng lớn không có bằng chứng, ghi giá $249 và "7 gói npm" trong khi trang bán là $99–$799 và không nhắc gói npm. Dùng làm mục lục, còn chọn công cụ thì theo bảng đã kiểm của kho.
 
-
 ### 20. Đợt 13/10/2026: ảnh tóm tắt đúng từng ô nhưng sai cấu trúc; công cụ AI tốt tự khai giới hạn
 
 - **"Layers of AI"** (mục 08 §2e) và **"How AI Agents Work"** (mục 03 §8c): không ô nào sai hẳn, nhưng ảnh thứ nhất vẽ Generative/Agentic AI như tập con xếp chồng, còn ảnh thứ hai vẽ nút "goal met?" như một bước kiểm, trong khi đó chỉ là lời khai của model. Khi dùng infographic để dạy, kiểm **quan hệ giữa các ô**, không chỉ từng ô.
