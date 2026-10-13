@@ -25,6 +25,41 @@
 
 **Nhận xét:** trong nhóm chat UI, chỉ **LibreChat** và **AnythingLLM** dùng MIT thuần; Open WebUI, LobeHub, FastGPT dùng license riêng không OSI, Cherry Studio là AGPL — đọc LICENSE trước khi dựng dịch vụ cho người khác. Chọn nhanh: chat nội bộ nhiều model + đăng nhập doanh nghiệp → LibreChat; RAG tài liệu trên máy cá nhân → AnythingLLM; workflow agent trực quan, license thoáng → Sim. Đã cân nhắc nhưng không thêm: node-red (23,7k★, Apache-2.0, không chuyên LLM), jan (44,9k★, Apache-2.0, thiên về chạy model local — gần mục 10).
 
+## Bổ sung: kiểm ảnh "54 trang làm web, thiết kế, app miễn phí" (AIHubSeek, ảnh người dùng gửi, 2026-10-13)
+
+Ảnh liệt kê 3 cột × 18 công cụ (Build Websites, Generate Designs, Create Apps), tiêu đề "for Free". Tôi kiểm gói miễn phí từng ô ngày 13/10/2026 qua trang giá và bài review; những ô chưa tìm được nguồn chính thức ghi "(chưa xác minh)". Ở đây "miễn phí" nghĩa là có gói dùng mãi không trả tiền, không tính bản dùng thử.
+
+**Các ô đúng (gói free thật, kèm giới hạn thường gặp):**
+
+- **Web:** Wix, WordPress.com, Carrd, Strikingly, Webflow, Jimdo, SITE123, Tilda, Google Sites, Mobirise (app offline miễn phí), Brizy (plugin WordPress free), Dorik (theo trang hãng). Giới hạn chung: tên miền phụ của hãng, có quảng cáo hoặc huy hiệu, ít trang.
+- **Thiết kế:** Canva, Adobe Express, Figma (gói Starter), Leonardo.Ai (token hằng ngày), Pixlr, Photopea (có quảng cáo), BeFunky, Visme, Piktochart, Fotor, Vecteezy, Pixabay (ảnh miễn phí theo giấy phép Pixabay).
+- **App:** Glide, Adalo, Bubble, Kodular, MIT App Inventor, FlutterFlow, Firebase (gói Spark), Backendless, Softr, Retool, WeWeb, Appsmith (mã nguồn mở Apache-2.0), Draftbit (theo FAQ hãng: 5.000 credit một lần, không nạp lại).
+
+**Các ô sai hoặc cần lưu ý:**
+
+| Cột | Ô | Mức | Thực tế |
+|---|---|---|---|
+| Web | Squarespace | ❌ | Không có gói free, chỉ dùng thử 14 ngày; muốn xuất bản phải trả tiền |
+| Web | Zyro | ❌ | Hostinger đã gộp Zyro vào Hostinger Website Builder (đổi tên 2022, gộp hẳn 12/2023); không có gói free |
+| Web | Weebly | ⚠️ | Gói free vẫn còn ở Mỹ, nhưng Square đang dừng Weebly ở 67 quốc gia khác và khuyên người mới dùng Square Online. Ở Việt Nam có còn đăng ký được không: (chưa xác minh) |
+| Web | GoDaddy | ⚠️ | Builder nay là Airo; các bài review nói gói free có 50 credit AI/tháng, nhưng mâu thuẫn ở chỗ có được xuất bản hay không (chưa xác minh) |
+| Web | Ucraft, Pagecloud, Zyro-cũ | ⚠️ | Không tìm thấy trang giá chính thức hay tin đóng cửa; gói free của Ucraft được mô tả là "rất hạn chế" (chưa xác minh) |
+| Thiết kế | Midjourney | ❌ | Không có gói free; gói thấp nhất 10 USD/tháng. Các nguồn mâu thuẫn về lượt dùng thử ~25 ảnh cho tài khoản mới |
+| Thiết kế | DALL·E | ❌ | Đã ngừng: OpenAI gỡ dall-e-2/3 khỏi API ngày 12/5/2026 và gỡ DALL·E GPT khỏi ChatGPT ngày 30/8/2026. Thay bằng tạo ảnh trong ChatGPT (bản free có giới hạn lượt) |
+| Thiết kế | Crello | ⚠️ | Đổi tên thành VistaCreate từ 10/2021 sau khi Vistaprint mua lại; tên trong ảnh đã cũ 5 năm |
+| Thiết kế | Remove.bg | ⚠️ | Bản free chỉ cho tải ảnh xem trước khoảng 0,25 MP và chỉ dùng phi thương mại; ảnh đủ độ phân giải tốn credit |
+| Thiết kế | DesignCap, Snappa | ⚠️ | Có gói free nhưng giới hạn lượt tải hoặc gắn watermark (chưa xác minh chi tiết) |
+| App | Appy Pie | ❌ | Chỉ thấy dùng thử 7 ngày; người dùng phản ánh gần như không xuất bản được nếu không trả tiền |
+| App | Thunkable | ⚠️ | Gói free tối đa 3 project công khai, **không xuất bản lên store**; xuất bản từ gói Builder ~59 USD/tháng |
+| App | Zoho Creator | ⚠️ | Các nguồn mâu thuẫn: có trang ghi gói free 1 app, có trang ghi chỉ có dùng thử (chưa xác minh) |
+| App | The Things Stack | ⚠️ | Đây là LoRaWAN network server cho thiết bị IoT, không phải công cụ dựng app; xếp sai cột |
+| App | Pinecone | ⚠️ | Đây là vector database (có gói Starter free), không phải công cụ dựng app; xếp sai cột |
+| App | Firebase, Backendless | ⚠️ | Có free tier thật, nhưng là backend; vẫn phải tự viết app hoặc ghép với một builder khác |
+
+**Tổng:** khoảng 37/54 ô đúng như tiêu đề; 5 ô sai rõ (Squarespace, Zyro, Midjourney, DALL·E, Appy Pie); số còn lại có giới hạn quan trọng, tên đã cũ, hoặc xếp sai cột.
+
+**Dùng ảnh thế nào:** coi là danh sách gợi ý để tự kiểm, không phải bảng "miễn phí". Ba điều cần kiểm trước khi chọn: (1) gói free có cho **xuất bản** không (Thunkable, Adalo, Bubble đều giới hạn ở bước này); (2) có cho **dùng thương mại** không (remove.bg, nhiều kho ảnh); (3) dữ liệu có **xuất ra được** không khi muốn rời nền tảng (FlutterFlow chỉ cho xuất mã ở gói trả phí). Nếu cần tự chủ hoàn toàn: Appsmith (mục này), WordPress tự host, hoặc các nền tảng ở bảng trên.
+
 ## Nguồn
 
 - https://www.knowlee.ai/blog/dify-alternatives-2026 · https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026 · https://www.jahanzaib.ai/blog/flowise-vs-dify-vs-n8n-ai-agents · https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026 · https://makerstack.co/reviews/langflow-review/ · https://enterprisedna.co/directories/compare/dify-vs-flowise-vs-langflow/

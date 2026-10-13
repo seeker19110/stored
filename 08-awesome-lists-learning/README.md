@@ -135,6 +135,24 @@ Tốt làm **checklist chủ đề** trong một trang; không đủ làm câu t
 
 **Dấu hiệu nhận ra "khoá học" kiểu này:** đa số link trỏ về một sản phẩm, không có code chạy được, không LICENSE, case study không tên, commit dồn trong vài ngày rồi dừng, README đặt lời kêu gọi star và donate trước mục lục.
 
+### 2d.1 Repo thứ hai cùng tác giả: `cporter202/make-com-automation-recipes` (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh chụp README "Make.com Automation Recipes — 600+ pre-built workflows & templates" (badge Templates 600+, Categories 12, License MIT; khung "Affiliate disclosure"). Đã clone đầy đủ để đọc.
+
+| Mục | Thông tin (13/10/2026) |
+|---|---|
+| Repo | `cporter202/make-com-automation-recipes` · **16★, 0 fork** (shields.io); 4 commit: "Initial commit" 8/12/2025, rồi **3 commit cách nhau 7 giây** ngày 12/10/2026 (dựng danh mục 600 template, banner AI, thêm MIT) |
+| Nội dung thật | Chỉ 3 file: `README.md` (779 dòng), `LICENSE` (MIT), `assets/hero.png`. **Không có template nào trong repo**: 600 dòng là link tới **thư viện template công khai của chính Make.com** (600 ID khác nhau, thử ngẫu nhiên đều trả 200), chia đều **đúng 50 mục × 12 nhóm** |
+| Dấu hiệu sinh tự động | Tên mỗi mục là slug URL đổi sang Title Case ("…With Openai **S** Whisper…"), không có mô tả, không ghi ai làm template, không ghi template dùng bao nhiêu operation |
+| Mục đích | **Mọi** link Make.com (603/603) mang mã đối tác `?pc=viralwave` — cùng ViralWave mà repo `automate-for-growth` (§2d) quảng bá. Khác repo trước: lần này **có ghi rõ affiliate** ngay đầu README |
+| License | MIT chỉ áp cho README do tác giả viết; bản thân các template thuộc Make.com và người đóng góp gallery, không phải "MIT" |
+
+**Đánh giá:** không phải bộ sưu tập do tác giả xây mà là trang mục lục có link giới thiệu (affiliate) dẫn vào gallery mà Make đã có sẵn và có tìm kiếm, lọc theo app. Không có giá trị thêm ngoài cách chia nhóm. Có công khai affiliate nên trung thực hơn §2d, nhưng badge "600+ templates" dễ hiểu nhầm là template nằm trong repo.
+
+**Muốn mẫu tự động hoá thật:** dùng thẳng gallery chính thức `make.com/en/templates` (không qua link affiliate); nếu cần tự host và đọc được mã thì xem n8n (mục 05, mục 21 §6) và thư viện workflow công khai của n8n (`n8n.io/workflows`). Trước khi bật một template, kiểm quyền OAuth nó xin và số operation mỗi lần chạy, vì gói miễn phí của Make tính theo operation.
+
+**Quy tắc rút ra (bổ sung §2d):** repo "N trăm template/prompt" mà chỉ có một README → đếm link theo tên miền và tham số (`?pc=`, `?ref=`, `utm_`), xem các commit có dồn trong vài giây không. Hai dấu hiệu này đủ để nhận ra danh mục sinh tự động phục vụ affiliate.
+
 ## 2e. Kiểm ảnh "Layers of AI: From classical methods to autonomous AI systems" (ảnh người dùng gửi, 2026-10-13)
 
 > Infographic 6 tầng xếp chồng, mũi tên đi lên, mỗi tầng 5 ô: Classical AI → Machine Learning → Neural Networks → Deep Learning → Generative AI → Agentic AI. Ghi nguồn **AIForLeaders.com**.
@@ -198,3 +216,4 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng gây hiểu sai hoặc thiếu ý
 - §2c ảnh "AI Engineer Interview Questions" (12/10/2026): https://www.linkedin.com/in/rathanuday · https://www.linkedin.com/posts/rathanuday_ai-agents-dont-fail-because-theyre-not-activity-7411823219176865792-xB4z · https://www.zoominfo.com/p/Rathnakumar-Udayakumar/-1632233212 (bên thứ ba) · https://www.goodreads.com/author/show/29625821.Rathnakumar_Udayakumar · kiểm nội dung: https://arxiv.org/abs/1706.03762 (§3.1 post-LN) · https://arxiv.org/abs/2002.04745 (Pre-LN) · https://arxiv.org/abs/2302.13971 (LLaMA, RMSNorm) · https://arxiv.org/abs/2303.16634 (G-Eval: BLEU/ROUGE tương quan thấp với người) · https://www.anthropic.com/engineering/building-effective-agents · https://www.anthropic.com/engineering/multi-agent-research-system (4×/15× token) · https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview · https://genai.owasp.org/llmrisk/llm01-prompt-injection/ · tài liệu ôn: https://github.com/chiphuyen/aie-book, https://github.com/KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub, https://github.com/amitshekhariitbhu/ai-engineering-interview-questions, https://github.com/alexeygrigorev/data-science-interviews, https://github.com/chiphuyen/ml-interviews-book, https://github.com/Devinterview-io/llms-interview-questions, https://github.com/llmgenai/LLMInterviewQuestions
 - §2d (12/10/2026): https://github.com/cporter202/automate-for-growth (clone đầy đủ, 9 commit, HEAD 2cc3193) · https://viralwavestudio.com · bản sao 0★: arnelnrose/automate_for_growth, klikydigital/automate-for-growth
 - §2e ảnh "Layers of AI" (13/10/2026): https://aiforleaders.com (FAQ: Adam Danyal, Julia Danyal) · bản đăng lại trên LinkedIn: https://de.linkedin.com/in/meheli-sinha, https://sa.linkedin.com/in/alhadlaq · kiểm nội dung: https://cvw.cac.cornell.edu/AI-overview/machine-learning/functionality-and-implementation (sơ đồ lồng nhau là quy ước dạy học) · https://lib.conestogac.on.ca/genai/learn-more · https://aima.cs.berkeley.edu · https://github.com/aimacode/aima-python · https://langchain.com/blog/the-anatomy-of-an-agent-harness
+- §2d.1 (13/10/2026): https://github.com/cporter202/make-com-automation-recipes (clone đầy đủ, 4 commit, HEAD 6fa1e09; 16★ shields) · https://www.make.com/en/templates (gallery chính thức; thử https://www.make.com/templates/11218, /10893 → 200) · https://n8n.io/workflows

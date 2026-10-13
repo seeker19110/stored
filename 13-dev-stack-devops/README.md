@@ -119,6 +119,38 @@
 | **alibaba/open-code-review** (`ocr`) | Mở, Apache-2.0, Go; `ocr delegate` không cần API key | **Luật review theo glob đường dẫn** (`rule.json`, first-match-wins); xboss sinh rule từ mảnh markdown + test khớp file→rule; dhcb dùng | CI chỉ góp ý, không chặn |
 | Santa Method / Council (skill ECC) | Theo gói model | 2 reviewer độc lập cùng rubric, cả hai phải pass | Xem mục 07 |
 
+## 6b. Kiểm ảnh "CRM System Architecture" (#codepathindia, ảnh người dùng gửi, 2026-10-13)
+
+Ảnh vẽ một CRM theo kiểu microservices. Client (web, mobile, nhân viên sales, cổng tự phục vụ của khách) đi qua CDN và load balancer, rồi API Gateway (Kong/NGINX/AWS) có IAM (Keycloak/Auth0). Phía sau là 6 service viết bằng Go/Echo: User, Contact, Opportunity, Task, Communication, Report & Analytics. Tầng dữ liệu gồm PostgreSQL, Redis, S3 và ClickHouse. Tích hợp ngoài: SendGrid/SES, Twilio, Stripe/Razorpay, Google Calendar. Hạ tầng chạy Docker và Kubernetes (HPA, EBS/EFS); quan sát bằng Prometheus, Grafana, ELK/OpenSearch, Jaeger. CI/CD dùng GitHub Actions/Jenkins, IaC dùng Terraform.
+
+| Ô trong ảnh | Đánh giá | Ghi chú |
+|---|---|---|
+| CDN + LB, API Gateway (routing, rate limit, auth), IAM có RBAC/SSO | ✅ | Đúng vai trò từng lớp. Rate limit đặt ở gateway là hợp lý |
+| 6 service tách theo miền (contact, opportunity, task…) | ⚠️ | Cách chia hợp lý về mặt miền. Nhưng với một CRM của một công ty, 6 service + Kubernetes là chi phí vận hành lớn; modular monolith tách đúng theo các miền này rồi mới tách dần thường rẻ hơn nhiều |
+| Mỗi service ghi "PostgreSQL", tầng dữ liệu chỉ có một "PostgreSQL (Primary DB)" | ⚠️ | Ảnh không nói rõ database riêng cho từng service hay dùng chung. Dùng chung một schema thì các service dính nhau qua bảng, mất lợi ích chính của microservices |
+| Không có message broker | ❌ | Các mũi tên đều là gọi trực tiếp. CRM cần sự kiện bất đồng bộ (lead mới → gửi email, đổi stage → cập nhật báo cáo, webhook ra ngoài). Thiếu Kafka/RabbitMQ/NATS hoặc ít nhất outbox pattern, và Communication Service dựa vào Redis thì dễ mất tin khi Redis không bật persistence |
+| ClickHouse cho báo cáo | ⚠️ | Hợp lý cho analytics. Nhưng ảnh thiếu đường đưa dữ liệu từ PostgreSQL sang (CDC như Debezium, hoặc ETL); không có nó thì báo cáo sai hoặc chậm |
+| "Load Balancer (Service Mesh)" có circuit breaker | ⚠️ | Gộp hai khái niệm khác nhau. Service mesh (Istio/Linkerd) lo mTLS, retry, circuit breaker giữa các service; LB ở rìa là chuyện khác |
+| Persistent Volumes EBS/EFS | ⚠️ | Service Go nên stateless; volume chỉ cần nếu tự chạy DB trong cluster, mà khi đó nên dùng dịch vụ quản lý (RDS…) và có backup/PITR |
+| Prometheus + Grafana + ELK/OpenSearch + Jaeger | ✅ | Bộ quan sát chuẩn. Ngày nay nên thu traces/metrics/logs qua OpenTelemetry rồi đẩy vào các backend này |
+| CI/CD: Code Push → Build → Test → Build Image → Deploy | ⚠️ | Thiếu quét bảo mật (SAST, quét image, quét bí mật), migration DB, và môi trường staging trước production |
+| Không có trong ảnh | ❌ | Tìm kiếm khách hàng/full-text (OpenSearch chỉ được vẽ cho log), audit log, backup và khôi phục, quản lý bí mật (Vault/Secrets Manager), multi-tenant nếu bán SaaS, đồng ý/xoá dữ liệu cá nhân (GDPR, Nghị định 13/2023 ở Việt Nam) |
+
+**Tổng:** 2 ✅, 6 ⚠️, 2 ❌. Ảnh dùng được làm **bản đồ thuật ngữ** cho người mới (các lớp trong một hệ thống SaaS điển hình), không dùng được làm bản thiết kế: không có gì riêng của CRM ngoài tên service, và thiếu đúng phần khó nhất là luồng sự kiện giữa các service.
+
+**Nếu cần CRM thật, xem mã nguồn mở trước khi tự dựng** (★ qua shields.io, 13/10/2026):
+
+| Repo | ★ | Giấy phép | Stack | Ghi chú |
+|---|---|---|---|---|
+| twentyhq/twenty | ~58k | Phần lớn AGPL-3.0; một số file `@license Enterprise` là thương mại; SDK/CLI/UI là MIT | TypeScript, NestJS, PostgreSQL, Redis | CRM hiện đại, tự host được; dự án sôi động (commit hôm qua) |
+| krayin/laravel-crm | ~24k | MIT | PHP Laravel | Giấy phép thoáng nhất trong nhóm |
+| odoo/odoo | ~55k | LGPL-3.0 (bản Community) | Python | ERP đầy đủ, CRM là một module; Enterprise là bản trả phí |
+| salesagility/SuiteCRM | ~5,8k | AGPL-3.0 | PHP | Kế thừa SugarCRM; lâu đời |
+| frappe/crm | ~3,8k | AGPL-3.0 | Python (Frappe), Vue | Gọn, đi cùng hệ Frappe/ERPNext |
+| espocrm/espocrm | ~3,5k | AGPL-3.0 | PHP | Nhẹ, dễ tuỳ biến |
+
+Đọc kỹ các repo này cho thấy chúng đều là **monolith** (một ứng dụng + PostgreSQL/MySQL + job queue), không phải 6 microservice như ảnh.
+
 ## 7. Nguồn
 
 - Mục 23 (19 repo của chủ kho, đọc 2026-10-12) · https://github.com/alibaba/open-code-review · https://github.com/googleapis/release-please · https://github.com/oxc-project/oxc · https://github.com/webpro-nl/knip · https://github.com/kucherenko/jscpd · https://github.com/astral-sh/uv · https://github.com/astral-sh/ruff

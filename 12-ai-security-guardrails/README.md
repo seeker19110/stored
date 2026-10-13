@@ -249,6 +249,41 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 
 **Bài học dùng lại ngoài bug bounty:** (1) luật "chỉ viết từ bằng chứng, thiếu thì hỏi" áp được cho mọi báo cáo do agent viết (PR, audit, post-mortem); (2) mỗi loại kết luận có một bảng "bằng chứng tối thiểu"; (3) luật luôn-bật nên đặt ở project scope và nạp lại sau compact.
 
+### 3i. PentAGI — hệ đa agent tự chủ cho pentest, tự host (dual-use, ảnh người dùng gửi, rà mã 2026-10-13)
+
+Ảnh là trang repo `vxcontrol/pentagi` ("Penetration testing Artificial General Intelligence", badge #1 GitHub Trending). Shields.io ngày 13/10/2026: ~27k★, ~3,9k fork, MIT, commit gần nhất tuần trước (HEAD `843dfeb`, 10/10/2026). Hãng: **VXControl**, công ty security engineering ở Dubai. Mã nguồn MIT nhưng kèm một **EULA** riêng: chỉ cho pentest hợp pháp có ủy quyền, người dùng chịu trách nhiệm tuân thủ GDPR và luật địa phương. Đây là công cụ **dual-use** — chỉ dùng khi có ủy quyền rõ ràng (hợp đồng pentest, CTF, phòng lab), đúng ranh giới của kho.
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / license | `vxcontrol/pentagi` · MIT + EULA; bản Enterprise đóng, trả phí |
+| Làm gì | Mô tả mục tiêu bằng lời → nhóm agent (research/development/infrastructure) lập kế hoạch, chạy hơn 20 công cụ (nmap, Metasploit, sqlmap…) trong sandbox Docker, nhớ kết quả vào PostgreSQL+pgvector, xuất báo cáo |
+| Stack | Go (backend) + React; Docker Compose; PostgreSQL/pgvector, tùy chọn Neo4j+Graphiti (đồ thị tri thức), MinIO, Langfuse+ClickHouse (quan sát LLM), OpenTelemetry |
+| LLM | 10+ provider (OpenAI, Anthropic, Gemini, Bedrock, Mistral, xAI, DeepSeek, GLM, Kimi, Qwen, MiniMax) + endpoint OpenAI-compatible + Ollama/vLLM local; có hướng dẫn vLLM + Qwen3.5-27B-FP8 |
+| API | REST + GraphQL, xác thực Bearer token |
+| Yêu cầu | 2 vCPU, 4 GB RAM, 20 GB đĩa, Docker/Podman |
+
+**Điểm cần đọc kỹ trước khi dựng:**
+
+| Mục | Mức | Chi tiết |
+|---|---|---|
+| Tài khoản admin mặc định | ⚠️ | Cài mới tạo sẵn `admin@pentagi.com` / `admin`. README dặn đổi ngay lần đăng nhập đầu, nhưng ai không đọc sẽ để nguyên — đây là lỗi cấu hình mặc định kinh điển |
+| Quyền Docker cho agent | ⚠️→❌ | `docker-compose.yml` mặc định bind-mount `/var/run/docker.sock` của **host** vào container (`user: root:root # while using docker.sock`). README nói rõ cách này cho agent tự chủ toàn quyền Docker API của host: nó có thể chạy container privileged, mount `/`, chiếm cả node. README **khuyến nghị** thay bằng daemon dind riêng qua TLS (`DOCKER_INSIDE=true`), nhưng mặc định compose vẫn là socket host. Chỉ dùng socket host trên máy dev một node đã tin tưởng |
+| Agent chạy tool tấn công thật | ⚠️ | Bản chất công cụ: agent tự quyết và chạy nmap/Metasploit/sqlmap. Phải cô lập mạng và chỉ trỏ vào mục tiêu được phép |
+| Đa thuê bao (`TENANT_ID`) | ✅ | Có namespace schema/cookie/đồ thị khi nhiều bản dùng chung tài nguyên; validate `^[a-z][a-z0-9_]{0,31}$`, sai thì chặn khởi động |
+| Không thu thập dữ liệu người dùng | ✅ | EULA nói hãng không thu thập/lưu dữ liệu; mọi xử lý diễn ra trên hạ tầng của bạn. Langfuse/OTel là tự host |
+| Isolation có chủ đích | ✅ | Ba mạng Docker tách (core/monitoring/analytics); sandbox cô lập cho thao tác |
+
+**So sánh trong nhóm agent pentest tự chủ (★ shields.io 13/10/2026):**
+
+| Repo | ★ | License | Khác PentAGI |
+|---|---|---|---|
+| `usestrix/strix` | ~68k | Apache-2.0 | Lớn nhất nhóm, black-box, rất sôi động; PentAGI mạnh ở self-host nhiều provider + đồ thị tri thức + API REST/GraphQL |
+| `vxcontrol/pentagi` | ~27k | MIT + EULA | Bản này |
+| `GreyDGL/PentestGPT` (USENIX '24) | ~16k | MIT | Cũ hơn, thiên về hội thoại dẫn pentest, không có sandbox kill-chain trọn gói |
+| `PurpleAILAB/Decepticon` (§3g) | ~6k | Apache-2.0 | Thêm C2 thật (Sliver), AD/cloud; PentAGI thiên về tool scan + báo cáo, quan sát qua Langfuse |
+
+**Nhận định:** PentAGI là bản OSS nghiêm túc, tài liệu bảo mật thành thật (tự nêu rõ rủi ro docker.sock và cách giảm). Rủi ro lớn nhất không nằm ở code mà ở **cấu hình mặc định**: tài khoản admin/admin và socket Docker host. Trước khi chạy: đổi mật khẩu admin, chuyển sang dind qua TLS, cô lập mạng ra khỏi LAN, và chỉ chạy với mục tiêu có ủy quyền. So với Decepticon (§3g) và Strix, PentAGI là lựa chọn "đội tool + báo cáo" hơn là "mô phỏng kill chain C2".
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.

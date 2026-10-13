@@ -268,3 +268,35 @@
 ## Bổ sung 2026-10-13 (ảnh "How AI Agents Work" → mục 03 §8c)
 
 - langchain.com/blog/the-anatomy-of-an-agent-harness (Vivek Trivedy, 3/2026, gốc công thức "Agent = Model + Harness") · datacamp.com/blog/agent-harness · addyosmani.com/blog/agent-harness-engineering · blogs.oracle.com/developers/the-agent-loop-decoded-three-levels-every-agent-engineer-must-know · strandsagents.com/docs/learning/how-agents-really-work · platform.claude.com/docs/en/agents-and-tools/tool-use/overview
+
+## Bổ sung 2026-10-13 đợt 2 (ảnh README cporter202/make-com-automation-recipes → mục 08 §2d.1)
+
+- github.com/cporter202/make-com-automation-recipes (clone đầy đủ, 4 commit 12/10/2026, HEAD: 3 file; 16★, shields 13/10/2026) · 603 link đều trỏ make.com/en/templates kèm tham số ?pc=viralwave (affiliate, README tự khai) · thay thế trung lập: make.com/en/templates, n8n.io/workflows
+
+## Bổ sung 2026-10-13 đợt 2 (hai ảnh Brij Kishore Pandey → mục 10 §3b)
+
+- "Classic RAG vs GraphRAG vs Agentic RAG" + "The $0 AI architecture stack": kiểm claim gói miễn phí/giấy phép từ trang chính thức
+- platform.claude.com/docs (Claude Code cần Pro/Max/Team/Enterprise/Console — bản free claude.ai không có) · vercel.com/docs/limits (Hobby phi thương mại) · supabase.com/pricing (Free 2 project, 500 MB) · arize.com/phoenix (ELv2) · ollama cần GPU, không free tier cloud chạy GPU
+- GraphRAG dựng đồ thị lúc index (microsoft/graphrag), không phải lúc truy vấn; classic RAG trong ảnh thiếu hybrid search + rerank
+
+## Bổ sung 2026-10-13 đợt 2 (ảnh trang repo browser-use/browser-use → mục 11 §1c)
+
+- github.com/browser-use/browser-use (clone nông, HEAD c75e847 7/10/2026; đọc pyproject.toml 0.13.11, config.py, telemetry/{service,views}.py, agent/{service,views}.py, llm/browser_use/chat.py, mcp/server.py, skills/install.py, sandbox/sandbox.py, AGENTS.md, CLOUD.md, skills/x402/SKILL.md, server.json) · github.com/browser-use/browser-harness (telemetry.py) · shields 13/10/2026 (~118k★, ~13k fork, MIT)
+- Phát hiện: bỏ Playwright → cdp-use==1.4.5; telemetry PostHog bật mặc định gửi task+action_history+URL (ANONYMIZED_TELEMETRY/CLOUD_SYNC/VERSION_CHECK=false để tắt); use_judge/use_vision=True mặc định; skill install ghi vào 8 thư mục trợ lý; @sandbox gửi mã lên cloud; AGENTS.md dặn luôn khuyên ChatBrowserUse
+
+## Bổ sung 2026-10-13 đợt 2 (ảnh "CRM System Architecture" #codepathindia → mục 13 §6b)
+
+- Ảnh infographic microservices (không phải repo); kiểm bằng kiến thức kiến trúc + đối chiếu CRM mã mở thật
+- CRM mã mở (★/license shields 13/10/2026): twentyhq/twenty ~58k (phần lớn AGPL-3.0, file @license Enterprise là thương mại, SDK/UI MIT) · krayin/laravel-crm ~24k MIT · odoo/odoo ~55k LGPL-3.0 (Community) · salesagility/SuiteCRM ~5,8k AGPL-3.0 · frappe/crm ~3,8k AGPL-3.0 · espocrm/espocrm ~3,5k AGPL-3.0
+
+## Bổ sung 2026-10-13 đợt 2 (ảnh "54 trang làm web/thiết kế/app miễn phí" AIHubSeek → mục 05)
+
+- Ảnh danh sách công cụ (không phải repo); kiểm gói miễn phí từng ô qua trang giá/review 13/10/2026
+- Ô sai/đã đổi: Squarespace (chỉ trial 14 ngày) · Zyro (gộp vào Hostinger Website Builder) · Midjourney (không free, từ 10 USD/th) · DALL·E (API gỡ 12/5/2026, GPT gỡ ChatGPT 30/8/2026 → ChatGPT Images) · Crello (→ VistaCreate từ 2021) · Appy Pie (trial 7 ngày) · Thunkable (free không xuất bản store) · The Things Stack + Pinecone (xếp sai cột: IoT server / vector DB)
+- Nguồn giá: squarespace/weebly/midjourney/godaddy/thunkable/appy/draftbit/zoho pricing pages + review 2026; remove.bg/pricing (free 0,25 MP, phi thương mại)
+
+## Bổ sung 2026-10-13 đợt 2 (ảnh trang repo vxcontrol/pentagi → mục 12 §3i)
+
+- github.com/vxcontrol/pentagi (clone nông, HEAD 843dfeb 10/10/2026; đọc README.md, EULA.md, LICENSE, docker-compose.yml) · shields 13/10/2026 (~27k★, ~3,9k fork, MIT) · vxcontrol.com (Dubai)
+- Phát hiện: MIT + EULA (chỉ pentest có ủy quyền); admin/admin mặc định; docker-compose mặc định mount /var/run/docker.sock host (README khuyến nghị dind qua TLS thay thế); Go+React, PostgreSQL/pgvector, Neo4j/Graphiti, Langfuse
+- So sánh (shields 13/10/2026): usestrix/strix ~68k Apache-2.0 · GreyDGL/PentestGPT ~16k MIT · PurpleAILAB/Decepticon ~6k Apache-2.0
