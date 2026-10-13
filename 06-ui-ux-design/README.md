@@ -47,7 +47,7 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 - **Refactoring UI Skill**: áp quy tắc spacing/typography/color/hierarchy từ sách Refactoring UI.
 - **Frontend-design skill** của Anthropic (trong marketplace Claude Code) + Taste làm lớp "quality enforcement".
 - Chưa có benchmark độc lập chứng minh hiệu quả; bằng chứng chủ yếu là demo & cộng đồng.
-- **Thêm từ repo của chủ kho (mục 23, 2026-10-12):** `impeccable` (plugin/skill "taste" được case-study-ft41 ghi trong `ui-ux-intelligence-provider.md`), `nextlevelbuilder/ui-ux-pro-max-skill` (45 file, vendor trong Hermes-Agents), `google-labs-code/design.md` (file DESIGN.md mô tả hệ thiết kế cho agent), `popular-web-designs` (54 design system tóm tắt). xboss có cổng tĩnh `check:contrast` + `check:ui-ux-guard` và Lighthouse CI chặn merge 4 category — "taste" chỉ bền khi có cổng máy đi kèm.
+- **Thêm từ repo của chủ kho (mục 23, 2026-10-12):** `impeccable` (plugin/skill "taste" được case-study-ft41 ghi trong `ui-ux-intelligence-provider.md`), `nextlevelbuilder/ui-ux-pro-max-skill` (45 file, vendor trong Hermes-Agents), `google-labs-code/design.md` (file DESIGN.md mô tả hệ thiết kế cho agent; spec + linter, xem §7c), `popular-web-designs` (54 design system tóm tắt). xboss có cổng tĩnh `check:contrast` + `check:ui-ux-guard` và Lighthouse CI chặn merge 4 category — "taste" chỉ bền khi có cổng máy đi kèm.
 
 ## 5. Tài nguyên học UI/UX cho developer
 
@@ -142,6 +142,56 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 - **Tích hợp:** MIT, chép/vendor được; giữ `THIRD_PARTY_LICENSES.md` (icon Tabler, MIT). Cấu hình tối thiểu: chạy onboarding một lần cho mỗi dự án, lưu profile; tắt Google Fonts cho tài liệu nội bộ.
 
 **Nguồn §7b:** https://github.com/cathrynlavery/diagram-design (clone đầy đủ, HEAD 80c8f28; README, SKILL.md, references/type-*.md, references/export.md, scripts/, .maintainer-policy.json, .github/workflows/ci.yml, PRIVACY.md, THIRD_PARTY_LICENSES.md) · https://diagramdesign.dev · https://skillselion.com/guides/diagram-design-skill-claude-code-guide
+
+## 7c. Kiểm ảnh: VoltAgent/official-design-md, danh mục DESIGN.md "chính chủ" (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh là phần đầu README (banner "Official DESIGN.md Collection", huy hiệu "DESIGN.md 7", Discord "138 online"). Đã clone toàn bộ repo (6 commit), tải đủ 11 file được liệt kê, và chạy linter chính thức của Google (`npx @google/design.md@0.4.0 lint`) trên từng file.
+
+### 7c.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `VoltAgent/official-design-md` · ~519★, 47 fork (shields), license **MIT** · chỉ có `README.md` + `LICENSE` |
+| Lịch sử | 6 commit, cùng một người (necatiozmen / Necati Özmen): tạo 26/7/2026 với 7 mục → 8 mục ngày 29/8 (thêm Ant Design) → 11 mục ngày 14/9 (Oxide, Juspay, Microsoft FAST); commit cuối 21/9/2026 |
+| Mô tả | "The tracker for first-party DESIGN.md adoption… not extracted, not reverse-engineered, not community-made." |
+| Chủ list | VoltAgent (framework agent TypeScript). Cùng chủ: `awesome-design-md` (~121k★, 84 DESIGN.md **trích xuất** từ website), `official-mcp-servers` (mục 04 §2c), `awesome-agent-skills`, `awesome-claude-code-subagents` |
+| Chuẩn gốc | DESIGN.md do Google Stitch công bố; Google mở bản nháp đặc tả ngày 21/4/2026 tại `google-labs-code/design.md` (~28k★, Apache-2.0, bản 0.4.0 ngày 27/7/2026, trạng thái alpha): YAML front matter chứa token + phần văn xuôi giải thích, kèm CLI `lint`/`diff`/`export` |
+| Mô hình kinh doanh | README chèn quảng cáo EveryFeed và hai bộ starter kit trên getdesign.md. Trang getdesign.md/request bán **DESIGN.md riêng** $39 và "Website Starter Kit + DESIGN.md" $249, đều trả một lần (đọc 13/10/2026) |
+
+### 7c.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| Tab "MIT license" | ✅ | `LICENSE`: MIT, © 2026 VoltAgent. Chỉ áp cho README; mỗi file được liệt kê thuộc chủ của nó (README tự ghi) |
+| Huy hiệu "DESIGN.md 7" | ⚠️ cũ | Ảnh chụp trong khoảng 26/7–29/8/2026; nay huy hiệu ghi **11**, khớp đúng 11 dòng trong mục Collection |
+| "138 online" (Discord) | ⚠️ | Huy hiệu sống, đổi theo giờ; không nói gì về chất lượng list |
+| "published by companies and projects themselves" | ⚠️ 10/11 | 10/11 file nằm trên domain hoặc repo của chính chủ. Mục **VoltAgent** thì không đúng tinh thần: file trong `VoltAgent/voltagent` (thêm 11/5/2026) tự mô tả là *"Voltagent Inspired… An inspired interpretation of Voltagent's design language"*, giống **88%** theo dòng (difflib) với bản trích xuất `design-md/voltagent/DESIGN.md` mà `awesome-design-md` đăng từ 31/3/2026. Tức là bản trích xuất được đăng lại vào repo chính chủ, cùng một tác giả |
+| "not extracted, not reverse-engineered" | ⚠️ | Đúng cho 10 file còn lại theo nội dung đọc được; đúng một ngoại lệ là chính mục của chủ list (ô trên) |
+| "If a team ships an official DESIGN.md… it belongs here" | ⚠️ | Không có kiểm tra tự động (không CI, không script). Thêm mục qua issue rồi PR, người duyệt là chủ repo. 11/11 link còn sống (HTTP 200, 13/10/2026) |
+
+**Tổng:** 1✅ / 5⚠️ / 0❌. Không ô nào sai hẳn, nhưng "chính chủ" mới đúng ở mức *đăng trên domain của mình*, chưa phải *chính chủ viết*, và list không kiểm file có đúng spec hay không.
+
+### 7c.3 Linter chính thức chấm 11 file (0.4.0, chạy 13/10/2026)
+
+| File | YAML token? | Lỗi | Cảnh báo | Nhận xét |
+|---|---|---|---|---|
+| Vercel | có | 0 | 0 | File duy nhất sạch hoàn toàn |
+| Ant Design | có | 0 | 19 | 17 token mồ côi; nút chính chữ trắng trên `#1677ff` chỉ đạt 4,10:1 (dưới AA 4,5:1) |
+| Mintlify | có | 0 | 43 | Typography viết dạng mảng, linter không nhận; thiếu màu `primary` |
+| VoltAgent | có | 0 | 30 | 26 tham chiếu token không trỏ tới đâu |
+| Atlassian | có | **29** | 446 | 1.738 dòng; đơn vị `%` không hợp lệ, 203 tham chiếu gãy. Một phần cảnh báo tương phản là dương tính giả (linter tính trên nền trong suốt `#00000000`) |
+| Oxide | trong khối code | 0 | 162 | 37 tham chiếu gãy, typography dạng mảng |
+| Clerk, Juspay, Microsoft FAST, Nuxt, Resend | **không** | 0 | 1 | "No YAML content found": văn xuôi thuần, linter không có gì để kiểm |
+
+**Đọc bảng:** 6/11 file có token máy đọc được; chỉ 1/11 qua linter sạch. Câu README *"No Figma exports, no JSON schemas, no special tooling… nothing to parse"* lệch với chính spec của Google, vốn đặt token trong YAML và có CLI kiểm. Với agent, file văn xuôi vẫn dùng được làm ngữ cảnh, nhưng không kiểm được tương phản hay tham chiếu bằng máy.
+
+### 7c.4 Dùng thế nào
+
+- **Làm mẫu tham khảo, không chép nguyên:** README bảo "Copy it into your project root", nhưng đó là **hệ thiết kế của thương hiệu khác** (logo, màu, font có thể có quyền riêng). Hợp lý là đọc cách họ cấu trúc file (Vercel cho bản đúng spec, Microsoft FAST và Oxide cho bản dành cho dev của chính design system), rồi viết DESIGN.md cho brand của mình.
+- **Muốn file có giá trị kiểm chứng:** viết theo spec của `google-labs-code/design.md` (YAML token + văn xuôi) và chạy `lint` trong CI, cùng kiểu "taste chỉ bền khi có cổng máy" ở §4 và các case study §7, §7b.
+- **Phân biệt hai list cùng chủ:** `official-design-md` (11 file, ý định chính chủ) và `awesome-design-md` (84 file trích xuất từ CSS công khai, README tự ghi "We do not claim ownership"). Bản trích xuất hợp cho thử nghiệm; đưa vào sản phẩm thật thì nên tự viết.
+
+**Nguồn §7c:** https://github.com/VoltAgent/official-design-md (clone đầy đủ, HEAD 7236b05) · https://github.com/VoltAgent/awesome-design-md (clone nông, HEAD c7c1bad 12/10/2026; `design-md/voltagent/DESIGN.md`) · https://github.com/VoltAgent/voltagent (lịch sử `DESIGN.md`: bd74d743, 11/5/2026) · https://github.com/google-labs-code/design.md (README, bản 0.4.0) · https://www.npmjs.com/package/@google/design.md · https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/ · https://the-decoder.com/googles-open-source-design-md-gives-ai-agents-a-prompt-ready-blueprint-for-brand-consistent-design/ · https://getdesign.md/request · 11 file: ant.design/design.md · atlassian.design/DESIGN.md · clerk.com/design.md · github.com/juspay/blend-design-system (DESIGN.md) · github.com/microsoft/fast (examples/design-system/DESIGN.md) · mintlify.com/design.md · nuxt.com/design.md · github.com/oxidecomputer/design-system (design.md) · resend.com/design.md · vercel.com/design.md · github.com/VoltAgent/voltagent (DESIGN.md)
 
 ## 8. Nguồn (mục 1–6)
 

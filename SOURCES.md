@@ -305,3 +305,12 @@
 
 - genai.owasp.org/llmrisk/llm01-prompt-injection ("unclear if there are fool-proof methods of prevention"; 7 nhóm giảm thiểu) · roadmap.sh/ai-engineer (AI engineer = dùng model có sẵn, khác ML engineer/researcher)
 - github.com/chiphuyen/aie-book (README: when to finetune, dataset engineering; ~18k★) · github.com/patchy631/ai-engineering-hub (~38k★, MIT) · shields 13/10/2026: kamranahmedse/developer-roadmap ~369k, BerriAI/litellm ~61k
+
+## Bổ sung 2026-10-13 đợt 4 (ảnh README VoltAgent/official-design-md → mục 06 §7c)
+
+- github.com/VoltAgent/official-design-md (clone đầy đủ, 6 commit, HEAD 7236b05 21/9/2026; README, LICENSE) · shields 13/10/2026 (~519★, 47 fork, MIT)
+- github.com/VoltAgent/awesome-design-md (clone nông, HEAD c7c1bad 12/10/2026; 84 thư mục `design-md/*/DESIGN.md`; `design-md/voltagent/DESIGN.md` có từ 31/3/2026) · shields 13/10/2026 (~121k★, ~13k fork, MIT)
+- github.com/VoltAgent/voltagent (`DESIGN.md` thêm ở commit bd74d743 ngày 11/5/2026; so difflib với bản trích xuất: 88% theo dòng)
+- github.com/google-labs-code/design.md (README, bản 0.4.0) · npmjs.com/package/@google/design.md (0.4.0, 27/7/2026) · blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/ (mở spec 21/4/2026) · the-decoder.com (bài về DESIGN.md) · shields 13/10/2026 (~28k★, Apache-2.0)
+- getdesign.md/request (DESIGN.md riêng $39, Website Starter Kit + DESIGN.md $249, trả một lần; đọc 13/10/2026)
+- 11 file tải về và chạy `npx @google/design.md@0.4.0 lint` (13/10/2026): ant.design/design.md · atlassian.design/DESIGN.md · clerk.com/design.md · juspay/blend-design-system DESIGN.md · microsoft/fast examples/design-system/DESIGN.md · mintlify.com/design.md · nuxt.com/design.md · oxidecomputer/design-system design.md · resend.com/design.md · vercel.com/design.md · VoltAgent/voltagent DESIGN.md

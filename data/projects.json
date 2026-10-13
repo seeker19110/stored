@@ -4591,6 +4591,36 @@
       "open_source": true,
       "notes": "13/10/2026; 603 link gallery Make.com, toàn bộ gắn tham số affiliate ?pc=viralwave; xem mục 08 §2d.1",
       "section": "08"
+    },
+    {
+      "name": "official-design-md (VoltAgent)",
+      "repo": "VoltAgent/official-design-md",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 519,
+      "open_source": true,
+      "notes": "11 DESIGN.md chính chủ; 1/11 qua linter Google sạch; mục VoltAgent là bản trích xuất đăng lại (13/10/2026)",
+      "section": "06"
+    },
+    {
+      "name": "awesome-design-md",
+      "repo": "VoltAgent/awesome-design-md",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 121000,
+      "open_source": true,
+      "notes": "84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026)",
+      "section": "06"
+    },
+    {
+      "name": "DESIGN.md spec (Google)",
+      "repo": "google-labs-code/design.md",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 28000,
+      "open_source": true,
+      "notes": "Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)",
+      "section": "06"
     }
   ]
 }
