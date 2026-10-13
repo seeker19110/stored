@@ -1110,9 +1110,9 @@
       "repo": "browser-use/browser-use",
       "category": "browser-agent",
       "license": "MIT",
-      "stars": 114000,
+      "stars": 118000,
       "open_source": true,
-      "notes": "9/2026",
+      "notes": "13/10/2026",
       "section": "11"
     },
     {
@@ -4571,6 +4571,26 @@
       "open_source": true,
       "section": "08",
       "notes": "Code Python cho giáo trình AIMA (Russell & Norvig): search, logic, planning, học máy, agent — thay thế đúng cấu trúc cho infographic 'Layers of AI'; commit gần nhất 6/2026; ★ ~8,8k 13/10/2026 (shields)"
+    },
+    {
+      "name": "PentAGI",
+      "repo": "vxcontrol/pentagi",
+      "category": "security",
+      "license": "MIT (kèm EULA)",
+      "stars": 27000,
+      "open_source": true,
+      "notes": "13/10/2026; hệ đa agent tự chủ pentest, tự host, dual-use; xem §3i cấu hình mặc định admin/admin + docker.sock",
+      "section": "12"
+    },
+    {
+      "name": "make.com-automation-recipes",
+      "repo": "cporter202/make-com-automation-recipes",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 16,
+      "open_source": true,
+      "notes": "13/10/2026; 603 link gallery Make.com, toàn bộ gắn tham số affiliate ?pc=viralwave; xem mục 08 §2d.1",
+      "section": "08"
     }
   ]
 }

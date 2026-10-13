@@ -40,6 +40,37 @@
 | RAGFlow | infiniflow/ragflow | – | RAG engine có UI, parse tài liệu sâu |
 | Haystack | deepset-ai/haystack | ~20k | Pipeline RAG production |
 
+## 3b. Kiểm hai ảnh của Brij Kishore Pandey: "RAG Evolution" và "The $0 AI architecture stack" (ảnh người dùng gửi, 2026-10-13)
+
+> Hai trang của cùng một carousel 17 trang (ghi "10 / 17" và "12 / 17"), ký tên **Brij Kishore Pandey (@brijpandeyji)**, người viết nội dung AI phổ thông trên LinkedIn/X. Không tìm thấy bài gốc đã đánh chỉ mục (13/10/2026); đánh giá dựa trên nội dung ảnh, đối chiếu docs chính thức.
+
+### 3b.1 "Classic RAG vs GraphRAG vs Agentic RAG"
+
+| Cột | Ảnh nói | Đánh giá | Chỗ cần sửa / bổ sung |
+|---|---|---|---|
+| Classic RAG | Query → Embed → Vector DB → Top-k → Prompt + LLM → Answer; hợp FAQ, câu hỏi một bước | ⚠️ | Đây là bản **naive**. RAG "cổ điển" chạy production thường có thêm **hybrid search** (BM25 + vector), **reranking**, viết lại câu hỏi và lọc theo quyền — mấy bước này thường đáng làm trước khi lên GraphRAG (§3, mục 08 §2c ô 18) |
+| GraphRAG | Query → **trích entity + quan hệ** → knowledge graph → duyệt subgraph → tóm tắt + LLM | ⚠️ | Vẽ việc trích entity/quan hệ như bước **lúc truy vấn**. Với Microsoft GraphRAG, đồ thị và bản tóm tắt cộng đồng được dựng **lúc index** (gọi LLM trên từng chunk — nguồn chi phí chính); lúc hỏi chỉ trích entity của câu hỏi rồi tìm cục bộ (local search) hoặc map-reduce qua tóm tắt cộng đồng (global search). Hạn chế "chi phí dựng và bảo trì đồ thị" thì đúng; LightRAG (§3) là lựa chọn rẻ hơn |
+| Agentic RAG | Agent lập kế hoạch → chọn vector/graph/web/tool → tổng hợp → tự đánh giá, lặp nếu yếu → trả lời | ⚠️ | Ý đúng, nhưng "tự đánh giá" bằng chính model là lời khai (mục 03 §8c): cần **ngân sách vòng lặp** và eval ngoài. Thiếu rủi ro **prompt injection gián tiếp** khi agent đọc web/tài liệu (mục 12 §1) |
+| Thông điệp cuối | "Năng lực tăng ở mỗi bước, chi phí và quản trị cũng tăng; chọn cách đơn giản nhất qua được eval" | ✅ | Lời khuyên đúng nhất của ảnh. Nhưng mũi tên "retrieves → connects → reasons" dễ đọc thành tiến hoá thay thế; thực tế ba kiểu **hợp ba loại câu hỏi khác nhau** (một bước / nhiều bước theo quan hệ / nhiều nguồn, động) và Agentic RAG thường dùng hai kiểu kia làm tool |
+
+### 3b.2 "The $0 AI architecture stack: nine layers, all open-source or free tier"
+
+| Tầng | Ảnh ghi | Có thật $0? | Ghi chú (đọc 13/10/2026) |
+|---|---|---|---|
+| Frontend | Next.js, Streamlit, Vercel | ⚠️ | Next.js, Streamlit: mã mở. **Vercel Hobby chỉ cho dùng cá nhân, phi thương mại** (docs Vercel, fair use) và có trần (4 CPU-giờ, 1 triệu invocation/tháng; vượt thì chờ 30 ngày) |
+| Orchestrator | LangGraph, CrewAI | ✅ | Cả hai MIT; nền tảng hosted của họ mới tính phí |
+| LLM | Ollama, Gemma, Llama, Mistral, Qwen "chạy local" | ⚠️ | Không tốn tiền license nhưng **tốn phần cứng**; license model khác nhau: Llama theo Llama Community License (không phải OSI, có điều khoản quy mô và chính sách sử dụng), Gemma theo điều khoản riêng của Google **(chưa xác minh bản mới nhất)**, nhiều model Mistral/Qwen là Apache-2.0. Đọc license từng model trước khi dùng thương mại |
+| RAG | LlamaIndex, Qdrant, ChromaDB | ✅ | MIT/Apache-2.0; Qdrant Cloud có gói miễn phí nhỏ |
+| MCP tools | MCP, GitHub, Gmail | ✅ (có điều kiện) | Giao thức và server miễn phí; Gmail cần OAuth app Google, scope nhạy cảm có thể phải qua thẩm định. Cấp tool cho agent là bề mặt tấn công (mục 12) |
+| Code agent | **Claude Code**, Aider | ❌ | **Claude Code không có gói $0**: docs ghi "requires a Pro, Max, Team, Enterprise, or Console account. The free claude.ai plan does not include Claude Code access." Aider (Apache-2.0) thì $0 nếu ghép với model local |
+| Data | SQLite, DuckDB, Supabase | ⚠️ | SQLite, DuckDB: mã mở, $0. Supabase Free: 2 project, 500 MB DB mỗi project; project free bị tạm dừng khi không hoạt động **(chưa xác minh số ngày trong lần đọc này)** |
+| Observability | Arize Phoenix, Langfuse | ✅ (lưu ý license) | Langfuse core MIT, tự host được; **Phoenix là Elastic License 2.0** — source-available, không phải "open-source" theo OSI (catalog mục 07) |
+| Deploy | Docker, Cloudflare, Hugging Face | ⚠️ | Docker không phải nơi host. **Không gói miễn phí nào trong ảnh chạy được Ollama với GPU**; HF Spaces CPU miễn phí có ngủ khi không dùng; Cloudflare Workers không chạy Ollama. Luồng "Ollama generates" ở cột phải mâu thuẫn với tầng Deploy $0 |
+
+**Tổng:** 3 ✅, 5 ⚠️, 1 ❌. Ảnh tự ghi đúng ở chân trang: "kiểm giới hạn từng free tier trước khi phụ thuộc vào nó". Đọc đúng thì đây là **stack prototype chạy trên máy mình**, không phải stack production $0: hai thứ phải trả tiền đầu tiên là **GPU để chạy model** (hoặc API model) và **coding agent** nếu dùng Claude Code.
+
+**Bổ sung khi dùng thật:** thêm eval (mục 07: Promptfoo, Ragas, DeepEval) — ảnh RAG khuyên "pick the simplest one that passes your evals" nhưng ảnh stack lại không có tầng eval riêng ngoài trace; thêm gateway/router để đổi giữa model local và API khi tải tăng (§6).
+
 ## 4. Agent memory (bộ nhớ dài hạn)
 
 | Dự án | Repo | License | ★ (18/9/2026, Atlan) | Cách tiếp cận | Ghi chú |
@@ -76,3 +107,4 @@
 - https://atlan.com/know/top-vector-databases-enterprise-ai/ · https://www.firecrawl.dev/blog/best-vector-databases · https://aimultiple.com/open-source-vector-databases · https://vdf.ai/blog/best-vector-database-for-rag/ · https://www.marktechpost.com/2026/05/10/best-vector-databases-in-2026-pricing-scale-limits-and-architecture-tradeoffs-across-nine-leading-systems/ · https://lakefs.io/blog/best-vector-databases/
 - https://github.com/BerriAI/litellm · https://github.com/Portkey-AI/gateway · https://github.com/songquanpeng/one-api · https://github.com/Helicone/helicone · mục 23 §5 (đọc 2026-10-12)
 - https://atlan.com/know/best-ai-agent-memory-frameworks-2026/ · https://dev.to/plur9/mem0-vs-letta-vs-zep-which-should-you-use-for-agent-memory-1n8m · https://www.developersdigest.tech/blog/best-ai-agent-memory-providers-2026 · https://thegenios.com/blog/open-source-memory-layers-2026/ · https://niteagent.com/blog/ai-agent-memory-comparison-2026/ · https://medium.com/@wasowski.jarek/i-compared-5-ai-agent-memory-systems-across-6-dimensions-none-wins-6a658335ed0a
+- §3b ảnh của Brij Kishore Pandey (13/10/2026): https://code.claude.com/docs/en/setup (mục Authenticate: không có gói free) · https://vercel.com/docs/plans/hobby (phi thương mại, trần dùng) · https://supabase.com/docs/guides/platform/billing-on-supabase (2 project, 500 MB) · https://microsoft.github.io/graphrag/ (index vs query) · https://blog.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag · https://blog.premai.io/advanced-rag-methods-simple-hybrid-agentic-graph-explained · https://www.besthub.dev/articles/high-concurrency-rag-when-to-use-classic-graph-or-agentic-architecture-2ab88f96c9dd
