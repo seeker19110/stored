@@ -188,6 +188,52 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 6. Có thể đóng gói checklist mục 09 + prompt bảo trì `loop.md` thành một plugin (mục 20) để chạy bằng Routine mỗi sáng.
 7. **AI Delivery Loop** (xboss) là state machine đáng chuẩn hoá: Frame → Research → Spec → Ready → Build → Verify → PR → Reconcile; 1 vòng = 1 PR; goal file có risk register + iteration log; PR `feat` phải link spec đã "Approved for implementation".
 
+## 10b. Kiểm ảnh: mariagorskikh/open-instinct, agent cá nhân nhắn qua iMessage (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh là trang repo GitHub: About "Open Instinct: an open-source Instinct. A personal agent you text on iMessage, with its own computer and a trusted network of other agents. Built on Pi, Inkbox, Maritime and Composio.", 293★, 65 fork, 38 commit, 1 tag, 1 issue, 4 PR, MIT; commit gần nhất `638c657` "Merge pull request #12 from tonydzi/fix/blocked-merchants-scan-all-…" (4 ngày trước) có dấu ✕ đỏ. Đã clone toàn bộ repo (HEAD `79a144a` 11/10/2026), đọc README, `SECURITY.md`, `docs/research/INSTINCT.md`, `packages/core/src/policy.ts`, workflow CI, rồi tự build và chạy test.
+
+### 10b.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `mariagorskikh/open-instinct` · ~324★, 68 fork, **MIT** · 61 commit từ 3/10/2026 (tên đầu là "LibreInstinct") tới 11/10/2026 |
+| Tác giả | Maria Gorskikh (~36 commit); người đóng góp khác: mahmoudomarus 7, ishanray 5, aadithyan rajesh 4, Anton Dziatkovskii (tonydzi) 3, Thom Bailly 2 |
+| Bản gốc được sao | **Instinct** của Spear Street Technology (Noah Shinn): agent cá nhân thương mại qua iMessage, vòng Series C $1B ở định giá $10B ngày 28/9/2026 (Sequoia, Benchmark, Coatue; theo tin tổng hợp từ Reuters/TechCrunch, chưa đọc bài gốc). README tự gọi bản này là "from-scratch, documented clone", không liên quan tới công ty |
+| Kiến trúc | Monorepo pnpm/TypeScript, 11 package: `core`, `gateway`, `server`, `inkbox`, `computer`, `network`, `payments`, `context`, `apps`, `ample`, `cli`; 13 skill |
+| Các mảnh ghép | **Inkbox** (số điện thoại iMessage/SMS, email, kênh A2A) · **Maritime** (microVM có desktop Linux riêng cho agent) · vòng agent **Pi** (`earendil-works/pi`, ~115k★; dùng `@earendil-works/pi-ai`, `pi-agent-core`, `pi-coding-agent`, `pi-mcp`) · **Composio** (kết nối app) · **Stripe Link** (thẻ dùng một lần khi mua hộ) |
+| Model mặc định | `anthropic/claude-fable-5-1`, dự phòng `anthropic/claude-opus-5-5` (đổi được) |
+
+### 10b.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| 293★ · 65 fork · 38 commit | ⚠️ cũ | Nay ~324★, 68 fork (shields 13/10/2026), 61 commit. Repo mới 10 ngày tuổi nên số đổi theo ngày |
+| "A personal agent you text on iMessage" | ✅ | Kênh nhắn đi qua Inkbox; ngoài iMessage còn SMS, email và A2A |
+| "with its own computer" | ✅ | Mỗi agent có một microVM Maritime với desktop Linux, trình duyệt và shell |
+| "a trusted network of other agents" | ✅ | Package `network`: agent nói chuyện với agent qua A2A, phân 6 mức tin cậy (owner/partner/family/friend/contact/stranger) |
+| "Built on Pi, Inkbox, Maritime and Composio" | ✅ | Khớp dependency trong `package.json` các package |
+| MIT | ✅ | `LICENSE` MIT |
+| Commit `638c657` có dấu ✕ đỏ | ⚠️ | Lúc chụp, CI của commit đó đỏ. HEAD hiện là PR #24 (`fix/inkbox-tunnel`); trạng thái CI hiện tại (chưa xác minh) |
+
+**Tổng:** 5✅ / 2⚠️ / 0❌. Mô tả trong ảnh đúng. Hai ⚠️ là số cũ và CI đỏ lúc chụp.
+
+### 10b.3 Điều ảnh không nói (đọc mã và tự chạy)
+
+- **Test thật chạy được.** README ghi 837 test. Tự chạy `pnpm install --frozen-lockfile --ignore-scripts && pnpm build && pnpm -r test` ngày 13/10/2026: **877 test, tất cả pass** (core 221, apps 156, inkbox 141, server 94, payments 66, network 65, gateway 63, computer 43, ample 25, context 3). Chưa chạy `pnpm smoke` (cần tài khoản dịch vụ thật).
+- **Quyền được chặn bằng mã, không bằng prompt.** `packages/core/src/policy.ts` kiểm từng lời gọi tool qua `beforeToolCall` theo mức tin cậy của người nhắn, ghi `audit.jsonl`; nội dung từ ngoài được bọc nhãn "untrusted"; `net-guard.ts` chặn SSRF tới địa chỉ nội bộ.
+- **`SECURITY.md` tự khai giới hạn rõ:** tool `bash` là shell thật trong VM; chống SSRF chưa chặn được DNS rebinding; email đến không kiểm SPF/DKIM nên có thể bị giả người gửi; `merchantName` trong yêu cầu thanh toán không được đối chiếu với danh sách cho phép/chặn; rate limit chỉ nằm trong bộ nhớ; cookie trình duyệt lưu trong VM; phải tin nền tảng host (Maritime, Inkbox).
+- **Cấp quyền tiêu tiền và đọc tin nhắn.** Agent có thể mua hộ bằng thẻ Stripe Link dùng một lần và đọc mọi tin nhắn gửi tới số điện thoại của nó. Đây là chỗ cần đặt hạn mức trước khi thử.
+- **CI có cổng bí mật:** build/typecheck/test/smoke, bước "No leftover secrets", workflow quét bí mật trên toàn lịch sử, workflow đẩy image lên GHCR.
+- **Trùng tên:** `Merit-Systems/OpenInstinct` (~450★) là dự án khác, không liên quan; README của nó cũng ghi rõ điều này.
+
+### 10b.4 So sánh & dùng thế nào
+
+- **Thuộc nhóm agent cá nhân chạy liên tục**, cùng họ với OpenClaw/Hermes Agent (mục 02) và phần personal agent ở mục 19. Khác biệt: kênh chính là tin nhắn điện thoại, agent có máy riêng, và có mạng agent với mức tin cậy.
+- **Đáng mượn cho dự án của chủ kho:** (1) mô hình 6 mức tin cậy kiểm ở `beforeToolCall` + audit log, thay cho luật viết trong prompt; (2) bọc nội dung ngoài thành "untrusted" (khớp ADR "nội dung ngoài là dữ liệu" ở mục 23); (3) `SECURITY.md` liệt kê giới hạn đã biết như một sổ nợ.
+- **Chưa nên chạy thật với tiền hay dữ liệu thật:** repo mới 10 ngày, một người viết phần lớn, phụ thuộc bốn dịch vụ trả phí bên ngoài, và còn các lỗ tự khai ở email và thanh toán.
+
+**Nguồn §10b:** https://github.com/mariagorskikh/open-instinct (clone đầy đủ, HEAD 79a144a; README, SECURITY.md, docs/research/INSTINCT.md, packages/core/src/policy.ts, packages/*/package.json, .github/workflows/) · https://trendshift.io/repositories/281812 · https://github.com/earendil-works/pi · https://github.com/Merit-Systems/OpenInstinct · https://aiweekly.co/alerts/instinct-raises-1b-series-c-at-10b-for-personal-ai-agent · https://letsdatascience.com/news/instinct-raises-1-billion-series-c-c9d149f6 · https://officechai.com/ai/ai-agent-startup-instinct-is-now-worth-10-billion-with-just-14-employees/ (Series C của Instinct; WebSearch 13/10/2026) · https://agent37.com/docs/agents-api/instinct
+
 ---
 
 ## 11. Nguồn
