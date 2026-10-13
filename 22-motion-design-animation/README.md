@@ -303,6 +303,56 @@
 - **Rủi ro:** mới 5 ngày tuổi (v0.1.x), chỉ 2 người, bắt buộc Python ≥3.13; wheel là GPL nên cần lưu ý khi đóng gói cùng sản phẩm đóng; công ty có sản phẩm thương mại song song nên hướng phát triển có thể lệch về Studio.
 - **Bên cạnh:** Manim CE 41,5k★ (v0.22.0, 8/10/2026) vẫn là chuẩn khi cần đúng hành vi CE và hệ plugin; ManimGL 94,9k★; `AzurIce/ranim` 655★ (cũng Rust/wgpu nhưng API Rust); `maloyan/manim-web` 484★ (port TypeScript); agent sinh Manim: `HarleyCoops/Math-To-Manim` 2,8k★, `adithya-s-k/manim_skill` 1,2k★ (commit cuối 1/2026), `abhiemj/manim-mcp-server` 649★ (đứng từ 5/2025), TheoremExplainAgent 1,5k★ (ACL 2025).
 
+## 9d. Kiểm ảnh: letuandat131/whiteboard-animation-vi, video vẽ bảng trắng làm tại Việt Nam (ảnh người dùng gửi, 2026-10-13)
+
+> Ảnh là trang repo GitHub: tiêu đề "WHITEBOARD ANIMATION VI", tác giả letuandat131 (Lê Đạt), "Gradio UI. Developed in Vietnam.", CC0-1.0, 2★, 0 fork, Python 99,1%, các commit "Initial source, Gradio UI and animated demos", "Remove internal mode suffixes…", "Lead README with a hero animation…" (4–5 giờ trước). Đã clone repo, đọc README, `LICENSE`, mã nguồn, rồi tự chạy test.
+
+### 9d.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `letuandat131/whiteboard-animation-vi` · ~56★, 26 fork (shields) · CC0-1.0 (chỉ phủ mã gốc, xem dưới) |
+| Lịch sử | Nay chỉ còn **1 commit** "Initial release" `c689bf7` lúc 13/10/2026 11:24 +0700. Các commit thấy trong ảnh không còn, tức lịch sử đã bị gộp lại sau khi chụp |
+| Chức năng | Ảnh tĩnh → video "bàn tay vẽ bảng trắng" (nét viền trước, tô màu sau), 1280×720, 50 FPS; hai chế độ Detailed và Quick |
+| Công nghệ | App Gradio 6.29.1 (bind `127.0.0.1`, `share=False`), PyTorch 2.8; GPU CUDA và mã hoá NVENC là tùy chọn, chạy được trên CPU |
+| Model tách nền | ISNet từ `SkyTNT/anime-segmentation` (~850★, Apache-2.0); checkpoint Hugging Face `skytnt/anime-seg` (không nằm trong Git, quyền dùng weights theo upstream) **ghim revision `493cb608…` và SHA256 `3351563b…`**, tải tường minh, không nạp pickle |
+| Mã vendor | `vendor_runtime/anime_segmentation` (ISNet, Apache-2.0) và `vendor_runtime/srt_whiteboard` (chế độ lưới lấy từ `geeklee/srt-whiteboard-animation`, ~4,4k★, MIT), giữ nguyên LICENSE upstream |
+| Dung lượng | `.git` ~44 MB, trong đó ~42 MB là GIF demo ở `docs/media` |
+
+### 9d.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| 2★ · 0 fork | ⚠️ cũ | Sau nửa ngày đã ~56★, 26 fork (shields 13/10/2026) |
+| Các commit message trong ảnh | ⚠️ đã mất | Lịch sử bị gộp thành 1 commit; không còn đối chiếu được các commit đó |
+| "Gradio UI" | ✅ | `app.py` dựng giao diện Gradio, chỉ nghe ở localhost |
+| "Developed in Vietnam" | ✅ (chưa xác minh tác giả) | Múi giờ commit +0700 khớp. Tuy vậy giao diện và README đều bằng tiếng Anh (hậu tố "VI" chỉ ở tên); `handdraw/grid_stream.py` còn comment tiếng Trung từ mã gốc geeklee |
+| CC0-1.0 | ⚠️ | `LICENSE` là CC0, nhưng README và `THIRD_PARTY_NOTICES.md` tự ghi CC0 **chỉ phủ mã gốc của tác giả**: mã ISNet giữ Apache-2.0, mã lưới giữ MIT; ảnh bàn tay, tranh demo và weights model **không** thuộc CC0, và ảnh tay/tranh demo chưa có giấy phép phân phối |
+| Python 99,1% | ✅ | Đúng; phần còn lại là CSS giao diện và script khởi động `start.bat`/`start.ps1` |
+
+**Tổng:** 3✅ / 3⚠️ / 0❌. Ô "CC0" dễ hiểu sai nhất: nhìn huy hiệu tưởng cả repo là public domain, thực tế chỉ một phần mã.
+
+### 9d.3 Điều ảnh không nói (đọc mã và tự chạy)
+
+- **Test chạy được:** tự chạy 3 file test (`test_download`, `test_tool`, `test_ui`) trong venv Python 3.13 với PyTorch bản CPU: **28 passed trong 8,25 giây**. README yêu cầu Python 3.11/3.12, nên đây là chạy ngoài phiên bản khuyến nghị.
+- **Ảnh bàn tay khác bản upstream** (hash khác geeklee) và chưa ghi nguồn (chưa xác minh). Tranh demo cũng không rõ quyền. Muốn dùng thương mại thì thay cả hai bằng ảnh có quyền.
+- **Hướng tới Windows:** `start.bat`/`start.ps1` chạy `pythonw` ẩn cửa sổ, log ghi vào `logs/app.log`; lần đầu tự tải checkpoint.
+- **Cách tải model là điểm cộng** về chuỗi cung ứng: ghim revision và kiểm SHA256 trước khi nạp, khác nhiều repo chỉ gọi `from_pretrained` lấy bản mới nhất.
+- **Kho nặng vì GIF:** clone tốn ~44 MB chủ yếu vì demo; nên dùng `--depth 1` nếu chỉ cần mã.
+
+### 9d.4 So sánh & dùng thế nào
+
+| Hướng | Ví dụ (13/10/2026) | Khác whiteboard-animation-vi |
+|---|---|---|
+| Bản gốc thuật toán | `geeklee/srt-whiteboard-animation` (~4,4k★, MIT) | Không tách nền bằng model, không có UI Gradio |
+| Skill cho agent | `yangagent/whiteboard-animation-skill`, `masihsultani/whiteboard-animator` (số sao chưa kiểm) | Để agent gọi, không phải app cho người dùng cuối |
+| Video bằng mã | HyperFrames, Remotion (§1) | Dựng chuyển động từ HTML/React, không mô phỏng nét vẽ tay |
+
+- **Hợp khi:** cần video giải thích kiểu vẽ tay từ ảnh có sẵn, chạy cục bộ, không gửi ảnh lên dịch vụ ngoài.
+- **Lưu ý:** repo mới một ngày, một người làm; giấy phép tài nguyên chưa rõ. Có thể đưa vào pipeline video giáo dục (mục 19) như một bước tạo cảnh, không nên làm phụ thuộc chính.
+
+**Nguồn §9d:** https://github.com/letuandat131/whiteboard-animation-vi (clone, HEAD c689bf7; README, LICENSE, THIRD_PARTY_NOTICES.md, app.py, handdraw/grid_stream.py, tests/) · https://github.com/geeklee/srt-whiteboard-animation · https://hellogithub.com/en/repository/geeklee/srt-whiteboard-animation · https://github.com/SkyTNT/anime-segmentation · https://huggingface.co/skytnt/anime-seg · https://github.com/yangagent/whiteboard-animation-skill · https://github.com/masihsultani/whiteboard-animator
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes

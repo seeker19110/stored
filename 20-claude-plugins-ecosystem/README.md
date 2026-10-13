@@ -296,6 +296,46 @@ plugin-name/
 
 **Nguồn §3e:** https://github.com/earthtojake/text-to-cad (clone đầy đủ, HEAD 24573128c; README, SECURITY.md, AGENTS.md, plugin.json, mcp.json, skills.sh.json, packages/cadgen/pyproject.toml, packages/cadgen/src/cadgen/viewer/http_app.py, skills/{dfm,dfam-check,sendcutsend,bambu-labs,step-parts}/SKILL.md, .github/workflows/test.yml) · https://pypi.org/project/cadgen/ · https://pypistats.org/packages/cadgen · https://skills.sh/earthtojake/text-to-cad · https://www.texttocad.dev · https://www.sourcepulse.org/projects/28646096 · https://wikidocs.net/blog/@jaehong/12389/ · https://claudeskills.info/skills/aradotso/trending-skills/text-to-cad-harness/ · https://zoo.dev/blog/introducing-zoo · https://zoo.dev/docs/developer-tools/cli/manual/zoo_ml_text-to-cad · https://github.com/gumyr/build123d · https://github.com/CadQuery/cadquery · https://github.com/Adam-CAD/CADAM · https://github.com/KittyCAD/modeling-app
 
+## 3f. "social-media-skills": tên chung của nhiều bộ skill mạng xã hội (người dùng hỏi, 2026-10-13)
+
+> Người dùng gửi tên "social-media-skills", không kèm link. Trên GitHub có ít nhất sáu repo trùng hoặc gần trùng tên này. Mục này lấy repo nhiều sao nhất `charlie947/social-media-skills` làm chính (clone đầy đủ, chạy validator), rồi so với các repo cùng tên.
+
+### 3f.1 Hồ sơ nhanh: charlie947/social-media-skills
+
+| Mục | Thông tin (đọc 13/10/2026) |
+|---|---|
+| Repo | `charlie947/social-media-skills` · ~4k★, 921 fork, **MIT** · 18 commit từ 22/4/2026 tới 15/9/2026 (v1.1.0 thêm chạy được trên Codex) |
+| Tác giả | Charlie Hills, người viết LinkedIn/Substack về AI cho marketing; cùng tác giả với `motion-graphics-skills` ở mục 22 §1 và ảnh "28 repo" ở mục 22 §9b |
+| Cài | Marketplace plugin `.claude-plugin` (`/plugin marketplace add charlie947/social-media-skills`); có hướng dẫn cho Codex |
+| 17 skill | `voice-builder` (nền: sinh `about-me.md` + `voice.md` để các skill khác viết đúng giọng), `newsletter-voice`, `profile-optimizer`, `post-writer`, `hook-generator`, `post-formatter`, `post-scorer`, `pinned-comment`, `quote-post`, `content-matrix`, `niche-research`, `reels-scripting`, `youtube-thumbnail`, `graphic-designer`, `gemini-infographic`, `gemini-carousel`, `analytics-dashboard` |
+| Kiểm thử | Tự chạy `validate-skills.sh` ngày 13/10/2026: 17 skill, **87 passed, 0 failed**; có thêm `tests/test-codex-portability.py` |
+
+### 3f.2 Điều đáng chú ý khi đọc skill
+
+- **Viết nháp, không tự đăng.** Skill ghi rõ bước soạn thảo "do not authorise publishing"; không skill nào gọi API đăng bài.
+- **Hỏi trước khi tốn tiền.** `post-scorer` và `reels-scripting` dùng Apify (cào dữ liệu trả phí) và Gemini; skill bắt agent "confirm the account, scope and current cost before a paid run".
+- **Skill ảnh chỉ sinh prompt.** `gemini-carousel` và `gemini-infographic` xuất prompt để người dùng dán vào Gemini, skill tự ghi đó là prompt chưa được tạo ảnh hay duyệt bằng mắt.
+- **Là phễu bán hàng một phần.** README nói đây là "public toolkit, not the complete private LinkedIn AI OS" và dẫn sang bản trả phí trên Substack. Phần mở đủ dùng, nhưng nặng về LinkedIn.
+
+### 3f.3 Các repo cùng tên
+
+| Repo (shields 13/10/2026) | ★ · fork · license | Nội dung | Lưu ý |
+|---|---|---|---|
+| **charlie947/social-media-skills** | ~4k · 921 · MIT | 17 skill, LinkedIn là chính, plugin Claude Code + Codex | Chọn mặc định; có validator và kiểm Codex |
+| **blacktwist/social-media-skills** | ~561 · 93 · MIT | 14 `SKILL.md`, cài bằng `npx skills add`; 29 commit 20/3–1/5/2026 của Luca Restagno | Dẫn về app BlackTwist (lên lịch Threads); đứng từ 5/2026 |
+| **social-media-skills/skills** | ~147 · 29 · MIT | 106 skill, mỗi skill có `evals`; 7 commit 8–19/7/2026 của Frank Heijdenrijk; có `gemini-extension.json` | "maintained by the team behind WoopSocial": 102/106 skill nhắc WoopSocial (442 file), phễu thương mại rõ nhất |
+| pavelhov/social-media-skills | 0 | Bản sao repo trên (README ghi 107 skill) | Không dùng, lấy repo gốc |
+| inklate/social-skills · IRONICBo/awesome-social-media-skills · peterbamuhigire/social-media-skills | 7 · 1 · 2 | Bộ nhỏ / danh sách / 177 skill tự khai | Chưa đủ tín hiệu để dùng |
+| Tham chiếu rộng hơn: **coreyhaines31/marketingskills** | ~55k · 8,1k · MIT | Bộ skill marketing tổng quát (SEO, CRO, copy, ads…) | Rộng hơn hẳn; mạng xã hội chỉ là một phần |
+
+### 3f.4 Dùng thế nào
+
+- **Cần viết bài mạng xã hội đúng giọng mình:** cài charlie947, chạy `voice-builder` trước, giữ `voice.md` trong repo nội dung. Không cấp token đăng bài cho agent; người duyệt rồi tự đăng (khớp nguyên tắc "chỉ đề xuất" ở mục 21 §10).
+- **Cần phủ nhiều nền tảng hoặc có eval cho từng skill:** đọc `social-media-skills/skills`, nhưng gỡ các chỉ dẫn quảng bá WoopSocial trước khi dùng.
+- **Chung cho mọi bộ:** đây là văn bản hướng dẫn agent, không có mã chạy ngầm; rủi ro chính là chi phí API trả phí (Apify, model ảnh) và đăng nhầm. Ghim commit khi cài.
+
+**Nguồn §3f:** https://github.com/charlie947/social-media-skills (clone đầy đủ, HEAD 8cefb5b 15/9/2026; README, VERSIONS.md, .claude-plugin/, skills/*/SKILL.md, validate-skills.sh, tests/) · https://github.com/social-media-skills/skills (clone; README, skills/*/evals) · https://github.com/blacktwist/social-media-skills (clone; README, SKILL.md) · https://github.com/pavelhov/social-media-skills · https://github.com/inklate/social-skills · https://github.com/IRONICBo/awesome-social-media-skills · https://github.com/coreyhaines31/marketingskills · https://github.com/peterbamuhigire/social-media-skills · https://skillsllm.com/skill/social-media-skills
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

@@ -67,6 +67,8 @@
 
 **Nhận xét:** nhiều repo nền tảng đã **đóng băng** nhưng vẫn được dùng rất nhiều: VietAI/ViT5 (78★, commit cuối 2/2023), BARTpho (105★, 7/2024), pyvi (279★, 9/2024), trong khi PhoBERT + bi-encoder BKAI có hơn 600k lượt tải mỗi tháng. Với RAG tiếng Việt, cặp **bi-encoder BKAI / Vietnamese_Embedding + Qwen/Gemma đa ngôn ngữ** là lựa chọn thực dụng. Với TTS thương mại, cần chọn **VieNeu-TTS v3** (Apache-2.0), vì F5-TTS-Vietnamese và viXTTS đều có weights cấm thương mại, còn Audio8 (mục 14) không hỗ trợ tiếng Việt.
 
+**Công cụ sáng tạo do người Việt làm (13/10/2026):** `letuandat131/whiteboard-animation-vi` (~56★, mã gốc CC0-1.0) biến ảnh tĩnh thành video vẽ bảng trắng bằng app Gradio chạy cục bộ, tách nền bằng ISNet. Hồ sơ và kiểm ảnh ở [mục 22](../22-motion-design-animation/README.md) §9d. Lưu ý: giao diện tiếng Anh, ảnh bàn tay và tranh demo chưa có giấy phép.
+
 ## 5. Gợi ý bổ sung tiếp
 
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.
