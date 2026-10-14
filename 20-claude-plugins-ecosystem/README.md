@@ -336,6 +336,98 @@ plugin-name/
 
 **Nguồn §3f:** https://github.com/charlie947/social-media-skills (clone đầy đủ, HEAD 8cefb5b 15/9/2026; README, VERSIONS.md, .claude-plugin/, skills/*/SKILL.md, validate-skills.sh, tests/) · https://github.com/social-media-skills/skills (clone; README, skills/*/evals) · https://github.com/blacktwist/social-media-skills (clone; README, SKILL.md) · https://github.com/pavelhov/social-media-skills · https://github.com/inklate/social-skills · https://github.com/IRONICBo/awesome-social-media-skills · https://github.com/coreyhaines31/marketingskills · https://github.com/peterbamuhigire/social-media-skills · https://skillsllm.com/skill/social-media-skills
 
+## 3g. Kiểm ảnh: bảng "Top Claude Code" 10 plugin xếp theo sao (ảnh người dùng gửi, 2026-10-14)
+
+> Ảnh là một trang tiếng Việt xếp hạng plugin/skill: thanh tab (Xu hướng tuần · Top Claude Code · Viết code · Web & giao diện · Tự động hoá & chatbot · Đăng bài web & Facebook · Bán hàng & marketing · Làm video AI · Văn phòng), bảng 4 cột (#, Plugin, "Dùng để làm gì", Sao) và nút "+" mỗi dòng. Tab hướng người dùng phổ thông (Facebook, video, văn phòng) chứ không phải lập trình viên. **Không tìm được trang gốc** bằng web search với các cụm tab (14/10/2026); các bài Việt gần nhất (QuanTriMang "TOP 100 plugin", 200Lab, ongboit) đều là bài viết, không có giao diện này. Đã kiểm 10 dòng bằng shields `github/stars` và trang GitHub, clone 4 repo kho chưa có hồ sơ (ponytail, caveman, impeccable, vercel-labs/agent-skills).
+
+### 3g.1 Kiểm từng dòng
+
+| # | Repo trong ảnh | ★ ảnh | ★ 14/10 | "Dùng để làm gì" trong ảnh | Kiểm | Hồ sơ trong kho |
+|---|---|---|---|---|---|---|
+| 01 | `obra/superpowers` | 298.471 | 299k | Lên kế hoạch → viết test trước → sửa lỗi → tự soát → chia việc cho AI phụ | ✅ đúng thứ tự skill lõi (brainstorm → plan → TDD → debug → review, subagent-driven-development) | §3d |
+| 02 | `mattpocock/skills` | 288.915 | 290k | Viết yêu cầu rõ, kiểm thử, soát lỗi, tìm lỗi, mô tả nghiệp vụ | ✅ khớp 4 nhóm skill (grill → spec → tdd, diagnosing-bugs); "mô tả nghiệp vụ" là nhóm ddd/writing-for-agents | §3c |
+| 03 | `DietrichGebert/ponytail` | 162.320 | 163k | Ép AI chọn lời giải đơn giản nhất, bớt code thừa | ✅ đúng; **repo thật**, mục 23 từng ghi "nghi dựng" (đính chính ở §3g.4) | §3g.3 (mới) |
+| 04 | `Graphify-Labs/graphify` | 126.048 | 126k | Vẽ cả dự án (code, tài liệu, SQL, PDF) thành sơ đồ để AI tra cứu | ✅ SQL và PDF là extra `sql`/`postgres`/`pdf` (cài thêm), code thì tree-sitter không cần model | mục 16 §4b |
+| 05 | `JuliusBrussee/caveman` | 111.372 | 112k | Bắt AI trả lời cực ngắn, tốn ít credit | ⚠️ chỉ tả phần "voice"; từ 4.0 (10/2026) caveman là **proxy cục bộ + 6 module**, có Auto gửi prompt lên Caveman Cloud và telemetry CLI bật mặc định | §3g.3 (mới) |
+| 06 | `thedotmack/claude-mem` | 100.276 | 101k | Trí nhớ lâu dài giữa các phiên | ✅ | mục 03 §8b |
+| 07 | `Egonex-AI/Understand-Anything` | 86.130 | 86k | Vẽ dự án thành sơ đồ bấm xem được | ✅ | mục 01 §3b, mục 16 §4b |
+| 08 | `pbakaus/impeccable` | 80.562 | 81k | Dạy AI con mắt thiết kế, tự soát giao diện | ⚠️ thiếu ý: ngoài prompt còn **engine Rust 59 rule** chạy ở hook PostToolUse/Stop (tải binary lần đầu) và API "roll" gọi impeccable.style mỗi lần bắt đầu thiết kế | §3g.3 (mới) |
+| 09 | `ChromeDevTools/chrome-devtools-mcp` | 53.440 | 54k | Cho AI mở Chrome thật: xem lỗi, đo tốc độ, bấm thử | ✅ nhưng là MCP server chung cho mọi client, không riêng Claude Code; thu thống kê mặc định | mục 11 §3b |
+| 10 | "Agent Skills (Vercel)" *(ảnh cắt, không thấy dòng repo)* | 32.337 | 32k | Bộ kỹ năng chính chủ Vercel: React, Next.js… | ⚠️ owner thật là **`vercel-labs`** (`vercel/agent-skills` không tồn tại, shields "repo not found"); định dạng Agent Skills chung; **không có file LICENSE** (README và package.json ghi MIT); commit cuối 28/8/2026 | §3g.3 (mới) |
+
+**Tổng:** sao 10/10 đúng (mọi số trong ảnh thấp hơn 14/10 khoảng 0,2–1%, tức ảnh chụp 1–2 ngày trước); mô tả 7✅ / 3⚠️ / 0❌. Các ⚠️ đều là **thiếu ý**, không sai: bảng chỉ tả lợi ích, không tả cái gì chạy trên máy và cái gì rời máy.
+
+### 3g.2 Điều bảng không nói
+
+- **Xếp theo sao nhưng không đầy đủ.** Đối chiếu §3d: `affaan-m/ECC` 277,6k★ lẽ ra đứng #3, `addyosmani/agent-skills` 105,3k★ lẽ ra đứng trên claude-mem; `anthropics/claude-plugins-official` 37,7k★ cũng vượt dòng #10. "Top" là danh sách chọn tay rồi sắp theo sao, không phải truy vấn GitHub.
+- **3/10 không riêng Claude Code:** Graphify (CLI Python + skill), Chrome DevTools MCP (MCP server chuẩn), vercel-labs (định dạng Agent Skills). Ngược lại, 3 repo mới đều ship adapter cho nhiều harness: ponytail 20 agent (thư mục `.codex-plugin`, `.cursor`, `.opencode`, `.openclaw`, `.kiro`, `.windsurf`, `.devin-plugin`, `.grok-plugin`, `.kimi-plugin`, `pi-extension`…), caveman "30+", impeccable ~15 (`dist/` nhân bản skill cho từng harness, 3.906 file).
+- **Sao ≠ độ chín.** ponytail 163k★ trên 344 commit và 4 tháng tuổi (tạo 12/6/2026); caveman 112k★/1.762 commit (6 tháng); impeccable 81k★/2.423 commit (11 tháng). Số dòng trailer `Co-Authored-By: Claude` so với số commit: ponytail 52/344, caveman 1.232/1.762, impeccable 1.919/2.423 (đếm trailer, một commit có thể có nhiều dòng).
+- **Mọi con số tiết kiệm đều do tác giả tự đo**, trừ caveman có A/B độc lập của JetBrains (86 task: 8,5% ít output token hơn, p=0,82 không đổi chất lượng), thấp hơn nhiều so với "65%" ở dòng About. Ponytail: 585 phiên headless Opus 5.5, -53% dòng code, -26% chi phí, hidden check 87/90 so với 86/90 không skill ("không giảm đúng, cũng không tăng"). Impeccable: không có benchmark.
+- **Hai plugin "tiết kiệm credit" (#3, #5) cạnh tranh và tự benchmark nhau.** `benchmarks/results/2026-06-12-caveman-vs-ponytail.md` trong repo ponytail: caveman thắng tổng token ~4% (ponytail viết ít code rồi giải thích dài), ponytail thắng số dòng code 2,2×; ponytail v2 sau đó cắt phần giải thích. Hai bộ cùng chỉnh "giọng" trả lời, cài chồng sẽ mâu thuẫn chỉ dẫn.
+- **Dữ liệu rời máy** (đọc SECURITY.md/README 14/10/2026): caveman CLI gửi usage event về Supabase **mặc định** (IP giữ 90 ngày, event 13 tháng; tắt `caveman telemetry off`/`DO_NOT_TRACK=1`), module Auto gửi prompt gần nhất tới 128 KiB **kèm CLAUDE.md, memory, file @-mention** lên Caveman Cloud, module waste-fixes gửi lại request lên api.anthropic.com (`max_tokens: 0`) để giữ cache; impeccable gọi roll API impeccable.style "luôn luôn" khi bắt đầu thiết kế và gửi telemetry ẩn danh trừ khi opt-out (`npx impeccable telemetry off`/`DO_NOT_TRACK=1`); chrome-devtools-mcp thu thống kê mặc định (mục 11). Ponytail, superpowers, mattpocock, vercel-labs: grep không thấy telemetry.
+
+### 3g.3 Hồ sơ nhanh 4 repo mới (clone 14/10/2026)
+
+#### DietrichGebert/ponytail — "lazy senior dev mode"
+
+| Mục | Thông tin |
+|---|---|
+| Repo | 163k★, 8,8k fork, **MIT**; tạo 12/6/2026; 344 commit, HEAD 2961b52 (13/10); v5.2.0 (v5.0.0 ngày 8/10/2026); npm `@dietrichgebert/ponytail` |
+| Tác giả | Dietrich Gebert ~141 commit; 128 "tác giả" nhưng 97 người chỉ 1 commit (PR adapter/sửa chữ). Sponsor GreenPT; banner "join the waitlist" và "Already built with Ponytail: Retriever" → đang chuẩn bị sản phẩm thương mại (chưa rõ gì) |
+| Bản chất | **Một prompt**: `skills/ponytail/SKILL.md` 52 dòng (bản rút `AGENTS.md` 32 dòng). "Thang" 6 bậc trước khi viết code: có cần tồn tại → đã có trong codebase → stdlib/platform → dependency đã cài → một dòng → tối thiểu. Không cắt: validation ở trust boundary, xử lý lỗi mất dữ liệu, bảo mật, a11y. Logic có nhánh/vòng/parser/tiền/bảo mật phải để lại 1 test. Comment `shortcut: <giới hạn>, <khi nào nâng>` |
+| Command | `/ponytail [lite\|full\|ultra\|off]`, `/ponytail-review` (đọc code quanh diff, không chỉ diff), `/ponytail-audit`, `/ponytail-debt` (gom `shortcut:` thành sổ nợ), `/ponytail-gain`, `/ponytail-help` |
+| Hook | SessionStart/SubagentStart/UserPromptSubmit chạy `node` ghi mode vào file trong thư mục cấu hình harness (statusline); không gọi mạng |
+| CI | `test.yml` ghim SHA action, `check-rule-copies` (bản sao prompt cho mỗi harness phải khớp), `check-versions`, `npm test` (node --test + pi-extension) |
+| Benchmark | Tự chạy, harness trong `benchmarks/agentic/` (promptfoo + judge Opus/Sonnet); báo cáo ghi rõ lỗi harness cũ (từng chạy trong repo ponytail nên model thấy commit message) và đã sửa |
+| Rủi ro | Prompt 52 dòng đổi hành vi mọi phiên; mức `ultra` "phản biện yêu cầu" có thể làm agent từ chối việc người dùng muốn; benchmark cho thấy không tăng độ đúng |
+
+#### JuliusBrussee/caveman — từ skill "nói như người tiền sử" thành proxy tiết kiệm token
+
+| Mục | Thông tin |
+|---|---|
+| Repo | 112k★, 6,5k fork, 28 issue + 13 PR mở; **Apache-2.0 từ 3.0.0** (trước đó skill MIT + engine/proxy BSL 1.1; `LICENSING.md` ghi rõ); thương hiệu "Caveman" giữ riêng (`TRADEMARKS.md`); tạo 4/4/2026; 1.762 commit, HEAD d262ab3 (13/10); v4.0.1 |
+| Tác giả | Julius Brussee 1.387 commit; 96 tác giả. HN #1 (904 điểm), Trendshift #1 ngày (4/2026), GitHub Trending #1 (7/2026); được Adobe Research (paper CAVEWOMAN, arXiv 2606.24083) trích; JetBrains và Elastic thử nghiệm |
+| Bản chất 4.0 | Không còn là 1 skill: monorepo Go + TypeScript (`engine/`, `proxy/`, `browse/` CDP, `mcp/`, `shrink/`, `mem/`, `packages/` cli + sdk + middleware TS/Python, `extension/`, `supabase/` hàm telemetry, `deploy/` k8s/ECS). 6 "rock": **voice** (skill), **read-less** (proxy nén CSV/log/JSON/test output trước khi model đọc, giữ bản gốc trên đĩa), **Auto** (chọn model/effort mỗi lượt qua Caveman Cloud, cần đăng nhập free), **Blocks** (script dùng lại, repo riêng `caveman-ai/blocks`), **waste-fixes** (giữ cache ấm), **browse** |
+| Skill | 25 thư mục `skills/` (caveman, ultracave, megacave, cavecrew subagent, investigate-first, lean-build, surgical-patch, safe-refactor…); chỉ muốn giọng ngắn: `npx skills add JuliusBrussee/caveman -g` không cần proxy |
+| Số liệu | README tách "ngoài lab" (JetBrains 8,5%, Elastic 63,6% response token, Adobe 1,4–2,4× rẻ hơn) và tự đo (33,2% ít input token trên 54 phiên, Auto rẻ 54% trên 85 task "mới chạy một nửa"); có `docs/HONEST-NUMBERS.md` liệt kê ca thua (HTML tệ hơn 9,9%) |
+| CI | 15 workflow: ci, engine-ci, codeql, scorecard, supply-chain, conformance agent/middleware, release-smoke |
+| Rủi ro | Proxy đứng giữa agent và provider, nắm login Claude Pro/Max/ChatGPT (keychain hoặc file 0600); telemetry bật mặc định; Auto gửi nội dung prompt lên cloud; cài kiểu `curl \| bash` hoặc `npx`; Caveman Cloud là sản phẩm thương mại đóng (app.caveman.so) |
+
+#### pbakaus/impeccable — ngôn ngữ thiết kế cho harness
+
+| Mục | Thông tin |
+|---|---|
+| Repo | 81k★, 4,9k fork, 61 issue + 22 PR mở; **Apache-2.0**; tạo 15/11/2025; 2.423 commit, HEAD 2f98774f (14/10); skill-v4.5.2, engine-v0.1.14; npm `impeccable` |
+| Tác giả | Paul Bakaus 1.822 commit (+261 bot); 59 tác giả. Nguồn gốc: fork ý tưởng từ `anthropics/skills` frontend-design (README nói rõ) |
+| Bản chất | 1 skill `/impeccable` + 24 lệnh (`init` viết `PRODUCT.md`, `document` viết `DESIGN.md`, `craft`, `critique`, `audit`, `polish`, `bolder`/`quieter`, `live`/`generate` chọn biến thể trong trình duyệt…) + **engine Rust** 16 crate (`detect` 59 rule tất định cho HTML/CSS/JSX/TSX/Vue/Svelte, `browser` CDP chụp màn, `live`, `hook`, `wasm` cho extension). Mục 23 ghi "61 rule" là số cũ |
+| Hook | SessionStart / PostToolUse(Edit\|Write) / Stop gọi `scripts/impeccable hook`; launcher tải binary từ GitHub Releases vào `~/.impeccable/bin/` lần đầu chạy (`IMPECCABLE_BIN` để dùng bản tự build). Cursor chặn write xấu trước khi ghi |
+| Mạng | Roll API impeccable.style "chia bài" thế giới thị giác khi bắt đầu thiết kế: **luôn gọi** (là tính năng), telemetry ẩn danh kèm theo trừ khi opt-out; `.impeccable/` chứa state, README có khối `.gitignore` mẫu |
+| CI/test | `tests/` (build, bundle-signing, cli-shim, framework-fixtures), workflow ci + release-engine + sheriff; VS Code extension trên Marketplace |
+| Rủi ro | Hook chạy binary tải về trên mỗi lần Edit/Write; phụ thuộc dịch vụ impeccable.style cho luồng thiết kế mới; 3.906 file vì nhân bản skill cho từng harness (khó review) |
+
+#### vercel-labs/agent-skills — bộ skill chính chủ Vercel
+
+| Mục | Thông tin |
+|---|---|
+| Repo | 32k★, 2,8k fork, 67 issue + **112 PR mở**; README ghi MIT, `package.json` ghi MIT, **không có file LICENSE**; tạo 8/12/2025; 275 commit, 30 tác giả (Aurora Scharff 81, Shu Ding 50, Fernando Rojo 33); **commit cuối 28/8/2026** |
+| 9 skill | `react-best-practices` (40+ rule, có `packages/react-best-practices-build` validate + build + `test-cases.json`, CI riêng), `web-design-guidelines` (100+ rule a11y/UX), `writing-guidelines` (sổ tay viết của Vercel), `react-native-skills`, `react-view-transitions`, `composition-patterns`, `deploy-to-vercel` (deploy "claimable" từ claude.ai), `vercel-cli-with-tokens`, `vercel-optimize` (có package test 60+ file) |
+| Lưu ý | README gọi skill deploy là `vercel-deploy-claimable`, thư mục thật là `deploy-to-vercel`; các file `.zip` của skill được commit vào `skills/`; workflow `agent-skills-discovery.yml` phát hành index mỗi lần đổi skill (tag `agent-skills-<sha>`) |
+| Rủi ro | Chỉ có giá trị khi stack là React/Next.js/Vercel; skill deploy tạo deployment trên hạ tầng Vercel; license chưa có file nên không thể vendor tự động như `install.py` của Hermes-Agents (mục 23) đòi LICENSE |
+
+### 3g.4 Đính chính cho mục 23
+
+Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/10/2026) ghi `DietrichGebert/ponytail` "289k★ vượt kỷ lục GitHub… nghi dựng, không đưa vào kho". Kiểm 14/10/2026: repo **thật**, tạo 12/6/2026, 163k★ theo shields và trang GitHub, 8,8k fork, Trendshift #50668, npm `@dietrichgebert/ponytail` 5.2.0, 344 commit. Con số 289k trong docs nội bộ sai (gần với `mattpocock/skills` 290k), nhưng kết luận "nguồn dựng" cũng sai. Dòng cũ ở mục 23 giữ nguyên kèm đính chính, đúng quy ước "giữ nguyên đính chính giữa chừng".
+
+### 3g.5 Dùng thế nào
+
+- **Chỉ giữ một bộ chỉnh "giọng"/hành vi:** ponytail (ít code, có test) hoặc caveman phần skill (câu ngắn). Cài cả hai cùng superpowers/mattpocock sẽ có 3–4 prompt cùng ra lệnh về cách trả lời; projects-template của chủ kho (mục 23) đã có cổng máy riêng, chỉ nên mượn "thang 6 bậc" và quy ước `shortcut:` của ponytail dưới dạng rule, không cài plugin.
+- **Caveman:** dùng phần skill nếu chỉ cần ngắn gọn. Chỉ cài proxy khi chấp nhận binary đứng giữa agent và provider; khi đó tắt telemetry, không bật Auto trên repo có dữ liệu nhạy cảm, ghim tag (`v4.0.1`) thay vì `@latest`.
+- **Impeccable:** hợp với dự án có frontend và muốn detector chạy ở hook; đặt `DO_NOT_TRACK=1`, ghim `engine-v0.1.14` và kiểm SHA binary; so với `nextlevelbuilder/ui-ux-pro-max-skill` đã vendor ở mục 23 thì impeccable có engine tất định, ui-ux-pro-max chỉ có prompt.
+- **vercel-labs:** cài từng skill bằng `npx skills add vercel-labs/agent-skills --skill <tên>` khi đúng stack; ghi rõ "MIT theo README, chưa có file LICENSE" trong provenance.
+- **Về bảng xếp hạng:** coi là danh sách gợi ý cho người mới, không phải thước đo; đối chiếu §3d trước khi chọn, và đọc SECURITY.md của từng repo vì 3/10 có luồng dữ liệu rời máy.
+
+**Nguồn §3g:** shields.io `github/stars` 14/10/2026 cho 11 repo (gồm `vercel/agent-skills` → "repo not found") · trang GitHub 14/10/2026 (About, fork, issue/PR) của DietrichGebert/ponytail, JuliusBrussee/caveman, pbakaus/impeccable, vercel-labs/agent-skills, Graphify-Labs/graphify · https://github.com/DietrichGebert/ponytail (clone, HEAD 2961b52; README, INSTALL.md, AGENTS.md, LICENSE, package.json, skills/ponytail/SKILL.md, hooks/claude-codex-hooks.json, hooks/ponytail-runtime.js, .github/workflows/test.yml, benchmarks/results/2026-10-07-agentic.md, benchmarks/results/2026-06-12-caveman-vs-ponytail.md, git log/tag) · https://github.com/JuliusBrussee/caveman (clone, HEAD d262ab3; README, LICENSING.md, SECURITY.md, TRADEMARKS.md, skills/, supabase/, .github/workflows/, git log/tag) · https://github.com/pbakaus/impeccable (clone, HEAD 2f98774f; README, README.npm.md, package.json, .claude-plugin/plugin.json, plugin/hooks/, .claude/skills/impeccable/scripts/impeccable, crates/, tests/, git log/tag) · https://github.com/vercel-labs/agent-skills (clone, HEAD 063bee9; README, AGENTS.md, package.json, skills.sh.json, skills/, packages/, .github/workflows/, git log) · WebSearch 14/10/2026: https://quantrimang.com/top-claude-code-plugin-va-repository-noi-bat-217391 · https://200lab.io/blog/claude-plugins-la-gi · https://ongboit.com/best-claude-code-skills/ · https://skillrank.it.com/skills/dietrichgebert-ponytail · https://claudemarketplaces.com/skills/DietrichGebert/ponytail/ponytail-review · https://www.404media.co/companies-are-making-claude-and-codex-talk-like-cavemen-to-stop-ais-soaring-costs/ · https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/ · https://www.elastic.co/search-labs/blog/elastic-caveman-ai-token-reduction · https://arxiv.org/abs/2606.24083 · https://news.ycombinator.com/item?id=47647455 · https://latent.space/p/skill-engineering-design · https://www.sourcepulse.org/projects/25437147 · https://impeccable.style/docs/brand.md
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
