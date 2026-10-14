@@ -26,6 +26,7 @@
 | **tldraw** | tldraw/tldraw | tldraw license | ~51k | Infinite canvas SDK, gần Figma nhất về cảm giác |
 | **Onlook** | onlook-dev/onlook | Apache-2.0 | – | Visual editor cho React/Tailwind, "Cursor cho designer" |
 | **OpenDesign** | open-design.ai | – | – | Agent-native design tool |
+| **FigCraft** | storytold/figcraft | MIT OR Apache-2.0 | ~0,6k (14/10/2026) | Dựng lại Figma bằng Rust nhờ agent, alpha 5 ngày tuổi, điều khiển được qua CLI/MCP (§7e) |
 
 ## 3. AI sinh giao diện (design-to-code / prompt-to-UI)
 
@@ -241,6 +242,57 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 - **Tự chạy lại cổng sau khi cài:** README nói 52/52, nhưng bản HEAD chạy trong sandbox còn trượt ít nhất một cổng tương phản thật.
 
 **Nguồn §7d:** https://github.com/plugin87/ux-ui-agent-skills (clone đầy đủ, 144 commit, HEAD 62092bd 10/10/2026; README, CLAUDE.md, CHANGELOG.md, LICENSE, package.json, .claude-plugin/plugin.json, design-systems/library/, `git show b89881e:skills-lock.json`; tự chạy `npm test`, `npm run test:unit` 49/49, `node scripts/accuracy_report.mjs` 49/52, 13/10/2026) · GitHub search API 13/10/2026 (1.686★, 177 fork; repo khác của `plugin87`) · https://www.npmjs.com/package/ux-ui-agent-skills (api.npmjs.org: 3.540 lượt/30 ngày, 7.178 từ 1/6/2026) · https://trendshift.io/repositories/24406 · https://agentskill.work/en/skills/plugin87/ux-ui-agent-skills (438★, bản 2.3.1) · https://github.com/VoltAgent/awesome-design-md (clone, lịch sử `design-md/*/DESIGN.md`) · https://github.com/bergside/awesome-design-skills (clone; MIT © Bergside, `skills/*/SKILL.md`, `skills/*/DESIGN.md`) · https://tessl.io/registry/skills/github/bergside/awesome-design-skills/brutalism/evals · https://open-design.ai/systems/brutalism/ · https://github.com/Leonxlnx/taste-skill
+
+## 7e. Case study: FigCraft (`storytold/figcraft`), dựng lại Figma bằng Rust nhờ agent (link người dùng gửi, 2026-10-14)
+
+> Đã clone toàn bộ repo (267 commit), đọc README, `CLAUDE.md`, `ROADMAP.md`, `docs/gaps.md`, mã nhập `.fig`, workflow CI, rồi tự build và chạy test. FigCraft là app mới trong bộ "Crafting Apps" của ArtCraft (danh mục `catalog.rs` của launcher ngày 14/10/2026 có 14 app, gồm cả FigCraft và PrintCraft); kho đã có hai app anh em là FilmCraft ([mục 01](../01-ai-coding-agents/README.md) §3d) và ArtCraft Launcher (mục 01 §3e).
+
+### 7e.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 14/10/2026) |
+|---|---|
+| Repo | `storytold/figcraft` · **616★**, 264 fork, 40 issue + 21 PR mở (shields) · license **MIT OR Apache-2.0**; tên, logo ArtCraft là thương hiệu riêng, bản fork phải gỡ · bản v0.5.1 (12/10/2026) |
+| Định vị | "Interface design; an open-source, clean-room reimplementation of Figma, rebuilt in pure Rust": frame, auto layout, component/variant, vector network, style, variable, prototype, Dev Mode, phiên cộng tác. Chạy native trên macOS/Windows/Linux/FreeBSD và trong trình duyệt (WebAssembly) |
+| Tác giả | Brandon Thomas (`echelon`, cựu CEO Storyteller.ai, nhà sáng lập ArtCraft/FakeYou) mở repo ngày **9/10/2026**. Người commit nhiều nhất là `BFlat`/`bflatastic` (210/267). Có 14 tên tác giả, trong đó 9 người ngoài góp qua PR |
+| Cách làm | **191/267 commit (72%) ghi "Co-authored-by: Claude"** (Opus 5.5, có commit Sonnet 5.5). `CLAUDE.md` là hướng dẫn cho agent: mỗi phiên đọc `ROADMAP.md` và `docs/gaps.md`, rồi lấy việc ở đầu danh sách. Kế hoạch và ảnh chụp Figma để tham chiếu nằm trong `plan/`, thư mục này bị gitignore, không công khai. ROADMAP ước thời gian theo đơn vị "giờ của một agent Opus 5.5" |
+| Quy mô | **204.110 dòng Rust** sau 5 ngày; 16 crate + 4 app (desktop, CLI, server, web); 2.088 hàm `#[test]` |
+| Bộ anh em (GitHub search 14/10) | PhotoCraft 59,4k★ · ArtCraft 26,9k★ · PdfCraft 13,2k★ · FilmCraft 12,9k★ · LightCraft 12,2k★ · WordCraft 11,8k★ · VectorCraft 8,7k★ · EffectCraft 6,4k★ · GridCraft, CADCraft, DesignCraft, DeckCraft, SoundCraft · craft-launcher 2,5k★. Phần lớn tạo trong khoảng 30/9–9/10/2026; FigCraft là một trong những repo mới nhất và ít sao nhất |
+
+### 7e.2 Kiểm lời tuyên bố
+
+| Tuyên bố | Kiểm | Ghi chú |
+|---|---|---|
+| Có test và test thật sự chạy | ✅ | Khác FilmCraft (CI không chạy test), `ci.yml` của FigCraft chạy `cargo clippy -D warnings` + `cargo test --workspace` + kiểm phân tầng (`xtask layers`) + kiểm tài sản + build wasm32 trên mọi PR. Tự chạy `cargo test` cho 4 crate lõi (doc, layout, format, engine) ngày 14/10/2026: **1.092 pass, 0 fail, 2 ignored** |
+| "Agent-ready": CLI, kênh JSON, MCP cùng một bộ lệnh | ✅ | Build `figcraft-cli` (release) rồi `render examples/ridgeline-app.figcraft` ra PNG 2639×1117, khớp ảnh trong README; `figcraft-cli commands` liệt kê bộ lệnh (README ghi "400+") |
+| "Clean-room… no proprietary code, file formats" | ⚠️ | Không có cách kiểm độc lập: nguồn tham chiếu là `plan/` không công khai. `CLAUDE.md` cấm đọc bundle hay lưu lượng mạng của Figma và cấm dùng icon hay ảnh của họ. Phần đọc `.fig` thì dựa trên định dạng **kiwi**, vốn do đồng sáng lập Figma công bố mã mở. Vì vậy "no proprietary file formats" nên hiểu là không chép mã, chứ không phải không đọc định dạng của Figma |
+| Mở được file `.fig` | ⚠️ | README ghi "best effort". `docs/gaps.md` xếp hạng 3: **"Nothing checked against real Figma files"**. Phần xuất `.fig` còn là thử nghiệm |
+| "Accessible: screen readers get names, roles…" | ⚠️ | Có AccessKit trong mã, nhưng gaps.md hạng 22 ghi **"Screen readers never run; browser has no accessibility tree"**. README nói mạnh hơn mức đã kiểm |
+| "No account, no telemetry, offline" | ✅/⚠️ | Đúng khi không chia sẻ. Bấm Share ▸ Online thì file được đẩy lên server công cộng mặc định `collab.craftapps.dev`, **không mã hóa đầu cuối**, ai có link là sửa được, file tồn tại tới 30 ngày sau lần mở cuối. README tự ghi rõ điều này |
+| Mức sẵn sàng | ⚠️ alpha | Tự đánh giá: độ phủ menu/lệnh 100% (211/211, đo bằng `cargo xtask parity`), độ phủ tính năng khoảng 85%, "ready for real work" khoảng 53%. Hai con số sau là ước lượng. Còn cần 155–280 giờ agent nữa mới tới beta; multiplayer chưa có tài khoản; canvas vẽ bằng CPU |
+
+**Tổng:** 3✅ / 5⚠️ / 0❌. Kỷ luật kỹ thuật tốt hơn FilmCraft: CI chặn PR, clippy cấm `unwrap`/`panic`, kiểm phân tầng. Nhưng các con số "parity" vẫn là tự chấm, và tính năng chưa từng được kiểm trên file Figma thật.
+
+### 7e.3 So với các công cụ đã có trong kho
+
+| | FigCraft | Penpot (§2) | Figma |
+|---|---|---|---|
+| Tuổi / độ chín | 5 ngày, alpha | Nhiều năm, đã dùng production (~61k★) | Sản phẩm thương mại |
+| Mô hình | App native + wasm, file `.figcraft` trên máy; server cộng tác tự host được | Web app, self-host bằng Docker, định dạng mở (SVG/CSS) | Cloud, tài khoản |
+| Đọc file Figma | Best effort, chưa kiểm trên file thật | Có plugin xuất từ Figma | Gốc |
+| Cho agent | CLI + MCP + kênh JSON, mọi thao tác UI là một lệnh | Có API/plugin | MCP chính thức (Dev Mode) |
+| License | MIT OR Apache-2.0 | MPL-2.0 | Đóng |
+
+**Trùng tên:** `divikwu/figcraft` (4★) là một **MCP server cho Figma**, không liên quan tới dự án này.
+
+### 7e.4 Dùng thế nào
+
+- **Cho đội cần thay Figma ngay:** vẫn chọn Penpot. FigCraft mới 5 ngày tuổi, chưa kiểm trên file thật, chưa có tài khoản.
+- **Cho agent sinh UI:** đây là điểm đáng thử nhất. `figcraft-cli mcp` cho agent dựng frame, component, auto layout rồi render PNG/SVG headless; cả 5 file mẫu trong `examples/` đều được dựng qua bộ lệnh này. Có thể dùng làm "canvas" cho agent thay vì để agent sinh HTML.
+- **Không chia sẻ file nhạy cảm qua server mặc định.** Tự chạy `figcraft-server` sau Caddy/nginx, hoặc chia sẻ trong mạng LAN tin cậy.
+- **Bài học quy trình** (giống FilmCraft): nhiều phiên agent cùng đọc một danh sách việc xếp hạng (`docs/gaps.md`), mỗi việc kết thúc bằng cập nhật ROADMAP và ước lượng giờ. Khác biệt đáng giá là FigCraft bật CI chặn PR ngay từ ngày đầu.
+- **Tải bản build:** chỉ lấy từ release của `storytold/figcraft` hoặc getartcraft.com. Kho đã ghi nhận repo nhái mồi malware cho FilmCraft (mục 01 §3d).
+
+**Nguồn §7e:** https://github.com/storytold/figcraft (clone đầy đủ, 267 commit, HEAD bcedfeb 14/10/2026; README, NOTICE, ATTRIBUTION.md, CLAUDE.md, ROADMAP.md, docs/gaps.md, crates/format/src/fig/mod.rs, .github/workflows/ci.yml; tự chạy 14/10/2026: `cargo test -p figcraft-doc -p figcraft-layout -p figcraft-format -p figcraft-engine` 1.092 pass, `figcraft-cli render` ra PNG) · shields 14/10/2026 (616★, 264 fork, release v0.5.1) · GitHub search API 14/10/2026 (51 repo của `storytold`) · https://github.com/storytold/craft-launcher (`crates/core/src/catalog.rs`, 14/10/2026) · https://getartcraft.com/apps/figcraft · https://petapixel.com/2026/10/07/someone-rebuilt-free-open-source-versions-of-photoshop-premiere-and-lightroom-using-ai/ · https://propakistani.pk/2026/10/09/free-open-source-copies-of-photoshop-premiere-and-lightroom-are-here/ · https://www.tweaktown.com/news/113989/developer-says-software-is-over-after-using-ai-to-recreate-adobes-entire-creative-cloud-suite-for-free/index.html · https://www.it-connect.fr/suite-adobe-rust-claude-opus-artcraft-crafting-apps/ · https://ecosistemastartup.com/artcraft-clona-7-apps-de-adobe-con-claude-opus-5-5/ · https://www.besthub.dev/articles/rewriting-adobe-suite-in-rust-12-open-source-apps-56k-stars-built-for-ai-agents-051d286733fe · https://notes.nicolasdeville.com/apps/artcraft/ · https://glama.ai/mcp/servers/divikwu/figcraft (dự án trùng tên)
 
 ## 8. Nguồn (mục 1–6)
 
