@@ -4841,6 +4841,36 @@
       "open_source": true,
       "notes": "9 skill chính chủ Vercel: react-best-practices (có build/validate CI), web-design-guidelines, writing-guidelines, react-native, view-transitions, deploy-to-vercel, vercel-optimize (60+ file test); commit cuối 28/8/2026, 112 PR mở; ★ 14/10/2026",
       "section": "20"
+    },
+    {
+      "name": "BrewUI",
+      "repo": "Homebrew/BrewUI",
+      "category": "devops",
+      "license": "AGPL-3.0",
+      "stars": 2500,
+      "open_source": true,
+      "notes": "GUI chính thức của Homebrew (SwiftUI, macOS 26+), cask homebrew-app, ra cùng Homebrew 7.0.0; hiện lệnh brew thật, hàng đợi lệnh tuần tự, zsh cô lập (cấu hình qua brew.env); không telemetry riêng; 455/1.201 commit có trailer Claude, AGENTS.md mẫu; v0.6.0, ★ 14/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Applite",
+      "repo": "milanvarady/Applite",
+      "category": "devops",
+      "license": "MIT",
+      "stars": 7100,
+      "open_source": true,
+      "notes": "GUI Homebrew cho cask/app trên macOS; thay thế BrewUI trên macOS cũ; ★ 14/10/2026",
+      "section": "13"
+    },
+    {
+      "name": "Cork",
+      "repo": "buresdv/Cork",
+      "category": "devops",
+      "license": "provisional (không OSI)",
+      "stars": 4700,
+      "open_source": false,
+      "notes": "GUI Homebrew; mã công khai nhưng license tạm \"provided as-is\", bản build bán trả phí (chưa xác minh); ★ 14/10/2026",
+      "section": "13"
     }
   ]
 }

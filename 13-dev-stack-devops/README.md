@@ -170,6 +170,54 @@
 
 **Nguồn của mục:** shields.io 13/10/2026 (5 repo: sao, license, commit cuối, release) · `npm view` 13/10/2026 (shadcn, @tanstack/{react,vue,svelte,solid,angular-query-experimental,preact}-query, storybook, @storybook/{react,react-vite,vue3-vite,angular,sveltekit,web-components-vite}, vite, create-vite, tailwindcss) · https://storybook.js.org/docs/writing-stories · https://tanstack.com/query/latest/docs/framework/react/guides/queries · mã `vite` 8.3.4 (`dist/node/chunks/node.js`, chuỗi "--host … to expose") và README `create-vite` 9.2.1.
 
+## 6d. Homebrew/BrewUI: GUI chính thức của Homebrew cho macOS (link người dùng gửi, 2026-10-14)
+
+> Đã clone toàn bộ repo (1.201 commit, HEAD `7bc5efa` 13/10/2026, tag v0.6.0) và đọc README, `ARCHITECTURE.md`, `AGENTS.md` (`CLAUDE.md` là symlink tới nó), `Package.swift`, `.github/workflows/`, PR template, `Sources/`. Đối chiếu bài BleepingComputer, dev.to và trang GitHub.
+
+### 6d.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 14/10/2026) |
+|---|---|
+| Repo | `Homebrew/BrewUI` · ~2,5k★, 80 fork, 2 issue + 2 PR mở · **AGPL-3.0** · About: "Homebrew's official macOS GUI" |
+| Tuổi và nhịp | Commit đầu 2/3/2026; đỉnh 334 commit tháng 5, 235 commit tháng 9; 15 tag, v0.4.2 (15/9) → v0.6.0 (13/10/2026) |
+| Tác giả | Graeme Arthur 875/1.201 commit; Mike McQuaid (trưởng dự án Homebrew) 67; BrewTestBot 102, dependabot 51; Ruoyu Zhong, Patrick Linnane là maintainer Homebrew |
+| Ra mắt | "Phát hành đầy đủ" cùng **Homebrew 7.0.0 (13/9/2026)**, bản kèm lệnh `brew vulns` quét lỗ hổng qua OSV.dev (BleepingComputer 14/9/2026) |
+| Cài | `brew install --cask homebrew-app`; app ký và notarize trong `release.yml` |
+| Yêu cầu | **macOS 26 Tahoe trở lên** (`Package.swift`: `.macOS("26.0")`), Swift 6.2; Homebrew phải cài sẵn ở prefix mặc định (`/opt/homebrew` hoặc `/usr/local`) |
+| Quy mô | 222 file Swift / ~20k dòng nguồn, 181 file test / ~24k dòng test (test nhiều hơn mã) |
+
+### 6d.2 Kiến trúc và cổng chất lượng (đọc mã)
+
+- **Không giấu Homebrew.** Mọi thao tác hiện lệnh `brew` copy được và giữ toàn bộ output trong console. Dữ liệu lấy từ `brew` CLI và JSON API formulae.brew.sh. App không sửa nội bộ Homebrew và chưa hỗ trợ prefix hay tap tuỳ chỉnh.
+- **Clean Architecture + MVVM** chia 21 module SwiftPM: `BrewCore`, `BrewCLI` (chạy tiến trình), `BrewNetworking`, `BrewRepositories`, các `BrewFeature*` (Discover, Installed, Services, Doctor, Config, Console, SelfUpgrade). Feature không import feature khác.
+- **Một hàng đợi lệnh.** Actor `SerialBrewCommandCenter` chạy tuần tự mọi lệnh làm thay đổi hệ thống và gộp lệnh trùng. Huỷ lệnh sẽ dừng cả process group.
+- **Môi trường shell cô lập.** Luôn chạy `/bin/zsh --no-rcs --no-global-rcs` với PATH tối thiểu. Tham số đi qua argv nguyên văn, không nội suy chuỗi shell. Hệ quả: alias và biến export trong shell **không có tác dụng**, cấu hình phải đặt trong `brew.env`.
+- **Tự nâng cấp** qua helper riêng: đợi app thoát, chạy upgrade, ghi kết quả, mở lại app. App từ chối nâng cấp khi đang có lệnh chạy.
+- **Cổng máy:** pre-commit chạy SwiftFormat, SwiftLint strict và `BrewUILint` (luật lint riêng của dự án). CI có `pr_build_test` (`scripts/test`, `scripts/test-ui` trên runner `macos-26`), `swift_quality`, `licenses`, `actionlint`, `e2e`. Test UI tất định, không gọi Homebrew thật. Test e2e cài rồi gỡ gói `hello` thật.
+
+### 6d.3 Điều đáng chú ý
+
+- **Repo của một tổ chức lớn viết chủ yếu cùng AI, và nói rõ.** 455 trailer `Co-Authored-By` là model Claude (Opus 5, Opus 4.7/4.8, Sonnet 4.6) trên 1.201 commit. PR template có mục bắt buộc "AI assistance" và yêu cầu tách phần người tự kiểm với phần AI kiểm.
+- **`AGENTS.md` (50 KB) là mẫu đáng học.** Có thứ tự ưu tiên chỉ dẫn (người dùng > `AGENTS.md` gần nhất > gốc) và quy định "web-search giá trị có phiên bản (runner, SDK, action) thay vì đoán theo dữ liệu huấn luyện". Agent phải chạy `scripts/test` trước mỗi commit. Bug sửa theo red-green TDD. Cấm dùng `scripts/test-e2e` trừ khi được yêu cầu. Cấm tắt test để qua CI. Cấm file nhớ phiên hay rule riêng cho từng tool. Khớp với khung drop-in của chủ kho (mục 23) và quy ước AGENTS.md (mục 04).
+- **Không telemetry riêng của app** (grep `Sources/` không thấy SDK analytics). "Analytics" trong mã là số lượt cài công khai từ API Homebrew để xếp hạng trong Discover. Báo crash không tự gửi đi: app đọc báo cáo macOS ghi trong `~/Library/Logs/DiagnosticReports` rồi mở trang `issues/new` điền sẵn cho người dùng tự nộp. Lưu ý: chính `brew` vẫn gửi analytics theo mặc định của Homebrew. Muốn tắt thì đặt `HOMEBREW_NO_ANALYTICS=1` trong `~/.homebrew/brew.env`, vì app bỏ qua biến export của shell.
+- **Tên dễ nhầm:** `mckaymic/Brewui` là app khác không liên quan. Bài Medium tả BrewUI như một phần của Homebrew, nhưng thực ra BrewUI là cask riêng (`homebrew-app`).
+- **Thông tin cũ:** bài dev.to viết lúc dự án mới bắt đầu, nói "chưa tải về được". Nay đã có cask và bản v0.6.0.
+
+### 6d.4 So sánh và dùng thế nào
+
+| GUI Homebrew | ★ (14/10/2026, shields) | License | Ghi chú |
+|---|---|---|---|
+| **Homebrew/BrewUI** | ~2,5k | AGPL-3.0 | Chính chủ, cần macOS 26, hiện lệnh thật, dịch vụ chỉ đọc |
+| `milanvarady/Applite` | ~7,1k | MIT | Tập trung cask/app, commit cuối 9/2026 |
+| `buresdv/Cork` | ~4,7k | **"provisional license", không phải OSI** | Bản build sẵn bán trả phí (chưa xác minh giá) |
+| `brunophilipe/Cakebrew` | ~5k | GPL-3.0 | **Đứng yên từ 3/2021** |
+
+- **Cho người không quen Terminal** (đội văn phòng, thiết kế) trên macOS 26: BrewUI là lựa chọn an toàn nhất vì chính chủ, không giấu lệnh và không có telemetry riêng. Máy chạy macOS cũ hơn chỉ còn Applite.
+- **Tái dùng mã:** AGPL-3.0 kèm điều khoản dùng qua mạng. Nhúng hay sửa để phát hành thì phải công bố mã. Học kiến trúc (hàng đợi lệnh tuần tự, shell cô lập, helper tự nâng cấp) thì không vướng.
+- **Cho agent của chủ kho:** đáng mượn ba quy ước từ `AGENTS.md`: thứ tự ưu tiên chỉ dẫn, "tra web cho mọi giá trị có phiên bản" và mục AI assistance trong PR template.
+
+**Nguồn §6d:** https://github.com/Homebrew/BrewUI (clone đầy đủ, HEAD 7bc5efa 13/10/2026; README.md, ARCHITECTURE.md, AGENTS.md, Package.swift, .github/workflows/{pr_build_test,release,build}.yml, .github/PULL_REQUEST_TEMPLATE.md, Sources/BrewCrashReporting/, Sources/BrewNetworking/, Tools/BrewUILint/; git log/tag) · trang GitHub và shields 14/10/2026 · https://github.com/Homebrew/BrewUI/releases · https://www.bleepingcomputer.com/news/security/homebrew-700-gets-built-in-gui-better-security-controls/ · https://dev.to/arshtechpro/brewui-a-first-look-at-homebrews-official-macos-gui-3fk2 · https://medium.com/@kanishks772/homebrew-just-got-a-gui-after-10-years-the-terminal-finally-has-a-window-64e73307752b · https://runany.dev/blog/brewui/ · https://www.opensourcealternatives.to/item/brewui · https://github.com/mckaymic/Brewui · https://github.com/milanvarady/Applite · https://github.com/buresdv/Cork · https://github.com/brunophilipe/Cakebrew · https://docs.brew.sh/Analytics
+
 ## 7. Nguồn
 
 - Mục 23 (19 repo của chủ kho, đọc 2026-10-12) · https://github.com/alibaba/open-code-review · https://github.com/googleapis/release-please · https://github.com/oxc-project/oxc · https://github.com/webpro-nl/knip · https://github.com/kucherenko/jscpd · https://github.com/astral-sh/uv · https://github.com/astral-sh/ruff
