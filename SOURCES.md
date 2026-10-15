@@ -387,3 +387,8 @@
 
 - Hinln/ARTEX (clone đầy đủ 15/10/2026, 458 commit, HEAD f3e3f54 8/10/2026; README.md, CHANGELOG.md v0.3.15, go.mod `module github.com/Autumn-27/artex`, LICENSE AGPL-3.0; `git log --format='%an'`: Autumn-27 338 + Autumn 43 vs Hinln 1 → mirror) · Autumn-27/ARTEX trả 404/không công khai 15/10/2026 · shields 15/10/2026 (Hinln/ARTEX ~766★/1,2k fork; Autumn-27/ScopeSentry 1,9k★; RuoJi6/AegisHook 18★)
 - Báo chí/điều tra (WebSearch 15/10/2026, đang tiếp diễn, chưa phán quyết): aiweekly.co/alerts/artex-developer-closes-ai-pentest-tool-after-korea-bank-hacks · startupfortune.com/developer-of-hacked-bank-tool-artex-pulls-it-from-public-github/ · technology.org/2026/10/09/artex-ai-agent-closed-source-korea-bank-hacks/ · progressiverobot.com/2026/10/09/artex-ai-chinese-tool-pulled-misuse-south-korea-hacks/ · zendot.org/en/posts/autumn-27-artex · github.com/jiwoochris/artex-global · github.com/mhtsec/ARTEX
+
+## Bổ sung 2026-10-15 đợt 16 (ảnh midudev/autoskills → mục 20 §3h)
+
+- github.com/midudev/autoskills (clone đầy đủ 15/10/2026, 400 commit, HEAD b4489cb 14/10/2026; README.md, LICENSE CC BY-NC 4.0, packages/autoskills/{package.json,installer.ts,sync-skills.mjs,skill-review.mjs,skills-registry/index.json}, AGENTS.md, SECURITY.md, .github/workflows/; tự đọc index.json: 207 skill, 197 approved/10 flagged, model claude-haiku-5-5 119 / gpt-5.4 81 / claude-opus-5-5 7; 349 test it()) · shields 15/10/2026 (7k★, 626 fork; midudev/fendo trả 403)
+- WebSearch 15/10/2026: autoskills.sh · skills.sh/midudev/autoskills · sourcepulse.org/projects/27690747 · deepwiki.com/midudev/autoskills · threads.com/@midu.dev/post/DWy2Bp2DVDZ · blog.brightcoding.dev/2026/09/29/midudevautoskills-auto-install-ai-agent-skills-for-your-stack
