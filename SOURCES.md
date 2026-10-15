@@ -382,3 +382,8 @@
 
 - github.com/s4ntrx/Cybersecurity-Threats-Guide (clone đầy đủ, 5.571 commit, HEAD 34c9097f 14/10/2026; README.md, bản cũ `82e27f15^:README.md` có bảng "Repository Statistics", LICENSE, .github/workflows/ci.yml, tools/requirements.txt, tests/, api/index.py, cybersec-app/; `git log`: 5.340 commit bot chỉ sửa updates.txt, workflow main.yml và update-readme-stats.yml xoá 10/10/2026; tự chạy 15/10/2026: pytest 28 pass, ruff E,F,S 1.350 lỗi) · trang GitHub 15/10/2026 (214★, 22 fork) · cybersec-app-plum.vercel.app
 - shields 15/10/2026: OWASP/CheatSheetSeries ~34k★ CC-BY-SA-4.0 · OWASP/wstg ~10k★ CC-BY-SA-4.0 · swisskyrepo/PayloadsAllTheThings ~82k★ MIT · HackTricks-wiki/hacktricks ~13k★ · docs.python.org/3/library/tarfile.html#extraction-filters
+
+## Bổ sung 2026-10-15 đợt 15 (ảnh Hinln/ARTEX → mục 12 §3k; dual-use, có lạm dụng thật)
+
+- Hinln/ARTEX (clone đầy đủ 15/10/2026, 458 commit, HEAD f3e3f54 8/10/2026; README.md, CHANGELOG.md v0.3.15, go.mod `module github.com/Autumn-27/artex`, LICENSE AGPL-3.0; `git log --format='%an'`: Autumn-27 338 + Autumn 43 vs Hinln 1 → mirror) · Autumn-27/ARTEX trả 404/không công khai 15/10/2026 · shields 15/10/2026 (Hinln/ARTEX ~766★/1,2k fork; Autumn-27/ScopeSentry 1,9k★; RuoJi6/AegisHook 18★)
+- Báo chí/điều tra (WebSearch 15/10/2026, đang tiếp diễn, chưa phán quyết): aiweekly.co/alerts/artex-developer-closes-ai-pentest-tool-after-korea-bank-hacks · startupfortune.com/developer-of-hacked-bank-tool-artex-pulls-it-from-public-github/ · technology.org/2026/10/09/artex-ai-agent-closed-source-korea-bank-hacks/ · progressiverobot.com/2026/10/09/artex-ai-chinese-tool-pulled-misuse-south-korea-hacks/ · zendot.org/en/posts/autumn-27-artex · github.com/jiwoochris/artex-global · github.com/mhtsec/ARTEX

@@ -4881,6 +4881,16 @@
       "open_source": true,
       "notes": "Tài liệu + 56 script Python phát hiện/phòng ngừa (6 chuyên mục), một tác giả, chưa ai duyệt; 5.340/5.571 commit là bot ghi timestamp (đã xoá 10/10/2026); 28 test pass; backup_recovery dùng tarfile.extractall không filter; script đổi hệ thống chưa chạy thử; dùng OWASP Cheat Sheet thay thế; ★ 15/10/2026",
       "section": "12"
+    },
+    {
+      "name": "ARTEX",
+      "repo": "Autumn-27/ARTEX",
+      "category": "security",
+      "license": "AGPL-3.0",
+      "stars": null,
+      "open_source": false,
+      "notes": "Agent pentest tự chủ (Go+Next.js); CrowdStrike gán loạt xâm nhập ngân hàng Hàn Quốc 9/2026 cho operator dùng ARTEX, tác giả gỡ và chuyển closed-source 8/10/2026 (repo gốc nay 404); ảnh người dùng gửi là mirror Hinln/ARTEX (716★/1,1k fork). Dual-use có lạm dụng thật — chỉ giữ hồ sơ cảnh báo, không tích hợp; ★ null (gốc đã gỡ), đọc 15/10/2026",
+      "section": "12"
     }
   ]
 }
