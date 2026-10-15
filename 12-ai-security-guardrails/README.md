@@ -332,6 +332,41 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 
 **Nguồn §3j:** https://github.com/s4ntrx/Cybersecurity-Threats-Guide (clone đầy đủ, HEAD 34c9097f 14/10/2026; README.md hiện tại và bản `82e27f15^`, LICENSE, CONTRIBUTING.md, TOPIC_TEMPLATE.md, .github/workflows/ci.yml, tools/requirements*.txt, tests/, api/index.py, cybersec-app/, 02-web-application-security/sql-injection/, 06-incident-response/containment/backup_recovery.py; `git log` theo tác giả và file, `git log --diff-filter=D`; tự chạy 15/10/2026: `pytest` 28 pass, `ruff --select F821,F823,F811,F632` sạch, `ruff --select E,F,S` 1.350 lỗi) · trang GitHub 15/10/2026 (214★, 22 fork, website cybersec-app-plum.vercel.app) · https://cybersec-app-plum.vercel.app/ (HTTP 200) · shields 15/10/2026: OWASP/CheatSheetSeries, OWASP/wstg, swisskyrepo/PayloadsAllTheThings, HackTricks-wiki/hacktricks · WebSearch 15/10/2026 (không có nguồn bên ngoài về repo) · https://docs.python.org/3/library/tarfile.html#extraction-filters
 
+### 3k. ARTEX — agent pentest tự chủ bị gỡ sau khi dính tấn công ngân hàng Hàn Quốc (ảnh `Hinln/ARTEX`, 2026-10-15)
+
+> ⚠️ **Dual-use có lịch sử bị lạm dụng thật.** ARTEX là hệ pentest tự chủ bằng AI của `Autumn-27`. Cuối 9/2026, CrowdStrike gán một loạt vụ xâm nhập ngân hàng Hàn Quốc cho một kẻ tấn công dùng ARTEX; ngày 8/10/2026 tác giả tuyên bố **ngừng phát triển và chuyển closed-source**. Mục này ghi hồ sơ **cảnh báo**, không hướng dẫn vận hành. Ảnh người dùng gửi là `Hinln/ARTEX`, một **bản mirror** chứ không phải repo gốc.
+
+#### 3k.1 Provenance (ai là gốc)
+
+- **Gốc là `Autumn-27/ARTEX`, không phải `Hinln`.** `go.mod` ghi `module github.com/Autumn-27/artex`; 338+43 commit của `Autumn-27`, chỉ **1 commit của `Hinln`** ("fix: use Hinln/ARTEX for authenticated release updates", trỏ cập nhật release về mirror). Theo quy ước mirror của [WORKFLOW.md](../WORKFLOW.md) ("repo là clone không sửa thì cite upstream, không ghi là của chủ repo"), đây là bản sao của Autumn-27.
+- **Repo gốc `Autumn-27/ARTEX` nay 404** (git ls-remote "could not read Username" = không công khai, 15/10/2026), khớp tin tác giả đã gỡ. Mirror `Hinln/ARTEX` giữ lịch sử tới v0.3.15 (HEAD `f3e3f54`, commit upstream cuối `e6ec569` "定版 0.3.15" ngày 7/10/2026).
+- Hệ sinh thái cùng tác giả: `Autumn-27/ScopeSentry` (1,9k★, nền tảng quản lý tài sản/scan mà ARTEX đồng bộ dữ liệu). Mirror khác: `mhtsec/ARTEX`; bản địa hoá tiếng Hàn `jiwoochris/artex-global` (README có cảnh báo lạm dụng).
+
+#### 3k.2 Hồ sơ nhanh (đọc từ mirror 15/10/2026)
+
+| Mục | Thông tin |
+|---|---|
+| Repo (ảnh) | `Hinln/ARTEX` · 716★, 1,1k fork (shields nay ~766★/1,2k fork) · **AGPL-3.0** · About tự mô tả "ARTEX 源码备份… 保留原始提交历史与 AGPL-3.0 许可证" |
+| Gốc | `Autumn-27/ARTEX` (nay không công khai); từng đạt giải "agent+" công kích/phòng thủ của Baidu (theo báo, chưa xác minh độc lập) |
+| Kỹ thuật | Backend Go (`go 1.26.3`), frontend Next.js; 458 commit, bắt đầu 26/7/2026; 21 module gồm `agent/`, `intercept/`, `guard/`, `traffic/`, `llmpool/`, `evidence/`, `notify/`, `report/`, `selfupdate/`, `mcphttp/` |
+| Vận hành | Self-hosted; có Dockerfile + docker-compose; cấu hình LLM pool riêng; demo tại artex-demo.vercel.app |
+| Cơ chế an toàn trong tool | Có lớp **拦截审批 (intercept/approval)**: chặn lệnh phá huỷ (vd đường dẫn API xoá dữ liệu), human-in-the-loop, "模型兜底审批" (model làm trọng tài khi luật không chắc) |
+
+#### 3k.3 Vì sao đáng ghi (nhưng không tích hợp)
+
+- **Bằng chứng mức độ chín của mã.** CHANGELOG v0.3.15 phần "漏洞推送" là một vòng **audit bảo mật cho chính pipeline thông báo** của tool: vá掩码 bypass (đổi địa chỉ giữ nguyên credential → rò khoá), SSRF ở tầng dial + chống DNS rebinding + từ chối redirect khác host, chặn markdown injection từ output model, sửa lỗi limiter/lease. Đây là mẫu "mỗi lỗi:复现 → sửa → thêm test hồi quy" — đáng đọc như case study về làm cứng một dịch vụ Go, tách khỏi mục đích tấn công.
+- **Bài học đối lập với README-washing (mục 12 §3j, 23).** Khác các repo thổi phồng, ARTEX là mã thật, chạy thật, và chính vì thế bị lạm dụng thật. "Chất lượng kỹ thuật cao" không đồng nghĩa "an toàn để phát tán".
+- **Lịch sử lạm dụng (theo báo, điều tra đang tiếp diễn — chưa phán quyết):** CrowdStrike truy một chuỗi xâm nhập cuối 9/2026 vào Shinhan Bank, Yegaram Savings Bank và tổ chức tài chính Hàn Quốc khác về một operator dùng ARTEX; attribution đến từ thư mục lộ của kẻ tấn công (có lịch sử phiên Claude Code, file memory, config ARTEX), không phải giám sát của ngân hàng. Nghi phạm nói tiếng Trung, động cơ tài chính, chưa gắn nhóm nào. Tác giả nói ARTEX "để học và nghiên cứu" và "không liên quan" các vụ tấn công.
+
+#### 3k.4 Dùng thế nào — với kho này
+
+- **Không vendor, không tích hợp, không chạy thử.** Đây là công cụ tấn công tự chủ đầu-cuối; AGPL-3.0 cũng buộc công bố mã nếu nhúng. Chỉ giữ **hồ sơ cảnh báo** để nhận diện khi gặp lại bản mirror/fork.
+- **Nếu cần học cơ chế phòng thủ:** đọc phần hardening notify trong CHANGELOG (SSRF/DNS-rebinding/credential masking) như tài liệu, không cần chạy tool. Đối chiếu với mục 12 §2 (guardrails) và §3 (SSRF/secrets).
+- **Red team hợp pháp, có uỷ quyền:** ưu tiên công cụ có khung ràng buộc phạm vi rõ đã có hồ sơ ở kho — Decepticon (§3g, RoE hai lớp), PentAGI (§3i), garak/PyRIT (§3d) — thay vì một tool vừa bị gỡ vì lạm dụng và không còn upstream bảo trì.
+- **Khi thấy ảnh "716★/1,1k fork" như trong ảnh:** đó là chỉ số của **mirror**, không phải thước đo chất lượng repo gốc; sao dồn về mirror một phần vì repo gốc biến mất. Luôn kiểm `go.mod`/commit author để biết ai là upstream.
+
+**Nguồn §3k:** `Hinln/ARTEX` (clone đầy đủ 15/10/2026, 458 commit, HEAD f3e3f54; README.md, CHANGELOG.md v0.3.15, go.mod `github.com/Autumn-27/artex`, LICENSE AGPL-3.0, cây thư mục; `git log --format='%an'` xác minh 1 commit Hinln vs 381 Autumn-27) · `Autumn-27/ARTEX` trả 404 (15/10/2026) · shields 15/10/2026 (Hinln/ARTEX ~766★/1,2k fork; Autumn-27/ScopeSentry 1,9k★) · WebSearch 15/10/2026: https://github.com/jiwoochris/artex-global · https://github.com/mhtsec/ARTEX · https://aiweekly.co/alerts/artex-developer-closes-ai-pentest-tool-after-korea-bank-hacks · https://startupfortune.com/developer-of-hacked-bank-tool-artex-pulls-it-from-public-github/ · https://www.technology.org/2026/10/09/artex-ai-agent-closed-source-korea-bank-hacks/ · https://www.zendot.org/en/posts/autumn-27-artex
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.
