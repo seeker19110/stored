@@ -284,6 +284,54 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 
 **Nhận định:** PentAGI là bản OSS nghiêm túc, tài liệu bảo mật thành thật (tự nêu rõ rủi ro docker.sock và cách giảm). Rủi ro lớn nhất không nằm ở code mà ở **cấu hình mặc định**: tài khoản admin/admin và socket Docker host. Trước khi chạy: đổi mật khẩu admin, chuyển sang dind qua TLS, cô lập mạng ra khỏi LAN, và chỉ chạy với mục tiêu có ủy quyền. So với Decepticon (§3g) và Strix, PentAGI là lựa chọn "đội tool + báo cáo" hơn là "mô phỏng kill chain C2".
 
+### 3j. Kiểm ảnh "Cybersecurity Threats & Vulnerabilities Guide" (`s4ntrx/Cybersecurity-Threats-Guide`, ảnh người dùng gửi, 2026-10-15)
+
+> Ảnh là phần đầu README cũ: nút Paystack, huy hiệu "License MIT · python 3.8+ · contributions welcome", mục lục, phần About và đầu bảng "Repository Statistics". Đã clone toàn bộ repo (5.571 commit, HEAD `34c9097f` 14/10/2026), tự chạy test và ruff, và truy lịch sử git để tìm bản README trong ảnh.
+
+#### 3j.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 15/10/2026) |
+|---|---|
+| Repo | `s4ntrx/Cybersecurity-Threats-Guide` · 214★, 22 fork, 2 watcher · **MIT** · trang đi kèm cybersec-app-plum.vercel.app (trả 200) |
+| Tác giả | `s4ntrx`, múi giờ +0300; nhận tiền ủng hộ qua Paystack, cổng thanh toán của châu Phi. Không tìm được bài viết hay thảo luận bên ngoài nào về repo (WebSearch 15/10/2026) |
+| Nội dung | 6 chuyên mục (mạng, web, malware, social engineering, mật mã, ứng phó sự cố), khoảng 25 chủ đề. Mỗi chủ đề có README, `detection/*.py` và `prevention/*.py`. Tổng 56 file Python trong 6 chuyên mục, khoảng 20k dòng; thêm site Next.js `cybersec-app/` dựng từ các file Markdown |
+| CI | `ci.yml`: compileall, ruff chỉ chọn 4 luật tên chưa định nghĩa (F821, F823, F811, F632), `pytest`. Tự chạy 15/10/2026: **28 test pass**, 4 luật ruff đều sạch |
+
+#### 3j.2 Kiểm ảnh và lịch sử
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| "License MIT" | ✅ | `LICENSE` MIT © 2026 s4ntrx |
+| "python 3.8+" | ⚠️ cũ | README hiện ghi 3.10+, CI chạy 3.10 và 3.12 |
+| "comprehensive guide… detection scripts, and prevention strategies" | ⚠️ nói quá | README hiện tại tự sửa thành "early-stage guide". Mục Roadmap thừa nhận các script đổi trạng thái hệ thống (firewall, cô lập máy, sandbox, kernel, secure boot) "chỉ mới được duyệt bằng cách đọc mã", chưa chạy thử trong VM |
+| Bảng "Repository Statistics" (bị cắt trong ảnh) | ❌ | Bản cũ (commit `82e27f15`, 10/10/2026) ghi "Total Commits 74, Contributors 1, Sections 6/6, progress 100%". Cùng lúc đó, git có hơn 5.000 commit, và README mới thừa nhận nhiều chủ đề chưa viết |
+
+**Lịch sử commit bị thổi phồng.** 5.340/5.571 commit do "peters bot" và "Bot" tạo, dùng chung email với chủ repo. Mỗi commit chỉ ghi lại một dòng timestamp trong `updates.txt` ("Last checked: …"), có ngày tới 91 commit, kéo dài từ 5/3 đến 10/10/2026. Ngày 10/10/2026, chủ repo xoá hai workflow `main.yml`, `update-readme-stats.yml` và file `updates.txt`, nhưng lịch sử vẫn còn. Số commit trên GitHub vì thế không phản ánh công sức thật. Commit của người chỉ khoảng 217, phần lớn là "Update README.md" và "Add files via upload" qua giao diện web.
+
+#### 3j.3 Đọc mã
+
+- **Script phát hiện đã được sửa theo hướng an toàn.** Ví dụ `sql_injection_detector.py` ghi rõ chỉ quét ứng dụng mình sở hữu hoặc được phép kiểm. Payload không phá huỷ ("bản trước gửi DROP TABLE / INTO OUTFILE"), và mã thoát phân biệt "có lỗi / không / không quét được". Ví dụ cố ý viết sai trong `parameterized_queries.py` có ghi "DEMONSTRATION ONLY".
+- **Lỗi đáng sửa trong chính công cụ phòng thủ.** `06-incident-response/containment/backup_recovery.py` gọi `tarfile.extractall()` mà không có `filter`, trên Python 3.10–3.13. Một bản backup bị sửa có thể ghi file ra ngoài thư mục khôi phục (path traversal). Đây là điều nguy hiểm nhất đối với một script phục hồi sau sự cố. `firewall_config.py` và `kernel_patching.py` dùng `subprocess(shell=True)`. Ruff với bộ luật `E,F,S` báo 1.350 lỗi, chủ yếu là style, 11 lỗi thuộc nhóm bảo mật.
+- **Test mỏng.** 23 hàm test, 369 dòng, chỉ phủ một phần nhóm web và mạng (CSRF, DNS spoof, rate limit, safe file access, security headers…). Malware, ứng phó sự cố và các script đổi hệ thống không có test.
+- **Thành phần chết.** `api/index.py` (Flask) gọi `render_template` vào thư mục `../templates` và `../static`, nhưng hai thư mục này không tồn tại. Comment "Remove SocketIO completely" còn sót lại. Site thật là `cybersec-app/` (Next.js), chỉ hiển thị nội dung tĩnh.
+- **Phụ thuộc nặng cho tài liệu học.** `tools/requirements.txt` kéo theo scapy, pyshark (cần tshark), redis, psycopg2, mysql-connector, pandas và numpy. Phiên bản chỉ đặt cận dưới, không ghim.
+
+#### 3j.4 So sánh và dùng thế nào
+
+| Tài liệu | ★ (15/10/2026, shields) | License | Khác biệt |
+|---|---|---|---|
+| `OWASP/CheatSheetSeries` | ~34k | CC-BY-SA-4.0 | Phòng thủ web chuẩn ngành, có cộng đồng duyệt |
+| `OWASP/wstg` | ~10k | CC-BY-SA-4.0 | Quy trình kiểm thử web chính thức |
+| `swisskyrepo/PayloadsAllTheThings` | ~82k | MIT | Payload tấn công (dual-use), cập nhật liên tục |
+| `HackTricks-wiki/hacktricks` | ~13k | không khai trên GitHub | Wiki pentest rộng, có thương mại đi kèm |
+| `s4ntrx/Cybersecurity-Threats-Guide` | 214 | MIT | Ghép tài liệu với script Python. Một tác giả, chưa ai duyệt |
+
+- **Không nên dùng làm tài liệu tham chiếu chính.** Hãy dùng OWASP Cheat Sheet hoặc WSTG. Repo này hợp làm bài tập đọc mã cho người mới: đọc script phát hiện, rồi so với OWASP.
+- **Đừng chạy script `prevention/` hay `containment/` trên máy thật.** Chúng sửa firewall, cô lập mạng, cấu hình kernel và secure boot, và tác giả thừa nhận chưa chạy thử. Nếu cần khôi phục backup, thay `extractall()` bằng `extractall(filter="data")`.
+- **Bài học cho kho:** số commit và bảng "Repository Statistics" trong README không phải bằng chứng. Phải đọc `git log --format='%an %s'` để thấy bot ghi timestamp. Mẫu này giống cảnh báo "nguồn dựng" trong WORKFLOW.md.
+
+**Nguồn §3j:** https://github.com/s4ntrx/Cybersecurity-Threats-Guide (clone đầy đủ, HEAD 34c9097f 14/10/2026; README.md hiện tại và bản `82e27f15^`, LICENSE, CONTRIBUTING.md, TOPIC_TEMPLATE.md, .github/workflows/ci.yml, tools/requirements*.txt, tests/, api/index.py, cybersec-app/, 02-web-application-security/sql-injection/, 06-incident-response/containment/backup_recovery.py; `git log` theo tác giả và file, `git log --diff-filter=D`; tự chạy 15/10/2026: `pytest` 28 pass, `ruff --select F821,F823,F811,F632` sạch, `ruff --select E,F,S` 1.350 lỗi) · trang GitHub 15/10/2026 (214★, 22 fork, website cybersec-app-plum.vercel.app) · https://cybersec-app-plum.vercel.app/ (HTTP 200) · shields 15/10/2026: OWASP/CheatSheetSeries, OWASP/wstg, swisskyrepo/PayloadsAllTheThings, HackTricks-wiki/hacktricks · WebSearch 15/10/2026 (không có nguồn bên ngoài về repo) · https://docs.python.org/3/library/tarfile.html#extraction-filters
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.
