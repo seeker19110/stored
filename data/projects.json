@@ -4891,6 +4891,16 @@
       "open_source": false,
       "notes": "Agent pentest tự chủ (Go+Next.js); CrowdStrike gán loạt xâm nhập ngân hàng Hàn Quốc 9/2026 cho operator dùng ARTEX, tác giả gỡ và chuyển closed-source 8/10/2026 (repo gốc nay 404); ảnh người dùng gửi là mirror Hinln/ARTEX (716★/1,1k fork). Dual-use có lạm dụng thật — chỉ giữ hồ sơ cảnh báo, không tích hợp; ★ null (gốc đã gỡ), đọc 15/10/2026",
       "section": "12"
+    },
+    {
+      "name": "autoskills",
+      "repo": "midudev/autoskills",
+      "category": "plugin-marketplace",
+      "license": "CC-BY-NC-4.0",
+      "stars": 7000,
+      "open_source": true,
+      "notes": "CLI quét stack (package.json/Gradle) rồi cài skill AI khớp từ registry vendor trong repo; review hai tầng bằng model (haiku/gpt-5.4/opus, 197 approved/10 flagged), verify SHA-256 + skills-lock.json, cảnh báo trước khi cài; 207 skill, 349 test; license NC phi thương mại; ★ 15/10/2026",
+      "section": "20"
     }
   ]
 }

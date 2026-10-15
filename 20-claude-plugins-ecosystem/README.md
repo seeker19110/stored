@@ -428,6 +428,51 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 
 **Nguồn §3g:** shields.io `github/stars` 14/10/2026 cho 11 repo (gồm `vercel/agent-skills` → "repo not found") · trang GitHub 14/10/2026 (About, fork, issue/PR) của DietrichGebert/ponytail, JuliusBrussee/caveman, pbakaus/impeccable, vercel-labs/agent-skills, Graphify-Labs/graphify · https://github.com/DietrichGebert/ponytail (clone, HEAD 2961b52; README, INSTALL.md, AGENTS.md, LICENSE, package.json, skills/ponytail/SKILL.md, hooks/claude-codex-hooks.json, hooks/ponytail-runtime.js, .github/workflows/test.yml, benchmarks/results/2026-10-07-agentic.md, benchmarks/results/2026-06-12-caveman-vs-ponytail.md, git log/tag) · https://github.com/JuliusBrussee/caveman (clone, HEAD d262ab3; README, LICENSING.md, SECURITY.md, TRADEMARKS.md, skills/, supabase/, .github/workflows/, git log/tag) · https://github.com/pbakaus/impeccable (clone, HEAD 2f98774f; README, README.npm.md, package.json, .claude-plugin/plugin.json, plugin/hooks/, .claude/skills/impeccable/scripts/impeccable, crates/, tests/, git log/tag) · https://github.com/vercel-labs/agent-skills (clone, HEAD 063bee9; README, AGENTS.md, package.json, skills.sh.json, skills/, packages/, .github/workflows/, git log) · WebSearch 14/10/2026: https://quantrimang.com/top-claude-code-plugin-va-repository-noi-bat-217391 · https://200lab.io/blog/claude-plugins-la-gi · https://ongboit.com/best-claude-code-skills/ · https://skillrank.it.com/skills/dietrichgebert-ponytail · https://claudemarketplaces.com/skills/DietrichGebert/ponytail/ponytail-review · https://www.404media.co/companies-are-making-claude-and-codex-talk-like-cavemen-to-stop-ais-soaring-costs/ · https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/ · https://www.elastic.co/search-labs/blog/elastic-caveman-ai-token-reduction · https://arxiv.org/abs/2606.24083 · https://news.ycombinator.com/item?id=47647455 · https://latent.space/p/skill-engineering-design · https://www.sourcepulse.org/projects/25437147 · https://impeccable.style/docs/brand.md
 
+## 3h. midudev/autoskills: cài skill AI theo stack, có cổng review tự động (ảnh người dùng gửi, 2026-10-15)
+
+> Ảnh là trang repo `midudev/autoskills` (14 issue, 18 PR mở, cây thư mục). Đã clone đầy đủ (400 commit, HEAD `b4489cb` 14/10/2026, bắt đầu 25/3/2026) và đọc README, LICENSE, `packages/autoskills/` (installer.ts, sync-skills.mjs, skill-review.mjs, skills-registry/index.json), AGENTS.md, CI.
+
+### 3h.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 15/10/2026) |
+|---|---|
+| Repo | `midudev/autoskills` · ~7k★, 626 fork, 14 issue + 18 PR mở · **CC BY-NC 4.0** (phi thương mại, không phải OSI) · trang autoskills.sh |
+| Tác giả | Miguel Ángel Durán (midudev), YouTuber/giáo dục lập trình tiếng Tây Ban Nha lớn: 294/400 commit; 8 người đóng góp khác. Threads: "1000 sao trong một tuần" (4/2026) |
+| Gói CLI | npm `autoskills` v0.4.1, `npx autoskills`, Node ≥ 22.6; TypeScript chạy trực tiếp (`--experimental-strip-types`); repo còn có site Astro (autoskills.sh) |
+| Chức năng | Quét `package.json`, file Gradle và config → nhận diện stack → chọn skill khớp từ **registry vendor sẵn trong repo** → chỉ tải file skill cần, verify SHA-256 rồi ghi; với Claude Code sinh thêm `CLAUDE.md` tổng hợp; `npx autoskills ui` mở desk xem skill đã cài |
+| Registry | 207 skill trong `skills-registry/index.json` (208 thư mục trên đĩa), phủ React/Next/Vue/Svelte/Angular/Astro, Go/Bun/Node, Expo/Flutter/SwiftUI/Android/KMP, Supabase/Prisma/Drizzle, Clerk/Stripe/Better Auth, Vitest/Playwright, Vercel/Cloudflare/AWS/Azure/Terraform, Remotion/ElevenLabs… |
+
+### 3h.2 Điểm đáng học: cổng review tự động cho supply-chain skill
+
+Đây là cái khác biệt so với các bộ skill chỉ gom prompt (mục 20 §3b–3d):
+
+- **Không tải live từ upstream lúc chạy.** `sync-skills.mjs` (chỉ maintainer chạy) tải skill từ repo GitHub upstream, review, rồi **vendor vào `skills-registry/` trong repo**. Lúc người dùng `npx autoskills`, CLI chỉ lấy skill từ registry đã duyệt đó, verify từng file theo manifest.
+- **Review hai tầng bằng model.** Mỗi skill được một model nhanh triage và model mạnh phán khi nghi ngờ. Phân bố trong index: `claude-haiku-5-5` 119, `gpt-5.4` 81, `claude-opus-5-5` 7. Kết quả ghi thẳng vào manifest: **197 approved / 10 flagged**, kèm `summary` và `flags`.
+- **Cảnh báo hiện trước khi cài.** Skill "an toàn nhưng đáng lưu ý" hiện cờ. Ví dụ thật trong index: nhiều skill Expo chạy `submit-expo-feedback@latest --yes` gửi context lên Expo; `kotlin-…-spm-migration` bị gắn `destructive_commands` + `embedded_secret_example`; `azure-diagnostics` chạy `kubectl debug --profile=sysadmin` và `setenforce 0`; `clerk-chrome-extension-patterns` gợi ý `<all_urls>` và tắt bot protection. Đây là loại cảnh báo mà danh sách "awesome skill" ở mục 12 §3e và mục 20 §3b thiếu.
+- **Verify SHA-256 thật trong mã.** `installer.ts`: `verifyRegistryEntry` băm từng file so với `entry.sha256`, `bundleHash` so toàn bộ; sai hash thì `throw` và từ chối ghi; từ chối đường dẫn skill lạ ("refusing to download disallowed skill archive"); ghi `skills-lock.json` với source + bundle hash.
+- **Repo tự làm cứng.** AGENTS.md dùng `fendo` (công cụ supply-chain của chính midudev, nay repo 403/không công khai): cấm `^`/`~`, ghim bản chính xác, tắt install script, release-age gating ("bản mới ≥ 1 ngày tuổi"). Có 349 test (`node:test`) trên 10 file; CI chạy lint (oxlint), format (oxfmt), test trên Node 22.
+
+### 3h.3 Hạn chế và lưu ý
+
+- **License CC BY-NC 4.0 — phi thương mại.** Giống waoowaoo (mục 19) và một số repo khác: **không thể nhúng vào sản phẩm thương mại** mà không xin phép. Đây là license cho nội dung, áp lên cả CLI; cần đọc kỹ trước khi dùng trong công ty.
+- **Review là AI, không bắt buộc có người.** Cổng review bằng model là bước lọc tốt hơn "không có gì", nhưng vẫn là model đánh giá model; 10 skill `flagged` vẫn cài được (kèm cảnh báo). Không nên coi "approved" là bảo chứng tuyệt đối; skill vẫn là văn bản điều khiển agent.
+- **Nguồn thứ cấp nói sai cơ chế.** Vài bài (và skills.sh) ghi "skill lấy từ skills.sh". Đọc mã thì registry là **vendor trong repo midudev**, sync từ upstream GitHub rồi review, không kéo trực tiếp từ skills.sh lúc cài. README của chính repo cũng nói vậy.
+- **Chất lượng skill không đồng đều.** Review summary tự ghi nhận nhiều skill có ví dụ lỗi thời hoặc số liệu mâu thuẫn (vd `zod` "43 vs 42 rule", `laravel-specialist` dùng Livewire v2 API cũ). autoskills lọc được injection/secret, không đảm bảo nội dung kỹ thuật đúng.
+
+### 3h.4 So sánh và dùng thế nào
+
+| Hướng | Ví dụ | Khác autoskills |
+|---|---|---|
+| Cài skill thủ công theo tên | `npx skills add <owner>/<repo>` (skills.sh) | autoskills tự **nhận diện stack** rồi chọn, không phải gõ tên |
+| Bộ skill lớn một gói | superpowers, ECC, mattpocock (§3c–3d) | Đó là pack cố định; autoskills là **installer + registry nhiều nguồn có review** |
+| Marketplace plugin | anthropics/claude-plugins-official (§2b) | Marketplace pin theo git URL, không có cổng review model + SHA như autoskills |
+
+- **Hợp khi:** muốn nhanh có skill đúng stack cho Cursor/Claude Code/Copilot mà không tự tìm; dùng cho dự án cá nhân/học tập (hợp license NC).
+- **Trước khi dùng:** đọc cảnh báo mỗi skill hiện ra, ưu tiên `--dry-run` xem sẽ cài gì, giữ `skills-lock.json` trong repo để biết nguồn và hash; với công ty thì cân nhắc license NC.
+- **Bài học cho kho (mục 23, WORKFLOW):** cơ chế "vendor + manifest SHA-256 + review model hai tầng + cảnh báo trước khi cài" là mẫu tốt cho `install.py` của Hermes-Agents và quy ước provenance; mạnh hơn kiểu chỉ kiểm LICENSE và trùng tên thư mục đang có.
+
+**Nguồn §3h:** https://github.com/midudev/autoskills (clone đầy đủ 15/10/2026, 400 commit, HEAD b4489cb 14/10/2026; README.md, LICENSE CC BY-NC 4.0, packages/autoskills/{package.json,installer.ts,sync-skills.mjs,skill-review.mjs,skills-registry/index.json}, AGENTS.md, SECURITY.md, .github/workflows/ci.yml; tự đọc index: 207 skill, review 197 approved/10 flagged, model haiku-5-5 119 / gpt-5.4 81 / opus-5-5 7; 349 test it()) · shields 15/10/2026 (7k★, 626 fork; midudev/fendo trả 403) · https://autoskills.sh · https://www.skills.sh/midudev/autoskills · https://www.sourcepulse.org/projects/27690747 · https://deepwiki.com/midudev/autoskills · https://www.threads.com/@midu.dev/post/DWy2Bp2DVDZ/ · https://www.blog.brightcoding.dev/2026/09/29/midudevautoskills-auto-install-ai-agent-skills-for-your-stack
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
