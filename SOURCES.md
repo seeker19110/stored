@@ -446,3 +446,11 @@
 - kdnuggets.com/the-roadmap-to-mastering-agentic-ai-systems-in-2026 (Vinod Chugani, 13/10/2026; đọc toàn bài, danh mục tài nguyên cuối bài)
 - github.com/microsoft/autogen (README 16/10/2026: chế độ bảo trì, khuyên Microsoft Agent Framework) · anthropic.com/engineering/multi-agent-research-system (13/6/2025) · anthropic.com/engineering/building-effective-agents
 - WebSearch 16/10/2026: machinelearningmastery.com/the-roadmap-for-mastering-agentic-ai-in-2026 (bài khác cùng chủ đề) · levelup.gitconnected.com (2026 roadmap to AI agent mastery)
+
+## Bổ sung 2026-10-16 đợt 25 (Hindsight 1.0: tự chạy bản MIT, tối ưu Postgres, thay thế Memlake → mục 10 §4d)
+
+- github.com/vectorize-io/hindsight (MIT, tag v1.0.0 15/10/2026) · pypi.org/project/hindsight-api/ 1.0.0: cài vào venv và tự chạy 16/10/2026 trên Postgres 17 + pgvector, `LLM_PROVIDER=none`, embedding và reranker cục bộ; retain/recall qua API (recall 0,16–0,19 s); đọc `config.py` của gói đã cài để lấy biến môi trường
+- hindsight.vectorize.io: blog/2026/10/15/hindsight-50k-stars · blog/2026/10/13/memlake (số đo 11–235×, Postgres trên primary 4 vCPU dùng chung; không có con số "50×") · cloud-enterprise/overview · developer/{storage,installation,configuration,performance}
+- arxiv.org/pdf/2512.12818 · aclanthology.org/2026.acl-demo.27.pdf · trendshift.io/repositories/15603
+- Thay thế trên object storage: docs.lancedb.com/storage · lancedb.com/blog/case-study-cognee · cognee.ai/blog/fundamentals/how-cognee-builds-ai-memory · mastra.ai/integrations/databases/lancedb
+- shields 16/10/2026: vectorize-io/hindsight ~50k, mem0ai/mem0 ~67k, milvus-io/milvus ~46k, topoteretes/cognee ~32k, getzep/graphiti ~32k, lancedb/lancedb ~12k
