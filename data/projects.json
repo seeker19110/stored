@@ -4794,6 +4794,16 @@
       "section": "19"
     },
     {
+      "name": "Topview 3D Builder",
+      "repo": "topviewai/topview-3d-builder",
+      "category": "agentic-video",
+      "license": "Apache-2.0",
+      "stars": 68,
+      "open_source": true,
+      "notes": "Dựng cảnh 3D tham chiếu cho video AI qua CLI topview-3d-cli + skill (Claude Code/Codex/Cursor); dựng/render cục bộ (tự chạy 0.1.7, 2 s/khung); tài sản CC BY 4.0; plugin kèm .mcp.json tới mcp-3d.topview.ai (OAuth); bước sinh video dẫn về Topview trả phí; skill HEAD ghim 0.1.8 chưa có trên PyPI; ảnh người dùng 2026-10-16",
+      "section": "19"
+    },
+    {
       "name": "UX/UI Agent Skills (XIAS)",
       "repo": "plugin87/ux-ui-agent-skills",
       "category": "design-skill",
