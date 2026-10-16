@@ -432,3 +432,11 @@
 - github.com/cporter202/ai-growth-stack, clone đầy đủ 16/10/2026 (7 commit 21/12/2025, chỉ README.md 302 dòng; đếm link theo tên miền: 13 link cùng `rapidapi.com/user/contact-_OGid12Eu`); shields 229★ / 70 fork
 - apidataframe.com (9 API, "Available on RapidAPI", không tên người vận hành) · rapidapi.com/user/contact-_OGid12Eu (trang cần JavaScript, không đọc được) · github.com/cporter202 (40 repo, bio ViralWaveStudio.com, ~1,5k follower) · buymeacoffee.com/viralwavestudio
 - WebSearch 16/10/2026 "API DataFrame" RapidAPI: không thấy trang API riêng hay đánh giá độc lập
+
+## Bổ sung 2026-10-16 đợt 23 (Zen Design System + design system AI-ready → mục 06 §7f)
+
+- github.com/Zen-Design-System/Zen-DS, clone đầy đủ 16/10/2026 (561 commit từ 25/9/2026, HEAD 0e0ff04c): README.md, LICENSE.md (bản nháp 1.0, 8/10/2026), AGENTS.consumer.md, AGENTS.md, .mcp.json, mcp/server.mjs, skills/, package.json; `npm ci --ignore-scripts` rồi tự chạy tsc, usage:selftest/usage:check, tokens/styles/icons/guidelines check, `node mcp/selftest.mjs`, `npx vitest run` (1.058 pass / 24 skip)
+- registry.npmjs.org: @zen-ds/react 0.1.0 (MIT, 5/5/2026, maintainer zen-ds) · @umami/react-zen 0.255.0 (MIT)
+- github.com/umami-software/zen (clone, 726 commit) · zen.umami.is · github.com/reciprocity/zen-design-system · webflow.com/libraries/detail/zen-ui · vn.linkedin.com/in/tungoc19 (#zendesignsystem #dizaistudio)
+- Lớp AI của design system lớn: primer.style/product/getting-started/foundations/mcp · carbondesignsystem.com/developing/carbon-mcp/overview · npmjs.com/package/@atlaskit/ads-mcp · atlassian.com/blog (DESIGN.md) · state-of-ai-in-design-systems.netlify.app · uicentral.fyi/blog/ui-component-libraries-with-mcp-servers · daily.dev (top 10 React UI 2026) · mowgli.ai/blog/mcp-servers-for-ui-design-2026
+- shields 16/10/2026: shadcn-ui/ui 126k, ant-design 100k, mui/material-ui 99k, chakra-ui 41k, mantine 32k, heroui 31k, fluentui 20k, radix primitives 19k, react-spectrum 16k, material-web 11k, base-ui 11k, carbon 9,5k, uswds 7,2k, polaris 6,2k, ark 5,4k, primer/react 3,9k, govuk-frontend 1,5k, zendesk garden 1,1k
