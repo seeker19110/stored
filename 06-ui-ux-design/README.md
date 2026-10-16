@@ -6,16 +6,16 @@
 
 | Thư viện | Repo | ★ (2026) | Kiểu | Nhận xét |
 |---|---|---|---|---|
-| **shadcn/ui** | shadcn-ui/ui | ~115–121k | Copy-paste source (CLI) trên Tailwind | Mặc định cho React+Tailwind; từ 7/2026 cài mới dùng **Base UI**, vẫn hỗ trợ Radix |
-| **MUI** | mui/material-ui | ~93k | Material Design, đầy đủ | An toàn cho enterprise |
+| **shadcn/ui** | shadcn-ui/ui | ~126k (16/10) | Copy-paste source (CLI) trên Tailwind | Mặc định cho React+Tailwind; từ 7/2026 cài mới dùng **Base UI**, vẫn hỗ trợ Radix |
+| **MUI** | mui/material-ui | ~99k (16/10) | Material Design, đầy đủ | An toàn cho enterprise |
 | **Radix UI** | radix-ui/primitives | ~19–35k (nguồn lệch) | Headless primitives | Chậm lại sau khi WorkOS mua |
-| **Base UI** | mui/base-ui | ~10.6k | Headless, từ team Radix + MUI + Floating UI | Lựa chọn khi bắt đầu mới |
-| **Mantine** | mantinedev/mantine | ~28k | "Batteries included", 100+ component | |
+| **Base UI** | mui/base-ui | ~11k (16/10) | Headless, từ team Radix + MUI + Floating UI | Lựa chọn khi bắt đầu mới |
+| **Mantine** | mantinedev/mantine | ~32k (16/10) | "Batteries included", 100+ component | |
 | **Vuetify** | vuetifyjs/vuetify | ~41k | Material 3 cho Vue | |
 | **Headless UI / DaisyUI** | tailwindlabs/headlessui · saadeghi/daisyui | – | Tailwind-native | |
 | **Storybook** | storybookjs/storybook | – | Phát triển/test/doc component cô lập | Chuẩn de-facto |
 
-**Design system tham khảo (doanh nghiệp):** Atlassian, GitHub Primer, GitLab Pajamas, Google Material, IBM Carbon, Shopify Polaris — xem `klaufel/awesome-design-systems`, designsystemsrepo.com, designsystems.surf.
+**Design system tham khảo (doanh nghiệp):** Atlassian, GitHub Primer, GitLab Pajamas, Google Material, IBM Carbon, Shopify Polaris (bảng so sánh có cột "AI-ready", MCP, `llms.txt`: §7f.3) — xem `klaufel/awesome-design-systems`, designsystemsrepo.com, designsystems.surf.
 
 ## 2. Công cụ thiết kế / canvas mã nguồn mở
 
@@ -293,6 +293,81 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 - **Tải bản build:** chỉ lấy từ release của `storytold/figcraft` hoặc getartcraft.com. Kho đã ghi nhận repo nhái mồi malware cho FilmCraft (mục 01 §3d).
 
 **Nguồn §7e:** https://github.com/storytold/figcraft (clone đầy đủ, 267 commit, HEAD bcedfeb 14/10/2026; README, NOTICE, ATTRIBUTION.md, CLAUDE.md, ROADMAP.md, docs/gaps.md, crates/format/src/fig/mod.rs, .github/workflows/ci.yml; tự chạy 14/10/2026: `cargo test -p figcraft-doc -p figcraft-layout -p figcraft-format -p figcraft-engine` 1.092 pass, `figcraft-cli render` ra PNG) · shields 14/10/2026 (616★, 264 fork, release v0.5.1) · GitHub search API 14/10/2026 (51 repo của `storytold`) · https://github.com/storytold/craft-launcher (`crates/core/src/catalog.rs`, 14/10/2026) · https://getartcraft.com/apps/figcraft · https://petapixel.com/2026/10/07/someone-rebuilt-free-open-source-versions-of-photoshop-premiere-and-lightroom-using-ai/ · https://propakistani.pk/2026/10/09/free-open-source-copies-of-photoshop-premiere-and-lightroom-are-here/ · https://www.tweaktown.com/news/113989/developer-says-software-is-over-after-using-ai-to-recreate-adobes-entire-creative-cloud-suite-for-free/index.html · https://www.it-connect.fr/suite-adobe-rust-claude-opus-artcraft-crafting-apps/ · https://ecosistemastartup.com/artcraft-clona-7-apps-de-adobe-con-claude-opus-5-5/ · https://www.besthub.dev/articles/rewriting-adobe-suite-in-rust-12-open-source-apps-56k-stars-built-for-ai-agents-051d286733fe · https://notes.nicolasdeville.com/apps/artcraft/ · https://glama.ai/mcp/servers/divikwu/figcraft (dự án trùng tên)
+
+## 7f. Zen Design System (Dizai Studio) và design system "AI-ready" (yêu cầu người dùng, 2026-10-16)
+
+> Người dùng hỏi "Zen Design System và các system thiết kế UI/UX khác". Tên này ứng với nhiều dự án; mục này lấy repo mang đúng tên **"Zen Design System"** (`Zen-Design-System/Zen-DS`, của Dizai Studio, Việt Nam) làm chính, liệt kê các dự án trùng tên, rồi so với các design system lớn theo tiêu chí mà Zen lấy làm điểm bán: dùng được với AI agent. Đã clone đầy đủ Zen-DS (HEAD `0e0ff04c` 16/10/2026), cài devDependencies, chạy toàn bộ cổng kiểm của repo và bộ test.
+
+### 7f.1 Trùng tên "Zen"
+
+| Dự án | Là gì | Ghi chú (16/10/2026) |
+|---|---|---|
+| **`Zen-Design-System/Zen-DS`** | Design system thương mại của **Dizai Studio** (Việt Nam), React 19 + TypeScript, sinh từ thư viện Figma | Mục chính, xem 7f.2 |
+| `umami-software/zen` | Design system và bộ component React của **Umami** (analytics mã mở), theo quy ước shadcn, primitive **Base UI**, Tailwind v4 | **MIT**, 58★, 726 commit (721 của Mike Cao, người lập Umami), npm `@umami/react-zen` 0.255.0, ~104 file component, có `SKILL.md` cho agent; tài liệu zen.umami.is |
+| `reciprocity/zen-design-system` | Biến, style cho micro-frontend "Zen" của Reciprocity | Dừng từ 11/2020 |
+| Zen UI (Flowbase) | Bộ component cho **Webflow**, file Figma bán riêng | Không phải mã mở |
+| Zendesk Garden | Design system của Zendesk (`zendeskgarden/react-components`) | Không phải "Zen", hay bị nhầm; Apache-2.0, ~1,1k★ |
+
+### 7f.2 Hồ sơ Zen DS
+
+| Mục | Thông tin (đọc 16/10/2026) |
+|---|---|
+| Repo | `Zen-Design-System/Zen-DS` · **0★** (shields), 561 commit trong 18 ngày có commit, từ 25/9/2026; Alex Duong 287, commit đồng tác giả Claude 168, `alexduonguiux-hub` 83. Bài LinkedIn có hashtag #zendesignsystem #dizaistudio nhắc đội ngũ Việt Nam; quan hệ giữa các tài khoản và Dizai **chưa xác minh** |
+| Nội dung | 67 component có hướng dẫn (đếm bởi `guidelines:check`; Button, input, Table, Dialog, Sidebar, Chat, Chart, app shell…), mỗi component có hướng dẫn Do/Don't và tài liệu props sinh tự động; README ghi **2.179 biến Figma** trên 7 trục chế độ (theme, component theme, density, radius, emphasis, breakpoint, typography), 36 text style, 18 effect style, **1.598 icon**; trang tài liệu "Codebase Platform" và Storybook |
+| Lớp cho AI agent | `AGENTS.consumer.md` (đi kèm package, dành cho agent dựng app), `AGENTS.md` (cho agent sửa chính design system), `llms.txt`; **MCP server cục bộ** (`node mcp/server.mjs`, stdio, 11 tool: `list_components`, `get_component`, `get_tokens`, `search_icons`, `list_templates`, `map_figma_component`, `check_spec`, `check_usage`…; không gọi mạng); 8 skill (`zen-component-usage`, `zen-figma-design`, `zen-token-sync`, `zen-responsive-screens`…) |
+| Cổng máy | **Usage guard** 205 luật dùng component (có plugin ESLint), kiểm token/text style/icon, đồng bộ hướng dẫn với props, "Figma parity" (`tools/figma-contract`), `verify:package` (đóng gói, cài vào app tạm, type-check, build, kiểm ngân sách kích thước) |
+| Giấy phép | **Thương mại, theo số người dùng (seat)**: package `@zen-ds/react` chỉ cài được từ registry riêng `npm.dizai.studio` sau khi đăng nhập tài khoản Zen. Mã nguồn công khai trên GitHub nhưng **không phải mã mở**. `LICENSE.md` (bản 1.0, hiệu lực 8/10/2026) cho phép sửa mã, dùng trong số End Product không giới hạn, cho phép dùng AI agent qua MCP; đầu file ghi **"Draft for legal review… has not yet been reviewed by a lawyer"** |
+| npm công khai | `@zen-ds/react@0.1.0` (5/5/2026), ghi **MIT**, maintainer `zen-ds`. Tài liệu của Zen gọi đây là "old public 0.1.0" và cảnh báo thiếu dòng scope trong `.npmrc` thì npm cài nhầm bản này; `npx zen-ds doctor` kiểm điều đó |
+
+**Tự chạy (Node 24.22, `npm ci --ignore-scripts`, 16/10/2026):**
+
+| Lệnh | Kết quả |
+|---|---|
+| `npx tsc --noEmit -p .` | Sạch |
+| `npm run usage:selftest` | 205 luật, mỗi luật bắt được lỗi trong fixture xấu, fixture tốt sạch |
+| `npm run usage:check` | Đạt: 464 file, 205 luật, 1 cảnh báo |
+| `tokens:check` · `styles:check` · `icons:check` | Đạt, 0 lỗi |
+| `guidelines:check` | Hướng dẫn khớp mã: 67 component, 236 union khớp, 85 không phân giải được |
+| `node mcp/selftest.mjs` | 11 tool trả lời đúng qua client SDK stdio |
+| `npx vitest run` | **1.058 test pass, 24 skip** (70 file) |
+
+**Đánh giá Zen DS:**
+
+- **Điểm mạnh thật, đã kiểm:** tài liệu dành cho agent, MCP cục bộ, và luật dùng component **kiểm bằng máy** (205 luật, có self-test chứng minh mỗi luật bắt được lỗi). Cách này khớp với bài học "skill chỉ khuyên, cổng máy mới chặn" của mục 21 §10c và XIAS (§7d): muốn agent dùng đúng design system thì phải có linter, không chỉ có văn bản hướng dẫn.
+- **Rủi ro:** sản phẩm mới khoảng 3 tuần, 0★, chưa có người dùng công khai; mã do một người và agent viết là chính; giấy phép còn là **bản nháp chưa qua luật sư**; phụ thuộc registry riêng và tài khoản của Dizai (mất licence là mất quyền cập nhật). Bản 0.1.0 công khai ghi MIT trong khi bản hiện tại là thương mại: quyền MIT của bản 0.1.0 đã phát hành không tự thu hồi được; muốn dùng hợp pháp bản mới thì phải mua licence.
+- **Hợp với ai:** đội ở Việt Nam cần một design system có sẵn Figma + React + lớp cho agent, chấp nhận trả theo seat. Đội cần mã mở thì xem bảng 7f.3.
+
+### 7f.3 Các design system khác, nhìn theo "AI-ready" (shields 16/10/2026)
+
+| Design system | ★ · license | Nền | Lớp cho AI agent (đọc 16/10/2026) |
+|---|---|---|---|
+| **shadcn/ui** | 126k · MIT | Copy mã vào dự án, Base UI/Radix + Tailwind | MCP server chính thức trong CLI (duyệt, tìm, cài component từ registry), skill, `llms.txt`. Đầy đủ nhất trong nhóm mã mở |
+| **Ant Design** | 100k · MIT | Component đầy đủ cho ứng dụng doanh nghiệp | Có MCP theo bài tổng hợp, mức "tài liệu" **(chưa xác minh từ trang chính thức)** |
+| **MUI (Material UI)** | 99k · MIT | Material Design | MCP trả tài liệu và ví dụ **(chưa xác minh từ trang chính thức)** |
+| **Chakra UI** / **Ark UI** | 41k / 5,4k · MIT | Chakra có style; Ark là headless của cùng đội | MCP có hướng dẫn cho Cursor/VS Code/Claude **(chưa xác minh từ trang chính thức)** |
+| **Mantine** | 32k · MIT | Component đầy đủ, hook | Có trong danh sách MCP của bài tổng hợp **(chưa xác minh)** |
+| **HeroUI** (tên cũ NextUI) | 31k · Apache-2.0 | React + Tailwind | – |
+| **Fluent UI** (Microsoft) | 20k · shields không nhận diện | Fluent 2 | `llms.txt` theo UICentral; không tìm thấy MCP chính thức |
+| **Radix Primitives** / **Base UI** | 19k / 11k · MIT | Headless | – |
+| **React Spectrum / React Aria** (Adobe) | 16k · Apache-2.0 | Headless + design system Spectrum; mạnh về a11y | – |
+| **Material Web** (Google) | 11k · Apache-2.0 | Web component Material 3 | – |
+| **Carbon** (IBM) | 9,5k · Apache-2.0 | Web component + React | **Carbon MCP** (public preview, cần IBMid; mã đóng theo bài ngoài) · `llms.txt` |
+| **USWDS** | 7,2k | Design system chính phủ Mỹ | – |
+| **Polaris** (Shopify) | 6,2k | Đã chuyển sang web component cho app Shopify | – |
+| **Primer** (GitHub) | 3,9k · MIT | React + CSS | **`@primer/mcp`** chính thức, stdio cục bộ: token, component, pattern, icon (trang primer.style) |
+| **Atlassian Design System** | npm `@atlaskit/*` | React | **`@atlaskit/ads-mcp`** (Early Access) + MCP hosted tại mcp.atlassian.com; Atlassian còn công bố `DESIGN.md` (xem §7c) |
+| **GOV.UK Frontend** | 1,5k · MIT | Design system chính phủ Anh, chuẩn a11y | – |
+| **Zendesk Garden** | 1,1k · Apache-2.0 | React | – |
+| **Zen DS** (Dizai) | 0 · thương mại | React 19 + Figma | MCP cục bộ 11 tool, `AGENTS.consumer.md`, `llms.txt`, **205 luật dùng kiểm bằng máy** |
+
+**Chọn thế nào (cho dự án của chủ kho):**
+
+- **Mặc định cho React + Tailwind:** shadcn/ui (mã nằm trong repo, MCP chính thức, giấy phép MIT). Umami Zen là ví dụ tốt về cách một sản phẩm thật dựng design system riêng trên shadcn + Base UI.
+- **Ứng dụng nghiệp vụ nhiều bảng, form:** Ant Design hoặc MUI. Cần a11y chặt (chính phủ, y tế): React Aria/Spectrum hoặc GOV.UK Frontend làm chuẩn tham chiếu.
+- **Học cách làm design system "cho agent":** đọc Primer MCP (mã mở, cục bộ) và Zen DS (usage guard có self-test). Hai thứ đáng chép là MCP trả token/component đúng phiên bản đang cài, và linter luật dùng component chạy trong CI, không chỉ trong prompt.
+- **Trước khi dùng một design system thương mại** (Zen DS hay bất kỳ): đọc giấy phép bản đã ký, không bản nháp; hỏi rõ chuyện gì xảy ra với End Product khi ngừng trả phí; ghim registry trong `.npmrc` để không cài nhầm package trùng tên trên npm công khai.
+
+**Nguồn §7f:** https://github.com/Zen-Design-System/Zen-DS (clone đầy đủ, HEAD 0e0ff04c; README.md, LICENSE.md, AGENTS.consumer.md, AGENTS.md, .mcp.json, mcp/server.mjs, skills/, package.json; tự chạy tsc, usage/tokens/styles/icons/guidelines check, MCP selftest, vitest) · https://registry.npmjs.org/@zen-ds%2freact (0.1.0, MIT, 5/5/2026) · https://github.com/umami-software/zen · https://zen.umami.is/ · https://registry.npmjs.org/@umami%2freact-zen · https://github.com/reciprocity/zen-design-system · https://webflow.com/libraries/detail/zen-ui · https://vn.linkedin.com/in/tungoc19 · https://primer.style/product/getting-started/foundations/mcp/ · https://carbondesignsystem.com/developing/carbon-mcp/overview/ · https://www.npmjs.com/package/@atlaskit/ads-mcp · https://www.atlassian.com/blog/how-we-build/atlassians-design-md-is-here-what-we-learned-testing-portable-design-context-in-practice · https://state-of-ai-in-design-systems.netlify.app/systems/shadcn-ui · https://uicentral.fyi/blog/ui-component-libraries-with-mcp-servers · https://daily.dev/posts/top-10-best-react-ui-libraries-2026-ai-dx-edition--xtcsp4agl · https://mowgli.ai/blog/mcp-servers-for-ui-design-2026 · shields.io cho số sao các repo trong bảng 7f.3
 
 ## 8. Nguồn (mục 1–6)
 

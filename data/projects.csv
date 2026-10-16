@@ -43,11 +43,11 @@ n8n,n8n-io/n8n,,low-code,Sustainable Use,207000,False,05,fair-code
 Dify,langgenius/dify,,low-code,Apache-2.0 (modified),158000,True,05,
 Langflow,langflow-ai/langflow,,low-code,MIT,145000,True,05,
 Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
-shadcn/ui,shadcn-ui/ui,,ui-library,MIT,125000,True,06,Base UI mặc định từ 7/2026
-MUI,mui/material-ui,,ui-library,MIT,93000,True,06,
-Radix UI,radix-ui/primitives,,ui-library,MIT,,True,06,nguồn lệch 19k–35k
-Base UI,mui/base-ui,,ui-library,MIT,10600,True,06,
-Mantine,mantinedev/mantine,,ui-library,MIT,28000,True,06,
+shadcn/ui,shadcn-ui/ui,,ui-library,MIT,126000,True,06,Base UI mặc định từ 7/2026; ★ 16/10/2026
+MUI,mui/material-ui,,ui-library,MIT,99000,True,06,★ 16/10/2026
+Radix UI,radix-ui/primitives,,ui-library,MIT,19000,True,06,nguồn lệch 19k–35k; ★ 16/10/2026
+Base UI,mui/base-ui,,ui-library,MIT,11000,True,06,★ 16/10/2026
+Mantine,mantinedev/mantine,,ui-library,MIT,32000,True,06,★ 16/10/2026
 Vuetify,vuetifyjs/vuetify,,ui-library,MIT,41000,True,06,
 Storybook,storybookjs/storybook,,ui-library,MIT,91000,True,06,
 Excalidraw,excalidraw/excalidraw,,design-tool,MIT,134000,True,06,
@@ -474,6 +474,21 @@ LocalMiniDrama,xuanyustudio/LocalMiniDrama,,agentic-video,MIT,2000,True,19,"Phim
 Topview 3D Builder,topviewai/topview-3d-builder,,agentic-video,Apache-2.0,68,True,19,"Dựng cảnh 3D tham chiếu cho video AI qua CLI topview-3d-cli + skill (Claude Code/Codex/Cursor); dựng/render cục bộ (tự chạy 0.1.7, 2 s/khung); tài sản CC BY 4.0; plugin kèm .mcp.json tới mcp-3d.topview.ai (OAuth); bước sinh video dẫn về Topview trả phí; skill HEAD ghim 0.1.8 chưa có trên PyPI; ảnh người dùng 2026-10-16"
 UX/UI Agent Skills (XIAS),plugin87/ux-ui-agent-skills,,design-skill,MIT,1686,True,06,"25 skill + 52 cổng đo trên trình duyệt (tự chạy 49/52, 13/10/2026); 138 design system phần lớn lấy từ awesome-design-md và bergside/awesome-design-skills, không ghi nguồn"
 FigCraft,storytold/figcraft,,design-tool,MIT OR Apache-2.0,616,True,06,"Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ đọc 14/10/2026"
+Zen Design System (Dizai Studio),Zen-Design-System/Zen-DS,,ui-library,Commercial,0,False,06,"Design system thương mại (Việt Nam), React 19 + Figma (2.179 biến, 1.598 icon); MCP cục bộ 11 tool, AGENTS.consumer.md, llms.txt, 205 luật dùng kiểm bằng máy; 1.058 test pass (tự chạy 16/10/2026); giấy phép theo seat còn là bản nháp chưa qua luật sư; registry riêng npm.dizai.studio"
+Zen (Umami),umami-software/zen,,ui-library,MIT,58,True,06,"Design system của Umami: quy ước shadcn, primitive Base UI, Tailwind v4; npm @umami/react-zen 0.255.0; có SKILL.md cho agent; ★ 16/10/2026"
+Ant Design,ant-design/ant-design,,ui-library,MIT,100000,True,06,Component đầy đủ cho ứng dụng doanh nghiệp; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026
+Chakra UI,chakra-ui/chakra-ui,,ui-library,MIT,41000,True,06,Component có style; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026
+Ark UI,chakra-ui/ark,,ui-library,MIT,5400,True,06,Headless của đội Chakra; ★ 16/10/2026
+HeroUI (tên cũ NextUI),heroui-inc/heroui,,ui-library,Apache-2.0,31000,True,06,React + Tailwind; ★ 16/10/2026
+Fluent UI,microsoft/fluentui,,ui-library,,20000,True,06,Fluent 2 của Microsoft; llms.txt theo UICentral; không thấy MCP chính thức; ★ 16/10/2026
+React Spectrum / React Aria,adobe/react-spectrum,,ui-library,Apache-2.0,16000,True,06,"Headless + Spectrum của Adobe, mạnh về a11y; ★ 16/10/2026"
+Material Web,material-components/material-web,,ui-library,Apache-2.0,11000,True,06,Web component Material 3 của Google; ★ 16/10/2026
+Carbon,carbon-design-system/carbon,,ui-library,Apache-2.0,9500,True,06,IBM; Carbon MCP public preview (cần IBMid) + llms.txt; ★ 16/10/2026
+USWDS,uswds/uswds,,ui-library,,7200,True,06,Design system chính phủ Mỹ; ★ 16/10/2026
+Polaris,Shopify/polaris,,ui-library,,6200,True,06,Shopify; đã chuyển sang web component; ★ 16/10/2026
+Primer React,primer/react,,ui-library,MIT,3900,True,06,"GitHub; @primer/mcp chính thức, stdio cục bộ (token, component, pattern, icon); ★ 16/10/2026"
+GOV.UK Frontend,alphagov/govuk-frontend,,ui-library,MIT,1500,True,06,"Design system chính phủ Anh, chuẩn a11y; ★ 16/10/2026"
+Zendesk Garden,zendeskgarden/react-components,,ui-library,Apache-2.0,1100,True,06,Design system Zendesk; hay bị nhầm với 'Zen'; ★ 16/10/2026
 Ponytail,DietrichGebert/ponytail,,harness-pack,MIT,163000,True,20,"Prompt 52 dòng ""lazy senior dev"": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026"
 Caveman,JuliusBrussee/caveman,,context-optimization,Apache-2.0,112000,True,20,"Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026"
 Impeccable,pbakaus/impeccable,,design-skill,Apache-2.0,81000,True,20,"1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 14/10/2026"
