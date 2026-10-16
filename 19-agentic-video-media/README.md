@@ -180,10 +180,10 @@ Bản v0.5 thay đổi gần như toàn bộ mã (2.372 file, +147k / −191k d�
 | python >=3.11 | ✅ | `requires-python = ">=3.11"` |
 | node >=20.6 | ⚠️ | README và bài dev.to ghi 20.6+, nhưng `editor/package.json` khai `engines.node >=18.0.0`. Đã chạy được với Node 24.22 |
 | runs 100% local | ⚠️ | Lõi đúng, **plugin thì không**: `.mcp.json` ở gốc repo khai máy chủ MCP từ xa `https://mcp-3d.topview.ai` (OAuth). Manifest Codex trỏ thẳng tới file này, marketplace Codex đặt `"authentication": "ON_INSTALL"`. Manifest Claude không khai, nhưng Claude Code **tự nạp `.mcp.json` ở gốc plugin** (docs plugins-reference: "loads `.mcp.json` at the plugin root first"). Cài plugin vào Claude Code vì thế cũng đăng ký máy chủ `topview-3d`. Nó chỉ chạy được khi người dùng đồng ý OAuth, không âm thầm gửi dữ liệu. Bài dev.to không nhắc tới máy chủ MCP này |
-| Link Quick Start · Examples · Tutorial · 3D Builder · Topview.ai · Issues | ✅ | Hai link nội bộ README (Quick Start, Examples) và Issues trỏ đúng chỗ; 3/6 link dẫn về topview.ai (tutorial, trang sản phẩm, trang chủ) |
+| Link Quick Start · Examples · Tutorial · 3D Builder · Topview.ai · Issues | ⚠️ | Quick Start và Issues trỏ đúng chỗ. **Examples gãy**: neo `#see-what-you-can-make` không có heading tương ứng (mục gần nhất là `### Example`). 3/6 link dẫn về topview.ai (tutorial, trang sản phẩm, trang chủ) |
 | Video hero 1:42 | ⚠️ | Phần dựng cảnh khớp sản phẩm; phần video thật cuối cùng do Topview sinh, không phải do công cụ mã mở này tạo |
 
-**Tổng:** 3✅ / 4⚠️ / 0❌. Không có ô sai hẳn. Các ⚠️ có chung một gốc: ảnh gộp phần mã mở chạy cục bộ (dựng, kiểm, render khung tham chiếu) với bước sinh video trả phí của Topview.
+**Tổng:** 2✅ / 5⚠️ / 0❌. Không có ô sai hẳn. Ngoài link Examples gãy, các ⚠️ có chung một gốc: ảnh gộp phần mã mở chạy cục bộ (dựng, kiểm, render khung tham chiếu) với bước sinh video trả phí của Topview.
 
 ### 1d.3 Điều ảnh không nói (đọc mã và tự chạy)
 
