@@ -404,3 +404,11 @@
 - github.com/mksglu/context-mode, clone lại 16/10/2026 (2.234 commit, vẫn v1.0.169; 6 commit mới từ 12/10 đều là bot `ci: update install stats`): README.md (Install, bảng routing), stats.json (686k+ = npm 633,6k + marketplace 52,3k), skills/ctx-doctor/SKILL.md, src/cli.ts (`doctor`); `git log -S` cho banner YouTube (bab2f0a2, 5/4/2026) và câu "grouped by install complexity" (4bbbd46a, 21/3/2026); trang GitHub (29,9k★, 2,1k fork, 110 watcher, 16/10/2026)
 - youtube.com/oembed?url=…QUHrntlfPo4: "Claude Code is Expensive. This MCP Server Fixes It (Context Mode)", kênh Better Stack (nguồn banner "99% SAVINGS")
 - Điều kiện Claude Code v1.0.33+: code.claude.com/docs/en/plugins (không ghi phiên bản) · anthropic.com/news/claude-code-plugins · morphllm.com/claude-code-plugins (nguồn cộng đồng, ghi 1.0.33)
+
+## Bổ sung 2026-10-16 đợt 19 (ảnh "the line / the loop" → mục 21 §10c)
+
+- claude.com/blog/the-ai-native-sdlc-playbook (Louis Claxton, Applied AI, 21/8/2026): HTML trang blog; ảnh gốc assets.claude.com/75c8e050ace91c2b288498fe45384469cfb00aa2.png (2048×1296, alt rỗng, trùng ảnh người dùng gửi); PDF "AI Native SDLC Playbook_designv2" (cdn.prod.website-files.com, 54 trang, tạo 23/9/2026), đọc toàn văn bằng pdftotext: Figure 1–4, bảng "The shifts", sáu stage, bands.yaml, ví dụ managed settings
+- academy.claude.com/courses/ai-native-sdlc-playbook (khoá học cùng nội dung)
+- claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle (Jason Clinton, 21/7/2026): ~80% code merge do Claude viết, ~8× code/quý, PR có review thực chất 16% → 54%
+- Phản biện (đều là bên bán sản phẩm liên quan): waydev.co/anthropics-ai-native-sdlc-playbook-has-a-missing-layer-measurement (Alex Circei, 24/8/2026) · port.io/blog/anthropic-ai-native-sdlc-playbook (Yonatan Boguslavski, 28/8/2026)
+- WebSearch 16/10/2026: mejba.me/blog/ai-native-sdlc-claude-code, getaibook.com, genai-playbook.com, best.xiaohu.ai, agenticaiarch.com, github.com/yibie/ai-native-sdlc-playbook (bản biên soạn lại không chính thức), bài LinkedIn tóm tắt (thứ cấp, không dùng làm dữ kiện)

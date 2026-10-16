@@ -234,11 +234,82 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 
 **Nguồn §10b:** https://github.com/mariagorskikh/open-instinct (clone đầy đủ, HEAD 79a144a; README, SECURITY.md, docs/research/INSTINCT.md, packages/core/src/policy.ts, packages/*/package.json, .github/workflows/) · https://trendshift.io/repositories/281812 · https://github.com/earendil-works/pi · https://github.com/Merit-Systems/OpenInstinct · https://aiweekly.co/alerts/instinct-raises-1b-series-c-at-10b-for-personal-ai-agent · https://letsdatascience.com/news/instinct-raises-1-billion-series-c-c9d149f6 · https://officechai.com/ai/ai-agent-startup-instinct-is-now-worth-10-billion-with-just-14-employees/ (Series C của Instinct; WebSearch 13/10/2026) · https://agent37.com/docs/agents-api/instinct
 
+## 10c. Kiểm ảnh "Traditional — the line / AI-native — the loop" (ảnh người dùng gửi, 2026-10-16)
+
+> Ảnh hai nửa. Bên trái là sáu khối đen xếp dọc Plan → Design → Build → Test → Deploy → Maintain, chú thích *"Traditional — the line. One slow loop back is a new release cycle."* Bên phải là sáu vòng tròn quanh một tâm cam "Claude", mũi tên khép kín từ Maintain về Plan, chú thích *"AI-native — the loop. Hours, not weeks, with humans above the loop instigating, directing and governing."*
+
+**Nguồn ảnh:** Figure 2 "The line and the loop" trong **The AI-native SDLC playbook** của Anthropic (blog claude.com, 21/8/2026, Louis Claxton, nhóm Applied AI; bài đọc 40 phút; bản PDF 54 trang, tạo 23/9/2026). Ảnh người dùng gửi trùng nội dung và bố cục với ảnh thứ hai của trang blog (bản người dùng là webp thu nhỏ còn 2000×1266) (`assets.claude.com/75c8e050….png`, 2048×1296). Ảnh trên web **không có alt text** nên công cụ đọc trang bỏ qua nó, chỉ tìm được chú thích trong PDF. Đã đọc toàn văn PDF; bài anh em của Jason Clinton (Deputy CISO), *How Anthropic secures its AI-native SDLC* (21/7/2026), dùng để đối chiếu số liệu.
+
+### 10c.1 Kiểm từng ý trong ảnh
+
+| Ý trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| Sáu giai đoạn Plan · Design · Build · Test · Deploy · Maintain | ✅ | Đúng sáu "stage" của playbook; chính playbook gọi chúng là "non-linear" và gợi ý áp dụng theo thứ tự phụ thuộc giữa các play, không nhất thiết đi vòng |
+| "Traditional — the line. One slow loop back is a new release cycle" | ⚠️ | Bên trái là waterfall thuần. Agile/Scrum đã là vòng lặp từ lâu; playbook tự thừa nhận "most organizations sit somewhere between the two columns". Luận điểm thật của playbook hẹp hơn và đúng hơn: **nút cổ chai dời khỏi Build** (Figure 1: build co lại còn vài giờ, các bước người làm quanh nó giữ nguyên độ dài) |
+| "Hours, not weeks" | ⚠️ | Là **mục tiêu**, không phải kết quả đo. Playbook chỉ đưa chỉ số dẫn ("intent capture" từ chu kỳ nhiều tuần xuống vài giờ, review PR đầu tiên xuống vài phút), không có case study đo cycle time. Số đo thật nằm ở bài của Clinton và chỉ nói về **khối lượng code**: Claude viết ~80% code được merge ở Anthropic, mỗi kỹ sư ship ~8× code/quý so với 2021–2025, tỷ lệ PR có review góp ý thực chất 16% → 54% |
+| "Humans above the loop instigating, directing and governing" | ⚠️ | Chữ trong ảnh và câu kết ("Human judgement stays above it") nói "above", nhưng thân bài nói "humans stay **in** the loop" và đặt người vào **cổng**: chấp nhận `intent.md`/`spec.md`, duyệt `plan.md` trước khi viết code (plan mode chặn sửa file), code owner duyệt PR, người cho phép lên production ("the agent may act up to the production gate and cannot pass it"). Chỉ riêng stage 6 là chạy headless "without a person in the path", và cả ở đó người vẫn triage hàng đợi |
+| Claude ở tâm vòng, mũi tên Maintain → Plan | ✅ có điều kiện | Mũi tên khép vòng có cơ chế thật: script **tất định** theo dõi production, vượt ngưỡng thì gọi Claude headless, Claude ghi chẩn đoán thành một `intent.md` mới. Nhưng ảnh đặt Claude ở tâm, còn thứ thật sự nối các giai đoạn là **artifact commit vào git**, và ảnh không vẽ nó (xem 10c.2) |
+
+**Tổng:** 2✅ / 3⚠️ / 0❌. Ảnh không sai, nhưng là ảnh minh hoạ cho một bài hướng dẫn, nói mạnh hơn nội dung bài: "hours, not weeks" chưa có số đo, và "above the loop" bỏ qua các cổng người duyệt mà chính bài coi là bắt buộc.
+
+### 10c.2 Cơ chế thật: vòng quay bằng artifact và cổng, không bằng Claude
+
+Câu then chốt của playbook là chú thích hình ngay sau bảng "The shifts": *"Every stage commits an artifact the next stage can read."* (Figure 3 của PDF là đồ thị phụ thuộc giữa các play.) Chuỗi commit vừa là đầu vào của giai đoạn sau vừa là audit trail.
+
+| Giai đoạn | Artifact commit | Cơ chế | Cổng người / máy |
+|---|---|---|---|
+| Plan | `intent.md` (proto-spec bằng lời người yêu cầu) | Brainstorm với Claude, template tổ chức (có thể là skill) | Product owner chấp nhận |
+| Design | `spec.md` cạnh `intent.md` | Skill chuẩn nội bộ (brand, security, compliance, UX); lo ngại được chuyển cho chủ chính sách | Người chấp nhận spec; tech lead cho việc rủi ro cao |
+| Build | `plan.md` (duyệt trước khi có code), rồi diff + test | Plan mode mặc định, `CLAUDE.md` dưới một trang, skill, hook build-time (chặn path bảo vệ, chạy formatter/linter), worktree song song (2–3 phiên), subagent; auto mode chỉ cho việc thường lệ (spec chặt, blast radius nhỏ, đã có test) | Engineer duyệt plan |
+| Test | Output test, build log, screenshot diff do Claude chạy và dán | Vòng tự kiểm, subagent verifier, eval liên tục trong CI (bắt đầu với 20–50 task thật) | **Hook chặn agent sửa file test trong lúc sửa lỗi** |
+| Deploy | PR kèm kết quả review; quyết định phát hành | `REVIEW.md`, Code Review (research preview), `@claude` sửa theo review, managed settings (ví dụ `requiredMinimumVersion: "2.1.193"`), job CI sandbox, deploy/rollback qua MCP | Code owner; hook approval cho production; rollback phải diễn tập ở staging |
+| Maintain | `intent.md` sinh từ ngưỡng bị vượt; file bài học; kết quả quét; bản ghi kênh sự cố | `bands.yaml`: baseline 30 ngày, luật Western Electric; **1σ chỉ log, 2σ Claude đọc để chẩn đoán (tool hạn chế), 3σ được đề xuất PR hoặc runbook đã duyệt trước**; quét định kỳ (Claude Security, mặc định hằng tuần); Claude Tag trực on-call trong Slack | Chủ dịch vụ triage; mỗi sự cố thêm một eval |
+
+Ba nguyên tắc của playbook đáng chép nguyên ý:
+
+1. **Skill là kiểm soát dạng khuyên nhủ, hook là lớp tất định phía sau.** Chính sách phải luôn đúng thì cần hook hoặc review pass, không chỉ skill.
+2. **Phát hiện phải tất định;** model chỉ vào cuộc khi đã vượt ngưỡng.
+3. **Agent đi được tới cổng production nhưng không được qua.**
+
+**Mâu thuẫn nội bộ nhỏ:** ở stage Test, playbook dặn dùng hook chặn agent sửa file test để agent không thể "làm yếu bài kiểm tra của chính đoạn code nó sửa". Nhưng ví dụ ở stage Maintain lại cho agent "quarantines the flaky test" khi tỉ lệ fail CI vượt 3σ, chỉ dựa vào cổng review. Hai chỗ không hẳn trái nhau (quarantine đi qua PR, không nằm trong một task sửa lỗi), nhưng khi áp dụng nên chọn quy tắc chặt: quarantine test cũng phải có người duyệt riêng, giống quy tắc "không skip/disable test để xanh" ở §9.
+
+### 10c.3 Phản biện bên ngoài
+
+Cả hai bài phản biện tìm được đều do công ty **bán đúng phần chúng chỉ ra là thiếu**, nên cần đọc với dè dặt:
+
+- **Waydev** (Alex Circei, 24/8/2026): thiếu tầng **đo lường**. Mỗi play có "How to measure it", nhưng không nói cách gom và liên kết sáu nguồn dữ liệu. `bands.yaml` cần baseline lịch sử mới báo vượt ngưỡng được. Tốc độ review tăng có thể che tỉ lệ thay đổi gây lỗi tăng về sau.
+- **Port** (Yonatan Boguslavski, 28/8/2026): playbook "assumes intent exists". Nó không nói tín hiệu (ticket, cảnh báo) thành `intent.md` thế nào, hay xác định service và chủ sở hữu ra sao. Blast radius cũng không đo được chỉ từ repo vì cần bản đồ phụ thuộc hạ tầng.
+
+Nhận xét độc lập: hai điểm này **khớp với thứ playbook tự ghi là điều kiện tiên quyết**. Bằng chứng governance cần git history, PR metadata, transcript và OpenTelemetry; mỗi artifact cần một "source of truth". Phản biện không bác playbook, chỉ nói phần khó nhất nằm ngoài nó.
+
+### 10c.4 Đối chiếu với kho (ba cột)
+
+| Cơ chế trong playbook | Kho đã có, sâu hơn | Kho đã có, nông hơn | Kho chưa có |
+|---|---|---|---|
+| Chuỗi `intent → spec → plan → diff → PR` | AI Delivery Loop của xboss (§10 mục 7: Frame → Research → Spec → Ready → Build → Verify → PR → Reconcile, PR `feat` phải link spec đã duyệt); Spec Kit/Kiro (mục 13 §5) | | |
+| Hook làm cổng, skill chỉ khuyên | Mục 23 (projects-template: "prompt không phải cơ chế bảo mật", fail closed); mục 03 §8b (hook cưỡng bức ~98% so với chỉ dặn ~60%) | | |
+| Harness, kiểm chứng ngoài, giới hạn vòng | §2, §8 của mục này | | |
+| Đo trước khi bật tự trị | projects-template đo **DORA baseline** (§8) | | |
+| Eval liên tục trong CI, mỗi sự cố thêm một eval | | Mục 07 có công cụ eval, chưa có quy ước "sự cố → eval" | |
+| Phát hiện tất định theo **ngưỡng σ** (`bands.yaml`, 1σ/2σ/3σ, Western Electric) gọi agent theo bậc quyền | | | ✅ Mới. Khác cron bảo trì (`maintain-run.sh`) ở chỗ agent chỉ được gọi khi có tín hiệu, và quyền tăng theo độ lệch |
+| Managed settings cho tổ chức (`requiredMinimumVersion`, chặn production) | | Mục 12, 23 có `settings.json` cấp project | Cấu hình cấp tổ chức (server-managed) chưa ghi |
+| Hook chặn sửa file test trong task sửa lỗi | | Quy tắc "không skip/disable test" (§9) mới ở dạng lời dặn | Hook cụ thể |
+
+### 10c.5 Dùng thế nào
+
+- **Trích dẫn ảnh này như minh hoạ, không như bằng chứng.** Muốn nói về năng suất thì dùng số đo của bài Clinton (80% code, 8×, 16% → 54%) và ghi rõ đó là số nội bộ Anthropic, tự báo cáo.
+- **Phần đáng lấy nhất là bảng 10c.2,** không phải hình tròn. Với dự án của chủ kho, thêm hai thứ "chưa có": (1) hook chặn sửa `tests/**` khi task là sửa lỗi; (2) một `bands.yaml` nhỏ cho tỉ lệ fail CI, quyền theo bậc (1σ log, 2σ đọc, 3σ chỉ mở PR), chạy bằng Routine (§3.2).
+- **Giữ người ở cổng, không chỉ "ở trên".** Thứ tự an toàn là duyệt plan → code owner duyệt PR → người duyệt production, đúng như thân bài playbook, dù hình vẽ gợi ý ít người hơn.
+- Một số tính năng playbook dựa vào vẫn chưa ổn định (đọc 16/10/2026): Code Review là research preview; Claude Security và Claude Tag là public beta; Claude Design là beta.
+
+**Nguồn §10c:** https://claude.com/blog/the-ai-native-sdlc-playbook (21/8/2026; HTML + ảnh `assets.claude.com/75c8e050ace91c2b288498fe45384469cfb00aa2.png`) · PDF "AI Native SDLC Playbook_designv2" (54 trang, link từ trang blog, đọc toàn văn) · https://academy.claude.com/courses/ai-native-sdlc-playbook · https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle (Jason Clinton, 21/7/2026) · https://waydev.co/anthropics-ai-native-sdlc-playbook-has-a-missing-layer-measurement/ · https://www.port.io/blog/anthropic-ai-native-sdlc-playbook
+
 ---
 
 ## 11. Nguồn
 
 - Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)
+- Anthropic AI-native SDLC (§10c): https://claude.com/blog/the-ai-native-sdlc-playbook (21/8/2026, kèm PDF 54 trang) · https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle (21/7/2026)
 - Anthropic: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents (26/11/2025) · https://www.anthropic.com/engineering/harness-design-long-running-apps (24/3/2026) · https://www.anthropic.com/engineering/building-effective-agents
 - Claude Code docs: https://code.claude.com/docs/en/scheduled-tasks · https://code.claude.com/docs/en/routines · https://code.claude.com/docs/en/desktop-scheduled-tasks · https://code.claude.com/docs/en/github-actions · https://code.claude.com/docs/en/goal · https://code.claude.com/docs/en/channels
 - Routines (thứ cấp): prosperinai.substack.com, makerkit.dev, claudefa.st, alexdunlop.com, automatonagency.com, swapbiswas.com, apito.ai
