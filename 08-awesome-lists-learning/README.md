@@ -273,6 +273,38 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng gây hiểu sai hoặc thiếu ý
 
 Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng làm lộ trình học: thêm ô fine-tuning/dataset, sửa ô 06 thành "giới hạn thiệt hại prompt injection", và học thống kê cơ bản trước ô 07. Thứ tự học hợp lý: 01 → 02 → 09 → 03 → 07 → 04 → 06 → 05/08 → 10/11; ô 12–13 làm song song suốt.
 
+## 2g. Kiểm ảnh "The Roadmap to Mastering Agentic AI Systems in 2026" (Vinod Chugani, KDnuggets, ảnh người dùng gửi, 2026-10-16)
+
+> Ảnh chụp đầu bài trên **KDnuggets** (Vinod Chugani, 13/10/2026, mục Artificial Intelligence) kèm infographic "The Roadmap to Building Agentic AI Systems in 2026 — from single agents to production-ready, real-world impact", chia 4 cấp: (1) Single Agent Reasoning Loops, (2) Stateful Memory and Graph-Based Flows, (3) Multi-Agent Collaboration, (4) Operational Hardening; đáy là vòng "continuous feedback and evolution". Đã đọc toàn bài. Infographic không ghi tác giả hay công cụ vẽ, và tiêu đề trong ảnh ("Building") khác tiêu đề bài ("Mastering").
+
+### 2g.1 Từng cấp: ảnh và bài viết
+
+| Cấp | Ảnh vẽ | Bài viết nói thêm | Đánh giá | Chỗ cần sửa / bổ sung |
+|---|---|---|---|---|
+| 1. Single agent loop | Input → Reasoning (plan) → Tool call → Result → Reflection; "plan → act → observe → refine" | ReAct, Plan-and-Solve, Reflection, Tree of Thoughts; function calling; kiểm output bằng Pydantic/TypeChat; ghép context động | ⚠️ | Vòng trong ảnh **không có lối ra**: thiếu điều kiện dừng do máy kiểm và trần số vòng, đúng chỗ agent thật hay hỏng (mục 03, mục 21 §8). Kiểm output có cấu trúc là ý tốt của bài nhưng không có trong ảnh |
+| 2. Stateful memory + graph | Long-term memory, state, knowledge sources quanh "graph orchestrator"; conditional flow, tool node, sub-task | Working / episodic (vector) / semantic (knowledge graph) memory; chain vs graph; **checkpoint** để rollback, resume, debug; LangGraph, AutoGen | ⚠️ | Checkpoint và điểm dừng chờ người (human-in-the-loop) là lý do chính để dùng graph, nhưng ảnh không vẽ. Bài vẫn gợi ý **AutoGen**, trong khi README của AutoGen ghi "now in maintenance mode… New users should start with Microsoft Agent Framework" (mục 02) |
+| 3. Multi-agent | Coordinator + research/analysis/execution agent, shared context, handoff, synthesize | Hierarchical, debate-and-critique, peer-to-peer; message schema có cấu trúc; giải xung đột bằng vote/hỏi lại/chuyển người; AutoGen, CrewAI, **MCP** | ⚠️ | Không nói cái giá: Anthropic đo hệ multi-agent dùng **khoảng 15× token** so với chat, và không hợp với việc mà các agent phải dùng chung context hoặc phụ thuộc nhau nhiều (phần lớn việc code). Bài gọi MCP là chuẩn cho giao tiếp nhưng MCP là giao thức agent ↔ tool/context; giao thức agent ↔ agent là **A2A**, bài không nhắc (mục 04 §3) |
+| 4. Operational hardening | Observability, monitoring, guardrails, evaluation, logging & auditing, reliable infra, CI/CD | Circuit breaker, trần độ sâu đệ quy, trần token; **sandbox** chạy code (Docker, e2b, WebAssembly); LangSmith, Arize Phoenix; đánh giá theo **trajectory** | ⚠️ | Phần này của bài tốt hơn ảnh: ảnh bỏ mất sandbox và trần chi phí. Cả hai đều **không nhắc prompt injection**, rủi ro số 1 khi agent đọc dữ liệu ngoài rồi gọi tool (OWASP LLM01, mục 12), cũng không có cổng người duyệt cho hành động không đảo ngược |
+
+**Tổng:** 0✅ / 4⚠️ / 0❌. Không có ô sai; mỗi cấp đều thiếu đúng phần làm agent an toàn và rẻ.
+
+### 2g.2 Sai ở cấu trúc "4 cấp nối tiếp"
+
+1. **Thiếu cấp 0: có cần agent không.** Anthropic (*Building Effective Agents*) khuyên bắt đầu bằng workflow cố định (prompt chaining, routing, parallelization) và chỉ dùng agent khi không đoán trước được các bước. Lộ trình bắt đầu thẳng từ agent loop dễ khiến người học dùng agent cho việc mà một workflow làm rẻ và dễ kiểm hơn (mục 03 §1).
+2. **Multi-agent không phải "cấp trên" của single agent.** Nó là một lựa chọn có giá (15× token, khó gỡ lỗi), hợp với việc song song hoá được như nghiên cứu, không hợp với phần lớn việc code. Mũi tên 3 → 4 ngụ ý ai cũng phải đi qua multi-agent mới tới production.
+3. **"Hardening" không đợi tới cấp 4.** Eval, trace, trần chi phí và sandbox cần có từ agent đầu tiên; để cuối cùng là cách tạo ra demo không lên được production (mục 07, mục 21 §8: "mọi loop phải có 4 số").
+
+### 2g.3 Đọc gì thay / đọc kèm
+
+| Tài liệu | Vì sao |
+|---|---|
+| Anthropic, *Building Effective Agents* (12/2024) và *How we built our multi-agent research system* (13/6/2025) | Cấp 0 (workflow trước agent) và số liệu thật về chi phí, giới hạn của multi-agent |
+| `microsoft/ai-agents-for-beginners`, `huggingface/agents-course` (§2b) | Thực hành đủ 4 cấp, có bài chấm điểm; bản tiếng Việt cho bộ của Microsoft |
+| Mục 21 §2 (hai bài harness của Anthropic) và §10c (AI-native SDLC) | Cấp 4 làm thật: harness, cổng máy, giới hạn vòng, người duyệt ở cổng |
+| Microsoft Agent Framework thay cho AutoGen; LangGraph cho graph + checkpoint (mục 02) | Danh sách framework của bài có một mục đã ngừng phát triển |
+
+**Dùng ảnh thế nào:** được làm sơ đồ tổng quan một trang về các khái niệm. Khi dạy lại, thêm cấp 0 ("workflow trước, agent sau"), chuyển eval/trace/trần chi phí/sandbox lên từ cấp 1, coi multi-agent là lựa chọn có giá chứ không phải bậc tiếp theo, và thay AutoGen bằng Microsoft Agent Framework.
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.
@@ -295,4 +327,5 @@ Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng là
 - §2e ảnh "Layers of AI" (13/10/2026): https://aiforleaders.com (FAQ: Adam Danyal, Julia Danyal) · bản đăng lại trên LinkedIn: https://de.linkedin.com/in/meheli-sinha, https://sa.linkedin.com/in/alhadlaq · kiểm nội dung: https://cvw.cac.cornell.edu/AI-overview/machine-learning/functionality-and-implementation (sơ đồ lồng nhau là quy ước dạy học) · https://lib.conestogac.on.ca/genai/learn-more · https://aima.cs.berkeley.edu · https://github.com/aimacode/aima-python · https://langchain.com/blog/the-anatomy-of-an-agent-harness
 - §2d.1 (13/10/2026): https://github.com/cporter202/make-com-automation-recipes (clone đầy đủ, 4 commit, HEAD 6fa1e09; 16★ shields) · https://www.make.com/en/templates (gallery chính thức; thử https://www.make.com/templates/11218, /10893 → 200) · https://n8n.io/workflows
 - §2d.2 (16/10/2026): https://github.com/cporter202/ai-growth-stack (clone đầy đủ, 7 commit 21/12/2025, chỉ README.md; 229★/70 fork shields) · https://rapidapi.com/user/contact-_OGid12Eu (trang cần JavaScript, không đọc được danh sách) · https://apidataframe.com (9 API, chỉ qua RapidAPI, không tên người vận hành) · https://github.com/cporter202 (40 repo, bio ViralWaveStudio.com) · https://www.buymeacoffee.com/viralwavestudio
+- §2g (16/10/2026): https://www.kdnuggets.com/the-roadmap-to-mastering-agentic-ai-systems-in-2026 (Vinod Chugani, 13/10/2026, đọc toàn bài) · https://github.com/microsoft/autogen (README: "now in maintenance mode… New users should start with Microsoft Agent Framework"; 61,4k★) · https://www.anthropic.com/engineering/multi-agent-research-system (13/6/2025: agent ~4×, multi-agent ~15× token so với chat) · https://www.anthropic.com/engineering/building-effective-agents · https://machinelearningmastery.com/the-roadmap-for-mastering-agentic-ai-in-2026/ (bài khác cùng chủ đề)
 - §2f ảnh Brij "How to become an AI engineer in 2026" (13/10/2026): https://genai.owasp.org/llmrisk/llm01-prompt-injection/ ("unclear if there are fool-proof methods of prevention") · https://roadmap.sh/ai-engineer · https://github.com/chiphuyen/aie-book (README: chương fine-tuning, dataset engineering) · https://github.com/patchy631/ai-engineering-hub · shields.io: aie-book ~18k, ai-engineering-hub ~38k MIT, developer-roadmap ~369k, litellm ~61k

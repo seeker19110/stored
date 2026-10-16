@@ -440,3 +440,9 @@
 - github.com/umami-software/zen (clone, 726 commit) · zen.umami.is · github.com/reciprocity/zen-design-system · webflow.com/libraries/detail/zen-ui · vn.linkedin.com/in/tungoc19 (#zendesignsystem #dizaistudio)
 - Lớp AI của design system lớn: primer.style/product/getting-started/foundations/mcp · carbondesignsystem.com/developing/carbon-mcp/overview · npmjs.com/package/@atlaskit/ads-mcp · atlassian.com/blog (DESIGN.md) · state-of-ai-in-design-systems.netlify.app · uicentral.fyi/blog/ui-component-libraries-with-mcp-servers · daily.dev (top 10 React UI 2026) · mowgli.ai/blog/mcp-servers-for-ui-design-2026
 - shields 16/10/2026: shadcn-ui/ui 126k, ant-design 100k, mui/material-ui 99k, chakra-ui 41k, mantine 32k, heroui 31k, fluentui 20k, radix primitives 19k, react-spectrum 16k, material-web 11k, base-ui 11k, carbon 9,5k, uswds 7,2k, polaris 6,2k, ark 5,4k, primer/react 3,9k, govuk-frontend 1,5k, zendesk garden 1,1k
+
+## Bổ sung 2026-10-16 đợt 24 (ảnh "The Roadmap to Mastering Agentic AI Systems in 2026" → mục 08 §2g)
+
+- kdnuggets.com/the-roadmap-to-mastering-agentic-ai-systems-in-2026 (Vinod Chugani, 13/10/2026; đọc toàn bài, danh mục tài nguyên cuối bài)
+- github.com/microsoft/autogen (README 16/10/2026: chế độ bảo trì, khuyên Microsoft Agent Framework) · anthropic.com/engineering/multi-agent-research-system (13/6/2025) · anthropic.com/engineering/building-effective-agents
+- WebSearch 16/10/2026: machinelearningmastery.com/the-roadmap-for-mastering-agentic-ai-in-2026 (bài khác cùng chủ đề) · levelup.gitconnected.com (2026 roadmap to AI agent mastery)
