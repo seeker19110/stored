@@ -4593,6 +4593,16 @@
       "section": "08"
     },
     {
+      "name": "ai-growth-stack",
+      "repo": "cporter202/ai-growth-stack",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 229,
+      "open_source": false,
+      "notes": "16/10/2026; chỉ một README (7 commit 21/12/2025, không đổi từ đó), không code/LICENSE; 6 'API' đều link về một hồ sơ RapidAPI, trùng danh mục bán của apidataframe.com, không công bố quan hệ; huy hiệu ACTIVE/UPDATED tĩnh; xem mục 08 §2d.2",
+      "section": "08"
+    },
+    {
       "name": "official-design-md (VoltAgent)",
       "repo": "VoltAgent/official-design-md",
       "category": "awesome-list",

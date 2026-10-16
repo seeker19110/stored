@@ -153,6 +153,37 @@ Tốt làm **checklist chủ đề** trong một trang; không đủ làm câu t
 
 **Quy tắc rút ra (bổ sung §2d):** repo "N trăm template/prompt" mà chỉ có một README → đếm link theo tên miền và tham số (`?pc=`, `?ref=`, `utm_`), xem các commit có dồn trong vài giây không. Hai dấu hiệu này đủ để nhận ra danh mục sinh tự động phục vụ affiliate.
 
+### 2d.2 Repo thứ ba cùng tác giả: `cporter202/ai-growth-stack` (ảnh người dùng gửi, 2026-10-16)
+
+> Ảnh chụp README: tiêu đề "API Growth Stack", bốn huy hiệu (APIS 6 · CATEGORIES 6 · STATUS ACTIVE · UPDATED REGULARLY), banner "AI Growth Stack · github.com/cporter202/ai-growth-stack", câu "A curated collection of powerful AI-powered APIs for website optimization, SEO, conversions, and social media growth… not fluff", nút "Buy me a coffee" và avatar "Chris Porter". Đã clone đầy đủ để đọc.
+
+| Mục | Thông tin (16/10/2026) |
+|---|---|
+| Repo | `cporter202/ai-growth-stack` · **229★, 70 fork** (shields.io); **7 commit trong 15 phút ngày 21/12/2025**, không có commit nào sau đó; commit cuối (`5ccfb8f`) còn dính nguyên câu nhắc mặc định của git trong tiêu đề ("# Please enter the commit message…") |
+| Nội dung thật | **Chỉ một file `README.md`** (302 dòng). Không có code, không có ví dụ, **không có LICENSE**, dù mục "License" của README nói repo là "documentation and examples" |
+| 6 "API" | Website Data Extraction · AI SEO Analysis · AI Conversion Optimization · AI Website Copywriter · AI Landing Page Optimizer · AI Social Media Content Generator. **Cả 13 link "View on RapidAPI" đều trỏ về cùng một trang hồ sơ người dùng** (`rapidapi.com/user/contact-_OGid12Eu`), không link nào trỏ tới trang của một API cụ thể. Trang này cần JavaScript nên không đọc được danh sách API thật |
+| Ai bán | `apidataframe.com` ("API DataFrame", "Professional APIs for Developers") bán **đúng 6 API này** cộng 3 API trích email/số điện thoại/link mạng xã hội, chỉ qua RapidAPI, không công bố giá hay tên người vận hành. Mục License của README dẫn điều khoản "RapidAPI and API DataFrame". Quan hệ giữa tác giả và API DataFrame **không được công bố** (chưa xác minh là chủ hay affiliate) |
+| Liên hệ với §2d | Nút cà phê dẫn tới `buymeacoffee.com/viralwavestudio`; bio GitHub của tác giả quảng bá ViralWaveStudio.com. Banner là ảnh sinh bằng AI (tên file "Generated Image December 21, 2025"), lưu trên cùng Firebase project `facesift` như §2d |
+
+**Kiểm từng ô trong ảnh:**
+
+| Ô | Kiểm | Ghi chú |
+|---|---|---|
+| Tiêu đề "API Growth Stack" | ⚠️ | Banner và tên repo là "**AI** Growth Stack"; hai tên lệch nhau ngay trên cùng một màn hình |
+| APIS 6 · CATEGORIES 6 | ✅ | Đúng 6 mục, mỗi mục một "category", nhưng không mục nào có link riêng |
+| STATUS ACTIVE | ❌ | Huy hiệu tĩnh (`img.shields.io/badge/STATUS-ACTIVE`), không đo gì; repo không đổi từ 21/12/2025 |
+| UPDATED REGULARLY | ❌ | Huy hiệu tĩnh; commit cuối cách ngày đọc gần 10 tháng. Dòng cuối README ghi "Last updated: December 2024", **trước cả ngày tạo repo** |
+| "A curated collection… not fluff" | ⚠️ | Không phải tuyển chọn từ nhiều nhà cung cấp: cả 6 là danh mục sản phẩm của một bên bán (API DataFrame) mà README không nói rõ. Phần "Key Features", "Why It's Powerful" là văn quảng cáo chung chung, không có endpoint, giá, giới hạn hay ví dụ gọi |
+| Buy me a coffee | ✅ | Link thật, tới tài khoản `viralwavestudio` |
+
+**Tổng:** 2✅ / 2⚠️ / 2❌.
+
+**Đánh giá:** đây là trang quảng cáo cho các API trả phí trên RapidAPI, không phải bộ sưu tập hay tài liệu kỹ thuật. 229★ cho một README không code, không đổi trong 10 tháng, cho thấy số sao của nhóm repo này không phản ánh nội dung (cùng mô hình §2d: 894★, bỏ dở từ 12/2025). Không có LICENSE nên không được phép tái sử dụng nội dung.
+
+**Muốn làm đúng việc này:** trích dữ liệu web và kiểm SEO thì có công cụ mã mở tự chạy được: Crawl4AI, Firecrawl (mục 11), Lighthouse CI cho hiệu năng/SEO kỹ thuật (mục 13). Nếu vẫn cần API trả phí, tìm thẳng trên marketplace, đọc giới hạn và giá của **từng API cụ thể**, và chạy thử gói miễn phí trước. Viết nội dung marketing bằng LLM thì gọi thẳng model, không cần lớp API trung gian không rõ model bên dưới.
+
+**Quy tắc rút ra (bổ sung §2d, §2d.1):** huy hiệu "STATUS ACTIVE / UPDATED REGULARLY" mà URL là `img.shields.io/badge/...` là huy hiệu tĩnh tự gõ, không phải số đo; so với ngày commit cuối. Khi N mục "khác nhau" cùng trỏ về một link, đó là một sản phẩm được trình bày như một danh sách.
+
 ## 2e. Kiểm ảnh "Layers of AI: From classical methods to autonomous AI systems" (ảnh người dùng gửi, 2026-10-13)
 
 > Infographic 6 tầng xếp chồng, mũi tên đi lên, mỗi tầng 5 ô: Classical AI → Machine Learning → Neural Networks → Deep Learning → Generative AI → Agentic AI. Ghi nguồn **AIForLeaders.com**.
@@ -263,4 +294,5 @@ Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng là
 - §2d (12/10/2026): https://github.com/cporter202/automate-for-growth (clone đầy đủ, 9 commit, HEAD 2cc3193) · https://viralwavestudio.com · bản sao 0★: arnelnrose/automate_for_growth, klikydigital/automate-for-growth
 - §2e ảnh "Layers of AI" (13/10/2026): https://aiforleaders.com (FAQ: Adam Danyal, Julia Danyal) · bản đăng lại trên LinkedIn: https://de.linkedin.com/in/meheli-sinha, https://sa.linkedin.com/in/alhadlaq · kiểm nội dung: https://cvw.cac.cornell.edu/AI-overview/machine-learning/functionality-and-implementation (sơ đồ lồng nhau là quy ước dạy học) · https://lib.conestogac.on.ca/genai/learn-more · https://aima.cs.berkeley.edu · https://github.com/aimacode/aima-python · https://langchain.com/blog/the-anatomy-of-an-agent-harness
 - §2d.1 (13/10/2026): https://github.com/cporter202/make-com-automation-recipes (clone đầy đủ, 4 commit, HEAD 6fa1e09; 16★ shields) · https://www.make.com/en/templates (gallery chính thức; thử https://www.make.com/templates/11218, /10893 → 200) · https://n8n.io/workflows
+- §2d.2 (16/10/2026): https://github.com/cporter202/ai-growth-stack (clone đầy đủ, 7 commit 21/12/2025, chỉ README.md; 229★/70 fork shields) · https://rapidapi.com/user/contact-_OGid12Eu (trang cần JavaScript, không đọc được danh sách) · https://apidataframe.com (9 API, chỉ qua RapidAPI, không tên người vận hành) · https://github.com/cporter202 (40 repo, bio ViralWaveStudio.com) · https://www.buymeacoffee.com/viralwavestudio
 - §2f ảnh Brij "How to become an AI engineer in 2026" (13/10/2026): https://genai.owasp.org/llmrisk/llm01-prompt-injection/ ("unclear if there are fool-proof methods of prevention") · https://roadmap.sh/ai-engineer · https://github.com/chiphuyen/aie-book (README: chương fine-tuning, dataset engineering) · https://github.com/patchy631/ai-engineering-hub · shields.io: aie-book ~18k, ai-engineering-hub ~38k MIT, developer-roadmap ~369k, litellm ~61k
