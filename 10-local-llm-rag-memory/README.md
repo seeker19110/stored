@@ -80,7 +80,7 @@
 | **Letta** (MemGPT) | letta-ai/letta | Apache-2.0 | ~24.8k | Agent tự quản lý memory tiers như OS | Nguồn gốc paper MemGPT |
 | **cognee** | topoteretes/cognee | Apache-2.0 | ~30k | Memory + knowledge graph pipeline | |
 | LangMem | langchain-ai/langmem | MIT | – | Memory cho LangGraph | |
-| Hindsight | – | MIT | ~4k | Nhỏ | |
+| **Hindsight** | vectorize-io/hindsight | MIT | ~50k (16/10/2026, shields) | Retain → recall (vector + BM25 + graph + reranker) → reflect; bank theo thời gian, mental model | 1.0 ngày 15/10/2026; Memlake là bản trả phí. Xem §4d |
 | agent-memory (X-Agents tự viết) | seeker19110/X-Agents | – | – | SQLite + candidate pipeline: memory phải qua đề xuất → duyệt → ghi | Mục 23 §3.1; Hermes `safe-ai-state-authority` cùng ý |
 
 **Benchmark LongMemEval:** Zep báo 63.8–75.1%, Mem0 báo Zep chỉ 58.4% và tự nhận 49% → số liệu chéo nhà cung cấp không đáng tin; chọn theo kiến trúc (fact-store vs temporal graph vs OS-style).
@@ -184,6 +184,63 @@
 - **Không cài chồng** với claude-mem hay agentmemory: cả ba cùng hook vào SessionStart/UserPromptSubmit và cùng chèn context, nên chọn một (khớp nguyên tắc "không chồng pack chỉnh hành vi" ở mục 20 §3g).
 
 **Nguồn §4c:** https://github.com/Gentleman-Programming/engram (clone đầy đủ 16/10/2026, 1.126 commit, HEAD 9c4382f; README.md, DOCS.md, SECURITY.md, TRADEMARKS.md, LICENSE, go.mod, plugin/claude-code/{hooks/hooks.json,scripts/user-prompt-submit.sh}, internal/server/server.go, internal/store/store.go, internal/mcp/, .github/workflows/; tự chạy `go test` internal/store và internal/mcp: ok) · shields 16/10/2026 (engram 7,3k★/752 fork; claude-mem 101k; agentmemory 30k; mem0 67k; basic-memory 4,2k) · https://pkg.go.dev/github.com/Gentleman-Programming/engram/cmd/engram · https://lobehub.com/mcp/gentleman-programming-engram · https://engram.gentlemanprogramming.com/
+
+## 4d. vectorize-io/hindsight 1.0: tự chạy bản MIT, tối ưu Postgres, và thay thế cho Memlake trả phí (yêu cầu người dùng, 2026-10-16)
+
+> Người dùng gửi lời giới thiệu: "Hindsight vừa lên 1.0, gần 50K sao, có Memlake nhanh gần 50 lần Postgres… nhưng phần mạnh nhất lại nằm sau cánh cửa trả phí", và nhờ "lấy hết". Mục này chỉ đi đường hợp pháp: dùng trọn phần MIT, tối ưu backend miễn phí, và chỉ ra phương án mã mở khác cho phần trả phí. Không bẻ khoá hay dùng chui bản Enterprise. Đã cài `hindsight-api` 1.0.0 từ PyPI và tự chạy; đọc tài liệu chính thức trên hindsight.vectorize.io và config của gói đã cài.
+
+### 4d.1 Phần miễn phí và phần trả phí
+
+| | Mã mở (MIT, tự chạy) | Hindsight Cloud | Enterprise |
+|---|---|---|---|
+| Lõi nhớ (retain, recall, reflect, mental model, entity graph) | ✅ "same memory engine" | ✅ | ✅ |
+| Lưu trữ | PostgreSQL (pgvector) hoặc Oracle | Do Vectorize quản lý (phần lớn chạy Memlake) | PostgreSQL hoặc **Memlake** trên object storage |
+| Model | Tự mang LLM + embedding | Có sẵn | Có sẵn hoặc Bedrock/Vertex/Azure |
+| Truy cập | API key tự đặt | Console, team, API key | Thêm SSO, MFA bắt buộc, mạng riêng, hỗ trợ theo hợp đồng |
+| Giá | Miễn phí | Trả trước theo credit, tặng $5 | Hợp đồng, không công bố |
+
+- **Repo:** `vectorize-io/hindsight` · ~50k★, MIT; 3.681 commit, tag `v1.0.0`; Vectorize công bố 50.000★ sau 350 ngày (15/10/2026). Có paper (arXiv 2512.12818, ACL 2026 demo).
+- **Memlake** (13/10/2026): bộ máy lưu trữ bằng Rust đặt dữ liệu trên S3/GCS, server chỉ là cache. Thuộc **Enterprise**, **không có trong repo**, không công bố giấy phép hay giá.
+- **Câu "nhanh gần 50 lần Postgres" không có trong bài của Vectorize.** Bài đưa thông lượng recall 207 so với 19, 106 so với 0,45, 113 so với 4 và 2 recall/s (khoảng 11× tới 235× tuỳ tải), p99 một lần recall 106–113 ms so với 513 ms – 5,3 s. Postgres trong phép thử là **primary 4 vCPU dùng chung với các tenant dev khác**; cấu hình máy của Memlake không ghi. Số liệu do chính Vectorize đo.
+- **Chính Vectorize ghi Postgres "great" cho bank dưới khoảng 50k memory.** Giới hạn họ nêu: recall chậm dần khi bank lớn (7 qps ở 33k, 1,9 qps ở 164k memory trên 4 vCPU); full-text search có sẵn của Postgres chấm điểm mọi dòng khớp; khoảng 190 KB WAL mỗi memory, ghi tối đa 55–80 memory/s.
+
+### 4d.2 Tự chạy bản MIT (16/10/2026)
+
+- `pip install hindsight-api` (1.0.0, MIT): venv khoảng **6,8 GB** vì kéo PyTorch và model cục bộ (embedding `BAAI/bge-small-en-v1.5` 384 chiều, reranker cross-encoder `ms-marco-MiniLM-L-6-v2`). Bản Docker `ghcr.io/vectorize-io/hindsight` và Helm chart cũng có; bản "slim" nhẹ hơn nếu dùng embedding qua API.
+- **Postgres nhúng (pg0) không chạy dưới quyền root** (`initdb: cannot be run as root`). Trong container chạy root, dùng Postgres ngoài: PostgreSQL 17 + `postgresql-17-pgvector` 0.8.7, đặt `HINDSIGHT_API_DATABASE_URL`.
+- **Chạy không cần API key nào:** `HINDSIGHT_API_LLM_PROVIDER=none` (retain lưu theo chunk, không trích fact; reflect trả 400, đúng như tài liệu) + embedding và reranker cục bộ. Kết quả: retain 4 mục, 3 câu recall tiếng Việt và tiếng Anh đều trả **đúng mục ở vị trí đầu**, mỗi câu **0,16–0,19 giây** trên CPU. Schema tạo 25 bảng, gồm `audit_log`, `webhooks`, `mental_models`, `entities`, `memory_links`.
+- **Muốn đủ trích fact và reflect mà không tốn phí:** `HINDSIGHT_API_LLM_PROVIDER=ollama` (hoặc `lmstudio`, `llamacpp` qua `HINDSIGHT_API_LLM_BASE_URL`); trên máy yếu đặt `HINDSIGHT_API_LLM_MAX_CONCURRENT=2`, `HINDSIGHT_API_LLM_TIMEOUT=300`, `HINDSIGHT_API_CONSOLIDATION_LLM_BATCH_SIZE=2`. Danh sách provider còn có `claude-code`, `openai-codex`, `github-copilot` để dùng thuê bao sẵn có (chưa thử).
+
+### 4d.3 Tối ưu backend Postgres miễn phí
+
+Tên biến lấy từ `hindsight_api/config.py` của gói 1.0.0:
+
+| Việc | Biến | Ghi chú |
+|---|---|---|
+| Chọn chỉ mục vector | `HINDSIGHT_API_VECTOR_EXTENSION` = `pgvector` (mặc định) · `vchord` · `pgvectorscale` · `scann` | pgvectorscale (DiskANN) hoặc VectorChord cho bank lớn và embedding trên 2.000 chiều (giới hạn HNSW của pgvector) |
+| Chọn bộ tìm từ khoá (BM25) | `HINDSIGHT_API_TEXT_SEARCH_EXTENSION` = `native` (mặc định) · `vchord` · `pg_textsearch` · `pgroonga` · `pg_search` | `native` là full-text có sẵn, chính là chỗ bài Memlake chê. **Ngôn ngữ mặc định `english`** (`HINDSIGHT_API_TEXT_SEARCH_EXTENSION_NATIVE_LANGUAGE`): nội dung tiếng Việt sẽ bị stem theo tiếng Anh. Nên dùng `simple` hoặc `pgroonga` (hỗ trợ đa ngôn ngữ; cần cài từ kho apt của Groonga, không có trong kho PGDG đã thử) |
+| Tách đọc / ghi | `HINDSIGHT_API_READ_DATABASE_URL` + `HINDSIGHT_API_READ_DB_POOL_MIN_SIZE`/`MAX_SIZE` | Recall đọc từ read replica, giảm tải primary |
+| Pool kết nối | `HINDSIGHT_API_DB_POOL_MIN_SIZE` (5) / `MAX_SIZE` (100) | |
+| Giảm CPU reranker | `HINDSIGHT_API_RERANKER_MAX_CANDIDATES` 300 → 100; `HINDSIGHT_API_RERANKER_PROVIDER=flashrank` trên máy chỉ có CPU; `HINDSIGHT_API_RERANKER_LOCAL_BUCKET_BATCHING` | Tài liệu performance ghi bucket batching nhanh hơn 36–54% |
+| Giảm chi phí LLM khi ghi | `HINDSIGHT_API_RETAIN_BATCH_ENABLED=true` | Tài liệu ghi giảm khoảng 50% chi phí trích xuất (OpenAI, Groq) |
+| Chia nhỏ bank | Một bank cho mỗi người dùng/agent/dự án, giữ dưới khoảng 50k memory | Theo chính ngưỡng Vectorize nêu |
+| Mở rộng ngang | Nhiều instance API sau load balancer, chung một Postgres; Postgres có quản lý (RDS, Cloud SQL, Supabase, Neon đã được thử) | |
+
+### 4d.4 Thay cho Memlake: không thay được backend, phải đổi hệ
+
+Tài liệu storage ghi rõ **"Hindsight does not abstract storage behind a generic interface"**: chỉ có Postgres và Oracle, không có lớp backend để cắm LanceDB, Qdrant hay S3. Muốn bộ nhớ agent nằm trên object storage mà vẫn mã mở thì phải dùng hệ khác (shields 16/10/2026):
+
+| Hệ | ★ · license | Lưu trữ | Khác Hindsight |
+|---|---|---|---|
+| `topoteretes/cognee` | ~32k · Apache-2.0 | Mặc định file: SQLite + **LanceDB** + Kuzu; LanceDB đọc ghi thẳng `s3://` | Pipeline memory + knowledge graph; gần nhất với "memory trên object storage" |
+| `mem0ai/mem0` | ~67k · Apache-2.0 | Nhiều vector store để chọn | Lớp memory trích fact theo user/session (§4) |
+| `getzep/graphiti` | ~32k · Apache-2.0 | Neo4j/FalkorDB | Đồ thị tri thức theo thời gian |
+| `lancedb/lancedb` | ~12k · Apache-2.0 | Tách storage và compute, `lancedb.connect("s3://…")`, S3/GCS/Azure/MinIO | Chỉ là kho vector; Mastra, CrewAI dùng làm memory |
+| `milvus-io/milvus` | ~46k · Apache-2.0 | Lưu bền trên object storage (MinIO/S3) theo kiến trúc phân tán | Kho vector cỡ lớn, vận hành nặng |
+
+**Khuyến nghị:** với agent cá nhân hoặc đội nhỏ, bản MIT trên Postgres là đủ; tối ưu theo 4d.3 trước khi nghĩ tới Memlake. Chỉ khi bank thật sự vượt hàng trăm nghìn memory, hoặc cần hàng nghìn bank, mới so cognee + LanceDB trên S3 với giá Enterprise. Muốn đúng Memlake thì liên hệ Vectorize; không có đường hợp pháp nào để tự host Memlake miễn phí.
+
+**Nguồn §4d:** https://github.com/vectorize-io/hindsight (MIT, tag v1.0.0) · https://pypi.org/project/hindsight-api/ (1.0.0, cài và chạy 16/10/2026) · https://hindsight.vectorize.io/blog/2026/10/15/hindsight-50k-stars · https://hindsight.vectorize.io/blog/2026/10/13/memlake · https://hindsight.vectorize.io/cloud-enterprise/overview · https://hindsight.vectorize.io/developer/storage · https://hindsight.vectorize.io/developer/installation · https://hindsight.vectorize.io/developer/configuration · https://hindsight.vectorize.io/developer/performance · https://arxiv.org/pdf/2512.12818 · https://aclanthology.org/2026.acl-demo.27.pdf · https://trendshift.io/repositories/15603 · https://docs.lancedb.com/storage · https://lancedb.com/blog/case-study-cognee · https://www.cognee.ai/blog/fundamentals/how-cognee-builds-ai-memory · https://mastra.ai/integrations/databases/lancedb
 
 ## 6. LLM gateway / router & "CLI thuê bao làm backend"
 

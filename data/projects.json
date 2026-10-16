@@ -5092,6 +5092,16 @@
       "open_source": true,
       "notes": "Bộ nhớ dài hạn cho coding agent: một binary Go + SQLite FTS5, 26 tool MCP + HTTP (127.0.0.1) + CLI + TUI, agent tự ghi qua mem_save (không LLM nén); 14 agent; hook Claude Code lưu prompt cục bộ và chèn chỉ thị mỗi lượt; Git Sync ghi .engram/ vào repo; cloud tự host tuỳ chọn; test store/mcp tự chạy ok; ★ 16/10/2026",
       "section": "10"
+    },
+    {
+      "name": "Hindsight",
+      "repo": "vectorize-io/hindsight",
+      "category": "agent-memory",
+      "license": "MIT",
+      "stars": 50000,
+      "open_source": true,
+      "notes": "Agent memory retain/recall/reflect, 1.0 ngày 15/10/2026; tự chạy 16/10/2026 không cần API key (LLM_PROVIDER=none, embedding + reranker cục bộ, recall 0,16–0,19 s); chỉ Postgres/Oracle, storage không cắm được backend khác; Memlake (object storage) chỉ có ở Enterprise; ★ 16/10/2026",
+      "section": "10"
     }
   ]
 }
