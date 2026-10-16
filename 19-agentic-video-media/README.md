@@ -157,6 +157,59 @@ Bản v0.5 thay đổi gần như toàn bộ mã (2.372 file, +147k / −191k d�
 
 **Nguồn §1c:** https://github.com/waooAI/waoowaoo (clone đầy đủ, HEAD dfec20e; README.md, README_en.md, README_zh.md, bản README ở v0.4.1 `531de26`, LICENSE ở `8bc8eb3` và `41ec33d`, docs/INSTALL.md, docker-compose.yml, Dockerfile.codex-runtime, package.json) · https://github.com/saturndec/waoowaoo · https://www.waoowaoo.com/ · https://trendshift.io/repositories/22585 · https://www.sourcepulse.org/projects/25569794 · https://addrom.com/waoowaoo-ai-studio-self-hosted-ai-agent-platform-for-short-drama-and-film-video-production/ · https://skillsllm.com/skill/waoowaoo · https://gitee.com/chees_cn/waoowaoo · https://gittrend.io/repo/waooAI/waoowaoo · https://awesome.ecosyste.ms/projects/github.com%2FwaooAI%2Fwaoowaoo · https://www.elastic.co/licensing/elastic-license · https://github.com/HBAI-Ltd/Toonflow-app · https://github.com/xuanyustudio/LocalMiniDrama · https://www.sourcepulse.org/projects/23907340 · https://www.sourcepulse.org/projects/28710401
 
+## 1d. Kiểm ảnh: topviewai/topview-3d-builder, dựng cảnh 3D cho agent trước khi sinh video (ảnh người dùng gửi, 2026-10-16)
+
+> Ảnh là đầu README trên GitHub: logo tím, tiêu đề "Let AI build your 3D scenes", câu "From an idea, to a 3D scene built by your agent, to a real animated video. Free, runs locally, no sign-up.", bốn huy hiệu (license Apache 2.0 · python >=3.11 · node >=20.6 · runs 100% local), dải link Quick Start | Examples | Tutorial | 3D Builder | Topview.ai | Issues, và video `3D-BUILDER-hero-9MB.mp4` (1:42) cảnh hành lang với các ma-nơ-canh màu. Đã clone toàn bộ repo (69 commit, HEAD `a0671f9` 16/10/2026), đọc README, `NOTICE`, `.mcp.json`, ba manifest plugin, skill `topview-3d-cli` và các file tham chiếu, `agent/pyproject.toml`; chạy test Python; cài bản phát hành từ PyPI rồi tự dựng và render một cảnh.
+
+### 1d.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 16/10/2026) |
+|---|---|
+| Repo | `topviewai/topview-3d-builder` · **68★, 24 fork**, 2 PR mở, chưa có GitHub Release (tag `v0.1.3`…`v0.1.7`) · commit đầu 24/9/2026 với tên "Scene3D by TopView", công bố mã mở 15/10/2026 (X, dev.to) |
+| Chủ | **Topview** (topview.ai), dịch vụ sinh video/ảnh AI trả phí theo credit. Người commit: Albert 30, 郭益雄 27, 3 người khác 4 commit mỗi người |
+| Giấy phép | Mã, schema, tài liệu: **Apache-2.0**. Tài sản dựng sẵn trong `builtin-assets/` (nhân vật, tư thế, ảnh bìa): **CC BY 4.0**, phải ghi "Scene3D built-in assets © Topview, CC BY 4.0". Font editor: OFL 1.1 |
+| Thành phần | CLI Python `topview-3d-cli` (PyPI, chỉ phụ thuộc `jsonschema`) điều khiển renderer Node/three.js chạy trong Chromium headless; Studio (editor web cục bộ, ~555 file); skill cho Claude Code, Codex, Cursor |
+| Phạm vi bản này | 4 ma-nơ-canh (Child, Youth, Female, Man), 121 tư thế **tĩnh**, 5 khối hình cơ bản, camera tĩnh và keyframe vị trí. Skill tự ghi: **không có thư viện chuyển động**, không hứa hẹn dáng đi hay hoạt ảnh cơ thể |
+
+### 1d.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kiểm | Ghi chú |
+|---|---|---|
+| "Free, runs locally, no sign-up" | ⚠️ | Đúng với phần **dựng và render**: tự chạy bản 0.1.7, dựng cảnh hai nhân vật + camera và render một khung 640×360 trong khoảng 2 giây, không cần tài khoản; lời gọi mạng duy nhất trong CLI là tới Studio ở `localhost`. Nhưng câu này gộp cả bước "to a real animated video", mà bước đó cần một dịch vụ sinh video. Video ví dụ trong README ghi "rendered by Topview.ai" |
+| license Apache 2.0 | ✅ | Đúng với mã. Tài sản dựng sẵn là CC BY 4.0, phải ghi công khi dùng |
+| python >=3.11 | ✅ | `requires-python = ">=3.11"` |
+| node >=20.6 | ⚠️ | README và bài dev.to ghi 20.6+, nhưng `editor/package.json` khai `engines.node >=18.0.0`. Đã chạy được với Node 24.22 |
+| runs 100% local | ⚠️ | Lõi đúng, **plugin thì không**: `.mcp.json` ở gốc repo khai máy chủ MCP từ xa `https://mcp-3d.topview.ai` (OAuth). Manifest Codex trỏ thẳng tới file này, marketplace Codex đặt `"authentication": "ON_INSTALL"`. Manifest Claude không khai, nhưng Claude Code **tự nạp `.mcp.json` ở gốc plugin** (docs plugins-reference: "loads `.mcp.json` at the plugin root first"). Cài plugin vào Claude Code vì thế cũng đăng ký máy chủ `topview-3d`. Nó chỉ chạy được khi người dùng đồng ý OAuth, không âm thầm gửi dữ liệu. Bài dev.to không nhắc tới máy chủ MCP này |
+| Link Quick Start · Examples · Tutorial · 3D Builder · Topview.ai · Issues | ✅ | Hai link nội bộ README (Quick Start, Examples) và Issues trỏ đúng chỗ; 3/6 link dẫn về topview.ai (tutorial, trang sản phẩm, trang chủ) |
+| Video hero 1:42 | ⚠️ | Phần dựng cảnh khớp sản phẩm; phần video thật cuối cùng do Topview sinh, không phải do công cụ mã mở này tạo |
+
+**Tổng:** 3✅ / 4⚠️ / 0❌. Không có ô sai hẳn. Các ⚠️ có chung một gốc: ảnh gộp phần mã mở chạy cục bộ (dựng, kiểm, render khung tham chiếu) với bước sinh video trả phí của Topview.
+
+### 1d.3 Điều ảnh không nói (đọc mã và tự chạy)
+
+- **Bước sinh video là phễu về Topview, nhưng có thứ tự và cổng đồng ý.** `references/generate.md` buộc agent dùng trước dịch vụ người dùng đã nêu hoặc công cụ đã cài trên máy. Chỉ khi không có gì, agent mới **tự đăng ký** máy chủ MCP `https://mcp-browser.topview.ai` vào cấu hình host (với Cursor là gộp vào `~/.cursor/mcp.json` cấp người dùng, sao lưu trước, không in file), rồi để người dùng tự hoàn tất OAuth. Agent bị cấm hỏi mật khẩu, cookie hay token. Commit `58b06ab` (14/10) mới thêm việc tự kết nối này.
+- **Một lần đồng ý sinh là chạy hết vòng đó.** Skill viết: sau khi người dùng cho phép một "generation round", agent upload khung tham chiếu, gửi, chờ, nhận kết quả **mà không hỏi lại**, chỉ báo dịch vụ, nội dung upload và chi phí. Sửa cảnh 3D thì phải hỏi lại cho vòng mới. Đây là một ngân sách đồng ý theo vòng; nếu dùng với credit thật, nên tự đặt trần chi phí.
+- **Skill ở HEAD ghim một phiên bản chưa có trên PyPI.** Commit `24c2374` (15/10) ghim `topview-3d-cli==0.1.8` ở skill và cả ba plugin, nhưng PyPI (đọc 16/10/2026) mới tới **0.1.7** (0.1.3 cũng không có). Làm đúng bước 1 của skill (`uvx --python 3.12 topview-3d-cli@0.1.8 doctor --json`) sẽ lỗi cài đặt. Phần hướng dẫn xử lý lỗi của skill giả định lỗi do mirror cũ, không xét trường hợp bản chưa phát hành.
+- **Test:** `pytest` thư mục test của CLI (cài từ mã nguồn): **214 pass, 28 skip** (cần editor đã build), **1 fail** (`test_node_batch_state_reports_primitive_sizes`, `ERR_MODULE_NOT_FOUND`). Test này cần editor đã build nhưng thiếu điều kiện skip như 28 test kia, nên là lỗi môi trường chứ không phải lỗi logic.
+- **Chạy thật bản 0.1.7:** `doctor` báo đủ (Python, Node, runtime đóng gói, 4 nhân vật, 121 tư thế, 5 khối); `browser ensure` tận dụng Chromium sẵn có; `project init` → `node batch` (2 nhân vật + 1 camera) → `render` ra `frame-0.png` cùng sha256 kiểm được. Khung hình là ma-nơ-canh trên lưới, đúng mục tiêu "tham chiếu dàn cảnh", không phải ảnh thành phẩm.
+- **Thiết kế đáng học:** cảnh là tệp JSON (`.topview-3d/`) sửa bằng lệnh có `expectedSceneSequence` (khoá lạc quan, lệnh dựa trên trạng thái cũ thì bị từ chối); `node batch --dry-run` và `evaluate` kiểm số (chạm đất, va chạm, khoảng cách, khung hình) **trước** khi render; mỗi lần render ghi `documentSha256` và đánh dấu bản render cũ là `stale`. Đây là cùng ý "kiểm bằng máy trước khi tiêu credit" mà OpenMontage (§1) làm ở mức pipeline.
+
+### 1d.4 So sánh & dùng thế nào
+
+| Dự án (shields 16/10/2026) | ★ · license | Khác topview-3d-builder |
+|---|---|---|
+| `ahujasid/blender-mcp` | ~31k · MIT | Agent điều khiển Blender đầy đủ qua MCP: mạnh hơn nhiều về mô hình, vật liệu, hoạt ảnh, nhưng phải cài Blender. Repo của chủ kho `design-os-3d-blender` dùng hướng này (mục 23 §6.1; mục 14) |
+| `earthtojake/text-to-cad` | ~21k · MIT | Cùng mẫu "plugin cho coding agent + CLI + viewer cục bộ", nhưng cho CAD cơ khí (mục 20 §3e) |
+| Higgsfield 3D Jutsu, Spline AI Agent, Topview 3D Builder bản web | dịch vụ trả phí | Prompt → cảnh 3D chỉnh được → video, chạy trên cloud; bản web của Topview tính phí mỗi lần dựng cảnh (trang Topview, chưa xác minh giá) |
+| `topviewai/skill` | ~40 · Apache-2.0 | Skill khác của cùng hãng, gọi dịch vụ Topview qua MCP để sinh media; không phải công cụ cục bộ |
+
+- **Dùng được ngay cho:** dựng phân cảnh tham chiếu (vị trí nhân vật, hướng nhìn, góc máy, chuyển động camera) rồi đưa khung hình vào **bất kỳ** model video nào có nhận ảnh tham chiếu. Phần này mã mở thật và chạy cục bộ.
+- **Trước khi cài plugin:** hiểu rằng plugin đăng ký sẵn một máy chủ MCP từ xa của Topview. Nếu chỉ cần phần cục bộ, cài CLI từ PyPI (`pip install topview-3d-cli==0.1.7`, bản đã kiểm ở đây) và chép riêng skill, bỏ `.mcp.json`. Ghim phiên bản có thật trên PyPI.
+- **Không trông đợi** hoạt ảnh nhân vật: bản này chỉ có tư thế tĩnh và keyframe vị trí. "Real animated video" là việc của model video phía sau.
+- **Rủi ro dự án:** repo 3 tuần tuổi, 68★, do một công ty có sản phẩm trả phí phát triển; phần cục bộ có lợi ích thật nhưng vai trò chính là kênh dẫn tới dịch vụ sinh video của Topview.
+
+**Nguồn §1d:** https://github.com/topviewai/topview-3d-builder (clone đầy đủ, HEAD a0671f9; README.md, NOTICE, LICENSE, builtin-assets/LICENSE, .mcp.json, .claude-plugin/{plugin,marketplace}.json, .codex-plugin/plugin.json, .agents/plugins/marketplace.json, skills/topview-3d-cli/SKILL.md, references/{generate,doctor-browser,camera,checks,add-character}.md, agent/pyproject.toml, agent/topview_3d_cli/local_studio.py, editor/package.json) · https://pypi.org/pypi/topview-3d-cli/json (đọc 16/10/2026: bản mới nhất 0.1.7) · https://code.claude.com/docs/en/plugins-reference (`.mcp.json` ở gốc plugin được nạp trước) · https://dev.to/topviewai/from-one-prompt-to-an-editable-3d-scene-we-open-sourced-a-local-first-agent-workflow-npa (15/10/2026) · https://x.com/TopviewAIhq/status/2110615678805774657 · https://www.topview.ai/3d-builder · https://github.com/topviewai/skill · https://github.com/ahujasid/blender-mcp · https://github.com/earthtojake/text-to-cad · https://docs.spline.design/spline-ai/ai-agent · https://higgsfield.ai/blog/higgsfield-3d-jutsu
+
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
 
 | Repo | Số hiển thị (★?) | Ghi chú |

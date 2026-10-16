@@ -412,3 +412,11 @@
 - claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle (Jason Clinton, 21/7/2026): ~80% code merge do Claude viết, ~8× code/quý, PR có review thực chất 16% → 54%
 - Phản biện (đều là bên bán sản phẩm liên quan): waydev.co/anthropics-ai-native-sdlc-playbook-has-a-missing-layer-measurement (Alex Circei, 24/8/2026) · port.io/blog/anthropic-ai-native-sdlc-playbook (Yonatan Boguslavski, 28/8/2026)
 - WebSearch 16/10/2026: mejba.me/blog/ai-native-sdlc-claude-code, getaibook.com, genai-playbook.com, best.xiaohu.ai, agenticaiarch.com, github.com/yibie/ai-native-sdlc-playbook (bản biên soạn lại không chính thức), bài LinkedIn tóm tắt (thứ cấp, không dùng làm dữ kiện)
+
+## Bổ sung 2026-10-16 đợt 20 (ảnh README topviewai/topview-3d-builder → mục 19 §1d)
+
+- github.com/topviewai/topview-3d-builder, clone đầy đủ 16/10/2026 (69 commit, HEAD a0671f9; README.md, NOTICE, LICENSE, builtin-assets/LICENSE, .mcp.json, .claude-plugin/{plugin,marketplace}.json, .codex-plugin/plugin.json, .agents/plugins/marketplace.json, skills/topview-3d-cli/SKILL.md + references/, agent/pyproject.toml, agent/topview_3d_cli/local_studio.py, editor/package.json); pytest thư mục test của CLI: 214 pass / 28 skip / 1 fail (thiếu editor đã build); trang GitHub 68★ / 24 fork (16/10/2026)
+- pypi.org/pypi/topview-3d-cli/json (16/10/2026: 0.1.0–0.1.2, 0.1.4–0.1.7; không có 0.1.3 và 0.1.8); tự cài 0.1.7, `doctor`, `browser ensure`, dựng cảnh 2 nhân vật + camera và render 1 khung
+- code.claude.com/docs/en/plugins-reference (`.mcp.json` ở gốc plugin được nạp trước rồi mới tới `mcpServers`)
+- dev.to/topviewai/from-one-prompt-to-an-editable-3d-scene-we-open-sourced-a-local-first-agent-workflow-npa (15/10/2026, nhãn "AI-assisted") · x.com/TopviewAIhq/status/2110615678805774657 · topview.ai/3d-builder
+- So sánh (shields 16/10/2026): github.com/ahujasid/blender-mcp 31k MIT · github.com/earthtojake/text-to-cad 21k · github.com/topviewai/skill 40 Apache-2.0; dịch vụ: docs.spline.design/spline-ai/ai-agent, higgsfield.ai/blog/higgsfield-3d-jutsu
