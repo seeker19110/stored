@@ -191,6 +191,23 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 
 **Nguồn:** https://github.com/mksglu/context-mode (clone đầy đủ, v1.0.169) · https://www.npmjs.com/package/context-mode · https://news.ycombinator.com/item?id=47193064 · https://www.anthropic.com/engineering/code-execution-with-mcp · https://github.com/rtk-ai/rtk · https://github.com/thedotmack/claude-mem · https://github.com/oraios/serena · context-mode.com/insight
 
+### Cập nhật 2026-10-16: kiểm ảnh README người dùng gửi
+
+> Ảnh chụp đầu README trên GitHub: banner "99% SAVINGS · CLAUDE CODE" (não pixel), nút "Watch demo · YouTube", mục **Install** ("Platforms are grouped by install complexity…"), khối Claude Code với điều kiện "Claude Code v1.0.33+", lệnh `/plugin marketplace add` + `/plugin install context-mode@context-mode` và `/context-mode:ctx-doctor`. Đối chiếu bằng clone lại repo ngày 16/10/2026.
+
+| Chi tiết trong ảnh | Kiểm chứng | Nhận xét |
+|---|---|---|
+| Banner "**99% SAVINGS**" | Không phải ảnh của README: đó là thumbnail (`img.youtube.com/vi/QUHrntlfPo4/maxresdefault.jpg`) của video *"Claude Code is Expensive. This MCP Server Fixes It (Context Mode)"* trên kênh **Better Stack** (oEmbed YouTube), gắn vào README từ commit `bab2f0a2` (5/4/2026) | Văn bản README vẫn ghi **98%** (315 KB → 5,4 KB). 99% chỉ là mức của vài kịch bản đơn lẻ (Playwright snapshot, git log, JSON 7,5 MB). Con số trên banner là của bên thứ ba, làm tròn lên, và vẫn chỉ đo **byte**, không đo chất lượng |
+| "Platforms are grouped by install complexity. Hook-capable… automatic routing enforcement. Non-hook… one-time routing file copy" | Có từ commit `4bbbd46a` (21/3/2026). Bảng cuối README: nền tảng không có hook là Zed và Antigravity IDE, phải chép tay file hướng dẫn, chỉ "~60% saved" so với "~98%" khi có hook | Khớp với phần "Định tuyến cưỡng bức" ở trên: có hook thì cưỡng bức bằng máy, không có hook thì chỉ là lời dặn |
+| "Prerequisites: Claude Code v1.0.33+" | Nguồn cộng đồng ghi plugin/`/plugin` ra public beta ở bản 1.0.33; bài công bố của Anthropic và docs hiện tại (`code.claude.com/docs/en/plugins`) không ghi số phiên bản **(chưa xác minh)** | Đây là mức tối thiểu để **cài** plugin. Hành vi hook lại được chỉnh theo CC v2.1.x (comment trong `formatters.mjs`), nên bản cũ hơn có thể cài được nhưng không chắc định tuyến đúng |
+| `/context-mode:ctx-doctor` để kiểm tra | Có thật: `skills/ctx-doctor/SKILL.md` gọi tool MCP `ctx_doctor`, fallback `node cli.bundle.mjs doctor` (`src/cli.ts`); kiểm runtime, hook, FTS5, đăng ký plugin, phiên bản npm/marketplace | Nên chạy ngay sau khi cài, vì hook hỏng thì plugin âm thầm rơi về mức ~60% |
+| Hoạt động kể từ lần đọc 12/10 | Thêm **6 commit**, đều là bot `ci: update install stats`; vẫn v1.0.169 (tổng 2.234 commit) | Không đổi code, mọi phân tích ở trên vẫn đúng |
+| Số liệu | **29,9k★**, 2,1k fork, 110 watcher (trang GitHub 16/10/2026; 12/10 là 26,8k★). `stats.json`: "686k+ users" = npm 633,6k + marketplace 52,3k | Badge "users" vẫn là **lượt cài**, không phải số người dùng |
+
+**Kết luận:** ảnh không có thông tin mới về cơ chế. Điểm cần nhớ khi trích dẫn: dùng **98% (đo byte, tác giả tự báo cáo)** thay vì "99%" của banner YouTube.
+
+**Nguồn bổ sung:** https://www.youtube.com/watch?v=QUHrntlfPo4 (oEmbed: Better Stack) · https://code.claude.com/docs/en/plugins · https://anthropic.com/news/claude-code-plugins · https://morphllm.com/claude-code-plugins (1.0.33, nguồn cộng đồng)
+
 ## 8c. Kiểm ảnh "How AI Agents Work: Agent = model + a harness that runs a loop" (ảnh người dùng gửi, 2026-10-13)
 
 > Sơ đồ một trang: Trigger → khung **Harness** chứa vòng 1 Build context → 2 LLM decides → ◇ "Answer now / goal met?" → 3 Act (tools) → 4 Observe → quay lại 1; bên trái là Memory (ngắn hạn = cửa sổ ngữ cảnh, dài hạn = lưu/truy xuất), Guardrails, Observability + Evals; đầu ra là answer / action taken / handoff.

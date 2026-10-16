@@ -64,7 +64,7 @@
 - ReAct (2022) và Plan-and-Execute là 2 hình dạng vòng lặp chủ đạo; Reflexion thêm tự-phê-bình.
 - **Ralph Wiggum loop** (`while :; do cat PROMPT.md | claude; done`) → được Anthropic đóng gói thành plugin `ralph-loop` dùng Stop hook; hội tụ tốt khi task **có thể kiểm chứng** (test/lint/build).
 - **Context engineering / harness engineering** trở thành kỹ năng cốt lõi: KV-cache hit rate, nén/chọn/cô lập ngữ cảnh, git worktree để chạy song song nhiều agent.
-- **Tiết kiệm context thành sản phẩm riêng**: claude-mem (~100k★), RTK (~83k★), Serena (~30k★), context-mode (~27k★). Nguyên lý chung là "Think in Code" (Anthropic, *Code execution with MCP*): model viết code lọc dữ liệu, chỉ kết quả vào context. Các con số 90–98% đo **byte**, chưa ai đo chất lượng câu trả lời; "sandbox" của context-mode chỉ là tiến trình con có toàn quyền FS/mạng (mục 03 §8b).
+- **Tiết kiệm context thành sản phẩm riêng**: claude-mem (~100k★), RTK (~83k★), Serena (~30k★), context-mode (~30k★, 16/10/2026). Nguyên lý chung là "Think in Code" (Anthropic, *Code execution with MCP*): model viết code lọc dữ liệu, chỉ kết quả vào context. Các con số 90–98% đo **byte**, chưa ai đo chất lượng câu trả lời; "sandbox" của context-mode chỉ là tiến trình con có toàn quyền FS/mạng (mục 03 §8b).
 
 ### 4. Giao thức mở đang định hình "hệ điều hành agent"
 

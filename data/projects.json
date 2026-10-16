@@ -2976,9 +2976,9 @@
       "repo": "mksglu/context-mode",
       "category": "context-optimization",
       "license": "Elastic-2.0",
-      "stars": 26800,
+      "stars": 29900,
       "open_source": false,
-      "notes": "Source-available (ELv2): MCP + hook chặn curl/WebFetch, Think in Code, FTS5/BM25/RRF, khôi phục phiên; 17 client; 'sandbox' = tiến trình con toàn quyền; số 98% đo byte; ★ 12/10/2026",
+      "notes": "Source-available (ELv2): MCP + hook chặn curl/WebFetch, Think in Code, FTS5/BM25/RRF, khôi phục phiên; 17 client; 'sandbox' = tiến trình con toàn quyền; số 98% đo byte ('99%' là banner video Better Stack); ★ 16/10/2026",
       "section": "03"
     },
     {
