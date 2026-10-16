@@ -4683,6 +4683,17 @@
       "section": "21"
     },
     {
+      "name": "Anthropic AI-native SDLC playbook",
+      "repo": null,
+      "url": "https://claude.com/blog/the-ai-native-sdlc-playbook",
+      "category": "pattern-loop",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Hướng dẫn Applied AI (21/8/2026, PDF 54 trang): 6 stage, mỗi stage commit một artifact (intent.md→spec.md→plan.md→diff→PR→incident); hook là cổng, skill chỉ khuyên; Maintain: bands.yaml 1σ log/2σ chẩn đoán/3σ đề xuất; agent không qua cổng production; 'hours, not weeks' là mục tiêu chưa đo; ảnh người dùng 2026-10-16",
+      "section": "21"
+    },
+    {
       "name": "whiteboard-animation-vi",
       "repo": "letuandat131/whiteboard-animation-vi",
       "category": "motion-design",
