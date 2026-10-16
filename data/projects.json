@@ -2912,13 +2912,13 @@
       "section": "02"
     },
     {
-      "name": "Personal Jarvis",
+      "name": "Personal Jarvis (nay là Dodaios)",
       "repo": "Dodaios/Dodaios",
       "category": "personal-agent",
       "license": "Apache-2.0",
-      "stars": 183,
+      "stars": 223,
       "open_source": true,
-      "notes": "Super-app desktop: ADE nhiều pane (call sign T1/T2) + voice/wake word + computer use + agent nền; đổi tên từ PersonalJarvis/PersonalJarvis 10/2026; ≤1.6.0 MIT; mặc định approval_mode=bypass; ★ 12/10/2026",
+      "notes": "Agent OS desktop (tên cũ Personal Jarvis, đổi tên Dodaios 12–14/10/2026; PyPI vẫn personal-jarvis 3.2.0): ADE nhiều pane (call sign T1/T2) + voice/wake word + computer use + agent nền; ≤1.6.0 MIT; mặc định approval_mode=bypass; whitelist git log */git diff * hạ lệnh nối thành safe (đã chạy evaluator 16/10/2026); ★ 16/10/2026",
       "section": "01"
     },
     {
