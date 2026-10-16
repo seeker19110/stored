@@ -454,3 +454,11 @@
 - arxiv.org/pdf/2512.12818 · aclanthology.org/2026.acl-demo.27.pdf · trendshift.io/repositories/15603
 - Thay thế trên object storage: docs.lancedb.com/storage · lancedb.com/blog/case-study-cognee · cognee.ai/blog/fundamentals/how-cognee-builds-ai-memory · mastra.ai/integrations/databases/lancedb
 - shields 16/10/2026: vectorize-io/hindsight ~50k, mem0ai/mem0 ~67k, milvus-io/milvus ~46k, topoteretes/cognee ~32k, getzep/graphiti ~32k, lancedb/lancedb ~12k
+
+## Bổ sung 2026-10-16 đợt 26 (link nokia-applied-research/AnyJev → mục 17 §2c)
+
+- github.com/nokia-applied-research/AnyJev, clone 16/10/2026 (HEAD b03158e 12/10/2026, 56 commit từ 21/9/2026, 7 người đóng góp): README.md, AGENTS.md, CREDITS.md, ROADMAP.md, CHANGELOG.md, docs/levels.md, docs/limitations.md, anyjev/calibrate/{permute,contextual}.py, anyjev/serve.py, pyproject.toml; tổng hợp bench/results_v01/2026-09-22/*.json (11 model × 3 tác vụ) và bench/results_decision_index/2026-10-12/; không chạy được test (bộ phân loại quyền chặn chạy mã bên ngoài)
+- pypi.org/pypi/anyjev/json (0.0.1 21/9 → 0.3.0 6/10/2026, Apache-2.0) · arxiv.org/abs/2610.00831 (30/9/2026; đơn vị "Nokia, Sunnyvale") · github.com/nokia-applied-research (7 repo, không verified, không thành viên công khai)
+- huggingface.co/spaces/multimodalart/jev-decision-index: data/v03.json (snapshot 15/10/2026: 168 entry, AnyJev rank_v 10 / rank_tie 5, 60,22) và data/methodology.json · huggingface.co/morriszjm/AnyJev-L0-Gemma-4-31B · huggingface.co/api/models/morriszjm/Tacit-9B · github.com/fstandhartinger/jevbench (MIT, dự án cá nhân)
+- theregister.com/a/5296711 (Jev của TypeSafe AI, 15/9/2026) · marktechpost.com/2026/09/23/nokia-open-sources-anyjev-… (403, chỉ tiêu đề) · arxiv.org/abs/2309.03882 · arxiv.org/abs/2309.17249 · arxiv.org/abs/2102.09690
+- shields 16/10/2026: nokia-applied-research/AnyJev 1,3k★

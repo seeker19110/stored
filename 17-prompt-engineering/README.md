@@ -41,6 +41,74 @@
 
 **Chọn nhanh:** gọi API đóng (Claude, GPT) cần JSON đúng schema → instructor (hoặc structured output có sẵn của nhà cung cấp); model local cần bảo đảm tuyệt đối → outlines; nhóm đa ngôn ngữ muốn hợp đồng có kiểu → BAML; tối ưu prompt theo metric → DSPy (bảng trên).
 
+## 2c. nokia-applied-research/AnyJev: đọc quyết định có kiểu kèm xác suất từ LLM mở, không cần huấn luyện (link người dùng gửi, 2026-10-16)
+
+**Kết luận:** đáng dùng khi agent chạy model mở và cần **phân loại hoặc định tuyến kèm độ tin** (chọn 1 trong K nhãn, có/không, chấm thang điểm). Phần không cần huấn luyện (`Decider`, mức `L0`) là cách đóng gói gọn ba kỹ thuật đã có bài báo. Số liệu trong README khớp với JSON trong repo, nhưng ô được nêu nổi bật là một trong những ô đẹp nhất. Dự án còn rất mới (Pre-Alpha, 0.3.0) và chưa có ai kiểm chứng độc lập.
+
+### 2c.1 Là gì, và "Jev" là gì
+
+- **Jev** là model "System One" **đóng, chạy qua API** của startup TypeSafe AI (San Francisco), mở early access ngày 15/9/2026. Nó trả quyết định có kiểu (Choice, Score, yes/no) kèm xác suất thay vì sinh văn bản. Các con số 70–500 ms và 0,042 USD cho 1 triệu token đầu vào đều do TypeSafe tự công bố (The Register).
+- **AnyJev** là bản mở, giao diện "kiểu Jev", Apache-2.0. README và `CREDITS.md` ghi rõ "Not affiliated with TypeSafe AI or Jev". Gồm hai phần:
+  - `Decider`: đọc quyết định từ **bất kỳ LLM mở nào** qua backend transformers, vLLM, SGLang hoặc llama.cpp. Không huấn luyện, không cần nhãn.
+  - `Tacit`: 5 checkpoint 1,7B–9B **tự chưng cất** từ Qwen3/Qwen3.5 (Apache-2.0). Model học trả lời trong một lượt forward đáp án mà nó đạt được khi suy luận. Với `adaptive=True`, một phần quyết định có giới hạn được chuyển sang suy luận.
+- Có HTTP gateway `python -m anyjev.serve` (`POST /v1/decide`). Gateway **không có xác thực**, mặc định chỉ nghe ở 127.0.0.1.
+
+### 2c.2 Cách hoạt động (đọc mã ở HEAD `b03158e`, 12/10/2026)
+
+| Mức | Làm gì | Gốc kỹ thuật |
+|---|---|---|
+| `raw` | Một prompt, softmax giới hạn trên token nhãn (A, B, C…) | — |
+| `L0`, bước 1 | Đọc K phép xoay vòng thứ tự lựa chọn để mỗi lựa chọn đứng ở mọi vị trí, rồi lấy trung bình **log-prob** (`anyjev/calibrate/permute.py`). Nếu thiên lệch vị trí là cộng tính trên logit thì nó bị triệt tiêu đúng | Permutation debiasing, Zheng et al., ICLR 2024 (arXiv 2309.03882) |
+| `L0`, bước 2 | Chia cho prior nhãn rồi chuẩn hoá lại (`contextual.py`). Mặc định ước lượng prior bằng trung bình chạy trên các đầu vào thật, hệ số 0,75 | Batch Calibration, Zhou et al., ICLR 2024; tuỳ chọn content-free theo Zhao et al., ICML 2021 |
+| Rotation budget | Dừng sớm khi biên log-odds vượt ngưỡng. Ngưỡng được chứng nhận bằng cận Clopper–Pearson so với đáp án đọc đủ K, nên không cần nhãn. README: trung bình 7,2/18 phép xoay, thông lượng gấp 2,2–2,7 lần | Của AnyJev |
+| Tacit `one_forward` / `cot` | Một prefill. Khi biên giữa 2 lựa chọn đầu < `tau`, model suy luận lại; tối đa `max_cot_share` (20%) của 1.000 quyết định gần nhất | Của AnyJev |
+
+Điểm tốt về kỷ luật kỹ thuật:
+
+- `Decider` **không bao giờ sinh token**, nên không có bước parse nào có thể hỏng.
+- Mỗi `Decision` mang `level`. Gọi `require="L0"` sẽ từ chối kết quả ở mức yếu hơn.
+- `tests/test_readme_numbers.py` kiểm các bảng trong README khớp với JSON đã commit.
+- `AGENTS.md` của repo cấm số bịa và cấm agent tự `git commit`.
+- Lõi chỉ phụ thuộc numpy. Gói chỉ gọi mạng tới server vLLM do người dùng cấu hình (`urllib` trong `backends/vllm.py` và `tacit.py`); không thấy telemetry.
+
+### 2c.3 Kiểm số liệu (đọc JSON trong `bench/results_v01/2026-09-22/`, 11 model × 3 tác vụ, n = 300, một seed)
+
+- **Ô nổi bật khớp JSON.** Qwen3-8B trên BANKING77-20: tỷ lệ đổi đáp án khi đảo thứ tự 0,230 → 0,073; accuracy 0,747 → 0,803; ECE 0,240 → 0,184; tỷ lệ tự quyết được ở sai ≤ 5% là 7,7% → 46,3%.
+- **Nhất quán ở tác vụ 20 lựa chọn.** Trên cả 22 ô (11 model × banking20/newsgroups), `L0` giảm tỷ lệ đổi đáp án và tăng accuracy. Model nhỏ hưởng nhiều nhất: SmolLM2-1.7B trên newsgroups tăng 0,257 → 0,637.
+- **Không đồng đều ở "tự quyết được ≤ 5%".** Đây chính là dòng README gọi là quan trọng nhất:
+  - Ở tác vụ nhị phân `injection`, chỉ số này **sụp**: Qwen3-8B 0,313 → 0,013; Qwen3-4B 0,117 → 0,020.
+  - Qwen3-32B giảm cả accuracy (0,857 → 0,827) lẫn coverage ở `injection`, và giảm coverage ở newsgroups (0,557 → 0,470).
+  - `docs/limitations.md` tự thừa nhận: coverage ở n = 300 có phương sai cao, và prior theo batch làm giảm accuracy khi một nhãn áp đảo.
+- **Bảng xếp hạng Decision Index 0.3.** Đây là Space cộng đồng `multimodalart/jev-decision-index` trên Hugging Face, không phải của TypeSafe.
+  - Điểm 60,22 được người duy trì bảng chạy lại: phần private và độ trễ 98/260/1.080 ms, khớp 98,18% số quyết định.
+  - "Hạng 5/149" là **hạng theo nhóm hoà** (cách nhau ≤ 0,9 điểm) tại 12/10. Ở snapshot 15/10, xếp theo điểm thì là **10/168** (`rank_v` = 10, `rank_tie` = 5). Đứng trên nó có Jev 1.14 (61,53); đầu bảng 66,26.
+  - Cấu hình nộp bảng là 2 phép xoay, Gemma-4-31B FP8, khác mặc định thư viện.
+- **Tacit** (JevBench public 0,823 → 0,887 khi bật adaptive cho Tacit-9B) là số tự báo cáo. JevBench là dự án cá nhân của `fstandhartinger`, MIT, độc lập với TypeSafe.
+- **Chưa tự chạy được.** Lệnh cài và chạy test của repo bị bộ phân loại quyền chặn vì là mã bên ngoài. Các con số trên đọc từ JSON, không chạy lại.
+
+### 2c.4 Ai làm, độ tin cậy
+
+- Org GitHub "Nokia Applied Research" có 7 repo public, không huy hiệu verified, không thành viên công khai. arXiv 2610.00831 (30/9/2026, tự ghi "early report") ghi đơn vị "Nokia, Sunnyvale, CA" cho 7/9 tác giả. Không tìm được trang nokia.com nào nhắc nhóm này, nên **(chưa xác minh)** là nhóm chính thức của Nokia.
+- Commit đầu 21/9/2026; 56 commit; 7 người đóng góp. Tác giả chính Jiamu "Morris" Zhang dùng email rice.edu/case.edu. Backend SGLang và llama.cpp do người ngoài đóng góp.
+- Phiên bản: PyPI 0.0.1 (21/9) → 0.3.0 (6/10/2026). Classifier "Development Status :: 2 - Pre-Alpha". ~1,3k★ (shields 16/10/2026).
+- Bài báo bên ngoài chủ yếu là MarkTechPost (23/9/2026) và các trang tổng hợp chép README. Không thấy thảo luận Hacker News, phản biện hay tái hiện độc lập.
+
+### 2c.5 Khi nào dùng, lưu ý khi đưa vào sản phẩm
+
+- **Hợp:** định tuyến ticket hoặc intent, gắn nhãn, phát hiện prompt injection bằng model mở tự host. Cần xác suất để đặt ngưỡng "tự quyết / chuyển người", và không có nhãn để huấn luyện bộ phân loại.
+- **Không hợp:**
+  - API đóng không trả log-prob đầy đủ, như Claude. Khi đó dùng structured output (§2b) và eval riêng.
+  - Bài toán có > 26 lựa chọn: `Decider` dừng ở 26.
+  - Bài toán đã có đủ nhãn: một bộ phân loại tinh chỉnh thường rẻ hơn K lượt prefill.
+- **Lưu ý vận hành:**
+  1. **Prior batch là trạng thái theo tiến trình.** Phân phối của một câu hỏi phụ thuộc nhẹ vào các request trước, nên kết quả không tái lập hoàn toàn. Với hệ đa tenant, nên tách `Decider` theo tenant hoặc dùng `prior="content_free"`/`"none"`.
+  2. **vLLM** phải chạy với `--logprobs-mode processed_logprobs`. Nếu không, nhãn nằm ngoài top log-prob sẽ ném `LabelTokenError`; trước bản sửa #13 nó bị đọc thành -30 một cách im lặng.
+  3. **Gateway không có xác thực.** Không bind ra ngoài 127.0.0.1 nếu chưa có proxy xác thực đứng trước.
+  4. Một quyết định leo lên `cot` tốn **vài giây**: cap giới hạn số quyết định leo, không giới hạn thời gian của từng quyết định.
+  5. Hãy tự đo lại coverage trên dữ liệu của mình (xem 2c.3) trước khi tin vào ngưỡng "tự quyết".
+
+**Nguồn §2c:** https://github.com/nokia-applied-research/AnyJev (clone 16/10/2026; đọc README.md, AGENTS.md, CREDITS.md, ROADMAP.md, CHANGELOG.md, docs/levels.md, docs/limitations.md, anyjev/calibrate/{permute,contextual}.py, anyjev/serve.py, pyproject.toml, bench/results_v01/2026-09-22/*.json, bench/results_decision_index/2026-10-12/*.json, examples/decision_index/README.md) · https://pypi.org/pypi/anyjev/json · https://arxiv.org/abs/2610.00831 · https://huggingface.co/spaces/multimodalart/jev-decision-index (data/v03.json, data/methodology.json, snapshot 15/10/2026) · https://huggingface.co/morriszjm/AnyJev-L0-Gemma-4-31B · https://huggingface.co/morriszjm/Tacit-9B · https://github.com/fstandhartinger/jevbench · https://www.theregister.com/a/5296711 · https://www.marktechpost.com/2026/09/23/nokia-open-sources-anyjev-a-training-free-layer-that-turns-any-open-llm-into-a-calibrated-decision-model/ (chỉ đọc tiêu đề, trang trả 403) · https://arxiv.org/abs/2309.03882 · https://arxiv.org/abs/2309.17249 · https://arxiv.org/abs/2102.09690
+
 ## 3. Bộ sưu tập system prompt (học cách các sản phẩm lớn thiết kế)
 
 | Repo | Nội dung | Ghi chú |
