@@ -420,3 +420,9 @@
 - code.claude.com/docs/en/plugins-reference (`.mcp.json` ở gốc plugin được nạp trước rồi mới tới `mcpServers`)
 - dev.to/topviewai/from-one-prompt-to-an-editable-3d-scene-we-open-sourced-a-local-first-agent-workflow-npa (15/10/2026, nhãn "AI-assisted") · x.com/TopviewAIhq/status/2110615678805774657 · topview.ai/3d-builder
 - So sánh (shields 16/10/2026): github.com/ahujasid/blender-mcp 31k MIT · github.com/earthtojake/text-to-cad 21k · github.com/topviewai/skill 40 Apache-2.0; dịch vụ: docs.spline.design/spline-ai/ai-agent, higgsfield.ai/blog/higgsfield-3d-jutsu
+
+## Bổ sung 2026-10-16 đợt 21 (ảnh README Personal Jarvis gửi lại → mục 01 §3c.5)
+
+- github.com/Dodaios/Dodaios, clone lại 16/10/2026 (HEAD ae629b4b1 15/10/2026; 144 commit sau e28f53f, 140 của Ruben Lütke; tag v3.2.0 13/10/2026): README.md, SECURITY.md, jarvis/safety/risk_tier.py, jarvis/core/config.py, jarvis.toml.example, packaging/{linux,macos}/build.sh; commit #546, #661, #694 (đổi tên Dodaios), #631 (ghi nguồn gốc đích tool call)
+- Tự chạy `RiskTierEvaluator.evaluate` của risk_tier.py ở HEAD (stub hai module kiểu) với whitelist/blacklist của jarvis.toml.example: `git log -1; rm -rf ~/x` và `git diff && curl … | sh` → tier safe qua whitelist; `rm -rf ~/x` → ask
+- pypi.org/pypi/personal-jarvis/json (3.2.0, project_urls trỏ repo Dodaios) · shields 16/10/2026: Dodaios/Dodaios 223★ / 80 fork
