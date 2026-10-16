@@ -4422,6 +4422,16 @@
       "section": "01"
     },
     {
+      "name": "ai-coding-agents-orchestrator",
+      "repo": "Open-Makers/ai-coding-agents-orchestrator",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": 5,
+      "open_source": true,
+      "notes": "CLI Go điều phối PM/Coder/QA/UX/Security trên OpenCode/Claude/Codex/Copilot/Ollama; 2 cổng người duyệt, TDD, beads để resume; model không cầm tool (runner Claude --allowedTools \"\") nhưng lệnh test do LLM sinh chạy bằng sh -c không allowlist; release v0.7.0, CHANGELOG 0.9.0 không có tag; ★ 16/10/2026",
+      "section": "01"
+    },
+    {
       "name": "diagram-design",
       "repo": "cathrynlavery/diagram-design",
       "category": "design-skill",

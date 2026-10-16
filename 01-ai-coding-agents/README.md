@@ -284,6 +284,87 @@ Lệnh xoá đứng một mình bị hỏi; nối sau `git log` thì được co
 - **So với nhóm ADE (§1.3):** T3 Code, Vibe Kanban, Claude Squad là "bàn làm việc" cho một người; Omnigent là **server nhiều người dùng có governance**, gần một nền tảng hơn. OpenHands (~90,7k★, MIT) là agent riêng chứ không bọc agent khác; LangGraph (~43,1k★, MIT) là thư viện viết agent bằng code.
 - **Tích hợp:** `uv tool install omnigent` (Python 3.12+), hoặc `brew install omnigent-ai/tap/omnigent`; tránh `curl … | sh` trên máy dùng chung. Cấu hình an toàn tối thiểu: giữ bind loopback, hoặc deploy với `OMNIGENT_ACCOUNTS_INIT_ADMIN_PASSWORD` + OIDC; bật `ask_on_os_tools` và `cost_budget` ở tầng server; thêm policy ASK cho `sys_scheduled_task_*`; đặt `DO_NOT_TRACK=1`; trên Linux cài `bubblewrap`. License Apache-2.0 nhúng được, giữ `NOTICE`.
 
+## 3g. Case study: Open-Makers/ai-coding-agents-orchestrator, pipeline PM → Coder → QA → review chạy trên CLI agent có sẵn (link người dùng gửi, 2026-10-16)
+
+**Kết luận:** thiết kế đáng học, chưa nên dùng cho dự án thật. Repo cá nhân, 5★, CHANGELOG ghi 0.9.0 (9/6/2026) nhưng release mới nhất trên GitHub chỉ là v0.7.0 (5/6/2026). Đáng học nhất là cách tách vai: **model chỉ sinh văn bản, orchestrator ghi file và chạy lệnh**. Điểm yếu lớn nhất: **lệnh test do LLM đề xuất được chạy thẳng bằng `sh -c`**, không allowlist, không sandbox.
+
+### 3g.1 Hồ sơ nhanh (16/10/2026)
+
+| Mục | Thông tin |
+|---|---|
+| Repo | `Open-Makers/ai-coding-agents-orchestrator` · 5★, 2 fork, 0 issue mở, 6 PR đã merge · MIT · Go 1.26 |
+| Tác giả | Michal Zuchowski (GitHub `michal-zuchowski`, bio "It generalist"; email @openmakers.pl ở commit mới). Org `Open-Makers` không mô tả, không thành viên công khai; `openmakers.pl` chỉ là trang giữ chỗ |
+| Lịch sử | 142 commit từ 9/2/2026. 10 commit có Copilot làm đồng tác giả, 7 commit có Claude. Khoảng lặng 11/6 → 4/10/2026; các commit gần nhất chỉ đụng tài liệu và CI |
+| Phát hành | Tag v0.2.0, v0.3.0, v0.5.0, v0.7.0; **không có tag 0.9.0** dù CHANGELOG ghi "0.9.0 — 2026-06-09". Cài bằng `go install …@latest` sẽ lấy v0.7.0 |
+| Quy mô | ~29,4k dòng Go (không tính test) + ~10,6k dòng test trong 76 file `_test.go`. CI chạy `go vet`, golangci-lint, test `-race`, nhưng cài công cụ bằng `@latest` (không ghim). Chưa xác minh được CI trên `main` đang xanh |
+
+### 3g.2 Nó làm gì
+
+1. Thu ngữ cảnh dự án và recall memory.
+2. **PM** đàm phán `TaskSpec`. *Cổng người duyệt.*
+3. PM chia việc thành sub-task, lưu dạng bead của `bd` để chạy tiếp được. Security và QA rà kế hoạch **trước** khi người duyệt `task_plan.md`. *Cổng người duyệt.*
+4. Vòng tự động có trần số lượt:
+   - QA viết test cho mọi sub-task trước (TDD).
+   - Coder viết mã.
+   - Chạy một vòng build/test/sửa chung.
+   - QA, UX và Security review; PM phân xử. Lỗi phải sửa thành bead mới và vòng lặp chạy lại.
+5. Viết tóm tắt và `nice_to_have.md`.
+
+Runner: OpenCode (mặc định), Claude CLI, Codex CLI, Copilot CLI, cùng các server local tương thích OpenAI (Ollama, LM Studio, MLX). Mỗi agent dùng được model riêng. Có TUI Bubble Tea và chế độ headless.
+
+Memory "kiểu OpenClaw":
+
+- `.orchestrator/memory/MEMORY.md` được ghép vào đầu mọi prompt;
+- log theo ngày, tóm tắt theo task;
+- index bằng SQLite FTS5/BM25, embedder tùy chọn.
+
+### 3g.3 Đọc mã: điểm tốt
+
+- **Model không tự cầm công cụ.** Runner Claude gọi `claude … --allowedTools ""` (`internal/runner/claude.go:70`). Coder chỉ in code fence, orchestrator tự tách và ghi file (`internal/agent/coder.go` `streamAndWriteFiles`). Model không tự ý chạy lệnh giữa chừng.
+- **Đường ghi file có chặn:**
+  - `sanitizeFilePath` từ chối `..` và bỏ tiền tố tuyệt đối;
+  - Coder bị cấm ghi `*_test.go` ("tester owns test files") để không tự sửa test cho xanh;
+  - đọc và sửa phụ dùng `os.Root` (`internal/safefile`).
+- **Kế hoạch được rà trước khi người duyệt.** Security và QA đọc kế hoạch trước cổng duyệt, nên người duyệt thấy rủi ro ngay từ đầu.
+- **Tách đánh giá khỏi người viết.** QA viết test, Coder viết mã, PM phân xử. Lỗi phải sửa thành bead, việc nên làm để sau.
+- `AGENTS.md` của repo cấm agent tự `git commit`/`push`. Repo cũng phân vai model: model lớn chỉ thiết kế, review, kiểm tra; model vừa làm việc tay.
+
+### 3g.4 Đọc mã: rủi ro
+
+| Rủi ro | Bằng chứng | Hệ quả |
+|---|---|---|
+| **Lệnh do LLM sinh được chạy bằng shell** | Coder/QA ghi mục `TEST_CMDS` vào `test_cmds` (`coder.go:163`, `qa.go:366`). `executil.Run` chạy `sh -c <lệnh>` (`internal/executil/executil.go:51`). `Sanitize` chỉ chặn chuỗi rỗng, xuống dòng và ký tự điều khiển; bộ lọc khác chỉ bỏ lệnh build và lệnh tương tác | `;`, `&&`, `\| sh`, `curl …` đều lọt. README dự án có thể chứa prompt injection, và MEMORY.md được ghép vào mọi prompt, nên từ đó có thể đi tới chạy lệnh tuỳ ý với quyền người dùng |
+| Runner Codex/Copilot được cấp quyền rộng | `codex exec --full-auto` (`codex.go:138`), `copilot -p … --allow-all-tools` (`copilot.go:222`) | Khác runner Claude, hai CLI này tự chạy công cụ. Với Copilot, đó là mọi công cụ |
+| Đích ghi file không bị giới hạn | `writeOneFile` dùng `os.WriteFile` (theo symlink) và chỉ chặn `..` | Coder ghi được `.git/hooks/pre-commit`, `.github/workflows/*`, `.orchestrator/memory/MEMORY.md` |
+| Không sandbox | Mọi thứ chạy trực tiếp trên máy, cùng quyền người dùng | Phải tự bọc bằng container, VM hoặc sandbox |
+| Phát hành lệch tài liệu | 0.9.0 chỉ có trong CHANGELOG, không có tag | Người cài không biết mình đang dùng bản nào |
+
+**Chưa tự chạy:** chưa build và chưa chạy test của repo, vì bộ phân loại quyền của phiên chặn chạy mã bên ngoài (lần trước với AnyJev). Các nhận xét ở trên dựa trên đọc mã tĩnh ở HEAD `1c1185c`.
+
+### 3g.5 So với công cụ cùng loại (trang GitHub, 16/10/2026)
+
+| Công cụ | ★ · license | Khác biệt | Lưu ý |
+|---|---|---|---|
+| `ComposioHQ/agent-orchestrator` | ~13,3k · Apache-2.0 | Giám sát đội agent từ plan tới merge | Có telemetry "limited usage", tắt được |
+| `gastownhall/gastown` (trước là steveyegge) | ~18,4k · MIT | Quản lý workspace nhiều agent, đi cùng beads | `main` im từ 23/7/2026; OpenTelemetry |
+| `gastownhall/beads` (`bd`) | ~28k · MIT | Issue tracker dạng đồ thị cho agent, chạy trên Dolt; orchestrator này dùng nó để chạy tiếp được | Cài bằng `curl \| bash` (README nói có kiểm checksum) |
+| `ruvnet/ruflo` (claude-flow) | ~75,6k · MIT | Swarm cho Claude Code (mục 02) | Nhiều tuyên bố hiệu năng chưa kiểm chứng |
+| `bmad-code-org/BMAD-METHOD` | ~54,2k · MIT | Phương pháp nhiều vai (PM, kiến trúc, dev, QA) bằng prompt | Không phải runtime |
+| MetaGPT / ChatDev | ~70,9k MIT / ~34,5k Apache-2.0 | "Công ty phần mềm" nhiều vai, đời 2023–24 | MetaGPT release cuối 3/2025 |
+| `smtg-ai/claude-squad` | ~8,6k · **AGPL-3.0** | TUI tmux + worktree, không có pipeline vai | Mục 01 §1 |
+| `BloopAI/vibe-kanban` · `stravu/crystal` | ~28,4k · ~3,1k | Kanban/worktree song song | **Sunsetting** · **deprecated** (thay bằng Nimbalyst) |
+
+**Khi nào dùng:** thử nghiệm quy trình có vai trên dự án Go nhỏ, chạy trong container dùng một lần, với runner Claude (không công cụ) hoặc model local. Nên ghim commit thay vì `@latest`.
+
+**Không nên dùng:** repo có secret, máy cá nhân không có sandbox, hoặc khi cần một công cụ được bảo trì đều.
+
+**Bài học cho khung của chủ kho (X-Templates):**
+
+- **Model chỉ sinh văn bản, harness mới hành động** là một hàng rào mạnh hơn hook chặn từng lệnh.
+- Ngược lại, **lệnh mà LLM đề xuất phải đi qua cùng guard với lệnh của agent**. Đó là lỗ hổng chính ở đây, và cũng là lý do X-Templates đọc Gate từ PLAN chứ không lấy lệnh do model tự khai.
+
+**Nguồn §3g:** https://github.com/Open-Makers/ai-coding-agents-orchestrator (clone 16/10/2026, HEAD `1c1185c`; đọc README.md, CHANGELOG.md, AGENTS.md, `.github/workflows/ci.yml`, `internal/runner/{claude,codex,copilot,opencode}.go`, `internal/agent/{coder,qa,helpers}.go`, `internal/executil/executil.go`, `internal/safefile`) · …/releases.atom · `git ls-remote --tags` · https://github.com/Open-Makers · https://github.com/michal-zuchowski · https://github.com/gastownhall/beads · https://gascity.com/about/ · https://docs.openclaw.ai/concepts/memory · https://github.com/ComposioHQ/agent-orchestrator · https://github.com/gastownhall/gastown · https://github.com/ruvnet/ruflo · https://github.com/bmad-code-org/BMAD-METHOD · https://github.com/FoundationAgents/MetaGPT · https://github.com/OpenBMB/ChatDev · https://github.com/smtg-ai/claude-squad · https://github.com/BloopAI/vibe-kanban · https://github.com/stravu/crystal
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/

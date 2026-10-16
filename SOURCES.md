@@ -462,3 +462,10 @@
 - huggingface.co/spaces/multimodalart/jev-decision-index: data/v03.json (snapshot 15/10/2026: 168 entry, AnyJev rank_v 10 / rank_tie 5, 60,22) và data/methodology.json · huggingface.co/morriszjm/AnyJev-L0-Gemma-4-31B · huggingface.co/api/models/morriszjm/Tacit-9B · github.com/fstandhartinger/jevbench (MIT, dự án cá nhân)
 - theregister.com/a/5296711 (Jev của TypeSafe AI, 15/9/2026) · marktechpost.com/2026/09/23/nokia-open-sources-anyjev-… (403, chỉ tiêu đề) · arxiv.org/abs/2309.03882 · arxiv.org/abs/2309.17249 · arxiv.org/abs/2102.09690
 - shields 16/10/2026: nokia-applied-research/AnyJev 1,3k★
+
+## Bổ sung 2026-10-16 đợt 27 (link Open-Makers/ai-coding-agents-orchestrator → mục 01 §3g)
+
+- github.com/Open-Makers/ai-coding-agents-orchestrator, clone 16/10/2026 (HEAD 1c1185c, 142 commit từ 9/2/2026): README.md, CHANGELOG.md, AGENTS.md, .github/workflows/ci.yml, internal/runner/{claude,codex,copilot,opencode}.go, internal/agent/{coder,qa,helpers}.go, internal/executil/executil.go, internal/safefile; không chạy build/test (bộ phân loại quyền chặn chạy mã bên ngoài)
+- github.com/Open-Makers/ai-coding-agents-orchestrator/releases.atom và `git ls-remote --tags` (v0.2.0–v0.7.0, không có tag 0.9.0) · github.com/Open-Makers · github.com/michal-zuchowski · openmakers.pl (trang giữ chỗ)
+- github.com/gastownhall/beads (~28k★ MIT; cùng HEAD với steveyegge/beads) · gascity.com/about · docs.openclaw.ai/concepts/memory
+- So sánh (trang GitHub 16/10/2026; shields trả "invalid" cho nhiều repo hôm nay): ComposioHQ/agent-orchestrator 13,3k Apache-2.0 · gastownhall/gastown 18,4k MIT · ruvnet/ruflo 75,6k MIT · bmad-code-org/BMAD-METHOD 54,2k MIT · FoundationAgents/MetaGPT 70,9k MIT · OpenBMB/ChatDev 34,5k Apache-2.0 · smtg-ai/claude-squad 8,6k AGPL-3.0 · BloopAI/vibe-kanban 28,4k (sunsetting) · stravu/crystal 3,1k (deprecated)
