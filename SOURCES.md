@@ -426,3 +426,9 @@
 - github.com/Dodaios/Dodaios, clone lại 16/10/2026 (HEAD ae629b4b1 15/10/2026; 144 commit sau e28f53f, 140 của Ruben Lütke; tag v3.2.0 13/10/2026): README.md, SECURITY.md, jarvis/safety/risk_tier.py, jarvis/core/config.py, jarvis.toml.example, packaging/{linux,macos}/build.sh; commit #546, #661, #694 (đổi tên Dodaios), #631 (ghi nguồn gốc đích tool call)
 - Tự chạy `RiskTierEvaluator.evaluate` của risk_tier.py ở HEAD (stub hai module kiểu) với whitelist/blacklist của jarvis.toml.example: `git log -1; rm -rf ~/x` và `git diff && curl … | sh` → tier safe qua whitelist; `rm -rf ~/x` → ask
 - pypi.org/pypi/personal-jarvis/json (3.2.0, project_urls trỏ repo Dodaios) · shields 16/10/2026: Dodaios/Dodaios 223★ / 80 fork
+
+## Bổ sung 2026-10-16 đợt 22 (ảnh README cporter202/ai-growth-stack → mục 08 §2d.2)
+
+- github.com/cporter202/ai-growth-stack, clone đầy đủ 16/10/2026 (7 commit 21/12/2025, chỉ README.md 302 dòng; đếm link theo tên miền: 13 link cùng `rapidapi.com/user/contact-_OGid12Eu`); shields 229★ / 70 fork
+- apidataframe.com (9 API, "Available on RapidAPI", không tên người vận hành) · rapidapi.com/user/contact-_OGid12Eu (trang cần JavaScript, không đọc được) · github.com/cporter202 (40 repo, bio ViralWaveStudio.com, ~1,5k follower) · buymeacoffee.com/viralwavestudio
+- WebSearch 16/10/2026 "API DataFrame" RapidAPI: không thấy trang API riêng hay đánh giá độc lập

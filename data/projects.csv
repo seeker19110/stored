@@ -450,6 +450,7 @@ YesWeHack claude-kit,yeswehack/claude-kit,,security,GPL-3.0,222,True,12,"Plugin 
 aima-python,aimacode/aima-python,,learning,MIT,8800,True,08,"Code Python cho giáo trình AIMA (Russell & Norvig): search, logic, planning, học máy, agent — thay thế đúng cấu trúc cho infographic 'Layers of AI'; commit gần nhất 6/2026; ★ ~8,8k 13/10/2026 (shields)"
 PentAGI,vxcontrol/pentagi,,security,MIT (kèm EULA),27000,True,12,"13/10/2026; hệ đa agent tự chủ pentest, tự host, dual-use; xem §3i cấu hình mặc định admin/admin + docker.sock"
 make.com-automation-recipes,cporter202/make-com-automation-recipes,,awesome-list,,16,True,08,"13/10/2026; 603 link gallery Make.com, toàn bộ gắn tham số affiliate ?pc=viralwave; xem mục 08 §2d.1"
+ai-growth-stack,cporter202/ai-growth-stack,,awesome-list,,229,False,08,"16/10/2026; chỉ một README (7 commit 21/12/2025, không đổi từ đó), không code/LICENSE; 6 'API' đều link về một hồ sơ RapidAPI, trùng danh mục bán của apidataframe.com, không công bố quan hệ; huy hiệu ACTIVE/UPDATED tĩnh; xem mục 08 §2d.2"
 official-design-md (VoltAgent),VoltAgent/official-design-md,,awesome-list,MIT,519,True,06,11 DESIGN.md chính chủ; 1/11 qua linter Google sạch; mục VoltAgent là bản trích xuất đăng lại (13/10/2026)
 awesome-design-md,VoltAgent/awesome-design-md,,awesome-list,MIT,121000,True,06,84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026)
 DESIGN.md spec (Google),google-labs-code/design.md,,protocol,Apache-2.0,28000,True,06,"Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)"
