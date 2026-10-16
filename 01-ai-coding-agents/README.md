@@ -314,7 +314,6 @@ Runner: OpenCode (mặc định), Claude CLI, Codex CLI, Copilot CLI, cùng các
 
 Memory "kiểu OpenClaw":
 
-
 - `.orchestrator/memory/MEMORY.md` được ghép vào đầu mọi prompt;
 - log theo ngày, tóm tắt theo task;
 - index bằng SQLite FTS5/BM25, embedder tùy chọn.
@@ -360,7 +359,6 @@ Memory "kiểu OpenClaw":
 **Không nên dùng:** repo có secret, máy cá nhân không có sandbox, hoặc khi cần một công cụ được bảo trì đều.
 
 **Bài học cho khung của chủ kho (X-Templates):**
-
 
 - **Model chỉ sinh văn bản, harness mới hành động** là một hàng rào mạnh hơn hook chặn từng lệnh.
 - Ngược lại, **lệnh mà LLM đề xuất phải đi qua cùng guard với lệnh của agent**. Đó là lỗ hổng chính ở đây, và cũng là lý do X-Templates đọc Gate từ PLAN chứ không lấy lệnh do model tự khai.
