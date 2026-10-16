@@ -137,6 +137,54 @@
 
 **Nguồn §4b:** https://github.com/rohitg00/agentmemory (clone đầy đủ, HEAD 36eb328; README, SECURITY.md, GOVERNANCE.md, MAINTAINERS.md, package.json, benchmark/LONGMEMEVAL.md, benchmark/COMPARISON.md, test/openclaw-connect.test.ts, src/cli/engine-launch.ts) · https://www.npmjs.com/package/@agentmemory/agentmemory · https://api.npmjs.org/downloads/point/last-month/@agentmemory/agentmemory · https://trendshift.io/repositories/25123 · https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2 · https://github.com/iii-hq/iii (README mục License: engine ELv2, SDK Apache-2.0) · https://www.sourcepulse.org/projects/27459985 · https://tessl.io/registry/skills/github/rohitg00/agentmemory/agentmemory-architecture · https://arxiv.org/abs/2410.10813 (LongMemEval) · https://snap-stanford.github.io/LoCoMo/ · https://github.com/mem0ai/mem0 · https://github.com/letta-ai/letta · https://github.com/supermemoryai/supermemory
 
+## 4c. Gentleman-Programming/engram: bộ nhớ dài hạn cho coding agent bằng một binary Go (link người dùng gửi, 2026-10-16)
+
+> Đã clone toàn bộ repo (1.126 commit, HEAD `9c4382f` 15/10/2026, tag v3.4.0), đọc README, DOCS.md, SECURITY.md, TRADEMARKS.md, `plugin/claude-code/` (hooks.json, scripts), `internal/server`, `internal/store`, `internal/mcp`, và tự chạy test hai package lõi.
+
+### 4c.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 16/10/2026) |
+|---|---|
+| Repo | `Gentleman-Programming/engram` · ~7,3k★, 752 fork, **MIT** · site engram.gentlemanprogramming.com · tạo 16/2/2026 |
+| Tác giả | Daniel Rosales 482 commit, Alan Buscaglia 409 (+82 dưới `Alan-TheGentleman`); thuộc hệ sinh thái Gentle-AI của cộng đồng Gentleman Programming. Tên "Engram" và logo là **thương hiệu** của Alan Buscaglia (`TRADEMARKS.md`), không ảnh hưởng license MIT của mã |
+| Kiến trúc | **Một binary Go** (Go 1.25) + **SQLite FTS5** ở `~/.engram/engram.db`; cùng dữ liệu qua 4 cửa: MCP stdio, HTTP API, CLI, TUI. Không cần Node, Python hay Docker |
+| Quy mô mã | 512 file Go (347 file test), ~74k dòng mã không tính test; 13 workflow CI (gồm `release-gap-audit`, `pr-size-notice`, chính sách issue/PR) |
+| MCP | **26 tool** `mem_*` (save, search, context, timeline, session start/end/summary, judge/compare cho xung đột, pin, review, doctor…), khớp DOCS.md "MCP Tools (26 tools)". Một bài tổng hợp ghi "19 tool" là số cũ |
+| Agent hỗ trợ | 14 đích cài: Claude Code, Codex, OpenCode, Gemini CLI, Cursor, Windsurf, Kiro, Antigravity, VS Code Copilot, Qwen Code, Pi, Kilo, Kimi, CommandCode; lệnh `engram setup <agent>` |
+
+### 4c.2 Đọc mã: cách nó nhớ
+
+- **Agent tự quyết điều cần nhớ, không có LLM nén ngầm.** Agent gọi `mem_save` với tiêu đề, loại và các trường What/Why/Where/Learned; engram chỉ lưu và đánh chỉ mục FTS5. Khác claude-mem (dùng AI nén mỗi phiên thành observation) và agentmemory (engine riêng). DOCS ghi rõ quyết định "why no raw auto-capture".
+- **Chỉ nghe loopback.** HTTP server bind `127.0.0.1` (mặc định cổng 7437), có tuỳ chọn Unix socket (`ENGRAM_SOCKET`).
+- **Thẻ `<private>…</private>` bị xoá ở hai tầng** (plugin và store) trước khi lưu bất cứ thứ gì.
+- **Không thấy telemetry.** Grep mã Go không có SDK analytics; lời gọi mạng duy nhất ngoài cloud là kiểm bản mới qua `api.github.com/repos/…/releases/latest`.
+- **Tự chạy test 16/10/2026:** `go test ./internal/store/...` **ok** (91,8 giây), `./internal/mcp/...` **ok** (35,8 giây).
+
+### 4c.3 Điều cần biết trước khi cài
+
+- **Hook Claude Code lưu nguyên văn prompt cục bộ.** `UserPromptSubmit` gửi prompt tới server cục bộ (`POST /prompts`) sau một bước "capture decision" của mã Go. Dữ liệu ở `~/.engram/engram.db` dạng văn bản thường; ai đọc được thư mục home là đọc được lịch sử prompt.
+- **Hook chèn chỉ thị vào mọi lượt.** Mỗi prompt, hook thêm context "CRITICAL FIRST ACTION - Execute this ToolSearch NOW…" liệt kê ~34 tên tool. Tốn context mỗi lượt và là chỉ thị mạnh chồng lên chỉ thị của dự án (xem mục 03 §8b về chi phí context của plugin bộ nhớ).
+- **Git Sync ghi bộ nhớ vào repo.** `engram sync` xuất observation mới vào thư mục `.engram/` trong repo dưới dạng chunk nén (không gồm prompt). Nội dung không bọc `<private>` sẽ đi vào lịch sử git và tới mọi người clone repo. Repo công khai thì không nên dùng, hoặc phải quét gitleaks thư mục này trước khi commit.
+- **Cài từ marketplace Claude Code chưa đủ.** Marketplace chỉ cài tài nguyên plugin, không đăng ký MCP server; phải chạy `engram setup claude-code`.
+- **Engram Cloud là phần tự host, tuỳ chọn.** Chạy bằng `docker-compose.cloud.yml` + Postgres hoặc image GHCR; phải `engram cloud enroll` từng project. Chế độ có xác thực bắt buộc đặt `ENGRAM_JWT_SECRET` khác mặc định, và token chỉ in ra một lần.
+- **Phát triển rất nhanh.** 1.126 commit trong 8 tháng, release candidate xen kẽ bản ổn định; SECURITY.md chỉ hỗ trợ bản ổn định mới nhất. Nên ghim phiên bản.
+
+### 4c.4 So sánh và dùng thế nào
+
+| Công cụ | ★ (16/10/2026, shields) | License | Khác engram |
+|---|---|---|---|
+| **Gentleman-Programming/engram** | ~7,3k | MIT | Một binary Go, SQLite FTS5, agent tự ghi; 26 tool MCP, TUI |
+| `thedotmack/claude-mem` (mục 03 §8b) | ~101k | Apache-2.0 | Hook ghi phiên rồi **AI nén** thành observation; SQLite + Chroma |
+| `rohitg00/agentmemory` (§4b) | ~30k | Apache-2.0 (engine iii là ELv2) | Bộ nhớ qua hook, có benchmark truy xuất; engine không phải OSI |
+| `mem0ai/mem0` (§4) | ~67k | Apache-2.0 | Lớp bộ nhớ tổng quát cho ứng dụng LLM, dùng vector và LLM trích xuất |
+| `basicmachines-co/basic-memory` | ~4,2k | **AGPL-3.0** | Bộ nhớ là file Markdown người đọc được, qua MCP |
+
+- **Hợp khi:** muốn bộ nhớ giữa các phiên cho nhiều agent khác nhau, không muốn kéo theo Node/Python hay vector DB, và muốn agent ghi có chủ đích thay vì tự động nén mọi thứ.
+- **Cấu hình an toàn tối thiểu:** ghim bản ổn định (vd v3.4.0); không dùng Git Sync trên repo công khai, hoặc thêm gitleaks cho `.engram/`; dạy agent bọc dữ liệu nhạy cảm trong `<private>`; nếu tự host cloud thì bật chế độ có xác thực và đặt secret riêng.
+- **Không cài chồng** với claude-mem hay agentmemory: cả ba cùng hook vào SessionStart/UserPromptSubmit và cùng chèn context, nên chọn một (khớp nguyên tắc "không chồng pack chỉnh hành vi" ở mục 20 §3g).
+
+**Nguồn §4c:** https://github.com/Gentleman-Programming/engram (clone đầy đủ 16/10/2026, 1.126 commit, HEAD 9c4382f; README.md, DOCS.md, SECURITY.md, TRADEMARKS.md, LICENSE, go.mod, plugin/claude-code/{hooks/hooks.json,scripts/user-prompt-submit.sh}, internal/server/server.go, internal/store/store.go, internal/mcp/, .github/workflows/; tự chạy `go test` internal/store và internal/mcp: ok) · shields 16/10/2026 (engram 7,3k★/752 fork; claude-mem 101k; agentmemory 30k; mem0 67k; basic-memory 4,2k) · https://pkg.go.dev/github.com/Gentleman-Programming/engram/cmd/engram · https://lobehub.com/mcp/gentleman-programming-engram · https://engram.gentlemanprogramming.com/
+
 ## 6. LLM gateway / router & "CLI thuê bao làm backend"
 
 | Dự án | Repo | License | ★ | Vai trò | Ghi chú |

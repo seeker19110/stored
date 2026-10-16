@@ -4901,6 +4901,16 @@
       "open_source": true,
       "notes": "CLI quét stack (package.json/Gradle) rồi cài skill AI khớp từ registry vendor trong repo; review hai tầng bằng model (haiku/gpt-5.4/opus, 197 approved/10 flagged), verify SHA-256 + skills-lock.json, cảnh báo trước khi cài; 207 skill, 349 test; license NC phi thương mại; ★ 15/10/2026",
       "section": "20"
+    },
+    {
+      "name": "engram",
+      "repo": "Gentleman-Programming/engram",
+      "category": "agent-memory",
+      "license": "MIT",
+      "stars": 7300,
+      "open_source": true,
+      "notes": "Bộ nhớ dài hạn cho coding agent: một binary Go + SQLite FTS5, 26 tool MCP + HTTP (127.0.0.1) + CLI + TUI, agent tự ghi qua mem_save (không LLM nén); 14 agent; hook Claude Code lưu prompt cục bộ và chèn chỉ thị mỗi lượt; Git Sync ghi .engram/ vào repo; cloud tự host tuỳ chọn; test store/mcp tự chạy ok; ★ 16/10/2026",
+      "section": "10"
     }
   ]
 }

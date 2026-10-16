@@ -392,3 +392,9 @@
 
 - github.com/midudev/autoskills (clone đầy đủ 15/10/2026, 400 commit, HEAD b4489cb 14/10/2026; README.md, LICENSE CC BY-NC 4.0, packages/autoskills/{package.json,installer.ts,sync-skills.mjs,skill-review.mjs,skills-registry/index.json}, AGENTS.md, SECURITY.md, .github/workflows/; tự đọc index.json: 207 skill, 197 approved/10 flagged, model claude-haiku-5-5 119 / gpt-5.4 81 / claude-opus-5-5 7; 349 test it()) · shields 15/10/2026 (7k★, 626 fork; midudev/fendo trả 403)
 - WebSearch 15/10/2026: autoskills.sh · skills.sh/midudev/autoskills · sourcepulse.org/projects/27690747 · deepwiki.com/midudev/autoskills · threads.com/@midu.dev/post/DWy2Bp2DVDZ · blog.brightcoding.dev/2026/09/29/midudevautoskills-auto-install-ai-agent-skills-for-your-stack
+
+## Bổ sung 2026-10-16 đợt 17 (link Gentleman-Programming/engram → mục 10 §4c)
+
+- github.com/Gentleman-Programming/engram (clone đầy đủ 16/10/2026, 1.126 commit, HEAD 9c4382f 15/10/2026, tag v3.4.0; README.md, DOCS.md, SECURITY.md, TRADEMARKS.md, LICENSE MIT, plugin/claude-code/hooks/hooks.json, plugin/claude-code/scripts/user-prompt-submit.sh, internal/server/server.go, internal/store/store.go, internal/mcp/; tự chạy `go test ./internal/store/... ./internal/mcp/...` ok)
+- shields 16/10/2026: Gentleman-Programming/engram 7,3k★ / 752 fork · thedotmack/claude-mem 101k Apache-2.0 · rohitg00/agentmemory 30k Apache-2.0 · mem0ai/mem0 67k Apache-2.0 · basicmachines-co/basic-memory 4,2k AGPL-3.0
+- WebSearch 16/10/2026 (chỉ có tài liệu của dự án, không có review độc lập): pkg.go.dev/github.com/Gentleman-Programming/engram/cmd/engram · lobehub.com/mcp/gentleman-programming-engram · engram.gentlemanprogramming.com
