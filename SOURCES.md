@@ -398,3 +398,9 @@
 - github.com/Gentleman-Programming/engram (clone đầy đủ 16/10/2026, 1.126 commit, HEAD 9c4382f 15/10/2026, tag v3.4.0; README.md, DOCS.md, SECURITY.md, TRADEMARKS.md, LICENSE MIT, plugin/claude-code/hooks/hooks.json, plugin/claude-code/scripts/user-prompt-submit.sh, internal/server/server.go, internal/store/store.go, internal/mcp/; tự chạy `go test ./internal/store/... ./internal/mcp/...` ok)
 - shields 16/10/2026: Gentleman-Programming/engram 7,3k★ / 752 fork · thedotmack/claude-mem 101k Apache-2.0 · rohitg00/agentmemory 30k Apache-2.0 · mem0ai/mem0 67k Apache-2.0 · basicmachines-co/basic-memory 4,2k AGPL-3.0
 - WebSearch 16/10/2026 (chỉ có tài liệu của dự án, không có review độc lập): pkg.go.dev/github.com/Gentleman-Programming/engram/cmd/engram · lobehub.com/mcp/gentleman-programming-engram · engram.gentlemanprogramming.com
+
+## Bổ sung 2026-10-16 đợt 18 (ảnh README mksglu/context-mode → mục 03 §8b)
+
+- github.com/mksglu/context-mode, clone lại 16/10/2026 (2.234 commit, vẫn v1.0.169; 6 commit mới từ 12/10 đều là bot `ci: update install stats`): README.md (Install, bảng routing), stats.json (686k+ = npm 633,6k + marketplace 52,3k), skills/ctx-doctor/SKILL.md, src/cli.ts (`doctor`); `git log -S` cho banner YouTube (bab2f0a2, 5/4/2026) và câu "grouped by install complexity" (4bbbd46a, 21/3/2026); trang GitHub (29,9k★, 2,1k fork, 110 watcher, 16/10/2026)
+- youtube.com/oembed?url=…QUHrntlfPo4: "Claude Code is Expensive. This MCP Server Fixes It (Context Mode)", kênh Better Stack (nguồn banner "99% SAVINGS")
+- Điều kiện Claude Code v1.0.33+: code.claude.com/docs/en/plugins (không ghi phiên bản) · anthropic.com/news/claude-code-plugins · morphllm.com/claude-code-plugins (nguồn cộng đồng, ghi 1.0.33)
