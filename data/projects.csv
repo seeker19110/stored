@@ -405,6 +405,7 @@ Guidance,guidance-ai/guidance,,prompt,MIT,21800,True,17,Sinh có ràng buộc; k
 BAML,BoundaryML/baml,,prompt,Apache-2.0,9400,True,17,"DSL prompt function có kiểu, codegen đa ngôn ngữ; ★ đọc 12/10/2026"
 Claude Cookbooks,anthropics/claude-cookbooks,,prompt,MIT,53400,True,17,Trước là anthropic-cookbook; ★ đọc 12/10/2026
 OpenAI Cookbook,openai/openai-cookbook,,prompt,MIT,76600,True,17,Ví dụ chính thức OpenAI API; ★ đọc 12/10/2026
+AnyJev,nokia-applied-research/AnyJev,,prompt,Apache-2.0,1300,True,17,"Quyết định có kiểu (choice/yes-no/score) kèm xác suất từ LLM mở, không huấn luyện: L0 = trung bình log-prob qua các phép xoay thứ tự + chia prior nhãn (Zheng 2024, Zhou 2024); model Tacit 1.7B–9B tự chưng cất; 0.3.0 Pre-Alpha (6/10/2026); số README khớp JSON nhưng coverage ≤5% sụp ở tác vụ nhị phân; Decision Index hạng nhóm 5, theo điểm 10/168; ★ 16/10/2026"
 wshobson/agents,wshobson/agents,,harness-pack,MIT,40500,True,20,"94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026"
 claude-code-templates,davila7/claude-code-templates,,harness-pack,MIT,32600,True,20,CLI cài 100+ thành phần Claude Code; ★ đọc 12/10/2026
 awesome-claude-code-subagents,VoltAgent/awesome-claude-code-subagents,,harness-pack,MIT,25700,True,20,"161+ subagent, 10 nhóm; ★ đọc 12/10/2026"

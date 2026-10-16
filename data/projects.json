@@ -4142,6 +4142,16 @@
       "section": "17"
     },
     {
+      "name": "AnyJev",
+      "repo": "nokia-applied-research/AnyJev",
+      "category": "prompt",
+      "license": "Apache-2.0",
+      "stars": 1300,
+      "open_source": true,
+      "notes": "Quyết định có kiểu (choice/yes-no/score) kèm xác suất từ LLM mở, không huấn luyện: L0 = trung bình log-prob qua các phép xoay thứ tự + chia prior nhãn (Zheng 2024, Zhou 2024); model Tacit 1.7B–9B tự chưng cất; 0.3.0 Pre-Alpha (6/10/2026); số README khớp JSON nhưng coverage ≤5% sụp ở tác vụ nhị phân; Decision Index hạng nhóm 5, theo điểm 10/168; ★ 16/10/2026",
+      "section": "17"
+    },
+    {
       "name": "wshobson/agents",
       "repo": "wshobson/agents",
       "category": "harness-pack",
