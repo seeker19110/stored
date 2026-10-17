@@ -365,6 +365,50 @@ Memory "kiểu OpenClaw":
 
 **Nguồn §3g:** https://github.com/Open-Makers/ai-coding-agents-orchestrator (clone 16/10/2026, HEAD `1c1185c`; đọc README.md, CHANGELOG.md, AGENTS.md, `.github/workflows/ci.yml`, `internal/runner/{claude,codex,copilot,opencode}.go`, `internal/agent/{coder,qa,helpers}.go`, `internal/executil/executil.go`, `internal/safefile`) · …/releases.atom · `git ls-remote --tags` · https://github.com/Open-Makers · https://github.com/michal-zuchowski · https://github.com/gastownhall/beads · https://gascity.com/about/ · https://docs.openclaw.ai/concepts/memory · https://github.com/ComposioHQ/agent-orchestrator · https://github.com/gastownhall/gastown · https://github.com/ruvnet/ruflo · https://github.com/bmad-code-org/BMAD-METHOD · https://github.com/FoundationAgents/MetaGPT · https://github.com/OpenBMB/ChatDev · https://github.com/smtg-ai/claude-squad · https://github.com/BloopAI/vibe-kanban · https://github.com/stravu/crystal
 
+## 3h. Case study: Manto-X/Agent_Board — blackboard file + "gậy tiếp sức" cho Claude/Codex/Antigravity desktop (link người dùng gửi, clone 2026-10-17)
+
+**Kết luận:** mẫu điều phối tối giản, trung thực về phạm vi — nhưng "khoá chống đè" chỉ là **quy ước**, không phải lock thật, và installer là `curl | python3`. Khác §3g ở chỗ Agent Board **không tự chạy lệnh hộ**: nó chỉ là trạng thái chung + giao thức bàn giao mà mỗi agent chat desktop (vẫn do người mồi prompt) tự đọc và tuân theo. Bề mặt tấn công nhỏ hơn §3g nhiều (không có `sh -c` lệnh LLM), đổi lại **không có tự động hoá thật**. Tác giả người Việt, README song ngữ VN-trước (xem thêm [mục 18](../18-vietnam-community/README.md)).
+
+### 3h.1 Hồ sơ nhanh (17/10/2026)
+
+| Mục | Thông tin |
+|---|---|
+| Repo | `Manto-X/Agent_Board` · MIT (© "Manto X" 2026) · 100% Python standard library, không phụ thuộc ngoài |
+| Tác giả | `Manto-X` (GitHub); README song ngữ Việt–Anh, giọng Việt-trước |
+| Lịch sử | **Mới tinh**: HEAD `192a378` ngày 17/10/2026 (đúng ngày đọc); clone nông thấy 1 commit, số commit đầy đủ chưa rõ. Không có thư mục `.github/`/CI |
+| ★ / cộng đồng | **Chưa có số liệu** — WebSearch 17/10/2026 không ra kết quả nào về repo này (quá mới / ít tiếng); mọi con số **(chưa xác minh)** |
+| Làm gì | "Zero-API, File-Based Multi-Agent Blackboard with Relay Baton Protocol": điều phối Claude Code / Codex / Antigravity qua **hệ thống file cục bộ**, không gọi API trả phí |
+
+### 3h.2 Nó làm gì (đối chiếu mã, không chỉ README)
+
+- **Bảng Kanban = thư mục.** `.agents/00_specs → 01_backlog → 02_in_progress → 03_review → 04_done → 05_escalation`; mỗi task là một file `.md` có frontmatter (`id`, `stage`, `assignee`, `reject_count`, `max_rejections`…). `task move/create/reject/list` đọc-ghi các file này (`task.py`).
+- **Gậy tiếp sức `BATON.json`.** Một file JSON giữ `holder` (orchestrator/mason/reviewer), `task_id`, `action`. Quy ước: chỉ agent đang giữ gậy mới được thao tác (`AGENTS.md` ghi rõ "không bắt đầu code nếu `holder != mason`").
+- **Phân vai động.** `project_config.json` map 3 vai → 3 nền tảng (mặc định orchestrator=antigravity, mason=claude, reviewer=codex); đổi bằng một lệnh `roster`. Mỗi agent đọc vai của mình từ `CLAUDE.md`/`CODEX.md`/`AGENTS.md`.
+- **Cầu chì 2 hiệp (có thật).** `reject_task`: `reject_count` tăng mỗi lần từ chối; đạt `max_rejections` (mặc định 2) → chuyển task sang `05_escalation` và trả gậy về orchestrator để phân xử. Mức `NITPICK` chỉ ghi chú, **không** tính là từ chối (`task.py`). 6/6 unit test (`unittest`) pass khi tự chạy: baton flow, circuit breaker, nitpick, lifecycle, dynamic role, init.
+- **Ghi file nguyên tử.** Cả `BATON.json`, `project_config.json` và file task đều ghi ra `.tmp` rồi `os.replace` → không để lại file ghi dở.
+
+### 3h.3 Đọc cổng thật (điều README không nói)
+
+| Điểm | Mức | Chi tiết |
+|---|---|---|
+| **"Gậy" là quy ước, không phải lock** | ⚠️ | `baton acquire`/`pass` **ghi đè `BATON.json` vô điều kiện** — không kiểm holder hiện tại, không PID/chủ sở hữu, `expires_at` được ghi nhưng **không bao giờ enforce** (`baton.py`). Nên "triệt tiêu race condition / strict single-holder lock" chỉ đúng khi *mọi* agent tự nguyện chạy CLI và tôn trọng gậy. Không có gì chặn hai process sửa cùng file nguồn đồng thời; thứ được bảo vệ nguyên tử chỉ là bản thân `BATON.json`. Đây là **điều phối lượt chơi**, không phải khoá file cấp OS hay git worktree |
+| **Installer `curl \| python3`** | ⚠️ | `get_board.py` tải `main.zip` từ chính repo, chỉ giải nén `.agents/` + 4 file guide, **không đè README** dự án — minh bạch và hợp lý. Nhưng pipe mã từ xa vào `python` là pattern kho luôn cảnh báo (§3e, §3f, mục 12). Script tự nêu fallback `git clone` an toàn hơn — nên dùng cách đó |
+| **"$0 phí" phụ thuộc điều khoản** | ⚠️ | "Dùng 100% gói desktop phẳng" nghĩa là *không tốn API đo token*, **không** phải vô hạn: lái agent coding tự động bằng gói thuê bao chat có thể đụng giới hạn dùng hoặc điều khoản của từng hãng |
+| Không tự chạy lệnh hộ | ✅ | Khác §3g, không có chỗ nào `sh -c` lệnh do LLM sinh. Toàn bộ "tự động" vẫn cần người bảo mỗi agent "đọc board, làm, chuyển gậy" → an toàn hơn nhưng không phải autonomous thật |
+| Gọn, không xâm lấn | ✅ | Mọi thứ nằm trong `.agents/`; chỉ thêm 4 file guide ở gốc, không đụng mã dự án |
+
+### 3h.4 So với §3g và cùng nhóm
+
+- **vs §3g `ai-coding-agents-orchestrator`:** §3g là **runtime Go tự chạy** (runner gọi CLI, chạy build/test — kèm lỗ chạy lệnh LLM qua `sh -c`). Agent Board là **giao thức + trạng thái file thuần**, không runtime, không chạy lệnh → ít rủi ro hơn hẳn nhưng cũng không tự động hoá vòng lặp; người vẫn là bộ điều phối giữa các tab AI.
+- **vs claude-squad / vibe-kanban / crystal (§3g bảng):** nhóm kia dùng tmux + git worktree để chạy nhiều agent song song *thật*; Agent Board cố tình tránh worktree, đổi lấy "zero-install" nhưng vì thế không có cô lập nhánh — hai agent vẫn ghi chung một cây làm việc.
+- **vs BMAD-METHOD:** cùng ý "nhiều vai PM/dev/QA", nhưng BMAD là prompt method; Agent Board thêm được trạng thái file + cầu chì kiểm đếm được.
+
+**Khi nào dùng:** muốn thử quy trình orchestrator→mason→reviewer giữa các trợ lý chat desktop mà không dựng API/daemon; dự án nhỏ, một người ngồi giám sát. **Không nên coi là** khoá chống đè khi nhiều process thật ghi song song (dùng worktree/lock thật), và nên cài bằng `git clone` thay vì `curl | python3`.
+
+**Bài học cho kho:** (1) "blackboard thư mục + 1 file trạng thái ghi nguyên tử" là mẫu điều phối tối giản, zero-dep đáng tái dùng khi không muốn hạ tầng; (2) nhưng phải **ghi rõ nó là quy ước, không phải lock** — đúng kiểu cảnh báo kho đã rút ở mục 12 §4 (allowlist/parser chạy sai lớp); (3) cầu chì đếm-từ-chối-rồi-escalate là cách chặn ping-pong rẻ và kiểm được bằng test; (4) lại một lần nữa: `curl | python` nên đổi thành clone.
+
+**Nguồn §3h:** https://github.com/Manto-X/Agent_Board (clone 2026-10-17, HEAD `192a378`; đọc README.md, AGENTS.md, CLAUDE.md, CODEX.md, MANUAL.md, LICENSE, get_board.py, `.agents/board.py`, `.agents/scripts/{baton,task,config,init,roster,watcher}.py`, `.agents/project_config.json`, `.agents/BATON.json`, `docs/`; tự chạy `unittest` 6/6 pass) · WebSearch 2026-10-17 (không có kết quả về repo)
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
