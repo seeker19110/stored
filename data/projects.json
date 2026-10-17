@@ -4496,9 +4496,9 @@
       "repo": "requie/AI-Red-Teaming-Guide",
       "category": "learning",
       "license": null,
-      "stars": 977,
+      "stars": 985,
       "open_source": true,
-      "notes": "Guide red-team AI một người viết (README ~3.580 dòng + ES/ZH/FR, 8 template); README ghi MIT nhưng không có file LICENSE; quảng cáo sản phẩm của tác giả (RedTeamKit, AVERSYN/Cogensec); ★ đọc 12/10/2026; rà lại 13/10/2026: 977★, HEAD vẫn 7b7dde8, vẫn không LICENSE",
+      "notes": "Guide red-team AI một người viết (README ~3.580 dòng + ES/ZH/FR, 8 template); README ghi MIT nhưng không có file LICENSE; quảng cáo sản phẩm của tác giả (RedTeamKit, AVERSYN/Cogensec); ★ đọc 12/10/2026; rà lại 13/10/2026: 977★, HEAD vẫn 7b7dde8, vẫn không LICENSE; rà lại 17/10/2026 (ảnh gửi lại): 985★/190 fork, HEAD vẫn 7b7dde8, vẫn không LICENSE, pricing README vẫn lệch trang bán, handle X @liam_tarique",
       "section": "12"
     },
     {
