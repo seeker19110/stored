@@ -4422,6 +4422,16 @@
       "section": "01"
     },
     {
+      "name": "Agent Board",
+      "repo": "Manto-X/Agent_Board",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": null,
+      "open_source": true,
+      "notes": "Blackboard file + gậy BATON.json điều phối Claude/Codex/Antigravity desktop, zero-install (Python stdlib); Kanban thư mục 00_specs→05_escalation, cầu chì 2 lần từ chối → escalation, roster đổi vai 1 lệnh, ghi file nguyên tử os.replace, 6/6 unittest pass. Điều README không nói: baton là QUY ƯỚC không phải lock (acquire ghi đè vô điều kiện, expires_at không enforce), không chặn 2 process ghi song song; installer curl|python3 (nên git clone); không tự chạy lệnh hộ nên không autonomous thật. Tác giả VN; mới tinh 17/10/2026, chưa có số sao/cộng đồng (web không ra kết quả) — chưa xác minh",
+      "section": "01"
+    },
+    {
       "name": "ai-coding-agents-orchestrator",
       "repo": "Open-Makers/ai-coding-agents-orchestrator",
       "category": "agent-workspace",

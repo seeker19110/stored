@@ -479,3 +479,9 @@
 - Clone đầy đủ github.com/elementalsouls/Claude-BugHunter 2026-10-17 (HEAD 35e7614): README.md, INSTALL.md, SECURITY.md, ENGAGEMENTS.md, LICENSE (MIT), LICENSE-CONTENT (CC BY 4.0), pyproject.toml (v2.1.0), .claude-plugin/{plugin,marketplace}.json, scripts/{install.sh,install.ps1,install-community-skills.sh,setup_harness_mcp.py,hunt.sh}, cây skills/ (đếm 83 dir / 58 hunt-*), commands/ (15), engine/, cbh/; skills/triage-validation (7-Question Gate)
 - Trang GitHub 2026-10-17 (~5,1k★/780 fork) · WebSearch 2026-10-17: themenonlab.blog/blog/claude-bughunter-ai-security-testing-skills · skillselion.com/skills/elementalsouls/claude-bughunter · gittrend.io/repo/elementalsouls/Claude-BugHunter · sourcepulse.org/projects/30010978 · vibeindex.ai/collection/elementalsouls/claude-bughunter
 - Chuỗi cung ứng ngoài (install-community-skills.sh clone không pin): github.com/shuvonsec/claude-bug-bounty
+
+## Bổ sung 2026-10-17 (link người dùng: Manto-X/Agent_Board → mục 01 §3h, mục 18)
+
+- Clone đầy đủ github.com/Manto-X/Agent_Board 2026-10-17 (HEAD 192a378): README.md (song ngữ VN–EN), AGENTS.md, CLAUDE.md, CODEX.md, MANUAL.md, LICENSE (MIT © Manto X), get_board.py (installer curl|python3), .agents/board.py, .agents/scripts/{baton,task,config,init,roster,watcher}.py, .agents/project_config.json, .agents/BATON.json, docs/, tests/test_agents_board.py (tự chạy unittest 6/6 pass)
+- Đọc mã xác minh: baton acquire ghi đè vô điều kiện (không enforce holder/expires_at) → "lock" là quy ước; cầu chì reject_count ≥ max_rejections (mặc định 2) → 05_escalation; NITPICK advisory-only; ghi file nguyên tử os.replace
+- WebSearch 2026-10-17: không có kết quả nào về repo (quá mới) — en.wikipedia.org/wiki/Agent-oriented_software_engineering · goodfirstissue.org/zh/igrigorik/AgentBoard (trùng tên, khác repo)
