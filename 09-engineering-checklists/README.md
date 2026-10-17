@@ -111,7 +111,71 @@ Phần: Dependencies & build · Environment & secrets · Rendering/caching/data 
 | `bregman-arie/devops-exercises` | Bài tập DevOps | |
 | `sdras/awesome-actions` | GitHub Actions | CI/CD |
 
-## 3. Nguồn
+## 3. Case study: agent QA/Test Engineer 7 tầng + 4 verdict (ảnh và bài đăng người dùng gửi, 2026-10-17)
+
+> Bốn ảnh chụp màn hình và một bản nháp bài đăng. Ảnh 1-2 là trang giải thích lệnh `.claude/commands/qa-test-engineer.md` ("QA / Test Engineer: bước Test của vòng lặp"): sơ đồ Plan → Design → Build → **Test** → Deploy → Maintain, kim tự tháp 4 tầng, 3 mặt cắt ngang, 4 verdict cho test đỏ. Ảnh 3 là một danh mục có 256 mục (tìm "test": agent QA, `/unit-tests`, `e2e-testing`, Penetration Testing…). Ảnh 4 là `qa-testing/SKILL.md` mở trong dự án `trello-clone`. **Nguồn gốc không xác minh được:** danh mục "Bộ Master" là private, không có repo hay URL công khai để đối chiếu; mọi nhận xét dưới đây dựa trên ảnh và bài nháp, không dựa trên mã.
+
+### 3.1 Cơ chế trong ảnh
+
+| Thành phần | Nội dung |
+|---|---|
+| Vị trí | Bước Test của vòng đời; đầu vào là code kèm danh sách hành vi cần assert, đầu ra là verdict **SHIP / BLOCK** có bằng chứng cho Deploy |
+| Phối hợp | Software Engineer (nhận lại bug thật), Project Manager (acceptance criteria → test case), DevOps (CI gate chặn merge), SRE (chaos, môi trường giống prod) |
+| Kim tự tháp (tầng 1-4) | Source (review, lint, type, unit, secret scan) → Integration (BE↔DB/Redis/queue, API, contract) → Business (auth, order, payment, RBAC) → E2E/MCP (Playwright, chỉ luồng chính) |
+| Ba mặt cắt ngang (tầng 5-7) | Performance (load, stress, spike, soak, volume) · Security (authn/authz, IDOR/BOLA, SQLi, XSS, CSRF, SSRF, rate-limit, prompt-injection) · Reliability (logging, tracing, retry, idempotency, chaos, backup/restore, rollback) |
+| Luật chọn tầng | "Đặt mỗi kiểm tra ở tầng rẻ nhất chứng minh được nó" |
+| 4 verdict cho test đỏ | Real bug (báo branch + input cụ thể, giữ nguyên test) · Wrong expectation (sửa assertion) · Over-coupled (assert theo cài đặt, viết lại theo hành vi) · Missing branch (lộ nhánh chưa phủ, thêm case) |
+| Mô hình chạy | Agent QA ở session riêng; code xong "tự ném sang" QA; fail thì tự trả về cho bên code |
+
+### 3.2 Kiểm từng ý
+
+| Ý | Kiểm | Ghi chú |
+|---|---|---|
+| "Test là một bản spec chạy được. Suite chưa chạy là lời tuyên bố, không phải kết quả" | ✅ | Khớp nguyên tắc "bằng chứng, không lời khai"; xem mục 21 §10c (Anthropic: "every stage commits an artifact the next stage can read") |
+| Kim tự tháp: đáy rộng, đỉnh hẹp; đẩy test xuống tầng thấp nhất | ✅ | Đúng ý Cohn/Fowler: "push your tests as far down the test pyramid as you can"; E2E "notoriously flaky" nên giữ ít luồng giá trị cao |
+| Tầng 3 Business nằm giữa tháp | ⚠️ | Ba tầng còn lại chia theo **phạm vi** (đơn vị, ghép nối, toàn hệ). Business chia theo **nội dung**; test nghiệp vụ thường viết ở tầng unit hoặc integration. Nên đọc là "nội dung cần kiểm", không phải một bậc đắt rẻ riêng |
+| Tầng 5-7 "áp cho mọi tầng" | ⚠️ | Đúng ý (đây là mặt cắt, không phải tầng), nhưng gọi chung là "tầng" gây nhầm với tháp. Gọi là "mặt cắt ngang" cho nhất quán |
+| "Đừng đẩy lên E2E cho đắt token" (bài đăng) | ⚠️ | E2E đắt chủ yếu vì **chậm và flaky**; token chỉ là một phần |
+| Verdict 1-3 | ✅ | Ba nguyên nhân thật của test đỏ: code sai, kỳ vọng sai, test bó vào cài đặt. Quy tắc "code sai thì báo bug, không sửa test cho khớp output sai" là điểm mạnh nhất |
+| Verdict 4 "Missing branch" | ⚠️ | Không phải nguyên nhân khiến test **đỏ**; thiếu nhánh là lỗ hổng coverage, test không chạy thì không đỏ. Bộ phân loại thường gặp thay bằng **flaky / môi trường** (đỏ không do code lẫn test). Nếu giữ "missing branch", nên đặt ở bước đọc báo cáo coverage/mutation, không ở bước phân loại test đỏ |
+| "Không ngồi giữa, đỡ tốn token hẳn" (bài đăng) | ❌ | Hai session thì tổng token **tăng** (thêm một ngữ cảnh). Cái giảm là công sức điều phối của người. Chưa có số đo nào trong ảnh |
+| "Fail là tự trả về cho thằng code sửa" | ⚠️ | Thiếu trần vòng lặp và điều kiện dừng; ảnh không nói. Vòng tự động không giới hạn dễ lặp mãi cùng một lỗi |
+| Chạy "đủ 7 tầng" cho mọi thay đổi | ⚠️ | Mâu thuẫn với luật rẻ nhất ở chính bài. Nên chọn tầng theo **rủi ro của thay đổi** |
+
+**Tổng:** 3✅ / 6⚠️ / 1❌. Ảnh đúng ở khung và luật; sai ở hai tuyên bố về chi phí và ở verdict thứ 4.
+
+### 3.3 Nền khoa học: vì sao tách người viết test khỏi người viết code
+
+- Bài "Design choices made by LLM-based test generators prevent them from finding bugs" (arXiv 2412.14137, đọc qua tóm tắt tìm kiếm 2026-10-17, chưa đọc toàn văn) nói công cụ sinh test bằng LLM thường **quan sát cài đặt hiện có rồi lọc hoặc "sửa" test đỏ**, nên khó phát hiện bug; đây là bài toán **test oracle** cũ. Chính tuyên bố của ảnh ("code sai thì báo bug, không sửa test") đánh vào đúng điểm này.
+- arXiv 2601.05542 (2026, tóm tắt): oracle do LLM sinh chính xác hơn khi được cho thêm ngữ cảnh lớp, nhưng ngữ cảnh đó **chứa cả code lỗi**. Chưa kiểm số liệu gốc **(chưa xác minh)**.
+- AugmenTest (arXiv 2501.17461): suy hành vi đúng từ tài liệu và comment thay vì từ code, để oracle không bắt chước lỗi của code.
+- Kết luận dùng được: để test bắt được lỗi, **oracle nên đến từ spec, không từ code**, và người viết test nên khác ngữ cảnh với người viết code. Đây là lý do thiết kế "QA ở session riêng" có cơ sở, dù tuyên bố về token thì không.
+
+### 3.4 Đối chiếu với kho (ba cột)
+
+| Cơ chế | Kho đã có, sâu hơn | Kho đã có, nông hơn | Kho chưa có |
+|---|---|---|---|
+| Kim tự tháp, đẩy test xuống thấp | Mục 13 §4b (quality gate stack), mục 11 §1b (e2e có agent: tester-army/e2e) | | |
+| Verdict SHIP/BLOCK kèm bằng chứng | Mục 09 §1.5 (`agent.md`: GO/NO-GO nhị phân, evidence-first) | | |
+| Hook chặn agent sửa test khi sửa lỗi | Mục 21 §10c.5, mục 23 | | |
+| Giới hạn vòng sửa (tối đa 3 repair cùng lỗi) | Mục 23 (AI Delivery Loop, xboss) | | |
+| Mutation test kiểm test có bắt lỗi không | Mục 07 | | |
+| **Phân loại test đỏ thành 4 nguyên nhân, mỗi nguyên nhân một hành động được phép** | | Mục 21 §9 chỉ có quy tắc "không skip/disable test để xanh" | ✅ Bảng đầy đủ kèm bằng chứng bắt buộc cho từng verdict |
+| **Vai QA riêng, viết test từ spec, không sửa code sản phẩm** | | Mục 01 §3g (pipeline PM→Coder→QA, nhưng QA dùng lệnh do LLM sinh) | ✅ Vai có quyền ghi giới hạn trong thư mục test |
+| **Chọn tầng theo rủi ro thay đổi** | | | ✅ |
+
+### 3.5 Dùng thế nào
+
+- **Lấy:** luật "tầng rẻ nhất", bảng verdict (đổi verdict 4 thành flaky/môi trường), và ý tách người viết test khỏi người viết code ở vùng rủi ro cao.
+- **Sửa trước khi dùng:** bỏ tuyên bố "đỡ tốn token", thêm trần vòng lặp, chọn tầng theo rủi ro thay đổi, oracle lấy từ spec.
+- **Không lấy:** mô hình QA "tự nhận việc" từ bên code. Điều phối nên đi qua một phiên chính duy nhất để giữ ngân sách và điểm dừng (đúng nguyên tắc ở mục 23 §4.4).
+- Các điểm nên lấy được đưa vào khung X-Templates ở PR riêng (repo `seeker19110/X-Templates`, mảng 14 và harness `.claude/`).
+
+**Nguồn §3:** ảnh và bài nháp người dùng gửi (2026-10-17) · https://martinfowler.com/articles/practical-test-pyramid.html (đọc 2026-10-17) · https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html (đọc một phần, 2026-10-17) · https://arxiv.org/html/2412.14137v1 · https://arxiv.org/html/2601.05542v1 · https://arxiv.org/html/2501.17461v1 (cả ba chỉ đọc qua kết quả tìm kiếm)
+
+---
+
+## 4. Nguồn
 
 - https://github.com/PinoyFreeCoder/deployment-checklist (README, `agent.md`, `CONTRIBUTING.md`, `checklists/base.md`, `checklists/nextjs.md`, cây `checklists/`, lịch sử commit – đọc 2026-10-12)
 - https://github.com/PinoyFreeCoder · https://github.com/PinoyFreeCoder/mcp-project-planner · https://www.youtube.com/channel/UCFpZDxOMGzsx05epqfvmzbQ · https://www.facebook.com/PHfreecoder/

@@ -469,3 +469,7 @@
 - github.com/Open-Makers/ai-coding-agents-orchestrator/releases.atom và `git ls-remote --tags` (v0.2.0–v0.7.0, không có tag 0.9.0) · github.com/Open-Makers · github.com/michal-zuchowski · openmakers.pl (trang giữ chỗ)
 - github.com/gastownhall/beads (~28k★ MIT; cùng HEAD với steveyegge/beads) · gascity.com/about · docs.openclaw.ai/concepts/memory
 - So sánh (trang GitHub 16/10/2026; shields trả "invalid" cho nhiều repo hôm nay): ComposioHQ/agent-orchestrator 13,3k Apache-2.0 · gastownhall/gastown 18,4k MIT · ruvnet/ruflo 75,6k MIT · bmad-code-org/BMAD-METHOD 54,2k MIT · FoundationAgents/MetaGPT 70,9k MIT · OpenBMB/ChatDev 34,5k Apache-2.0 · smtg-ai/claude-squad 8,6k AGPL-3.0 · BloopAI/vibe-kanban 28,4k (sunsetting) · stravu/crystal 3,1k (deprecated)
+
+## Bổ sung 2026-10-17 (agent QA 7 tầng + 4 verdict → mục 09 §3)
+
+- Ảnh và bài nháp người dùng gửi (danh mục private, không có URL) · martinfowler.com/articles/practical-test-pyramid.html · testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html · arxiv.org/html/2412.14137v1 · arxiv.org/html/2601.05542v1 · arxiv.org/html/2501.17461v1
