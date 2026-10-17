@@ -367,6 +367,43 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 
 **Nguồn §3k:** `Hinln/ARTEX` (clone đầy đủ 15/10/2026, 458 commit, HEAD f3e3f54; README.md, CHANGELOG.md v0.3.15, go.mod `github.com/Autumn-27/artex`, LICENSE AGPL-3.0, cây thư mục; `git log --format='%an'` xác minh 1 commit Hinln vs 381 Autumn-27) · `Autumn-27/ARTEX` trả 404 (15/10/2026) · shields 15/10/2026 (Hinln/ARTEX ~766★/1,2k fork; Autumn-27/ScopeSentry 1,9k★) · WebSearch 15/10/2026: https://github.com/jiwoochris/artex-global · https://github.com/mhtsec/ARTEX · https://aiweekly.co/alerts/artex-developer-closes-ai-pentest-tool-after-korea-bank-hacks · https://startupfortune.com/developer-of-hacked-bank-tool-artex-pulls-it-from-public-github/ · https://www.technology.org/2026/10/09/artex-ai-agent-closed-source-korea-bank-hacks/ · https://www.zendot.org/en/posts/autumn-27-artex
 
+### 3l. `elementalsouls/Claude-BugHunter` — bộ skill săn lỗi + red-team cho Claude Code (ảnh người dùng gửi, clone đầy đủ 2026-10-17)
+
+> Ảnh người dùng gửi là slide quảng bá ("83 skills · 15 commands · 58 hunt modules · 681 H1 reports · 5 harness · MIT"). Đã clone toàn bộ repo (HEAD `35e7614`, 2026-10-17) và đọc: README, INSTALL.md, SECURITY.md, ENGAGEMENTS.md, `pyproject.toml`, `.claude-plugin/{plugin,marketplace}.json`, toàn bộ `scripts/` (install.sh/ps1, install-community-skills.sh, setup_harness_mcp.py, hunt.sh), cây `skills/`, `commands/`, `engine/`, `cbh/`. Dual-use, nhưng là **tri thức + quy trình** (payload, bảng bypass, template báo cáo), **không** chứa exploit đóng gói hay C2. Đã có dòng trong catalog từ 12/10; mục này là hồ sơ đầy đủ.
+
+| Thuộc tính | Giá trị (đọc 2026-10-17) |
+|---|---|
+| Repo / URL | https://github.com/elementalsouls/Claude-BugHunter · trang: elementalsouls.github.io/Claude-BugHunter |
+| Mô tả 1 dòng | "A self-contained Claude skill bundle for bug hunting and external red-team work" — săn lỗi web + chuỗi tấn công nền tảng doanh nghiệp, recon/OSINT, báo cáo & cổng kiểm chứng, tích hợp Burp MCP |
+| Loại | security / skill-bundle (plugin Claude Code, đa harness) + `cbh` CLI Python |
+| License | **MIT** (code: Python/shell) + **CC BY 4.0** (nội dung: docs, wordlist, rubric) — file `LICENSE` + `LICENSE-CONTENT` |
+| Tác giả | Sachin Sharma (`elementalsouls`); plugin `claude-bughunter` v2.1.0 |
+| ★ (ngày) | ~5,1k ★ · 780 fork (trang GitHub, 2026-10-17; §3h ghi 5k ngày 13/10 — tăng nhẹ) |
+| Quy mô thật (đếm trong clone) | **83 thư mục skill** (khớp README; About ghi 82 — lệch 1), trong đó **58 `hunt-*`**; **15 slash command**; README nói 681 mẫu báo cáo HackerOne (433 "đã trích dẫn & kiểm được") trên 24 lớp lỗi — **(con số 681/433 chưa xác minh độc lập)** |
+| Cài đặt | **A (plugin):** `/plugin marketplace add elementalsouls/Claude-BugHunter` → `/plugin install claude-bughunter@elementalsouls` (không copy file vào `~/.claude`). **B (script):** clone + `bash scripts/install.sh` (macOS/Linux) / `pwsh ./scripts/install.ps1` (Windows) → copy skills/commands/hunt.sh vào `~/.claude/` |
+
+**Đọc cổng thật (không tin README):**
+
+- **`install.sh` sạch (đọc trọn 329 dòng).** Chỉ `cp` thư mục `skills/`, `commands/*.md`, `scripts/hunt.sh` vào `~/.claude/`; backup bản cũ **ra ngoài** đường nạp (`~/.claude/install-backups/<ts>/`) để không thành skill trùng; ghi manifest (`~/.claude/.skill-manifests/`) để `--uninstall` xoá đúng footprint. **Không** `curl|bash`, không `base64 -d`/`eval`, không tải mã từ xa, không đụng `~/.ssh`/`~/.aws`. Có sửa `~/.zshrc`/`.bashrc` để thêm `source hunt.sh` (tránh bằng `--no-shell`).
+- **Đa harness.** Cờ `--all` tự dò và cài skill cho Claude Code (`~/.claude`), Codex (`~/.agents`), Hermes (`~/.hermes`), Google AntiGravity (`~/.gemini/config`); OpenCode đọc thẳng `~/.claude`. Slash command, marketplace và engine `/hunt` là **Claude-Code-only** — harness khác chỉ nhận tri thức, không nhận orchestration.
+- **`--burp-mcp` opt-in.** Gọi `setup_harness_mcp.py` để ghi cấu hình MCP trỏ tới một **Burp MCP proxy đã có sẵn trên máy bạn** (`127.0.0.1:9876`), **backup config trước khi ghi**; không tự tải/dựng Burp, không kết nối ra ngoài.
+- **Cổng kiểm chứng có thật.** `skills/triage-validation` có **7-Question Gate**: Q3 hỏi tài sản có trong scope không, Q2 hỏi impact có nằm trong danh sách accepted-impact của chương trình không → đúng loại guardrail chống "AI slop" như `yeswehack/claude-kit` (§3h). `SECURITY.md` nêu rõ chỉ dùng cho tài sản bạn **sở hữu** hoặc có **ủy quyền viết tay** (H1/Bugcrowd/Intigriti/Immunefi/YesWeHack, hoặc pentest có RoE ký), và **từ chối** vũ khí hóa 0-day vào mục tiêu không ủy quyền.
+- **Engine xác định.** `engine/` (recon.py/osint.py/agent.py) map attack surface rồi route mỗi phát hiện tới skill xử lý; subprocess gọi công cụ dòng lệnh phổ biến (`gau`, `katana`, `curl`, `docker`) đều có `timeout`.
+
+**Hạn chế / rủi ro:**
+
+- **Chi phí ngữ cảnh.** 83 skill + 15 command bật cùng lúc → tên + mô tả mọi skill nằm trong context mỗi lượt (bài học mục 20 §1.8); nên chỉ bật khi thực sự đi săn. Mô tả skill đã được tối ưu để lách giới hạn 1024 ký tự của Codex (script tự cắt bản copy `~/.agents`).
+- **Chuỗi cung ứng bên thứ ba.** `scripts/install-community-skills.sh` **clone repo ngoài** `shuvonsec/claude-bug-bounty` (`--depth=1`, `git pull --ff-only`) vào `~/security-research/community-skills` — không pin commit; chạy script này là tin thêm một nguồn ngoài. Script chính `install.sh` không gọi nó.
+- **Số liệu quảng bá.** 681/433 mẫu báo cáo và "battle-tested across engagements" là tuyên bố của repo, **(chưa xác minh)**; About vs README lệch 82/83.
+- **Nội dung CC BY 4.0**: chép skill vào sản phẩm phải ghi nguồn; code MIT thì thoải mái hơn.
+- **Dual-use**: payload và bảng bypass là thật và dùng được — chỉ hợp pháp khi có scope/ủy quyền, đúng ranh giới kho (như §3c, §3g, §3i).
+
+**So sánh nhanh (cùng nhóm, 2026-10-17):** Claude-BugHunter **rộng nhất** về số skill săn lỗi web + có installer/engine/Burp MCP (thiên *tìm* lỗi) · `yeswehack/claude-kit` (§3h, 222★, GPL-3.0) hẹp, thiên *viết báo cáo* chuẩn từ chính nền tảng nhận report · `trailofbits/skills-curated` (§3d/§3e, 513★) thiên quy trình đọc hook/script từng dòng · PentAGI/Decepticon/Strix (§3g/§3i) là **agent pentest tự chủ chạy tool thật**, khác hẳn một bộ skill tri thức.
+
+**Bài học cho kho:** (1) cặp `triage-validation` 7-Question Gate + `SECURITY.md` là mẫu tốt về "ràng scope ngay trong skill, không bằng lời khuyên chung" — dùng lại được cho mọi báo cáo agent viết; (2) installer có **backup-ngoài-đường-nạp + manifest uninstall** là mẫu sạch hơn kiểu chỉ `cp` đè (so với autoskills mục 20 §3h còn thêm SHA-256 + review model — mạnh hơn nữa); (3) `--burp-mcp` backup config trước khi ghi là chuẩn tối thiểu khi một bộ skill sửa cấu hình harness.
+
+**Nguồn §3l:** clone đầy đủ `elementalsouls/Claude-BugHunter` 2026-10-17 (HEAD `35e7614`; README.md, INSTALL.md, SECURITY.md, ENGAGEMENTS.md, LICENSE, LICENSE-CONTENT, pyproject.toml v2.1.0, `.claude-plugin/{plugin,marketplace}.json`, scripts/install.sh + install-community-skills.sh + setup_harness_mcp.py + hunt.sh, đếm `skills/` = 83 dir / 58 `hunt-*`, `commands/` = 15, cây `engine/` + `cbh/`) · trang GitHub 2026-10-17 (~5,1k★/780 fork) · WebSearch 2026-10-17: https://themenonlab.blog/blog/claude-bughunter-ai-security-testing-skills/ · https://skillselion.com/skills/elementalsouls/claude-bughunter · https://gittrend.io/repo/elementalsouls/Claude-BugHunter · https://www.sourcepulse.org/projects/30010978
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.

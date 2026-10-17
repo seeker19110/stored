@@ -4396,9 +4396,9 @@
       "repo": "elementalsouls/Claude-BugHunter",
       "category": "security",
       "license": "MIT + CC-BY-4.0",
-      "stars": 5000,
+      "stars": 5100,
       "open_source": true,
-      "notes": "82–83 skill bug bounty, scope chặt; ★ đọc 12/10/2026",
+      "notes": "Clone đầy đủ 17/10/2026 (HEAD 35e7614): 83 skill (58 hunt-*) + 15 command, dual-use săn lỗi/red-team; install.sh chỉ cp + backup-ngoài-đường-nạp + manifest uninstall, không curl|bash; --burp-mcp backup config trước khi ghi; triage-validation 7-Question Gate ràng scope, SECURITY.md chỉ dùng có ủy quyền; install-community-skills.sh clone ngoài shuvonsec/claude-bug-bounty không pin; 681/433 mẫu H1 chưa xác minh; ★ 5,1k/780 fork 17/10/2026",
       "section": "12"
     },
     {

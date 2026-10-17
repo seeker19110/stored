@@ -473,3 +473,9 @@
 ## Bổ sung 2026-10-17 (agent QA 7 tầng + 4 verdict → mục 09 §3)
 
 - Ảnh và bài nháp người dùng gửi (danh mục private, không có URL) · martinfowler.com/articles/practical-test-pyramid.html · testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html · arxiv.org/html/2412.14137v1 · arxiv.org/html/2601.05542v1 · arxiv.org/html/2501.17461v1
+
+## Bổ sung 2026-10-17 (ảnh người dùng: elementalsouls/Claude-BugHunter → mục 12 §3l)
+
+- Clone đầy đủ github.com/elementalsouls/Claude-BugHunter 2026-10-17 (HEAD 35e7614): README.md, INSTALL.md, SECURITY.md, ENGAGEMENTS.md, LICENSE (MIT), LICENSE-CONTENT (CC BY 4.0), pyproject.toml (v2.1.0), .claude-plugin/{plugin,marketplace}.json, scripts/{install.sh,install.ps1,install-community-skills.sh,setup_harness_mcp.py,hunt.sh}, cây skills/ (đếm 83 dir / 58 hunt-*), commands/ (15), engine/, cbh/; skills/triage-validation (7-Question Gate)
+- Trang GitHub 2026-10-17 (~5,1k★/780 fork) · WebSearch 2026-10-17: themenonlab.blog/blog/claude-bughunter-ai-security-testing-skills · skillselion.com/skills/elementalsouls/claude-bughunter · gittrend.io/repo/elementalsouls/Claude-BugHunter · sourcepulse.org/projects/30010978 · vibeindex.ai/collection/elementalsouls/claude-bughunter
+- Chuỗi cung ứng ngoài (install-community-skills.sh clone không pin): github.com/shuvonsec/claude-bug-bounty
