@@ -204,6 +204,8 @@
 
 **Tích hợp:** coi `data/videos.json` là **tập prompt tham khảo** — lọc theo `tech_tags` để lấy ví dụ, nhưng luôn mở `post_url` kiểm lại và để ý `prompt_partial`. Bản thân repo không render gì; cần một engine/skill thật ở §2–§6 để dựng. Đừng coi là bằng chứng "Opus 5.5 sinh video".
 
+**Rà lại 18/10/2026 (người dùng gửi lại ảnh "Awesome Opus 5.5 Videos"):** clone HEAD `92aee2f` (13/10); số prompt **giảm 853 → 703** (và remake 523 → 418), README nay highlight **100 video** (1 prompt/mục), 616 tác giả — repo đã **gọn lại/dedup** sau đợt 12/10, không phải chỉ tăng. Phân bố thật: category `motion` 369 · `3d` 117 · `explainer` 116 · `interactive` 101; tech `canvas` 267 · `svg` 183 · `threejs` 131 · `shader` 92 · `gsap` 86 (xác nhận gần như toàn bộ là animation-as-code, chỉ 6 mục có `ai-image`). ★ **5,8k / 616 fork** (18/10). Đánh giá §8b giữ nguyên.
+
 ---
 
 ## 9. Phân tích & khuyến nghị

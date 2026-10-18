@@ -492,3 +492,9 @@
 - cporter202/social-growth-apis-for-creators (clone 18/10, HEAD 3512d04): 6 thư mục category; tổng 2 repo = 3.089 link ?fpr=p2hrc6; cộng đồng Skool trả phí skool.com/vibe-coding-with-chris-7196; cùng mẫu phễu §2d/§2d.1/§2d.2
 - greenarmor/GESF (clone 18/10, HEAD e9ffd74 19/9/2026): README, LICENSE (MIT), controls/{gdpr,owasp}/controls.json, compliance/, docs/, .github/workflows, .brew/ges.rb; npm @greenarmor/ges; điểm 100% tự chấm 2026-07-01
 - Better-Linux/CleanMyLinux (clone 18/10, HEAD 02de64d 25/5/2026, v1.0.0-beta.2): README, app.toml, config/com.betterlinux.cleanmylinux.policy, scripts/cleanmylinux-helper.sh (exec "$@"), src-tauri/src/system_info/{ops,sudo}.rs (pkexec helper sh -c) — lỗ leo thang quyền root
+
+## Bổ sung 2026-10-18 (ảnh "Awesome Opus 5.5 Videos" gửi lại → rà lại mục 22 §8b)
+
+- Clone lại yihui-dev/awesome-opus5-5-videos 18/10/2026 (HEAD 92aee2f, 13/10): README, LICENSE (MIT), data/videos.json (703 mục, đếm trường + phân bố category/tech_tags), prompts/ (703 file); 418 has_remake, 616 author; README "Every video here was made by asking Claude Opus 5.5 to write the animation as code"
+- So sánh athemeroy/awesome-opus-5-5-videos (H1 "Awesome Claude 5.5 Videos", 545★, CC BY 4.0, 424 nguồn, không rehost MP4) — repo khác, không phải cái trong ảnh
+- skillry.dev/ai-videos/opus-5-5 (homepage/remake, có utm_campaign)
