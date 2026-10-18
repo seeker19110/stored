@@ -45,10 +45,10 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 ## 4. "Taste" cho coding agent – chống giao diện AI generic
 
 - **Taste Skill** (`Leonxlnx/taste-skill`, ~46k★ theo listing): bộ Agent Skills cho Claude Code/Cursor/Codex; cấm các trope "AI slop": purple mesh gradient, hero căn giữa, 3 card giống nhau, font Inter + ảnh stock; 3 "dial" variance/motion/density; v2 đọc brief (loại trang, đối tượng, vibe) trước khi code.
-- **Refactoring UI Skill**: áp quy tắc spacing/typography/color/hierarchy từ sách Refactoring UI.
-- **Frontend-design skill** của Anthropic (trong marketplace Claude Code) + Taste làm lớp "quality enforcement".
+- **Refactoring UI Skill** (`s0xDk/refactoring-ui-skill`, 646★, MIT): áp quy tắc spacing/typography/color/hierarchy từ sách Refactoring UI, kèm `tokens.css` đã kiểm tương phản. Hồ sơ: §7g.4.
+- **Frontend-design skill** của Anthropic (trong marketplace Claude Code, Apache-2.0) + Taste làm lớp "quality enforcement". Hồ sơ: §7g.3.
 - Chưa có benchmark độc lập chứng minh hiệu quả; bằng chứng chủ yếu là demo & cộng đồng.
-- **Thêm từ repo của chủ kho (mục 23, 2026-10-12):** `impeccable` (plugin/skill "taste" được case-study-ft41 ghi trong `ui-ux-intelligence-provider.md`), `nextlevelbuilder/ui-ux-pro-max-skill` (45 file, vendor trong Hermes-Agents), `google-labs-code/design.md` (file DESIGN.md mô tả hệ thiết kế cho agent; spec + linter, xem §7c), `popular-web-designs` (54 design system tóm tắt). xboss có cổng tĩnh `check:contrast` + `check:ui-ux-guard` và Lighthouse CI chặn merge 4 category — "taste" chỉ bền khi có cổng máy đi kèm.
+- **Thêm từ repo của chủ kho (mục 23, 2026-10-12):** `impeccable` (plugin/skill "taste" được case-study-ft41 ghi trong `ui-ux-intelligence-provider.md`), `nextlevelbuilder/ui-ux-pro-max-skill` (45 file, vendor trong Hermes-Agents; hồ sơ §7g.2), `google-labs-code/design.md` (file DESIGN.md mô tả hệ thiết kế cho agent; spec + linter, xem §7c), `popular-web-designs` (54 design system tóm tắt). xboss có cổng tĩnh `check:contrast` + `check:ui-ux-guard` và Lighthouse CI chặn merge 4 category — "taste" chỉ bền khi có cổng máy đi kèm.
 
 ## 5. Tài nguyên học UI/UX cho developer
 
@@ -370,6 +370,113 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 - **Trước khi dùng một design system thương mại** (Zen DS hay bất kỳ): đọc giấy phép bản đã ký, không bản nháp; hỏi rõ chuyện gì xảy ra với End Product khi ngừng trả phí; ghim registry trong `.npmrc` để không cài nhầm package trùng tên trên npm công khai.
 
 **Nguồn §7f:** https://github.com/Zen-Design-System/Zen-DS (clone đầy đủ, HEAD 0e0ff04c; README.md, LICENSE.md, AGENTS.consumer.md, AGENTS.md, .mcp.json, mcp/server.mjs, skills/, package.json; tự chạy tsc, usage/tokens/styles/icons/guidelines check, MCP selftest, vitest) · https://registry.npmjs.org/@zen-ds%2freact (0.1.0, MIT, 5/5/2026) · https://github.com/umami-software/zen · https://zen.umami.is/ · https://registry.npmjs.org/@umami%2freact-zen · https://github.com/reciprocity/zen-design-system · https://webflow.com/libraries/detail/zen-ui · https://vn.linkedin.com/in/tungoc19 · https://primer.style/product/getting-started/foundations/mcp/ · https://carbondesignsystem.com/developing/carbon-mcp/overview/ · https://www.npmjs.com/package/@atlaskit/ads-mcp · https://www.atlassian.com/blog/how-we-build/atlassians-design-md-is-here-what-we-learned-testing-portable-design-context-in-practice · https://state-of-ai-in-design-systems.netlify.app/systems/shadcn-ui · https://uicentral.fyi/blog/ui-component-libraries-with-mcp-servers · https://daily.dev/posts/top-10-best-react-ui-libraries-2026-ai-dx-edition--xtcsp4agl · https://mowgli.ai/blog/mcp-servers-for-ui-design-2026 · shields.io cho số sao các repo trong bảng 7f.3
+
+## 7g. Bốn skill/kho UI đã được nhắc nhưng chưa có hồ sơ (yêu cầu người dùng, 2026-10-18)
+
+> §4 và §7d nhắc tới `ui-ux-pro-max-skill`, `frontend-design` của Anthropic, "Refactoring UI Skill" và `bergside/awesome-design-skills`, nhưng catalog chưa có dòng nào cho chúng. Mục này lập hồ sơ cả bốn: clone repo ngày 18/10/2026, đếm file và dữ liệu thật, tự chạy test hoặc kiểm số liệu khi có thể, rồi đối chiếu với nguồn ngoài.
+
+### 7g.1 Bảng nhanh
+
+| | `ui-ux-pro-max-skill` | `frontend-design` (Anthropic) | Refactoring UI Skill (`s0xDk`) | `bergside/awesome-design-skills` |
+|---|---|---|---|---|
+| Bản chất | Kho tra cứu (CSV + BM25) sinh "design system" theo loại sản phẩm, kèm 6 skill phụ | 1 prompt ~70 dòng định hướng thẩm mỹ, chống mặc định | 1 skill quy tắc + token CSS lấy từ sách *Refactoring UI* | 67 cặp `SKILL.md` + `DESIGN.md` theo style, kéo về bằng CLI TypeUI |
+| ★ · license (18/10/2026) | ~137k · MIT | `anthropics/claude-plugins-official` ~42k · Apache-2.0 | 646 · MIT | ~3,2k · MIT |
+| Hoạt động | 277 commit, v2.15.0, commit cuối 14/10/2026 | Plugin 1.1.0, SKILL.md sửa lần cuối 2–3/9/2026 | 2 commit, cùng ngày 27/8/2026 | 49 commit, 9/3 → 28/6/2026 |
+| Có cổng máy? | Có validator dữ liệu + 164 unit test của chính repo; **không** đo bản render | Không; chỉ dặn "tự chụp màn hình để phê bình" | Không; token đã kiểm tương phản sẵn | Không; mục "Quality Gates" là văn bản |
+| Đã kiểm | `unittest` 164/164 pass, `validate_data.py` OK, chạy thử 1 truy vấn | 3 bản SKILL.md trong 3 repo giống hệt nhau | Tính lại tỉ lệ tương phản light mode: khớp chú thích | 81% dòng là khung chung; 40/67 màu primary không đạt 4,5:1 với chữ trắng |
+
+### 7g.2 `nextlevelbuilder/ui-ux-pro-max-skill`: kho tra cứu lớn nhất, tạo design system bằng tìm kiếm
+
+| Mục | Thông tin (đọc 18/10/2026) |
+|---|---|
+| Repo | `nextlevelbuilder/ui-ux-pro-max-skill` · trang GitHub **~137k★**, ~14,6k fork · **MIT** (© 2024 Next Level Builder) · tag mới nhất **v2.15.0** · 277 commit, commit đầu 30/11/2025, cuối 14/10/2026 |
+| Tác giả | Viet Tran (`viettranx`) 55 commit, "Goon" 30, Clark Cant 17, Duy 15. README có bản tiếng Việt, ảnh demo có giao diện tiếng Việt; tác giả và đội có vẻ ở Việt Nam **(chưa xác minh danh tính)**. Cùng chủ: `3dviz-pro-max`, goclaw.sh, agentkit.best |
+| Phân phối | `npx ui-ux-pro-max-cli init --ai <platform>` cho 19 nền tảng (Claude, Cursor, Copilot, Codex, Gemini, Kiro, OpenClaw…). npm `ui-ux-pro-max-cli`: **72.299** lượt tải trong 17/9–16/10/2026 |
+| Bên trong | 7 skill trong `.claude/skills/` (`ui-ux-pro-max` 214 dòng, `design` 333, `ui-styling` 336, `design-system` 248, `brand`, `banner-design`, `slides`). Lõi là `scripts/search.py` + `core.py` (**BM25**) chạy trên 13 file CSV. Dữ liệu được nhân bản 3 lần (`src/`, `cli/assets/`, `.claude/skills/`) và `diff` cho thấy giống nhau |
+
+**Đếm lại các con số trên badge** (từ `data/*.csv` và `catalog-summary.json`):
+
+| Badge/README | Đếm thật | Ghi chú |
+|---|---|---|
+| "79 searchable UI styles" | ✅ 88 dòng, trong đó 79 "searchable" (50 active + 29 supplemental), 9 deprecated | `catalog-summary.json` giải thích đúng |
+| "192 reasoning rules", 192 palette, 192 loại sản phẩm | ✅ đúng 192 dòng mỗi file | Mỗi "rule" là một dòng gợi ý theo loại sản phẩm, không phải luật kiểm được |
+| 74 font pairing, 119 UX guideline, 25 loại chart, 22 stack | ✅ khớp | Thêm 1.934 Google Fonts, 105 icon chọn lọc |
+| Nguồn dữ liệu | ⚠️ `data-provenance.json` chỉ có **51 bản ghi**, phủ 51/192 profile; 31 bản ghi đang "needs-review" | Phần lớn dữ liệu không ghi nguồn gốc từng dòng |
+
+**Tự chạy (Python 3, 18/10/2026):** `python3 -m unittest discover` **164/164 pass**; `validate_data.py` OK (12 file domain, 22 file stack). Thử truy vấn `"fintech mobile banking app" --design-system` thì nhận về pattern **trang landing** ("Contact Sales / Get Quote", logo carousel, Hero → Proof) chứ không phải màn hình app. Accent là tím `#8B5CF6` với ghi chú "Gold trust + purple tech", trong khi mục AVOID của cùng kết quả ghi "AI purple/pink gradients". Checklist còn yêu cầu `cursor-pointer` và hover cho một app mobile. Đây là một truy vấn, chưa đại diện cho cả kho, nhưng cho thấy BM25 khớp theo từ khóa chứ không hiểu ngữ cảnh mobile.
+
+**Đánh giá:**
+
+- **Điểm mạnh:** dữ liệu lớn, có cấu trúc, tra cứu tất định (cùng câu hỏi ra cùng kết quả), có test và validator thật, hỗ trợ nhiều agent nhất trong nhóm. Hợp làm **nguồn gợi ý** palette, font, style khi chưa có brand.
+- **Hạn chế:** không có cổng đo trên bản render. Đây là điểm khác chính với Impeccable (mục 20, engine Rust 59 rule tất định) và XIAS (§7d, 52 cổng trình duyệt), như mục 20 đã ghi. Kết quả có thể tự mâu thuẫn như ví dụ trên. Số sao tăng rất nhanh: agentskill.sh ghi 38,3k (3/2026), Skillselion ghi 112k (30/7/2026), trang GitHub ~137k (18/10/2026).
+- **Dùng thế nào:** gọi `search.py` để lấy gợi ý, rồi để người hoặc agent chọn lại theo brief. Không dùng nguyên output làm design system. Ghép với một bộ cổng đo (ví dụ script của XIAS) nếu muốn chặn lỗi tương phản. Mục 23 ghi repo này từng được vendor trong Hermes-Agents (45 file).
+
+### 7g.3 `frontend-design` (Anthropic): prompt ngắn, chính chủ, thay đổi theo thời gian
+
+| Mục | Thông tin (đọc 18/10/2026) |
+|---|---|
+| Vị trí | `anthropics/claude-code/plugins/frontend-design` (plugin 1.1.0), `anthropics/claude-plugins-official/plugins/frontend-design`, `anthropics/skills/skills/frontend-design`. Cả ba `SKILL.md` **giống hệt nhau** (71 dòng) |
+| Tác giả | Prithvi Rajasekaran, Alexander Bricken (Anthropic Applied AI, theo `plugin.json`). Bài blog "Improving frontend design through Skills" ngày 12/11/2025 |
+| License | `LICENSE.txt` Apache-2.0 trong `anthropics/skills` |
+| Cài | `/plugin marketplace add anthropics/claude-code` rồi `/plugin install frontend-design@claude-code-plugins`; hoặc lấy từ marketplace chính thức. Skill do model tự gọi theo mô tả, không phải lệnh `/` |
+| Lịch sử | Thêm 11/11/2025; viết lại 9/6, 17/6 (bump 1.1.0) và 2–3/9/2026 |
+
+**Nội dung bản hiện tại:** vai "design lead của studio", buộc xác định chủ đề, người dùng và việc chính của sản phẩm trước khi thiết kế; quy trình hai lượt (lên plan token màu 4–6 hex, font, layout bằng ASCII wireframe, rồi tự so plan với "bản mặc định" và sửa trước khi code); một phần dài về viết nội dung UI (CTA nói rõ hành động, lỗi không xin lỗi, sentence case). Phần đáng chú ý nhất là danh sách **5 cụm "dấu hiệu AI"** cụ thể: nền kem `#F4F1EA` + serif + accent đất nung `#D97757` (skill tự nhận đây là màu của chính Claude), nền gần đen + một accent xanh axit, layout báo giấy, "bộ card SaaS" bóng `rgba(0,0,0,.1)`, và các chi tiết khuôn như eyebrow viết hoa, chuỗi "A · B · C", mũi tên "→" sau nút.
+
+**Đánh giá:**
+
+- **Điểm mạnh:** ngắn (bài blog ước ~400 token cho bản đầu), chính chủ, cập nhật theo chính những gì model hay lặp lại. Bản 9/2026 còn đảo một phần lời khuyên của bản 11/2025: blog gốc khuyên dùng nền gradient nhiều lớp và animation tải trang, bản mới coi "gradient washes as decoration" và fade-up từng section là dấu hiệu AI.
+- **Hạn chế:** không có cổng máy, chỉ dặn tự chụp màn hình để phê bình. Bài blog chỉ có ảnh so sánh, **không có benchmark**. Con số "1,1 triệu lượt cài" xuất hiện ở một số trang tổng hợp nhưng không tìm thấy trên trang chính thức **(chưa xác minh)**. Mục tiêu là "khác biệt", nên với sản phẩm đã có brand phải nói rõ ràng buộc trong prompt (skill có ghi "lời của brief luôn thắng").
+- **Dùng thế nào:** bật cho trang mới, landing, prototype. Với ứng dụng nghiệp vụ đã có design system thì design system thắng; ghép thêm cổng đo (XIAS) hoặc detector (Impeccable) nếu cần chặn.
+
+### 7g.4 "Refactoring UI Skill": hai repo trùng tên, chọn bản `s0xDk`
+
+`maxbogo/awesome-ai-tools-for-ui` (mục 08) trỏ tới **`s0xDk/refactoring-ui-skill`**. Tìm web còn ra `lovropodobnik/refactoring-ui-skill` (2 commit ngày 8/1/2026, skill 32 dòng + 5 lệnh `/fix-*`, **không có file LICENSE**) và `booklib-ai/skills/refactoring-ui` (chỉ thấy qua trang tổng hợp, chưa xác minh). Hồ sơ dưới đây là bản `s0xDk`.
+
+| Mục | Thông tin (đọc 18/10/2026) |
+|---|---|
+| Repo | `s0xDk/refactoring-ui-skill` · **646★**, 62 fork · **MIT** (© 2026 s13k) · **2 commit, cùng ngày 27/8/2026** |
+| Bên trong | `SKILL.md` 267 dòng (thang spacing, type, weight, màu HSL, 5 mức bóng, line-height, radius; quy trình; 9 "hard rule") · `references/systems.md` (dựng palette), `diagnose.md` (bảng triệu chứng → cách sửa), `techniques.md` · `assets/tokens.css` (token đầy đủ: thang, ramp xám và primary 9 mức, 3 bộ màu accent, lớp semantic `--surface`/`--text-*`/`--action` và khối dark mode) |
+| Bản quyền sách | README ghi không chứa chữ hay hình của sách, chỉ ghi chú và CSS tự viết theo ý tưởng của sách |
+
+**Kiểm token (18/10/2026):** tính lại tỉ lệ tương phản theo WCAG từ các giá trị HSL trong `tokens.css`. Light mode khớp chú thích: `grey-400` 2,67:1 (chỉ dùng cho chữ disabled), `grey-500` 3,91:1 (chỉ chữ lớn), `grey-600` 5,60:1, `grey-900` 13,43:1 so với nền `grey-100`; chữ trắng trên `primary-500` 5,81:1, trên `red/yellow/green-500` lần lượt 6,15 / 4,98 / 6,06:1. Dark mode chưa tính lại **(chưa xác minh)**.
+
+**Đánh giá:**
+
+- **Điểm mạnh:** quy tắc cụ thể đến mức kiểm được (không hai bước spacing nào gần nhau dưới ~25%, chữ lớn theo WCAG là 24px hoặc 18,66px đậm chứ không phải 18px, viền chức năng cần 3:1). Token có sẵn và đúng như chú thích. Có bảng chẩn đoán để sửa UI cũ, điều ít skill "taste" làm.
+- **Hạn chế:** chỉ 2 commit, một tác giả, chưa có lịch sử bảo trì. Không có cổng máy; luật nằm trong prompt. Thiên về web/CSS, chưa nói tới mobile native.
+- **Dùng thế nào:** hợp làm lớp "hệ thống" bên dưới một skill "taste" (frontend-design hoặc Taste Skill): skill này giữ thang giá trị, skill kia quyết định cá tính. Có thể chép thẳng `tokens.css` làm điểm khởi đầu rồi đổi hue.
+
+### 7g.5 `bergside/awesome-design-skills`: 67 style viết bằng một khuôn
+
+| Mục | Thông tin (đọc 18/10/2026) |
+|---|---|
+| Repo | `bergside/awesome-design-skills` · trang GitHub **~3,2k★**, 327 fork · **MIT** (© 2026 Bergside) · 49 commit, **tất cả của Zoltán Szőgyényi** (đồng sáng lập Themesberg theo blog của Themesberg, công ty làm Flowbite; quan hệ với Bergside chưa xác minh), 9/3 → 28/6/2026 |
+| Bên trong | 67 thư mục trong `skills/`, mỗi thư mục có `SKILL.md` (81–101 dòng, trung vị 83) và `DESIGN.md`; `index.json`; ảnh preview |
+| Phân phối | CLI **TypeUI** (`npx typeui.sh pull <slug>`, repo `bergside/typeui.sh`), ghi file vào `.claude/`, `.cursor/skills/`…; npm `typeui.sh` 1.297 lượt tải 17/9–16/10/2026. Trang tổng hợp nhắc tới bản Pro trả phí **(chưa xác minh)** |
+
+**Đo chất lượng (18/10/2026):**
+
+- **Khuôn chung chiếm phần lớn:** cả 67 `SKILL.md` có đúng 13 mục giống nhau (Mission, Brand, Style Foundations… Quality Gates), nằm giữa hai dấu `TYPEUI_SH_MANAGED`. Trung bình **81% số dòng** của mỗi file cũng xuất hiện ở ≥90% các file khác. Phần riêng của từng style chủ yếu là một câu mô tả, tên font và vài mã màu.
+- **Màu:** 17/67 style dùng cùng primary `#3B82F6` (blue-500 của Tailwind). Nếu đặt chữ trắng trên nền primary (cách phổ biến cho nút), **40/67** style không đạt 4,5:1. Ví dụ `brutalism` `#DD614C` 3,57:1, `bento` `#FAD4C0` 1,38:1. File không quy định màu chữ trên primary, nên đây là rủi ro khi dùng chứ không hẳn là lỗi file.
+- **Tên thương hiệu:** có style đặt theo thương hiệu (`claude`, `codex`, `stitch`, `roku`, `sega`, `pacman`, `tetris`, `ant`…) mà không có ghi chú quan hệ hay tuyên bố không liên kết.
+- **Liên hệ:** §7d đã ghi 51 style của XIAS lấy mô tả và màu từ kho này mà không ghi công.
+
+**Đánh giá:** hợp làm **danh mục cảm hứng** hoặc khung để tự viết `SKILL.md` theo style. Muốn có giá trị kiểm chứng thì viết DESIGN.md theo spec Google (§7c) và chạy `lint`; với style có primary sáng, thêm token `on-primary` rõ ràng.
+
+### 7g.6 Xếp vào bức tranh chung
+
+| Lớp | Nên dùng | Vì sao |
+|---|---|---|
+| Thang giá trị, token nền | Refactoring UI Skill (`s0xDk`) | Quy tắc kiểm được, token đúng chú thích |
+| Hướng thẩm mỹ, chống "AI slop" | `frontend-design` (chính chủ) hoặc Taste Skill (§4) | Ngắn, danh sách dấu hiệu cụ thể |
+| Gợi ý palette/font theo loại sản phẩm | `ui-ux-pro-max-skill` | Kho dữ liệu lớn, tra cứu tất định, nhưng phải chọn lọc lại |
+| Khung style có sẵn | `bergside/awesome-design-skills`, `awesome-design-md` (§7c) | Cảm hứng; tự viết lại cho brand |
+| Cổng đo bắt lỗi thật | XIAS (§7d), Impeccable (mục 20) | Hai bộ duy nhất trong kho có đo hoặc detector tất định |
+
+Cả bốn mục trên đều **không có benchmark độc lập**, giống nhận xét ở §4. Bài học của §4 vẫn đúng: "taste" chỉ bền khi có cổng máy đi kèm.
+
+**Nguồn §7g:** https://github.com/nextlevelbuilder/ui-ux-pro-max-skill (clone đủ, 277 commit, HEAD 56ea9cf 14/10/2026; README, skill.json, LICENSE, `src/ui-ux-pro-max/data/*.csv`, `catalog-summary.json`, `data-provenance.json`, `scripts/core.py`; tự chạy `unittest` 164/164, `validate_data.py`, `search.py --design-system` 18/10/2026) · trang GitHub 18/10/2026 (~137k★, ~14,6k fork) · api.npmjs.org `ui-ux-pro-max-cli` (72.299, 17/9–16/10/2026) · skillselion.com/best/plugins-for-frontend-design (112k★, dữ liệu 30/7/2026) · agentskill.sh/@nextlevelbuilder/ui-ux-pro-max (38,3k★, 3/2026) · releasealert.dev/github/nextlevelbuilder/ui-ux-pro-max-skill · https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design (README, plugin.json 1.1.0, SKILL.md; git log) · https://github.com/anthropics/claude-plugins-official (trang GitHub ~42,3k★, 18/10/2026; SKILL.md) · https://github.com/anthropics/skills (`skills/frontend-design/SKILL.md`, LICENSE.txt Apache-2.0) · https://claude.com/blog/improving-frontend-design-through-skills (12/11/2025) · wmedia.es/en/tips/claude-code-frontend-design-skill · claudelog.com/faqs/what-is-frontend-design-skill-in-claude-code · https://github.com/s0xDk/refactoring-ui-skill (clone đủ, 2 commit, HEAD 4887214 27/8/2026; SKILL.md, references/, assets/tokens.css, LICENSE; trang GitHub 646★/62 fork 18/10/2026; tính tương phản light mode) · https://github.com/lovropodobnik/refactoring-ui-skill (clone, 2 commit 8/1/2026, không LICENSE) · vibeindex.ai/skills/booklib-ai/skills/refactoring-ui · https://github.com/maxbogo/awesome-ai-tools-for-ui (README dòng 51) · https://github.com/bergside/awesome-design-skills (clone đủ, 49 commit, HEAD f631a09 28/6/2026; README, LICENSE, `skills/*/SKILL.md`; đo trùng dòng và tương phản 18/10/2026; trang GitHub ~3,2k★/327 fork) · api.npmjs.org `typeui.sh` (1.297, 17/9–16/10/2026) · sourcepulse.org/projects/26797192 · hermesatlas.com/projects/bergside/typeui · vibeindex.ai/collection/bergside/awesome-design-skills · themesberg.com/blog/marketplace/2020-year-in-review
 
 ## 8. Nguồn (mục 1–6)
 
