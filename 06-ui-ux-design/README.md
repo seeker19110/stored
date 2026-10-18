@@ -478,6 +478,67 @@ Cả bốn mục trên đều **không có benchmark độc lập**, giống nh�
 
 **Nguồn §7g:** https://github.com/nextlevelbuilder/ui-ux-pro-max-skill (clone đủ, 277 commit, HEAD 56ea9cf 14/10/2026; README, skill.json, LICENSE, `src/ui-ux-pro-max/data/*.csv`, `catalog-summary.json`, `data-provenance.json`, `scripts/core.py`; tự chạy `unittest` 164/164, `validate_data.py`, `search.py --design-system` 18/10/2026) · trang GitHub 18/10/2026 (~137k★, ~14,6k fork) · api.npmjs.org `ui-ux-pro-max-cli` (72.299, 17/9–16/10/2026) · skillselion.com/best/plugins-for-frontend-design (112k★, dữ liệu 30/7/2026) · agentskill.sh/@nextlevelbuilder/ui-ux-pro-max (38,3k★, 3/2026) · releasealert.dev/github/nextlevelbuilder/ui-ux-pro-max-skill · https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design (README, plugin.json 1.1.0, SKILL.md; git log) · https://github.com/anthropics/claude-plugins-official (trang GitHub ~42,3k★, 18/10/2026; SKILL.md) · https://github.com/anthropics/skills (`skills/frontend-design/SKILL.md`, LICENSE.txt Apache-2.0) · https://claude.com/blog/improving-frontend-design-through-skills (12/11/2025) · wmedia.es/en/tips/claude-code-frontend-design-skill · claudelog.com/faqs/what-is-frontend-design-skill-in-claude-code · https://github.com/s0xDk/refactoring-ui-skill (clone đủ, 2 commit, HEAD 4887214 27/8/2026; SKILL.md, references/, assets/tokens.css, LICENSE; trang GitHub 646★/62 fork 18/10/2026; tính tương phản light mode) · https://github.com/lovropodobnik/refactoring-ui-skill (clone, 2 commit 8/1/2026, không LICENSE) · vibeindex.ai/skills/booklib-ai/skills/refactoring-ui · https://github.com/maxbogo/awesome-ai-tools-for-ui (README dòng 51) · https://github.com/bergside/awesome-design-skills (clone đủ, 49 commit, HEAD f631a09 28/6/2026; README, LICENSE, `skills/*/SKILL.md`; đo trùng dòng và tương phản 18/10/2026; trang GitHub ~3,2k★/327 fork) · api.npmjs.org `typeui.sh` (1.297, 17/9–16/10/2026) · sourcepulse.org/projects/26797192 · hermesatlas.com/projects/bergside/typeui · vibeindex.ai/collection/bergside/awesome-design-skills · themesberg.com/blog/marketplace/2020-year-in-review
 
+## 7h. Layout mẫu cho web, dashboard và mobile (yêu cầu người dùng, 2026-10-18)
+
+> Người dùng hỏi "layout mẫu cho mobile, web, app". Mục này lập hồ sơ các nguồn **page block, template trang và app shell** có mã dùng được, cộng hai bộ hướng dẫn layout chính thức (Material 3, Apple HIG). Đã clone 21 repo ngày 18/10/2026; số commit, ngày commit cuối và license đọc từ bản clone; số block/trang **đếm bằng `git ls-tree`**, không lấy từ README. Số sao là số làm tròn trên trang GitHub cùng ngày.
+
+### 7h.1 Bảng tổng hợp
+
+| Nhóm | Nguồn | ★ · license | Commit cuối · số commit | Layout thực có trong repo | Stack |
+|---|---|---|---|---|---|
+| Web | **shadcn/ui Blocks** (`shadcn-ui/ui`) | 125,8k · MIT | 16/10/2026 · 2.571 | 27 block trong `registry/new-york-v4/blocks`: 1 dashboard, 16 sidebar, 5 login, 5 signup; thêm ~70 chart và ~32 calendar block | React, Tailwind v4 |
+| Web | **HyperUI** (`markmead/hyperui`) | 12,3k · MIT | 10/10/2026 · 825 | 306 mẫu HTML bản sáng (≈560 file kể cả bản tối): marketing 106, application 163, neobrutalism 37; 12 trang template (analytics dashboard, SaaS landing, portfolio, storefront, support inbox) | HTML + Tailwind |
+| Web | **Once UI core** (`once-ui-system/core`) | 268 · MIT | 18/10/2026 · 1.207 | 175 file block trong app docs: Hero 14, Features 18, Sidebar 9, Login 5, Dashboard 3, Pricing, FAQ… | Next.js, SCSS |
+| Web | **Preline** (`htmlstreamofficial/preline`) | 6,5k · MIT **+ Preline UI Fair Use License** | 21/8/2026 · 142 | Repo chỉ có 29 plugin JS và 5 template HTML; "204 free blocks" của README nằm trên preline.co, không trong repo | HTML, Tailwind, JS |
+| Web | **Flowbite** (`themesberg/flowbite`) | 9,4k · MIT (lõi) | 27/6/2026 · 2.789 | Chỉ trang tài liệu component; Blocks "400+ sections" thuộc bản Pro trả phí | Tailwind, JS |
+| Web | **daisyUI** (`saadeghi/daisyui`) | 42,6k · MIT | 13/10/2026 · 3.291 | 61 component CSS, không có trang mẫu; template đầy đủ bán ở daisyui.com/store (vd dashboard từ $69) | Plugin Tailwind |
+| Web | **Tailwind Plus** (trước là Tailwind UI) | – · thương mại | – | **Ngừng nhận khách mới** từ khi Tailwind Labs về Shopify (9/9/2026); khách cũ giữ quyền dùng | React/Vue/HTML |
+| Dashboard | **shadcn-admin** (`satnaing/shadcn-admin`) | 15,8k · MIT | 11/6/2026 · 323 | 31 route: auth 5 (có OTP), lỗi 5, dashboard, tasks, users, chats, apps, settings 5, help center | Vite, React 19, TanStack Router |
+| Dashboard | **next-shadcn-dashboard-starter** (`Kiranism/…`) | 7,1k · MIT | 25/8/2026 · 434 | 28 `page.tsx`: overview, CRUD sản phẩm, users, kanban, chat, billing, 4 form, workspaces | Next 16, React 19, Clerk |
+| Dashboard | **Tremor Blocks** (`tremorlabs/tremor-blocks`) | 545 · MIT | **22/1/2025 · 3** | 323 file block trong 28 nhóm: page shell 6, KPI card, bảng, form layout, billing, login, onboarding | Next.js, Tailwind |
+| Dashboard | **Tremor** (`tremorlabs/tremor`) | 3,7k · Apache-2.0 | **10/10/2025** · 84 | 39 component (8 loại chart, Tracker, BarList), không có trang | React 18, Recharts 2 |
+| Dashboard | **TailAdmin free** (`TailAdmin/free-react-tailwind-admin-dashboard`) | 1,3k · MIT | 15/9/2026 · 90 | 18 trang, chỉ 1 dashboard (ecommerce); bản Pro mới có 7 dashboard | Vite, React 19 |
+| Dashboard | **Flowbite Admin Dashboard** (`themesberg/flowbite-admin-dashboard`) | 2,9k · MIT | **20/3/2025** · 89 | 17 trang: auth 5, CRUD 2, layout sidebar/stacked, 404/500, pricing, settings | Hugo, HTML |
+| Dashboard | **Refine** (`refinedev/refine`) | 35,9k · MIT | 10/9/2026 · 7.607 | Framework CRUD; 281 thư mục examples, 6 `template-*` (antd, mui, mantine, chakra, headless…), app CRM | React + UI kit tùy chọn |
+| Mobile RN | **React Native Reusables** (`founded-labs/react-native-reusables`) | 8,7k · MIT | 27/9/2026 · 1.212 | 32 component (bản NativeWind và Uniwind), 7 block auth (mỗi block có bản Clerk) | React Native, Expo |
+| Mobile RN | **Tamagui + Bento** (`tamagui/tamagui`, `code/bento`) | 14,3k · MIT | 17/10/2026 · 18.926 | ~70 file Bento: shell 6 (sidebar, top nav, tab bar, drawer), form layout 5, list 10, ecommerce 4; trang Bento nay ghi "Free, forever" | RN + web |
+| Mobile RN | **gluestack-ui v3** (`gluestack/gluestack-ui`) | 5,3k · MIT (chỉ trong `packages/gluestack-ui/LICENSE`, gốc repo không có LICENSE) | 2/9/2026 · 16.582 | 61 component, 3 màn showcase, 4 starter kit (Expo, Expo + Uniwind, monorepo, Next) | RN + web, NativeWind |
+| Mobile RN | **NativeWind** (`nativewind/nativewind`) | 8,1k · MIT | 16/10/2026 · 3.373 | Không có layout; lớp Tailwind cho RN mà RNR và gluestack dựa vào (v4 ổn định, v5 RC) | RN |
+| Flutter | **flutter/samples** | 19,3k · BSD-3 | 8/10/2026 · 1.925 | Mẫu chính thức; liên quan layout: `material_3_demo`, `cupertino_gallery`, `platform_design`, `compass_app`, `navigation_and_routing` | Flutter |
+| Flutter | **Best-Flutter-UI-Templates** (`mitesh77/…`) | 22,8k · MIT | 16/12/2025 · 122 | 5 app demo (hotel booking, fitness, course, drawer, intro animation), 52 file dart, không kiến trúc | Flutter |
+| Flutter | **Flutter Responsive Admin Panel** (`abuanwar072/…`) | 7,1k · MIT | 28/7/2026 · 65 | 1 layout responsive (side menu + dashboard), 17 file dart | Flutter |
+| Hướng dẫn | **Material 3 canonical layouts** | – | – | 3 layout: list-detail (`ListDetailPaneScaffold`), supporting pane (`SupportingPaneScaffold`, 70/30 ở màn rộng), feed (`LazyVerticalGrid` + `GridCells.Adaptive`) | Compose |
+| Hướng dẫn | **Apple HIG: Layout** | – | – | Chọn layout theo size class (không theo thiết bị/hướng xoay), tôn trọng safe area, đổi tab bar sang sidebar khi rộng | SwiftUI/UIKit |
+| Cảm hứng | **Mobbin** | – · thương mại | – | Thư viện ảnh chụp app thật, không có mã; Pro khoảng $10/tháng trả theo năm **(chưa xác minh từ trang giá, bị chặn)** | – |
+
+### 7h.2 Điều đã kiểm và rủi ro cần biết
+
+- **License không thuần MIT:**
+  - Preline dùng hai license song song; phần Fair Use cấm làm "competing products" và cho tác giả quyền chấm dứt (đã đọc `LICENSE` trong clone).
+  - Template `once-ui-system/magic-portfolio` là **CC BY-NC 4.0**, cấm dùng thương mại, dù thư viện core là MIT (đã đọc `LICENSE`).
+  - Tremor dùng Apache-2.0 cho component nhưng MIT cho repo blocks.
+- **Miễn phí trên README, trả phí khi cần trang hoàn chỉnh:** Preline (bản Pro 740 block theo README), Flowbite Blocks, daisyUI store, TailAdmin Pro. Bản miễn phí của các bộ này thường chỉ là component, không phải trang.
+- **Ngừng cập nhật:** Tremor Blocks (3 commit, cuối 1/2025), Tremor (10/2025, còn React 18 + Recharts 2), Flowbite Admin Dashboard (3/2025). Vercel mua Tremor 22/1/2025 và mở miễn phí blocks; từ đó gần như không có commit.
+- **Tailwind Plus:** Tailwind Labs về Shopify ngày 9/9/2026, ngừng nhận khách mới cho Tailwind Plus; Tailwind CSS vẫn MIT. Nguồn là nhiều bài báo cùng thuật lại bài "Tailwind Labs is joining Shopify" của Adam Wathan; trang tailwindcss.com/plus chỉ hiện form đăng nhập nên **chưa xác minh từ trang chính thức**.
+- **Flutter:** gói `flutter_adaptive_scaffold` đã bị đánh dấu discontinued trên pub.dev (0.3.3+1); layout list-detail thích ứng phải tự dựng bằng `LayoutBuilder` / `NavigationRail` **(chưa xác minh có gói thay thế chính thức)**.
+- **Breakpoint Material 3:** compact < 600dp, medium 600–839dp, expanded ≥ 840dp, theo tài liệu adaptive của Android; trang m3.material.io trả 404 khi đọc nên **chưa đối chiếu được trên m3**.
+- **Apple HIG:** không đưa số margin cố định cho iOS. Số cụ thể có cho tvOS (safe area 60pt trên/dưới, 80pt hai bên) và visionOS (tâm nút cách nhau ≥ 60pt).
+
+### 7h.3 Chọn theo loại sản phẩm
+
+| Cần | Nên lấy | Ghi chú |
+|---|---|---|
+| Trang marketing / landing | **HyperUI** (106 block marketing, MIT); dự án Next.js thêm **Once UI core** | Tránh Preline nếu không chấp nhận Fair Use; Tailwind Plus không mua được nữa |
+| SaaS dashboard | Khung từ **shadcn/ui blocks** (`npx shadcn add dashboard-01`, `sidebar-07`…) + starter **shadcn-admin** (Vite) hoặc **next-shadcn-dashboard-starter** (Next 16) | Tremor Blocks để tham khảo KPI/chart/billing, không làm nền vì đã ngừng; nhiều CRUD thì cân nhắc **Refine** |
+| App mobile React Native | **React Native Reusables** (cùng triết lý shadcn) trên NativeWind/Uniwind; cần shell (tab bar, drawer) thì thêm **Tamagui Bento** | gluestack-ui là phương án thay thế nhiều component hơn |
+| App mobile Flutter | **flutter/samples** (`material_3_demo`, `cupertino_gallery`, `compass_app`) + Material 3 canonical layouts | Best-Flutter-UI-Templates chỉ để tham khảo giao diện |
+| Chuẩn layout thích ứng | **Material 3 canonical layouts** và **Apple HIG: Layout** | Dùng làm quy ước breakpoint và chuyển tab bar ↔ sidebar |
+| Cảm hứng màn hình thật | Mobbin | Chỉ là ảnh, không có mã hay license để tái sử dụng |
+
+Liên hệ với các mục khác: layout chỉ là khung; giá trị màu, khoảng cách và "gu" lấy từ design system (§1, §7f) và skill (§7g). Muốn agent dựng trang từ các block này mà không ra giao diện "khuôn", ghép với cổng đo (§7d) hoặc detector (Impeccable, mục 20).
+
+**Nguồn §7h:** clone 18/10/2026 (`git clone --filter=blob:none`, đếm bằng `git ls-tree` trên HEAD): github.com/{shadcn-ui/ui, markmead/hyperui, once-ui-system/core, once-ui-system/magic-portfolio, htmlstreamofficial/preline, themesberg/flowbite, themesberg/flowbite-admin-dashboard, saadeghi/daisyui, satnaing/shadcn-admin, Kiranism/next-shadcn-dashboard-starter, tremorlabs/tremor, tremorlabs/tremor-blocks, TailAdmin/free-react-tailwind-admin-dashboard, refinedev/refine, founded-labs/react-native-reusables, tamagui/tamagui, gluestack/gluestack-ui, nativewind/nativewind, flutter/samples, mitesh77/Best-Flutter-UI-Templates, abuanwar072/Flutter-Responsive-Admin-Panel-or-Dashboard} (README, LICENSE, package.json; số sao từ trang GitHub cùng ngày) · ui.shadcn.com/blocks · blocks.tremor.so · tamagui.dev/bento · daisyui.com/store · pub.dev/packages/flutter_adaptive_scaffold · tailwindcss.com/plus (chỉ form đăng nhập) · cmswire.com/digital-experience/shopify-acquires-tailwind-labs-to-secure-css-framework · vktr.com/digital-experience/shopify-acquires-tailwind-labs-to-secure-css-framework · pulse2.com/shopify-acquires-tailwind-labs-as-tailwind-css-tops-110-million-weekly-installs · witscode.com/blogs/shopify-acquires-tailwind-labs-what-was-announced · developer.android.com/develop/ui/compose/layouts/adaptive/canonical-layouts · m3.material.io/foundations/layout/canonical-layouts/overview (404) · developer.apple.com/design/human-interface-guidelines/layout (đọc qua developer.apple.com/tutorials/data/design/human-interface-guidelines/layout.json) · mobbin.com/pricing (403; giá theo toolradar.com, pricingsaas.com)
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
