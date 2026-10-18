@@ -43,7 +43,7 @@ n8n,n8n-io/n8n,,low-code,Sustainable Use,207000,False,05,fair-code
 Dify,langgenius/dify,,low-code,Apache-2.0 (modified),158000,True,05,
 Langflow,langflow-ai/langflow,,low-code,MIT,145000,True,05,
 Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
-shadcn/ui,shadcn-ui/ui,,ui-library,MIT,126000,True,06,Base UI mặc định từ 7/2026; ★ 16/10/2026
+shadcn/ui,shadcn-ui/ui,,ui-library,MIT,126000,True,06,"Base UI mặc định từ 7/2026; ★ 16/10/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h)"
 MUI,mui/material-ui,,ui-library,MIT,99000,True,06,★ 16/10/2026
 Radix UI,radix-ui/primitives,,ui-library,MIT,19000,True,06,nguồn lệch 19k–35k; ★ 16/10/2026
 Base UI,mui/base-ui,,ui-library,MIT,11000,True,06,★ 16/10/2026
@@ -480,6 +480,29 @@ UI UX Pro Max,nextlevelbuilder/ui-ux-pro-max-skill,,design-skill,MIT,137000,True
 frontend-design (Anthropic),anthropics/claude-code,https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design,design-skill,Apache-2.0,,True,06,"Skill chính chủ ~71 dòng chống mặc định 'AI slop' (5 cụm dấu hiệu cụ thể, plan 2 lượt, viết nội dung UI); cùng bản trong claude-plugins-official và anthropics/skills; plugin 1.1.0, sửa 9/2026; không cổng máy, không benchmark; mục 06 §7g.3"
 Refactoring UI Skill,s0xDk/refactoring-ui-skill,,design-skill,MIT,646,True,06,"Skill quy tắc sách Refactoring UI (thang spacing/type/màu HSL/bóng, 9 hard rule, bảng chẩn đoán) + tokens.css có dark mode; tương phản light mode tính lại khớp chú thích; 2 commit 27/8/2026; trùng tên lovropodobnik (không LICENSE); ★ 18/10/2026, mục 06 §7g.4"
 awesome-design-skills (Bergside/TypeUI),bergside/awesome-design-skills,,awesome-list,MIT,3200,True,06,"67 cặp SKILL.md + DESIGN.md theo style, kéo bằng CLI typeui.sh; 81% dòng là khuôn chung, 17/67 cùng primary #3B82F6, 40/67 primary <4,5:1 với chữ trắng; nguồn của 51 style trong XIAS; ★ 18/10/2026, mục 06 §7g.5"
+HyperUI,markmead/hyperui,,layout-template,MIT,12300,True,06,"306 mẫu HTML+Tailwind bản sáng (marketing 106, application 163, neobrutalism 37) + 12 trang template; copy-paste, không gói npm; ★ 18/10/2026, mục 06 §7h"
+Once UI core,once-ui-system/core,,layout-template,MIT,268,True,06,"175 block Next.js (Hero 14, Features 18, Sidebar 9, Login, Dashboard, Pricing); template magic-portfolio là CC BY-NC 4.0 cấm thương mại; ★ 18/10/2026, mục 06 §7h"
+Preline UI,htmlstreamofficial/preline,,layout-template,MIT + Preline UI Fair Use License,6500,True,06,"Repo chỉ 29 plugin JS + 5 template; ""204 free blocks"" nằm trên preline.co; Fair Use cấm competing products, tác giả có quyền chấm dứt; Pro 740 block; ★ 18/10/2026, mục 06 §7h"
+Flowbite,themesberg/flowbite,,layout-template,MIT,9400,True,06,"Lõi component Tailwind MIT; Blocks 400+ section và dashboard thuộc Flowbite Pro trả phí; ★ 18/10/2026, mục 06 §7h"
+Flowbite Admin Dashboard,themesberg/flowbite-admin-dashboard,,layout-template,MIT,2900,True,06,"17 trang (auth 5, CRUD, layout sidebar/stacked, 404/500, settings), Hugo + Tailwind; commit cuối 20/3/2025; ★ 18/10/2026, mục 06 §7h"
+daisyUI,saadeghi/daisyui,,ui-library,MIT,42600,True,06,"Plugin Tailwind 61 component, không có trang mẫu; template đầy đủ bán ở daisyui.com/store (dashboard từ $69); ★ 18/10/2026, mục 06 §7h"
+Tailwind Plus,,https://tailwindcss.com/plus,layout-template,proprietary,,False,06,"Trước là Tailwind UI ($299 cá nhân/$979 team theo nguồn thứ ba); ngừng nhận khách mới từ khi Tailwind Labs về Shopify 9/9/2026, khách cũ giữ quyền (theo báo, trang chính thức chưa xác minh); mục 06 §7h"
+shadcn-admin,satnaing/shadcn-admin,,layout-template,MIT,15800,True,06,"Starter admin Vite + React 19 + TanStack Router, 31 route (auth/OTP, lỗi 5, dashboard, tasks, users, chats, settings); commit cuối 11/6/2026; ★ 18/10/2026, mục 06 §7h"
+next-shadcn-dashboard-starter,Kiranism/next-shadcn-dashboard-starter,,layout-template,MIT,7100,True,06,"Starter Next 16 + shadcn, 28 page (overview, CRUD, kanban, chat, billing, form); phụ thuộc Clerk; ★ 18/10/2026, mục 06 §7h"
+Tremor Blocks,tremorlabs/tremor-blocks,,layout-template,MIT,545,True,06,"323 block dashboard (page shell, KPI, bảng, billing, login, onboarding); Vercel mua Tremor 1/2025 và mở free; chỉ 3 commit, dừng 1/2025; ★ 18/10/2026, mục 06 §7h"
+Tremor,tremorlabs/tremor,,ui-library,Apache-2.0,3700,True,06,"39 component chart/dashboard React 18 + Recharts 2; commit cuối 10/10/2025; ★ 18/10/2026, mục 06 §7h"
+TailAdmin React (free),TailAdmin/free-react-tailwind-admin-dashboard,,layout-template,MIT,1300,True,06,"18 trang, 1 dashboard ecommerce; bản Pro 7 dashboard trả phí; ★ 18/10/2026, mục 06 §7h"
+Refine,refinedev/refine,,layout-template,MIT,35900,True,06,"Framework CRUD/admin React; 6 template theo UI kit (antd, mui, mantine, chakra, headless) + app CRM; npm create refine-app; ★ 18/10/2026, mục 06 §7h"
+React Native Reusables,founded-labs/react-native-reusables,,mobile,MIT,8700,True,06,"shadcn cho React Native: 32 component (NativeWind/Uniwind), 7 block auth có bản Clerk; ★ 18/10/2026, mục 06 §7h"
+Tamagui (Bento),tamagui/tamagui,,mobile,MIT,14300,True,06,"UI RN + web; Bento ~70 file: shell (tab bar, drawer, sidebar), form layout, list, ecommerce, nay miễn phí; v3; ★ 18/10/2026, mục 06 §7h"
+gluestack-ui,gluestack/gluestack-ui,,mobile,MIT,5300,True,06,"v3: 61 component RN + web trên NativeWind, 4 starter kit; LICENSE chỉ trong packages/gluestack-ui, gốc repo không có; ★ 18/10/2026, mục 06 §7h"
+NativeWind,nativewind/nativewind,,mobile,MIT,8100,True,06,"Tailwind cho React Native, nền của RNR và gluestack; v4 ổn định, v5 RC; ★ 18/10/2026, mục 06 §7h"
+flutter/samples,flutter/samples,,mobile,BSD-3-Clause,19300,True,06,"Mẫu chính thức Flutter: material_3_demo, cupertino_gallery, platform_design, compass_app; flutter_adaptive_scaffold đã discontinued; ★ 18/10/2026, mục 06 §7h"
+Best-Flutter-UI-Templates,mitesh77/Best-Flutter-UI-Templates,,mobile,MIT,22800,True,06,"5 app demo UI Flutter, không kiến trúc; commit cuối 16/12/2025; ★ 18/10/2026, mục 06 §7h"
+Flutter Responsive Admin Panel,abuanwar072/Flutter-Responsive-Admin-Panel-or-Dashboard,,mobile,MIT,7100,True,06,"1 layout dashboard responsive (side menu + dashboard), 17 file dart; ★ 18/10/2026, mục 06 §7h"
+Material 3 canonical layouts,,https://developer.android.com/develop/ui/compose/layouts/adaptive/canonical-layouts,learning,,,False,06,"Hướng dẫn chính thức: list-detail, supporting pane, feed; breakpoint compact <600dp, medium 600–839dp, expanded ≥840dp; mục 06 §7h"
+Apple HIG: Layout,,https://developer.apple.com/design/human-interface-guidelines/layout,learning,,,False,06,"Layout theo size class, safe area, tab bar → sidebar khi rộng; không có số margin iOS cố định; mục 06 §7h"
+Mobbin,,https://mobbin.com,learning,proprietary,,False,06,"Thư viện ảnh chụp màn hình app thật, không có mã; Pro khoảng $10/tháng (chưa xác minh từ trang giá); chỉ để lấy cảm hứng; mục 06 §7h"
 FigCraft,storytold/figcraft,,design-tool,MIT OR Apache-2.0,616,True,06,"Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ đọc 14/10/2026"
 Zen Design System (Dizai Studio),Zen-Design-System/Zen-DS,,ui-library,Commercial,0,False,06,"Design system thương mại (Việt Nam), React 19 + Figma (2.179 biến, 1.598 icon); MCP cục bộ 11 tool, AGENTS.consumer.md, llms.txt, 205 luật dùng kiểm bằng máy; 1.058 test pass (tự chạy 16/10/2026); giấy phép theo seat còn là bản nháp chưa qua luật sư; registry riêng npm.dizai.studio"
 Zen (Umami),umami-software/zen,,ui-library,MIT,58,True,06,"Design system của Umami: quy ước shadcn, primitive Base UI, Tailwind v4; npm @umami/react-zen 0.255.0; có SKILL.md cho agent; ★ 16/10/2026"

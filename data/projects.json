@@ -60,7 +60,8 @@
       "policy-as-code",
       "agent-workspace",
       "context-optimization",
-      "app-launcher"
+      "app-launcher",
+      "layout-template"
     ],
     "count": null
   },
@@ -519,7 +520,7 @@
       "license": "MIT",
       "stars": 126000,
       "open_source": true,
-      "notes": "Base UI mặc định từ 7/2026; ★ 16/10/2026",
+      "notes": "Base UI mặc định từ 7/2026; ★ 16/10/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h)",
       "section": "06"
     },
     {
@@ -4892,6 +4893,236 @@
       "stars": 3200,
       "open_source": true,
       "notes": "67 cặp SKILL.md + DESIGN.md theo style, kéo bằng CLI typeui.sh; 81% dòng là khuôn chung, 17/67 cùng primary #3B82F6, 40/67 primary <4,5:1 với chữ trắng; nguồn của 51 style trong XIAS; ★ 18/10/2026, mục 06 §7g.5",
+      "section": "06"
+    },
+    {
+      "name": "HyperUI",
+      "repo": "markmead/hyperui",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 12300,
+      "open_source": true,
+      "notes": "306 mẫu HTML+Tailwind bản sáng (marketing 106, application 163, neobrutalism 37) + 12 trang template; copy-paste, không gói npm; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Once UI core",
+      "repo": "once-ui-system/core",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 268,
+      "open_source": true,
+      "notes": "175 block Next.js (Hero 14, Features 18, Sidebar 9, Login, Dashboard, Pricing); template magic-portfolio là CC BY-NC 4.0 cấm thương mại; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Preline UI",
+      "repo": "htmlstreamofficial/preline",
+      "category": "layout-template",
+      "license": "MIT + Preline UI Fair Use License",
+      "stars": 6500,
+      "open_source": true,
+      "notes": "Repo chỉ 29 plugin JS + 5 template; \"204 free blocks\" nằm trên preline.co; Fair Use cấm competing products, tác giả có quyền chấm dứt; Pro 740 block; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Flowbite",
+      "repo": "themesberg/flowbite",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 9400,
+      "open_source": true,
+      "notes": "Lõi component Tailwind MIT; Blocks 400+ section và dashboard thuộc Flowbite Pro trả phí; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Flowbite Admin Dashboard",
+      "repo": "themesberg/flowbite-admin-dashboard",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 2900,
+      "open_source": true,
+      "notes": "17 trang (auth 5, CRUD, layout sidebar/stacked, 404/500, settings), Hugo + Tailwind; commit cuối 20/3/2025; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "daisyUI",
+      "repo": "saadeghi/daisyui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 42600,
+      "open_source": true,
+      "notes": "Plugin Tailwind 61 component, không có trang mẫu; template đầy đủ bán ở daisyui.com/store (dashboard từ $69); ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Tailwind Plus",
+      "url": "https://tailwindcss.com/plus",
+      "category": "layout-template",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Trước là Tailwind UI ($299 cá nhân/$979 team theo nguồn thứ ba); ngừng nhận khách mới từ khi Tailwind Labs về Shopify 9/9/2026, khách cũ giữ quyền (theo báo, trang chính thức chưa xác minh); mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "shadcn-admin",
+      "repo": "satnaing/shadcn-admin",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 15800,
+      "open_source": true,
+      "notes": "Starter admin Vite + React 19 + TanStack Router, 31 route (auth/OTP, lỗi 5, dashboard, tasks, users, chats, settings); commit cuối 11/6/2026; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "next-shadcn-dashboard-starter",
+      "repo": "Kiranism/next-shadcn-dashboard-starter",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 7100,
+      "open_source": true,
+      "notes": "Starter Next 16 + shadcn, 28 page (overview, CRUD, kanban, chat, billing, form); phụ thuộc Clerk; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Tremor Blocks",
+      "repo": "tremorlabs/tremor-blocks",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 545,
+      "open_source": true,
+      "notes": "323 block dashboard (page shell, KPI, bảng, billing, login, onboarding); Vercel mua Tremor 1/2025 và mở free; chỉ 3 commit, dừng 1/2025; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Tremor",
+      "repo": "tremorlabs/tremor",
+      "category": "ui-library",
+      "license": "Apache-2.0",
+      "stars": 3700,
+      "open_source": true,
+      "notes": "39 component chart/dashboard React 18 + Recharts 2; commit cuối 10/10/2025; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "TailAdmin React (free)",
+      "repo": "TailAdmin/free-react-tailwind-admin-dashboard",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 1300,
+      "open_source": true,
+      "notes": "18 trang, 1 dashboard ecommerce; bản Pro 7 dashboard trả phí; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Refine",
+      "repo": "refinedev/refine",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 35900,
+      "open_source": true,
+      "notes": "Framework CRUD/admin React; 6 template theo UI kit (antd, mui, mantine, chakra, headless) + app CRM; npm create refine-app; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "React Native Reusables",
+      "repo": "founded-labs/react-native-reusables",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 8700,
+      "open_source": true,
+      "notes": "shadcn cho React Native: 32 component (NativeWind/Uniwind), 7 block auth có bản Clerk; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Tamagui (Bento)",
+      "repo": "tamagui/tamagui",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 14300,
+      "open_source": true,
+      "notes": "UI RN + web; Bento ~70 file: shell (tab bar, drawer, sidebar), form layout, list, ecommerce, nay miễn phí; v3; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "gluestack-ui",
+      "repo": "gluestack/gluestack-ui",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 5300,
+      "open_source": true,
+      "notes": "v3: 61 component RN + web trên NativeWind, 4 starter kit; LICENSE chỉ trong packages/gluestack-ui, gốc repo không có; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "NativeWind",
+      "repo": "nativewind/nativewind",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 8100,
+      "open_source": true,
+      "notes": "Tailwind cho React Native, nền của RNR và gluestack; v4 ổn định, v5 RC; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "flutter/samples",
+      "repo": "flutter/samples",
+      "category": "mobile",
+      "license": "BSD-3-Clause",
+      "stars": 19300,
+      "open_source": true,
+      "notes": "Mẫu chính thức Flutter: material_3_demo, cupertino_gallery, platform_design, compass_app; flutter_adaptive_scaffold đã discontinued; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Best-Flutter-UI-Templates",
+      "repo": "mitesh77/Best-Flutter-UI-Templates",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 22800,
+      "open_source": true,
+      "notes": "5 app demo UI Flutter, không kiến trúc; commit cuối 16/12/2025; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Flutter Responsive Admin Panel",
+      "repo": "abuanwar072/Flutter-Responsive-Admin-Panel-or-Dashboard",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 7100,
+      "open_source": true,
+      "notes": "1 layout dashboard responsive (side menu + dashboard), 17 file dart; ★ 18/10/2026, mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Material 3 canonical layouts",
+      "url": "https://developer.android.com/develop/ui/compose/layouts/adaptive/canonical-layouts",
+      "category": "learning",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Hướng dẫn chính thức: list-detail, supporting pane, feed; breakpoint compact <600dp, medium 600–839dp, expanded ≥840dp; mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Apple HIG: Layout",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/layout",
+      "category": "learning",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Layout theo size class, safe area, tab bar → sidebar khi rộng; không có số margin iOS cố định; mục 06 §7h",
+      "section": "06"
+    },
+    {
+      "name": "Mobbin",
+      "url": "https://mobbin.com",
+      "category": "learning",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Thư viện ảnh chụp màn hình app thật, không có mã; Pro khoảng $10/tháng (chưa xác minh từ trang giá); chỉ để lấy cảm hứng; mục 06 §7h",
       "section": "06"
     },
     {
