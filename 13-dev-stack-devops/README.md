@@ -218,6 +218,23 @@
 
 **Nguồn §6d:** https://github.com/Homebrew/BrewUI (clone đầy đủ, HEAD 7bc5efa 13/10/2026; README.md, ARCHITECTURE.md, AGENTS.md, Package.swift, .github/workflows/{pr_build_test,release,build}.yml, .github/PULL_REQUEST_TEMPLATE.md, Sources/BrewCrashReporting/, Sources/BrewNetworking/, Tools/BrewUILint/; git log/tag) · trang GitHub và shields 14/10/2026 · https://github.com/Homebrew/BrewUI/releases · https://www.bleepingcomputer.com/news/security/homebrew-700-gets-built-in-gui-better-security-controls/ · https://dev.to/arshtechpro/brewui-a-first-look-at-homebrews-official-macos-gui-3fk2 · https://medium.com/@kanishks772/homebrew-just-got-a-gui-after-10-years-the-terminal-finally-has-a-window-64e73307752b · https://runany.dev/blog/brewui/ · https://www.opensourcealternatives.to/item/brewui · https://github.com/mckaymic/Brewui · https://github.com/milanvarady/Applite · https://github.com/buresdv/Cork · https://github.com/brunophilipe/Cakebrew · https://docs.brew.sh/Analytics
 
+## 6e. Better-Linux/CleanMyLinux — app dọn dẹp Linux desktop (Tauri/Rust), có lỗ leo thang quyền đáng lưu ý (ảnh "4 repos worth bookmarking", 2026-10-18)
+
+> Một trong 4 repo của slide Chris Porter (tác giả `Better-Linux` / PRAS Samin). Đã clone đầy đủ (HEAD `02de64d`, 25/5/2026, v1.0.0-beta.2), đọc README, `app.toml`, policy PolicyKit và mã Rust gọi helper.
+
+| Thuộc tính | Giá trị (18/10/2026) |
+|---|---|
+| Repo / URL | https://github.com/Better-Linux/CleanMyLinux · slide: 8★/1 fork |
+| Mô tả 1 dòng | App desktop "CleanMyMac cho Linux": gỡ ứng dụng an toàn, cập nhật đa trình quản lý gói (APT/Pacman/DNF/Flatpak/Snap), dọn rác, theo dõi app lâu không dùng |
+| Loại | devops / desktop tool (GUI) |
+| License | **MIT** (© 2026 Better Linux) |
+| Stack | **Tauri v2 + Rust + React 19 + Bun**; GUI chạy quyền user thường, tác vụ admin qua **PolicyKit (pkexec)**; có thư mục `ml/` (app_classifier, progress_model) để lọc "app người dùng" khỏi thư viện hệ thống |
+| Vì sao đáng tham khảo | • Hiếm có app dọn dẹp Linux desktop có GUI thống nhất nhiều trình quản lý gói; kiến trúc Tauri (Rust core + web UI) gọn.<br>• Có `docs/architecture.md`, CHANGELOG, SECURITY.md, CI, bảng distro/GLIBC hỗ trợ rõ ràng. |
+| Hạn chế / rủi ro | • **⚠️ Lỗ leo thang quyền (đọc mã):** policy `config/com.betterlinux.cleanmylinux.policy` đăng ký đích pkexec là `/usr/bin/cleanmylinux-helper`, mà helper (`scripts/cleanmylinux-helper.sh`) chỉ là `exec "$@"`. Mã Rust gọi `pkexec /usr/bin/cleanmylinux-helper sh -c <lệnh>` (`src-tauri/src/system_info/ops.rs`). Đây là **primitive chạy lệnh tùy ý với quyền root**: với `allow_active = auth_self_keep`, sau một lần xác thực mật khẩu được cache, bất kỳ tiến trình nào của user active (kể cả mã độc) đều có thể gọi helper để chạy lệnh root. Một helper "exec mọi thứ" làm mất ý nghĩa của việc giới hạn action PolicyKit.<br>• Mới (beta), một tác giả, 8★; tên "premium" nhưng mã mở MIT.<br>• Binary dựng sẵn cần GLIBC ≥ 2.39. |
+| Tích hợp | Nếu dùng/đóng gói: nên thu hẹp helper thành **danh sách lệnh cho phép** (không `exec "$@"`), hoặc tách từng action PolicyKit theo tác vụ, thay vì một đích exec vạn năng. Trước khi cài bản binary, cân nhắc build từ nguồn và đọc lại helper. |
+| Liên quan | mục 13 §6d (BrewUI, GUI cho package manager), mục 12 §4 (nguyên tắc: allowlist tham số, review cho hành động quyền cao), mục 11 (sandbox) |
+| Nguồn | clone 18/10/2026 (README, app.toml, config/*.policy, scripts/cleanmylinux-helper.sh, src-tauri/src/system_info/{ops,sudo}.rs); slide "4 GitHub repos worth bookmarking" |
+
 ## 7. Nguồn
 
 - Mục 23 (19 repo của chủ kho, đọc 2026-10-12) · https://github.com/alibaba/open-code-review · https://github.com/googleapis/release-please · https://github.com/oxc-project/oxc · https://github.com/webpro-nl/knip · https://github.com/kucherenko/jscpd · https://github.com/astral-sh/uv · https://github.com/astral-sh/ruff
