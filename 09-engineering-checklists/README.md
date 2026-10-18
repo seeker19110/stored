@@ -111,6 +111,24 @@ Phần: Dependencies & build · Environment & secrets · Rendering/caching/data 
 | `bregman-arie/devops-exercises` | Bài tập DevOps | |
 | `sdras/awesome-actions` | GitHub Actions | CI/CD |
 
+## 2b. greenarmor/GESF — compliance-as-code tự chấm GDPR/OWASP/CIS (ảnh "4 repos worth bookmarking", 2026-10-18)
+
+> Một trong 4 repo của slide Chris Porter (nhưng của tác giả khác, `greenarmor`). Đã clone đầy đủ (HEAD `e9ffd74`, 19/9/2026). Đây là **công cụ thật**, khác hẳn các repo phễu ở mục 08 §2d.
+
+| Thuộc tính | Giá trị (18/10/2026) |
+|---|---|
+| Repo / URL | https://github.com/greenarmor/GESF (Green Engineering Standard Framework) · slide: 41★/6 fork |
+| Mô tả 1 dòng | CLI `ges` "compliance-as-code" quét repo rồi tự chấm điểm tuân thủ GDPR, OWASP, CIS (README cũng nhắc NIST) và sinh báo cáo/badge |
+| Loại | checklist / compliance-as-code (công cụ CLI) |
+| License | **MIT** (file LICENSE, © 2025–2026 greenarmor) |
+| Cài đặt | `brew tap greenarmor/gesf && brew install ges` · `npm i -g @greenarmor/ges` · `pnpm add -g` · `npx @greenarmor/ges init` (Node ≥ 22) |
+| Cấu trúc thật | `controls/gdpr/controls.json` (22 control), `controls/owasp/controls.json` (6), CIS (5) — control định nghĩa dạng JSON; `compliance/` có mẫu tài liệu (data-inventory, risk-register, DPIA, retention-policy…); có CI (`.github/workflows`), `.gitleaks.toml`, `.semgrepignore`, SECURITY.md, CODE_OF_CONDUCT, CONTRIBUTING, docs đầy đủ, brew formula `.brew/ges.rb` |
+| Vì sao đáng tham khảo | • **Control là dữ liệu (JSON), không hard-code** → thêm/sửa chuẩn mà không đụng engine; hợp để nhúng vào CI như một cổng.<br>• Đi kèm **mẫu tài liệu tuân thủ** (DPIA, risk register, processing records) — phần nhiều đội thiếu.<br>• Hạ tầng repo chỉn chu: gitleaks + semgrep ignore, badge tự sinh, nhiều cách cài. |
+| Hạn chế / rủi ro | • **Điểm "100% (A)" trong README là tự chấm trên chính repo GESF** (`Last evaluated: 2026-07-01`), không phải chứng nhận độc lập — đừng đọc như bảo chứng tuân thủ pháp lý.<br>• Quét tĩnh theo heuristic/pattern: "pass" nghĩa là khớp luật đã viết, không bảo đảm đúng GDPR thực tế; GDPR/CIS cần đánh giá con người.<br>• Một tác giả; chưa thấy đánh giá độc lập (web 18/10 ít kết quả) **(chưa xác minh)**.<br>• Số control khiêm tốn (22/6/5) so với bộ chuẩn đầy đủ. |
+| Tích hợp | Dùng làm **cổng CI tư vấn** (chạy `ges` rồi đọc báo cáo), không làm bằng chứng tuân thủ đối ngoại. Control JSON có thể tách ra tái dùng; giữ con người duyệt với GDPR/CIS. |
+| Liên quan | mục 09 §1 (deployment-checklist), mục 12 (OWASP, security scanner, SAST), mục 13 §4 (CI/CD) |
+| Nguồn | clone 18/10/2026 (README, LICENSE, controls/{gdpr,owasp}/controls.json, compliance/, .github/workflows, .brew/ges.rb); slide "4 GitHub repos worth bookmarking" |
+
 ## 3. Case study: agent QA/Test Engineer 7 tầng + 4 verdict (ảnh và bài đăng người dùng gửi, 2026-10-17)
 
 > Bốn ảnh chụp màn hình và một bản nháp bài đăng. Ảnh 1-2 là trang giải thích lệnh `.claude/commands/qa-test-engineer.md` ("QA / Test Engineer: bước Test của vòng lặp"): sơ đồ Plan → Design → Build → **Test** → Deploy → Maintain, kim tự tháp 4 tầng, 3 mặt cắt ngang, 4 verdict cho test đỏ. Ảnh 3 là một danh mục có 256 mục (tìm "test": agent QA, `/unit-tests`, `e2e-testing`, Penetration Testing…). Ảnh 4 là `qa-testing/SKILL.md` mở trong dự án `trello-clone`. **Nguồn gốc không xác minh được:** danh mục "Bộ Master" là private, không có repo hay URL công khai để đối chiếu; mọi nhận xét dưới đây dựa trên ảnh và bài nháp, không dựa trên mã.

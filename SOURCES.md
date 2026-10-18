@@ -485,3 +485,10 @@
 - Clone đầy đủ github.com/Manto-X/Agent_Board 2026-10-17 (HEAD 192a378): README.md (song ngữ VN–EN), AGENTS.md, CLAUDE.md, CODEX.md, MANUAL.md, LICENSE (MIT © Manto X), get_board.py (installer curl|python3), .agents/board.py, .agents/scripts/{baton,task,config,init,roster,watcher}.py, .agents/project_config.json, .agents/BATON.json, docs/, tests/test_agents_board.py (tự chạy unittest 6/6 pass)
 - Đọc mã xác minh: baton acquire ghi đè vô điều kiện (không enforce holder/expires_at) → "lock" là quy ước; cầu chì reject_count ≥ max_rejections (mặc định 2) → 05_escalation; NITPICK advisory-only; ghi file nguyên tử os.replace
 - WebSearch 2026-10-17: không có kết quả nào về repo (quá mới) — en.wikipedia.org/wiki/Agent-oriented_software_engineering · goodfirstissue.org/zh/igrigorik/AgentBoard (trùng tên, khác repo)
+
+## Bổ sung 2026-10-18 (ảnh "4 GitHub repos worth bookmarking" của Chris Porter → mục 08 §2d.3, 09 §2b, 13 §6e)
+
+- cporter202/marketing-apis-that-drive-roi (clone 18/10, HEAD 327a5c1): README.md, META.json, FOLLOW_CREATOR.md, 5 thư mục category README; đếm 290 API, mọi link ?fpr=p2hrc6 (affiliate Apify)
+- cporter202/social-growth-apis-for-creators (clone 18/10, HEAD 3512d04): 6 thư mục category; tổng 2 repo = 3.089 link ?fpr=p2hrc6; cộng đồng Skool trả phí skool.com/vibe-coding-with-chris-7196; cùng mẫu phễu §2d/§2d.1/§2d.2
+- greenarmor/GESF (clone 18/10, HEAD e9ffd74 19/9/2026): README, LICENSE (MIT), controls/{gdpr,owasp}/controls.json, compliance/, docs/, .github/workflows, .brew/ges.rb; npm @greenarmor/ges; điểm 100% tự chấm 2026-07-01
+- Better-Linux/CleanMyLinux (clone 18/10, HEAD 02de64d 25/5/2026, v1.0.0-beta.2): README, app.toml, config/com.betterlinux.cleanmylinux.policy, scripts/cleanmylinux-helper.sh (exec "$@"), src-tauri/src/system_info/{ops,sudo}.rs (pkexec helper sh -c) — lỗ leo thang quyền root

@@ -184,6 +184,23 @@ Tốt làm **checklist chủ đề** trong một trang; không đủ làm câu t
 
 **Quy tắc rút ra (bổ sung §2d, §2d.1):** huy hiệu "STATUS ACTIVE / UPDATED REGULARLY" mà URL là `img.shields.io/badge/...` là huy hiệu tĩnh tự gõ, không phải số đo; so với ngày commit cuối. Khi N mục "khác nhau" cùng trỏ về một link, đó là một sản phẩm được trình bày như một danh sách.
 
+### 2d.3 Repo thứ tư & năm cùng tác giả: `marketing-apis-that-drive-roi` + `social-growth-apis-for-creators` (ảnh "4 GitHub repos worth bookmarking", 2026-10-18)
+
+> Ảnh slide của Chris Porter giới thiệu 4 repo; hai repo đầu là của chính `cporter202`. Đã clone cả hai để đọc. Cùng khuôn mẫu §2d–§2d.2, lần này là **danh mục API gắn link affiliate Apify**.
+
+| Mục | Thông tin (18/10/2026) |
+|---|---|
+| Repo | `cporter202/marketing-apis-that-drive-roi` (slide: 27★/8 fork) · `cporter202/social-growth-apis-for-creators` (slide: 49★/14 fork); cả hai push 17/10/2026, **không có LICENSE** |
+| Nội dung thật | Chỉ README + vài thư mục, mỗi thư mục một README là **bảng link tới actor trên Apify store**. marketing: **290 API** (đúng badge) chia 5 nhóm; social: 6 nhóm. Không có code, không có ví dụ gọi, không có đánh giá chất lượng/giá từng actor |
+| Mục đích (affiliate) | **3.089 link** mang mã giới thiệu Apify `?fpr=p2hrc6` trên cả hai repo. README mở đầu bằng lời mời vào **cộng đồng Skool trả phí** ("Vibe Coding with Chris") + link Facebook cá nhân; `META.json` có `source_path` ("marketing-apis-290") cho thấy sinh từ khuôn chung |
+| Khác §2d.1 | Lần này **không có khung "Affiliate disclosure"** rõ như `make-com-automation-recipes`; người đọc không được báo mọi link đều gắn mã giới thiệu |
+
+**Đánh giá:** không phải "awesome list" trung lập mà là **danh mục affiliate dẫn về Apify store**, bọc trong phễu cộng đồng trả phí — đúng mô hình §2d/§2d.2. "290 API" chỉ là các actor bất kỳ trên Apify, không tuyển chọn hay kiểm chất lượng; badge sao không phản ánh nội dung (nhóm repo này quảng bá chéo để gom sao).
+
+**Muốn dùng scraper/API thật:** tìm thẳng trên **apify.com/store** (không qua link `?fpr=`), đọc giá + giới hạn + đánh giá của **từng actor cụ thể**, chạy thử free tier; scraper mã mở tự host thì có Crawl4AI, Firecrawl (mục 11). Cho API mạng xã hội, cân nhắc điều khoản nền tảng và mục 12 trước khi giao token.
+
+**Quy tắc (bổ sung §2d–§2d.2):** repo "N trăm API" mà mỗi link đều cùng một tham số giới thiệu (`?fpr=`, `?pc=`, `?ref=`) là danh mục affiliate; đếm `grep -rho 'fpr=[a-z0-9]*'` để thấy quy mô. Cùng một tác giả/cùng avatar + "Buy me a coffee"/Skool lặp lại qua nhiều repo là dấu hiệu phễu, không phải tuyển chọn.
+
 ## 2e. Kiểm ảnh "Layers of AI: From classical methods to autonomous AI systems" (ảnh người dùng gửi, 2026-10-13)
 
 > Infographic 6 tầng xếp chồng, mũi tên đi lên, mỗi tầng 5 ô: Classical AI → Machine Learning → Neural Networks → Deep Learning → Generative AI → Agentic AI. Ghi nguồn **AIForLeaders.com**.

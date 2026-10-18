@@ -5132,6 +5132,46 @@
       "open_source": true,
       "notes": "Agent memory retain/recall/reflect, 1.0 ngày 15/10/2026; tự chạy 16/10/2026 không cần API key (LLM_PROVIDER=none, embedding + reranker cục bộ, recall 0,16–0,19 s); chỉ Postgres/Oracle, storage không cắm được backend khác; Memlake (object storage) chỉ có ở Enterprise; ★ 16/10/2026",
       "section": "10"
+    },
+    {
+      "name": "marketing-apis-that-drive-roi",
+      "repo": "cporter202/marketing-apis-that-drive-roi",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 27,
+      "open_source": true,
+      "notes": "Danh mục 290 'API' là actor Apify gắn mã affiliate ?fpr=p2hrc6; không code, không LICENSE, mở đầu bằng cộng đồng Skool trả phí + Facebook; cùng mẫu phễu Chris Porter (mục 08 §2d). ★ theo slide 18/10/2026 — chưa xác minh shields",
+      "section": "08"
+    },
+    {
+      "name": "social-growth-apis-for-creators",
+      "repo": "cporter202/social-growth-apis-for-creators",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 49,
+      "open_source": true,
+      "notes": "Cặp với marketing-apis: danh mục actor Apify 6 nhóm, mọi link ?fpr=p2hrc6 (tổng 3.089 link affiliate trên 2 repo), không code/không LICENSE, phễu Skool; mục 08 §2d.3. ★ theo slide 18/10/2026",
+      "section": "08"
+    },
+    {
+      "name": "GESF",
+      "repo": "greenarmor/GESF",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 41,
+      "open_source": true,
+      "notes": "Compliance-as-code CLI 'ges' (npm @greenarmor/ges, brew, npx) chấm GDPR(22)/OWASP(6)/CIS(5) control dạng JSON + mẫu tài liệu (DPIA, risk register); điểm 100% là TỰ CHẤM trên chính repo không phải chứng nhận; quét tĩnh heuristic cần người duyệt GDPR/CIS; 1 tác giả. ★ slide 18/10/2026; mục 09 §2b",
+      "section": "09"
+    },
+    {
+      "name": "CleanMyLinux",
+      "repo": "Better-Linux/CleanMyLinux",
+      "category": "devops",
+      "license": "MIT",
+      "stars": 8,
+      "open_source": true,
+      "notes": "App dọn dẹp Linux desktop (Tauri v2+Rust+React19), gỡ app + cập nhật đa package manager, có ml/ phân loại app. RỦI RO (đọc mã): helper pkexec /usr/bin/cleanmylinux-helper = exec \"$@\", gọi qua pkexec sh -c => primitive chạy lệnh root tùy ý; allow_active auth_self_keep cache => sau 1 lần auth mọi tiến trình user active chạy được root. beta, 1 tác giả. ★ slide 18/10/2026; mục 13 §6e",
+      "section": "13"
     }
   ]
 }
