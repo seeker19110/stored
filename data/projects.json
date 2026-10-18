@@ -4848,9 +4848,9 @@
       "repo": "plugin87/ux-ui-agent-skills",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 1686,
+      "stars": 2000,
       "open_source": true,
-      "notes": "25 skill + 52 cổng đo trên trình duyệt (tự chạy 49/52, 13/10/2026); 138 design system phần lớn lấy từ awesome-design-md và bergside/awesome-design-skills, không ghi nguồn",
+      "notes": "25 skill + 52 cổng đo trên trình duyệt thật (script axe/contrast/verify_*, tự chạy 49/52 không phải 52/52 như README); 138 design system phần lớn chép từ awesome-design-md + bergside/awesome-design-skills không ghi nguồn MIT; gates & hook là thật đáng học, persona \"15y\" không đo được; rà lại 18/10/2026 (ảnh PASSED ALL GATES): HEAD 62092bd/v2.9.8 không đổi, ★ ~2,0k/218 fork",
       "section": "06"
     },
     {

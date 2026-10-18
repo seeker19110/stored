@@ -498,3 +498,8 @@
 - Clone lại yihui-dev/awesome-opus5-5-videos 18/10/2026 (HEAD 92aee2f, 13/10): README, LICENSE (MIT), data/videos.json (703 mục, đếm trường + phân bố category/tech_tags), prompts/ (703 file); 418 has_remake, 616 author; README "Every video here was made by asking Claude Opus 5.5 to write the animation as code"
 - So sánh athemeroy/awesome-opus-5-5-videos (H1 "Awesome Claude 5.5 Videos", 545★, CC BY 4.0, 424 nguồn, không rehost MP4) — repo khác, không phải cái trong ảnh
 - skillry.dev/ai-videos/opus-5-5 (homepage/remake, có utm_campaign)
+
+## Bổ sung 2026-10-18 (ảnh "PASSED ALL GATES" plugin87/ux-ui-agent-skills gửi lại → rà lại mục 06 §7d)
+
+- Clone lại plugin87/ux-ui-agent-skills 18/10/2026: HEAD 62092bd/v2.9.8 (không đổi từ 13/10), xác nhận scripts/ có 40+ gate chạy thật (axe_audit.mjs, contrast.py, verify_states/keyboard/overflow/target-size/reduced-motion/rtl/responsive/focustrap.mjs, validate_*.py), gate skill chạy accuracy_report.mjs, CI (.github/workflows/ci.yml) npx playwright install chromium cho gate render; 25 skill, 138 design-systems/library, 14 token DTCG
+- Trang GitHub 18/10/2026: ★ ~2,0k (từ 1.686 ngày 13/10), 218 fork; npm ux-ui-agent-skills v2.9.8
