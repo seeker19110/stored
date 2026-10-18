@@ -4546,9 +4546,9 @@
       "repo": "yihui-dev/awesome-opus5-5-videos",
       "category": "awesome-list",
       "license": "MIT",
-      "stars": 4600,
+      "stars": 5800,
       "open_source": true,
-      "notes": "Awesome-list + dataset prompt video Opus 5.5 (853 file prompts/ + data/videos.json, 523 có remake); 'video as code' không phải model sinh video; mỗi mục link bài X gốc, cờ prompt_partial; phễu về skillry.dev (thương mại, utm); catalog do agent dựng (contributor claude); ★ shields 4,6k 12/10/2026",
+      "notes": "Awesome-list + dataset prompt video Opus 5.5; rà lại 18/10/2026 (ảnh gửi lại): HEAD 92aee2f (13/10), 703 file prompts/ + data/videos.json (giảm từ 853, dedup), 418 có remake, 100 highlight, 616 tác giả; 'video as code' (canvas/svg/threejs/shader) KHÔNG phải model sinh video; mỗi mục link bài X gốc, cờ prompt_partial; phễu về skillry.dev (utm); contributor claude; ★ 5,8k/616 fork 18/10/2026",
       "section": "22"
     },
     {
