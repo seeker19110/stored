@@ -210,6 +210,45 @@ Bản v0.5 thay đổi gần như toàn bộ mã (2.372 file, +147k / −191k d�
 
 **Nguồn §1d:** https://github.com/topviewai/topview-3d-builder (clone đầy đủ, HEAD a0671f9; README.md, NOTICE, LICENSE, builtin-assets/LICENSE, .mcp.json, .claude-plugin/{plugin,marketplace}.json, .codex-plugin/plugin.json, .agents/plugins/marketplace.json, skills/topview-3d-cli/SKILL.md, references/{generate,doctor-browser,camera,checks,add-character}.md, agent/pyproject.toml, agent/topview_3d_cli/local_studio.py, editor/package.json) · https://pypi.org/pypi/topview-3d-cli/json (đọc 16/10/2026: bản mới nhất 0.1.7) · https://code.claude.com/docs/en/plugins-reference (`.mcp.json` ở gốc plugin được nạp trước) · https://dev.to/topviewai/from-one-prompt-to-an-editable-3d-scene-we-open-sourced-a-local-first-agent-workflow-npa (15/10/2026) · https://x.com/TopviewAIhq/status/2110615678805774657 · https://www.topview.ai/3d-builder · https://github.com/topviewai/skill · https://github.com/ahujasid/blender-mcp · https://github.com/earthtojake/text-to-cad · https://docs.spline.design/spline-ai/ai-agent · https://higgsfield.ai/blog/higgsfield-3d-jutsu
 
+## 1e. Kiểm bài "10 kho mã nguồn cực kỳ mạnh mẽ mà bạn không nên bỏ qua" (bài người dùng gửi, 2026-10-19)
+
+> Bài liệt kê 10 repo cho quy trình sáng tạo nội dung: kịch bản → ảnh → giọng → nhạc → dựng video → Shorts → podcast → đăng bài. Đã clone cả 10 (blob:none, đủ lịch sử), đọc README/LICENSE/package.json, lấy số sao + license qua shields ngày 19/10/2026. Link mục 2 trong bài bị cắt ("ScrapeCre…"); repo đúng là `ScrapeCreators/social-media-research-skills`.
+
+### 1e.1 Bảng kiểm
+
+| # | Repo | ★ · license (19/10/2026) | Commit cuối · số commit | Kiểm | Điều bài không nói |
+|---|---|---|---|---|---|
+| 1 | `krillinai/OpenCreator` | ~14k · Apache-2.0 | 19/10/2026 · 983 | ✅ | Đã có hồ sơ §1b: dùng Codex CLI làm động cơ; tài khoản, tín dụng và "official model service" là dịch vụ trả phí |
+| 2 | `ScrapeCreators/social-media-research-skills` | ~4,2k · MIT | **26/8/2026 · 7** | ⚠️ | **Bắt buộc `SCRAPECREATORS_API_KEY`** (dịch vụ thu thập dữ liệu trả phí của chính tác giả); 13 skill là lớp prompt trên API đó. Chỉ 7 commit |
+| 3 | `LearningCircuit/local-deep-research` | ~9,3k · MIT | 19/10/2026 · **8.382** · v1.10.7 | ✅ | Web + tài liệu cá nhân, model local và cloud đúng như bài. Có CodeQL, Semgrep, OpenSSF Scorecard. Huy hiệu "SimpleQA ~95%" là **tự đo** trên dataset của dự án |
+| 4 | `black-forest-labs/flux2` | ~2,8k · Apache-2.0 (mã) | **12/3/2026 · 12** | ✅ có lưu ý | Đúng: **Klein 4B và 4B Base** trọng số Apache-2.0, ~8 GB VRAM. Nhưng **Klein 9B, 9B KV, 9B Base và FLUX.2 [dev] dùng FLUX Non-Commercial License** → làm thumbnail/quảng cáo thương mại chỉ được với bản 4B. Repo là mã inference, ít commit |
+| 5 | `hexgrad/kokoro` | ~9,5k · Apache-2.0 | **6/8/2025 · 71** | ✅ | 82M tham số, trọng số Apache. Thư viện đã **14 tháng không commit**; không clone giọng (mục 14) |
+| 6 | `ace-step/ACE-Step-1.5` | ~14k · MIT (mã) | 29/8/2026 · 1.410 · v0.1.8 | ✅ | Chạy local < 4 GB VRAM theo README (bản XL 4B cần ≥ 12 GB). "Chất lượng giữa Suno v4.5 và v5" là **tự nhận**. License trọng số trên Hugging Face **(chưa xác minh)** |
+| 7 | `YILS-LIN/short-video-factory` | ~5,8k · **AGPL-3.0** | 16/10/2026 · 145 · v1.3.0 | ⚠️ | **AGPL-3.0**: nhúng vào dịch vụ phải mở mã. App **Electron 22** (hết hỗ trợ từ 2/2024). TTS chỉ có **EdgeTTS** (gọi dịch vụ đọc online của Microsoft Edge qua thư viện không chính thức); LLM qua API tương thích OpenAI. README tiếng Trung |
+| 8 | `Anil-matcha/AI-Youtube-Shorts-Generator` | ~5,5k · MIT | 11/10/2026 · 29 | ⚠️ | Chế độ mặc định `--mode api` dùng **MuAPI** (dịch vụ trả phí theo clip, README quảng bá nhiều lần). `--mode local` chạy được bằng yt-dlp + faster-whisper + OpenCV, nhưng **vẫn cần API key OpenAI hoặc Gemini** cho bước chọn đoạn |
+| 9 | `souzatharsis/podcastfy` | ~6,7k · Apache-2.0 | **4/5/2026** · 399 · v0.4.0 | ✅ | 100+ LLM (có local), TTS OpenAI/Google/ElevenLabs/Edge. Đã 5 tháng không commit |
+| 10 | `langchain-ai/social-media-agent` | ~2,9k · MIT | 19/10/2026 · 1.058 | ✅ có lưu ý | URL → nháp X/LinkedIn, có duyệt (HITL) và lên lịch đúng như bài. Cần **Anthropic API + LangSmith + FireCrawl + Arcade** (Arcade lo đăng nhập và đăng bài), tùy chọn Supabase/Slack. Là ví dụ tham chiếu của LangGraph, không phải sản phẩm |
+
+**Tổng:** 7✅ / 3⚠️ / 0❌. Mọi repo đều tồn tại và làm đúng việc bài mô tả. Điểm bài bỏ qua là **chi phí và ràng buộc**: 4/10 repo cần dịch vụ trả phí hoặc API key bên thứ ba để chạy được (mục 2, 8, 10, và OpenCreator ở mức tài khoản), 1 repo AGPL, và 4/6 biến thể FLUX.2 là non-commercial.
+
+### 1e.2 Ghép thành quy trình, và chọn bản nào
+
+| Bước | Lựa chọn trong bài | Mở hoàn toàn / chạy local? | So với kho |
+|---|---|---|---|
+| Nghiên cứu chủ đề | Local Deep Research | ✅ (local model + SearXNG) | Repo trưởng thành nhất trong danh sách |
+| Nghiên cứu mạng xã hội | Social Media Research Skills | ❌ cần API ScrapeCreators | Chỉ là skill trên API trả phí |
+| Ảnh | FLUX.2 [klein] 4B | ✅ (Apache, ~8 GB VRAM) | Chạy qua ComfyUI (mục 14) tiện hơn dùng repo inference trực tiếp |
+| Giọng | Kokoro | ✅ (Apache, CPU được) | Không clone giọng; cần giọng riêng thì xem mục 14 (Chatterbox, Fish Audio) và mục 18 (TTS tiếng Việt) |
+| Nhạc | ACE-Step 1.5 | ✅ (MIT mã; trọng số chưa xác minh) | |
+| Dựng video ngắn | Short Video Factory | ⚠️ AGPL, Electron cũ, EdgeTTS | OpenMontage (§1) và các skill motion (mục 22) hợp hơn nếu dựng bằng agent |
+| Cắt Shorts từ video dài | AI YouTube Shorts Generator | ⚠️ local mode vẫn cần LLM API | |
+| Podcast | Podcastfy | ✅ nếu chọn LLM local + Edge/OpenAI TTS | |
+| Đăng bài | Social Media Agent | ❌ cần 4 dịch vụ ngoài | Mẫu học cách làm HITL với LangGraph (mục 02, 21) |
+
+**Dùng thế nào:** một quy trình **chạy local toàn bộ và dùng thương mại được** gồm Local Deep Research + FLUX.2 Klein 4B + Kokoro + ACE-Step 1.5 (kiểm license trọng số trước) + Podcastfy với LLM local. Các mục còn lại hoặc gắn với dịch vụ trả phí của tác giả (2, 8), hoặc cần nhiều API bên ngoài (10), hoặc có ràng buộc license/bảo trì (7). Trước khi nhúng vào sản phẩm: đọc license trọng số trên Hugging Face (FLUX.2, ACE-Step), và tránh AGPL nếu không muốn mở mã.
+
+**Nguồn §1e:** clone 19/10/2026 (blob:none, đủ lịch sử; README.md, LICENSE, package.json): github.com/{krillinai/OpenCreator, ScrapeCreators/social-media-research-skills, LearningCircuit/local-deep-research, black-forest-labs/flux2 (bảng model + model_licenses/LICENSE-FLUX-NON-COMMERICAL), hexgrad/kokoro, ace-step/ACE-Step-1.5, YILS-LIN/short-video-factory (package.json electron ^22.3.27), Anil-matcha/AI-Youtube-Shorts-Generator, souzatharsis/podcastfy, langchain-ai/social-media-agent} · img.shields.io/github/{stars,license}/… 19/10/2026 · skillselion.com/marketplace/ScrapeCreators/social-media-research-skills · skills-hub.ai/sources/social-media-research-skills · bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence · huggingface.co/hexgrad/Kokoro-82M · huggingface.co/ACE-Step/Ace-Step1.5
+
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
 
 | Repo | Số hiển thị (★?) | Ghi chú |

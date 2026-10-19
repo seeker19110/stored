@@ -1625,9 +1625,9 @@
       "repo": "hexgrad/kokoro",
       "category": "speech",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 9500,
       "open_source": true,
-      "notes": "82M",
+      "notes": "82M; 82M, trọng số Apache; thư viện dừng commit từ 6/8/2025; ★ 19/10/2026 (shields) (mục 19 §1e)",
       "section": "14"
     },
     {
@@ -4729,9 +4729,9 @@
       "repo": "krillinai/OpenCreator",
       "category": "agentic-video",
       "license": "Apache-2.0",
-      "stars": 13000,
+      "stars": 14000,
       "open_source": true,
-      "notes": "Workspace sáng tạo AI trên Codex CLI: dịch/lồng tiếng video, tải video, sinh ảnh/video; daemon Fastify loopback + Electron; GPL-3.0 → Apache-2.0 9/2026; telemetry desktop bật mặc định; ảnh người dùng 2026-10-13",
+      "notes": "Workspace sáng tạo AI trên Codex CLI: dịch/lồng tiếng video, tải video, sinh ảnh/video; daemon Fastify loopback + Electron; GPL-3.0 → Apache-2.0 9/2026; telemetry desktop bật mặc định; ảnh người dùng 2026-10-13; ★ ~14k 19/10/2026 (shields), 983 commit, v3.2.8 (mục 19 §1e)",
       "section": "19"
     },
     {
@@ -5495,6 +5495,86 @@
       "open_source": true,
       "notes": "Terminal + remote desktop + file tự host qua Tailscale (Node 2209 + broker PTY sống + agent C# DXGI + app Android); phiên sống sau mất kết nối. Bảo mật CHỈ lọc IP tailnet/localhost, KHÔNG auth ứng dụng → ai trên tailnet có shell toàn quyền + điều khiển desktop; cài irm|iex tự elevate admin. Chưa có LICENSE (package.json ghi ISC); 2★, Devin agent 6/53 commit; mục 13 §6f (19/10/2026)",
       "section": "13"
+    },
+    {
+      "name": "Social Media Research Skills",
+      "repo": "ScrapeCreators/social-media-research-skills",
+      "category": "plugin-marketplace",
+      "license": "MIT",
+      "stars": 4200,
+      "open_source": true,
+      "notes": "13 skill nghiên cứu mạng xã hội (outlier post, comment mining, transcript, đối thủ, ad library) cho Claude Code/Codex; BẮT BUỘC API key ScrapeCreators (trả phí, của chính tác giả); 7 commit, cuối 26/8/2026; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "19"
+    },
+    {
+      "name": "Local Deep Research",
+      "repo": "LearningCircuit/local-deep-research",
+      "category": "rag",
+      "license": "MIT",
+      "stars": 9300,
+      "open_source": true,
+      "notes": "Chủ đề → báo cáo nghiên cứu từ web + tài liệu cá nhân, model local/cloud; 8.382 commit, v1.10.7; CodeQL/Semgrep/OpenSSF Scorecard; \"SimpleQA ~95%\" tự đo; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "10"
+    },
+    {
+      "name": "FLUX.2",
+      "repo": "black-forest-labs/flux2",
+      "category": "image-gen",
+      "license": "Apache-2.0 (mã); trọng số tùy bản",
+      "stars": 2800,
+      "open_source": true,
+      "notes": "Mã inference FLUX.2; chỉ Klein 4B và 4B Base trọng số Apache-2.0 (~8 GB VRAM); Klein 9B/9B KV/9B Base và [dev] là FLUX Non-Commercial; 12 commit, cuối 12/3/2026; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "14"
+    },
+    {
+      "name": "ACE-Step 1.5",
+      "repo": "ace-step/ACE-Step-1.5",
+      "category": "speech",
+      "license": "MIT (mã)",
+      "stars": 14000,
+      "open_source": true,
+      "notes": "Model sinh nhạc từ văn bản, chạy local < 4 GB VRAM (bản XL 4B ≥ 12 GB), LoRA từ vài bài; \"giữa Suno v4.5 và v5\" tự nhận; license trọng số HF chưa xác minh; 1.410 commit, v0.1.8; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "14"
+    },
+    {
+      "name": "Short Video Factory",
+      "repo": "YILS-LIN/short-video-factory",
+      "category": "agentic-video",
+      "license": "AGPL-3.0",
+      "stars": 5800,
+      "open_source": true,
+      "notes": "App Electron 22 (hết hỗ trợ 2/2024) tự động viết nội dung (API tương thích OpenAI) + EdgeTTS + ghép video/phụ đề, chạy hàng loạt; AGPL-3.0; README tiếng Trung; v1.3.0; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "19"
+    },
+    {
+      "name": "AI YouTube Shorts Generator",
+      "repo": "Anil-matcha/AI-Youtube-Shorts-Generator",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 5500,
+      "open_source": true,
+      "notes": "Video dài → Shorts 9:16 (chọn đoạn bằng LLM, Whisper, crop theo mặt); mặc định dùng MuAPI trả phí, --mode local vẫn cần OpenAI/Gemini key; 29 commit từ 4/2026; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "19"
+    },
+    {
+      "name": "Podcastfy",
+      "repo": "souzatharsis/podcastfy",
+      "category": "speech",
+      "license": "Apache-2.0",
+      "stars": 6700,
+      "open_source": true,
+      "notes": "Tài liệu → podcast hội thoại đa ngôn ngữ; 100+ LLM (có local), TTS OpenAI/Google/ElevenLabs/Edge; v0.4.0, commit cuối 4/5/2026; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "19"
+    },
+    {
+      "name": "Social Media Agent (LangChain)",
+      "repo": "langchain-ai/social-media-agent",
+      "category": "workflow-automation",
+      "license": "MIT",
+      "stars": 2900,
+      "open_source": true,
+      "notes": "Ví dụ LangGraph: URL → nháp X/LinkedIn, duyệt HITL, lên lịch; cần Anthropic API + LangSmith + FireCrawl + Arcade (+ Supabase/Slack tùy chọn); 1.058 commit; ★ 19/10/2026 (shields), mục 19 §1e",
+      "section": "19"
     }
   ]
 }
