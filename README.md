@@ -208,6 +208,11 @@
 - **antislop** (mục 06 §7i): ảnh README 3✅/3⚠️/0❌. Huy hiệu Trendshift và MIT đúng; "v3.2.20" và "Skills 29.7K" là số cũ (nay v3.2.21, 32,0K), và 32K là tổng lượt cài của 6 skill chứ không phải số người dùng. Kiểm của chính repo chạy được (13/13, selftest 9/9, smoke test), nhưng R-25 và `contrast-check.py` coi chữ từ 18px là "chữ lớn" được phép 3:1, trong khi WCAG đặt ngưỡng ở 24px (hoặc 18,66px đậm). Skill lõi khoảng 58 KB nạp mọi lúc và mặc định dừng lại hỏi chế độ mỗi phiên.
 - Bài học: điểm mới của antislop là **phạm vi** (UI, văn bản và comment code chung một bộ luật) và việc tách "lọc" khỏi "định hướng" (`DESIGN.md`), chứ không phải khả năng kiểm. Công cụ máy duy nhất là tính tương phản, và nó cũng cần được kiểm lại ngưỡng.
 
+### 30. Đợt 19/10/2026: danh sách "repo mạnh" đúng về chức năng, thiếu về chi phí
+
+- **Bài "10 kho mã nguồn cực kỳ mạnh mẽ"** (mục 19 §1e): 7✅/3⚠️/0❌, cả 10 repo đều có thật và làm đúng việc bài tả. Điều bài bỏ qua: 4/10 cần dịch vụ trả phí hoặc API key ngoài để chạy (Social Media Research Skills cần API ScrapeCreators, Shorts Generator mặc định dùng MuAPI, Social Media Agent cần 4 dịch vụ, OpenCreator ở mức tài khoản); Short Video Factory là AGPL-3.0 trên Electron 22 đã hết hỗ trợ; FLUX.2 chỉ có bản Klein 4B là Apache, các bản 9B và [dev] là non-commercial. Kokoro và Podcastfy đã nhiều tháng không commit.
+- Bài học: với danh sách công cụ sáng tạo nội dung, cột cần đọc không phải "làm được gì" mà là **license trọng số, dịch vụ phải trả tiền, và lần commit cuối**. Bộ chạy local và dùng thương mại được trong danh sách: Local Deep Research + FLUX.2 Klein 4B + Kokoro + ACE-Step 1.5 (kiểm license trọng số) + Podcastfy với LLM local.
+
 ---
 
 ## 🧭 Cách dùng kho này
