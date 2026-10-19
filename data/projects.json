@@ -447,9 +447,9 @@
       "repo": "ag-ui-protocol/ag-ui",
       "category": "protocol",
       "license": "MIT",
-      "stars": null,
+      "stars": 17000,
       "open_source": true,
-      "notes": "Agent ↔ UI; CopilotKit",
+      "notes": "Agent ↔ UI; CopilotKit; ★ 19/10/2026 (shields)",
       "section": "04"
     },
     {
@@ -520,7 +520,7 @@
       "license": "MIT",
       "stars": 126000,
       "open_source": true,
-      "notes": "Base UI mặc định từ 7/2026; ★ 16/10/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h)",
+      "notes": "Base UI mặc định từ 7/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h); ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -530,7 +530,7 @@
       "license": "MIT",
       "stars": 99000,
       "open_source": true,
-      "notes": "★ 16/10/2026",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -540,7 +540,7 @@
       "license": "MIT",
       "stars": 19000,
       "open_source": true,
-      "notes": "nguồn lệch 19k–35k; ★ 16/10/2026",
+      "notes": "shields đọc thẳng GitHub ra 19k (trước ghi nguồn lệch 19k–35k); ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -550,7 +550,7 @@
       "license": "MIT",
       "stars": 11000,
       "open_source": true,
-      "notes": "★ 16/10/2026",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -560,7 +560,7 @@
       "license": "MIT",
       "stars": 32000,
       "open_source": true,
-      "notes": "★ 16/10/2026",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -570,7 +570,7 @@
       "license": "MIT",
       "stars": 41000,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -580,7 +580,37 @@
       "license": "MIT",
       "stars": 91000,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
+      "section": "06"
+    },
+    {
+      "name": "Headless UI",
+      "repo": "tailwindlabs/headlessui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 29000,
+      "open_source": true,
+      "notes": "Component headless của Tailwind Labs (React, Vue); commit cuối 13/4/2026; ★ 19/10/2026 (shields)",
+      "section": "06"
+    },
+    {
+      "name": "OpenDesign",
+      "repo": "nexu-io/open-design",
+      "category": "design-tool",
+      "license": "Apache-2.0",
+      "stars": 102000,
+      "open_source": true,
+      "notes": "\"Collaborative AI design agent workspace\" local-first (open-design.ai), có dịch vụ Cloud/Go trả phí; chưa đọc mã; ★ 19/10/2026 (trang GitHub 102,3k)",
+      "section": "06"
+    },
+    {
+      "name": "awesome-ai-tools-for-ui",
+      "repo": "maxbogo/awesome-ai-tools-for-ui",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 969,
+      "open_source": true,
+      "notes": "Danh sách công cụ AI cho UI (Taste Skill, Refactoring UI skill…); không ghi license; commit cuối 25/9/2026; ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -590,7 +620,7 @@
       "license": "MIT",
       "stars": 134000,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -600,7 +630,7 @@
       "license": "MPL-2.0",
       "stars": 61000,
       "open_source": true,
-      "notes": "Figma alternative",
+      "notes": "Figma alternative; ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -610,7 +640,7 @@
       "license": "tldraw license",
       "stars": 51000,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -618,9 +648,9 @@
       "repo": "onlook-dev/onlook",
       "category": "design-tool",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 27000,
       "open_source": true,
-      "notes": "Visual editor React",
+      "notes": "Visual editor React; commit cuối 21/7/2026; ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -650,9 +680,9 @@
       "repo": "stackblitz-labs/bolt.diy",
       "category": "ai-ui-generator",
       "license": "MIT",
-      "stars": null,
+      "stars": 20000,
       "open_source": true,
-      "notes": "Bản mở của Bolt.new",
+      "notes": "Bản mở của Bolt.new; ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -671,9 +701,9 @@
       "repo": "Leonxlnx/taste-skill",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 46000,
+      "stars": 98900,
       "open_source": true,
-      "notes": "Chống AI-slop UI",
+      "notes": "Chống AI-slop UI; mô tả GitHub mới: art direction, reference images, browser check (chưa đọc mã); ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -681,9 +711,9 @@
       "repo": "CopilotKit/CopilotKit",
       "category": "agentic-ui",
       "license": "MIT",
-      "stars": null,
+      "stars": 38000,
       "open_source": true,
-      "notes": "$27M 5/2026",
+      "notes": "$27M 5/2026; ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -691,9 +721,9 @@
       "repo": "assistant-ui/assistant-ui",
       "category": "agentic-ui",
       "license": "MIT",
-      "stars": null,
+      "stars": 13000,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -701,9 +731,9 @@
       "repo": "vercel/ai",
       "category": "agentic-ui",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 27000,
       "open_source": true,
-      "notes": "+ AI Elements",
+      "notes": "+ AI Elements; ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -830,20 +860,20 @@
       "name": "awesome-generative-ui",
       "repo": "narrowin/awesome-generative-ui",
       "category": "awesome-list",
-      "license": null,
-      "stars": null,
+      "license": "CC-BY-4.0",
+      "stars": 139,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "08"
     },
     {
       "name": "awesome-design-systems",
       "repo": "klaufel/awesome-design-systems",
       "category": "awesome-list",
-      "license": null,
-      "stars": null,
+      "license": "CC0-1.0",
+      "stars": 903,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "08"
     },
     {
@@ -851,9 +881,9 @@
       "repo": "bradtraversy/design-resources-for-developers",
       "category": "awesome-list",
       "license": "MIT",
-      "stars": null,
+      "stars": 67000,
       "open_source": true,
-      "notes": "",
+      "notes": "★ 19/10/2026 (shields)",
       "section": "08"
     },
     {
@@ -4660,7 +4690,7 @@
       "license": "Apache-2.0",
       "stars": 28000,
       "open_source": true,
-      "notes": "Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)",
+      "notes": "Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026); ★ 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -5140,9 +5170,9 @@
       "repo": "storytold/figcraft",
       "category": "design-tool",
       "license": "MIT OR Apache-2.0",
-      "stars": 616,
+      "stars": 2700,
       "open_source": true,
-      "notes": "Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ đọc 14/10/2026",
+      "notes": "Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ 616 ngày 14/10 → ~2,7k ngày 19/10/2026 (shields)",
       "section": "06"
     },
     {
@@ -5320,9 +5350,9 @@
       "repo": "pbakaus/impeccable",
       "category": "design-skill",
       "license": "Apache-2.0",
-      "stars": 81000,
+      "stars": 83000,
       "open_source": true,
-      "notes": "1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 14/10/2026",
+      "notes": "1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 19/10/2026 (shields)",
       "section": "20"
     },
     {

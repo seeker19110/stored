@@ -4,73 +4,76 @@
 
 ## 1. Thư viện component & design system (web)
 
-| Thư viện | Repo | ★ (2026) | Kiểu | Nhận xét |
-|---|---|---|---|---|
-| **shadcn/ui** | shadcn-ui/ui | ~126k (16/10) | Copy-paste source (CLI) trên Tailwind | Mặc định cho React+Tailwind; từ 7/2026 cài mới dùng **Base UI**, vẫn hỗ trợ Radix |
-| **MUI** | mui/material-ui | ~99k (16/10) | Material Design, đầy đủ | An toàn cho enterprise |
-| **Radix UI** | radix-ui/primitives | ~19–35k (nguồn lệch) | Headless primitives | Chậm lại sau khi WorkOS mua |
-| **Base UI** | mui/base-ui | ~11k (16/10) | Headless, từ team Radix + MUI + Floating UI | Lựa chọn khi bắt đầu mới |
-| **Mantine** | mantinedev/mantine | ~32k (16/10) | "Batteries included", 100+ component | |
-| **Vuetify** | vuetifyjs/vuetify | ~41k | Material 3 cho Vue | |
-| **Headless UI / DaisyUI** | tailwindlabs/headlessui · saadeghi/daisyui | – | Tailwind-native | |
-| **Storybook** | storybookjs/storybook | – | Phát triển/test/doc component cô lập | Chuẩn de-facto |
+| Thư viện | Repo | ★ · license (19/10/2026) | Commit cuối | Kiểu | Nhận xét |
+|---|---|---|---|---|---|
+| **shadcn/ui** | shadcn-ui/ui | ~126k · MIT | 18/10/2026 | Copy-paste source (CLI) trên Tailwind | Mặc định cho React+Tailwind; từ 7/2026 cài mới dùng **Base UI**, vẫn hỗ trợ Radix; 27 layout block (§7h) |
+| **MUI** | mui/material-ui | ~99k · MIT | 17/10/2026 | Material Design, đầy đủ | An toàn cho enterprise |
+| **Radix UI** | radix-ui/primitives | ~19k · MIT | 14/10/2026 | Headless primitives | Chậm lại sau khi WorkOS mua. Trước ghi "19–35k (nguồn lệch)"; shields đọc thẳng từ GitHub ra 19k |
+| **Base UI** | mui/base-ui | ~11k · MIT | 19/10/2026 | Headless, từ team Radix + MUI + Floating UI | Lựa chọn khi bắt đầu mới |
+| **Mantine** | mantinedev/mantine | ~32k · MIT | 18/10/2026 | "Batteries included", 100+ component | |
+| **Vuetify** | vuetifyjs/vuetify | ~41k · MIT | 14/10/2026 | Material 3 cho Vue | `LICENSE.md` ở gốc là symlink tới `packages/vuetify/LICENSE.md` (MIT), nên GitHub không nhận diện được |
+| **Headless UI** | tailwindlabs/headlessui | ~29k · MIT | **13/4/2026** | Headless, Tailwind-native | Đã 6 tháng không commit; Tailwind Labs về Shopify 9/2026 (§7h) |
+| **daisyUI** | saadeghi/daisyui | ~43k · MIT | 13/10/2026 | Plugin component Tailwind | Template đầy đủ bán riêng (§7h) |
+| **Storybook** | storybookjs/storybook | ~91k · MIT | 17/10/2026 | Phát triển/test/doc component cô lập | Chuẩn de-facto |
 
 **Design system tham khảo (doanh nghiệp):** Atlassian, GitHub Primer, GitLab Pajamas, Google Material, IBM Carbon, Shopify Polaris (bảng so sánh có cột "AI-ready", MCP, `llms.txt`: §7f.3) — xem `klaufel/awesome-design-systems`, designsystemsrepo.com, designsystems.surf.
 
 ## 2. Công cụ thiết kế / canvas mã nguồn mở
 
-| Dự án | Repo | License | ★ | Định vị |
-|---|---|---|---|---|
-| **Excalidraw** | excalidraw/excalidraw | MIT | ~134k | Whiteboard phong cách vẽ tay, self-host |
-| **Penpot** | penpot/penpot | MPL-2.0 | ~61k | **Thay thế Figma** mã mở, xuất CSS/HTML thật, Docker self-host |
-| **tldraw** | tldraw/tldraw | tldraw license | ~51k | Infinite canvas SDK, gần Figma nhất về cảm giác |
-| **Onlook** | onlook-dev/onlook | Apache-2.0 | – | Visual editor cho React/Tailwind, "Cursor cho designer" |
-| **OpenDesign** | open-design.ai | – | – | Agent-native design tool |
-| **FigCraft** | storytold/figcraft | MIT OR Apache-2.0 | ~0,6k (14/10/2026) | Dựng lại Figma bằng Rust nhờ agent, alpha 5 ngày tuổi, điều khiển được qua CLI/MCP (§7e) |
+| Dự án | Repo | License | ★ (19/10/2026) | Commit cuối | Định vị |
+|---|---|---|---|---|---|
+| **Excalidraw** | excalidraw/excalidraw | MIT | ~134k | 18/10/2026 | Whiteboard phong cách vẽ tay, self-host |
+| **Penpot** | penpot/penpot | MPL-2.0 | ~61k | 18/10/2026 | **Thay thế Figma** mã mở, xuất CSS/HTML thật, Docker self-host |
+| **tldraw** | tldraw/tldraw | tldraw license (riêng, cần license thương mại tùy trường hợp) | ~51k | 18/10/2026 | Infinite canvas SDK, gần Figma nhất về cảm giác |
+| **Onlook** | onlook-dev/onlook | Apache-2.0 | ~27k | **21/7/2026** | Visual editor cho React/Tailwind, "Cursor cho designer"; 3 tháng không commit |
+| **OpenDesign** | nexu-io/open-design (open-design.ai) | Apache-2.0 | **~102k** | 16/10/2026 | "Collaborative AI design agent workspace", local-first; có dịch vụ trả phí OpenDesign Cloud/Go. Chưa lập hồ sơ riêng **(chưa đọc mã)** |
+| **FigCraft** | storytold/figcraft | MIT OR Apache-2.0 | ~2,7k (14/10: ~0,6k) | 18/10/2026 | Dựng lại Figma bằng Rust nhờ agent, alpha, điều khiển được qua CLI/MCP (§7e) |
 
 ## 3. AI sinh giao diện (design-to-code / prompt-to-UI)
 
-| Công cụ | Mở? | Ghi chú |
-|---|---|---|
-| **v0.app** (Vercel) | Đóng | Rebrand 1/2026, full-stack sandbox, Git, DB connectors; mạnh nhất ở scaffolding frontend |
-| **Lovable** | Đóng | Prompt → app full-stack (Supabase) |
-| **Bolt.new** (StackBlitz) | Core `bolt.diy` mở | WebContainer trong trình duyệt |
-| **Google Stitch** | Đóng | Sinh UI + màu/typography/spacing tái dùng |
-| **MagicPath** | Đóng | Layout + hướng thiết kế trên infinite canvas |
-| **Subframe** | Đóng | Canvas compose React/Tailwind, export code sạch |
-| **Figma Make / AI** | Đóng | Tích hợp trong Figma |
+| Công cụ | Mở? | ★ (19/10/2026) | Ghi chú |
+|---|---|---|---|
+| **v0.app** (Vercel) | Đóng | – | Rebrand 1/2026, full-stack sandbox, Git, DB connectors; mạnh nhất ở scaffolding frontend |
+| **Lovable** | Đóng | – | Prompt → app full-stack (Supabase) |
+| **Bolt.new** (StackBlitz) | Core `bolt.diy` mở (MIT) | `stackblitz-labs/bolt.diy` ~20k, commit cuối 14/10/2026 | WebContainer trong trình duyệt |
+| **Google Stitch** | Đóng | – | Sinh UI + màu/typography/spacing tái dùng |
+| **MagicPath** | Đóng | – | Layout + hướng thiết kế trên infinite canvas |
+| **Subframe** | Đóng | – | Canvas compose React/Tailwind, export code sạch |
+| **Figma Make / AI** | Đóng | – | Tích hợp trong Figma |
 
-Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `maxbogo/awesome-ai-tools-for-ui`.
+Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động; 139★, CC-BY-4.0, commit cuối 29/9/2026), `maxbogo/awesome-ai-tools-for-ui` (969★, không ghi license, commit cuối 25/9/2026). Số đọc 19/10/2026.
 
 ## 4. "Taste" cho coding agent – chống giao diện AI generic
 
-- **Taste Skill** (`Leonxlnx/taste-skill`, ~46k★ theo listing): bộ Agent Skills cho Claude Code/Cursor/Codex; cấm các trope "AI slop": purple mesh gradient, hero căn giữa, 3 card giống nhau, font Inter + ảnh stock; 3 "dial" variance/motion/density; v2 đọc brief (loại trang, đối tượng, vibe) trước khi code.
+- **Taste Skill** (`Leonxlnx/taste-skill`, **~98,9k★**, 6,7k fork, MIT, commit cuối 19/10/2026; trước ghi ~46k★ theo listing): mô tả GitHub hiện nay là "art direction, reference images and a browser check", tức đã thêm bước kiểm trên trình duyệt **(chưa đọc mã, chưa xác minh)**; bộ Agent Skills cho Claude Code/Cursor/Codex; cấm các trope "AI slop": purple mesh gradient, hero căn giữa, 3 card giống nhau, font Inter + ảnh stock; 3 "dial" variance/motion/density; v2 đọc brief (loại trang, đối tượng, vibe) trước khi code.
 - **Refactoring UI Skill** (`s0xDk/refactoring-ui-skill`, 646★, MIT): áp quy tắc spacing/typography/color/hierarchy từ sách Refactoring UI, kèm `tokens.css` đã kiểm tương phản. Hồ sơ: §7g.4.
 - **Frontend-design skill** của Anthropic (trong marketplace Claude Code, Apache-2.0) + Taste làm lớp "quality enforcement". Hồ sơ: §7g.3.
 - Chưa có benchmark độc lập chứng minh hiệu quả; bằng chứng chủ yếu là demo & cộng đồng.
-- **Thêm từ repo của chủ kho (mục 23, 2026-10-12):** `impeccable` (plugin/skill "taste" được case-study-ft41 ghi trong `ui-ux-intelligence-provider.md`), `nextlevelbuilder/ui-ux-pro-max-skill` (45 file, vendor trong Hermes-Agents; hồ sơ §7g.2), `google-labs-code/design.md` (file DESIGN.md mô tả hệ thiết kế cho agent; spec + linter, xem §7c), `popular-web-designs` (54 design system tóm tắt). xboss có cổng tĩnh `check:contrast` + `check:ui-ux-guard` và Lighthouse CI chặn merge 4 category — "taste" chỉ bền khi có cổng máy đi kèm.
+- **Thêm từ repo của chủ kho (mục 23, 2026-10-12):** `impeccable` (~83k★ ngày 19/10/2026, hồ sơ mục 20; plugin/skill "taste" được case-study-ft41 ghi trong `ui-ux-intelligence-provider.md`), `nextlevelbuilder/ui-ux-pro-max-skill` (~137k★; 45 file, vendor trong Hermes-Agents; hồ sơ §7g.2), `google-labs-code/design.md` (~28k★, Apache-2.0; file DESIGN.md mô tả hệ thiết kế cho agent; spec + linter, xem §7c), `popular-web-designs` (54 design system tóm tắt). xboss có cổng tĩnh `check:contrast` + `check:ui-ux-guard` và Lighthouse CI chặn merge 4 category — "taste" chỉ bền khi có cổng máy đi kèm.
 
 ## 5. Tài nguyên học UI/UX cho developer
 
-| Tài nguyên | Loại | Ghi chú |
-|---|---|---|
-| **Refactoring UI** (Wathan & Schoger) | Sách + video (trả phí) | Kinh điển cho dev không phải designer |
-| **Laws of UX** (Jon Yablonski) | Web miễn phí + sách | Nguyên lý tâm lý học (Fitts, Hick, Jakob…) |
-| `bradtraversy/design-resources-for-developers` | Awesome list | Ảnh, font, màu, template, CSS framework |
-| `klaufel/awesome-design-systems` | Awesome list | Design system hướng dev |
-| Design Systems Gallery / designsystems.surf | Thư viện ví dụ | Cảm hứng & chuẩn |
-| Material Design 3, Apple HIG, Fluent 2 | Guideline chính thức | |
+| Tài nguyên | Loại | ★ · license (19/10/2026) | Ghi chú |
+|---|---|---|---|
+| **Refactoring UI** (Wathan & Schoger) | Sách + video (trả phí) | – | Kinh điển cho dev không phải designer; skill dựa trên sách: §7g.4 |
+| **Laws of UX** (Jon Yablonski) | Web miễn phí + sách | – | Nguyên lý tâm lý học (Fitts, Hick, Jakob…) |
+| `bradtraversy/design-resources-for-developers` | Awesome list | ~67k · MIT, commit cuối 18/10/2026 | Ảnh, font, màu, template, CSS framework |
+| `klaufel/awesome-design-systems` | Awesome list | 903 · CC0-1.0, commit cuối 14/9/2026 | Design system hướng dev |
+| Design Systems Gallery / designsystems.surf | Thư viện ví dụ | – | Cảm hứng & chuẩn |
+| Material Design 3, Apple HIG, Fluent 2 | Guideline chính thức | – | Layout thích ứng: §7h |
 
 ## 6. Lớp giao diện cho agent (Agentic UI / Generative UI)
 
-| Dự án | Repo | Vai trò | Ghi chú |
-|---|---|---|---|
-| **CopilotKit** | CopilotKit/CopilotKit | Frontend stack cho agent, tác giả **AG-UI** | Gọi vốn $27M 5/2026; nặng & opinionated, như application framework |
-| **assistant-ui** | assistant-ui/assistant-ui | Headless React primitives cho chat/agent | Ghép tốt với Vercel AI SDK |
-| **Vercel AI SDK** + **AI Elements** | vercel/ai | Toolkit streaming, framework-agnostic; AI Elements = component lắp ráp | Gần tầng transport |
-| **AG-UI** | ag-ui-protocol/ag-ui | Giao thức sự kiện agent ↔ UI | AWS AgentCore, MS Agent Framework, Oracle A2UI tích hợp |
+| Dự án | Repo | ★ · license (19/10/2026) | Commit cuối | Vai trò | Ghi chú |
+|---|---|---|---|---|---|
+| **CopilotKit** | CopilotKit/CopilotKit | ~38k · MIT | 16/10/2026 | Frontend stack cho agent, tác giả **AG-UI** | Gọi vốn $27M 5/2026; nặng & opinionated, như application framework |
+| **assistant-ui** | assistant-ui/assistant-ui | ~13k · MIT | 19/10/2026 | Headless React primitives cho chat/agent | Ghép tốt với Vercel AI SDK |
+| **Vercel AI SDK** + **AI Elements** | vercel/ai | ~27k · Apache-2.0 | 16/10/2026 | Toolkit streaming, framework-agnostic; AI Elements = component lắp ráp | Gần tầng transport |
+| **AG-UI** | ag-ui-protocol/ag-ui | ~17k · MIT | 18/10/2026 | Giao thức sự kiện agent ↔ UI | AWS AgentCore, MS Agent Framework, Oracle A2UI tích hợp |
 
 **Nhận định:** năm 2026 lựa chọn quyết định bởi giao thức (AG-UI) hơn là bộ component.
+
+> **Cách lấy số §1–§6 (rà lại 19/10/2026):** số sao và license từ shields.io (đọc thẳng GitHub, làm tròn); hai số lớn nhất thay đổi (Taste Skill, OpenDesign) đối chiếu thêm trang GitHub. Ngày commit cuối đọc từ `git clone --depth 1` cùng ngày. Khi shields báo "not identifiable" thì đọc file LICENSE trong clone (Vuetify, tldraw, Vercel AI).
 
 ## 7. Case study: Anatomy – skill vẽ minh họa isometric tương tác (link từ người dùng, 2026-10-12)
 
