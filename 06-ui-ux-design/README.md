@@ -602,6 +602,72 @@ Liên hệ với các mục khác: layout chỉ là khung; giá trị màu, kho�
 
 **Nguồn §7i:** https://github.com/miqdadbadjuber/anti-slop (clone đủ, 119 commit, HEAD 439a2ef 16/10/2026, tag v3.2.21; README.md, GUIDE.md, ROADMAP.md, LICENSE, package.json, `.claude-plugin/{plugin.json,marketplace.json,contrast-mcp-launcher.mjs}`, `skills/*/SKILL.md`, `skills/antislop-human/{contrast-check.py,contrast-mcp.py}`, `cli/lib/{install,settings}.mjs`, `.github/workflows`; tự chạy 19/10/2026: `check-repo.mjs` 13/13, `contrast-check.py --selftest` 9/9, `smoke-test.mjs` pass) · trang GitHub 19/10/2026 (~6,5k★, 457 fork) · https://github.com/miqdadbadjuber (Indonesia, 110 follower) · https://trendshift.io/repositories/137042 (Daily #2 ngày 9/10/2026, Weekly #13, +6.083★/61 ngày) · https://skills.sh/miqdadbadjuber/anti-slop (32,0K tổng lượt cài, 6 skill) · api.npmjs.org `antislop-ai` (9.992, 17/9–16/10/2026; tạo 15/8/2026) · ssdnodes.com/learn/anti-slop-skill-for-coding-agents · skillsllm.com/skill/miqdadbadjuber-anti-slop · betterstack.com/community/guides/ai/anti-slop-oxlint (dự án trùng tên `dmmulroy/anti-slop`) · pypi.org/project/aislop · https://www.w3.org/TR/WCAG22/#dfn-large-scale (định nghĩa chữ lớn)
 
+## 7j. Hồ sơ: Leonxlnx/taste-skill (Taste Skill) — skill chống "AI slop" có inspector chạy trên trình duyệt thật (bổ sung hồ sơ, clone 2026-10-19)
+
+> §4 và bảng §1–§6 nhắc Taste Skill nhiều lần nhưng chưa có hồ sơ riêng; §7g.5 còn để ngỏ câu "mô tả GitHub mới có browser check (chưa xác minh)". Mục này clone đầy đủ, đọc skill và **tự chạy** để chốt: inspector trên trình duyệt thật là có thật.
+
+### 7j.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 19/10/2026) |
+|---|---|
+| Repo | `Leonxlnx/taste-skill` · **~98,9k★**, 6,7k fork · **MIT** (© 2026 Leonxlnx) · tag mới nhất **v2.1.2** (19/10/2026) · 239 commit, 19/2 → 19/10/2026 |
+| Tác giả | Leonxlnx (Leon Lin). Commit: Leonxlnx 144 + Leon Lin 61 (cùng người), **Cursor Agent 9** → một phần do agent viết. Có trang `tasteskill.dev`, app `tastecode.dev`, nhà tài trợ (React Bits, IMG.LY…) |
+| Phân phối | Agent Skills (tương thích Codex/Cursor/Claude, chuẩn `vercel-labs/agent-skills`); `.claude-plugin/`, `.codex-plugin/`, `install.sh`, `skill.sh`. Cũng có **TasteCode** — app desktop đóng gói skill kèm design agent (README ghi free, OSS) |
+| Bên trong | 13 thư mục skill. Chính là **`taste-skill`** (`design-taste-frontend`, `SKILL.md` 529 dòng) + `taste-skill-v1` (227), `taste-skill-v2-experimental` (1.229); các biến thể phong cách `brutalist`/`minimalist`/`soft`; `stitch-skill`, `redesign-skill`, `brandkit`, `image-to-code`, `imagegen-frontend-{web,mobile}`, `gpt-tasteskill` |
+
+### 7j.2 Cách hoạt động (đọc `skills/taste-skill/`)
+
+Skill chính không chỉ là lời khuyên; nó có **ba script không phụ thuộc gói ngoài** và một thư viện dữ liệu:
+
+- **`scripts/draw.mjs` (584 dòng)** — "chia bài" hướng thiết kế: theo `--sector` và `--idea`, rút 3 trong **20 hướng** rồi rút tiếp type/palette/hero/section từ thư viện, in ra một "direction sheet". Thư viện (`library/*.json`): 20 directions, 58 heroes, 185 sections, 56 palettes, 44 type, 202 sites, 18 motions — README nói chưng cất từ **một nghiên cứu 247 site** (One Page Love, Awwwards SOTD); thư viện đóng gói 202 (chênh 247 vs 202 là study vs bản đóng gói).
+- **`scripts/inspect.mjs` (303 dòng) + `scripts/lib/cdp.mjs`** — **inspector trình duyệt thật**: điều khiển Chrome/Edge/Chromium qua **CDP (DevTools Protocol), không cần Playwright/Puppeteer**, Node 22+. Mở trang ở 1440/768/390px, đo (số dòng tiêu đề, cỡ chữ, font thật đang dùng), ghi `FAIL`/`WARN` và lưu screenshot vào `.taste-skill/inspect/`. Vòng "look-and-fix": agent đọc screenshot, sửa, đo lại.
+- **`scripts/lint.mjs` (119 dòng, Node 18+)** — phương án không có Chrome: lint tĩnh "house style" (cấm hairline, v.v.).
+
+**Tự chạy (19/10/2026):** `tests/skill_test.sh` pass; `node --check` cả 5 script OK; `node scripts/draw.mjs --sector saas --idea "…"` in ra direction sheet đầy đủ; `node scripts/lint.mjs` chạy và bắt 6 lỗi hairline trong CSS demo của repo. Tức phần "chia bài" và "lint" chạy được ngay; inspector cần Chrome nên chưa chạy trong sandbox, nhưng mã dùng CDP là thật (chưa chạy end-to-end **tại đây**).
+
+### 7j.3 Vì sao đáng chú ý, và so với các mục đã có
+
+- **Đây là một trong số ít skill "taste" có cổng đo trên bản render thật** — đúng bài học §4. Khác `frontend-design` của Anthropic (§7g.3, chỉ prompt, không cổng) ở chỗ có inspector + vòng screenshot; khác XIAS (§7d) và Impeccable (mục 20) ở chỗ cổng của nó **không cần cài gói** (CDP thuần), nhẹ hơn Playwright.
+- **Điểm mạnh riêng:** thư viện hướng thiết kế rút từ nghiên cứu site thật, "chia bài" buộc agent chọn hướng thay vì mặc định; cảnh báo ngay trong skill rằng "bỏ trang trí mà không thêm chất" sẽ ra trang mỏng (một lỗi các skill chống-slop khác hay mắc).
+- **Lưu ý:** skill chính 529 dòng + 11 reference + thư viện JSON → tốn ngữ cảnh; có hệ sinh thái thương mại quanh (TasteCode, website, tài trợ) nên đọc README cần tách phần OSS khỏi phần quảng bá. Con số sao nhảy mạnh (kho từng ghi ~46k "theo listing", nay ~98,9k).
+
+### 7j.4 Dùng thế nào
+
+- Lấy cả bộ `taste-skill` nếu muốn cổng đo trên trình duyệt mà không cài Playwright (chỉ cần Chrome/Edge sẵn có + Node 22). Không có Chrome thì `lint.mjs` là mức tối thiểu.
+- Đã dùng `frontend-design` rồi thì cân nhắc chỉ mượn `inspect.mjs` + house rules, tránh nạp trùng hai bộ luật lớn.
+- Bỏ qua các biến thể `*-experimental` (1.229 dòng) trừ khi cần; dùng bản `taste-skill` ổn định.
+
+**Nguồn §7j:** https://github.com/Leonxlnx/taste-skill (clone đầy đủ, 239 commit, HEAD b9ca2fd 19/10/2026, tag v2.1.2; README.md, LICENSE (MIT), CHANGELOG.md, `skills/taste-skill/SKILL.md` + `references/` + `library/*.json` + `scripts/{draw,inspect,lint,scenes,assets}.mjs` + `scripts/lib/{cdp,probe,rules,app-draw}.mjs`; tự chạy `tests/skill_test.sh`, `node --check`, `draw.mjs`, `lint.mjs` 19/10/2026) · trang GitHub 19/10/2026 (~98,9k★, 6,7k fork) · github.com/Leonxlnx/taste-skill/releases (v2.1.0/2.1.1/2.1.2 18–19/10) · tasteskill.dev · tastecode.dev · github.com/vercel-labs/agent-skills
+
+## 7k. Hồ sơ: nexu-io/open-design (OpenDesign) — "workspace agent thiết kế" local-first, Apache-2.0 (bổ sung hồ sơ, clone 2026-10-19)
+
+> §2 liệt kê OpenDesign (~102k★) nhưng chưa đọc mã. Mục này clone đầy đủ (blob:none), đọc README, `package.json`, `PRIVACY.md`, `CHANGELOG.md`, catalog design-system và lịch sử commit.
+
+### 7k.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 19/10/2026) |
+|---|---|
+| Repo | `nexu-io/open-design` (open-design.ai) · **~102k★** trang GitHub, 11,7k fork (aggregator chậm hơn: 76k–91k ở sourcepulse/dev.co, 7–9/2026) · **Apache-2.0** · v0.25.1 · **3.764 commit**, từ **28/4/2026** · monorepo pnpm |
+| Nguồn gốc tên | Commit #1 (28/4/2026) đổi tên từ **"Open Claude Design" → "Open Design"**; tự định vị là "bản mã mở thay cho Claude Design" (mer.vin, worldofai). Tức là một **alternative tới một sản phẩm thiết kế của Anthropic**, không phải của Anthropic |
+| Tác giả | lefarcen 552, PerishFire 204, Ray Xi 185… + **nhiều bot/agent**: `open-design-crew[bot]` 191, `open-design-bot` 160, `Cursor Agent` 116 → một phần đáng kể do agent/bot viết |
+| Là gì | App desktop + web **local-first**: viết brief → agent coding (hoặc OpenDesign Cloud) dựng prototype theo design system của bạn. **Studio**: prototype (preview trực tiếp), slides, sinh ảnh, **HyperFrames** (motion → MP4). Nối coding agent qua **skills/CLI/MCP** + adapter runtime (Claude Code, Codex, DeepSeek Harness/Reasonix, Cursor, Gemini…) |
+| Thương mại | **OpenDesign Cloud / Go** trả phí (credit; trang ghi "$8 tháng đầu, tới $120/tháng credit"). Workflow project local chạy được khi không có telemetry |
+
+### 7k.2 Điều đã đọc
+
+- **151 gói design-system** (`design-systems/<slug>/`: `manifest.json` + `DESIGN.md` + `tokens.css` + bản dịch `DESIGN-*.md` nhiều thứ tiếng). Mỗi gói có `source/evidence.md` **ghi trung thực**: "derived from curated OpenDesign bundled fixture… does not claim a fresh crawl of the original upstream brand repository or website". Slug mang tên thương hiệu (Airbnb, Apple, Binance, BMW, Bugatti…) — lưu ý nhãn hiệu như §7d/§7g.5, nhưng ở đây có file provenance kèm, minh bạch hơn.
+- **Telemetry (`PRIVACY.md`):** hai lớp — *product analytics* bật mặc định, opt-out qua banner lần chạy đầu và Settings → Privacy; *safety/reliability* luôn bật trong build có telemetry destination (không tắt được bằng toggle chung). **Fork/bản build không có credential telemetry thì không gửi gì.** Minh bạch hơn trường hợp browser-use (mục 11 §1c) vì có trang PRIVACY mô tả rõ và tắt được lớp analytics.
+- **Quy mô & nhịp:** 13.557 file, 3.764 commit trong ~6 tháng, release note 0.9.0 khoe "310 PR · 88 contributor · 7 ngày". Tốc độ rất cao, nhiều do agent.
+
+### 7k.3 So sánh và đánh giá
+
+- **So với design tool mở khác (§2):** Penpot/Excalidraw/tldraw là canvas thiết kế; OpenDesign là **workspace điều phối agent** (brief → prototype/slide/ảnh/motion), gần FigCraft (§7e) và các "crafting app" hơn về ý tưởng, nhưng rộng hơn và có tầng Cloud trả phí.
+- **Điểm mạnh:** Apache-2.0, local-first thật (dữ liệu + BYOK key ở máy), nhiều adapter agent, catalog design-system có provenance, PRIVACY rõ. Hợp để tham khảo cách **đóng gói design system cho agent** (manifest + DESIGN.md + tokens.css) và cách nối nhiều coding agent qua MCP/CLI/runtime.
+- **Rủi ro cần đọc kỹ:** repo **rất lớn, chưa audit mã sâu** (hồ sơ này ở mức README+manifest+privacy); phần lớn giá trị thực nằm sau tầng Cloud trả phí; số sao tăng cực nhanh cho một repo 6 tháng tuổi (kiểm từ trang GitHub trực tiếp, aggregator còn ghi 76–91k); tên "Open(Claude)Design" và slug thương hiệu dễ gây nhầm về liên kết chính chủ.
+- **Dùng thế nào:** thử bản OSS local trước khi mua credit; nếu chỉ cần mẫu đóng gói design-system cho agent thì đọc `design-systems/<slug>/` làm tham khảo (giữ evidence/provenance như họ làm); không coi 151 gói thương hiệu là tài sản dùng lại thương mại được mà không kiểm nhãn hiệu.
+
+**Nguồn §7k:** https://github.com/nexu-io/open-design (clone blob:none đầy đủ lịch sử, 3.764 commit, HEAD 88b3d9931 19/10/2026, v0.25.1; đọc README.md, package.json (Apache-2.0, pnpm@10.33.2), PRIVACY.md, CHANGELOG.md (0.9.0), `design-systems/README.md` + `design-systems/airbnb/{manifest.json,source/evidence.md}`; `git log` commit #1 rename "Open Claude Design"→"Open Design") · trang GitHub 19/10/2026 (~102k★, 11,7k fork) · github.com/nexu-io · sourcepulse.org/projects/28859130 · dev.co/ai/frameworks/open-design (76k, 8/7/2026) · mer.vin/2026/05/open-design-explained-local-first-open-source-alternative-to-claude-design · jimmysong.io/ai/open-design
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
