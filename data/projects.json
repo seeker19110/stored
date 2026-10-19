@@ -4896,6 +4896,16 @@
       "section": "06"
     },
     {
+      "name": "antislop",
+      "repo": "miqdadbadjuber/anti-slop",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 6500,
+      "open_source": true,
+      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i",
+      "section": "06"
+    },
+    {
       "name": "HyperUI",
       "repo": "markmead/hyperui",
       "category": "layout-template",
