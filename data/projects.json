@@ -61,7 +61,8 @@
       "agent-workspace",
       "context-optimization",
       "app-launcher",
-      "layout-template"
+      "layout-template",
+      "remote-access"
     ],
     "count": null
   },
@@ -5483,6 +5484,16 @@
       "stars": 8,
       "open_source": true,
       "notes": "App dọn dẹp Linux desktop (Tauri v2+Rust+React19), gỡ app + cập nhật đa package manager, có ml/ phân loại app. RỦI RO (đọc mã): helper pkexec /usr/bin/cleanmylinux-helper = exec \"$@\", gọi qua pkexec sh -c => primitive chạy lệnh root tùy ý; allow_active auth_self_keep cache => sau 1 lần auth mọi tiến trình user active chạy được root. beta, 1 tác giả. ★ slide 18/10/2026; mục 13 §6e",
+      "section": "13"
+    },
+    {
+      "name": "S-remote",
+      "repo": "thsangyk-oss/sremote",
+      "category": "remote-access",
+      "license": null,
+      "stars": 2,
+      "open_source": true,
+      "notes": "Terminal + remote desktop + file tự host qua Tailscale (Node 2209 + broker PTY sống + agent C# DXGI + app Android); phiên sống sau mất kết nối. Bảo mật CHỈ lọc IP tailnet/localhost, KHÔNG auth ứng dụng → ai trên tailnet có shell toàn quyền + điều khiển desktop; cài irm|iex tự elevate admin. Chưa có LICENSE (package.json ghi ISC); 2★, Devin agent 6/53 commit; mục 13 §6f (19/10/2026)",
       "section": "13"
     }
   ]

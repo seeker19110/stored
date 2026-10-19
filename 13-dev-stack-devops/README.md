@@ -235,6 +235,56 @@
 | Liên quan | mục 13 §6d (BrewUI, GUI cho package manager), mục 12 §4 (nguyên tắc: allowlist tham số, review cho hành động quyền cao), mục 11 (sandbox) |
 | Nguồn | clone 18/10/2026 (README, app.toml, config/*.policy, scripts/cleanmylinux-helper.sh, src-tauri/src/system_info/{ops,sudo}.rs); slide "4 GitHub repos worth bookmarking" |
 
+## 6f. Case study: thsangyk-oss/sremote — terminal + remote desktop tự host qua Tailscale, không có lớp auth ứng dụng (link người dùng gửi, clone 2026-10-19)
+
+**Kết luận:** một công cụ "mở lại phiên terminal/desktop của máy trạm từ trình duyệt hay điện thoại", gọn và trung thực về phạm vi, hợp để tiếp tục một phiên coding agent đang chạy. Nhưng toàn bộ an toàn **chỉ dựa vào ranh giới mạng Tailscale**: không có mật khẩu, token hay bất kỳ xác thực ứng dụng nào. Ai ở trên cùng tailnet (hoặc localhost) đều có shell toàn quyền, điều khiển chuột/bàn phím và đọc/ghi toàn bộ ổ đĩa của máy host. Cài bằng `irm … | iex` và tự nâng quyền admin. Repo mới, 2★, một phần code do agent Devin viết, chưa có file LICENSE.
+
+### 6f.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 19/10/2026) |
+|---|---|
+| Repo | `thsangyk-oss/sremote` · **~2★, 2 fork** · 53 commit, 25/9 → 19/10/2026 · tag mới nhất **v1.14.1** (README nói APK kèm v1.11.3) · **không có file LICENSE**; `package.json` ghi `"license":"ISC"`, trường `author` để trống |
+| Tác giả | `thsangyk-oss` (16 repo công khai). README có QR **VietQR·MB** "Ủng hộ tác giả cốc cafe mua token" → tác giả Việt Nam **(chưa xác minh danh tính)**. Commit: `thsangyk-oss` 44, **`Devin` (agent AI) 6**, `thsangyk` 3 |
+| Là gì | Máy chủ Node (`server.js` 1.091 dòng, cổng 2209; deps `node-pty`, `ws`, `@xterm/*`) + `agent/` (session broker giữ PTY sống trong tiến trình riêng; `screen-pro/ScreenPro.cs` 673 dòng chụp màn hình DXGI trên Windows; tray C#) + `public/` (web UI xterm.js, `app.js` 2.612 dòng) + `android/` (client Java thuần, không AndroidX) |
+| Chức năng | Phiên terminal **sống xuyên thiết bị** (PTY sống trong broker, sống sót đóng tab/mất wifi/restart app); remote desktop (chuột, bàn phím, clipboard, đa màn hình, "trackpad mode" cho điện thoại); file explorer toàn máy (upload tới 4 GB, tự zip thư mục, giải nén, xem trước code/ảnh/video); git diff |
+| Nền tảng | Host Windows/Linux/macOS; client trình duyệt + app Android |
+
+### 6f.2 Mô hình bảo mật: chỉ có một lớp, là mạng
+
+- **Lớp duy nhất:** `isAllowedRemote()` (server.js) chỉ cho `127.0.0.1`/`::1`, dải Tailscale `100.64.0.0/10` và ULA tailnet `fd7a:115c:a1e0:`; mọi địa chỉ khác bị **403** trước khi vào app, cho cả HTTP và WebSocket. README ghi đúng điều này ("Private by design").
+- **Không có lớp thứ hai:** không mật khẩu, không token, không phiên đăng nhập. Khi đã qua được lớp IP, mọi route đều mở. Nghĩa là **bất kỳ thiết bị nào trên cùng tailnet** (hoặc bất kỳ tiến trình nào trên chính máy host, qua localhost) đều: mở shell mới, gõ lệnh vào phiên đang chạy, điều khiển desktop, và duyệt/tải/ghi file bất kỳ đâu trên máy.
+- **"Jail" chỉ cho API file, không cho terminal:** các route `/api/files|file|fileop` có kiểm `jail()` chặn ra ngoài thư mục gốc (403 "outside jail"), nhưng terminal là shell đầy đủ nên giới hạn này không áng gì với người đã vào được.
+- **Máy chủ `listen(PORT, "0.0.0.0")`:** lắng nghe trên mọi interface rồi lọc bằng IP ở tầng ứng dụng. An toàn chỉ còn đúng khi (a) Tailscale ACL thực sự giới hạn ai vào được tailnet, và (b) không có ai/cái gì không tin cậy chạy trên chính máy host. README có hướng dẫn thêm firewall giới hạn cổng 2209 vào riêng interface Tailscale — nên làm, vì nó là lớp phòng thủ thứ hai mà mặc định không có.
+
+Đây **không phải lỗ hổng giấu kín** — mô hình "tin toàn bộ tailnet" là lựa chọn thiết kế, và README nói rõ chỉ tailnet vào được. Điều cần người đọc kho nắm: tailnet của bạn thường gồm nhiều thiết bị, và Tailscale cho phép chia sẻ node cho người khác; trên sremote, mọi nút được chia sẻ đều ngang bằng chủ máy. Không có "chế độ chỉ xem" hay phân quyền.
+
+### 6f.3 Cài đặt và quyền
+
+- **`irm … | iex`:** cách cài khuyến nghị là tải `install.ps1` từ `raw.githubusercontent.com` rồi chạy thẳng (`fix-state.ps1`, `elevate.ps1` cũng vậy). Đây là mẫu "chạy script từ xa không kiểm" — rủi ro chuỗi cung ứng như mọi `curl|sh`/`irm|iex`: tin tưởng repo + CDN tại thời điểm chạy. Nên tải script về đọc rồi mới chạy.
+- **Tự nâng quyền admin:** cài từ shell elevated thì tác vụ autostart tự elevate, và **mọi phiên terminal kế thừa token admin** của chuỗi task → tray → server → PTY (README mục elevate). Đặt `$env:SREMOTE_LIMITED=1` để không elevate. Hệ quả: nếu đã bật, một phiên mở từ điện thoại là shell admin.
+- Cài sẵn rule firewall qua `install.bat`/installer elevated.
+
+### 6f.4 So với lựa chọn cùng loại
+
+| | sremote | ttyd | sshx | wetty |
+|---|---|---|---|---|
+| Bản chất | Terminal + remote desktop + file, phiên bền, app phone | Chia sẻ 1 terminal qua web, 1 binary C | Terminal cộng tác, hạ tầng tác giả | SSH client trong trình duyệt |
+| License | **chưa có file** (package.json ghi ISC) | MIT | — | MIT |
+| Auth ứng dụng | **Không** (chỉ lọc IP tailnet) | Basic Auth tùy chọn (`-c user:pass`), ghi mặc định tắt | Link bí mật/khóa | Tùy chọn, + proxy |
+| Phiên sống sau mất kết nối | Có (PTY trong broker) | Không | Có | Không (là SSH) |
+| Điểm mạnh riêng | Remote desktop + file + app Android trong một | Nhẹ, chín, có auth | Cộng tác nhiều người | Dựa trên SSH sẵn có |
+
+sremote thêm nhiều thứ ttyd không có (phiên bền, desktop, file, app phone), nhưng **bỏ hẳn lớp auth ứng dụng** mà ttyd có tùy chọn. Với ai chỉ cần terminal web có mật khẩu, ttyd + Tailscale vẫn an toàn hơn theo lớp.
+
+### 6f.5 Dùng thế nào
+
+- **Hợp khi:** một người, một tailnet riêng chỉ gồm thiết bị của chính mình, muốn tiếp tục phiên build/dev/coding-agent từ điện thoại. Đúng ca dùng README mô tả.
+- **Không nên:** đặt trên tailnet chia sẻ nhiều người; dựa vào sremote như lớp an toàn khi host chạy cả tiến trình không tin cậy (localhost luôn vào được); để chế độ elevate nếu không cần shell admin.
+- **Nếu dùng, tối thiểu:** thêm firewall giới hạn cổng 2209 vào riêng interface Tailscale (README có lệnh); siết Tailscale ACL để chỉ thiết bị của bạn thấy được node; đọc `install.ps1` trước khi `iex`; cân nhắc `SREMOTE_LIMITED=1`.
+- **Trưởng thành:** repo 2★, 3 tuần tuổi, một phần do agent viết, chưa có LICENSE (dùng lại/nhúng chưa có cơ sở pháp lý rõ). Xem là công cụ cá nhân đang phát triển, không phải sản phẩm đã kiểm.
+
+**Nguồn §6f:** https://github.com/thsangyk-oss/sremote (clone đầy đủ, 53 commit, HEAD `ce9e17c` 19/10/2026, tag v1.14.1; đọc README.md, AGENTS.md, package.json, server.js (`isAllowedRemote`, các route `/api/*`, `listen`), install.ps1, elevate.ps1, agent/screen-pro/ScreenPro.cs, public/app.js; không có file LICENSE) · https://github.com/thsangyk-oss (16 repo) · ttyd: github.com/tsl0922/ttyd (MIT) · besthub.dev/articles/three-open-source-web-terminal-tools · selfhostyourself.com/tags/ssh-client-web
+
 ## 7. Nguồn
 
 - Mục 23 (19 repo của chủ kho, đọc 2026-10-12) · https://github.com/alibaba/open-code-review · https://github.com/googleapis/release-please · https://github.com/oxc-project/oxc · https://github.com/webpro-nl/knip · https://github.com/kucherenko/jscpd · https://github.com/astral-sh/uv · https://github.com/astral-sh/ruff
