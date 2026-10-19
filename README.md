@@ -75,9 +75,9 @@
 
 ### 5. UI/UX & design: "sở hữu mã nguồn" và chống "AI slop"
 
-- **shadcn/ui** (~115–121k★) thắng nhờ mô hình copy-paste; từ 7/2026 mặc định dùng **Base UI** thay Radix.
-- Design tool mở: Penpot (~61k★, thay Figma), Excalidraw (~134k★), tldraw (~51k★), Onlook (visual editor cho React).
-- AI sinh UI: v0.app, Lovable, Bolt (đóng), Google Stitch, MagicPath; **Taste Skill** (~46k★) là skill chống giao diện "generic" cho coding agent.
+- **shadcn/ui** (~126k★ ngày 19/10/2026) thắng nhờ mô hình copy-paste; từ 7/2026 mặc định dùng **Base UI** thay Radix.
+- Design tool mở: Penpot (~61k★, thay Figma), Excalidraw (~134k★), tldraw (~51k★), Onlook (~27k★, visual editor cho React, dừng commit từ 7/2026), OpenDesign (~102k★, workspace thiết kế cho agent). Số đọc 19/10/2026.
+- AI sinh UI: v0.app, Lovable, Bolt (đóng), Google Stitch, MagicPath; **Taste Skill** (~98,9k★ ngày 19/10/2026, trước ~46k) là skill chống giao diện "generic" cho coding agent.
 - Lớp "agentic UI": CopilotKit, assistant-ui, Vercel AI SDK + AI Elements.
 
 ### 6. Eval & observability là mảnh ghép bắt buộc để lên production

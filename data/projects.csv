@@ -36,32 +36,35 @@ claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,,learning,
 MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,91200,True,04,"AAIF / Linux Foundation; README chỉ còn 7 reference server, trỏ sang Registry (12/10/2026)"
 FastMCP,prefecthq/fastmcp,,protocol,Apache-2.0,23000,True,04,Python MCP framework
 A2A,a2aproject/A2A,,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
-AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,,True,04,Agent ↔ UI; CopilotKit
+AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,17000,True,04,Agent ↔ UI; CopilotKit; ★ 19/10/2026 (shields)
 Agent Skills spec,,https://agentskills.io,protocol,open standard,,True,04,SKILL.md; chuẩn mở 18/12/2025
 awesome-agent-skills,VoltAgent/awesome-agent-skills,,awesome-list,,,True,04,1000+ skills
 n8n,n8n-io/n8n,,low-code,Sustainable Use,207000,False,05,fair-code
 Dify,langgenius/dify,,low-code,Apache-2.0 (modified),158000,True,05,
 Langflow,langflow-ai/langflow,,low-code,MIT,145000,True,05,
 Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55500,True,05,Trạng thái chưa rõ (archive 8/2026?)
-shadcn/ui,shadcn-ui/ui,,ui-library,MIT,126000,True,06,"Base UI mặc định từ 7/2026; ★ 16/10/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h)"
-MUI,mui/material-ui,,ui-library,MIT,99000,True,06,★ 16/10/2026
-Radix UI,radix-ui/primitives,,ui-library,MIT,19000,True,06,nguồn lệch 19k–35k; ★ 16/10/2026
-Base UI,mui/base-ui,,ui-library,MIT,11000,True,06,★ 16/10/2026
-Mantine,mantinedev/mantine,,ui-library,MIT,32000,True,06,★ 16/10/2026
-Vuetify,vuetifyjs/vuetify,,ui-library,MIT,41000,True,06,
-Storybook,storybookjs/storybook,,ui-library,MIT,91000,True,06,
-Excalidraw,excalidraw/excalidraw,,design-tool,MIT,134000,True,06,
-Penpot,penpot/penpot,,design-tool,MPL-2.0,61000,True,06,Figma alternative
-tldraw,tldraw/tldraw,,design-tool,tldraw license,51000,True,06,
-Onlook,onlook-dev/onlook,,design-tool,Apache-2.0,,True,06,Visual editor React
+shadcn/ui,shadcn-ui/ui,,ui-library,MIT,126000,True,06,"Base UI mặc định từ 7/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h); ★ 19/10/2026 (shields)"
+MUI,mui/material-ui,,ui-library,MIT,99000,True,06,★ 19/10/2026 (shields)
+Radix UI,radix-ui/primitives,,ui-library,MIT,19000,True,06,shields đọc thẳng GitHub ra 19k (trước ghi nguồn lệch 19k–35k); ★ 19/10/2026 (shields)
+Base UI,mui/base-ui,,ui-library,MIT,11000,True,06,★ 19/10/2026 (shields)
+Mantine,mantinedev/mantine,,ui-library,MIT,32000,True,06,★ 19/10/2026 (shields)
+Vuetify,vuetifyjs/vuetify,,ui-library,MIT,41000,True,06,★ 19/10/2026 (shields)
+Storybook,storybookjs/storybook,,ui-library,MIT,91000,True,06,★ 19/10/2026 (shields)
+Headless UI,tailwindlabs/headlessui,,ui-library,MIT,29000,True,06,"Component headless của Tailwind Labs (React, Vue); commit cuối 13/4/2026; ★ 19/10/2026 (shields)"
+OpenDesign,nexu-io/open-design,,design-tool,Apache-2.0,102000,True,06,"""Collaborative AI design agent workspace"" local-first (open-design.ai), có dịch vụ Cloud/Go trả phí; chưa đọc mã; ★ 19/10/2026 (trang GitHub 102,3k)"
+awesome-ai-tools-for-ui,maxbogo/awesome-ai-tools-for-ui,,awesome-list,,969,True,06,"Danh sách công cụ AI cho UI (Taste Skill, Refactoring UI skill…); không ghi license; commit cuối 25/9/2026; ★ 19/10/2026 (shields)"
+Excalidraw,excalidraw/excalidraw,,design-tool,MIT,134000,True,06,★ 19/10/2026 (shields)
+Penpot,penpot/penpot,,design-tool,MPL-2.0,61000,True,06,Figma alternative; ★ 19/10/2026 (shields)
+tldraw,tldraw/tldraw,,design-tool,tldraw license,51000,True,06,★ 19/10/2026 (shields)
+Onlook,onlook-dev/onlook,,design-tool,Apache-2.0,27000,True,06,Visual editor React; commit cuối 21/7/2026; ★ 19/10/2026 (shields)
 v0.app,,https://v0.app,ai-ui-generator,proprietary,,False,06,Vercel
 Lovable,,https://lovable.dev,ai-ui-generator,proprietary,,False,06,
-bolt.diy,stackblitz-labs/bolt.diy,,ai-ui-generator,MIT,,True,06,Bản mở của Bolt.new
+bolt.diy,stackblitz-labs/bolt.diy,,ai-ui-generator,MIT,20000,True,06,Bản mở của Bolt.new; ★ 19/10/2026 (shields)
 Google Stitch,,https://stitch.withgoogle.com,ai-ui-generator,proprietary,,False,06,
-Taste Skill,Leonxlnx/taste-skill,,design-skill,MIT,46000,True,06,Chống AI-slop UI
-CopilotKit,CopilotKit/CopilotKit,,agentic-ui,MIT,,True,06,$27M 5/2026
-assistant-ui,assistant-ui/assistant-ui,,agentic-ui,MIT,,True,06,
-Vercel AI SDK,vercel/ai,,agentic-ui,Apache-2.0,,True,06,+ AI Elements
+Taste Skill,Leonxlnx/taste-skill,,design-skill,MIT,98900,True,06,"Chống AI-slop UI; mô tả GitHub mới: art direction, reference images, browser check (chưa đọc mã); ★ 19/10/2026 (shields)"
+CopilotKit,CopilotKit/CopilotKit,,agentic-ui,MIT,38000,True,06,$27M 5/2026; ★ 19/10/2026 (shields)
+assistant-ui,assistant-ui/assistant-ui,,agentic-ui,MIT,13000,True,06,★ 19/10/2026 (shields)
+Vercel AI SDK,vercel/ai,,agentic-ui,Apache-2.0,27000,True,06,+ AI Elements; ★ 19/10/2026 (shields)
 Langfuse,langfuse/langfuse,,eval-observability,MIT (core),,True,07,
 Promptfoo,promptfoo/promptfoo,,eval-observability,MIT,,True,07,red-team
 DeepEval,confident-ai/deepeval,,eval-observability,Apache-2.0,,True,07,
@@ -74,9 +77,9 @@ system-design-primer,donnemartin/system-design-primer,,learning,CC BY 4.0,365000
 awesome-llm-apps,Shubhamsaboo/awesome-llm-apps,,awesome-list,Apache-2.0,105000,True,08,
 awesome-claude-code,hesreallyhim/awesome-claude-code,,awesome-list,,45000,True,08,37k–55k tùy nguồn
 awesome-mcp-servers,wong2/awesome-mcp-servers,,awesome-list,,,True,08,
-awesome-generative-ui,narrowin/awesome-generative-ui,,awesome-list,,,True,08,
-awesome-design-systems,klaufel/awesome-design-systems,,awesome-list,,,True,08,
-design-resources-for-developers,bradtraversy/design-resources-for-developers,,awesome-list,MIT,,True,08,
+awesome-generative-ui,narrowin/awesome-generative-ui,,awesome-list,CC-BY-4.0,139,True,08,★ 19/10/2026 (shields)
+awesome-design-systems,klaufel/awesome-design-systems,,awesome-list,CC0-1.0,903,True,08,★ 19/10/2026 (shields)
+design-resources-for-developers,bradtraversy/design-resources-for-developers,,awesome-list,MIT,67000,True,08,★ 19/10/2026 (shields)
 Github-Ranking,EvanLi/Github-Ranking,,awesome-list,,,True,08,Cập nhật hằng ngày
 deployment-checklist,PinoyFreeCoder/deployment-checklist,,checklist,không rõ (cho phép copy/fork),48,True,09,"Pre-deploy web/mobile; base.md ~130 mục + laravel/nextjs/django; agent.md trả GO/NO-GO với bằng chứng; tạo 26/9/2026, không LICENSE; link từ người dùng"
 OWASP CheatSheetSeries,OWASP/CheatSheetSeries,,checklist,CC BY-SA 4.0,,True,09,
@@ -456,7 +459,7 @@ make.com-automation-recipes,cporter202/make-com-automation-recipes,,awesome-list
 ai-growth-stack,cporter202/ai-growth-stack,,awesome-list,,229,False,08,"16/10/2026; chỉ một README (7 commit 21/12/2025, không đổi từ đó), không code/LICENSE; 6 'API' đều link về một hồ sơ RapidAPI, trùng danh mục bán của apidataframe.com, không công bố quan hệ; huy hiệu ACTIVE/UPDATED tĩnh; xem mục 08 §2d.2"
 official-design-md (VoltAgent),VoltAgent/official-design-md,,awesome-list,MIT,519,True,06,11 DESIGN.md chính chủ; 1/11 qua linter Google sạch; mục VoltAgent là bản trích xuất đăng lại (13/10/2026)
 awesome-design-md,VoltAgent/awesome-design-md,,awesome-list,MIT,121000,True,06,84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026)
-DESIGN.md spec (Google),google-labs-code/design.md,,protocol,Apache-2.0,28000,True,06,"Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026)"
+DESIGN.md spec (Google),google-labs-code/design.md,,protocol,Apache-2.0,28000,True,06,"Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026); ★ 19/10/2026 (shields)"
 text-to-cad,earthtojake/text-to-cad,,harness-pack,MIT,20000,True,20,"Plugin CAD: 12 skill + MCP cadgen (build123d/OCP), STEP/STL/3MF, DFM/DfAM; telemetry PostHog bật mặc định (13/10/2026)"
 TanStack Query,TanStack/query,,frontend,MIT,50000,True,13,"Server state/cache; adapter React, Vue, Solid, Svelte, Angular, Preact; v5 dùng isPending; kiểm ảnh mục 13 §6c, 2026-10-13"
 Tailwind CSS,tailwindlabs/tailwindcss,,frontend,MIT,98000,True,13,"Utility-first CSS, v4.3.3 (13/10/2026); kiểm ảnh mục 13 §6c"
@@ -504,7 +507,7 @@ Flutter Responsive Admin Panel,abuanwar072/Flutter-Responsive-Admin-Panel-or-Das
 Material 3 canonical layouts,,https://developer.android.com/develop/ui/compose/layouts/adaptive/canonical-layouts,learning,,,False,06,"Hướng dẫn chính thức: list-detail, supporting pane, feed; breakpoint compact <600dp, medium 600–839dp, expanded ≥840dp; mục 06 §7h"
 Apple HIG: Layout,,https://developer.apple.com/design/human-interface-guidelines/layout,learning,,,False,06,"Layout theo size class, safe area, tab bar → sidebar khi rộng; không có số margin iOS cố định; mục 06 §7h"
 Mobbin,,https://mobbin.com,learning,proprietary,,False,06,"Thư viện ảnh chụp màn hình app thật, không có mã; Pro khoảng $10/tháng (chưa xác minh từ trang giá); chỉ để lấy cảm hứng; mục 06 §7h"
-FigCraft,storytold/figcraft,,design-tool,MIT OR Apache-2.0,616,True,06,"Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ đọc 14/10/2026"
+FigCraft,storytold/figcraft,,design-tool,MIT OR Apache-2.0,2700,True,06,"Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ 616 ngày 14/10 → ~2,7k ngày 19/10/2026 (shields)"
 Zen Design System (Dizai Studio),Zen-Design-System/Zen-DS,,ui-library,Commercial,0,False,06,"Design system thương mại (Việt Nam), React 19 + Figma (2.179 biến, 1.598 icon); MCP cục bộ 11 tool, AGENTS.consumer.md, llms.txt, 205 luật dùng kiểm bằng máy; 1.058 test pass (tự chạy 16/10/2026); giấy phép theo seat còn là bản nháp chưa qua luật sư; registry riêng npm.dizai.studio"
 Zen (Umami),umami-software/zen,,ui-library,MIT,58,True,06,"Design system của Umami: quy ước shadcn, primitive Base UI, Tailwind v4; npm @umami/react-zen 0.255.0; có SKILL.md cho agent; ★ 16/10/2026"
 Ant Design,ant-design/ant-design,,ui-library,MIT,100000,True,06,Component đầy đủ cho ứng dụng doanh nghiệp; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026
@@ -522,7 +525,7 @@ GOV.UK Frontend,alphagov/govuk-frontend,,ui-library,MIT,1500,True,06,"Design sys
 Zendesk Garden,zendeskgarden/react-components,,ui-library,Apache-2.0,1100,True,06,Design system Zendesk; hay bị nhầm với 'Zen'; ★ 16/10/2026
 Ponytail,DietrichGebert/ponytail,,harness-pack,MIT,163000,True,20,"Prompt 52 dòng ""lazy senior dev"": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026"
 Caveman,JuliusBrussee/caveman,,context-optimization,Apache-2.0,112000,True,20,"Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026"
-Impeccable,pbakaus/impeccable,,design-skill,Apache-2.0,81000,True,20,"1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 14/10/2026"
+Impeccable,pbakaus/impeccable,,design-skill,Apache-2.0,83000,True,20,"1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 19/10/2026 (shields)"
 Vercel Agent Skills,vercel-labs/agent-skills,,harness-pack,MIT (README; không có file LICENSE),32000,True,20,"9 skill chính chủ Vercel: react-best-practices (có build/validate CI), web-design-guidelines, writing-guidelines, react-native, view-transitions, deploy-to-vercel, vercel-optimize (60+ file test); commit cuối 28/8/2026, 112 PR mở; ★ 14/10/2026"
 BrewUI,Homebrew/BrewUI,,devops,AGPL-3.0,2500,True,13,"GUI chính thức của Homebrew (SwiftUI, macOS 26+), cask homebrew-app, ra cùng Homebrew 7.0.0; hiện lệnh brew thật, hàng đợi lệnh tuần tự, zsh cô lập (cấu hình qua brew.env); không telemetry riêng; 455/1.201 commit có trailer Claude, AGENTS.md mẫu; v0.6.0, ★ 14/10/2026"
 Applite,milanvarady/Applite,,devops,MIT,7100,True,13,GUI Homebrew cho cask/app trên macOS; thay thế BrewUI trên macOS cũ; ★ 14/10/2026
