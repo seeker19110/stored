@@ -383,7 +383,7 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 | ★ · license (18/10/2026) | ~137k · MIT | `anthropics/claude-plugins-official` ~42k · Apache-2.0 | 646 · MIT | ~3,2k · MIT |
 | Hoạt động | 277 commit, v2.15.0, commit cuối 14/10/2026 | Plugin 1.1.0, SKILL.md sửa lần cuối 2–3/9/2026 | 2 commit, cùng ngày 27/8/2026 | 49 commit, 9/3 → 28/6/2026 |
 | Có cổng máy? | Có validator dữ liệu + 164 unit test của chính repo; **không** đo bản render | Không; chỉ dặn "tự chụp màn hình để phê bình" | Không; token đã kiểm tương phản sẵn | Không; mục "Quality Gates" là văn bản |
-| Đã kiểm | `unittest` 164/164 pass, `validate_data.py` OK, chạy thử 1 truy vấn | 3 bản SKILL.md trong 3 repo giống hệt nhau | Tính lại tỉ lệ tương phản light mode: khớp chú thích | 81% dòng là khung chung; 40/67 màu primary không đạt 4,5:1 với chữ trắng |
+| Đã kiểm | `unittest` 164/164 pass, `validate_data.py` OK, chạy thử 1 truy vấn | 3 bản SKILL.md trong 3 repo giống hệt nhau | Tính lại tỉ lệ tương phản light và dark mode: khớp chú thích | 81% dòng là khung chung; 40/67 màu primary không đạt 4,5:1 với chữ trắng |
 
 ### 7g.2 `nextlevelbuilder/ui-ux-pro-max-skill`: kho tra cứu lớn nhất, tạo design system bằng tìm kiếm
 
@@ -439,7 +439,7 @@ Danh sách: `narrowin/awesome-generative-ui` (LLM sinh/compose UI động), `max
 | Bên trong | `SKILL.md` 267 dòng (thang spacing, type, weight, màu HSL, 5 mức bóng, line-height, radius; quy trình; 9 "hard rule") · `references/systems.md` (dựng palette), `diagnose.md` (bảng triệu chứng → cách sửa), `techniques.md` · `assets/tokens.css` (token đầy đủ: thang, ramp xám và primary 9 mức, 3 bộ màu accent, lớp semantic `--surface`/`--text-*`/`--action` và khối dark mode) |
 | Bản quyền sách | README ghi không chứa chữ hay hình của sách, chỉ ghi chú và CSS tự viết theo ý tưởng của sách |
 
-**Kiểm token (18/10/2026):** tính lại tỉ lệ tương phản theo WCAG từ các giá trị HSL trong `tokens.css`. Light mode khớp chú thích: `grey-400` 2,67:1 (chỉ dùng cho chữ disabled), `grey-500` 3,91:1 (chỉ chữ lớn), `grey-600` 5,60:1, `grey-900` 13,43:1 so với nền `grey-100`; chữ trắng trên `primary-500` 5,81:1, trên `red/yellow/green-500` lần lượt 6,15 / 4,98 / 6,06:1. Dark mode chưa tính lại **(chưa xác minh)**.
+**Kiểm token (18/10/2026):** tính lại tỉ lệ tương phản theo WCAG từ các giá trị HSL trong `tokens.css`. Light mode khớp chú thích: `grey-400` 2,67:1 (chỉ dùng cho chữ disabled), `grey-500` 3,91:1 (chỉ chữ lớn), `grey-600` 5,60:1, `grey-900` 13,43:1 so với nền `grey-100`; chữ trắng trên `primary-500` 5,81:1, trên `red/yellow/green-500` lần lượt 6,15 / 4,98 / 6,06:1. **Dark mode (kiểm lại 19/10/2026** bằng script đọc khối `@media (prefers-color-scheme: dark)` và giải `var()`, màu làm tròn về 8-bit như trình duyệt): `--text-primary` 11,22:1, `--text-secondary` 9,95:1, `--text-tertiary` 6,05:1 trên nền và 4,81:1 trên `--surface-raised`, chữ trên `--action` 5,19:1, `--border-strong` 5,03 / 3,99:1; đều khớp chú thích trong file. Tính theo 8-bit, các số light mode ở trên lệch tối đa 0,05 (vd primary-500 5,78:1).
 
 **Đánh giá:**
 
