@@ -4882,7 +4882,7 @@
       "license": "MIT",
       "stars": 646,
       "open_source": true,
-      "notes": "Skill quy tắc sách Refactoring UI (thang spacing/type/màu HSL/bóng, 9 hard rule, bảng chẩn đoán) + tokens.css có dark mode; tương phản light mode tính lại khớp chú thích; 2 commit 27/8/2026; trùng tên lovropodobnik (không LICENSE); ★ 18/10/2026, mục 06 §7g.4",
+      "notes": "Skill quy tắc sách Refactoring UI (thang spacing/type/màu HSL/bóng, 9 hard rule, bảng chẩn đoán) + tokens.css có dark mode; tương phản light + dark mode tính lại khớp chú thích (19/10/2026); 2 commit 27/8/2026; trùng tên lovropodobnik (không LICENSE); ★ 18/10/2026, mục 06 §7g.4",
       "section": "06"
     },
     {
