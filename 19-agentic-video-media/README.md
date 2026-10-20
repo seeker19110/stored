@@ -247,6 +247,13 @@ Bản v0.5 thay đổi gần như toàn bộ mã (2.372 file, +147k / −191k d�
 
 **Dùng thế nào:** một quy trình **chạy local toàn bộ và dùng thương mại được** gồm Local Deep Research + FLUX.2 Klein 4B + Kokoro + ACE-Step 1.5 (kiểm license trọng số trước) + Podcastfy với LLM local. Các mục còn lại hoặc gắn với dịch vụ trả phí của tác giả (2, 8), hoặc cần nhiều API bên ngoài (10), hoặc có ràng buộc license/bảo trì (7). Trước khi nhúng vào sản phẩm: đọc license trọng số trên Hugging Face (FLUX.2, ACE-Step), và tránh AGPL nếu không muốn mở mã.
 
+### 1e.3 Bản infographic "Nhà máy nội dung AI" (người dùng gửi, 2026-10-20)
+
+Ảnh dạng cây thư mục VS Code (`ai-content-factory.md`) liệt kê **đúng 10 repo của §1e**, chia 6 nhóm: 01 Nghiên cứu & ý tưởng (Social Media Research Skills, Local Deep Research) · 02 Không gian sáng tạo (OpenCreator) · 03 Hình ảnh (FLUX.2) · 04 Giọng đọc & âm nhạc (Kokoro, ACE-Step 1.5) · 05 Video & podcast (Short Video Factory, AI YouTube Shorts Generator, Podcastfy) · 06 Phân phối nội dung (Social Media Agent). Mô tả từng dòng khớp bảng 1e.1; ảnh ghi đủ tên `ScrapeCreators/social-media-research-skills` (bài gốc bị cắt link).
+
+- **Kiểm lại 20/10/2026:** số sao, license và release không đổi so với 1e.1 (shields: Social Media Research Skills ~4,3k, Local Deep Research ~9,4k, còn lại như cũ). Short Video Factory có thêm commit `a9516c1` (19/10, bỏ đường lùi phụ đề FFmpeg, dùng engine phụ đề riêng) nhưng vẫn v1.3.0, AGPL-3.0, `electron ^22.3.27`.
+- **Điều ảnh vẫn không nói:** dòng cuối có nhắc "chọn theo nhu cầu, phần cứng & ngân sách", nhưng không ghi repo nào cần dịch vụ trả phí hay license nào hạn chế. Các lưu ý ⚠️ ở 1e.1 và bộ chạy local ở 1e.2 vẫn giữ nguyên.
+
 **Nguồn §1e:** clone 19/10/2026 (blob:none, đủ lịch sử; README.md, LICENSE, package.json): github.com/{krillinai/OpenCreator, ScrapeCreators/social-media-research-skills, LearningCircuit/local-deep-research, black-forest-labs/flux2 (bảng model + model_licenses/LICENSE-FLUX-NON-COMMERICAL), hexgrad/kokoro, ace-step/ACE-Step-1.5, YILS-LIN/short-video-factory (package.json electron ^22.3.27), Anil-matcha/AI-Youtube-Shorts-Generator, souzatharsis/podcastfy, langchain-ai/social-media-agent} · img.shields.io/github/{stars,license}/… 19/10/2026 · skillselion.com/marketplace/ScrapeCreators/social-media-research-skills · skills-hub.ai/sources/social-media-research-skills · bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence · huggingface.co/hexgrad/Kokoro-82M · huggingface.co/ACE-Step/Ace-Step1.5
 
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
