@@ -546,3 +546,8 @@
 - Clone 19/10/2026 (blob:none, đủ lịch sử; README.md, LICENSE, package.json): github.com/krillinai/OpenCreator (983 commit, v3.2.8) · github.com/ScrapeCreators/social-media-research-skills (7 commit, cuối 26/8/2026; cần SCRAPECREATORS_API_KEY) · github.com/LearningCircuit/local-deep-research (8.382 commit, v1.10.7) · github.com/black-forest-labs/flux2 (12 commit, cuối 12/3/2026; bảng license model trong README + model_licenses/LICENSE-FLUX-NON-COMMERICAL) · github.com/hexgrad/kokoro (71 commit, cuối 6/8/2025) · github.com/ace-step/ACE-Step-1.5 (1.410 commit, v0.1.8) · github.com/YILS-LIN/short-video-factory (145 commit, v1.3.0, AGPL-3.0, electron ^22.3.27) · github.com/Anil-matcha/AI-Youtube-Shorts-Generator (29 commit, MuAPI mặc định) · github.com/souzatharsis/podcastfy (399 commit, v0.4.0, cuối 4/5/2026) · github.com/langchain-ai/social-media-agent (1.058 commit; Anthropic + LangSmith + FireCrawl + Arcade)
 - img.shields.io/github/{stars,license}/<repo>.json 19/10/2026 cho cả 10 repo
 - Bên thứ ba: skillselion.com/marketplace/ScrapeCreators/social-media-research-skills · skills-hub.ai/sources/social-media-research-skills · bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence · huggingface.co/hexgrad/Kokoro-82M · huggingface.co/ACE-Step/Ace-Step1.5
+
+## Bổ sung 2026-10-20 (infographic "Nhà máy nội dung AI" → mục 19 §1e.3)
+
+- Ảnh người dùng gửi 20/10/2026 (`ai-content-factory.md`, 10 repo, 6 nhóm), trùng danh sách §1e
+- img.shields.io/github/{stars,license,last-commit,v/release}/<repo>.json 20/10/2026 cho cả 10 repo · github.com/YILS-LIN/short-video-factory (clone blob:none 20/10/2026, HEAD a9516c1 19/10/2026; package.json v1.3.0, electron ^22.3.27)
