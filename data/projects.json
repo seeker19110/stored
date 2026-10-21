@@ -5575,6 +5575,56 @@
       "open_source": true,
       "notes": "Ví dụ LangGraph: URL → nháp X/LinkedIn, duyệt HITL, lên lịch; cần Anthropic API + LangSmith + FireCrawl + Arcade (+ Supabase/Slack tùy chọn); 1.058 commit; ★ 19/10/2026 (shields), mục 19 §1e",
       "section": "19"
+    },
+    {
+      "name": "auto-compare-video",
+      "repo": "Cuongyd196/auto-compare-video",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 220,
+      "open_source": true,
+      "notes": "CuongIT (VN): video so sánh 'A vs B' ~20 s bằng HyperFrames 0.7.58 + skill create-video (Claude Code/Antigravity); TTS Edge/Vbee/CIT Voice Studio; agent chép tay độ dài clip vào index.html → video mẫu thiên thạch lệch tiếng; không bước kiểm chứng nội dung; không CI; ★ 21/10/2026 (shields), mục 19 §1f",
+      "section": "19"
+    },
+    {
+      "name": "remotion-cuongit-template",
+      "repo": "Cuongyd196/remotion-cuongit-template",
+      "category": "agentic-video",
+      "license": null,
+      "stars": 208,
+      "open_source": false,
+      "notes": "CuongIT (VN): template Remotion 4.0.407 + skill remotion-topic-explainer, TTS Edge/CIT; KHÔNG có file LICENSE (badge MIT, package.json UNLICENSED); commit font Segoe UI của Microsoft (không được phân phối lại); README không nói ngưỡng license Remotion; ★ 21/10/2026, mục 19 §1f",
+      "section": "19"
+    },
+    {
+      "name": "auto-video-gen (CuongIT)",
+      "repo": "Cuongyd196/auto-video-gen",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 184,
+      "open_source": true,
+      "notes": "Bản sao hoquanghai/Auto-Create-Video (31 file giống hệt, lịch sử bắt đầu lại) + Vbee + 2 theme; README ghi credit nhưng LICENSE thay copyright gốc; dùng og:image của báo làm nền; edge-tts-universal AGPL-3.0; ★ 21/10/2026, mục 19 §1f",
+      "section": "19"
+    },
+    {
+      "name": "Auto-Create-Video",
+      "repo": "hoquanghai/Auto-Create-Video",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 322,
+      "open_source": true,
+      "notes": "Ho Quang Hai (VN): bài báo công nghệ tiếng Việt → video 9:16 bằng Claude Code + HyperFrames + GSAP + TTS; có CI test/typecheck; 34 commit 29/4–2/5/2026; bản gốc của Cuongyd196/auto-video-gen; ★ 21/10/2026, mục 19 §1f",
+      "section": "19"
+    },
+    {
+      "name": "CIT Voice Studio",
+      "repo": "Cuongyd196/cit-voice-studio",
+      "category": "speech",
+      "license": null,
+      "stars": 119,
+      "open_source": false,
+      "notes": "App TTS tiếng Việt cục bộ, ĐÓNG MÃ (repo chỉ 5 file tài liệu, README ghi Apache-2.0 nhưng không có LICENSE); VieNeu-TTS v3 Turbo ONNX + Supertonic 3 tùy chọn; clone giọng có cổng đồng ý ghi âm trực tiếp; API 127.0.0.1:8001 không xác thực; bộ cài không ký số, README hướng dẫn tắt Smart App Control; ★ 21/10/2026, mục 19 §1f",
+      "section": "19"
     }
   ]
 }

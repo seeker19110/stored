@@ -551,3 +551,10 @@
 
 - Ảnh người dùng gửi 20/10/2026 (`ai-content-factory.md`, 10 repo, 6 nhóm), trùng danh sách §1e
 - img.shields.io/github/{stars,license,last-commit,v/release}/<repo>.json 20/10/2026 cho cả 10 repo · github.com/YILS-LIN/short-video-factory (clone blob:none 20/10/2026, HEAD a9516c1 19/10/2026; package.json v1.3.0, electron ^22.3.27)
+
+## Bổ sung 2026-10-21 (bài "Tự làm video AI xây kênh" của CuongIT → mục 19 §1f)
+
+- Ảnh người dùng gửi 21/10/2026 (bài Facebook + 4 thẻ repo trên profile GitHub `Cuongyd196`)
+- Clone đủ lịch sử 21/10/2026: github.com/Cuongyd196/auto-compare-video (21 commit, HEAD 50b1f34) · github.com/Cuongyd196/remotion-cuongit-template (14 commit, HEAD 3af5eac; bảng name font SegoeUI-Regular.ttf) · github.com/Cuongyd196/auto-video-gen (11 commit, HEAD 86cda98) · github.com/Cuongyd196/cit-voice-studio (35 commit, HEAD 0b0b995, chỉ 5 file tài liệu) · github.com/hoquanghai/Auto-Create-Video (34 commit; so sánh từng file với auto-video-gen: 54 đường dẫn trùng, 31 file giống hệt)
+- img.shields.io/github/{stars,forks,license,followers}/… 21/10/2026 cho 4 repo trên, hoquanghai/Auto-Create-Video và các biến thể vu05051995/auto-compare-video, dongphuongman/hyframe-video, ptit9x/auto-generate-short-videos
+- Tìm web: github.com/Cuongyd196 (profile "CuongIT") · github.com/Cuongyd196/auto-compare-video/pull/5 · github.com/topics/hyperframes · remotion.pro/license

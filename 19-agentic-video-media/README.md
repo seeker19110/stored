@@ -256,6 +256,181 @@ Bản v0.5 thay đổi gần như toàn bộ mã (2.372 file, +147k / −191k d�
 
 **Nguồn §1e:** clone 19/10/2026 (blob:none, đủ lịch sử; README.md, LICENSE, package.json): github.com/{krillinai/OpenCreator, ScrapeCreators/social-media-research-skills, LearningCircuit/local-deep-research, black-forest-labs/flux2 (bảng model + model_licenses/LICENSE-FLUX-NON-COMMERICAL), hexgrad/kokoro, ace-step/ACE-Step-1.5, YILS-LIN/short-video-factory (package.json electron ^22.3.27), Anil-matcha/AI-Youtube-Shorts-Generator, souzatharsis/podcastfy, langchain-ai/social-media-agent} · img.shields.io/github/{stars,license}/… 19/10/2026 · skillselion.com/marketplace/ScrapeCreators/social-media-research-skills · skills-hub.ai/sources/social-media-research-skills · bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence · huggingface.co/hexgrad/Kokoro-82M · huggingface.co/ACE-Step/Ace-Step1.5
 
+## 1f. Kiểm bài "Tự làm video AI xây kênh, chỉ cần 1 tài khoản AI": bộ 4 repo của CuongIT (ảnh người dùng gửi, 2026-10-21)
+
+> Bài Facebook của CuongIT (GitHub `Cuongyd196`, 105 follower) giới thiệu "3 repo GitHub đã có sẵn các skill + ứng dụng CIT Voice Studio". Theo bài, người dùng chỉ cần thêm một gói AI (ChatGPT Plus, Claude Pro hoặc Google AI Pro) và một agent desktop (Codex, Claude Code hoặc Antigravity), rồi mở thư mục repo và làm theo README. Đã clone đủ lịch sử cả 4 repo, đọc README, SKILL.md, package.json, mã TTS và LICENSE, đọc số sao/fork qua shields ngày 21/10/2026. **Không cài và không chạy script nào của các repo.**
+
+### 1f.1 Hồ sơ nhanh
+
+| Repo | ★ · fork (21/10/2026) | Commit · thời gian | Engine | License thật | Kiểm |
+|---|---|---|---|---|---|
+| `Cuongyd196/auto-compare-video` | 220 · 125 | 21 · 24/7 → 24/9/2026 | HyperFrames 0.7.58 (ghim) + GSAP | MIT (có file) | ⚠️ |
+| `Cuongyd196/remotion-cuongit-template` | 208 · 123 | 14 · 22/1 → 16/10/2026 | Remotion 4.0.407 (ghim) | **Không có file LICENSE**. Badge ghi MIT, `package.json` ghi `UNLICENSED` | ❌ license |
+| `Cuongyd196/auto-video-gen` | 184 · 112 | 11 · 13/7 → 28/9/2026 | HyperFrames ^0.4.34 | MIT, nhưng là bản sao `hoquanghai/Auto-Create-Video` và file LICENSE đã thay tên tác giả gốc | ⚠️ |
+| `Cuongyd196/cit-voice-studio` | 119 · 48 | 35 · 23/9 → 3/10/2026, tag 1.0.0–1.0.3 | App đóng mã (PyInstaller, FastAPI, ONNX Runtime) chạy VieNeu-TTS v3 Turbo | README ghi Apache-2.0, nhưng repo **không có mã nguồn và không có file LICENSE** | ⚠️ |
+
+Số sao trong ảnh (215/206/181/112) lệch nhẹ so với bảng vì ảnh chụp sớm hơn.
+
+**Điểm chung của 3 repo video:**
+
+- Mỗi repo là **template kèm một skill**: `create-video`, `remotion-topic-explainer`, `create-news-video`.
+- Skill được chép thành hai bản: `.claude/skills/` cho Claude Code và `.agents/skills/` cho Antigravity (Codex cũng đọc được `.agents/skills`). Không có bản riêng cho Gemini.
+- Kịch bản do **chính agent viết**, trong mã không có lệnh gọi LLM API nào. Vế "chỉ cần 1 tài khoản AI" vì vậy là đúng.
+- Không repo nào có CI. Chỉ auto-video-gen có test (60 case vitest, thừa hưởng từ bản gốc).
+- Tất cả do một tác giả làm, dưới vài danh tính git; mỗi repo có 0–3 commit mang trailer Claude.
+
+### 1f.2 Điều bài không nói (đọc mã)
+
+#### auto-compare-video: video "A vs B" khoảng 20 giây, hai nhân vật robot
+
+**Luồng chạy:**
+
+1. Agent viết 8 câu thoại.
+2. `generate-vo.mjs` gọi TTS cho từng câu, đo độ dài bằng `ffprobe` rồi ghi `durations.json`.
+3. Agent **chép tay** các số đo vào đối tượng `VO` và các thẻ `<audio>` trong `index.html`.
+4. `hyperframes render` xuất video. Lúc render không bước nào đọc `durations.json`.
+
+**Lỗi lệch tiếng đã xảy ra trong repo:**
+
+- Video mẫu `thien-thach-vs-sao-bang` được tạo lại giọng bằng Edge TTS ở commit `1dbc29d`.
+- Clip mới dài 1,8–3,0 giây mỗi câu, tổng khoảng 20 giây.
+- `index.html` vẫn giữ số đo Vbee cũ (1,0–2,0 giây, comment còn ghi "Real Vbee"), nên phụ đề và nhân vật chạy lệch với tiếng.
+- Miệng robot chỉ lắc theo nhịp cố định 0,22 giây chứ không bám âm thanh.
+
+**Không có bước kiểm chứng nội dung.** Agent tự viết phần so sánh, và README/skill không yêu cầu ghi nguồn. Khi bật `AUTO_CREATE_VIDEO=1`, quy trình đi thẳng từ chọn chủ đề đến chốt kịch bản mà không dừng cho người duyệt. Với kênh "chia sẻ kiến thức", đây là rủi ro lớn nhất của repo.
+
+**Lặt vặt:**
+
+- `package.json` của mỗi video có script `prepublish`, mà npm vẫn chạy khi `npm install` cục bộ. Script này gọi `sync-channel.mjs` để sửa `index.html` theo `.env`.
+- `npx --yes` tự tải HyperFrames mà không hỏi.
+- README dùng link affiliate Vbee.
+- README nói font Be Vietnam Pro được nhúng sẵn, thực tế font này và GSAP được tải từ Google Fonts/jsDelivr lúc render.
+- Provider mặc định không khớp giữa các nơi: `.env.example` ghi `edge`, README tiếng Anh ghi `vieneu`, skill ghi code lùi về `vbee` nhưng code thật lùi về `vieneu`.
+
+#### remotion-cuongit-template: video giải thích 9:16 dài 40–60 giây
+
+**Phần agent viết và phần dùng lại được:**
+
+- Agent viết gần như mọi thứ: kịch bản, script sinh audio, toàn bộ thư mục `src/<Topic>/` và chỗ sửa trong `Root.tsx`.
+- Phần dùng lại thật chỉ có:
+  - `scripts/generate-tts.ts`: gọi Edge TTS hoặc CIT Voice Studio, đo độ dài từ header MP3/WAV, ghi `manifest.json`;
+  - hai component `BrandHeader` và `SubtitleBox`.
+- Phụ đề được chia đều 6 từ một khúc theo thời lượng cảnh, không có timestamp từng từ.
+
+**License:**
+
+- Repo không có file LICENSE, nên về pháp lý mọi quyền vẫn thuộc tác giả. Badge MIT không có giá trị, và `package.json` còn ghi `UNLICENSED`.
+- README có nhắc Remotion "cần company license trong một số trường hợp" nhưng không nói ngưỡng: Remotion miễn phí cho cá nhân và công ty tối đa 3 người, công ty lớn hơn phải mua license (mục 22 §2.2).
+
+**Font Segoe UI bị commit vào repo:** hai file `public/fonts/SegoeUI-{Regular,Bold}.ttf` (bản 5.65).
+
+- Bảng name của font ghi "© 2022 Microsoft Corporation… Microsoft supplied font": chỉ được dùng theo điều khoản của sản phẩm Microsoft đi kèm, nên **không được phân phối lại**.
+- Trước khi dùng, thay bằng một font OFL như Be Vietnam Pro hoặc Inter.
+
+**Lặt vặt:**
+
+- Ba file manifest lộ đường dẫn trên máy tác giả (`D:\cuongit\...`).
+- `DockerExplainer` hard-code tên kênh "CƯỜNG IT" và `durationInFrames=1280`, trái với chính skill của repo.
+
+#### auto-video-gen: URL tin tức hoặc GitHub → video 9:16
+
+**Là bản sao của `hoquanghai/Auto-Create-Video`** (322★, MIT, 34 commit từ 29/4 đến 2/5/2026, có CI test và typecheck):
+
+- 54/64 file trùng đường dẫn và 31 file giống hệt từng byte, kể cả `docs/superpowers/` ghi ngày 2026-04-29.
+- Lịch sử mở đầu bằng commit `#Init` ngày 13/7/2026, không giữ commit gốc.
+- README có ghi rõ đây là "bản fork… toàn bộ công sức thiết kế pipeline gốc thuộc về tác giả gốc".
+- Nhưng file `LICENSE` đã đổi dòng copyright từ "Ho Quang Hai" thành "CuongIT". MIT yêu cầu giữ nguyên thông báo bản quyền gốc, nên đúng ra phải **thêm** dòng mới chứ không thay.
+- Phần bổ sung thật của bản này: provider Vbee, hai theme `dark-neon`/`light-pro`, kiến trúc TTS dạng module kèm Edge TTS.
+
+**Nội dung và bản quyền:**
+
+- Agent tự lấy bài bằng WebFetch, viết `script.json` (schema Zod, tối đa 8 cảnh) rồi chạy pipeline.
+- Code tải **og:image của bài báo** làm nền video, tức dùng lại ảnh có bản quyền của báo. Repo không có lời nhắc bản quyền nào.
+
+**README lệch so với code:**
+
+- "5 phút" chỉ là một câu trong README; bản gốc ghi "60 giây" ở tiêu đề và "~5 phút" ở bảng so sánh.
+- Thư viện SFX không có sẵn trong repo: phải chạy `sfx:download` (cào myinstants.com) rồi `sfx:filter`.
+- README ghi "SFX/BGM" nhưng pipeline không có BGM.
+- Danh sách template, đường dẫn output và con số 60 FPS trong README không khớp code. Thực tế có 6 loại cảnh (`hook`, `comparison`, `stat-hero`, `feature-list`, `callout`, `outro`), render 30 fps, file ra là `video.mp4`.
+
+**Đã kiểm `.claude/settings.json` đi kèm repo:** file chỉ cho phép sẵn vài lệnh đọc (curl GitHub API, `gh repo view`), là dấu vết phiên làm việc của tác giả. Không nguy hiểm.
+
+#### cit-voice-studio: app TTS tiếng Việt
+
+**Repo không có mã nguồn.** Toàn bộ repo là 5 file tài liệu (README, PRIVACY, DIEU-KHOAN, THIRD-PARTY-NOTICES và một ảnh), và README tự nói mã nguồn không công khai, chỉ phát hành bộ cài. Mọi điều dưới đây vì vậy là lời tác giả, **không kiểm được bằng mã**.
+
+**Bộ cài:** bản v1.0.3 gồm .exe cho Windows (~363 MB), .deb (~463 MB) và .dmg (~427–447 MB), kèm mirror Google Drive.
+
+**Công nghệ và model (theo file notices):**
+
+- Python đóng gói bằng PyInstaller, chạy FastAPI/Uvicorn và ONNX Runtime; giao diện React hiển thị trong pywebview.
+- Model mặc định là **VieNeu-TTS v3 Turbo** (ONNX int8) cùng MOSS Audio Tokenizer Nano, cả hai đều Apache-2.0 theo notices.
+- Tùy chọn Supertonic 3 cho 31 ngôn ngữ khác, giấy phép OpenRAIL-M có điều khoản hạn chế sử dụng.
+- ASR Zipformer tiếng Việt dùng để kiểm câu đồng ý khi clone giọng.
+- Không có trọng số non-commercial (như F5-TTS-Vietnamese, viXTTS), nên theo lời README thì dùng thương mại được.
+
+**Clone giọng có cổng đồng ý:**
+
+- Người dùng phải ghi âm trực tiếp câu cam kết khoảng 8 giây; app không clone từ file có sẵn.
+- Có điều khoản cấm mạo danh, và file xuất ra mang metadata "AI-generated".
+- Đây là thiết kế đáng học (mục 14).
+
+**API HTTP ở `127.0.0.1:8001`** (`/api/tts/generate`, `/stream`, `/voices`…): đây là cổng 3 repo video gọi tới qua provider `vieneu`/`cit`.
+
+- Ở chế độ localhost, API **không xác thực**, nên mọi tiến trình trên máy đều gọi được.
+- Chế độ LAN dùng header `X-API-Key` trên HTTP thường, không mã hóa.
+
+**Bộ cài không ký số và không công bố checksum.** Đây là điểm đáng ngại nhất trong cả bộ, vì README hướng dẫn:
+
+- bỏ qua cảnh báo SmartScreen;
+- chạy `xattr -dr com.apple.quarantine` trên macOS;
+- tắt Smart App Control của Windows 11, dù tự thừa nhận có thể không bật lại được.
+
+**README mâu thuẫn với chính tài liệu của nó:**
+
+- README nói "không cần Internet sau khi cài", nhưng lần clone giọng đầu tiên tải ASR ~77 MB, các bản FP32/Nano/Supertonic/GPU phải tải thêm, và bật GPU kéo gói PyPI/PyTorch không ghim phiên bản.
+- README ghi Apache-2.0 cho một binary đóng mã mà repo không có file LICENSE hay NOTICE.
+
+### 1f.3 Bài nói đúng gì, thiếu gì
+
+| Claim của bài | Thực tế |
+|---|---|
+| "3 repo đã có sẵn các skill" | ✅ Mỗi repo có một skill, chép thành hai bản (Claude Code và Antigravity/Codex). Không có bản riêng cho Gemini |
+| "chỉ cần 1 tài khoản AI" | ✅ cho phần viết kịch bản. ⚠️ cho phần giọng: Edge TTS miễn phí nhưng là dịch vụ đọc online không chính thức của Microsoft, văn bản bị gửi lên Microsoft, và thư viện `edge-tts-universal` dùng giấy phép **AGPL-3.0** (cả 3 repo đều kéo). Vbee, ElevenLabs và LucyLab trả phí. CIT Voice Studio cần máy 8–16 GB RAM |
+| "chia sẻ miễn phí" | ⚠️ Miễn phí để dùng, nhưng: 1 repo không có license (về pháp lý không được phép tái sử dụng), 1 repo commit font Microsoft, 1 repo là bản sao đã đổi copyright, còn app giọng đóng mã |
+| "mở thư mục bằng công cụ AI rồi làm theo readme.md" | ✅ Cách dùng này đúng. Nhưng README lệch code ở nhiều chỗ (template, fps, đường dẫn, provider mặc định), nên agent đọc skill và code sẽ chính xác hơn đọc README |
+| (không nói) license Remotion | Công ty trên 3 người phải mua license Remotion |
+| (không nói) kiểm chứng nội dung | Không repo nào có bước kiểm nguồn hay fact-check, và auto-video-gen dùng lại ảnh của báo |
+
+**Tổng:** cả 4 repo tồn tại và làm đúng việc mô tả, ở mức "template + skill cho agent". Bộ này hợp để **học cách đóng gói quy trình làm video thành skill**, chưa hợp để nhúng nguyên vào sản phẩm hay kênh thương mại.
+
+### 1f.4 Dùng thế nào
+
+**Bài học cấu trúc:** tách phần "agent viết nội dung" khỏi phần "script tất định đo, ghép và render". Đây cũng là mẫu của OpenMontage (§1) và của skill HyperFrames (mục 22). Lỗi lệch tiếng của auto-compare-video cho thấy: **để code đọc `durations.json` lúc dựng**, đừng để agent chép số bằng tay (cùng tinh thần "cổng máy" ở mục 23).
+
+**Nếu dùng từng repo:**
+
+- **auto-video-gen:**
+  - Dùng thẳng bản gốc `hoquanghai/Auto-Create-Video` (có CI); chỉ chọn bản của CuongIT khi cần Vbee hoặc hai theme mới.
+  - Sửa `LICENSE` để giữ cả hai dòng copyright.
+  - Bỏ nền og:image, hoặc chỉ dùng ảnh mình có quyền.
+- **remotion-cuongit-template:**
+  - Chờ tác giả thêm LICENSE hoặc xin phép trước khi tái sử dụng.
+  - Xóa font Segoe UI.
+  - Mua license Remotion nếu công ty trên 3 người.
+  - Hoặc dựng lại từ `remotion-dev/skills` (mục 22 §2.3).
+- **auto-compare-video:**
+  - Thêm bước ghi nguồn tham khảo và người duyệt trước khi render.
+  - Sửa lại thời gian trong video mẫu.
+- **Giọng đọc:**
+  - Cần mã mở thì dùng thẳng `pnnbao97/VieNeu-TTS` (Apache-2.0, mục 18) thay cho CIT Voice Studio.
+  - Nếu dùng app, tải từ GitHub Releases (không dùng mirror Drive), đừng tắt Smart App Control cho toàn máy, và giữ API ở localhost.
+
+**Thay thế cùng loại:** OpenMontage (§1), Short Video Factory (§1e, AGPL), workflow `/faceless-explainer` của HyperFrames (mục 22), MoneyPrinterTurbo (§3).
+
+**Nguồn §1f:** clone đủ lịch sử 21/10/2026: github.com/Cuongyd196/auto-compare-video (HEAD 50b1f34; CLAUDE.md, AGENTS.md, `.claude/skills/create-video/`, `videos/*/{package.json,index.html,generate-vo.mjs,assets/vo/durations.json}`, commit 1dbc29d, LICENSE) · github.com/Cuongyd196/remotion-cuongit-template (HEAD 3af5eac; package.json, src/Root.tsx, scripts/generate-tts.ts, public/fonts/SegoeUI-*.ttf (đọc bảng name), `.claude/skills/remotion-topic-explainer/`, docs/cit-voice-studio.md) · github.com/Cuongyd196/auto-video-gen (HEAD 86cda98; README.md, README.full.md, README.en.md, LICENSE, package.json, package-lock.json (`edge-tts-universal` 1.4.0 AGPL-3.0), src/pipeline.ts, src/render/script-schema.ts, `.claude/settings.json`, `.claude/skills/create-news-video/`) · github.com/Cuongyd196/cit-voice-studio (HEAD 0b0b995; README.md, PRIVACY.md, DIEU-KHOAN.md, THIRD-PARTY-NOTICES.md) · github.com/hoquanghai/Auto-Create-Video (clone 21/10/2026, 34 commit, so sánh từng file với auto-video-gen) · img.shields.io/github/{stars,forks,license,followers}/… 21/10/2026 · github.com/Cuongyd196 (profile "CuongIT") · github.com/vu05051995/auto-compare-video (fork, 0★) · github.com/dongphuongman/hyframe-video, github.com/ptit9x/auto-generate-short-videos (biến thể cùng họ, 0★) · remotion.pro/license
+
 ## 2. Làn sóng "video / motion skills" cho Claude Code (trendshift topic ai-video, 10/2026)
 
 | Repo | Số hiển thị (★?) | Ghi chú |
