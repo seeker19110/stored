@@ -576,3 +576,11 @@
 - github.com/vavkamil/awesome-bugbounty-tools (clone blob:none đủ lịch sử 25/10/2026, 191 commit, HEAD 1e10997; README.md, contributing.md, LICENSE, .github/workflows/{security-zizmor,stargazers}.yml)
 - img.shields.io/github/last-commit/<repo>.json cho 395 repo trong danh sách, 25/10/2026; `git ls-remote` cho 8 repo lỗi badge (đều còn tồn tại)
 - img.shields.io/github/{stars,license,last-commit}/… 25/10/2026: KeygraphHQ/shannon, ASCIT31/Dark-Moon, GreyDGL/PentestGPT, Awarexone/Agentic-Bug-Hunter, samugit83/redamon, vigolium/vigolium, xeloxa/temodar-agent, djadmin/awesome-bug-bounty, nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters, KingOfBugbounty/KingOfBugBountyTips, projectdiscovery/nuclei, swisskyrepo/PayloadsAllTheThings
+
+## Bổ sung 2026-10-25 đợt 4 (infographic SEO × AI của danhnolan.com → mục 08 §2h, mục 18)
+
+- Ảnh người dùng gửi 25/10/2026 · danhnolan.com (trang chủ, 25/10/2026)
+- Google Search Central: developers.google.com/search/docs/appearance/ai-features (10/12/2025) · developers.google.com/search/docs/fundamentals/using-gen-ai-content (1/10/2026) · developers.google.com/search/docs/essentials/spam-policies (28/8/2026)
+- Nghiên cứu: arxiv.org/abs/2311.09735 (GEO, KDD 2024) · Pew Research về AI summary, qua thewrap.com/ai-summaries-google-article-clicks-half và emarketer.com/content/google-ai-summaries-ending-search-sessions-reducing-click-through-behavior
+- github.com/AgriciDaniel/claude-seo (clone blob:none 25/10/2026, 412 commit, HEAD 6be93f4; README.md, PRIVACY.md, skills/, agents/, scripts/{content_humanize,indexing_notify}.py, install.sh) · img.shields.io/github/{stars,license,last-commit}/… 25/10/2026: coreyhaines31/marketingskills, AgriciDaniel/claude-seo, zubair-trabzada/geo-seo-claude, TheCraigHewitt/seomachine, aaron-he-zhu/seo-geo-claude-skills, T4wroot/agentic-seo, SNLabat/SEO-GEO-AEO-Skill
+- Bên thứ ba: ppc.land/scaled-content-abuse · techcrunch.com/2024/03/05/google-takes-aim-at-seo-optimized-junk-pages-and-spam-with-new-search-update

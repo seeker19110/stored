@@ -322,6 +322,50 @@ Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng là
 
 **Dùng ảnh thế nào:** được làm sơ đồ tổng quan một trang về các khái niệm. Khi dạy lại, thêm cấp 0 ("workflow trước, agent sau"), chuyển eval/trace/trần chi phí/sandbox lên từ cấp 1, coi multi-agent là lựa chọn có giá chứ không phải bậc tiếp theo, và thay AutoGen bằng Microsoft Agent Framework.
 
+## 2h. Kiểm ảnh "SEO không thiếu việc, nhưng AI đang thay đổi cuộc chơi" (danhnolan.com, ảnh người dùng gửi, 2026-10-25)
+
+> Infographic tiếng Việt của **Danh Nolan** (danhnolan.com, người đào tạo SEO/GEO/AI Search ở TP.HCM). Ảnh là bảng 5 cấp (SEO Junior → Executive → Specialist → Lead → Manager/Head) × 7 mảng việc (Onpage, Technical, Content, Entity, GEO/AI Search, Offpage), mỗi ô tô màu theo mức AI tự động hóa được (đỏ: tự động hóa phần lớn; cam: AI hỗ trợ đáng kể, cần người duyệt; xám: cần phán đoán/chịu trách nhiệm). Kết luận của ảnh: "AI thay tác vụ, không tự động thay cả vai trò". Trang chủ danhnolan.com không có bài viết đi kèm ảnh (đọc 25/10/2026). Mục này đối chiếu ảnh với tài liệu chính thức của Google, nghiên cứu độc lập, và các skill SEO cho agent đang có trên GitHub.
+
+### 2h.1 Ảnh đúng ở đâu
+
+- **Khung "tác vụ, không phải vai trò"** khớp cách các nghiên cứu về mức tiếp xúc AI chia công việc thành tác vụ. Ảnh cũng tự ghi rõ "không phải dự báo mất việc".
+- **Các ô đỏ ở cấp Junior/Executive là việc agent làm được ngay hôm nay**, có skill mã mở cho từng việc. Ví dụ `AgriciDaniel/claude-seo` (~20k★, MIT, đọc mã 25/10/2026) có:
+  - 26 skill cho audit kỹ thuật, schema, sitemap, hreflang, nội dung, GEO và backlink;
+  - script gọi Search Console, GA4, CrUX;
+  - không telemetry; API trả phí (DataForSEO, Ahrefs, Firecrawl) là extension tùy chọn.
+- **Cột "giá trị con người" khớp yêu cầu của Google**: Google cho phép dùng AI tạo nội dung, nhưng yêu cầu "manually factcheck and review all AI-generated content… before publishing", kể cả title, meta description và alt text (*Using generative AI content*, cập nhật 1/10/2026). Đó chính là bước "biên tập và kiểm chứng" ở ô cam.
+
+### 2h.2 Ảnh thiếu hoặc nói quá
+
+| Ô trong ảnh | Đối chiếu | Kiểm |
+|---|---|---|
+| **GEO / AI Search** là một mảng riêng, có "chiến lược AI Search" | Google: "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary"; không cần schema riêng; lưu lượng từ AI features được gộp vào báo cáo Performance, loại "Web" của Search Console (*AI features and your website*, cập nhật 10/12/2025). Với Google, "GEO" phần lớn vẫn là SEO nền tảng. Nghiên cứu *GEO: Generative Engine Optimization* (Aggarwal và cộng sự, KDD 2024) báo cáo tăng hiển thị "tới 40%" trên benchmark GEO-bench của chính nhóm, chứ không đo trên AI Overviews | ⚠️ |
+| Junior "Nhập answer-first theo mẫu" được tô đỏ | Sản xuất hàng loạt theo mẫu là đúng kiểu **scaled content abuse**: "Using generative AI tools or other similar tools to generate many pages without adding value for users" (*Spam policies*, cập nhật 28/8/2026). Spam policy cũng bao gồm "attempting to manipulate generative AI responses in Google Search". Ảnh không nhắc ranh giới này | ⚠️ |
+| Offpage: "Tìm danh sách nguồn", "Soạn thư outreach" tô đỏ | Tự động hóa được, nhưng gửi thư outreach hàng loạt do AI viết dễ thành spam, và mua hoặc đổi link vi phạm chính sách link spam. Phần cần người làm là quan hệ thật, như ở cột Lead | ⚠️ |
+| Technical: Junior/Executive "Rà lỗi, sửa lỗi phổ biến" tô đỏ | Rà lỗi thì agent làm tốt. "Sửa" cần quyền deploy, test và rollback trên site thật, không chỉ cần AI | ⚠️ |
+| Không có hàng **đo lường** | Thiếu một thay đổi lớn: Pew Research (dữ liệu 2025, 900 người dùng Mỹ, 68.879 lượt tìm) thấy người dùng nhấp kết quả thường ở **8%** lượt khi có AI summary, so với **15%** khi không có; chỉ ~1% nhấp link nguồn trong summary. Search Console không tách riêng traffic AI Overviews. Vì vậy mọi cấp cần đo lại KPI (hiển thị, chuyển đổi, không chỉ click) | ❌ thiếu |
+| Không có hàng **kiểm soát crawler và snippet** | Một quyết định "AI Search" thật nằm ở `robots.txt`, `nosnippet`, `max-snippet`, `noindex` (Google ghi đây là cách giới hạn nội dung hiển thị trong Search), và việc chặn hay mở cho bot AI khác (Cloudflare, GPTBot…). Ảnh bỏ hẳn | ❌ thiếu |
+| Mức "Rất cao → Rất thấp" ở hàng "Mức độ tác vụ tiếp xúc AI" | Không kèm nguồn hay số đo. Ảnh ghi "đánh giá dựa trên thực tế ứng dụng AI hiện nay", tức là nhận định của tác giả **(chưa xác minh)** | ⚠️ |
+
+### 2h.3 Công cụ SEO/GEO cho agent (shields 25/10/2026)
+
+| Repo | ★ · license | Commit cuối | Ghi chú |
+|---|---|---|---|
+| `coreyhaines31/marketingskills` | ~56k · MIT | 10/2026 | Bộ skill marketing tổng quát, có SEO audit (mục 20 §3f) |
+| `AgriciDaniel/claude-seo` | ~20k · MIT | 22/10/2026 | 26 skill + 19 agent + script Python. Có **cổng chặn nội dung mỏng** trong `seo-programmatic`: dừng cứng khi vượt 500 trang mà không có lý do, gắn cờ khi nội dung riêng mỗi trang < 40%. Script Indexing API tự ghi rõ chỉ dùng cho JobPosting/BroadcastEvent. `content_humanize.py` chỉ thay cụm từ khuôn mẫu và xóa ký tự Unicode ẩn, tự nói không gỡ được watermark thống kê. Cài qua `git clone` + `install.sh` (README khuyên đọc trước khi chạy) |
+| `zubair-trabzada/geo-seo-claude` | ~11k · MIT | 10/2026 | Skill GEO cho Claude Code **(chưa đọc mã)** |
+| `TheCraigHewitt/seomachine` | ~7,5k · MIT | 10/2026 | Workspace viết nội dung SEO **(chưa đọc mã)** |
+| `aaron-he-zhu/seo-geo-claude-skills` | ~229 · Apache-2.0 | 9/2026 | 20 skill theo khung CORE-EEAT |
+
+### 2h.4 Dùng ảnh thế nào
+
+- **Hợp** để phân việc trong nhóm SEO: ô đỏ giao cho agent nhưng có người duyệt đầu ra; ô cam là AI viết nháp, người sửa và ký; ô xám giữ cho người.
+- **Đọc kèm** ba trang chính thức của Google: *AI features and your website*, *Using generative AI content*, *Spam policies* (mục scaled content abuse). Ba trang này đặt ranh giới cho mọi ô đỏ.
+- **Thêm hai hàng ảnh thiếu**: đo lường (KPI khi click giảm) và kiểm soát crawler/snippet. Đây là việc của Lead/Manager.
+- **Nếu dùng agent làm ô đỏ:** chọn skill có cổng chặn nội dung mỏng như `claude-seo`; đặt giới hạn chi phí cho API trả phí; không cho agent tự đăng hàng loạt trang hay tự gửi outreach.
+
+**Nguồn §2h:** ảnh người dùng gửi 25/10/2026 · https://danhnolan.com (trang chủ, 25/10/2026) · https://developers.google.com/search/docs/appearance/ai-features (cập nhật 10/12/2025) · https://developers.google.com/search/docs/fundamentals/using-gen-ai-content (cập nhật 1/10/2026) · https://developers.google.com/search/docs/essentials/spam-policies (cập nhật 28/8/2026) · https://arxiv.org/abs/2311.09735 (GEO, KDD 2024) · Pew Research qua thewrap.com/ai-summaries-google-article-clicks-half và emarketer.com/content/google-ai-summaries-ending-search-sessions-reducing-click-through-behavior · github.com/AgriciDaniel/claude-seo (clone blob:none 25/10/2026, 412 commit, HEAD 6be93f4; README.md, PRIVACY.md, skills/seo-programmatic/SKILL.md, scripts/{content_humanize,indexing_notify}.py, install.sh) · img.shields.io/github/{stars,license,last-commit}/… cho 7 repo SEO/GEO (25/10/2026) · bên thứ ba: ppc.land/scaled-content-abuse · techcrunch.com/2024/03/05/google-takes-aim-at-seo-optimized-junk-pages-and-spam-with-new-search-update
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.

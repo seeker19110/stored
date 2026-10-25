@@ -71,6 +71,8 @@
 
 **Bộ làm video AI cho kênh cá nhân của CuongIT (21/10/2026):** `Cuongyd196/auto-compare-video` (220★, HyperFrames), `Cuongyd196/remotion-cuongit-template` (208★, Remotion), `Cuongyd196/auto-video-gen` (184★, bản sao có ghi credit của `hoquanghai/Auto-Create-Video`, 322★) và app TTS `Cuongyd196/cit-voice-studio` (119★, đóng mã, chạy VieNeu-TTS v3 Turbo). Mỗi repo video kèm một skill cho Claude Code/Antigravity; agent tự viết kịch bản. Lưu ý trước khi dùng: repo Remotion không có LICENSE và commit font Segoe UI của Microsoft, LICENSE của auto-video-gen thay tên tác giả gốc, bộ cài CIT Voice Studio không ký số. Hồ sơ ở [mục 19](../19-agentic-video-media/README.md) §1f.
 
+**Nội dung SEO/GEO tiếng Việt (25/10/2026):** infographic "SEO không thiếu việc, nhưng AI đang thay đổi cuộc chơi" của Danh Nolan (danhnolan.com) chia 5 cấp SEO × 7 mảng việc theo mức AI tự động hóa. Bài kiểm đối chiếu với tài liệu Google ở [mục 08](../08-awesome-lists-learning/README.md) §2h: khung "tác vụ, không phải vai trò" hợp lý, nhưng ảnh thiếu phần đo lường khi click giảm và phần kiểm soát crawler/snippet, và không nói ranh giới scaled content abuse.
+
 **Công cụ sáng tạo do người Việt làm (13/10/2026):** `letuandat131/whiteboard-animation-vi` (~56★, mã gốc CC0-1.0) biến ảnh tĩnh thành video vẽ bảng trắng bằng app Gradio chạy cục bộ, tách nền bằng ISNet. Hồ sơ và kiểm ảnh ở [mục 22](../22-motion-design-animation/README.md) §9d. Lưu ý: giao diện tiếng Anh, ảnh bàn tay và tranh demo chưa có giấy phép.
 
 ## 5. Gợi ý bổ sung tiếp
