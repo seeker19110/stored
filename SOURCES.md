@@ -584,3 +584,10 @@
 - Nghiên cứu: arxiv.org/abs/2311.09735 (GEO, KDD 2024) · Pew Research về AI summary, qua thewrap.com/ai-summaries-google-article-clicks-half và emarketer.com/content/google-ai-summaries-ending-search-sessions-reducing-click-through-behavior
 - github.com/AgriciDaniel/claude-seo (clone blob:none 25/10/2026, 412 commit, HEAD 6be93f4; README.md, PRIVACY.md, skills/, agents/, scripts/{content_humanize,indexing_notify}.py, install.sh) · img.shields.io/github/{stars,license,last-commit}/… 25/10/2026: coreyhaines31/marketingskills, AgriciDaniel/claude-seo, zubair-trabzada/geo-seo-claude, TheCraigHewitt/seomachine, aaron-he-zhu/seo-geo-claude-skills, T4wroot/agentic-seo, SNLabat/SEO-GEO-AEO-Skill
 - Bên thứ ba: ppc.land/scaled-content-abuse · techcrunch.com/2024/03/05/google-takes-aim-at-seo-optimized-junk-pages-and-spam-with-new-search-update
+
+## Bổ sung 2026-10-25 đợt 5 (infographic "50 kho lưu trữ GitHub hữu ích" → mục 08 §2i)
+
+- Ảnh người dùng gửi 25/10/2026 · img.shields.io/github/{stars,license,last-commit}/<repo>.json cho 47 repo trong ảnh (25/10/2026) · img.shields.io/pypi/dm/ifixai.json
+- `git ls-remote` so HEAD 25/10/2026: comfyanonymous/ComfyUI = Comfy-Org/ComfyUI · geekan/MetaGPT = FoundationAgents/MetaGPT · mendableai/firecrawl = firecrawl/firecrawl · lobehub/lobe-chat = lobehub/lobehub · Aider-AI/aider = paul-gauthier/aider
+- Clone/đọc README: github.com/karpathy/nanoGPT · github.com/perplexityai/bumblebee · github.com/ifixai-ai/iFixAi · github.com/ComposioHQ/awesome-claude-skills · raw README TauricResearch/TradingAgents, soxoj/maigret
+- Bên thứ ba: decrypt.co/368944/perplexity-open-source-bumblebee-ai-scanner-mcp-infection-malware · discuss.pytorch.kr/t/ifixai-ai-45/11296 · pypi.org/project/iFixAi

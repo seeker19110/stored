@@ -1662,12 +1662,12 @@
     },
     {
       "name": "ComfyUI",
-      "repo": "comfyanonymous/ComfyUI",
+      "repo": "Comfy-Org/ComfyUI",
       "category": "image-gen",
       "license": "GPL-3.0",
       "stars": 130000,
       "open_source": true,
-      "notes": "122k–136k",
+      "notes": "122k–136k; repo đã chuyển từ comfyanonymous/ComfyUI (cùng HEAD, kiểm 25/10/2026)",
       "section": "14"
     },
     {
@@ -5665,6 +5665,36 @@
       "open_source": true,
       "notes": "Skill pack SEO/GEO cho Claude Code: 26 skill + 19 agent + script Python (GSC, GA4, CrUX); không telemetry, API trả phí (DataForSEO, Ahrefs, Firecrawl) là extension tùy chọn; cổng chặn nội dung mỏng trong seo-programmatic (dừng >500 trang, cờ <40% nội dung riêng); 412 commit 2/2026→10/2026; ★ 25/10/2026 (shields), mục 08 §2h",
       "section": "08"
+    },
+    {
+      "name": "iFixAi",
+      "repo": "ifixai-ai/iFixAi",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 34000,
+      "open_source": true,
+      "notes": "Chẩn đoán agent 'lệch mục tiêu' (misalignment) qua nhiều nhóm kiểm, nhiều provider; 331 commit từ 27/4/2026; 34k★/1,7k fork nhưng PyPI ~481 lượt tải/tháng (lệch lớn, chưa xác minh sao ảo); README dẫn site thương mại; ★ 25/10/2026 (shields), mục 08 §2i",
+      "section": "07"
+    },
+    {
+      "name": "Bumblebee (Perplexity)",
+      "repo": "perplexityai/bumblebee",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 5100,
+      "open_source": true,
+      "notes": "Trình quét chỉ đọc (Go, không dependency ngoài stdlib) lockfile, metadata package manager, extension, cấu hình MCP trên máy dev macOS/Linux để đối chiếu advisory chuỗi cung ứng; không chạy package manager; v0.1.2, 26 commit từ 22/5/2026; ★ 25/10/2026 (shields), mục 08 §2i",
+      "section": "12"
+    },
+    {
+      "name": "awesome-claude-skills (Composio)",
+      "repo": "ComposioHQ/awesome-claude-skills",
+      "category": "awesome-list",
+      "license": null,
+      "stars": 78000,
+      "open_source": false,
+      "notes": "Danh sách ~184 skill + thư mục skill chép kèm; KHÔNG có LICENSE; chép lại document-skills của Anthropic ('All rights reserved'); link UTM về Composio; commit cuối 7/2026; ★ 25/10/2026 (shields), mục 08 §2i",
+      "section": "20"
     }
   ]
 }
