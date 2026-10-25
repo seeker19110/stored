@@ -366,6 +366,88 @@ Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng là
 
 **Nguồn §2h:** ảnh người dùng gửi 25/10/2026 · https://danhnolan.com (trang chủ, 25/10/2026) · https://developers.google.com/search/docs/appearance/ai-features (cập nhật 10/12/2025) · https://developers.google.com/search/docs/fundamentals/using-gen-ai-content (cập nhật 1/10/2026) · https://developers.google.com/search/docs/essentials/spam-policies (cập nhật 28/8/2026) · https://arxiv.org/abs/2311.09735 (GEO, KDD 2024) · Pew Research qua thewrap.com/ai-summaries-google-article-clicks-half và emarketer.com/content/google-ai-summaries-ending-search-sessions-reducing-click-through-behavior · github.com/AgriciDaniel/claude-seo (clone blob:none 25/10/2026, 412 commit, HEAD 6be93f4; README.md, PRIVACY.md, skills/seo-programmatic/SKILL.md, scripts/{content_humanize,indexing_notify}.py, install.sh) · img.shields.io/github/{stars,license,last-commit}/… cho 7 repo SEO/GEO (25/10/2026) · bên thứ ba: ppc.land/scaled-content-abuse · techcrunch.com/2024/03/05/google-takes-aim-at-seo-optimized-junk-pages-and-spam-with-new-search-update
 
+## 2i. Kiểm ảnh "50 kho lưu trữ GitHub hữu ích" (infographic tiếng Việt, ảnh người dùng gửi, 2026-10-25)
+
+> Infographic tiếng Việt không ghi tác giả: "50 kho lưu trữ GitHub hữu ích — tuyển chọn các kho chất lượng để học hỏi, xây dựng, tự động hóa và đổi mới". Mỗi ô có tên repo, mô tả một dòng và link (nhiều link bị cắt). Đã kiểm **cả 50 mục**: lấy số sao, license và commit cuối qua shields (25/10/2026); dùng `git ls-remote` so HEAD để phát hiện repo đã đổi chỗ (cùng hash = GitHub đang chuyển hướng); đọc README của các mục có vấn đề (nanoGPT, Bumblebee, iFixAi, awesome-claude-skills, TradingAgents, maigret); đối chiếu với hồ sơ đã có trong kho.
+
+### 2i.1 Bảng kiểm (shields 25/10/2026)
+
+| # | Repo | ★ | License | Commit cuối | Kiểm |
+|---|---|---|---|---|---|
+| 1 | `ifixai-ai/iFixAi` | 34k | Apache-2.0 | 10/2026 | ⚠️ Tên đúng là `iFixAi` (ảnh cắt). Chẩn đoán agent "lệch mục tiêu". ⚠️ 34k★/1,7k fork nhưng PyPI ~481 lượt tải/tháng; README dẫn site thương mại |
+| 2 | `public-apis/public-apis` | 492k | MIT | 10/2026 | ✅ |
+| 3 | `codecrafters-io/build-your-own-x` | 556k | **không ghi** | 7/2026 | ✅ |
+| 4 | `kamranahmedse/developer-roadmap` | 370k | tự đặt/khác | 10/2026 | ✅ License tự đặt |
+| 5 | `EbookFoundation/free-programming-books` | 400k | CC-BY-4.0 | 10/2026 | ✅ |
+| 6 | `donnemartin/system-design-primer` | 376k | tự đặt/khác | 3/2026 | ✅ |
+| 7 | `jwasham/coding-interview-university` | 363k | CC-BY-SA-4.0 | 12/2024 | ✅ Commit cuối 12/2024 |
+| 8 | `jlevy/the-art-of-command-line` | 163k | **không ghi** | 7/2023 | ⚠️ Đứng yên từ 7/2023 |
+| 9 | `practical-tutorials/project-based-learning` | 288k | MIT | 10/2026 | ✅ |
+| 10 | `getify/You-Dont-Know-JS` | 185k | tự đặt/khác | 1/2026 | ✅ |
+| 11 | `trimstray/the-book-of-secret-knowledge` | 253k | MIT | 11/2024 | ⚠️ Đứng yên từ 11/2024 |
+| 12 | `yangshun/tech-interview-handbook` | 143k | MIT | 8/2026 | ✅ |
+| 13 | `awesome-selfhosted/awesome-selfhosted` | 330k | tự đặt/khác | 10/2026 | ✅ |
+| 14 | `trekhleb/javascript-algorithms` | 197k | MIT | 7/2026 | ✅ |
+| 15 | `Chalarangelo/30-seconds-of-code` | 129k | CC-BY-4.0 | 9/2026 | ✅ CC-BY-4.0 |
+| 16 | `github/gitignore` | 176k | CC0-1.0 | 10/2026 | ✅ |
+| 17 | `ollama/ollama` | 185k | MIT | 10/2026 | ✅ |
+| 18 | `langchain-ai/langchain` | 148k | MIT | 10/2026 | ✅ |
+| 19 | `n8n-io/n8n` | 209k | tự đặt/khác | 10/2026 | ✅ License fair-code (Sustainable Use), không OSI |
+| 20 | `openclaw/openclaw` | 393k | MIT | 10/2026 | ✅ Hồ sơ mục 02 |
+| 21 | `langgenius/dify` | 159k | tự đặt/khác | 10/2026 | ✅ Apache-2.0 có điều khoản thêm |
+| 22 | `langflow-ai/langflow` | 156k | MIT | 10/2026 | ✅ |
+| 23 | `mem0ai/mem0` | 68k | Apache-2.0 | 10/2026 | ✅ |
+| 24 | `browser-use/browser-use` | 119k | MIT | 10/2026 | ✅ |
+| 25 | `crewAIInc/crewAI` | 60k | MIT | 10/2026 | ✅ |
+| 26 | `geekan/MetaGPT` | 71k | MIT | 1/2026 | ⚠️ Đã chuyển sang `FoundationAgents/MetaGPT` |
+| 27 | `microsoft/autogen` | 62k | CC-BY-4.0 | 10/2026 | ⚠️ **Chế độ bảo trì**; kế nhiệm là Microsoft Agent Framework (mục 02) |
+| 28 | `Aider-AI/aider` | 50k | Apache-2.0 | 5/2026 | ⚠️ Commit cuối 5/2026 |
+| 29 | `microsoft/markitdown` | 192k | MIT | 10/2026 | ✅ |
+| 30 | `open-webui/open-webui` | 157k | tự đặt/khác | 10/2026 | ✅ License riêng giữ thương hiệu |
+| 31 | `soxoj/maigret` | 39k | MIT | 10/2026 | ✅ OSINT: dựng hồ sơ một người từ username trên ~5.900 trang. Dual-use, cần cơ sở pháp lý khi dùng |
+| 32 | `TauricResearch/TradingAgents` | 114k | Apache-2.0 | 10/2026 | ✅ Khung nghiên cứu, README không phải lời khuyên đầu tư |
+| 33 | `browserbase/stagehand` | 26k | MIT | 10/2026 | ✅ |
+| 34 | `mendableai/firecrawl` | 195k | AGPL-3.0 | 10/2026 | ⚠️ Đã chuyển sang `firecrawl/firecrawl`; **AGPL-3.0** |
+| 35 | `huggingface/transformers` | 168k | Apache-2.0 | 10/2026 | ✅ |
+| 36 | `vllm-project/vllm` | 95k | Apache-2.0 | 10/2026 | ✅ |
+| 37 | `ggml-org/llama.cpp` | 132k | MIT | 10/2026 | ✅ |
+| 38 | `run-llama/llama_index` | 53k | MIT | 10/2026 | ✅ |
+| 39 | `karpathy/nanoGPT` | 64k | MIT | 11/2025 | ❌ README tự ghi "very old and deprecated" (11/2025), dùng `karpathy/nanochat` |
+| 40 | `infiniflow/ragflow` | 93k | Apache-2.0 | 10/2026 | ✅ |
+| 41 | `supermemoryai/supermemory` | 31k | MIT | 10/2026 | ✅ |
+| 42 | `ComposioHQ/awesome-claude-skills` | 78k | **không ghi** | 7/2026 | ⚠️ Không có LICENSE; chép lại skill tài liệu của Anthropic (`document-skills`, "All rights reserved"); link UTM về Composio |
+| 43 | `perplexityai/bumblebee` | 5.1k | Apache-2.0 | 10/2026 | ✅ Trình quét **chỉ đọc** lockfile, extension, cấu hình MCP trên máy dev (Go, v0.1.2), không phải "bảo mật AI" chung |
+| 44 | `comfyanonymous/ComfyUI` | 143k | GPL-3.0 | 10/2026 | ⚠️ Đã chuyển sang `Comfy-Org/ComfyUI`; GPL-3.0 |
+| 45 | `deepseek-ai/DeepSeek-V3` | 105k | MIT | 8/2025 | ⚠️ Ảnh trỏ tới tổ chức, không phải một repo; repo model (vd. DeepSeek-V3, commit cuối 8/2025) là trọng số + inference, không phải mã huấn luyện |
+| 46 | `lobehub/lobe-chat` | 83k | tự đặt/khác | 10/2026 | ⚠️ Đã đổi tên thành `lobehub/lobehub`; license cộng đồng có điều kiện thương mại |
+| 47 | `freeCodeCamp/freeCodeCamp` | 458k | BSD-3-Clause | 10/2026 | ✅ |
+| 48 | `jwasham/coding-interview-university` | 363k | CC-BY-SA-4.0 | 12/2024 | ❌ **Trùng #7** |
+| 49 | `langchain-ai/langchain` | 148k | MIT | 10/2026 | ❌ Trùng #18 (hoặc LangGraph; link bị cắt) |
+| 50 | `n8n-io/n8n` | 209k | tự đặt/khác | 10/2026 | ❌ **Trùng #19** |
+
+**Tổng:** 50 ô nhưng chỉ **47 repo khác nhau**: #48 trùng #7, #50 trùng #19, #49 trỏ `langchain-ai/l…` (trùng #18 nếu là LangChain). Repo tồn tại cả 50, không link nào chết. Còn lại:
+
+- **4 repo đã đổi chỗ** (cùng HEAD với tên mới): MetaGPT → `FoundationAgents/MetaGPT`, Firecrawl → `firecrawl/firecrawl`, ComfyUI → `Comfy-Org/ComfyUI`, Lobe Chat → `lobehub/lobehub`. Link cũ vẫn chạy nhờ chuyển hướng, nhưng script hay lockfile nên dùng tên mới.
+- **2 repo đã thôi phát triển chính:** nanoGPT (chính Karpathy ghi "deprecated", chuyển sang nanochat) và AutoGen (bảo trì, nhường cho Microsoft Agent Framework). **3 tài liệu đứng yên** từ 2023–2024 (the-art-of-command-line, the-book-of-secret-knowledge, coding-interview-university) vẫn đọc được, nhưng phần công cụ có thể đã cũ.
+- **License cần đọc trước khi dùng thương mại:** n8n (Sustainable Use, không OSI), Firecrawl (**AGPL-3.0**), ComfyUI (GPL-3.0), Open WebUI và LobeHub (license riêng có điều kiện thương hiệu/thương mại), Dify (Apache-2.0 kèm điều khoản). `ComposioHQ/awesome-claude-skills` không có LICENSE mà lại chép skill tài liệu của Anthropic ghi "All rights reserved".
+- **Mô tả sai hoặc lệch:**
+  - #43 Bumblebee không phải "công cụ bảo mật AI" chung, mà là trình quét chỉ đọc cho phản ứng sự cố chuỗi cung ứng trên máy dev, có đọc cả cấu hình MCP.
+  - #45 trỏ tới cả tổ chức DeepSeek, không phải một kho mã.
+  - #1 iFixAi có số sao rất lệch so với lượt tải PyPI **(chưa xác minh là sao ảo; cần thận trọng)**.
+- **Dual-use:** #31 maigret dựng hồ sơ cá nhân từ username, chỉ dùng khi có cơ sở pháp lý theo quy định bảo vệ dữ liệu cá nhân.
+
+### 2i.2 Ảnh gom ba nhóm khác nhau
+
+| Nhóm | Mục | Nên đọc ở |
+|---|---|---|
+| Học lập trình (tài liệu, lộ trình) | #2–16, #47–48 | Mục 08 §1–§3 (build-your-own-x, developer-roadmap, system-design-primer đã có hồ sơ) |
+| Hạ tầng LLM và agent | #17–30, #33–41, #44–46 | Mục 02, 05, 10, 11, 14 (đa số đã có hồ sơ và đã kiểm license) |
+| Công cụ ngách | #1, #31, #32, #42, #43 | Bảng trên; Bumblebee hợp với §3 mục 12 (chuỗi cung ứng) |
+
+**Dùng thế nào:** coi ảnh là danh sách tên để tra, không phải danh sách để cài. Trước khi dùng một mục: thay tên repo cũ bằng tên mới; bỏ nanoGPT và AutoGen cho dự án mới; đọc license nếu nhúng vào sản phẩm. Với agent tự chủ (browser-use, OpenClaw, crewAI), đọc hồ sơ an toàn trong kho trước.
+
+**Nguồn §2i:** ảnh người dùng gửi 25/10/2026 · img.shields.io/github/{{stars,license,last-commit}}/<repo>.json cho 47 repo (25/10/2026) · `git ls-remote` so HEAD: comfyanonymous/ComfyUI = Comfy-Org/ComfyUI, geekan/MetaGPT = FoundationAgents/MetaGPT, mendableai/firecrawl = firecrawl/firecrawl, lobehub/lobe-chat = lobehub/lobehub · README: github.com/karpathy/nanoGPT (thông báo 11/2025), github.com/perplexityai/bumblebee (26 commit, v0.1.2), github.com/ifixai-ai/iFixAi (331 commit từ 27/4/2026), github.com/ComposioHQ/awesome-claude-skills (`document-skills/*/LICENSE.txt`), github.com/TauricResearch/TradingAgents, github.com/soxoj/maigret · img.shields.io/pypi/dm/ifixai.json · bên thứ ba: decrypt.co/368944/perplexity-open-source-bumblebee-ai-scanner-mcp-infection-malware · discuss.pytorch.kr/t/ifixai-ai-45/11296 · pypi.org/project/iFixAi
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.

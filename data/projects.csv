@@ -157,7 +157,7 @@ Kokoro TTS,hexgrad/kokoro,,speech,Apache-2.0,9500,True,14,"82M; 82M, trọng s�
 Chatterbox,resemble-ai/chatterbox,,speech,MIT,,True,14,voice clone
 Qwen3-VL,QwenLM/Qwen3-VL,,vlm,Apache-2.0,20100,True,14,
 LLaVA-NeXT,LLaVA-VL/LLaVA-NeXT,,vlm,Apache-2.0,4700,True,14,
-ComfyUI,comfyanonymous/ComfyUI,,image-gen,GPL-3.0,130000,True,14,122k–136k
+ComfyUI,Comfy-Org/ComfyUI,,image-gen,GPL-3.0,130000,True,14,"122k–136k; repo đã chuyển từ comfyanonymous/ComfyUI (cùng HEAD, kiểm 25/10/2026)"
 Stable Diffusion WebUI,AUTOMATIC1111/stable-diffusion-webui,,image-gen,AGPL-3.0,164000,True,14,dừng phát triển
 Fooocus,lllyasviel/Fooocus,,image-gen,GPL-3.0,53400,True,14,LTS
 DuckDB,duckdb/duckdb,,data,MIT,40000,True,15,8/2026
@@ -557,3 +557,6 @@ Hallmark,Nutlope/hallmark,,design-skill,MIT,33000,True,06,"Together AI (Youssef 
 AI Agents A-Z (n8n templates),gyoridavid/ai_agents_az,,low-code,,3900,False,05,"David Gyori: ~55 workflow n8n của kênh YouTube (33 tập, phần lớn video faceless: Sora 2/Veo qua kie.ai, fal.ai, FLUX/Qwen trên Modal); KHÔNG có LICENSE; dừng 19/12/2025; không lộ secret; phụ thuộc 2 image Docker không mã nguồn; FLUX [dev] non-commercial; phễu Skool trả phí + affiliate n8n; ★ 25/10/2026 (shields), mục 05"
 Awesome Bug Bounty Tools,vavkamil/awesome-bugbounty-tools,,awesome-list,CC0-1.0,6400,True,12,"Danh sách 395 repo công cụ bug bounty theo 44 chuyên mục (recon, lớp lỗi, AI Agents); 176/395 (45%) commit cuối ≤2023, không repo nào mất; mô tả do người gửi PR viết, không kiểm chứng; CI zizmor + kiểm sao link mới; dual-use; ★ 25/10/2026 (shields), mục 12 §3n"
 Claude SEO,AgriciDaniel/claude-seo,,harness-pack,MIT,20000,True,08,"Skill pack SEO/GEO cho Claude Code: 26 skill + 19 agent + script Python (GSC, GA4, CrUX); không telemetry, API trả phí (DataForSEO, Ahrefs, Firecrawl) là extension tùy chọn; cổng chặn nội dung mỏng trong seo-programmatic (dừng >500 trang, cờ <40% nội dung riêng); 412 commit 2/2026→10/2026; ★ 25/10/2026 (shields), mục 08 §2h"
+iFixAi,ifixai-ai/iFixAi,,eval-observability,Apache-2.0,34000,True,07,"Chẩn đoán agent 'lệch mục tiêu' (misalignment) qua nhiều nhóm kiểm, nhiều provider; 331 commit từ 27/4/2026; 34k★/1,7k fork nhưng PyPI ~481 lượt tải/tháng (lệch lớn, chưa xác minh sao ảo); README dẫn site thương mại; ★ 25/10/2026 (shields), mục 08 §2i"
+Bumblebee (Perplexity),perplexityai/bumblebee,,security,Apache-2.0,5100,True,12,"Trình quét chỉ đọc (Go, không dependency ngoài stdlib) lockfile, metadata package manager, extension, cấu hình MCP trên máy dev macOS/Linux để đối chiếu advisory chuỗi cung ứng; không chạy package manager; v0.1.2, 26 commit từ 22/5/2026; ★ 25/10/2026 (shields), mục 08 §2i"
+awesome-claude-skills (Composio),ComposioHQ/awesome-claude-skills,,awesome-list,,78000,False,20,"Danh sách ~184 skill + thư mục skill chép kèm; KHÔNG có LICENSE; chép lại document-skills của Anthropic ('All rights reserved'); link UTM về Composio; commit cuối 7/2026; ★ 25/10/2026 (shields), mục 08 §2i"
