@@ -5635,6 +5635,16 @@
       "open_source": true,
       "notes": "Together AI (Youssef + Nutlope): skill build trang chống 'AI slop' cho Claude Code/Codex/Cursor/OpenCode; 48 theme chia 3 bằng thuật toán tất định (theme.mjs); sloplint 90 gate (39 Floor/50 Reflex), render Puppeteer chỉ khi có Chrome + puppeteer-core; gate 'invented facts' chỉ WARN; review subagent chỉ trên Claude Code/OpenCode; font Google/ảnh Wikimedia hotlink (547 CC BY-SA); ~30k token/lần build; ★ 25/10/2026 (shields), mục 06 §7l",
       "section": "06"
+    },
+    {
+      "name": "AI Agents A-Z (n8n templates)",
+      "repo": "gyoridavid/ai_agents_az",
+      "category": "low-code",
+      "license": null,
+      "stars": 3900,
+      "open_source": false,
+      "notes": "David Gyori: ~55 workflow n8n của kênh YouTube (33 tập, phần lớn video faceless: Sora 2/Veo qua kie.ai, fal.ai, FLUX/Qwen trên Modal); KHÔNG có LICENSE; dừng 19/12/2025; không lộ secret; phụ thuộc 2 image Docker không mã nguồn; FLUX [dev] non-commercial; phễu Skool trả phí + affiliate n8n; ★ 25/10/2026 (shields), mục 05",
+      "section": "05"
     }
   ]
 }
