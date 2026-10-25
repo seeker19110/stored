@@ -5645,6 +5645,16 @@
       "open_source": false,
       "notes": "David Gyori: ~55 workflow n8n của kênh YouTube (33 tập, phần lớn video faceless: Sora 2/Veo qua kie.ai, fal.ai, FLUX/Qwen trên Modal); KHÔNG có LICENSE; dừng 19/12/2025; không lộ secret; phụ thuộc 2 image Docker không mã nguồn; FLUX [dev] non-commercial; phễu Skool trả phí + affiliate n8n; ★ 25/10/2026 (shields), mục 05",
       "section": "05"
+    },
+    {
+      "name": "Awesome Bug Bounty Tools",
+      "repo": "vavkamil/awesome-bugbounty-tools",
+      "category": "awesome-list",
+      "license": "CC0-1.0",
+      "stars": 6400,
+      "open_source": true,
+      "notes": "Danh sách 395 repo công cụ bug bounty theo 44 chuyên mục (recon, lớp lỗi, AI Agents); 176/395 (45%) commit cuối ≤2023, không repo nào mất; mô tả do người gửi PR viết, không kiểm chứng; CI zizmor + kiểm sao link mới; dual-use; ★ 25/10/2026 (shields), mục 12 §3n",
+      "section": "12"
     }
   ]
 }

@@ -570,3 +570,9 @@
 - github.com/gyoridavid/ai_agents_az (clone blob:none đủ lịch sử 25/10/2026, 110 commit, HEAD 764fac2 19/12/2025; README từng tập, quét 55 file JSON: loại node, credential, host, chuỗi giống API key) · github.com/gyoridavid/short-video-maker (clone nông; README, LICENSE, package.json)
 - hub.docker.com/v2/repositories/gyoridavid/{ai-agents-no-code-tools,narrated-story-creator,short-video-maker} · img.shields.io/github/{stars,forks,license,last-commit}/gyoridavid/{ai_agents_az,short-video-maker,ai-agents-no-code-tools,narrated-story-creator}.json 25/10/2026
 - Bên thứ ba: osrepos.com/repo/gyoridavid-ai_agents_az · sourcepulse.org/projects/11055697 · growwstacks.com/blog/free-n8n-automation-templates-goldmine
+
+## Bổ sung 2026-10-25 đợt 3 (ảnh README vavkamil/awesome-bugbounty-tools → mục 12 §3n)
+
+- github.com/vavkamil/awesome-bugbounty-tools (clone blob:none đủ lịch sử 25/10/2026, 191 commit, HEAD 1e10997; README.md, contributing.md, LICENSE, .github/workflows/{security-zizmor,stargazers}.yml)
+- img.shields.io/github/last-commit/<repo>.json cho 395 repo trong danh sách, 25/10/2026; `git ls-remote` cho 8 repo lỗi badge (đều còn tồn tại)
+- img.shields.io/github/{stars,license,last-commit}/… 25/10/2026: KeygraphHQ/shannon, ASCIT31/Dark-Moon, GreyDGL/PentestGPT, Awarexone/Agentic-Bug-Hunter, samugit83/redamon, vigolium/vigolium, xeloxa/temodar-agent, djadmin/awesome-bug-bounty, nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters, KingOfBugbounty/KingOfBugBountyTips, projectdiscovery/nuclei, swisskyrepo/PayloadsAllTheThings

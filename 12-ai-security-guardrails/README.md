@@ -472,6 +472,66 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 
 **Nguồn §3m:** clone đầy đủ github.com/cloudflare/security-audit-skill 25/10/2026 (14 commit, HEAD c1c8a8c; README.md, LICENSE, `skills/security-audit/{SKILL.md, RECONNAISSANCE.md, HUNTING.md, VALIDATION-AND-REPORTING.md, ATTACK-CLASSES.md, 10 tài liệu lĩnh vực, report-schema.json, validate-findings.cjs, validate-coverage-ledger.cjs, *.test.cjs}`; chạy `node --test` 65/65 pass từ bản sao) · https://blog.cloudflare.com/build-your-own-vulnerability-harness (Grant Bourzikas, 18/6/2026, sửa 15/7/2026) · img.shields.io/github/{stars,forks,license}/cloudflare/security-audit-skill.json 25/10/2026 · bên thứ ba: fireup.pro/news/cloudflare-open-sources-its-ai-security-auditor-heres-why-it-matters · penligent.ai/hackinglabs/de/cloudflare-security-audit-skill · everydev.ai/tools/cloudflare-security-audit-skill · zeli.app/de/story/48854681
 
+### 3n. Kiểm ảnh: `vavkamil/awesome-bugbounty-tools`, danh sách công cụ bug bounty (ảnh người dùng gửi, clone đầy đủ 2026-10-25)
+
+> Ảnh chụp README: "Awesome Bug Bounty Tools", license CC0-1.0, mục lục Recon và Exploitation. Đã clone đủ lịch sử (191 commit, HEAD `1e10997`, 6/10/2026), đọc README, `contributing.md` và CI, rồi kiểm **toàn bộ 395 repo GitHub** trong danh sách: còn tồn tại không (`git ls-remote` cho repo lỗi badge) và commit cuối khi nào (shields `last-commit`, đọc ngày 25/10/2026).
+
+| Thuộc tính | Giá trị (đọc 2026-10-25) |
+|---|---|
+| Repo | https://github.com/vavkamil/awesome-bugbounty-tools · **~6,4k★**, 1k fork (shields) |
+| License | **CC0-1.0** cho phần danh sách. Mỗi công cụ trong danh sách có license riêng |
+| Tác giả | Kamil Vavra (`vavkamil`), 111/191 commit; 37 người đóng góp (kể cả dependabot) |
+| Hoạt động | 11/1/2021 → 6/10/2026. Năm 2026 có 87 commit, chủ yếu merge PR thêm công cụ |
+| Quy mô | 412 dòng liệt kê, **395 repo GitHub**, 5 link ngoài GitHub. Bốn nhóm lớn (Recon, Exploitation, Miscellaneous, Uncategorized) với 44 chuyên mục con, từ subdomain enumeration đến request smuggling, JWT, subdomain takeover và **AI Agents** |
+| CI | `zizmor` quét workflow (ghim SHA action, `permissions: {}`) + workflow `Stargazers` lấy link mới trong PR để kiểm số sao và cảnh báo link ngoài GitHub. Không có job định kỳ kiểm link chết |
+
+**Kiểm ảnh:** mục lục trong ảnh khớp mục lục README: Recon 11 mục, kể cả "Waf Evasion". Lệch nhỏ: trong thân README, "Waf Evasion" lại nằm ở nhóm Exploitation, nên thân bài có Recon 10 / Exploitation 20 / Miscellaneous 14 chuyên mục. Ảnh dừng ở "Open Redirect"; phần sau còn Race Condition, Request Smuggling, SSRF, SQLi, XSS, XXE, SSTI, Web Cache Poisoning, rồi Miscellaneous (Passwords, Secrets, Git, Buckets, CMS, JWT, postMessage, Subdomain Takeover, Vulnerability Scanners, AI Agents…).
+
+**Điều ảnh không nói (kiểm 395 repo):**
+
+| Commit cuối | Số repo | Tỉ lệ |
+|---|---|---|
+| Trong năm 2026 | 145 | 37% |
+| 2025 | 36 | 9% |
+| 2024 | 30 | 8% |
+| **2023 trở về trước** | **176** | **45%** |
+| Lỗi badge (đổi tên/redirect, vẫn tồn tại) | 8 | 2% |
+
+- **Gần một nửa danh sách đã đứng yên ≥ 2 năm**: 176 repo có commit cuối từ 2023 trở về trước, sớm nhất năm 2014. Với công cụ recon và fuzz, việc này quan trọng: nguồn dữ liệu (API, trang tìm subdomain), cú pháp WAF và payload thay đổi liên tục.
+- **Không repo nào đã biến mất.** 8 repo lỗi badge (như `lc/gau`, `j3ssie/Osmedeus`, `mandatoryprogrammer/xsshunter`) vẫn trả lời `git ls-remote`, chỉ là đổi tên hoặc redirect. Đầu năm 2026 có commit "remove links returning 404", tức là link chết có được dọn, nhưng làm tay.
+- Có một số mục **không còn dùng được như mô tả** dù repo vẫn còn. Ví dụ `mandatoryprogrammer/xsshunter` là bản tự host cũ; dịch vụ XSS Hunter gốc đã đóng **(chưa xác minh trong đợt này)**.
+- **Mục "AI Agents" mới thêm năm 2026 (5 mục):**
+
+  | Mục | ★ · license (25/10/2026) | Ghi chú |
+  |---|---|---|
+  | `KeygraphHQ/shannon` | ~49k · **AGPL-3.0** | Agent tự chủ tìm exploit trên web app. Chưa có hồ sơ trong kho |
+  | `GreyDGL/PentestGPT` | ~16k · MIT | Đã có trong bảng so sánh ở §3g/§3i |
+  | `Awarexone/Agentic-Bug-Hunter` | ~5,4k · MIT | Plugin Claude Code. PR thêm vào danh sách do `shuvonsec` gửi, cũng là tác giả repo community mà Claude-BugHunter clone (§3l) |
+  | `samugit83/redamon` | ~3,2k · MIT | **Tác giả tự gửi PR** thêm repo của mình |
+  | `ASCIT31/Dark-Moon` | ~1,1k · GPL-3.0 | Điều phối 80+ công cụ qua MCP |
+
+  Danh sách không ghi license, số sao hay mức tự chủ của các agent này. Với agent tấn công tự chủ, đây là thông tin cần nhất: phạm vi, sandbox, có chạm hệ thống thật không (xem cách đánh giá ở §3g, §3i).
+- **Mô tả do người gửi PR viết**, không qua kiểm chứng (ví dụ "Fully autonomous AI hacker", "High-fidelity vulnerability scanner"). `contributing.md` chỉ yêu cầu định dạng, không yêu cầu đã chạy thử.
+- **Dual-use:** mục Exploitation và "Waf Evasion" là công cụ tấn công thật, chỉ hợp pháp trong phạm vi chương trình bug bounty hoặc khi có ủy quyền bằng văn bản (cùng ranh giới với §3c, §3l).
+
+**So sánh nhanh (shields 25/10/2026):**
+
+| Danh sách | ★ | License | Commit cuối | Khác biệt |
+|---|---|---|---|---|
+| `vavkamil/awesome-bugbounty-tools` | ~6,4k | CC0-1.0 | 10/2026 | **Công cụ**, chia theo lớp lỗi; có mục AI Agents |
+| `djadmin/awesome-bug-bounty` | ~6k | CC0-1.0 | 3/2026 | Chương trình, writeup, bài học; ít công cụ |
+| `nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters` | ~12k | không ghi | **7/2024** | Lộ trình học cho người mới |
+| `KingOfBugbounty/KingOfBugBountyTips` | ~5,6k | không ghi | 10/2026 | One-liner ghép công cụ |
+| `swisskyrepo/PayloadsAllTheThings` | ~82k | MIT | 8/2026 | Payload theo lớp lỗi (đã có ở §3j) |
+
+**Dùng thế nào:**
+
+- Dùng danh sách để **biết có những công cụ gì cho một lớp lỗi**, không phải để chọn công cụ. Trước khi cài, kiểm commit cuối, license và issue mở. Ưu tiên công cụ còn bảo trì như họ `projectdiscovery` (nuclei ~32k★, MIT, commit hằng ngày).
+- Với mục AI Agents: đọc theo cách §3g/§3i (sandbox, scope, mount `docker.sock`, telemetry) trước khi cho agent chạy. Shannon dùng **AGPL-3.0**, nên nhúng vào dịch vụ thì phải mở mã.
+- Muốn agent (Claude-BugHunter §3l, `yeswehack/claude-kit` §3h) gọi công cụ trong danh sách thì ghim phiên bản và chạy trong container, không cài thẳng lên máy có credential.
+
+**Nguồn §3n:** clone đủ lịch sử github.com/vavkamil/awesome-bugbounty-tools 25/10/2026 (191 commit, HEAD 1e10997 6/10/2026; README.md, contributing.md, LICENSE CC0-1.0, `.github/workflows/{security-zizmor,stargazers}.yml`, git log 2026) · img.shields.io/github/last-commit/<repo>.json cho 395 repo trong danh sách (25/10/2026) · `git ls-remote` cho 8 repo lỗi badge · img.shields.io/github/{stars,license,last-commit}/… cho 7 mục AI/scanner và 5 danh sách so sánh (25/10/2026)
+
 ## 4. Benchmark & nghiên cứu
 
 - **AgentDojo** (NeurIPS 2024): benchmark tấn công/phòng thủ prompt injection cho agent có tool – được trích dẫn nhiều nhất.
