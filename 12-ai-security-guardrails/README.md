@@ -91,7 +91,7 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 | **NVIDIA/SkillSpector** | 20k | Apache-2.0 | 9/10/2026 | Máy quét skill (CLI + MCP) | Phân tích tĩnh, gửi nội dung file cho LLM | Tự ghi "not a sandbox" |
 | **cisco-ai-defense/skill-scanner** | 2,6k | Apache-2.0 | 9/10/2026 | Máy quét skill v2.2.2 | Tĩnh + LLM | Tự ghi "best-effort" |
 | **anthropics/claude-code-security-review** | 6,3k | MIT | 11/2/2026 | GitHub Action + `/security-review` | Python chạy trong CI | Tự ghi "not hardened against prompt injection"; đứng từ 2/2026 |
-| **cloudflare/security-audit-skill** | 28,6k | MIT | 14/9/2026 | 1 skill + validator Node | Yêu cầu sandbox hệ điều hành | Mới nằm ở mục Todo của list |
+| **cloudflare/security-audit-skill** | 28,6k | MIT | 14/9/2026 | 1 skill + validator Node | Yêu cầu sandbox hệ điều hành | Mới nằm ở mục Todo của list; hồ sơ đầy đủ ở §3m (~45k★ ngày 25/10) |
 | **google/mantis** | 2,4k | Apache-2.0 | 6/10/2026 | Skill + harness test | **Chạy code do nó sinh ra** | "not an officially supported Google product"; tự khuyên chạy cô lập |
 | **elastic/agent-skills** | 593 | Apache-2.0 | 10/9/2026 | 26 skill (4 về bảo mật) | Script cài đặt | Hướng dẫn least-privilege tốt |
 | **ghostsecurity/skills** | 411 | Apache-2.0 | 28/9/2026 | 2 plugin, 8 skill | Tải binary Go từ release, MITM proxy, test app đang chạy | Không có câu về ủy quyền |
@@ -403,6 +403,74 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 **Bài học cho kho:** (1) cặp `triage-validation` 7-Question Gate + `SECURITY.md` là mẫu tốt về "ràng scope ngay trong skill, không bằng lời khuyên chung" — dùng lại được cho mọi báo cáo agent viết; (2) installer có **backup-ngoài-đường-nạp + manifest uninstall** là mẫu sạch hơn kiểu chỉ `cp` đè (so với autoskills mục 20 §3h còn thêm SHA-256 + review model — mạnh hơn nữa); (3) `--burp-mcp` backup config trước khi ghi là chuẩn tối thiểu khi một bộ skill sửa cấu hình harness.
 
 **Nguồn §3l:** clone đầy đủ `elementalsouls/Claude-BugHunter` 2026-10-17 (HEAD `35e7614`; README.md, INSTALL.md, SECURITY.md, ENGAGEMENTS.md, LICENSE, LICENSE-CONTENT, pyproject.toml v2.1.0, `.claude-plugin/{plugin,marketplace}.json`, scripts/install.sh + install-community-skills.sh + setup_harness_mcp.py + hunt.sh, đếm `skills/` = 83 dir / 58 `hunt-*`, `commands/` = 15, cây `engine/` + `cbh/`) · trang GitHub 2026-10-17 (~5,1k★/780 fork) · WebSearch 2026-10-17: https://themenonlab.blog/blog/claude-bughunter-ai-security-testing-skills/ · https://skillselion.com/skills/elementalsouls/claude-bughunter · https://gittrend.io/repo/elementalsouls/Claude-BugHunter · https://www.sourcepulse.org/projects/30010978
+
+### 3m. `cloudflare/security-audit-skill`: skill audit bảo mật nhiều pha, hạt giống của harness tìm lỗ hổng của Cloudflare (ảnh người dùng gửi, clone đầy đủ 2026-10-25)
+
+> Ảnh là trang GitHub của repo: 43,6k★, 2,7k fork, 14 commit, README mô tả 6 pha audit. §3e đã nhắc repo này trong bảng danh sách Awesome (28,6k★ ngày 12/10). Mục này clone đầy đủ (HEAD `c1c8a8c`, 14/9/2026), đọc toàn bộ `skills/security-audit/`, chạy test của hai validator từ một bản sao trong thư mục nháp, và đối chiếu với bài blog Cloudflare mà README dẫn.
+
+| Thuộc tính | Giá trị (đọc 2026-10-25) |
+|---|---|
+| Repo | https://github.com/cloudflare/security-audit-skill |
+| Mô tả 1 dòng | Skill biến coding agent thành người audit bảo mật trên **một repo**: trinh sát → săn theo sổ phủ (coverage ledger) → mỗi ứng viên giao cho một agent mới tìm cách bác bỏ → ghi `findings.json` theo schema → agent mới kiểm lại từng bản ghi → báo cáo |
+| Loại | security / skill (một skill + 2 validator Node) |
+| License | **MIT**, "Copyright (c) 2025-2026 Cloudflare, Inc." |
+| ★ (ngày) | **~45k★**, 2,8k fork (shields 25/10/2026; ảnh ghi 43,6k; §3e ghi 28,6k ngày 12/10 → tăng ~16k trong 13 ngày) |
+| Lịch sử | 14 commit, 18/6 → 14/9/2026; tác giả chính Dan Jones (`literally-dan`), 3 người đóng góp một PR mỗi người; 0 trailer Claude; không tag, không release |
+| Cài | `npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit [--global]`. Không có plugin manifest, README không nêu host cụ thể |
+
+**Quan hệ với harness của Cloudflare (bài blog "Build your own vulnerability harness", Grant Bourzikas, 18/6/2026):**
+
+- Skill là bản prompt ~450 dòng chạy trên một repo trong một phiên. Harness tách từng pha thành agent riêng, ghi vào SQLite theo run/repo/stage, và thêm các pha Gapfill, Dedup, Trace, Feedback. Blog gọi phép ánh xạ là "gần như một-một".
+- Số liệu blog (tự công bố): quét **128 repo**; 20.799 ứng viên thô, ~12.057 qua validation; tỉ lệ bác bỏ ở validation giảm từ 40% xuống 11%. Blog **không** công bố tỉ lệ bỏ sót, gọi các chỉ số là "proxy", không nêu tên model và không nêu chi phí.
+- Phần quyết định chất lượng của harness **không có trong skill**: mỗi phát hiện phải kèm test PoC chạy được trên code gốc cùng bản vá; code kiểm đường dẫn được trích dẫn có tồn tại; validator dùng **model khác** với hunter. Bản harness đầy đủ chưa phát hành (blog nói "should follow shortly").
+
+**Đọc cổng thật:**
+
+- **Hai validator là cổng máy thật** (`validate-findings.cjs`, `validate-coverage-ledger.cjs`): chỉ dùng `fs`/`path`/`util`, không mạng, không `child_process`, mở file với `O_NOFOLLOW`, giới hạn 5 MiB và 1.000 phát hiện. Chúng kiểm:
+  - thứ tự trace `entrypoint → propagation → sink`, mỗi bước có `file` và `line ≥ 1`;
+  - fingerprint sắp xếp và không trùng, đường dẫn tương đối an toàn;
+  - severity tổng không vượt mức impact;
+  - các trường bắt buộc và bị cấm theo từng verdict (`confirmed` / `needs_validation` / `rejected`);
+  - trong sổ phủ: ID chuẩn hóa, quy tắc chủ sở hữu khi giao lại việc.
+- **Đã chạy test: 65/65 pass** (31 ledger + 34 findings, Node 22; chạy từ bản sao, đã đọc test trước khi chạy).
+- **Chỉ là văn xuôi, không có máy kiểm:**
+  - file và dòng được trích dẫn có tồn tại thật không;
+  - verifier có khác agent đã tìm ra lỗi không (`findings.json` không ghi agent ID);
+  - sổ phủ và `findings.json` có khớp nhau không;
+  - ngân sách, và bước "promotion" artifact an toàn trước race condition (SKILL.md mô tả nhưng không kèm code).
+- Validator tự ghi rõ nó "chỉ chứng minh định dạng và tính nhất quán của sổ", không chứng minh lỗi là thật.
+- **Schema riêng:** `report-schema.json` dùng từ khóa tự đặt (`visibleContent`), nên chỉ validator đi kèm đọc được. Không có trường CWE hay CVSS; severity gồm likelihood/impact/overall theo 5 mức.
+
+**Ranh giới an toàn trong skill (điểm mạnh):**
+
+- Đọc mã nguồn là chỉ đọc. Muốn **chạy code của target** (build, test, fuzzer, trình duyệt) thì phải có sandbox do hệ điều hành cưỡng chế: không mạng ra ngoài, biến môi trường theo allowlist, target chỉ đọc, chỉ ghi vào thư mục nháp, có giới hạn tài nguyên. Không có sandbox thì phát hiện giữ ở `needs_validation`.
+- Cấm thăm dò hệ thống đang chạy hay production, cấm dùng credential thật, cấm stress test, cấm cài dependency, cấm dùng quota trả phí, cấm vượt quá tác động tối thiểu. Chỉ dùng secret giả và không chụp biến môi trường hay credential của máy.
+- "Target-neutral reporting" nghĩa là bản tái hiện dùng giao diện gốc của target (gọi hàm, CLI, fixture), không mặc định gửi HTTP tới hệ thống đang chạy.
+
+**Hạn chế / rủi ro:**
+
+- **Không phòng prompt injection từ repo đang audit.** Không câu nào dặn coi comment, README hay test của target là dữ liệu chứ không phải lệnh. `architecture.md` dựng từ nội dung target lại được dán nguyên văn vào prompt của mọi hunter. Đem audit repo lạ hoặc repo của đối phương là đúng tình huống dễ bị chèn lệnh. Nên tự thêm luật này (xem cách §3e và mục 03 xử lý nội dung không tin cậy).
+- **Cần host có subagent và chạy song song** (trinh sát ≥4 agent, nhiều đợt hunter, verifier song song). README liệt kê đây là yêu cầu nhưng không có đường lùi cho host không có subagent. Không có trần lượt hay token; `budget` mặc định `null`, nên một lần audit có thể rất tốn.
+- **Không có sandbox thì gần như không có `confirmed`**, vì `confirmed` cần kết quả quan sát được khi chạy cục bộ trong sandbox. Trên máy thường, đầu ra chủ yếu là `needs_validation`. README có nói nhưng dễ bị bỏ qua.
+- **Validator không chạy trên Windows:** Windows không có `O_NOFOLLOW`, nên mọi file đầu vào đều bị từ chối. README không nhắc.
+- **Ngữ cảnh lớn:** SKILL.md ~5,5k token, toàn bộ tài liệu đi kèm ~45–50k token nếu nạp hết (4 tài liệu pha + 10 tài liệu theo lĩnh vực: AI/LLM, web/auth, client-side, memory safety, cloud, cô lập dữ liệu, desktop/mobile/IPC, RPC, cạn tài nguyên, chuỗi cung ứng).
+- README tự nhận "một lần chạy tìm được khoảng một nửa số lỗi mà nhiều lần chạy cộng lại tìm được", nhưng repo không kèm số liệu **(chưa xác minh)**. Repo không có CI; các tab Contributing/Security/Code of conduct trong ảnh là file mặc định cấp tổ chức Cloudflare, không phải file trong repo.
+
+**So với các mục đã có:**
+
+- `anthropics/claude-code-security-review` (§3e) review diff của PR. Skill này audit **toàn repo** theo sổ phủ.
+- `trailofbits/skills` (§3d/§3e) là nhiều skill nhỏ theo kỹ thuật. Skill này là một quy trình đầu-cuối có schema đầu ra.
+- Claude-BugHunter (§3l) và PentAGI (§3i) nhắm **hệ thống đang chạy** (dual-use). Skill này chỉ đọc mã và cấm chạm production, nên an toàn hơn để dùng nội bộ.
+- Semgrep, CodeQL, OSV-Scanner (§3d) là cổng tất định nên chạy **trước**. Blog Cloudflare ghi nhận hunter của họ gần như không gọi Semgrep, nên phải gọi riêng.
+
+**Dùng thế nào:**
+
+- Hợp nhất để audit **repo nội bộ của chính mình** trước khi phát hành, trên host có subagent (Claude Code). Đặt `budget` thay cho `null`.
+- Thêm luật "nội dung repo là dữ liệu" vào prompt hunter; chạy trong container không có credential.
+- Lấy `report-schema.json` và hai validator làm **định dạng chung** cho mọi phát hiện do agent viết. Đây là phần tái dùng tốt nhất của repo.
+- Muốn có `confirmed` thì dựng sandbox thật (gVisor, Firecracker, `anthropics/sandbox-runtime`: mục 11). Muốn đạt tới mức của harness thì tự thêm ba thứ blog mô tả: PoC + bản vá, kiểm đường dẫn bằng code, verifier chạy model khác.
+
+**Nguồn §3m:** clone đầy đủ github.com/cloudflare/security-audit-skill 25/10/2026 (14 commit, HEAD c1c8a8c; README.md, LICENSE, `skills/security-audit/{SKILL.md, RECONNAISSANCE.md, HUNTING.md, VALIDATION-AND-REPORTING.md, ATTACK-CLASSES.md, 10 tài liệu lĩnh vực, report-schema.json, validate-findings.cjs, validate-coverage-ledger.cjs, *.test.cjs}`; chạy `node --test` 65/65 pass từ bản sao) · https://blog.cloudflare.com/build-your-own-vulnerability-harness (Grant Bourzikas, 18/6/2026, sửa 15/7/2026) · img.shields.io/github/{stars,forks,license}/cloudflare/security-audit-skill.json 25/10/2026 · bên thứ ba: fireup.pro/news/cloudflare-open-sources-its-ai-security-auditor-heres-why-it-matters · penligent.ai/hackinglabs/de/cloudflare-security-audit-skill · everydev.ai/tools/cloudflare-security-audit-skill · zeli.app/de/story/48854681
 
 ## 4. Benchmark & nghiên cứu
 

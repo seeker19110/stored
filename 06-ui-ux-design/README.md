@@ -668,6 +668,80 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7k:** https://github.com/nexu-io/open-design (clone blob:none đầy đủ lịch sử, 3.764 commit, HEAD 88b3d9931 19/10/2026, v0.25.1; đọc README.md, package.json (Apache-2.0, pnpm@10.33.2), PRIVACY.md, CHANGELOG.md (0.9.0), `design-systems/README.md` + `design-systems/airbnb/{manifest.json,source/evidence.md}`; `git log` commit #1 rename "Open Claude Design"→"Open Design") · trang GitHub 19/10/2026 (~102k★, 11,7k fork) · github.com/nexu-io · sourcepulse.org/projects/28859130 · dev.co/ai/frameworks/open-design (76k, 8/7/2026) · mer.vin/2026/05/open-design-explained-local-first-open-source-alternative-to-claude-design · jimmysong.io/ai/open-design
 
+## 7l. Kiểm ảnh: Nutlope/hallmark (Hallmark), skill thiết kế "không trông như AI làm" của Together AI (ảnh README người dùng gửi, clone 2026-10-25)
+
+> Ảnh là README của repo: "A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated", 48 theme, có các chế độ redesign và audit, "Made by Together AI". Mục này clone đầy đủ lịch sử (HEAD `7ec8682`, 22/10/2026) và đọc `skills/hallmark/` (SKILL.md, references, scripts), `eval/`, `.claude-plugin/`, CI. **Không chạy script nào của repo.**
+
+### 7l.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 25/10/2026) |
+|---|---|
+| Repo | `Nutlope/hallmark` · **~33k★**, 1,7k fork (shields) · **MIT** ("Hallmark contributors") · site usehallmark.com |
+| Lịch sử | 297 commit, 27/4 → 22/10/2026. Người viết chính là **Youssef** (282 commit); Hassan El Mghari (Nutlope, Together AI) 12 commit; 3 người khác mỗi người 1. **76 commit có trailer Claude.** Không tag, không release, không CHANGELOG |
+| Phiên bản | `2.0.0`, nhưng là **đánh số lại**: trước đó đã lên 2.2 → 2.3 → 2.4.0 rồi đổi về 2.0.0 (commit `45d70b3`, 21/10) |
+| Cài | `npx skills add nutlope/hallmark` · plugin marketplace (`.claude-plugin/marketplace.json`) · `node install.mjs` (chép vào `~/.claude/skills`, `~/.agents/skills` và `~/.config/opencode/skills`, **xóa thư mục đích cũ trước khi chép**) |
+| Kích thước | Thư mục skill 6,9 MB (48 cặp theme `.md` + ảnh xem trước). SKILL.md 154 dòng (~4,5k token). Một lần build nạp ~120 KB tài liệu tham chiếu (**~30k token**). Repo 64 MB, chủ yếu vì 48 site demo trong `site/themes` (49 MB) |
+
+### 7l.2 Kiểm từng câu trong ảnh
+
+| Câu trong ảnh | Thực tế (đọc mã) | Kiểm |
+|---|---|---|
+| "forty-eight themes" | Đúng **48** theme trong `references/themes/` + `index.json`. Số theme đã đổi nhiều lần: 12 (27/4) → 22 (1/5) → 56 (1/10) → 49 → 48 (14/10). Bài viết bên ngoài ghi "22 theme" là số cũ | ✅ |
+| "deals three themes" | `theme.mjs` chia bài **bằng thuật toán tất định**: chấm độ trùng từ khóa với prompt (từ hiếm nặng hơn), +2 nếu đúng genre, loại các theme của 3 lần gần nhất, phá hòa bằng sha256 của prompt + salt dự án + ngày, rồi lấy theme đứng đầu cùng hai theme khác biệt về nền và trục. Model chọn một trong ba | ✅ |
+| "lints the result in a real browser" | `sloplint-render.mjs` dùng `puppeteer-core` điều khiển **Chrome có sẵn trên máy**, chạy headless ở 8 khổ (320 → 1920 px). Người dùng phải tự `npm i -g puppeteer-core` và có Chrome, repo không tự tải trình duyệt. **Thiếu hai thứ đó thì chỉ chạy tầng tĩnh** và ghi "notRun" | ⚠️ tùy chọn |
+| Các dấu hiệu "máy làm" (eyebrow, chữ hoa giãn, một chữ tô màu, khung trống, tường ảnh, hero lệch màn hình, form đăng ký email cuối trang, form cảm ơn mà không gửi gì) | Đều có gate tương ứng. Eyebrow, chữ hoa giãn, hero lệch màn hình và form giả ở tầng Floor; chữ tô màu, khung trống, tường ảnh và email cuối trang ở tầng Reflex | ✅ |
+| "A fresh-context reviewer gets the last word" | Có prompt `review-hero.md` và `review-finish.md`, chạy bằng **subagent trên Claude Code**. Codex không có subagent nên review **chạy ngay trong luồng** (chỉ ghi lại là đã làm vậy); OpenCode dùng `@general`. Builder tự chấm các bản sửa sau review | ⚠️ chỉ đúng trên Claude Code/OpenCode |
+| "Floor never ships (… invented facts …)" | Gate 46a "invented facts" là **7 regex** bắt các câu như "10x faster", "trusted by N", "99.9%", "N+ users", và **chỉ báo WARN, không bao giờ FAIL**. Testimonial, logo khách hàng và số liệu case study không có máy kiểm | ❌ |
+| Ba tầng Floor / Reflex / Finish | `gates.md` có 90 dòng gate: 39 Floor, 50 Reflex, 1 Ledger, cộng 26 mục kiểm Finish. Có **45 gate do máy kiểm hoàn toàn**; 9 gate chỉ để model tự chấm. Bảng tier được viết cứng trong `sloplint.mjs` | ✅ |
+| Cursor trong danh sách host | `install.mjs` chép vào `~/.agents/skills` mà Cursor đọc được, nhưng **bảng hướng dẫn host trong `flow.md` không có cột Cursor** (chỉ một dòng ghi chú ngắn) | ⚠️ |
+
+**Eval:** thư mục `eval/` là harness nội bộ, không đi kèm skill.
+
+- Tầng B gửi skill làm system prompt tới GLM-5.2 và Kimi K2.7 qua **API Together**, kèm một bản chạy trên Claude với toàn bộ skill.
+- Chấm bằng chính `sloplint` cộng một Claude chấm qua ảnh, tức là **tự chấm bài của mình**.
+- Chỉ có một lần chạy (23/7/2026, 30 ô): 0 FAIL, điểm chấm 7–8/10.
+- Không có nhóm đối chứng **không dùng skill**; kết quả chạy bị gitignore nên không tái lập được, và dùng số gate cũ trước v2. ROADMAP vẫn để ngỏ mục "Measure a build".
+
+### 7l.3 Điều ảnh không nói (đọc mã)
+
+- **Không telemetry, không analytics** trong skill. Không `curl | bash`, không `postinstall`, không hook tự chạy.
+- Hook PostToolUse là **tùy chọn**: phải chạy `install-hook.mjs`, script này ghi đè `.claude/settings.json` một cách nguyên tử, và hook chỉ đưa lời khuyên chứ không chặn.
+- **Ràng buộc với Together AI** chỉ có hai chỗ:
+  - `imagegen.mjs` gọi `api.together.xyz` (FLUX.1.1-pro) **khi có `TOGETHER_API_KEY` và người dùng yêu cầu** sinh ảnh;
+  - một dòng "Powered by Together AI" trong SKILL.md.
+- **Trang sinh ra gọi bên thứ ba lúc người xem mở trang:**
+  - cả 48 theme lấy font từ Google Fonts hoặc Fontshare (7 theme) qua CDN;
+  - ảnh mặc định **hotlink từ Wikimedia** (`theme.mjs photos --save` mới tải về máy).
+  - Với site châu Âu đây là vấn đề GDPR. Nên tự host font và ảnh trước khi phát hành.
+- **License ảnh:** thư viện `photos.json` có 755 ảnh Commons: 547 CC BY-SA, 113 CC BY, 73 CC0, 23 public domain.
+  - Ảnh **CC BY-SA đòi ghi nguồn và chia sẻ cùng giấy phép**; skill không nhắc nghĩa vụ này.
+  - Repo cũng kèm 122 ảnh Commons trong site demo, có ghi nguồn trên trang.
+- Linter **cấm URL Unsplash, Pexels và pravatar**: không cho dùng ảnh stock "đặc trưng AI" hay avatar giả.
+
+### 7l.4 So với các mục đã có
+
+| | Hallmark | Taste Skill (§7j) | antislop (§7i) | `frontend-design` (§7g.3) | UI UX Pro Max (§7g.2) |
+|---|---|---|---|---|---|
+| Bản chất | Quy trình build trọn trang: chia 3 theme → dựng → lint → review | Luật "taste" + inspector | Bộ lọc 38 luật cho UI, nội dung và comment code | Prompt định hướng thẩm mỹ | Kho tra cứu style/palette |
+| Cổng máy | `sloplint` (4,4k dòng) + render qua Puppeteer **nếu có Chrome**; 45 gate máy | Inspector chạy trên trình duyệt thật | Chỉ kiểm tương phản | Không | Không |
+| Theme có sẵn | **48** (kèm ảnh xem trước và site demo) | Không, dùng dial | Không | Không | Rất nhiều style |
+| Chi phí ngữ cảnh | Cao (~30k token mỗi lần build) | Trung bình | Cao (~14k token) | Thấp | Trung bình |
+| Ràng buộc nhà cung cấp | Sinh ảnh qua Together (tùy chọn) | Không | Không | Không | Không |
+
+Điểm riêng của Hallmark: **chọn theme bằng thuật toán tất định**, có loại theme vừa dùng, nên tránh được việc agent lần nào cũng chọn cùng một kiểu. Kèm theo đó là danh sách tell "máy làm" rất cụ thể (eyebrow, chữ hoa giãn, form giả…) được cài thành gate. Phần chặn thật vẫn phụ thuộc Chrome có trên máy và host có subagent.
+
+### 7l.5 Dùng thế nào
+
+- **Hợp:** landing page và trang marketing trên Claude Code, nơi chạy được cả subagent review lẫn Puppeteer. Cài `puppeteer-core` và Chrome trước, không thì mất tầng render.
+- **Cẩn thận:**
+  - Đừng coi gate 46a là chặn số liệu bịa, vì nó chỉ cảnh báo. Mọi con số và testimonial vẫn cần người kiểm.
+  - Tự host font và ảnh; ghi nguồn ảnh CC BY và CC BY-SA.
+  - Trên Codex, review không có ngữ cảnh mới; nên mở phiên riêng để review.
+- **Dùng lại từng phần:** danh sách tell trong `gates.md` làm checklist review UI (gộp với antislop §7i); ý tưởng chia bài theme tất định trong `theme.mjs` cho agent khỏi lặp style.
+- **Không cần** nếu dự án đã có design system riêng (§7f): khi đó dùng chế độ `audit` để chấm, không dùng chế độ build.
+
+**Nguồn §7l:** clone đầy đủ github.com/Nutlope/hallmark 25/10/2026 (blob:none, 297 commit, HEAD 7ec8682 22/10/2026; README.md, ROADMAP.md, LICENSE, package.json, `.claude-plugin/marketplace.json`, `.github/workflows/verify.yml`, `skills/hallmark/{SKILL.md, references/{gates.md, flow.md, fonts.md, imagery.md, themes/*.md, themes/index.json}, scripts/{sloplint.mjs (check46 dòng 2017–2038), sloplint-render.mjs, theme.mjs, install.mjs, install-hook.mjs, lint-hook.mjs, imagegen.mjs, photos.json}}`, `eval/README.md`, git log về số theme và phiên bản) · img.shields.io/github/{stars,forks,license}/Nutlope/hallmark.json 25/10/2026 · usehallmark.com · bên thứ ba: dev.to/terminalchai/hallmark-together-ai-open-sources-an-anti-ai-slop-tool-for-web-design-3nkb · mer.vin/2026/05/hallmark-design-skill-anti-ai-slop-ui-for-claude-code-and-cursor · notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Hallmark · gittrend.io/repo/Nutlope/hallmark · mirror: github.com/xgaisystems/hallmark-Nutlope
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

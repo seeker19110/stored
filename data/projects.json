@@ -4408,9 +4408,9 @@
       "repo": "cloudflare/security-audit-skill",
       "category": "security",
       "license": "MIT",
-      "stars": 28600,
+      "stars": 45000,
       "open_source": true,
-      "notes": "1 skill, yêu cầu sandbox OS; ★ đọc 12/10/2026",
+      "notes": "Skill audit bảo mật 1 repo, 6 pha (recon → hunt theo coverage ledger → verifier mới bác bỏ → findings.json theo schema → kiểm lại → báo cáo); 2 validator Node (65/65 test pass) chỉ kiểm định dạng; chạy code target chỉ trong sandbox OS; không phòng prompt injection từ repo đang audit; validator từ chối input trên Windows; hạt giống harness 128 repo của Cloudflare (blog 18/6/2026); ★ 25/10/2026 (shields; 28,6k ngày 12/10), mục 12 §3m",
       "section": "12"
     },
     {
@@ -5625,6 +5625,16 @@
       "open_source": false,
       "notes": "App TTS tiếng Việt cục bộ, ĐÓNG MÃ (repo chỉ 5 file tài liệu, README ghi Apache-2.0 nhưng không có LICENSE); VieNeu-TTS v3 Turbo ONNX + Supertonic 3 tùy chọn; clone giọng có cổng đồng ý ghi âm trực tiếp; API 127.0.0.1:8001 không xác thực; bộ cài không ký số, README hướng dẫn tắt Smart App Control; ★ 21/10/2026, mục 19 §1f",
       "section": "19"
+    },
+    {
+      "name": "Hallmark",
+      "repo": "Nutlope/hallmark",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 33000,
+      "open_source": true,
+      "notes": "Together AI (Youssef + Nutlope): skill build trang chống 'AI slop' cho Claude Code/Codex/Cursor/OpenCode; 48 theme chia 3 bằng thuật toán tất định (theme.mjs); sloplint 90 gate (39 Floor/50 Reflex), render Puppeteer chỉ khi có Chrome + puppeteer-core; gate 'invented facts' chỉ WARN; review subagent chỉ trên Claude Code/OpenCode; font Google/ảnh Wikimedia hotlink (547 CC BY-SA); ~30k token/lần build; ★ 25/10/2026 (shields), mục 06 §7l",
+      "section": "06"
     }
   ]
 }
