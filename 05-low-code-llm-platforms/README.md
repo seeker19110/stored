@@ -60,6 +60,69 @@
 
 **Dùng ảnh thế nào:** coi là danh sách gợi ý để tự kiểm, không phải bảng "miễn phí". Ba điều cần kiểm trước khi chọn: (1) gói free có cho **xuất bản** không (Thunkable, Adalo, Bubble đều giới hạn ở bước này); (2) có cho **dùng thương mại** không (remove.bg, nhiều kho ảnh); (3) dữ liệu có **xuất ra được** không khi muốn rời nền tảng (FlutterFlow chỉ cho xuất mã ở gói trả phí). Nếu cần tự chủ hoàn toàn: Appsmith (mục này), WordPress tự host, hoặc các nền tảng ở bảng trên.
 
+## Bổ sung: kiểm ảnh "AI Agents A-Z" (`gyoridavid/ai_agents_az`), kho template n8n của một kênh YouTube (ảnh người dùng gửi, 2026-10-25)
+
+> Ảnh là README trên điện thoại, liệt kê "Season 1" từ Episode 1 (prescription agent) đến Episode 10 (n8n best practices). Đã clone đủ lịch sử (110 commit, HEAD `764fac2`), đọc README từng tập và quét **toàn bộ 55 file JSON** (1.551 node) bằng script: loại node, loại credential, host được gọi, chuỗi giống API key. Không import workflow nào vào n8n.
+
+### Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 25/10/2026) |
+|---|---|
+| Repo | https://github.com/gyoridavid/ai_agents_az · **~3,9k★**, 946 fork (shields) |
+| Tác giả | David Gyori: 109/110 commit, 1 commit của người khác. Kênh YouTube "AI Agents A-Z" và cộng đồng trả phí trên Skool |
+| License | **Không có file LICENSE** (shields: "not specified"). Về pháp lý mọi quyền thuộc tác giả: import để dùng thì được ngầm hiểu là cho phép, nhưng đóng gói lại hay bán lại thì không có giấy phép |
+| Hoạt động | 30/3/2025 → **19/12/2025** (Episode 42). **Đã hơn 10 tháng không commit** |
+| Nội dung thật | 33 thư mục tập (1–25, 31, 35, 36, 38–42; thiếu 26–30, 32–34, 37), mỗi tập có README + JSON workflow; thêm 10 file Python (app Modal chạy FLUX/Qwen), 5 mp4 và 5 mp3 mẫu. Repo nặng 112 MB, riêng `episode_9/example_bgvideo.mp4` là 49 MB |
+
+### Kiểm ảnh
+
+- **10 tập trong ảnh đều có thật** và đúng tên. Ảnh chỉ chụp Season 1; README thật kéo tới Episode 42.
+- **Phần lớn kho là làm video "faceless" hàng loạt**, không phải "AI agent" theo nghĩa chung. Từ Episode 7 trở đi chủ yếu là YouTube Shorts, truyện kinh dị/trả thù, video ngủ, UGC, influencer ảo trên Instagram, cùng các bài so model sinh ảnh/video (Seedance, Hailuo, Wan 2.2, Veo 3.1, Sora 2, FLUX, Qwen Image, Z-Image).
+- Năm tập đầu (đơn thuốc, digest, LinkedIn có duyệt HITL, deep research, viết blog) mới là "agent" đúng nghĩa và là phần đáng học nhất cho mục 03/21.
+- **Tên tập không khớp:** README gốc ghi Episode 38 là "Create AI reaction videos with Veo 3.1", nhưng README trong thư mục là "Gemini 3 recreates YouTube shorts", tức là dựng lại video người khác.
+
+### Điều ảnh không nói (quét JSON)
+
+- **Không lộ secret:** không chuỗi nào giống API key (OpenAI, Google, Replicate, Slack, fal) trong file hiện tại, kể cả commit "Remove pinned data".
+- **Node:** 1.225 node `n8n-nodes-base` + 282 node `@n8n/n8n-nodes-langchain`; không có community node (các node lạ là workflow ComfyUI đi kèm).
+- **Credential cần chuẩn bị:** HTTP header/bearer (111 chỗ, gọi API trả phí trực tiếp), OpenAI (32), Supabase (23), Ollama (16), Gmail (11), YouTube (10), OpenRouter (9), Facebook Graph (8)…
+- **Dịch vụ ngoài:** fal.ai (24 lần gọi `queue.fal.run`), Modal, Together, MiniMax, ElevenLabs, Cloudflare Workers AI. Sora 2/Veo đi qua **kie.ai**, một bên bán lại API không chính thức.
+- **"Free" trong tên tập thường là:** dùng tín dụng dùng thử, chạy GPU của mình (ComfyUI, Colab), hoặc gói free có giới hạn.
+
+**Phụ thuộc vào máy chủ của tác giả:**
+
+- Nhiều tập cần container `gyoridavid/ai-agents-no-code-tools` (6,4k lượt pull) và `gyoridavid/narrated-story-creator` (5,7k lượt pull) trên Docker Hub. **Hai image này không có repo mã nguồn công khai** (GitHub trả "repo not found"), nên khó kiểm bên trong làm gì. Image cập nhật lần cuối 9/2025 và 5/2025.
+- Chỉ `gyoridavid/short-video-maker` (~1,4k★, MIT) là có mã: Kokoro TTS (chỉ tiếng Anh) + whisper.cpp + video nền từ Pexels + **Remotion**. Công ty trên 3 người phải mua license Remotion (mục 22 §2.2). Repo này dừng từ 6/2025.
+- Hai workflow còn hard-code IP mạng LAN của tác giả (`192.168.68.60:8000`); Episode 19 trỏ thẳng tới endpoint Modal riêng của tác giả. Import xong phải đổi các địa chỉ này.
+
+**License model:** các tập FLUX.1 Kontext [dev] và FLUX.1 [dev] dùng trọng số theo **FLUX Non-Commercial License**, không dùng cho kênh kiếm tiền được; muốn dùng thương mại thì chọn FLUX.1 Schnell, tương tự cảnh báo FLUX.2 ở mục 19 §1e. File Modal ghim commit diffusers và revision model, là điểm tốt.
+
+**Phễu thương mại:** README mỗi tập dẫn tới Skool trả phí ("premium versions of the workflows… with the hosted GPU media server"; 77 link) và có link affiliate n8n (24 tập). Bản trong repo là bản miễn phí; bản "premium" nằm sau cộng đồng trả phí.
+
+**Rủi ro nội dung:**
+
+- Episode 36 tạo "bodycam footage" giả bằng Sora 2; Episode 38 dựng lại Shorts của người khác; Episode 21 là "10 niche faceless kiếm tiền trong một tháng".
+- Không workflow nào gắn nhãn nội dung AI. YouTube và TikTok đều yêu cầu khai báo nội dung tổng hợp trông như thật.
+- Kiểu nội dung sản xuất hàng loạt dễ bị coi là "inauthentic/repetitious content" khi xét kiếm tiền **(chi tiết chính sách chưa xác minh trong đợt này)**.
+
+### So sánh & dùng thế nào
+
+| | ai_agents_az | `enescingoz/awesome-n8n-templates` | Thư viện chính thức n8n.io/workflows | OpenMontage / skill video (mục 19, 22) |
+|---|---|---|---|---|
+| Bản chất | ~55 workflow của một kênh, kèm video hướng dẫn | Danh sách workflow cộng đồng gom từ nhiều nguồn **(chưa clone)** | Template do n8n và cộng đồng đăng, có trang mô tả | Agent viết code dựng video |
+| License | Không có | Xem từng mục | Theo điều khoản n8n | Tùy repo |
+| Cập nhật | Dừng 12/2025 | **(chưa kiểm)** | Liên tục | Liên tục |
+
+- **Đáng lấy:** Episode 3 (đăng LinkedIn có bước duyệt người, HITL qua Gmail) và Episode 4–5 (deep research → viết blog) là mẫu tốt để học cấu trúc agent trong n8n. Episode 10 (best practices) chỉ là video, thư mục không có workflow.
+- **Trước khi import:**
+  - Xem từng node HTTP: gửi gì, tới đâu, dùng credential nào.
+  - Thay IP LAN và endpoint Modal của tác giả.
+  - Đặt hạn mức chi tiêu trên fal/kie/OpenAI, vì vòng lặp tạo video gọi API trả phí nhiều lần.
+- **Không nên:** chạy image Docker không có mã nguồn trên máy có dữ liệu thật (nếu cần thì chạy trong VM riêng); đóng gói lại workflow để bán, vì repo không có license; dùng FLUX [dev] cho kênh thương mại.
+- n8n tự nó là fair-code (Sustainable Use License): dùng nội bộ thì được, bán dịch vụ host n8n cho khách thì phải xem lại điều khoản (bảng đầu mục này).
+
+**Nguồn:** clone đủ lịch sử github.com/gyoridavid/ai_agents_az 25/10/2026 (110 commit, HEAD 764fac2 19/12/2025; README.md, `episode_*/README.md`, quét 55 file JSON bằng script, `episode_19/flux_kontext_dev_modal.py`, `episode_16/guide-start-server.md`, commit "Remove pinned data from workflow") · github.com/gyoridavid/short-video-maker (clone nông; README, LICENSE MIT, package.json `@remotion/*` ^4.0.286) · hub.docker.com/v2/repositories/gyoridavid/{ai-agents-no-code-tools,narrated-story-creator,short-video-maker} (lượt pull, ngày cập nhật) · img.shields.io/github/{stars,forks,license,last-commit}/gyoridavid/… 25/10/2026 · bên thứ ba: osrepos.com/repo/gyoridavid-ai_agents_az · sourcepulse.org/projects/11055697 · growwstacks.com/blog/free-n8n-automation-templates-goldmine
+
 ## Nguồn
 
 - https://www.knowlee.ai/blog/dify-alternatives-2026 · https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026 · https://www.jahanzaib.ai/blog/flowise-vs-dify-vs-n8n-ai-agents · https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026 · https://makerstack.co/reviews/langflow-review/ · https://enterprisedna.co/directories/compare/dify-vs-flowise-vs-langflow/
