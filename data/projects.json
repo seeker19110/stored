@@ -5655,6 +5655,16 @@
       "open_source": true,
       "notes": "Danh sách 395 repo công cụ bug bounty theo 44 chuyên mục (recon, lớp lỗi, AI Agents); 176/395 (45%) commit cuối ≤2023, không repo nào mất; mô tả do người gửi PR viết, không kiểm chứng; CI zizmor + kiểm sao link mới; dual-use; ★ 25/10/2026 (shields), mục 12 §3n",
       "section": "12"
+    },
+    {
+      "name": "Claude SEO",
+      "repo": "AgriciDaniel/claude-seo",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 20000,
+      "open_source": true,
+      "notes": "Skill pack SEO/GEO cho Claude Code: 26 skill + 19 agent + script Python (GSC, GA4, CrUX); không telemetry, API trả phí (DataForSEO, Ahrefs, Firecrawl) là extension tùy chọn; cổng chặn nội dung mỏng trong seo-programmatic (dừng >500 trang, cờ <40% nội dung riêng); 412 commit 2/2026→10/2026; ★ 25/10/2026 (shields), mục 08 §2h",
+      "section": "08"
     }
   ]
 }
