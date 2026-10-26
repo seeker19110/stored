@@ -5695,6 +5695,26 @@
       "open_source": false,
       "notes": "Danh sách ~184 skill + thư mục skill chép kèm; KHÔNG có LICENSE; chép lại document-skills của Anthropic ('All rights reserved'); link UTM về Composio; commit cuối 7/2026; ★ 25/10/2026 (shields), mục 08 §2i",
       "section": "20"
+    },
+    {
+      "name": "Browsentic",
+      "repo": "imshaikot/browsentic",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 129,
+      "open_source": true,
+      "notes": "Extension + Bridge cục bộ: CLI agent sẵn có (Claude Code/Codex/Antigravity…) điều khiển trình duyệt thật đã đăng nhập, có MCP; bridge 127.0.0.1 kiểm Host/Origin + PBKDF2; chặn cờ --dangerously/--yolo; duyệt bằng code cho form/upload/download/captcha nhưng KHÔNG gate click; Antigravity không khóa công cụ; ghi chú site máy sinh vào prompt không rào; live tools vượt CSP; một tác giả, 615 commit 7–10/2026; MIT ≤0.7.15 rồi Apache; ★ 26/10/2026, mục 11 §1d",
+      "section": "11"
+    },
+    {
+      "name": "Skill Recorder (Microsoft)",
+      "repo": "microsoft/skill-recorder",
+      "category": "workflow-automation",
+      "license": "MIT",
+      "stars": 5200,
+      "open_source": true,
+      "notes": "Electron: ghi màn hình 1 fps + cửa sổ + URL đầy đủ + clipboard + terminal + giọng nói, dùng Copilot CLI dựng SKILL.md/Automation cho Microsoft Scout/Cowork; không ghi click/phím (README nói có); lọc PII/OCR-blur bật mặc định nhưng bước builder gửi timeline không lọc; Node không ghim dù README nói có; sandbox:false; không ký số; đứng yên từ 21/9/2026; ★ 26/10/2026, mục 20 §3i",
+      "section": "20"
     }
   ]
 }

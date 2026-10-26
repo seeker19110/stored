@@ -591,3 +591,9 @@
 - `git ls-remote` so HEAD 25/10/2026: comfyanonymous/ComfyUI = Comfy-Org/ComfyUI · geekan/MetaGPT = FoundationAgents/MetaGPT · mendableai/firecrawl = firecrawl/firecrawl · lobehub/lobe-chat = lobehub/lobehub · Aider-AI/aider = paul-gauthier/aider
 - Clone/đọc README: github.com/karpathy/nanoGPT · github.com/perplexityai/bumblebee · github.com/ifixai-ai/iFixAi · github.com/ComposioHQ/awesome-claude-skills · raw README TauricResearch/TradingAgents, soxoj/maigret
 - Bên thứ ba: decrypt.co/368944/perplexity-open-source-bumblebee-ai-scanner-mcp-infection-malware · discuss.pytorch.kr/t/ifixai-ai-45/11296 · pypi.org/project/iFixAi
+
+## Bổ sung 2026-10-26 (link imshaikot/browsentic → mục 11 §1d; ảnh README microsoft/skill-recorder → mục 20 §3i)
+
+- github.com/imshaikot/browsentic (clone blob:none đủ lịch sử 26/10/2026, 615 commit, HEAD f323a0d, v0.9.0; src/daemon/{daemon.ts, guardrails/{policy,spawn,fence}.ts, agent/{prompt,service,captcha-solver}.ts}, src/lib/pairing.ts, wxt.config.ts, docs/guide/{approvals,limits}.md, docs/internals/*, .github/workflows/{ci,release}.yml, commit 966adaa đổi MIT → Apache-2.0) · img.shields.io: npm/dm/browsentic, chrome-web-store/users/npmocgldfflonjjmdadmdefpnfagnjmp · producthunt.com/posts/1245747 · mcpservers.org/servers/imshaikot/browsentic · trendshift.io/repositories/249304 · stork.ai/en/browsentic
+- github.com/microsoft/skill-recorder (clone blob:none đủ lịch sử 26/10/2026, 164 commit, HEAD b05d590, v0.7.0; README.md, INSTALL.md, install.sh, install.ps1, package.json, electron/{collectors,describer,builders,skillbuilder,automationbuilder,sensitive,narration}/*, window.ts, preload.cjs, evals/, .github/workflows/*) · gittrend.io/repo/microsoft/skill-recorder · gitee.com/ATM006/skill-recorder (bản sao) · docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills
+- img.shields.io/github/{stars,forks,license}/{imshaikot/browsentic,microsoft/skill-recorder}.json 26/10/2026
