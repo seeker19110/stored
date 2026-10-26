@@ -90,6 +90,74 @@
 
 **Nhận định:** đây vẫn là thư viện browser agent mã nguồn mở lớn nhất và hợp để thử nhanh. Kiến trúc đã chuyển hẳn sang CDP như Stagehand v4. Trước khi dùng cho việc thật: tắt ba biến telemetry, đặt `allowed_domains`, truyền `judge_llm` rẻ hơn hoặc tắt `use_judge` nếu không cần, và không chạy `skill install`, `profile.sh` hay bản beta khi chưa đọc mã. So với Stagehand (MIT, TypeScript), Browser Use mạnh về hệ sinh thái Python và số provider; Stagehand kiểm soát từng bước rõ hơn.
 
+## 1d. Hồ sơ: `imshaikot/browsentic`, agent chạy trên trình duyệt thật đã đăng nhập, qua CLI agent sẵn có (link người dùng gửi, rà mã 2026-10-26)
+
+> Link repo người dùng gửi. Đã clone đủ lịch sử (615 commit, HEAD `f323a0d`, tag v0.9.0) và đọc mã trước tài liệu: `src/daemon/` (bridge, guardrails, agent), `wxt.config.ts`, các workflow CI/release, `docs/guide/` và `docs/internals/`. **Không chạy installer hay script nào của repo.**
+
+| Thuộc tính | Giá trị (đọc 2026-10-26) |
+|---|---|
+| Repo | https://github.com/imshaikot/browsentic · site browsentic.com · Chrome Web Store, Edge Add-ons, add-on Firefox có chữ ký Mozilla |
+| Mô tả | Extension (WXT) mở side panel trong trình duyệt thật đã đăng nhập; mỗi lệnh được giao cho **CLI agent người dùng đã đăng nhập sẵn** (Claude Code, Codex, Antigravity; Cursor/Qwen/OpenCode/DeepSeek Harness bản beta) thông qua một "Bridge" Node chạy cục bộ. Có thêm MCP server tùy chọn để client MCP khác điều khiển cùng trình duyệt |
+| License | **Apache-2.0** từ 1/10/2026 (commit `966adaa`); các bản ≤ 0.7.15 là MIT. Bài Product Hunt cũ vẫn ghi MIT |
+| Quy mô | ~129★, 15 fork; npm ~2,5k lượt tải/tháng; Chrome Web Store 88 người dùng (shields 26/10/2026). Khoảng 72,7k dòng TS/Swift/Rust (không tính test) |
+| Lịch sử | **Một tác giả** (Shahriar), 615 commit trong 50 ngày từ 25/7 đến 25/10/2026, ngày nhiều nhất 47 commit. 86 mốc thời gian dùng chung cho nhiều commit (20 commit cùng `2026-07-25 00:48:14`), nghĩa là lịch sử đã được viết lại hoặc tạo bằng script. 0 trailer AI |
+| Cài | `curl -fsSL https://browsentic.com/install.sh \| sh` (macOS), `irm … \| iex` (Windows), hoặc `npx browsentic@latest setup`. **Hai script cài không nằm trong repo này** (nằm ở repo website), nên không kiểm được; tài liệu nội bộ ghi script gỡ `com.apple.quarantine` |
+
+### 1d.1 Đọc cổng thật
+
+**Làm tốt:**
+
+- **Bridge chỉ nghe ở `127.0.0.1`** (cổng 8765–8767). Header `Host` phải là loopback, chặn DNS rebinding (có test). Mọi `Origin` web bị từ chối. Extension phải qua thử thách nonce + bằng chứng PBKDF2 từ mã ghép cặp hoặc session key. Client MCP dùng bearer token, so sánh thời gian hằng, lưu ở `~/.browsentic/daemon.json` với quyền 0600.
+- **Gọi CLI agent không qua shell** (`spawn(file, args)`); prompt đi qua stdin; biến môi trường bị xóa, chỉ giữ biến xác thực của agent đó.
+  - Bridge **từ chối khởi chạy** nếu tham số có `--dangerously*`, `--yolo`, `bypassPermissions`/`acceptEdits`, `--full-auto`, `danger-full-access`.
+  - Claude Code chạy với `--strict-mcp-config --tools ''` và chỉ cho `mcp__browsentic` (cấm Bash/Edit/Write/Read…).
+  - Codex chạy với `--ignore-user-config`, sandbox chỉ đọc, tắt shell.
+- **Duyệt bằng code, không bằng prompt** (`guardrails/policy.ts`):
+  - **phải hỏi** khi gửi form, upload/download, captcha, chèn code, rời khỏi site của lượt chạy, URL chở nhiều dữ liệu, dùng secret đã lưu;
+  - **luôn từ chối** đọc HTML thô, body response mạng, URL không phải http, secret nằm trong URL.
+  - Agent không tự nới được cài đặt qua socket trong lúc đang chạy.
+- **Nội dung trang được rào** bằng marker ngẫu nhiên kèm nhãn "untrusted"; khoảng 11 file test liên quan. Lịch chạy nền vẫn qua cùng guardrail; yêu cầu duyệt không ai trả lời sẽ tự bị từ chối sau 10 phút.
+- **Không thấy telemetry.** Kết nối ra ngoài chỉ gồm: kiểm phiên bản trên npm (lệnh `update`/`setup` tự chạy `npm i -g browsentic@latest`), kiểm bản Firefox trên GitHub, updater của app Mac, và tải `robots.txt`/sitemap (chặn địa chỉ nội bộ). npm phát hành qua Trusted Publishing có provenance Sigstore.
+- **Test nhiều:** 151 file, khoảng 2.160 test TS, thêm test Rust và Swift; CI đặt ngưỡng coverage riêng (guardrails 94%).
+
+### 1d.2 Hạn chế / rủi ro (đọc mã)
+
+- **Nhấp chuột không bao giờ phải duyệt.** Chỉ `submitForm`, phím Enter và `fill/type` có `pressEnter` mới tính là "gửi". Tài liệu tự ghi "reading and clicking need no approval". Trên web app hiện đại, nút "Mua", "Gửi", "Xóa" thường là nút JS thường, nên **mua hàng và gửi tin nhắn qua nút bấm không bị chặn**. Điều này mâu thuẫn với câu README "consequential ones wait for approval".
+- **Phạm vi site không phải lúc nào cũng khóa:** lượt chạy bắt đầu từ tab trống thì không giới hạn site; client MCP không bao giờ bị giới hạn site (khi đó yêu cầu "hỏi" sẽ thành "từ chối", trừ khi đặt `unattended:"allow"`). Tắt cổng form được bằng `requireApproval: []`, và lựa chọn "always on <host>" được lưu vĩnh viễn.
+- **Antigravity chạy với `localTools:'host'`, không bị khóa công cụ.** Công cụ riêng của Antigravity có thể sửa `~/.browsentic/config.json` hoặc đọc token, tức là vượt guardrail. Mã nguồn tự ghi: "What this cannot do is make a CLI safe that offers no lever."
+- **Ghi chú site do máy sinh** (site-mapper đọc từ trang đã crawl) được đưa thẳng vào system prompt. Có gắn nhãn "(machine-generated)", nhưng **không được rào** như nội dung trang, và phần dẫn nói đây là ghi chú "người dùng đã lưu". Đây là đường cho prompt injection kiểu lưu trữ.
+- **"Live tools":** agent viết tới 32 KB JS, chạy bằng `Runtime.evaluate` trong main world, **vượt CSP của trang**. Tính năng mặc định tắt, mỗi lần đều hỏi kèm xem mã, và client MCP bị từ chối. Nhưng tool đã lưu thì **tự chạy lại mỗi lần vào trang** qua `userScripts`, không hỏi lại, không sandbox.
+- **Quyền extension rất rộng:** `<all_urls>`, `debugger` (CDP), `userScripts`, `scripting`, `nativeMessaging`, `downloads`; content script chạy trên mọi trang.
+  - Chế độ ghép cặp mặc định là `auto`. Tài liệu thừa nhận bản sideload giả cùng extension ID sẽ được ghép tự động.
+  - Mọi tiến trình chạy dưới user đều đọc được token và điều khiển trình duyệt.
+- **Giải captcha** dùng chính CLI agent có thị giác của người dùng, không qua dịch vụ giải thuê, và mặc định hỏi trước. Nhưng tài liệu **không có cảnh báo điều khoản dịch vụ hay pháp lý**, trong khi nhiều site cấm tự động vượt captcha.
+- **"No cloud" dễ hiểu nhầm:** nội dung trang vẫn đi tới model đám mây của CLI agent. Manifest Firefox có khai báo `websiteContent`.
+- **Phát hành:**
+  - App Mac chỉ notarize khi có secret ký; updater chỉ chạy `codesign --verify --deep`, không kiểm Team ID, rồi gỡ quarantine.
+  - Bộ cài Windows không ký nếu thiếu secret Azure.
+  - Action CI ghim theo tag, không ghim SHA; workflow release cấp `contents:write` + `id-token:write` cho mọi job; `mcp-publisher` tải bằng `curl | tar` không kiểm checksum.
+- **Android:** `adb forward` tới socket DevTools của Chrome trên điện thoại; cổng forward không có xác thực (hành vi thường của adb). Tính năng thử nghiệm.
+- **Test lệch vùng:** coverage background của extension chỉ 1%, page actions 12%.
+
+### 1d.3 So sánh
+
+| | Browsentic | Claude in Chrome / Comet (thương mại) | Playwright MCP / Chrome DevTools MCP (§1) | browser-use (§1c) |
+|---|---|---|---|---|
+| Trình duyệt | Trình duyệt thật đã đăng nhập (extension) | Trình duyệt thật | Trình duyệt riêng hoặc profile riêng | Chromium qua CDP |
+| Model | CLI agent của người dùng | Model của hãng | Client MCP | API key LLM |
+| Cổng duyệt | Code (form/upload/download/captcha), **không gate click** | Theo sản phẩm | Không có, do client quyết | Không có mặc định |
+| Telemetry | Không thấy | Theo hãng | Không | **Bật mặc định** |
+
+**Dùng thế nào:**
+
+- **Hợp** để thử tự động hóa trên tài khoản đã đăng nhập, với Claude Code hoặc Codex (hai runner bị khóa chặt nhất). Tránh Antigravity cho tới khi runner này có cơ chế khóa.
+- **Dùng profile trình duyệt riêng** không đăng nhập ngân hàng, email chính hay tài khoản quản trị. Đây là cách duy nhất để bù cho việc click không phải duyệt.
+- **Không bật "always on <host>"** cho site có thao tác mất tiền. Không bật live tools trên site nhạy cảm, và xóa tool đã lưu khi không còn dùng.
+- **Cài qua `npx browsentic@latest setup` hoặc từ cửa hàng extension**, không qua `curl | sh`, vì script đó nằm ngoài repo, không kiểm được, và có gỡ quarantine.
+- Repo còn mới, một tác giả, người dùng ít: theo dõi tới khi đủ ổn định trước khi đưa vào quy trình của nhóm.
+
+**Nguồn §1d:** clone đủ lịch sử github.com/imshaikot/browsentic 26/10/2026 (615 commit, HEAD f323a0d, v0.9.0; README.md, LICENSE + commit 966adaa, package.json, wxt.config.ts, `src/daemon/{daemon.ts, guardrails/{policy,spawn,fence}.ts, agent/{prompt,service,captcha-solver}.ts, runners/*}`, `src/lib/pairing.ts`, `docs/guide/{approvals,limits,features/*}.md`, `docs/internals/{mac-app,android}.md`, `.github/workflows/{ci,release}.yml`, `vitest.coverage.ts`) · img.shields.io: github stars/forks/license, npm/dm/browsentic, chrome-web-store/users/npmocgldfflonjjmdadmdefpnfagnjmp (26/10/2026) · bên thứ ba: producthunt.com/posts/1245747 · mcpservers.org/servers/imshaikot/browsentic · trendshift.io/repositories/249304 · stork.ai/en/browsentic
+
 ## 2. Computer use (điều khiển máy tính)
 
 | Nhà cung cấp / dự án | Ghi chú |

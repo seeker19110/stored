@@ -473,6 +473,70 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 
 **Nguồn §3h:** https://github.com/midudev/autoskills (clone đầy đủ 15/10/2026, 400 commit, HEAD b4489cb 14/10/2026; README.md, LICENSE CC BY-NC 4.0, packages/autoskills/{package.json,installer.ts,sync-skills.mjs,skill-review.mjs,skills-registry/index.json}, AGENTS.md, SECURITY.md, .github/workflows/ci.yml; tự đọc index: 207 skill, review 197 approved/10 flagged, model haiku-5-5 119 / gpt-5.4 81 / opus-5-5 7; 349 test it()) · shields 15/10/2026 (7k★, 626 fork; midudev/fendo trả 403) · https://autoskills.sh · https://www.skills.sh/midudev/autoskills · https://www.sourcepulse.org/projects/27690747 · https://deepwiki.com/midudev/autoskills · https://www.threads.com/@midu.dev/post/DWy2Bp2DVDZ/ · https://www.blog.brightcoding.dev/2026/09/29/midudevautoskills-auto-install-ai-agent-skills-for-your-stack
 
+## 3i. Kiểm ảnh: `microsoft/skill-recorder`, ghi một phiên làm việc rồi biến thành SKILL.md (ảnh README người dùng gửi, rà mã 2026-10-26)
+
+> Ảnh là README: "Record yourself doing a task once, then turn it into a skill your AI agent can repeat". App ghi lại phiên làm việc, rồi dùng **GitHub Copilot CLI** dựng lại "ý định + các bước" và xuất thành Skill (`SKILL.md`) hoặc Automation. Đã clone đủ lịch sử (164 commit, HEAD `b05d590`, tag v0.7.0) và đọc mã: `electron/` (collectors, describer, builders, sensitive), `install.sh`/`install.ps1`, `package.json`, CI, `evals/`. **Không chạy installer.**
+
+### 3i.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 26/10/2026) |
+|---|---|
+| Repo | `microsoft/skill-recorder` · **~5,2k★**, 572 fork · **MIT** |
+| Lịch sử | 164 commit, 25/7 → 21/9/2026 (đứng yên từ đó). Người đóng góp chính: Giorgio Ughini 78, adilei 72. **117 commit có trailer "Copilot App"**, kèm trailer `Copilot-Session:` |
+| Nền tảng | Electron. macOS là nền chính, Windows 11 x64/ARM64; `install.sh` còn hỗ trợ Ubuntu (không lấy được URL trình duyệt). Distro Linux khác bị từ chối |
+| Cần | Tài khoản GitHub có quyền Copilot; Copilot CLI 1.0.78 đi kèm app |
+| Đầu ra | Skill cho **Microsoft Scout** (cài hoặc xuất), **Microsoft 365 Copilot Cowork** (chỉ xuất), "Agent skill" chung (chỉ xuất); Automation chỉ cho Scout; Copilot Studio "Coming soon". Khi cài, app ghi vào `~/.copilot/skills/<tên>/SKILL.md` và `~/.copilot/automations/` |
+
+### 3i.2 Kiểm từng câu trong ảnh
+
+| Câu trong ảnh | Thực tế (đọc mã) | Kiểm |
+|---|---|---|
+| "captures … the clicks" | **Không có hook chuột hay bàn phím nào trong mã.** Màn hình chỉ cho biết người dùng đã nhấp ở đâu qua video 1 fps (tối đa 1280×720) và ảnh JPEG. Màn hình "What's recorded" trong app nói đúng: "It does not log your keystrokes" | ❌ README nói quá |
+| "the app and window switches, the pages you visit" | Đúng: đọc cửa sổ đang mở mỗi 1–1,6 giây; URL trình duyệt **đầy đủ cả query string** (macOS qua AppleScript, Windows qua PowerShell UI Automation; README chỉ ghi macOS) | ✅ |
+| "commands/output from its optional recorded terminal" | Terminal riêng của app (PTY), ghi toàn bộ output, kể cả input được echo | ✅ |
+| "spoken narration" | Thu âm, chuyển thành chữ **ngay trên máy** bằng Whisper (`Xenova/whisper-small` tải từ Hugging Face, **không ghim revision hay hash**) | ✅ |
+| Không nói tới | **Clipboard được đọc mỗi 700 ms**, giữ 120 ký tự đầu + SHA-1 + độ dài | ⚠️ |
+| "uses the GitHub Copilot CLI to reconstruct what you actually did" | Gửi **ảnh JPEG màn hình** cho model có thị giác đầu tiên mà Copilot liệt kê (model không cố định, đổi được qua `SKILL_RECORDER_MODEL`). Phiên Copilot dùng `approveAll` nhưng chỉ có công cụ riêng của app | ✅ |
+| "generalize from your one example … submitting one form can teach the agent to submit all of them" | Prompt sinh skill **chủ động yêu cầu lặp qua mọi mục** (cả N bản ghi, không chỉ cái đã ghi); có dặn "no hidden side effects… exfiltration". Nhưng **không bắt skill sinh ra phải hỏi xác nhận trước thao tác có tác động**, không giới hạn số lượng. Prompt Automation còn ghi "can't stop to ask a human". Cổng duyệt chỉ đến từ host: catalogue của Scout và Cowork ghi send/create/update/delete cần duyệt | ⚠️ |
+| "Commit-pinned installation … ready to paste" | Mã nguồn được ghim theo SHA 40 ký tự (tải tarball từ codeload, nhưng tarball không được hash). **Node.js không được ghim**: script lấy `latest-v24.x`, chỉ kiểm SHASUMS tải từ cùng server, không kiểm GPG. Electron được ghim hash; `npm ci` có allowlist script. README ghi "downloads a pinned Node.js runtime" là sai | ⚠️ |
+
+### 3i.3 Quyền riêng tư (điểm quan trọng nhất)
+
+- **"Advanced protection" bật mặc định:**
+  - lọc chữ bằng secretlint + regex PII;
+  - lọc ảnh bằng OCR Tesseract, làm mờ, cộng heuristic entropy; nếu model OCR chưa sẵn sàng thì giữ ảnh lại, không gửi;
+  - cửa sổ của chính app được chặn khỏi bản ghi màn hình.
+  - App tự ghi "No method is 100% effective".
+- **Chỗ hở:** bước dựng Skill/Automation (`builders/read-tools.ts`, công cụ `get_timeline`) **gửi tiêu đề cửa sổ, URL đầy đủ và lệnh terminal cho Copilot mà không qua lọc**; bước phân tích thì có lọc. README nói chỉ bước Analyze gửi dữ liệu, điều này không đúng.
+- **Lưu trữ:** phiên ghi nằm ở `userData/sessions/<id>/` (video, âm thanh, timeline), **không tự xóa**, phải xóa tay. Gói debug nén cả thư mục phiên ra `~/Downloads` (chỉ khi người dùng bấm).
+- **Telemetry:** không thấy Application Insights, 1DS, Sentry hay auto-update trong app; `logger.ts` ghi "Replaced/extended when telemetry lands". Telemetry của chính Copilot CLI không được kiểm trong đợt này.
+- **Electron:** `contextIsolation: true`, `nodeIntegration: false`, nhưng **`sandbox: false`** ở mọi cửa sổ. Thiếu kiểm người gửi IPC, chặn điều hướng/mở cửa sổ mới và handler quyền. Preload còn mở luôn kênh nhập vào PTY. CSP là `default-src 'self'`.
+- **Phát hành:** không ký số (mac `identity "-"`, `hardenedRuntime: false`); app được build từ mã nguồn trên máy người dùng.
+
+### 3i.4 Eval, CI
+
+- **CI:** 3 workflow, mọi action ghim SHA, quyền `contents: read`; 42 file test (~267 case); Windows CI chạy thử `install.ps1`.
+- **Eval:** 12 luồng sự kiện tổng hợp cho bước mô tả, 10 kịch bản builder, 5 kịch bản skill, cộng eval lọc dữ liệu nhạy cảm. Kết quả bị gitignore, eval LLM cần đăng nhập Copilot và **không chạy trong CI**, nên **không có số liệu công bố**.
+
+### 3i.5 So với các mục đã có và dùng thế nào
+
+| | Skill Recorder | `anthropics/skills` → `skill-creator` | Browsentic "show it once" (mục 11 §1d) | autoskills (§3h) |
+|---|---|---|---|---|
+| Đầu vào | Quay màn hình + cửa sổ + URL + terminal + giọng nói | Mô tả bằng lời / ví dụ | Ghi lại thao tác trong trình duyệt | Quét stack của dự án |
+| Model | GitHub Copilot (bắt buộc) | Claude | CLI agent của người dùng | Không cần |
+| Đầu ra | SKILL.md cho hệ Copilot/Microsoft | SKILL.md | Skill nội bộ của extension | Cài skill có sẵn |
+| Rủi ro chính | Dữ liệu màn hình và timeline gửi lên đám mây | Thấp | Click không phải duyệt | Chuỗi cung ứng skill |
+
+- **Hợp:** đội đã dùng Microsoft 365/Copilot muốn ghi quy trình nội bộ (báo cáo, nhập liệu) thành skill nháp. **Luôn đọc lại `SKILL.md`** trước khi Add, dù README nói không cần.
+- **Trước khi ghi:**
+  - đóng tab và cửa sổ chứa dữ liệu khách hàng, tắt trình quản lý mật khẩu khỏi màn hình;
+  - nhớ rằng clipboard và URL đầy đủ (có thể chứa token) đều được ghi, và timeline gửi lên Copilot ở bước dựng skill không qua lọc.
+- **Sau khi sinh skill:** thêm bước xác nhận trước mọi thao tác gửi/xóa/hàng loạt và giới hạn số mục mỗi lần chạy, vì prompt sinh skill cố tình tổng quát hóa ra "tất cả".
+- Xóa phiên ghi cũ trong `userData/sessions/` sau khi dùng xong.
+- **Dùng SKILL.md với Claude Code:** file ở `~/.copilot/skills/` không được Claude Code đọc. Chép sang `.claude/skills/` và sửa phần gọi công cụ, vì skill sinh ra ưu tiên công cụ của hệ Copilot (`gh`, `web_fetch`).
+
+**Nguồn §3i:** clone đủ lịch sử github.com/microsoft/skill-recorder 26/10/2026 (164 commit, HEAD b05d590, v0.7.0; README.md, INSTALL.md, install.sh, install.ps1, package.json, `common/{config,architecture-registry}.ts`, `electron/{collectors/*, describer/{describer,tools}.ts, builders/{agent-builder,read-tools}.ts, skillbuilder/{builder,instructions}.ts, automationbuilder/*, sensitive/*, narration/whisper.ts, window.ts, preload.cjs}`, `src/WhatsRecorded.tsx`, `evals/`, `.github/workflows/*`, git log trailers) · img.shields.io/github/{stars,forks,license}/microsoft/skill-recorder.json 26/10/2026 · gittrend.io/repo/microsoft/skill-recorder · gitee.com/ATM006/skill-recorder (bản sao, 0★) · docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
