@@ -537,6 +537,60 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 
 **Nguồn §3i:** clone đủ lịch sử github.com/microsoft/skill-recorder 26/10/2026 (164 commit, HEAD b05d590, v0.7.0; README.md, INSTALL.md, install.sh, install.ps1, package.json, `common/{config,architecture-registry}.ts`, `electron/{collectors/*, describer/{describer,tools}.ts, builders/{agent-builder,read-tools}.ts, skillbuilder/{builder,instructions}.ts, automationbuilder/*, sensitive/*, narration/whisper.ts, window.ts, preload.cjs}`, `src/WhatsRecorded.tsx`, `evals/`, `.github/workflows/*`, git log trailers) · img.shields.io/github/{stars,forks,license}/microsoft/skill-recorder.json 26/10/2026 · gittrend.io/repo/microsoft/skill-recorder · gitee.com/ATM006/skill-recorder (bản sao, 0★) · docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills
 
+## 3j. Kiểm ảnh: `msitarzewski/agency-agents` ("The Agency"), bộ persona subagent theo phòng ban (Reels "Nghiện AI" người dùng gửi, clone 2026-10-28)
+
+> Ảnh là Reels Facebook của kênh "Nghiện AI": "Cả một công ty AI trong 1 repo GitHub — 230+ nhân viên, 18 phòng ban; mỗi agent = 1 file có tên, cá tính, quy trình riêng; cài vào Claude Code bằng 1 lệnh, có cả Cursor, Copilot, Gemini…; mã nguồn mở MIT, miễn phí". Ảnh chụp README phần "Option 2: Use with Claude Code" (`./scripts/install.sh --tool claude-code`, hoặc `cp engineering/*.md ~/.claude/agents/`, rồi "Hey Claude, activate Frontend Developer mode…"). Đã clone đủ lịch sử (840 commit, HEAD `b37b5bb`, 24/10/2026), đếm agent bằng script, đọc `scripts/install.sh`, `divisions.json`, frontmatter và CI. **Không chạy installer.**
+
+### 3j.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 28/10/2026) |
+|---|---|
+| Repo | `msitarzewski/agency-agents` · **~165k★**, ~27k fork · **MIT** ("AgentLand Contributors") |
+| Lịch sử | 840 commit, 13/10/2025 → 24/10/2026, **116 người đóng góp**. Hai người chính: Michael Sitarzewski 388 commit, Rudy Celekli 190 commit (chủ yếu sửa nội dung từng agent). README ghi dự án bắt nguồn từ một thread Reddit. 139 commit có trailer Claude |
+| Quy mô thật | **283 agent** (file `.md` có frontmatter `name`) trong **18 phòng ban** (`divisions.json`). Lớn nhất: engineering 66, specialized 59, marketing 37, game-development 21. Mỗi file ~13,8 KB (trung vị), lớn nhất 35 KB; tổng ~4 MB văn bản |
+| Định dạng | Frontmatter `name`, `description`, `color`, `emoji`, `vibe`; thân bài theo khuôn "Identity & Memory → Core Mission → Workflow → Deliverables (kèm code mẫu) → Success metrics". **266/283 agent không khai `tools:`**; 17 agent còn lại cho WebFetch/WebSearch/Read/Write/Edit (7 cái có cả Bash). Không agent nào khai `model:` |
+| Đa công cụ | `install.sh` (~1.800 dòng) hỗ trợ 17 đích: Claude Code, Copilot, Antigravity, Gemini CLI, OpenCode, OpenClaw, Cursor, Aider, Windsurf, Qwen, Codex, Hermes, Mistral Vibe… `convert.sh` sinh định dạng riêng cho từng công cụ |
+| CI | 6 workflow: lint agent, kiểm `divisions.json`, kiểm runbook, kiểm `tools.json`, test installer; khoảng 30 script test cho installer/converter. Action ghim theo tag (`actions/checkout@v4`), không ghim SHA |
+
+### 3j.2 Kiểm từng câu trong Reels
+
+| Câu trong Reels | Thực tế | Kiểm |
+|---|---|---|
+| "230+ nhân viên, 18 phòng ban" | **283 agent, đúng 18 phòng ban** (số trong bài đã cũ). Các trang tổng hợp cũ còn ghi 147 agent / 13 phòng ban | ✅ (số thật lớn hơn) |
+| "Mỗi agent = 1 file: có tên, cá tính, quy trình riêng" | Đúng: mỗi file là một **persona dạng prompt**. Mục "Memory" chỉ là lời văn ("You remember successful UI patterns…"): agent **không có bộ nhớ** nào ngoài những gì Claude Code tự cung cấp | ✅ (cá tính là prompt) |
+| "Ghép đội: lập trình + thiết kế + marketing + kiểm thử" | Repo có ví dụ phối hợp (`examples/`, như "Nexus Spatial Discovery": 8 agent làm song song), nhưng **không có bộ điều phối hay cổng kiểm**. Việc ghép đội là do model chính tự gọi subagent theo `description` | ⚠️ |
+| "Cài vào Claude Code bằng 1 lệnh" | `./scripts/install.sh --tool claude-code` **chép cả 283 file vào `~/.claude/agents/`** (cấp user, áp cho mọi dự án). Có `--division`/`--agent` để chọn bớt, nhưng mặc định là tất cả | ⚠️ |
+| "Hey Claude, activate Frontend Developer mode" | Claude Code không có "mode" cho subagent. Subagent được model chính **tự giao việc theo `description`**, hoặc người dùng gọi đích danh. Câu lệnh trong ảnh chỉ là lời nhờ, model hiểu được nhưng không có cơ chế "kích hoạt" | ⚠️ |
+| "có cả Cursor, Copilot, Gemini…" | Đúng, 17 công cụ. README tự ghi OpenCode chỉ nạp khoảng 119 agent và **bỏ âm thầm phần còn lại** (lỗi upstream) | ✅ |
+| "Mã nguồn mở MIT, miễn phí" | Đúng | ✅ |
+
+### 3j.3 Điều Reels không nói (đọc mã)
+
+- **Không khai `tools:` nghĩa là thừa hưởng mọi công cụ.** Trong Claude Code, subagent bỏ trống `tools` sẽ được dùng tất cả công cụ của phiên chính, kể cả Bash, Write và MCP. 266 persona như "Paid Media Auditor" hay "Grant Writer" vì vậy có quyền chạy lệnh shell và sửa file y như agent chính. Muốn an toàn, phải tự thêm `tools:` cho từng agent cần dùng.
+- **Chi phí ngữ cảnh:** mô tả của 283 agent cộng lại khoảng 62,5k ký tự (~15k token). Claude Code liệt kê subagent đang cài cho model chính chọn, nên **cài toàn bộ thì mỗi phiên tốn thêm khoảng 15k token** chỉ cho danh sách *(ước lượng từ độ dài `description`, chưa đo trực tiếp trong phiên)*. Khi được gọi, mỗi agent nạp thêm ~3,5k token thân bài.
+- **Ghi đè lặng lẽ:** ở chế độ chép (mặc định), `install_file` dùng `cp`, **ghi đè file trùng tên** trong `~/.claude/agents/` mà không hỏi (chỉ symlink mới được bảo vệ). Mã nguồn còn ghi 73/279 file có tên trùng với đầu ra của công cụ khác, nên cài nhiều công cụ vào cùng `--path` sẽ đè nhau. Tác giả đã chặn trường hợp này bằng nhóm va chạm.
+- **Installer không tải gì từ mạng** (không `curl`/`sudo`). `rm -rf` chỉ dùng để dọn đầu ra converter lỗi hoặc link của chính installer.
+- **Nội dung là kiến thức nén trong prompt, không phải công cụ.** "Deliverables with code examples" là mẫu code trong văn bản; số liệu trong persona (ví dụ tỉ lệ chi phí gián tiếp của grant writer, burn rate của incident) được sửa tay qua nhiều commit `fix(...)`, nên vẫn có thể sai. Phải kiểm như mọi đầu ra của model.
+
+### 3j.4 So với các bộ subagent đã có trong kho (shields 28/10/2026)
+
+| Repo | ★ · license | Quy mô | Khác biệt |
+|---|---|---|---|
+| `msitarzewski/agency-agents` | ~165k · MIT | 283 agent, 18 phòng ban, 17 công cụ | Persona dài, phủ cả phi kỹ thuật (marketing, sales, tài chính, y tế, GIS); **266 agent không giới hạn công cụ** |
+| `wshobson/agents` (§1, bảng skill pack) | ~42k · MIT | 202 agent + 184 skill + 105 command, đóng gói thành 94 plugin | Cài theo plugin nên chỉ nạp cái cần; có `make validate STRICT=1` |
+| `VoltAgent/awesome-claude-code-subagents` | ~26k · MIT | 161+ subagent, 10 nhóm | Nhận qua PR có kiểm duyệt |
+| `0xfurai/claude-code-subagents` | ~1k · MIT | – | Đứng yên từ 10/2025 |
+
+### 3j.5 Dùng thế nào
+
+- **Đừng cài tất cả.** Chọn vài agent bằng `--agent`/`--division`, hoặc chép tay 3–5 file thật sự cần vào `.claude/agents/` **của dự án** thay vì `~/.claude/agents/`.
+- **Thêm `tools:` cho từng agent** (ví dụ persona viết nội dung chỉ cần `Read, Write`; persona review chỉ cần `Read, Grep, Glob`) trước khi dùng trên repo thật.
+- **Gọi đích danh** ("dùng agent frontend-developer để…") thay cho câu "activate … mode".
+- **Coi persona là điểm khởi đầu:** đọc lại phần quy trình và số liệu trong file trước khi dựa vào; với việc cần kiểm bằng máy, ghép với skill có cổng thật (mục 20 §1.8, mục 23).
+- Nếu đã từng cài toàn bộ: xóa bớt khỏi `~/.claude/agents/` để giảm token mỗi phiên, và kiểm xem có file agent cũ của mình bị đè không.
+
+**Nguồn §3j:** Reels "Nghiện AI" người dùng gửi 28/10/2026 · clone đủ lịch sử github.com/msitarzewski/agency-agents 28/10/2026 (840 commit, HEAD b37b5bb; README.md, CONTRIBUTING.md, LICENSE, divisions.json, tools.json, scripts/install.sh (install_claude_code, install_file, path_collision_group), scripts/convert.sh, frontmatter 283 agent đếm bằng script, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit}/… cho agency-agents, wshobson/agents, VoltAgent/awesome-claude-code-subagents, 0xfurai/claude-code-subagents, iannuttall/claude-agents (28/10/2026) · bên thứ ba: repo-explainer.pages.dev/agency-agents · awesome.ecosyste.ms/projects/github.com%2Fmsitarzewski%2Fagency-agents · legost.in/en/open-source/agency-agents
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
