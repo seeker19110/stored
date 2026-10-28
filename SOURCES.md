@@ -597,3 +597,9 @@
 - github.com/imshaikot/browsentic (clone blob:none đủ lịch sử 26/10/2026, 615 commit, HEAD f323a0d, v0.9.0; src/daemon/{daemon.ts, guardrails/{policy,spawn,fence}.ts, agent/{prompt,service,captcha-solver}.ts}, src/lib/pairing.ts, wxt.config.ts, docs/guide/{approvals,limits}.md, docs/internals/*, .github/workflows/{ci,release}.yml, commit 966adaa đổi MIT → Apache-2.0) · img.shields.io: npm/dm/browsentic, chrome-web-store/users/npmocgldfflonjjmdadmdefpnfagnjmp · producthunt.com/posts/1245747 · mcpservers.org/servers/imshaikot/browsentic · trendshift.io/repositories/249304 · stork.ai/en/browsentic
 - github.com/microsoft/skill-recorder (clone blob:none đủ lịch sử 26/10/2026, 164 commit, HEAD b05d590, v0.7.0; README.md, INSTALL.md, install.sh, install.ps1, package.json, electron/{collectors,describer,builders,skillbuilder,automationbuilder,sensitive,narration}/*, window.ts, preload.cjs, evals/, .github/workflows/*) · gittrend.io/repo/microsoft/skill-recorder · gitee.com/ATM006/skill-recorder (bản sao) · docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills
 - img.shields.io/github/{stars,forks,license}/{imshaikot/browsentic,microsoft/skill-recorder}.json 26/10/2026
+
+## Bổ sung 2026-10-28 (Reels "Nghiện AI" về msitarzewski/agency-agents → mục 20 §3j)
+
+- Ảnh Reels người dùng gửi 28/10/2026 · github.com/msitarzewski/agency-agents (clone blob:none đủ lịch sử 28/10/2026, 840 commit, HEAD b37b5bb; README.md, CONTRIBUTING.md, LICENSE, divisions.json, tools.json, scripts/install.sh, scripts/convert.sh, đếm frontmatter 283 agent, .github/workflows/*)
+- img.shields.io/github/{stars,forks,license,last-commit}/… 28/10/2026: msitarzewski/agency-agents, wshobson/agents, VoltAgent/awesome-claude-code-subagents, 0xfurai/claude-code-subagents, iannuttall/claude-agents
+- Bên thứ ba: repo-explainer.pages.dev/agency-agents · awesome.ecosyste.ms/projects/github.com%2Fmsitarzewski%2Fagency-agents · legost.in/en/open-source/agency-agents

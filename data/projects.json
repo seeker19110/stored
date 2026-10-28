@@ -5715,6 +5715,16 @@
       "open_source": true,
       "notes": "Electron: ghi màn hình 1 fps + cửa sổ + URL đầy đủ + clipboard + terminal + giọng nói, dùng Copilot CLI dựng SKILL.md/Automation cho Microsoft Scout/Cowork; không ghi click/phím (README nói có); lọc PII/OCR-blur bật mặc định nhưng bước builder gửi timeline không lọc; Node không ghim dù README nói có; sandbox:false; không ký số; đứng yên từ 21/9/2026; ★ 26/10/2026, mục 20 §3i",
       "section": "20"
+    },
+    {
+      "name": "The Agency (agency-agents)",
+      "repo": "msitarzewski/agency-agents",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 165000,
+      "open_source": true,
+      "notes": "283 persona subagent (Markdown) trong 18 phòng ban, installer cho 17 công cụ (Claude Code, Copilot, Cursor, Gemini…); 266/283 không khai tools: (thừa hưởng mọi công cụ); cài toàn bộ vào ~/.claude/agents ~15k token mô tả/phiên (ước lượng); cp ghi đè file trùng tên; 840 commit, 116 người đóng góp; ★ 28/10/2026 (shields), mục 20 §3j",
+      "section": "20"
     }
   ]
 }
