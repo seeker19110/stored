@@ -88,7 +88,7 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 |---|---|---|---|---|---|---|
 | **trailofbits/skills** | 7,5k | CC-BY-SA-4.0 | 9/10/2026 | Marketplace 44 plugin | Script theo plugin **(chưa xác minh)** | Không có câu về ủy quyền |
 | **trailofbits/skills-curated** | 513 | CC-BY-SA-4.0 | 14/7/2026 | 29 plugin đã duyệt | Script, command | "we read every line of hooks and scripts" — mẫu kiểm duyệt đáng học |
-| **NVIDIA/SkillSpector** | 20k | Apache-2.0 | 9/10/2026 | Máy quét skill (CLI + MCP) | Phân tích tĩnh, gửi nội dung file cho LLM | Tự ghi "not a sandbox" |
+| **NVIDIA/SkillSpector** | 20k → **23,3k** (29/10) | Apache-2.0 | 29/10/2026 | Máy quét skill (CLI + MCP); **71 pattern/17 nhóm** (ảnh 29/10, trước 64/16) | Phân tích tĩnh, gửi nội dung file cho LLM | Tự ghi "not a sandbox"; ảnh 29/10 (2,0k fork, 160 issue, khớp API GitHub): thuộc **NVIDIA Verified Skills pipeline** → skill đạt chuẩn lên **NVIDIA skills catalog**; dẫn nghiên cứu 26,1% skill có lỗ hổng / 5,2% nghi độc hại trên tập con 31.132 skill |
 | **cisco-ai-defense/skill-scanner** | 2,6k | Apache-2.0 | 9/10/2026 | Máy quét skill v2.2.2 | Tĩnh + LLM | Tự ghi "best-effort" |
 | **anthropics/claude-code-security-review** | 6,3k | MIT | 11/2/2026 | GitHub Action + `/security-review` | Python chạy trong CI | Tự ghi "not hardened against prompt injection"; đứng từ 2/2026 |
 | **cloudflare/security-audit-skill** | 28,6k | MIT | 14/9/2026 | 1 skill + validator Node | Yêu cầu sandbox hệ điều hành | Mới nằm ở mục Todo của list; hồ sơ đầy đủ ở §3m (~45k★ ngày 25/10) |
@@ -99,7 +99,7 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 | **elementalsouls/Claude-BugHunter** | 5k | MIT + CC-BY-4.0 | 12/10/2026 | 82–83 skill, 15 command | Installer, CLI Python, Burp MCP, `.githooks` | Ngôn ngữ scope chặt |
 | **blacklanternsecurity/red-run** | 286 | GPL-3.0 | 1/4/2026 | Agent team + MCP nmap/shell | **Hook SessionStart, server reverse shell, `--yolo`** | "CTF and lab use only" |
 | **DeepBitsTechnology/claude-plugins** | 49 | Apache-2.0 | 13/7/2026 | MCP remote cho phân tích binary | **Tải mẫu lên `mcp.deepbits.com`** | Dữ liệu rời khỏi máy |
-| `SnailSploit/Claude-Red` | 7,4k | MIT | 19/9/2026 | 78 skill, vẫn v0.3.0 | `install.sh`, `convert_skills.py` | Khớp §3c; SECURITY.md có câu về ủy quyền/CFAA |
+| `SnailSploit/Claude-Red` | 7,4k → **9,8k** (29/10) | MIT | 12/10/2026 | 78 skill/23 nhóm, vẫn v0.3.0 | `install.sh`, `convert_skills.py` | Khớp §3c; SECURITY.md có câu về ủy quyền/CFAA; ảnh 29/10 (9.805★, 1,32k fork, 37 issue) khớp API GitHub; badge Trendshift "#12 Repo of the Week" **(theo ảnh, chưa xác minh)** |
 
 **Cờ đỏ trong list:**
 

@@ -266,7 +266,7 @@ superpowers,obra/superpowers,,harness-pack,–,298000,True,20,"Bộ skill quy tr
 compound-engineering-plugin,EveryInc/compound-engineering-plugin,,harness-pack,–,25500,True,20,Plugin research→plan→work→review→compound
 oh-my-hermes,rlaope/oh-my-hermes,,harness-pack,–,3300,True,20,"Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill"
 agent-skills (addyosmani),addyosmani/agent-skills,,harness-pack,–,105300,True,20,"incremental-implementation, source-driven, doubt-driven development, context-engineering"
-claude-red,SnailSploit/claude-red,,security,MIT,7400,True,12,"78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill (12/10/2026)"
+claude-red,SnailSploit/claude-red,,security,MIT,9805,True,12,"78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill/23 nhóm; 9.805★/1.322 fork/37 issue (29/10/2026, API GitHub); badge Trendshift #12 Repo-of-Week (theo ảnh, chưa xác minh)"
 LiteLLM,BerriAI/litellm,,llm-gateway,MIT,,True,10,"Proxy OpenAI-compatible 100+ provider, budget, key ảo; ~60,9k★ (theo docs nội bộ, chưa xác minh)"
 Portkey Gateway,Portkey-AI/gateway,,llm-gateway,MIT,,True,10,"Gateway nhanh, fallback/retry/load-balance"
 one-api,songquanpeng/one-api,,llm-gateway,MIT,,True,10,"Quản lý key, quota, nhiều kênh"
@@ -290,6 +290,7 @@ T3 Code,pingdotgg/t3code,,agent-workspace,MIT,27100,True,01,Agent harness contro
 Vibe Kanban,BloopAI/vibe-kanban,,agent-workspace,Apache-2.0,28300,True,01,"Kanban, mỗi thẻ một agent trong worktree; README ghi đang sunset; ★ 12/10/2026"
 Claude Squad,smtg-ai/claude-squad,,agent-workspace,AGPL-3.0,8600,True,01,TUI tmux + git worktree quản lý nhiều CLI agent; ★ 12/10/2026
 Orca,stablyai/orca,,agent-workspace,MIT,,True,01,"Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree; số sao 10k–43k tùy nguồn (chưa xác minh)"
+ThinkRail,JetBrains/thinkrail,,agent-workspace,Apache-2.0,5774,True,01,"IDE (Monaco+terminal+diff) bọc agent pi in-process; workspace = git worktree; living specs = đồ thị SPEC.md; Agent Skills + MCP; JetBrains InnovationHub incubator; v0.2.0 (18/10); 5.774★/304 fork (29/10/2026, API GitHub)"
 OpenJarvis,open-jarvis/OpenJarvis,,personal-agent,Apache-2.0,11000,True,01,"Stanford Hazy Research/SAIL: framework agent cá nhân local-first, đo năng lượng/latency/cost; trùng tên với Personal Jarvis; ★ 12/10/2026"
 context-mode,mksglu/context-mode,,context-optimization,Elastic-2.0,29900,False,03,"Source-available (ELv2): MCP + hook chặn curl/WebFetch, Think in Code, FTS5/BM25/RRF, khôi phục phiên; 17 client; 'sandbox' = tiến trình con toàn quyền; số 98% đo byte ('99%' là banner video Better Stack); ★ 16/10/2026"
 RTK,rtk-ai/rtk,,context-optimization,Apache-2.0,83100,True,03,"Binary Rust lọc output CLI qua hook rewrite (git status → rtk git status), 60–90% output bash; ★ 12/10/2026"
@@ -428,7 +429,7 @@ FilmCraft,storytold/filmcraft,,agentic-video,MIT OR Apache-2.0,10900,True,01,"NL
 OpenCut,OpenCut-app/OpenCut,,video-engine,,93700,True,01,"Trình dựng video mở, đang viết lại lõi bằng Rust; ★ đọc 12/10/2026"
 Awesome-AI-Security-Skills,EvanThomasLuke/Awesome-AI-Security-Skills,,awesome-list,,112,False,12,"58 link skill bảo mật, không có LICENSE, tự cảnh báo chưa kiểm; ★ đọc 12/10/2026"
 Trail of Bits skills,trailofbits/skills,,security,CC-BY-SA-4.0,7500,True,12,Marketplace 44 plugin; bản curated đọc từng dòng hook; ★ đọc 12/10/2026
-SkillSpector,NVIDIA/SkillSpector,,security,Apache-2.0,20000,True,12,"Quét skill tĩnh + LLM, không phải sandbox; ★ đọc 12/10/2026"
+SkillSpector,NVIDIA/SkillSpector,,security,Apache-2.0,23292,True,12,"Quét skill tĩnh + LLM (71 pattern/17 nhóm), thuộc NVIDIA Verified Skills pipeline → NVIDIA skills catalog; không phải sandbox; 23.292★/2.015 fork (29/10/2026, API GitHub)"
 skill-scanner (Cisco),cisco-ai-defense/skill-scanner,,security,Apache-2.0,2600,True,12,Quét skill best-effort; ★ đọc 12/10/2026
 claude-code-security-review,anthropics/claude-code-security-review,,security,MIT,6300,True,12,Action + /security-review; không chống prompt injection; commit cuối 2/2026; ★ đọc 12/10/2026
 security-audit-skill (Cloudflare),cloudflare/security-audit-skill,,security,MIT,45000,True,12,"Skill audit bảo mật 1 repo, 6 pha (recon → hunt theo coverage ledger → verifier mới bác bỏ → findings.json theo schema → kiểm lại → báo cáo); 2 validator Node (65/65 test pass) chỉ kiểm định dạng; chạy code target chỉ trong sandbox OS; không phòng prompt injection từ repo đang audit; validator từ chối input trên Windows; hạt giống harness 128 repo của Cloudflare (blog 18/6/2026); ★ 25/10/2026 (shields; 28,6k ngày 12/10), mục 12 §3m"

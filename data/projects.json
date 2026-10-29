@@ -2758,9 +2758,9 @@
       "repo": "SnailSploit/claude-red",
       "category": "security",
       "license": "MIT",
-      "stars": 7400,
+      "stars": 9805,
       "open_source": true,
-      "notes": "78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill (12/10/2026)",
+      "notes": "78 SKILL.md red-team cho Claude (dual-use); manifest máy đọc; cần ủy quyền; vẫn v0.3.0, 78 skill/23 nhóm; 9.805★/1.322 fork/37 issue (29/10/2026, API GitHub); badge Trendshift #12 Repo-of-Week (theo ảnh, chưa xác minh)",
       "section": "12"
     },
     {
@@ -2991,6 +2991,16 @@
       "stars": null,
       "open_source": true,
       "notes": "Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree; số sao 10k–43k tùy nguồn (chưa xác minh)",
+      "section": "01"
+    },
+    {
+      "name": "ThinkRail",
+      "repo": "JetBrains/thinkrail",
+      "category": "agent-workspace",
+      "license": "Apache-2.0",
+      "stars": 5774,
+      "open_source": true,
+      "notes": "IDE (Monaco+terminal+diff) bọc agent pi in-process; workspace = git worktree; living specs = đồ thị SPEC.md; Agent Skills + MCP; JetBrains InnovationHub incubator; v0.2.0 (18/10); 5.774★/304 fork (29/10/2026, API GitHub)",
       "section": "01"
     },
     {
@@ -4378,9 +4388,9 @@
       "repo": "NVIDIA/SkillSpector",
       "category": "security",
       "license": "Apache-2.0",
-      "stars": 20000,
+      "stars": 23292,
       "open_source": true,
-      "notes": "Quét skill tĩnh + LLM, không phải sandbox; ★ đọc 12/10/2026",
+      "notes": "Quét skill tĩnh + LLM (71 pattern/17 nhóm), thuộc NVIDIA Verified Skills pipeline → NVIDIA skills catalog; không phải sandbox; 23.292★/2.015 fork (29/10/2026, API GitHub)",
       "section": "12"
     },
     {
