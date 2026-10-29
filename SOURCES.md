@@ -603,3 +603,10 @@
 - Ảnh Reels người dùng gửi 28/10/2026 · github.com/msitarzewski/agency-agents (clone blob:none đủ lịch sử 28/10/2026, 840 commit, HEAD b37b5bb; README.md, CONTRIBUTING.md, LICENSE, divisions.json, tools.json, scripts/install.sh, scripts/convert.sh, đếm frontmatter 283 agent, .github/workflows/*)
 - img.shields.io/github/{stars,forks,license,last-commit}/… 28/10/2026: msitarzewski/agency-agents, wshobson/agents, VoltAgent/awesome-claude-code-subagents, 0xfurai/claude-code-subagents, iannuttall/claude-agents
 - Bên thứ ba: repo-explainer.pages.dev/agency-agents · awesome.ecosyste.ms/projects/github.com%2Fmsitarzewski%2Fagency-agents · legost.in/en/open-source/agency-agents
+
+## Bổ sung 2026-10-29 (ảnh người dùng gửi: Claude-Red, SkillSpector, ThinkRail)
+
+- API GitHub (đã xác thực) đọc 2026-10-29: `SnailSploit/Claude-Red` (9.805★, 1.322 fork, 37 issue, MIT, pushed 12/10/2026, tạo 4/3/2026) · `NVIDIA/SkillSpector` (23.292★, 2.015 fork, 160 issue, Apache-2.0, tạo 21/3/2026) · `JetBrains/thinkrail` (5.774★, 304 fork, 275 issue, Apache-2.0, TypeScript, tạo 8/7/2026) → khớp 3 ảnh; cập nhật mục 12 §3e, mục 01 §1.3, `data/projects.json`.
+- Claude-Red badge Trendshift "#12 Repository of the Week" và ThinkRail badge "GitHub Trending Repo of the Day #1" chỉ có trong ảnh README, **chưa xác minh** bảng xếp hạng độc lập.
+- SkillSpector (ảnh 29/10): "71 vulnerability patterns / 17 categories" (trước 64/16, 8/2026), thuộc "NVIDIA Verified Skills pipeline" → "NVIDIA skills catalog"; dẫn nghiên cứu 26,1% skill có lỗ hổng / 5,2% nghi độc hại trên tập con 31.132 skill. Nguồn phụ: helpnetsecurity.com (3/8/2026), docs.nvidia.com/skills.
+- ThinkRail nền `pi` coding agent (JetBrains InnovationHub); nguồn phụ: webreactiva.com/blog/thinkrail, braindetox.kr, hellogithub.com/en/repository/JetBrains/thinkrail. Nhiều fork/mirror (Prasanth595, 52zyd, gaorun, CommanderTvis) — kho dẫn upstream `JetBrains/thinkrail` theo quy tắc mirror.
