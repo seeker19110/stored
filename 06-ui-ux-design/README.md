@@ -742,6 +742,49 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7l:** clone đầy đủ github.com/Nutlope/hallmark 25/10/2026 (blob:none, 297 commit, HEAD 7ec8682 22/10/2026; README.md, ROADMAP.md, LICENSE, package.json, `.claude-plugin/marketplace.json`, `.github/workflows/verify.yml`, `skills/hallmark/{SKILL.md, references/{gates.md, flow.md, fonts.md, imagery.md, themes/*.md, themes/index.json}, scripts/{sloplint.mjs (check46 dòng 2017–2038), sloplint-render.mjs, theme.mjs, install.mjs, install-hook.mjs, lint-hook.mjs, imagegen.mjs, photos.json}}`, `eval/README.md`, git log về số theme và phiên bản) · img.shields.io/github/{stars,forks,license}/Nutlope/hallmark.json 25/10/2026 · usehallmark.com · bên thứ ba: dev.to/terminalchai/hallmark-together-ai-open-sources-an-anti-ai-slop-tool-for-web-design-3nkb · mer.vin/2026/05/hallmark-design-skill-anti-ai-slop-ui-for-claude-code-and-cursor · notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Hallmark · gittrend.io/repo/Nutlope/hallmark · mirror: github.com/xgaisystems/hallmark-Nutlope
 
+## 7m. Kiểm infographic: "12 GitHub repo giúp Claude Code và Codex tạo giao diện đẹp hơn" (ảnh người dùng gửi, 2026-10-29)
+
+> Infographic tiếng Việt liệt kê 12 repo UI/thiết kế cho Claude Code/Codex, mỗi ô một tên hiển thị + mô tả 1 dòng, **không kèm URL/owner**. Đã map từng ô về repo thật và đối chiếu số liệu trực tiếp qua API GitHub (đã xác thực, 29/10/2026). **10/12 đã có hồ sơ trong kho**; 2 ô mới (#07, #12) lập hồ sơ bên dưới. Mô tả trong ảnh khớp repo thật ở cả 12 ô — không có ô nào là "nguồn dựng".
+
+| # | Tên hiển thị (ảnh) | Repo thật | Trong kho |
+|---|---|---|---|
+| 01 | UI/UX Pro Max Skill | `nextlevelbuilder/ui-ux-pro-max-skill` | §7g.2 |
+| 02 | Awesome DESIGN.md | `VoltAgent/awesome-design-md` | §7c |
+| 03 | Open Design | `nexu-io/open-design` | §2 |
+| 04 | Taste Skill | `Leonxlnx/taste-skill` | §4 / §7j |
+| 05 | Impeccable | `impeccable` | §4, mục 20 |
+| 06 | React Bits | `DavidHDev/react-bits` | mục 22 |
+| 07 | Skills for Designers and Engineers | `emilkowalski/skills` | **mới ↓ §7m.1** |
+| 08 | Hallmark | `Nutlope/hallmark` | §7l |
+| 09 | Google DESIGN.md | `google-labs-code/design.md` | §7c |
+| 10 | GSAP Skills | skill pack GSAP | mục 22 |
+| 11 | Scroll World | `scroll-world` (Chase) | mục 22 |
+| 12 | Canvas UI | `DavidHDev/canvas-ui` | **mới ↓ §7m.2** |
+
+### 7m.1 `emilkowalski/skills` — "Skills for Designers and Engineers" (mới)
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo | github.com/emilkowalski/skills · **51.327★, 3.001 fork, 2 issue** (29/10/2026, API GitHub) · **MIT** · Markdown · tạo 16/3/2026, push 28/10/2026 · site emilkowal.ski/skill |
+| Tác giả | Emil Kowalski — tác giả `sonner` (toast) và `vaul` (drawer), giảng viên animations.dev; nguồn "taste" uy tín thật |
+| Nội dung | Bộ Agent Skills về animation, design, code, performance cho "design engineer"; cài `npx skills add emilkowalski/skills`; hỗ trợ Claude Code, Codex, Cursor. Tác giả khuyên bật theo ngữ cảnh (vd khi review animation), không always-on |
+| Vì sao đáng tham khảo | Nhỏ gọn (~117 KB), tập trung chi tiết animation/vi tương tác — bổ sung Taste Skill (§4) và Hallmark (§7l) |
+| Lưu ý | Aggregator (ecosyste.ms) còn ghi ~5,5k★ — snapshot cũ, lệch ~10× so với API GitHub |
+| Liên quan | §4 (taste), §7g, mục 22 (animation) |
+
+### 7m.2 `DavidHDev/canvas-ui` — WebGL phủ lên HTML thật (mới)
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo | github.com/DavidHDev/canvas-ui · **5.166★, 268 fork, 4 issue** (29/10/2026, API GitHub) · **license NOASSERTION** (GitHub không nhận ra license chuẩn → đọc file LICENSE trước khi dùng thương mại; cùng tác giả React Bits vốn MIT+Commons Clause) · TypeScript · tạo 16/7/2026, push 3/10/2026 · site canvasui.dev |
+| Tác giả | DavidHDev (David Haz) — cũng là tác giả React Bits (#06 trong ảnh) |
+| Nội dung | Thư viện component canvas: dùng API thử nghiệm **html-in-canvas** vẽ DOM thật thành texture rồi phủ shader WebGL (fire, fluid, glass…) mà **vẫn giữ chọn chữ và link**; fallback overlay WebGL khi trình duyệt chưa hỗ trợ (cần Chrome cờ `canvas-draw-element`). Registry **MCP-ready (shadcn MCP)** nên agent duyệt/cài component được. React, Vue, Svelte, vanilla |
+| Vì sao đáng tham khảo | Khác thư viện component thường: hiệu ứng WebGL trên nội dung tương tác thật; cầu nối agent ↔ component qua MCP |
+| Hạn chế / rủi ro | License phi chuẩn; phụ thuộc API trình duyệt thử nghiệm → chỉ chạy đầy đủ trên Chrome có bật cờ |
+| Liên quan | #06 React Bits (mục 22), mục 22 (WebGL/animation) |
+
+**Nguồn §7m:** ảnh infographic người dùng gửi 29/10/2026 · API GitHub (đã xác thực) 29/10/2026: `emilkowalski/skills`, `DavidHDev/canvas-ui` · emilkowal.ski/skill · canvasui.dev · flaviocopes.com/canvas-ui.md · awesome.ecosyste.ms/projects/github.com%2Femilkowalski%2Fskills (snapshot cũ ~5,5k★) · map 10 ô còn lại: §2, §4, §7c, §7g.2, §7j, §7l, mục 20, mục 22.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
