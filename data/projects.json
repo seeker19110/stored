@@ -708,6 +708,26 @@
       "section": "06"
     },
     {
+      "name": "emilkowalski/skills",
+      "repo": "emilkowalski/skills",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 51327,
+      "open_source": true,
+      "notes": "Skills for Designers and Engineers (Emil Kowalski — sonner/vaul): animation, design, code, performance cho design engineer; npx skills add; Claude Code/Codex/Cursor; 51.327★/3.001 fork (29/10/2026, API GitHub); ảnh infographic §7m.1",
+      "section": "06"
+    },
+    {
+      "name": "canvas-ui",
+      "repo": "DavidHDev/canvas-ui",
+      "category": "ui-library",
+      "license": "NOASSERTION",
+      "stars": 5166,
+      "open_source": true,
+      "notes": "Thư viện canvas component (cùng tác giả React Bits): html-in-canvas vẽ DOM thật + shader WebGL, giữ chọn chữ/link; registry MCP-ready (shadcn); React/Vue/Svelte/vanilla; license phi chuẩn (đọc LICENSE trước khi dùng TM); 5.166★ (29/10/2026, API GitHub); ảnh infographic §7m.2",
+      "section": "06"
+    },
+    {
       "name": "CopilotKit",
       "repo": "CopilotKit/CopilotKit",
       "category": "agentic-ui",

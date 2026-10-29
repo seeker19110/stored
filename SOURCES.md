@@ -610,3 +610,9 @@
 - Claude-Red badge Trendshift "#12 Repository of the Week" và ThinkRail badge "GitHub Trending Repo of the Day #1" chỉ có trong ảnh README, **chưa xác minh** bảng xếp hạng độc lập.
 - SkillSpector (ảnh 29/10): "71 vulnerability patterns / 17 categories" (trước 64/16, 8/2026), thuộc "NVIDIA Verified Skills pipeline" → "NVIDIA skills catalog"; dẫn nghiên cứu 26,1% skill có lỗ hổng / 5,2% nghi độc hại trên tập con 31.132 skill. Nguồn phụ: helpnetsecurity.com (3/8/2026), docs.nvidia.com/skills.
 - ThinkRail nền `pi` coding agent (JetBrains InnovationHub); nguồn phụ: webreactiva.com/blog/thinkrail, braindetox.kr, hellogithub.com/en/repository/JetBrains/thinkrail. Nhiều fork/mirror (Prasanth595, 52zyd, gaorun, CommanderTvis) — kho dẫn upstream `JetBrains/thinkrail` theo quy tắc mirror.
+
+## Bổ sung 2026-10-29b (ảnh infographic "12 GitHub repo giúp Claude Code và Codex tạo giao diện đẹp hơn")
+
+- Ảnh người dùng gửi 29/10/2026; map 12 ô về repo thật, đối chiếu API GitHub (đã xác thực) 29/10/2026. 10/12 đã có hồ sơ (§2, §4, §7c, §7g.2, §7j, §7l, mục 20, mục 22).
+- 2 ô mới (mục 06 §7m): `emilkowalski/skills` (51.327★/3.001 fork, MIT, 16/3/2026) · `DavidHDev/canvas-ui` (5.166★/268 fork, license NOASSERTION, 16/7/2026, cùng tác giả React Bits).
+- Phụ: emilkowal.ski/skill · canvasui.dev · flaviocopes.com/canvas-ui.md · awesome.ecosyste.ms (snapshot cũ emilkowalski/skills ~5,5k★, lệch ~10× API).
