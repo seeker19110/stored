@@ -591,6 +591,50 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 
 **Nguồn §3j:** Reels "Nghiện AI" người dùng gửi 28/10/2026 · clone đủ lịch sử github.com/msitarzewski/agency-agents 28/10/2026 (840 commit, HEAD b37b5bb; README.md, CONTRIBUTING.md, LICENSE, divisions.json, tools.json, scripts/install.sh (install_claude_code, install_file, path_collision_group), scripts/convert.sh, frontmatter 283 agent đếm bằng script, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit}/… cho agency-agents, wshobson/agents, VoltAgent/awesome-claude-code-subagents, 0xfurai/claude-code-subagents, iannuttall/claude-agents (28/10/2026) · bên thứ ba: repo-explainer.pages.dev/agency-agents · awesome.ecosyste.ms/projects/github.com%2Fmsitarzewski%2Fagency-agents · legost.in/en/open-source/agency-agents
 
+## 3k. Kiểm infographic: "Top 10 Claude Code skills — Popular on GitHub" (LapTrinhWebAI, ảnh người dùng gửi, 2026-10-30)
+
+> Infographic của trang Việt "LapTrinhWebAI" ghi "Ranked by GitHub stars · Snapshot Oct 2026", 10 dòng, mỗi dòng có **owner/repo** + mô tả 1 dòng + số sao. Không tìm được bài gốc bằng web search (30/10/2026). Đã kiểm 10 dòng bằng shields `github/{stars,license,last-commit}` (30/10/2026), so HEAD bằng `git ls-remote` cho 2 owner nghi đổi tên, và clone đủ lịch sử repo duy nhất kho chưa có hồ sơ (#03).
+
+### 3k.1 Kiểm từng dòng
+
+| # | Repo trong ảnh | ★ ảnh | ★ 30/10 | License (shields) | Commit cuối | Mô tả trong ảnh | Hồ sơ trong kho |
+|---|---|---|---|---|---|---|---|
+| 01 | `obra/superpowers` | 307,4k | 309k | MIT | 10/2026 | ✅ quy trình kỹ thuật cho agent | §3d, §3g |
+| 02 | `mattpocock/skills` | 304,9k | 307k | MIT | 29/10/2026 | ✅ | §3c |
+| 03 | `multica-ai/andrej-karpathy-skills` | 224,7k | 227k | **không nhận ra** | **20/4/2026** | ⚠️ "Karpathy Skills" — **không phải của Karpathy** | **mới ↓ §3k.3** |
+| 04 | `anthropics/skills` | 184,5k | 185k | không nhận ra (Apache-2.0 + một phần source-available) | 10/2026 | ✅ chính thức | mục 22, §3i |
+| 05 | `DietrichGebert/ponytail` | 177,1k | 181k | MIT | 29/10/2026 | ✅ | §3g.3 |
+| 06 | `nextlevelbuilder/ui-ux-pro-max-skill` | 141,6k | 143k | MIT | 10/2026 | ✅ | mục 06 §7g.2 |
+| 07 | `safishamsi/graphify` | 136,8k | 139k | Apache-2.0 | 10/2026 | ✅ | mục 16 §4b (ghi `Graphify-Labs/graphify`) |
+| 08 | `JuliusBrussee/caveman` | 115,5k | 116k | Apache-2.0 | 10/2026 | ⚠️ chỉ tả phần "nén token"; từ 4.0 là proxy cục bộ có Caveman Cloud + telemetry mặc định | §3g.3 |
+| 09 | `addyosmani/agent-skills` | 110,8k | 112k | MIT | 29/10/2026 | ✅ | §3d |
+| 10 | `Leonxlnx/taste-skill` | 103,7k | 106k | MIT | 10/2026 | ✅ | mục 06 §4, §7j |
+
+**Tổng:** 10/10 repo có thật, owner/repo đúng; sao trong ảnh thấp hơn 30/10 khoảng 0,5–2,6%, khớp "snapshot Oct 2026"; thứ tự xếp đúng theo sao trong 10 dòng này. Mô tả 8✅ / 2⚠️ / 0❌.
+
+### 3k.2 Điều bảng không nói
+
+- **Hai owner là tên cũ/mới của cùng một repo, không phải mirror.** `safishamsi/graphify` và `Graphify-Labs/graphify` cùng HEAD `0a8cd4e`, cùng 139k★; `forrestchang/andrej-karpathy-skills` và `multica-ai/andrej-karpathy-skills` cùng HEAD `2c60614`, cùng 227k★/23k fork (`git ls-remote` + shields 30/10/2026), tức GitHub chuyển hướng sau khi đổi owner. Vài bài tổng hợp (devtake.pages.dev) gọi bản multica-ai là "mirror" và cộng sao hai bên: **sai**, đó là một repo.
+- **"Top 10" vẫn là danh sách chọn tay.** `affaan-m/everything-claude-code` (§3d, 277,6k★ ngày 12/10) lẽ ra đứng giữa #2 và #3 nhưng vắng mặt; ảnh cũng gộp skill thiết kế (#06, #10), công cụ dựng knowledge graph (#07) và proxy tiết kiệm token (#08) vào chung "skills".
+- **Sao ≠ khối lượng nội dung.** #03 có 227k★ trên **28 commit và một file ~65 dòng**; ponytail 181k★ trên ~350 commit. Đây là các repo đi theo làn sóng trending, không phải thước đo chất lượng (xem §3g.2).
+
+### 3k.3 Hồ sơ nhanh: `multica-ai/andrej-karpathy-skills` (mới, clone 30/10/2026)
+
+| Mục | Thông tin |
+|---|---|
+| Repo | github.com/multica-ai/andrej-karpathy-skills (tên cũ `forrestchang/…`, GitHub chuyển hướng) · **227k★, 23k fork** (shields 30/10/2026) · tạo khoảng 27/1/2026 · **28 commit**, HEAD `2c60614` **20/4/2026**, đứng yên từ đó |
+| Tác giả | Jiayuan Zhang (`forrestchang`, X @jiayuan_jy), 17/28 commit; README đặt quảng cáo dự án của tác giả **Multica** (nền tảng chạy/quản lý coding agent) ở dòng đầu. **Andrej Karpathy không tham gia**: repo chỉ "derived from" một bài X của Karpathy (1/2026) về lỗi coding của LLM |
+| Nội dung thật | 9 file, ~37 KB: `CLAUDE.md` 65 dòng; `skills/karpathy-guidelines/SKILL.md` 67 dòng (cùng nội dung, thêm frontmatter); `.cursor/rules/*.mdc`; `EXAMPLES.md` 522 dòng ví dụ đúng/sai; `.claude-plugin/{plugin,marketplace}.json` (cài như plugin Claude Code); README tiếng Anh + Trung |
+| Bốn nguyên tắc | (1) **Think Before Coding** — nêu giả định, đưa nhiều cách hiểu, dừng và hỏi khi mơ hồ; (2) **Simplicity First** — không thêm tính năng/abstraction/cấu hình không được yêu cầu; (3) **Surgical Changes** — chỉ sửa dòng truy được về yêu cầu, chỉ dọn rác do chính mình tạo; (4) **Goal-Driven Execution** — biến việc thành tiêu chí kiểm được (viết test tái hiện lỗi rồi cho qua) |
+| License | **Không có file LICENSE** (shields "not specified"); chỉ `SKILL.md` frontmatter và `plugin.json` ghi `"license": "MIT"`. Cùng kiểu lỗi với `vercel-labs/agent-skills` (§3g.1). Muốn chép nguyên văn vào sản phẩm thì coi là chưa rõ quyền |
+| Không có | Script, hook, test, eval, benchmark; chỉ là văn bản prompt. Không có số đo nào cho thấy giảm lỗi |
+
+**So sánh:** cùng mục tiêu "ít code, sửa đúng chỗ" với `DietrichGebert/ponytail` (§3g.3, prompt 52 dòng + benchmark tự đo 585 phiên) và nguyên tắc "Simplicity" của `mattpocock/skills` (§3c). Bốn nguyên tắc trùng phần lớn với chỉ dẫn mặc định của Claude Code hiện nay (không thêm tính năng ngoài yêu cầu, khớp style xung quanh, kiểm trước khi báo xong) **(so theo chỉ dẫn hệ thống đọc trong phiên 30/10/2026, có thể đổi theo phiên bản)**, nên lợi ích chủ yếu với harness/model khác hoặc dự án muốn ghi rõ thành văn. Cài chồng với ponytail/caveman sẽ trùng chỉ dẫn "giọng" và độ ngắn.
+
+**Dùng thế nào:** đọc 65 dòng rồi **tự viết lại** các ý cần vào `CLAUDE.md`/`AGENTS.md` của dự án (ngắn, không cần plugin, tránh vấn đề license); điểm đáng giữ nhất là phép thử "mọi dòng thay đổi phải truy được về yêu cầu" và việc đổi yêu cầu thành test trước khi sửa. Không cần theo dõi cập nhật vì repo đã đứng yên.
+
+**Nguồn §3k:** ảnh infographic LapTrinhWebAI người dùng gửi 30/10/2026 · img.shields.io/github/{stars,forks,license,last-commit}/<repo>.json cho 10 repo + `forrestchang/andrej-karpathy-skills`, `Graphify-Labs/graphify` (30/10/2026) · `git ls-remote` HEAD hai cặp owner (30/10/2026) · clone đủ lịch sử github.com/multica-ai/andrej-karpathy-skills 30/10/2026 (28 commit, HEAD 2c60614; README.md, CLAUDE.md, EXAMPLES.md, skills/karpathy-guidelines/SKILL.md, .claude-plugin/plugin.json, .claude-plugin/marketplace.json, .cursor/rules/karpathy-guidelines.mdc) · bên thứ ba: devtake.pages.dev/article/karpathy-claude-md-github-trending (gọi multica-ai là "mirror" — sai) · dev.to/max_quimby/karpathys-claudemd-template-5800-stars-and-what-it-does-4a09 · weihaoqu.github.io/learnAIDoc/wiki/karpathy-skills-claude-code · awesome.ecosyste.ms/projects/github.com%2Fforrestchang%2Fandrej-karpathy-skills
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

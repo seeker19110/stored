@@ -702,9 +702,9 @@
       "repo": "Leonxlnx/taste-skill",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 98900,
+      "stars": 106000,
       "open_source": true,
-      "notes": "Skill chống \"AI slop\" cho frontend; v2 có draw.mjs (chia 3/20 hướng từ thư viện rút từ nghiên cứu 247 site) + inspect.mjs (inspector Chrome/Edge qua CDP, không cần Playwright, đo + screenshot 1440/768/390px) + lint.mjs; tự chạy tests/draw/lint OK 19/10/2026 (inspector cần Chrome, chưa chạy end-to-end tại đây); có app TasteCode + tài trợ; 13 skill; ★ 19/10/2026 (shields/trang GitHub 98,9k); hồ sơ mục 06 §7j",
+      "notes": "Skill chống \"AI slop\" cho frontend; v2 có draw.mjs (chia 3/20 hướng từ thư viện rút từ nghiên cứu 247 site) + inspect.mjs (inspector Chrome/Edge qua CDP, không cần Playwright, đo + screenshot 1440/768/390px) + lint.mjs; tự chạy tests/draw/lint OK 19/10/2026 (inspector cần Chrome, chưa chạy end-to-end tại đây); có app TasteCode + tài trợ; 13 skill; ★ 19/10/2026 (shields/trang GitHub 98,9k); hồ sơ mục 06 §7j; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "06"
     },
     {
@@ -2737,10 +2737,10 @@
       "name": "superpowers",
       "repo": "obra/superpowers",
       "category": "harness-pack",
-      "license": "–",
-      "stars": 298000,
+      "license": "MIT",
+      "stars": 309000,
       "open_source": true,
-      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026)",
+      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "20"
     },
     {
@@ -2767,10 +2767,10 @@
       "name": "agent-skills (addyosmani)",
       "repo": "addyosmani/agent-skills",
       "category": "harness-pack",
-      "license": "–",
-      "stars": 105300,
+      "license": "MIT",
+      "stars": 112000,
       "open_source": true,
-      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering",
+      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "20"
     },
     {
@@ -3098,9 +3098,9 @@
       "repo": "mattpocock/skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 287200,
+      "stars": 307000,
       "open_source": true,
-      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026",
+      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "20"
     },
     {
@@ -3268,9 +3268,9 @@
       "repo": "anthropics/skills",
       "category": "plugin-marketplace",
       "license": "Apache-2.0 (một phần source-available)",
-      "stars": 180700,
+      "stars": 185000,
       "open_source": true,
-      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b)",
+      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "22"
     },
     {
@@ -4588,9 +4588,9 @@
       "repo": "Graphify-Labs/graphify",
       "category": "codebase-knowledge",
       "license": "Apache-2.0",
-      "stars": 126000,
+      "stars": 139000,
       "open_source": true,
-      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026",
+      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng)",
       "section": "16"
     },
     {
@@ -4920,9 +4920,9 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 137000,
+      "stars": 143000,
       "open_source": true,
-      "notes": "Kho tra cứu CSV + BM25 sinh design system theo loại sản phẩm (79 style searchable, 192 palette/loại sản phẩm, 74 font pairing, 22 stack) + 6 skill phụ; CLI cho 19 agent; 164/164 test pass tự chạy; không có cổng đo render; provenance phủ 51/192; ★ trang GitHub 18/10/2026, mục 06 §7g.2",
+      "notes": "Kho tra cứu CSV + BM25 sinh design system theo loại sản phẩm (79 style searchable, 192 palette/loại sản phẩm, 74 font pairing, 22 stack) + 6 skill phụ; CLI cho 19 agent; 164/164 test pass tự chạy; không có cổng đo render; provenance phủ 51/192; ★ trang GitHub 18/10/2026, mục 06 §7g.2; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "06"
     },
     {
@@ -5361,9 +5361,19 @@
       "repo": "DietrichGebert/ponytail",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 163000,
+      "stars": 181000,
       "open_source": true,
-      "notes": "Prompt 52 dòng \"lazy senior dev\": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026",
+      "notes": "Prompt 52 dòng \"lazy senior dev\": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "section": "20"
+    },
+    {
+      "name": "andrej-karpathy-skills",
+      "repo": "multica-ai/andrej-karpathy-skills",
+      "category": "harness-pack",
+      "license": null,
+      "stars": 227000,
+      "open_source": true,
+      "notes": "Một CLAUDE.md/SKILL.md ~65 dòng, 4 nguyên tắc (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) rút từ bài X của Karpathy về lỗi coding của LLM — KHÔNG do Karpathy viết (Jiayuan Zhang/forrestchang, quảng bá Multica); tên cũ forrestchang/… (cùng HEAD); 28 commit, đứng yên từ 20/4/2026; không có file LICENSE (plugin.json/SKILL.md ghi MIT); không script/test/benchmark; 227k★/23k fork (30/10/2026, shields); hồ sơ mục 20 §3k.3",
       "section": "20"
     },
     {
@@ -5371,9 +5381,9 @@
       "repo": "JuliusBrussee/caveman",
       "category": "context-optimization",
       "license": "Apache-2.0",
-      "stars": 112000,
+      "stars": 116000,
       "open_source": true,
-      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026",
+      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
       "section": "20"
     },
     {
