@@ -242,6 +242,56 @@ Tài liệu storage ghi rõ **"Hindsight does not abstract storage behind a gene
 
 **Nguồn §4d:** https://github.com/vectorize-io/hindsight (MIT, tag v1.0.0) · https://pypi.org/project/hindsight-api/ (1.0.0, cài và chạy 16/10/2026) · https://hindsight.vectorize.io/blog/2026/10/15/hindsight-50k-stars · https://hindsight.vectorize.io/blog/2026/10/13/memlake · https://hindsight.vectorize.io/cloud-enterprise/overview · https://hindsight.vectorize.io/developer/storage · https://hindsight.vectorize.io/developer/installation · https://hindsight.vectorize.io/developer/configuration · https://hindsight.vectorize.io/developer/performance · https://arxiv.org/pdf/2512.12818 · https://aclanthology.org/2026.acl-demo.27.pdf · https://trendshift.io/repositories/15603 · https://docs.lancedb.com/storage · https://lancedb.com/blog/case-study-cognee · https://www.cognee.ai/blog/fundamentals/how-cognee-builds-ai-memory · https://mastra.ai/integrations/databases/lancedb
 
+## 4e. thedotmack/claude-mem: trí nhớ giữa các phiên bằng hook + AI nén (yêu cầu người dùng, clone 2026-10-30)
+
+> Kho trước đây chỉ có claude-mem dưới dạng dòng bảng (mục 03 §8b, §4c ở trên, mục 20 §3g). Đây là hồ sơ đầy đủ. Đã clone đủ lịch sử (blob:none), đọc README, SECURITY.md, CHANGELOG, `plugin/hooks/hooks.json`, `src/services/telemetry/`, `src/npx-cli/commands/telemetry.ts`, `evals/read-gate/`, workflow CI. **Không chạy installer, không đăng nhập.**
+
+### 4e.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 30/10/2026) |
+|---|---|
+| Repo | github.com/thedotmack/claude-mem · **106k★, 9,3k fork** (shields) · **Apache-2.0** (file LICENSE + NOTICE) · v15.6.0; commit cuối 29/10/2026 · 53 issue, 73 PR mở |
+| Lịch sử | **3.767 commit** từ 6/9/2025, 323 tác giả; Alex Newman (`thedotmack`) 2.565 commit; 4.175 dòng trailer `Co-Authored-By: Claude` (nhiều hơn số commit — gần như toàn bộ do Claude viết); `posthog[bot]` 65 commit |
+| Cơ chế | **11 hook trên 9 sự kiện** (Setup, SessionStart ×3, UserPromptSubmit, PreToolUse, PostToolUse, PostToolUseFailure, Stop, SubagentStop, SessionEnd) ghi lại thao tác → **worker Bun** ở `127.0.0.1:37777` gọi model nén thành *observation* + tóm tắt phiên → lưu `~/.claude-mem/` (SQLite FTS5 + Chroma) → SessionStart chèn lại ngữ cảnh. Kho trước ghi "5 hook" — đã lỗi thời |
+| Truy xuất | 4 tool MCP theo mẫu 3 lớp: `search` (chỉ mục ~50–100 token/kết quả) → `timeline` → `get_observations` (đầy đủ theo ID); skill `mem-search`; web viewer tại cổng 37777 |
+| File Read Gate | PreToolUse trên `Read`: **chặn đọc nguyên file code ≥ 32 KB đã có observation**, buộc agent dùng `smart_outline`/`smart_unfold` (tree-sitter) hoặc đọc theo `offset/limit`. Bật mặc định từ v13.32 (`CLAUDE_MEM_FILE_READ_GATE_ENABLED`) |
+| Đa host | Claude Code (plugin marketplace hoặc `npx claude-mem install`), OpenCode, T3 Code, Antigravity, Cursor, Pi, DeepSeek Harness, OMP, Grok Bot, Hermes, OpenClaw |
+| Kiểm thử | 1.098 file test; eval thật `evals/read-gate/` chạy qua `claude plugin eval` (3 ca × 3 lần, giới hạn US$10), chứng minh gate bật vẫn trả lời/sửa đúng và rẻ hơn khi tắt |
+
+### 4e.2 Dữ liệu rời máy (SECURITY.md tự khai, đối chiếu mã 30/10/2026)
+
+"Lưu cục bộ" chỉ đúng với phần lưu trữ. Nội dung phiên **rời máy** qua các kênh sau:
+
+- **Telemetry bật mặc định:** usage analytics + thông báo lỗi/stack trace đã lọc gửi **PostHog**, định danh bằng UUID cài đặt. Tắt: `npx claude-mem telemetry disable`, `CLAUDE_MEM_TELEMETRY=0` hoặc `DO_NOT_TRACK=1` (thắng mọi cấu hình).
+- **Model nén observation:** mặc định qua **Claude Agent SDK** → gửi prompt và transcript tới API Anthropic, dùng **token OAuth Claude Code đọc từ keychain** (không gửi token đi nơi khác, nhưng **tiêu quota gói** của người dùng cho mỗi lần nén). Có thể đổi sang Gemini, OpenRouter, hoặc endpoint OpenAI-compatible (gồm Ollama/LM Studio/vLLM cục bộ — cách duy nhất để không gửi transcript ra ngoài).
+- **Cài đặt mời đăng nhập cmem.ai:** installer mở trình duyệt đăng nhập (magic link) để bật "claude-mem observer" hosted, **dùng thử 30 ngày** "memory runs off-plan"; hết hạn tự quay về gói Anthropic trừ khi trả phí. Bỏ qua bằng `--provider …`, `CLAUDE_MEM_ONLINE_OPTIN=false`, hoặc chạy non-interactive. Bản Grok Bot mặc định dùng **CMEM Pro** hosted.
+- **Cloud Sync tùy chọn:** đẩy observation, tóm tắt phiên, **prompt người dùng** và to-do/work state lên tài khoản cmem.ai.
+- **Chroma embedding** có thể gọi API từ xa tùy cấu hình `chroma-mcp`; version check gọi GitHub/npm.
+- Có thẻ `<private>…</private>` để loại nội dung khỏi kho cục bộ.
+
+### 4e.3 Điều cần biết trước khi cài
+
+- **Chi phí ẩn:** mỗi phiên kéo thêm lượt gọi model nền để nén — tốn quota gói hoặc tiền API; README gọi bản hosted là "up to 100% more usage from your plan", tức chính nó thừa nhận phần nén ăn đáng kể vào gói.
+- **Đổi hành vi agent:** Read Gate chặn đọc file lớn; SessionStart chèn context cũ có thể lạc hậu so với code hiện tại. Agent trả lời "theo trí nhớ" cần được kiểm lại bằng file thật.
+- **Không cài chồng** với engram (§4c) hay agentmemory: cùng hook SessionStart/UserPromptSubmit và cùng chèn context.
+- **Mô hình kinh doanh đang đẩy về hosted** (observer cmem.ai, CMEM Pro): cấu hình `--provider` rõ ràng ngay lúc cài để không vô tình đưa transcript lên dịch vụ thứ ba.
+- Tốc độ phát hành rất nhanh (v15.x, nhiều bản mỗi tuần) → ghim phiên bản cho team.
+
+### 4e.4 So sánh và dùng thế nào
+
+| Công cụ | ★ (30/10) · license | Ai quyết định điều cần nhớ | Dữ liệu |
+|---|---|---|---|
+| `thedotmack/claude-mem` | 106k · Apache-2.0 | **LLM nén tự động** từ mọi thao tác | Cục bộ + telemetry mặc định + model nén (thường là cloud) |
+| `Gentleman-Programming/engram` (§4c) | xem §4c · MIT | **Agent tự gọi** `mem_save` | Một binary Go, SQLite cục bộ, không LLM nền |
+| `vectorize-io/hindsight` (§4d) | xem §4d · MIT | Hệ memory server có truy xuất nhiều chiến lược | Tự chạy (Postgres) hoặc bản trả phí |
+| Có sẵn: `CLAUDE.md` + auto-memory của Claude Code | – | Người dùng/agent ghi tay | File trong repo, không thêm dịch vụ |
+
+- **Dùng khi:** làm việc dài hạn trên cùng dự án, muốn agent nhớ quyết định/bugfix cũ mà không phải tự ghi. Cấu hình tối thiểu an toàn: `DO_NOT_TRACK=1`, provider rõ ràng (model local nếu code nhạy cảm), không bật Cloud Sync, dùng `<private>` cho secret.
+- **Không dùng khi:** repo có dữ liệu khách hàng/bí mật mà chưa chạy model nén cục bộ; hoặc phiên cloud tạm thời (claude.ai/code) — kho `~/.claude-mem/` mất theo container.
+- **Bài học đáng lấy kể cả khi không cài:** mẫu truy xuất 3 lớp (chỉ mục rẻ → timeline → chi tiết theo ID) và cổng đọc file lớn có eval chứng minh tiết kiệm — áp được cho MCP tự viết (mục 04, mục 23).
+
+**Nguồn §4e:** clone github.com/thedotmack/claude-mem 30/10/2026 (blob:none, 3.767 commit, HEAD 325afb6 29/10/2026, v15.6.0; README.md, SECURITY.md (Data Storage, Permissions), CHANGELOG.md (File Read Gate v13.32), LICENSE, NOTICE, plugin/hooks/hooks.json, plugin/.claude-plugin/, src/services/telemetry/{common,cli-telemetry}.ts, src/npx-cli/commands/telemetry.ts, evals/read-gate/README.md, .github/workflows/*; git shortlog, đếm trailer và file test bằng script) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/thedotmack/claude-mem.json (30/10/2026) · docs.claude-mem.ai (search-tools, architecture, cloud-sync, telemetry)
+
 ## 6. LLM gateway / router & "CLI thuê bao làm backend"
 
 | Dự án | Repo | License | ★ | Vai trò | Ghi chú |

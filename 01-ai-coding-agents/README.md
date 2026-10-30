@@ -104,6 +104,24 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - **Rủi ro / lưu ý:** phần lớn bài viết bên ngoài là aggregator/khuyến mãi, chưa có đánh giá độc lập về độ chính xác graph; một trang trending (trendingrepo.com) gắn cờ "có thể star-farming" cho bản owner cũ — **chưa xác minh**, nhưng tốc độ +2k★/ngày sau 5 tháng ra mắt là bất thường và đáng theo dõi (so sánh ADHD, Anatomy, OpenMontage ở mục 03/06/19 đều có đợt sóng tương tự). Chi phí token lần đầu; graph lớn cần lfs; 200 PR mở cho thấy maintainer quá tải.
 - **Vị trí trong kho:** công cụ "đọc hiểu codebase" cho coding agent, cùng nhóm với Context7/llms.txt (mục 16) và memory có cấu trúc (mục 10). Đáng thử cho onboarding dự án lạ và review tác động diff trước khi vào Ralph loop (mục 03).
 
+### 3b.5 Cập nhật 2026-10-30 (yêu cầu người dùng, clone lại)
+
+| Mục | 12/10/2026 | 30/10/2026 |
+|---|---|---|
+| ★ / fork | 85,9k / 7,2–7,5k | **89k / 7,5k** (shields) |
+| Commit / tác giả | 857 / 42 | **866 / 85** (git shortlog; 42 là số "contributor" trên trang GitHub, cách đếm khác) |
+| Issue / PR mở | 117 / 200 | **126 / 211** |
+| Phiên bản | – | tag mới nhất **v2.9.0 (10/7/2026)**, nhưng `plugin.json` đã là **2.9.8** → bản phát hành đi theo plugin, không theo tag |
+
+- **Nhịp phát triển chậm hẳn:** chỉ 7 commit từ 12/10 (sửa import-map Python, Makefile, thêm issue template), trong khi sao vẫn tăng ~3k. Đợt "+2.331★/ngày" (§3b.1) không đi kèm hoạt động mã tương ứng; số PR mở tiếp tục tăng → maintainer quá tải là rủi ro chính.
+- **Đã có từ trước nhưng hồ sơ §3b chưa ghi:** skill **`/understand-figma`** + agent `design-analyzer` (từ 24/6/2026) đọc file Figma qua **Figma REST API** (cần token Figma) và dựng graph thiết kế (page, screen, component, token); agent `assemble-reviewer`; tổng **10 agent, 9 skill** (§3b.3 ghi 7 agent).
+- **Hook thật** (`understand-anything-plugin/hooks/hooks.json`): chỉ 2 hook — PostToolUse `Bash` (gợi ý cập nhật graph sau commit) và SessionStart (kiểm `autoUpdate` trong `config.json` của `.understand-anything/` hoặc `.ua/`). Không thấy telemetry trong mã (grep `posthog|telemetry|analytics` 30/10/2026). Dữ liệu chỉ rời máy qua model của chính agent host (và Figma API khi dùng skill Figma).
+- **Thư mục dữ liệu:** mặc định `.ua/` (như §3b.2); dự án đã có `.understand-anything/` (tên cũ) tiếp tục dùng thư mục đó, không cần chuyển; installer ngoài Claude Code clone repo vào `~/.understand-anything/repo` rồi symlink.
+- **CI:** 2 workflow (ci, deploy-homepage), 67 file test (Vitest) — mỏng hơn nhiều so với claude-mem (1.098) hay ECC (483).
+- Nhận định ở §3b.4 giữ nguyên. Lựa chọn thay thế tất định, không cần LLM cho phần code: Graphify (mục 16 §4b).
+
+**Nguồn §3b.5:** clone github.com/Egonex-AI/Understand-Anything 30/10/2026 (blob:none, 866 commit, HEAD 4e6d329 26/10/2026; README.md, SECURITY.md, understand-anything-plugin/{.claude-plugin/plugin.json, hooks/hooks.json, agents/*.md, skills/*/SKILL.md}, .github/workflows/*; git log/tag/shortlog) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/Egonex-AI/Understand-Anything.json (30/10/2026)
+
 ## 3c. Case study: Personal Jarvis (Dodaios) – "super-app" agent cho desktop (ảnh README người dùng gửi, 2026-10-12)
 
 > Nguồn: ảnh chụp README người dùng gửi. Nghiên cứu bằng clone đầy đủ lịch sử (commit `e28f53f`, 11/10/2026), đọc `README.md`, `AGENTS.md`, `NOTICE`, `LICENSE`, `jarvis.toml.example`, `jarvis/safety/*`, `jarvis/core/config.py`, `.github/workflows/`; trang GitHub, PyPI, personaljarvis.ai; tìm HN/Reddit (không thấy thảo luận độc lập).
