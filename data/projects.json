@@ -2725,12 +2725,12 @@
     },
     {
       "name": "Everything Claude Code (ECC)",
-      "repo": "affaan-m/everything-claude-code",
+      "repo": "affaan-m/ECC",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 277600,
+      "stars": 293000,
       "open_source": true,
-      "notes": "v2.2.2: 68 agent, 293 skill, 94 command, hook runtime, AgentShield; ~214k★ theo ADR xboss (chưa xác minh); xboss vendor có lock; URL chuyển hướng sang affaan-m/ECC; v2.2.3: 71 agent, 311 skill, 97 command (đọc 12/10/2026)",
+      "notes": "Harness lớn nhất: 71 agent, 314 skill, 98 command, 27 hook/8 sự kiện (GateGuard, Prettier+tsc sau sửa, lưu phiên, continuous learning), AgentShield; profile hook minimal/standard/strict; 4.321 commit/517 tác giả từ 17/1/2026; CI 483 file test, action ghim SHA, SLSA; hook không gửi dữ liệu ra ngoài (grep 30/10), observer nền tắt mặc định; ~28k token mô tả skill+agent nếu cài đủ (ước lượng) → cài profile core/minimal; ECC Pro/GitHub App từ US$19/seat/tháng cho repo private; URL cũ everything-claude-code chuyển hướng (cùng HEAD); v2.2.3; 293k★/43k fork (30/10/2026, shields); hồ sơ mục 20 §3l; xboss vendor có lock v2.2.2 (mục 23)",
       "section": "20"
     },
     {

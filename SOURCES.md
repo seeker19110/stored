@@ -622,3 +622,10 @@
 - Ảnh người dùng gửi 30/10/2026 ("Snapshot Oct 2026"); không tìm được bài gốc bằng web search. Kiểm 10 dòng bằng img.shields.io/github/{stars,forks,license,last-commit} 30/10/2026: 10/10 repo có thật, sao trong ảnh thấp hơn 0,5–2,6%. 9/10 đã có hồ sơ (mục 20 §3c, §3d, §3g; mục 06 §4, §7g.2, §7j; mục 16 §4b; mục 22). Cập nhật số sao 9 dòng catalog; superpowers và addyosmani/agent-skills ghi license MIT (trước "–").
 - Đổi owner (cùng HEAD qua `git ls-remote`, cùng sao): `safishamsi/graphify` = `Graphify-Labs/graphify`; `forrestchang/andrej-karpathy-skills` = `multica-ai/andrej-karpathy-skills`. devtake.pages.dev gọi bản multica-ai là "mirror" và cộng sao hai bên: sai.
 - Mới (mục 20 §3k.3): `multica-ai/andrej-karpathy-skills` — clone đủ lịch sử (28 commit, HEAD 2c60614, 20/4/2026), 227k★/23k fork, không có file LICENSE (plugin.json/SKILL.md ghi MIT); không do Karpathy viết. Phụ: dev.to/max_quimby (5,8k★ thời đầu), weihaoqu.github.io/learnAIDoc, awesome.ecosyste.ms; số sao trong các bài này lệch nhau 5,8k–132k tùy ngày chụp.
+
+## Bổ sung 2026-10-30b (hồ sơ affaan-m/ECC — Everything Claude Code, theo yêu cầu người dùng)
+
+- Clone github.com/affaan-m/ECC 30/10/2026 (blob:none, 4.321 commit, HEAD b38be6a 29/10/2026, v2.2.3); URL cũ `affaan-m/everything-claude-code` cùng HEAD (`git ls-remote`). Shields 30/10/2026: 293k★/43k fork, MIT; `affaan-m/agentshield` 1,3k★, MIT, v1.6.0.
+- Đếm bằng script: 71 agent, 314 SKILL.md, 98 command, 27 hook; 483 file test; tổng `description` skill+agent ~110k ký tự (ước lượng ~28k token, chưa đo trong phiên).
+- Grep 30/10/2026: không thấy request mạng ra ngoài trong `scripts/hooks` (chỉ Plan Canvas tới 127.0.0.1); "telemetry" chỉ ghi file cục bộ. Thương mại: ecc.tools/pricing (repo private từ US$19/seat/tháng), github.com/apps/ecc-tools.
+- Hồ sơ ở mục 20 §3l; cập nhật dòng catalog có sẵn (repo → `affaan-m/ECC`, 277,6k → 293k★, số đếm v2.2.3).
