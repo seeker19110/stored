@@ -175,7 +175,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 |---|---|---|---|---|
 | **context-mode** | 26,8k | ELv2 | Chạy code + index FTS5 + hook chặn/chuyển tool + khôi phục phiên | Bao trọn nhiều lớp, cưỡng bức qua hook |
 | **RTK** (rtk-ai/rtk) | 83,1k | Apache-2.0 | Binary Rust, hook viết lại `git status` → `rtk git status`, lọc/gộp/cắt/khử trùng output CLI; lưu output đầy đủ khi lệnh lỗi | Chỉ lọc output lệnh shell, không đổi tool, không cần MCP; README tự nói 90% output bash **không** có nghĩa là giảm 90% hoá đơn |
-| **claude-mem** (thedotmack) | 99,9k | Apache-2.0 | 5 hook ghi lại phiên, AI nén thành observation, SQLite FTS5 + Chroma, 4 tool MCP truy xuất 3 lớp | Tập trung **memory giữa các phiên**; có Cloud Sync tuỳ chọn (cmem.ai) |
+| **claude-mem** (thedotmack; hồ sơ đầy đủ mục 10 §4e) | 99,9k | Apache-2.0 | 5 hook ghi lại phiên, AI nén thành observation, SQLite FTS5 + Chroma, 4 tool MCP truy xuất 3 lớp | Tập trung **memory giữa các phiên**; có Cloud Sync tuỳ chọn (cmem.ai) |
 | **Serena** (oraios) | ~30,2k | GPL-3.0 (SolidLSP MIT) | Tool MCP mức **symbol** qua LSP (>40 ngôn ngữ): tìm/sửa theo hàm/class thay vì đọc cả file | Giảm context khi **đọc code**, không phải khi xử lý log/web |
 | **Code execution with MCP** (Anthropic) / **Code Mode** (Cloudflare) | – | mẫu thiết kế | Đưa MCP server thành API code, agent viết code gọi và lọc trong môi trường thực thi | Là **nguyên lý** gốc; Anthropic nhấn mạnh cần sandbox + giới hạn tài nguyên + giám sát — đúng phần context-mode còn mỏng |
 | **Có sẵn trong Claude Code** | – | – | Subagent (context riêng, chỉ trả tóm tắt), `/compact`, chuyển output dài ra file | Không cài thêm, không thêm bề mặt tấn công |

@@ -2145,9 +2145,9 @@
       "repo": "Egonex-AI/Understand-Anything",
       "category": "codebase-knowledge",
       "license": "MIT",
-      "stars": 85900,
+      "stars": 89000,
       "open_source": true,
-      "notes": "Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026)",
+      "notes": "Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026); cập nhật 30/10/2026: 89k★, 866 commit/85 tác giả, chỉ 7 commit từ 12/10, 126 issue/211 PR mở, plugin 2.9.8 (tag cuối v2.9.0 7/2026), 10 agent/9 skill gồm /understand-figma (Figma REST API), 2 hook, không telemetry; mục 01 §3b.5",
       "section": "01"
     },
     {
@@ -3058,10 +3058,10 @@
       "repo": "thedotmack/claude-mem",
       "category": "agent-memory",
       "license": "Apache-2.0",
-      "stars": 99900,
+      "stars": 106000,
       "open_source": true,
-      "notes": "5 hook ghi phiên, AI nén thành observation, SQLite FTS5 + Chroma; Cloud Sync tuỳ chọn; ★ 12/10/2026",
-      "section": "03"
+      "notes": "11 hook/9 sự kiện ghi phiên → worker Bun 127.0.0.1:37777 gọi model nén thành observation; SQLite FTS5 + Chroma ở ~/.claude-mem; 4 tool MCP truy xuất 3 lớp; File Read Gate chặn đọc nguyên file code ≥32 KB (có eval); telemetry PostHog BẬT mặc định (DO_NOT_TRACK=1), model nén mặc định qua Claude Agent SDK dùng token OAuth → tốn quota gói; installer mời đăng nhập cmem.ai (observer hosted, trial 30 ngày), Cloud Sync tuỳ chọn đẩy cả prompt; v15.6.0, 3.767 commit; 106k★/9,3k fork (30/10/2026, shields); hồ sơ mục 10 §4e",
+      "section": "10"
     },
     {
       "name": "Serena",

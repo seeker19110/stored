@@ -629,3 +629,8 @@
 - Đếm bằng script: 71 agent, 314 SKILL.md, 98 command, 27 hook; 483 file test; tổng `description` skill+agent ~110k ký tự (ước lượng ~28k token, chưa đo trong phiên).
 - Grep 30/10/2026: không thấy request mạng ra ngoài trong `scripts/hooks` (chỉ Plan Canvas tới 127.0.0.1); "telemetry" chỉ ghi file cục bộ. Thương mại: ecc.tools/pricing (repo private từ US$19/seat/tháng), github.com/apps/ecc-tools.
 - Hồ sơ ở mục 20 §3l; cập nhật dòng catalog có sẵn (repo → `affaan-m/ECC`, 277,6k → 293k★, số đếm v2.2.3).
+
+## Bổ sung 2026-10-30c (hồ sơ claude-mem và cập nhật Understand-Anything, theo yêu cầu người dùng)
+
+- `thedotmack/claude-mem`: clone 30/10/2026 (3.767 commit, HEAD 325afb6, v15.6.0); shields 106k★/9,3k fork, Apache-2.0, 53 issue/73 PR mở. Dữ liệu rời máy theo SECURITY.md (telemetry PostHog bật mặc định; Claude Agent SDK dùng token OAuth; observer cmem.ai trial 30 ngày; Cloud Sync tuỳ chọn), đối chiếu `src/services/telemetry/`, `src/npx-cli/commands/telemetry.ts`. Hồ sơ mục 10 §4e; catalog chuyển section 03 → 10, đính chính "5 hook" → 11 hook/9 sự kiện.
+- `Egonex-AI/Understand-Anything`: clone 30/10/2026 (866 commit, HEAD 4e6d329 26/10/2026); shields 89k★/7,5k fork, MIT, 126 issue/211 PR mở; tag cuối v2.9.0 (10/7/2026), plugin.json 2.9.8. Cập nhật mục 01 §3b.5.
