@@ -615,7 +615,7 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 ### 3k.2 Điều bảng không nói
 
 - **Hai owner là tên cũ/mới của cùng một repo, không phải mirror.** `safishamsi/graphify` và `Graphify-Labs/graphify` cùng HEAD `0a8cd4e`, cùng 139k★; `forrestchang/andrej-karpathy-skills` và `multica-ai/andrej-karpathy-skills` cùng HEAD `2c60614`, cùng 227k★/23k fork (`git ls-remote` + shields 30/10/2026), tức GitHub chuyển hướng sau khi đổi owner. Vài bài tổng hợp (devtake.pages.dev) gọi bản multica-ai là "mirror" và cộng sao hai bên: **sai**, đó là một repo.
-- **"Top 10" vẫn là danh sách chọn tay.** `affaan-m/everything-claude-code` (§3d, 277,6k★ ngày 12/10) lẽ ra đứng giữa #2 và #3 nhưng vắng mặt; ảnh cũng gộp skill thiết kế (#06, #10), công cụ dựng knowledge graph (#07) và proxy tiết kiệm token (#08) vào chung "skills".
+- **"Top 10" vẫn là danh sách chọn tay.** `affaan-m/everything-claude-code` (§3d, 277,6k★ ngày 12/10; 293k★ ngày 30/10, hồ sơ §3l) lẽ ra đứng giữa #2 và #3 nhưng vắng mặt; ảnh cũng gộp skill thiết kế (#06, #10), công cụ dựng knowledge graph (#07) và proxy tiết kiệm token (#08) vào chung "skills".
 - **Sao ≠ khối lượng nội dung.** #03 có 227k★ trên **28 commit và một file ~65 dòng**; ponytail 181k★ trên ~350 commit. Đây là các repo đi theo làn sóng trending, không phải thước đo chất lượng (xem §3g.2).
 
 ### 3k.3 Hồ sơ nhanh: `multica-ai/andrej-karpathy-skills` (mới, clone 30/10/2026)
@@ -634,6 +634,56 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 **Dùng thế nào:** đọc 65 dòng rồi **tự viết lại** các ý cần vào `CLAUDE.md`/`AGENTS.md` của dự án (ngắn, không cần plugin, tránh vấn đề license); điểm đáng giữ nhất là phép thử "mọi dòng thay đổi phải truy được về yêu cầu" và việc đổi yêu cầu thành test trước khi sửa. Không cần theo dõi cập nhật vì repo đã đứng yên.
 
 **Nguồn §3k:** ảnh infographic LapTrinhWebAI người dùng gửi 30/10/2026 · img.shields.io/github/{stars,forks,license,last-commit}/<repo>.json cho 10 repo + `forrestchang/andrej-karpathy-skills`, `Graphify-Labs/graphify` (30/10/2026) · `git ls-remote` HEAD hai cặp owner (30/10/2026) · clone đủ lịch sử github.com/multica-ai/andrej-karpathy-skills 30/10/2026 (28 commit, HEAD 2c60614; README.md, CLAUDE.md, EXAMPLES.md, skills/karpathy-guidelines/SKILL.md, .claude-plugin/plugin.json, .claude-plugin/marketplace.json, .cursor/rules/karpathy-guidelines.mdc) · bên thứ ba: devtake.pages.dev/article/karpathy-claude-md-github-trending (gọi multica-ai là "mirror" — sai) · dev.to/max_quimby/karpathys-claudemd-template-5800-stars-and-what-it-does-4a09 · weihaoqu.github.io/learnAIDoc/wiki/karpathy-skills-claude-code · awesome.ecosyste.ms/projects/github.com%2Fforrestchang%2Fandrej-karpathy-skills
+
+## 3l. Hồ sơ `affaan-m/ECC` (Everything Claude Code): bộ harness lớn nhất, vắng trong ảnh §3k (clone 2026-10-30)
+
+> Kho trước đây chỉ có ECC dưới dạng dòng bảng (§3b, §3d), một dòng catalog và bản vendor có lock của xboss (mục 23). Đây là hồ sơ đầy đủ, theo yêu cầu người dùng sau khi §3k ghi nhận ECC vắng trong "Top 10". Đã clone đủ lịch sử (blob:none), đọc README, `hooks/README.md`, `hooks/hooks.json`, `.claude-plugin/plugin.json`, `package.json`, SECURITY.md, CHANGELOG, `ecc2/README.md`, skill `continuous-learning-v2`, workflow CI. Số đếm bằng script. **Không chạy installer, không chạy hook.**
+
+### 3l.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 30/10/2026) |
+|---|---|
+| Repo | github.com/affaan-m/ECC (URL cũ `affaan-m/everything-claude-code` chuyển hướng, cùng HEAD `b38be6a`) · **293k★, 43k fork** (shields) · **MIT** · v2.2.3; commit cuối 29/10/2026 |
+| Lịch sử | **4.321 commit** từ 17/1/2026, **517 tác giả**. Affaan Mustafa ~1.777 commit (gộp 2 tên), `haelyra` 665, dependabot 73. 320 dòng trailer `Co-Authored-By: Claude` |
+| Quy mô thật | **71 agent, 314 SKILL.md, 98 command** ("legacy command shim", đang chuyển sang skills-first), **27 hook** trên 8 sự kiện (PreToolUse 10, Stop 8, SessionStart 2, PostToolUse 2, PostToolUseFailure 2, UserPromptSubmit, PreCompact, SessionEnd), rules theo ngôn ngữ, cấu hình MCP. Repo ~77 MB, README 16 ngôn ngữ (có tiếng Việt) |
+| Cài | `npx ecc-universal@2.2.3 setup` (Node ≥ 18, Claude Code ≥ 2.1) → plugin `ecc@ecc`; hoặc `install.sh --profile core/minimal --target claude …`. Có adapter Codex, Qoder, Kimi (native) và Cursor, OpenCode, Gemini, Zed, Copilot, Antigravity, Qwen (README ghi "capability-limited") |
+| Hook profile | `ECC_HOOK_PROFILE=minimal\|standard\|strict` (mặc định standard), tắt từng hook bằng `ECC_DISABLED_HOOKS`, tắt hẳn bằng `ECC_HOOKS_ENABLED=false`; installer ghi hook vào `~/.claude/settings.json` theo ID ổn định, giữ entry người dùng |
+| Thương mại | **ECC Pro + GitHub App `ecc-tools`**: miễn phí cho repo public, repo private **từ US$19/seat/tháng** (ecc.tools/pricing); sponsor GitHub. README cam kết "OSS stays free… MIT forever" |
+| Phần mới | `ecc2/`: control plane viết bằng Rust (TUI dashboard, session store SQLite, daemon), README tự ghi **alpha, chưa phải sản phẩm hoàn chỉnh** |
+
+### 3l.2 Cổng thật (đọc mã, không đọc văn xuôi)
+
+- **CI dày và ghim SHA:** `npm test` chạy chuỗi validator (agents, commands, rules, skills, độ tương thích skill/host, hooks, khóa schema `hooks.json`, manifest cài, context profile, cấm đường dẫn cá nhân, kiểm unicode lạ) rồi `tests/run-all.js`; **483 file test**. 15 workflow, action ghim theo **SHA 40 ký tự** (ci.yml 24 chỗ), có SLSA provenance, `supply-chain-watch`, `npmscan`, `pr-burst-guard`. Đây là mức vệ sinh cao nhất trong các pack ở §3d.
+- **Hook có sidecar chống lệch:** `hooks.metadata.json` gắn ID + fingerprint cho từng entry của `hooks.json`; `validate-hooks.js` báo lỗi nếu đổi lệnh hoặc thứ tự mà không cập nhật sidecar. Đáng học cho repo tự viết hook (mục 23).
+- **GateGuard** (PreToolUse): chặn lệnh shell phá hủy (`rm`, `git checkout` dạng force/path, `find -exec` phá hủy) và **lần đầu sửa một file** thì hỏi lại theo loại file (instruction/test/prose/config/code), tắt bằng `ECC_GATEGUARD=off`. **AgentShield** (`affaan-m/agentshield`, 1,3k★, MIT, v1.6.0; npm `ecc-agentshield`) quét prompt, hook, MCP config, quyền, secret.
+- **Hook thực sự làm gì** (bảng `hooks/README.md`): chặn `npm run dev` ngoài tmux (exit 2), lint/kiểm commit message trước `git commit`, cảnh báo file `.md` lạ, gợi ý `/compact` mỗi ~50 lệnh; sau sửa file chạy **Prettier** và **`tsc --noEmit`**; Stop: kiểm `console.log`, lưu tóm tắt phiên, trích pattern (continuous learning), "cost tracker", thông báo desktop macOS.
+
+### 3l.3 Điều cần biết trước khi cài
+
+- **Không thấy dữ liệu rời máy từ hook** (grep 30/10/2026): "telemetry" của skill-run-tracker và cost tracker chỉ ghi file cục bộ (`~/.claude/state/skill-runs.jsonl`); request HTTP duy nhất trong `scripts/hooks` là Plan Canvas tới `127.0.0.1`. Continuous-learning-v2 ghi `observations.jsonl` cục bộ có lọc secret, xóa sau 30 ngày; **observer nền tắt mặc định** (`observer.enabled: false`). Khác caveman (§3g.2). GitHub App/ECC Pro là dịch vụ hosted riêng, có quyền trên repo khi cài.
+- **Chi phí ngữ cảnh lớn nếu cài đủ:** `description` của 314 skill cộng lại ~96,8k ký tự, 71 agent thêm ~14,8k, tổng **~110k ký tự (~28k token) danh sách mỗi phiên** *(ước lượng từ frontmatter, chưa đo trong phiên; Claude Code có thể cắt bớt danh sách skill)*. Cài `--profile core`/`minimal` hoặc chọn module.
+- **Hook đụng vào quy trình làm việc:** Prettier tự format và `tsc` chạy sau mỗi lần sửa TS; chặn dev server ngoài tmux; GateGuard hỏi lại lần đầu sửa file. Với repo đã có hook riêng (mục 23) thì dễ chồng chéo — xboss chọn **vendor có lock** một phần (`.claude/ecc/lock.json`, v2.2.2) thay vì cài plugin, mục 23 §4.3.
+- **Plugin bật qua `settings.json` không nạp trên phiên cloud claude.ai** (nhận định mục 23 / README gốc dòng 130), nên muốn dùng ở cloud phải vendor vào `.claude/` của repo.
+- **Sao rất cao, cộng đồng thật:** 517 tác giả và 4.321 commit trong ~9 tháng, khác ponytail/karpathy-skills (§3k). Tốc độ đổi nhanh (v2.2.0 → v2.2.3 trong tháng 10) → ghim phiên bản (`ecc-universal@2.2.3`) và chỉ cài từ nguồn chính thức (README cảnh báo có bản re-upload chứa malware).
+
+### 3l.4 So với các pack khác (shields 30/10/2026)
+
+| Repo | ★ · license | Quy mô | Khác biệt |
+|---|---|---|---|
+| `affaan-m/ECC` | 293k · MIT | 71 agent, 314 skill, 98 command, 27 hook | "Hệ điều hành harness" đủ thứ: hook runtime, memory, continuous learning, scanner; có bản thương mại |
+| `obra/superpowers` | 309k · MIT | ~15 skill lõi | Lõi nhỏ, quy trình brainstorm → plan → TDD → review (§3d) |
+| `mattpocock/skills` | 307k · MIT | 38 skill nhỏ | Ghép được, có gu, quản trị repo chặt (§3c) |
+| `addyosmani/agent-skills` | 112k · MIT | 25 skill, 4 persona | Có routing-eval (§3d) |
+| `DietrichGebert/ponytail` | 181k · MIT | 1 prompt + hook | Chỉ một việc: code tối giản (§3g.3) |
+
+### 3l.5 Dùng thế nào
+
+- **Đừng cài đủ bộ.** Dùng `npx ecc-universal@2.2.3 setup` với profile `core`/`minimal`, hook profile `minimal`, rồi bật thêm module cần thiết. Muốn thử: `--dry-run` trước.
+- **Lấy chọn lọc theo cách xboss:** vendor vài skill (`eval-harness`, `santa-method`, `council` — xem mục 07) kèm lock commit + sha256, luật repo thắng khi trùng.
+- **Học cơ chế hơn là cài:** sidecar fingerprint cho hook, GateGuard hỏi theo loại file, validator chặn đường dẫn cá nhân và unicode lạ, profile hook có biến tắt rõ ràng.
+- Kiểm `ECC_HOOK_PROFILE` và danh sách hook trong `~/.claude/settings.json` sau khi cài; tắt Prettier/tsc nếu repo dùng formatter khác.
+
+**Nguồn §3l:** clone github.com/affaan-m/ECC 30/10/2026 (blob:none, 4.321 commit, HEAD b38be6a 29/10/2026; README.md, CHANGELOG.md, SECURITY.md, VERSION, package.json (scripts test/lint), .claude-plugin/plugin.json, hooks/{README.md, hooks.json, hooks.metadata.json}, scripts/hooks/{skill-run-tracker.js, plan-canvas-pending.js}, skills/continuous-learning-v2/{SKILL.md, hooks/observe.sh}, ecc2/README.md, .github/workflows/*; đếm agent/skill/command/hook và độ dài description bằng script; git shortlog, git tag) · img.shields.io/github/{stars,forks,license,last-commit,v/release}/… cho affaan-m/ECC, affaan-m/everything-claude-code, affaan-m/agentshield (30/10/2026) · `git ls-remote` HEAD hai URL ECC · ecc.tools · ecc.tools/pricing · github.com/apps/ecc-tools · npm `ecc-universal`, `ecc-agentshield` · mục 23 §4.3 (xboss ADR-0013, lock v2.2.2)
 
 ## 4. Nguồn
 
