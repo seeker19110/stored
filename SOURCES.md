@@ -616,3 +616,9 @@
 - Ảnh người dùng gửi 29/10/2026; map 12 ô về repo thật, đối chiếu API GitHub (đã xác thực) 29/10/2026. 10/12 đã có hồ sơ (§2, §4, §7c, §7g.2, §7j, §7l, mục 20, mục 22).
 - 2 ô mới (mục 06 §7m): `emilkowalski/skills` (51.327★/3.001 fork, MIT, 16/3/2026) · `DavidHDev/canvas-ui` (5.166★/268 fork, license NOASSERTION, 16/7/2026, cùng tác giả React Bits).
 - Phụ: emilkowal.ski/skill · canvasui.dev · flaviocopes.com/canvas-ui.md · awesome.ecosyste.ms (snapshot cũ emilkowalski/skills ~5,5k★, lệch ~10× API).
+
+## Bổ sung 2026-10-30 (ảnh infographic LapTrinhWebAI "Top 10 Claude Code skills — Popular on GitHub")
+
+- Ảnh người dùng gửi 30/10/2026 ("Snapshot Oct 2026"); không tìm được bài gốc bằng web search. Kiểm 10 dòng bằng img.shields.io/github/{stars,forks,license,last-commit} 30/10/2026: 10/10 repo có thật, sao trong ảnh thấp hơn 0,5–2,6%. 9/10 đã có hồ sơ (mục 20 §3c, §3d, §3g; mục 06 §4, §7g.2, §7j; mục 16 §4b; mục 22). Cập nhật số sao 9 dòng catalog; superpowers và addyosmani/agent-skills ghi license MIT (trước "–").
+- Đổi owner (cùng HEAD qua `git ls-remote`, cùng sao): `safishamsi/graphify` = `Graphify-Labs/graphify`; `forrestchang/andrej-karpathy-skills` = `multica-ai/andrej-karpathy-skills`. devtake.pages.dev gọi bản multica-ai là "mirror" và cộng sao hai bên: sai.
+- Mới (mục 20 §3k.3): `multica-ai/andrej-karpathy-skills` — clone đủ lịch sử (28 commit, HEAD 2c60614, 20/4/2026), 227k★/23k fork, không có file LICENSE (plugin.json/SKILL.md ghi MIT); không do Karpathy viết. Phụ: dev.to/max_quimby (5,8k★ thời đầu), weihaoqu.github.io/learnAIDoc, awesome.ecosyste.ms; số sao trong các bài này lệch nhau 5,8k–132k tùy ngày chụp.
