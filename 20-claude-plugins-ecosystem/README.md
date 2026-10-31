@@ -755,6 +755,78 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Nguồn §3m:** ảnh người dùng gửi 31/10/2026 · clone github.com/unclebob/ub-mode 31/10/2026 (4 commit, HEAD 57a8bdd 25/10/2026; README.md, SKILL.md) · clone github.com/unclebob/{crapper, dryer, mutator, uml-viewer} 31/10/2026 (README.md, LICENSE, pyproject.toml, script `crapper`; git log) · img.shields.io/github/{stars,forks,license,last-commit,issues,issues-pr}/… cho ub-mode, 4 công cụ, cursor/plugins, backnotprop/pstack (31/10/2026) · clone github.com/backnotprop/pstack (README "standalone mirror" của cursor/plugins/pstack, MIRROR.md, skills/principle-*) · cursor.com/lp-team/lauren · thecode.media/avtor-chistogo-koda-vypustil-besplatnyj-skill-dlya-ii-agentov · github.com/unclebob/ub-mode/wiki · phân biệt: github.com/robert-hoffmann/uncle-bob là dự án khác (framework Copilot), không liên quan
 
+## 3n. Hồ sơ đầy đủ `pbakaus/impeccable` và `vercel-labs/agent-skills` (yêu cầu người dùng, clone lại 2026-10-31)
+
+> §3g.3 có hồ sơ nhanh hai repo (clone 14/10/2026). Mục này clone lại đủ lịch sử (blob:none), đọc README, docs, mã liên quan đến mạng/hook/checksum, workflow CI, và ghi những gì đổi trong 17 ngày. **Không cài, không chạy hook hay engine.**
+
+### 3n.1 `pbakaus/impeccable` — skill thiết kế + detector tất định chạy ở hook
+
+| Mục | 14/10/2026 (§3g.3) | 31/10/2026 |
+|---|---|---|
+| ★ / fork | 81k / 4,9k | **97k / 5,7k** (+16k★ trong 17 ngày) |
+| Commit / tác giả | 2.423 / 59 | **2.600 / 65**; 177 commit từ 14/10; 2.689 dòng trailer `Co-Authored-By: Claude` (nhiều hơn số commit) |
+| Issue / PR mở | 61 / 22 | **42 / 24** — bảo trì theo kịp |
+| Phiên bản | skill-v4.5.2, engine-v0.1.14 | **skill-v4.8.0 / cli-v4.8.0 (26/10), engine-v0.1.18** |
+| Số rule detector | 59 | **62 rule tất định** (README) |
+| License | Apache-2.0 | Apache-2.0 (+ `NOTICE.md`) |
+
+**Cấu trúc thật:**
+
+- **1 skill `/impeccable` + 23 lệnh** (lệnh thứ 24 `craft` đã deprecated): `init` → `PRODUCT.md` (đối tượng, mục tiêu, ràng buộc), `document` → `DESIGN.md`; nhóm Steer (`bolder`, `quieter`, `distill`, `colorize`, `typeset`, `layout`…), review (`critique`, `audit`, `polish`), `live` (overlay trên dev server, chọn phần tử, hot-swap biến thể rồi ghi về source; Vite/Next/SvelteKit/Astro/Nuxt), `doctor` (tìm context file cũ, hook hỏng).
+- **Engine Rust 16 crate** (`detect`, `browser` qua CDP, `live`, `hook`, `wasm` cho extension, `comp`/`comp-verbs`…). File JSX/TSX chỉ chạy rule mẫu; rule cần bản render (tương phản, chữ quá nhỏ) chạy khi quét URL bằng Chrome/Edge đã cài.
+- **Ba chỗ chạy detector:** hook trong agent (Claude Code, Cursor, Codex, Copilot, Grok Build, Hermes — Codex/Grok/Hermes phải duyệt hook thủ công); CLI cho CI (`npx impeccable detect src/ | --json | --github`, exit 2 = có lỗi); Chrome extension phủ lên trang bất kỳ. Tắt rule bằng comment `impeccable-disable` hoặc `ignores add-value`.
+- **20 host**: thư mục build cho từng host commit thẳng ở gốc repo (`.claude`, `.cursor`, `.codex`, `.devin`, `.kiro`, `.qoder`, `.trae`…) → **4.441 file**, phần lớn là bản sao sinh tự động (`sync-generated-output.yml`).
+
+**Thay đổi đáng ghi từ 14/10:**
+
+- **Đã vá rủi ro tải binary:** từ 26/10 (#813), launcher **kiểm engine tải về với manifest checksum commit trong repo** (`scripts/engine-checksums.txt`, bundle ký — `docs/BUNDLE-SIGNING.md`) và CI **từ chối phát hành skill/CLI khi mã engine đã đi quá tag**. Rủi ro "hook chạy binary tải về" ở §3g.3 nay giảm đáng kể.
+- **Action CI ghim SHA** (ci.yml 58 chỗ) — trước đây kho chưa ghi nhận.
+- Hỗ trợ thêm Devin, Replit Agent, hook cho Hermes; README tổ chức lại quanh "steer, review, catch slop"; detector đọc thêm nhiều mẫu "slop" (mockup sản phẩm, chữ SVG, nền chồng lớp, chữ "ma" tương phản thấp).
+
+**Dữ liệu rời máy (README 31/10/2026):** khi bắt đầu thiết kế mới, skill **luôn** lấy bộ "visual directions" từ catalog impeccable.style — tắt telemetry **không** chặn request này, chỉ ngừng gửi bản ghi ẩn danh "hướng nào được hiện, hướng nào được chọn". README khẳng định tên dự án, file, code và `PRODUCT.md` **không** bị gửi. Tắt telemetry: `npx impeccable telemetry off`, `DO_NOT_TRACK=1`, hoặc `"telemetry": false` trong `.impeccable/config.json`. Chi tiết trường gửi ở impeccable.style/privacy *(chưa đọc trang này)*.
+
+**Rủi ro còn lại, chính README tự nói:**
+
+- "**Hooks run outside model approval**": trong Claude Code, hook vẫn chạy khi người dùng từ chối lệnh của model, nên **lần sửa file đầu tiên có thể tải engine**. Chạy không giám sát thì xem lại hook hoặc `--settings '{"disableAllHooks": true}'`.
+- Live mode chạy script `impeccable:manual-edit-validate` trong `package.json` của dự án bằng quyền người dùng — với repo lạ phải đọc script trước. Không bật live trên site đã deploy hay nới CSP production.
+
+**Dùng thế nào:** hợp nhất khi dự án đã có UI và muốn cổng tự động chặn "AI slop": chạy `npx impeccable detect` trong CI (có `--github` annotation) kể cả khi không dùng skill; bật hook nếu đồng ý tải engine (giờ đã kiểm checksum). Đặt `DO_NOT_TRACK=1`, ghim phiên bản (`skill-v4.8.0`/`engine-v0.1.18`), thêm `.impeccable/` vào `.gitignore` theo mẫu README. So với evondevKit (mục 06 §7n, đo Playwright cho dashboard) và Taste Skill (mục 06 §7j): impeccable có detector tất định lớn nhất và chạy được ngoài agent.
+
+### 3n.2 `vercel-labs/agent-skills` — bộ skill chính chủ Vercel
+
+| Mục | 14/10/2026 (§3g.3) | 31/10/2026 |
+|---|---|---|
+| ★ / fork | 32k / 2,8k | **33k / 2,9k** |
+| Commit / tác giả | 275 / 30 | **280 / 33**; chỉ **5 commit từ 14/10** (27/10: `deploy-to-vercel` thêm fallback không cần đăng nhập; gợi ý React 19.3 cho view transitions) |
+| Issue / PR mở | 67 / 112 | **70 / 121** — tồn đọng PR tăng |
+| License | không có file LICENSE (README + `package.json` ghi MIT) | **vẫn không có file LICENSE**; chỉ 2/9 skill khai `license: MIT` trong frontmatter |
+| CI | 2 workflow | 2 workflow (`agent-skills-discovery`, `react-best-practices-ci`), action **ghim tag, không ghim SHA** |
+
+**9 skill, đo bằng script (31/10/2026):**
+
+| Skill | Kích thước | Nội dung thật |
+|---|---|---|
+| `react-best-practices` | 424 KB, **72 file rule** | Rule hiệu năng React/Next.js có build + validate + `test-cases.json` trong `packages/react-best-practices-build` (§3g.3 ghi "40+" — đã lỗi thời) |
+| `react-native-skills` | 268 KB, 38 rule | React Native/Expo |
+| `composition-patterns` | 88 KB, 10 rule | Mẫu ghép component |
+| `react-view-transitions` | 148 KB | View Transitions API, Suspense crossfade |
+| `vercel-optimize` | 1,2 MB | Tối ưu chi phí/hiệu năng project đã deploy: thu metric Vercel, usage, config, quét code rồi chỉ đề xuất mục có số liệu; có `packages/vercel-optimize-tests` |
+| `web-design-guidelines` | **8 KB** | **Không chứa rule**: bảo agent **WebFetch mỗi lần review** từ `raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/…` |
+| `writing-guidelines` | **8 KB** | Cùng kiểu: tải hướng dẫn từ URL nhánh `main` mỗi lần |
+| `deploy-to-vercel` | 16 KB | Deploy qua Vercel CLI; từ 27/10 có **fallback không cần tài khoản** |
+| `vercel-cli-with-tokens` | 16 KB | Dùng Vercel CLI bằng token trong môi trường không đăng nhập được |
+
+**Điều cần biết (đọc mã):**
+
+- **Chỉ dẫn tải từ xa, không ghim:** hai skill `web-design-guidelines`/`writing-guidelines` thực chất là con trỏ tới nội dung trên nhánh `main` của repo khác. Agent làm theo nội dung đó mỗi lần chạy, nên ai sửa được repo nguồn là đổi được hành vi agent ngay, không qua bản phát hành. Muốn ổn định: tải về một lần, ghim commit, đặt nội dung vào skill cục bộ. Đây là đúng mẫu "chỉ dẫn từ nguồn ngoài" cần cảnh giác ở mục 12.
+- **Fallback deploy công khai code:** khi `vercel login` lỗi (kể cả trong sandbox), skill chạy `npx vercel@latest deploy --temporary -y` — **không ghim phiên bản CLI**, build và đưa lên **URL production tạm công khai** kèm claim URL và thời hạn. Skill dặn agent **không** curl kiểm URL. Với repo riêng tư, đây là cách vô tình công khai bản build; nên tắt skill deploy hoặc ghi rõ trong `CLAUDE.md` "không deploy khi chưa hỏi".
+- **5 file `.zip`** của skill vẫn commit trong `skills/` (bản nén khác với thư mục, khó review khác biệt). README gọi skill deploy là `vercel-deploy-claimable`, thư mục thật là `deploy-to-vercel` (§3g.3) — chưa sửa.
+- **Nhịp bảo trì chậm:** 5 commit trong 17 ngày trong khi 121 PR chờ; nội dung React chủ yếu do 3 người (Aurora Scharff, Shu Ding, Fernando Rojo) viết đến 8/2026.
+
+**Dùng thế nào:** lấy chọn lọc `react-best-practices` (72 rule có validate, giá trị nhất) và `composition-patterns` cho dự án React/Next.js. Không cần cả bộ nếu không dùng Vercel. Vì không có file LICENSE, vendor theo lock (mục 23) sẽ bị từ chối; dùng `npx skills add vercel-labs/agent-skills --skill react-best-practices` và ghim commit, hoặc chỉ tham khảo. Với hai skill tải từ xa, chép nội dung vào repo và ghim.
+
+**Nguồn §3n:** clone github.com/pbakaus/impeccable 31/10/2026 (blob:none, 2.600 commit, HEAD df3a4abe 30/10/2026; README.md (Three ways to run the detector, Hooks run outside model approval, Telemetry), docs/{RUNTIME-ENV.md, BUNDLE-SIGNING.md, CLI-CONTRACT.md}, crates/*, scripts/engine-checksums.txt, .github/workflows/*; git log --since=2026-10-14, git tag) · clone github.com/vercel-labs/agent-skills 31/10/2026 (blob:none, 280 commit, HEAD 1a2c79d 27/10/2026; README.md, package.json, skills/*/SKILL.md (đặc biệt web-design-guidelines, writing-guidelines, deploy-to-vercel "No-Auth Fallback"), packages/*, .github/workflows/*; đếm rule/kích thước bằng script) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026) · impeccable.style (docs, privacy — chưa đọc) · vercel.com/docs/deployments/deploy-without-logging-in
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

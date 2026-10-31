@@ -5431,9 +5431,9 @@
       "repo": "pbakaus/impeccable",
       "category": "design-skill",
       "license": "Apache-2.0",
-      "stars": 83000,
+      "stars": 97000,
       "open_source": true,
-      "notes": "1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 19/10/2026 (shields)",
+      "notes": "1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 19/10/2026 (shields); cập nhật 31/10/2026 (mục 20 §3n.1): 97k★, skill/cli v4.8.0, engine v0.1.18, 62 rule; engine tải về nay kiểm checksum manifest + bundle ký (#813), action CI ghim SHA; request catalog impeccable.style luôn chạy kể cả khi tắt telemetry; hook chạy ngoài phê duyệt của model",
       "section": "20"
     },
     {
@@ -5441,9 +5441,9 @@
       "repo": "vercel-labs/agent-skills",
       "category": "harness-pack",
       "license": "MIT (README; không có file LICENSE)",
-      "stars": 32000,
+      "stars": 33000,
       "open_source": true,
-      "notes": "9 skill chính chủ Vercel: react-best-practices (có build/validate CI), web-design-guidelines, writing-guidelines, react-native, view-transitions, deploy-to-vercel, vercel-optimize (60+ file test); commit cuối 28/8/2026, 112 PR mở; ★ 14/10/2026",
+      "notes": "9 skill chính chủ Vercel: react-best-practices (có build/validate CI), web-design-guidelines, writing-guidelines, react-native, view-transitions, deploy-to-vercel, vercel-optimize (60+ file test); commit cuối 28/8/2026, 112 PR mở; ★ 14/10/2026; cập nhật 31/10/2026 (mục 20 §3n.2): 33k★, 5 commit từ 14/10, 121 PR mở, vẫn không có file LICENSE; react-best-practices 72 rule; web-design-guidelines/writing-guidelines tải chỉ dẫn từ nhánh main mỗi lần (không ghim); deploy-to-vercel fallback `npx vercel@latest deploy --temporary` đưa bản build lên URL công khai tạm",
       "section": "20"
     },
     {
