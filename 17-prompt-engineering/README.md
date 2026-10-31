@@ -124,6 +124,55 @@
 3. Với agent: nêu rõ vai trò, công cụ, tiêu chí dừng, định dạng output; đặt dữ liệu không tin cậy vào thẻ riêng (mục 12).
 4. Few-shot + XML tags + "think step by step"/extended thinking vẫn hiệu quả; tránh prompt quá dài làm loãng cache.
 
+## 4b. Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại sao, license, ngày push của **13 repo** mục 17 trong catalog (GitHub search API, 31/10/2026). (2) Tìm repo lớn còn thiếu: truy vấn "prompt engineering", "system prompts", "prompt optimization", `topic:prompt-management`, `topic:prompt-engineering`, và "prompt" tạo sau 1/10/2025, lọc theo `data/projects.json`. Bỏ qua kho prompt ảnh/video và repo "jailbreak". Chọn **7 repo**, clone `--filter=blob:none`, đọc LICENSE, manifest, cấu trúc, CI, file Docker/cấu hình, grep mạng và telemetry. **Không chạy script nào của các repo.**
+
+### 4b.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (→ 31/10/2026) | Hệ quả |
+|---|---|---|
+| `f/awesome-chatgpt-prompts` | **Đổi tên thành `f/prompts.chat`**, 175,4k★. Nay là app Next.js (Prisma, Sentry) kèm `prompts.csv` 180k dòng. LICENSE ghi **hai license**: code MIT, nội dung prompt CC0, nên GitHub báo `NOASSERTION` | Catalog nên đổi `repo` và ghi "MIT (code) + CC0 (prompt)" |
+| `x1xhlol/system-prompts-and-models-of-ai-tools` | Catalog `null`; nay **144,4k★**, GitHub nhận **GPL-3.0**, push 12/10 | Bổ sung số và license; GPL áp lên phần biên soạn, không làm prompt của hãng thành mã mở |
+| `dair-ai/Prompt-Engineering-Guide` | Push cuối **11/3/2026** (gần 8 tháng); 79,7k★ | Nội dung web promptingguide.ai có thể vẫn cập nhật **(chưa xác minh)**; repo coi như tĩnh |
+| `zou-group/textgrad` | Catalog `null`; nay 3,8k★ MIT, **push cuối 25/7/2025** (hơn 15 tháng) | Ngừng phát triển; dùng GEPA hoặc DSPy (dưới) |
+| `guidance-ai/guidance` | Push cuối 21/5/2026 | Như §2b đã ghi: chậm lại |
+| `stanfordnlp/dspy`, `567-labs/instructor`, `BoundaryML/baml`, cookbook Anthropic/OpenAI | Dao động dưới 5%, đều push trong tháng 10 | Không đổi |
+
+### 4b.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `anthropics/prompt-eng-interactive-tutorial` | Khoá học chính chủ | 39k · **không có LICENSE** | 7/4/2024 (`master`) | 9 chương + 3 phụ lục dạng notebook, bản 1P và Bedrock | Model 2024, 9 commit |
+| `linshenkx/prompt-optimizer` | Công cụ tối ưu prompt | 40,1k · **AGPL-3.0-only** (từ 30/10/2025) | 30/10/2026 | Web, desktop, extension Chrome, Docker, MCP; v2.13.0 | **Docker lộ API key**, `/mcp` không xác thực |
+| `gepa-ai/gepa` | Tối ưu prompt bằng phản tư | 7,2k · MIT | 31/10/2026 | Thư viện Python tiến hoá prompt theo Pareto; là optimizer GEPA trong DSPy | Số liệu marketing lấy từ blog |
+| `danielmiessler/Fabric` | Thư viện prompt + CLI | 44,5k · MIT | 29/10/2026 | 265 "pattern" (`system.md`) + CLI Go với ~15 nhà cung cấp | Không có eval cho pattern |
+| `asgeirtj/system_prompts_leaks` | System prompt rò rỉ | 70,5k · CC0 | 31/10/2026 | 1.856 file, 649 của Anthropic, cập nhật hằng ngày | Bản quyền văn bản thuộc hãng |
+| `elder-plinius/CL4R1T4S` | System prompt rò rỉ | 51,7k · AGPL-3.0 | 22/9/2026 | 80 file, 26 hãng/sản phẩm, một người duy trì | Đã nhắc ở §3, chưa có hồ sơ |
+| `Piebald-AI/claude-code-system-prompts` | Prompt Claude Code theo phiên bản | 13k · MIT | 30/10/2026 | 1.057 file prompt/tool/agent của Claude Code v2.1.316, đếm token bằng API | Quảng cáo sản phẩm Piebald |
+
+### 4b.3 Hồ sơ ngắn
+
+- **Anthropic Prompt Engineering Interactive Tutorial.** Khoá nền tảng tốt nhất để học cấu trúc prompt (vai trò, tách dữ liệu bằng thẻ XML, prefill, few-shot, chống bịa, chuỗi prompt, tool use). Nhưng nhánh `master` chỉ có **9 commit, dừng 7/4/2024**; "push 28/8/2026" là nhánh vá `awscli`. Notebook gọi `claude-3-haiku-20240307`; kiểm model đó còn được phục vụ trước khi chạy **(chưa xác minh)**. Repo **không có file LICENSE** nên mặc định giữ mọi quyền: học và tham khảo được, không chép vào sản phẩm. Kỹ thuật vẫn đúng; tài liệu mới hơn ở docs.claude.com và `anthropics/courses`.
+- **prompt-optimizer (linshenkx).** 1.039 commit, 881 của tác giả chính; monorepo pnpm 6 gói (core, ui, web, desktop, extension, mcp-server), CI chạy `test:gate` và Playwright e2e. Đổi license **MIT → AGPL-3.0-only ngày 30/10/2025**; file LICENSE có đoạn đầu riêng nên GitHub báo `NOASSERTION`. Kiểm lời quảng cáo: ✅ bản web và desktop gọi thẳng nhà cung cấp AI. ❌ Bản Docker thì khác: `docker/generate-config.sh` **ghi mọi biến `VITE_*` (gồm API key) vào `config.js` phục vụ cho trình duyệt** và in chúng ra log container. `nginx.conf` đặt **`auth_basic off` cho `/mcp`** ngay cả khi có `ACCESS_PASSWORD`, trong khi MCP server dùng chính các key đó. `docker-compose.yml` mặc định `ACCESS_PASSWORD=123456`. Nếu dùng: chạy bản desktop/extension, hoặc Docker chỉ trên `127.0.0.1`, không đặt key qua env.
+- **GEPA.** Thư viện của nhóm tác giả bài *GEPA: Reflective Prompt Evolution* (arXiv 2507.19457), 937 commit, 72 tác giả, **32% commit có trailer Claude**. `pyproject.toml` có **`dependencies = []`**: gói lõi không kéo phụ thuộc, `litellm`, `mlflow`, `wandb` nằm ở extra `full` và loại trừ có ghi chú từng bản `litellm` lỗi wheel. Có 71 file test, workflow `dspy_contract.yml` và `dspy_compatibility.yml` kiểm GEPA vẫn khớp với `dspy.GEPA`. ⚠️ Bảng "35x faster than RL" trong README: paper nói **ít lượt rollout hơn tới 35 lần**, không phải nhanh hơn theo thời gian; các số "32% → 89%", "55% → 82%" dẫn tới blog, không có dữ liệu tái lập trong repo. Cài: `pip install gepa` (hoặc dùng qua `dspy.GEPA`).
+- **Fabric (Daniel Miessler).** 4.500 commit, 311 tác giả; người commit nhiều nhất là Kayvan Sylvan (1.403), không phải tác giả gốc. CLI Go (`go 1.26`), plugin cho Anthropic, OpenAI, Gemini, Bedrock, Ollama, LM Studio, Claude Code, Codex… Mỗi pattern là `system.md` (+ `user.md`) kiểu "IDENTITY and PURPOSE / OUTPUT INSTRUCTIONS"; **41/265 pattern còn câu "Take a deep breath and think step by step"** (mẹo 2023). Không có eval cho pattern, CI chỉ test code Go. ⚠️ LICENSE MIT ghi "Copyright (c) 2012-2024 Scott Chacon and others", có vẻ chép từ dự án khác khi thêm file 29/8/2024. Không thấy telemetry. Cài: `brew install fabric-ai` hoặc `winget install danielmiessler.Fabric`; README còn đưa `curl … | bash`.
+- **system_prompts_leaks (Ásgeir Thor Johnson).** 897 commit, 300 từ 1/7/2026, cập nhật trong ngày khi Claude Code ra bản (commit 31/10 ghi v2.1.316). 649/1.856 file thuộc thư mục Anthropic (Claude.ai, Claude Code, Cowork, Claude Design, Artifact types…). README hứa "full verbatim… carefully curated" nhưng **không mô tả cách trích xuất hay kiểm chứng**. Đầu README là quảng cáo Latitude qua link rút gọn `workers.dev`. License CC0 chỉ áp cho phần người biên soạn đóng góp; văn bản prompt vẫn thuộc các hãng.
+- **CL4R1T4S (Pliny).** 206 commit, một tác giả, 80 file. Mục đích tự nêu là "minh bạch AI"; phần đóng góp kêu gọi "Leak, extract, or reverse-engineer". AGPL-3.0 trên văn bản không phải của tác giả có hiệu lực pháp lý không rõ. Dùng như nguồn so sánh, không phải nguồn chuẩn.
+- **claude-code-system-prompts (Piebald).** Tách prompt Claude Code thành 1.057 file (393 system, 283 tool, 204 data, 103 agent, 74 skill), mỗi bản phát hành một commit "vX (+N tokens)". `tools/updatePrompts.js` đếm token bằng API `count_tokens` của Anthropic và lấy ngày phát hành từ npm, nên số token là đo thật ✅. ⚠️ README ghi "350 → 515 prompt", còn repo có 1.057 file: cách đếm khác nhau, chưa rõ. Hữu ích để **so sánh diff prompt giữa các phiên bản** khi viết harness; cùng rủi ro bản quyền như baoyu-design (mục 06 §7p.5).
+
+**Về ba kho prompt rò rỉ:** kho này chỉ ghi nhận để học cấu trúc (thứ tự phần, cách mô tả tool, quy tắc an toàn), **không trích nội dung**. Với prompt của Anthropic, nguồn chính thức là trang system prompt công khai trong docs (§3).
+
+### 4b.4 Mẫu chung rút ra
+
+1. **Prompt "đã tối ưu" cần eval, không cần thêm mẹo**: GEPA có test, contract với DSPy và benchmark trong paper; Fabric có 265 pattern nhưng không có eval nào. Quy tắc §4 mục 2 ("prompt là code, test bằng eval") vẫn đúng và là chỗ phân biệt.
+2. **Lời "chạy hoàn toàn phía client" chỉ đúng cho bản nào đó**: prompt-optimizer đúng ở bản desktop, sai ở bản Docker (key vào `config.js`, `/mcp` mở). Kiểm từng hình thức triển khai.
+3. **License nhảy giữa các bản**: prompt-optimizer MIT → AGPL; prompts.chat tách MIT/CC0; tutorial Anthropic không có LICENSE. Ghi license theo ngày đọc.
+4. **Prompt rò rỉ đã thành nguồn cập nhật theo giờ** (system_prompts_leaks, Piebald). Hữu ích để theo dõi thay đổi harness, nhưng không có quy trình kiểm chứng và quyền sở hữu không rõ.
+5. **Repo chính chủ cũng có thể bị bỏ lại**: tutorial của Anthropic 39k★ nhưng dừng từ 4/2024. Sao không phải thước đo độ mới.
+
+**Nguồn §4b:** GitHub search API 31/10/2026 (`repo:` cho 13 repo cũ và 7 repo mới; 6 truy vấn chủ đề) · `meta_all.json`/`status_all.json` đợt rà 31/10 · clone `--filter=blob:none` 8 repo, đọc: f/prompts.chat (LICENSE, cây gốc, prompts.csv), anthropics/prompt-eng-interactive-tutorial (README.md, cây `Anthropic 1P/`, `AmazonBedrock/`, nhánh), linshenkx/prompt-optimizer (LICENSE và lịch sử, README.md, docker/{docker-compose.yml, nginx.conf, generate-config.sh, generate-auth.sh}, middleware.js, packages/mcp-server/{README.md, src/config/environment.ts}, .github/workflows/test.yml), gepa-ai/gepa (LICENSE, pyproject.toml, README.md, .github/workflows/, tests/), danielmiessler/Fabric (LICENSE và lịch sử, README.md, go.mod, internal/plugins/ai/, data/patterns/*/system.md, .github/workflows/patterns.yaml), asgeirtj/system_prompts_leaks (LICENSE, README.md, cây thư mục), elder-plinius/CL4R1T4S (LICENSE, README.md), Piebald-AI/claude-code-system-prompts (LICENSE, README.md, tools/updatePrompts.js, cây system-prompts/) · https://arxiv.org/abs/2507.19457
+
 ## 5. Nguồn
 
 - https://github.com/dair-ai/Prompt-Engineering-Guide · https://www.star-history.com/dair-ai/prompt-engineering-guide/ · https://dev.to/web_dev-usman/10-github-repos-every-serious-prompt-writer-should-be-using-21jk

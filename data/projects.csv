@@ -75,7 +75,7 @@ Ragas,vibrantlabsai/ragas,,eval-observability,Apache-2.0,,True,07,"; repo chuy�
 Arize Phoenix,Arize-ai/phoenix,,eval-observability,ELv2,,False,07,source-available
 build-your-own-x,codecrafters-io/build-your-own-x,,learning,CC0,557898,True,08,#1 GitHub; ★ 31/10/2026: 557.898 (GitHub API)
 freeCodeCamp,freeCodeCamp/freeCodeCamp,,learning,BSD-3,458325,True,08,; ★ 31/10/2026: 458.325 (GitHub API)
-developer-roadmap,kamranahmedse/developer-roadmap,,learning,custom,371000,True,08,; ★ 31/10/2026: 371.000 (shields)
+developer-roadmap,nilbuild/developer-roadmap,,learning,custom,371000,True,08,; ★ 31/10/2026: 371.000 (shields); repo chuyển sang nilbuild/developer-roadmap (31/10/2026)
 system-design-primer,donnemartin/system-design-primer,,learning,CC BY 4.0,376351,True,08,; ★ 31/10/2026: 376.351 (GitHub API)
 awesome-llm-apps,Shubhamsaboo/awesome-llm-apps,,awesome-list,Apache-2.0,143598,True,08,; ★ 31/10/2026: 143.598 (GitHub API)
 awesome-claude-code,hesreallyhim/awesome-claude-code,,awesome-list,,56992,True,08,37k–55k tùy nguồn; ★ 31/10/2026: 56.992 (GitHub API)
@@ -185,7 +185,7 @@ Context7,upstash/context7,,docs,MIT (server),,True,16,MCP docs
 llms.txt,AnswerDotAI/llms-txt,,docs,Apache-2.0,,True,16,đề xuất 9/2024
 Prompt Engineering Guide,dair-ai/Prompt-Engineering-Guide,,prompt,MIT,79701,True,17,9/2026; ★ 31/10/2026: 79.701 (GitHub API)
 DSPy,stanfordnlp/dspy,,prompt,MIT,38868,True,17,v3.3.1; ★ 31/10/2026: 38.868 (GitHub API)
-awesome-chatgpt-prompts,f/awesome-chatgpt-prompts,,prompt,CC0,,True,17,
+awesome-chatgpt-prompts,f/prompts.chat,,prompt,CC0,,True,17,"; repo đổi tên f/prompts.chat (mã MIT, prompt CC0) (31/10/2026)"
 system-prompts-and-models-of-ai-tools,x1xhlol/system-prompts-and-models-of-ai-tools,,prompt,,,True,17,bộ sưu tập system prompt
 TextGrad,zou-group/textgrad,,prompt,MIT,,True,17,
 PhoGPT,VinAIResearch/PhoGPT,,vietnam,custom,,True,18,VinAI
@@ -709,3 +709,22 @@ V-TTS,tronghieuit/v-tts,,speech,CC-BY-NC-4.0,385,False,18,"TTS tiếng Việt 74
 ZeroTTS,zeroweight-ai/ZeroTTS,,speech,MIT,308,True,18,"TTS tiếng Việt zero-shot 202M tham số chạy ONNX trên CPU, code + weights MIT; benchmark tự làm không so VieNeu-TTS; ★ 31/10/2026 (GitHub API), mục 18 §4d"
 Vietnamese_LLMs (VietnamAIHub),VietnamAIHub/Vietnamese_LLMs,,vietnam,Apache-2.0,285,True,18,"Bộ instruction tiếng Việt dịch máy + LLaMA-2 tinh chỉnh từ 2023; commit 10/2026 chỉ là CI; dùng làm tư liệu lịch sử; ★ 31/10/2026 (GitHub API), mục 18 §4d"
 Gipformer,ggroup-ai-lab/gipformer,,speech,,156,False,18,"ASR tiếng Việt Zipformer RNN-T 68M tham số, mạnh trên tập tổng đài riêng tư; README ghi MIT nhưng repo không có file LICENSE; ★ 31/10/2026 (GitHub API), mục 18 §4d"
+AI Engineering from Scratch,rohitg00/ai-engineering-from-scratch,,learning,MIT,76093,True,08,"Khoá 542 bài/20 phase (khớp cây thư mục), code Python/TS/Rust/Julia, CI audit bài + test lab, README dịch bằng NLLB chạy trong runner (có vi); 2.368/2.631 commit của một tác giả trong 7 tháng; chứng chỉ Claude là tài liệu ôn không chính thức; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+Agentic Awesome Skills,sickn33/agentic-awesome-skills,,awesome-list,MIT (code) + CC BY 4.0 (nội dung),48916,True,08,"2.886 SKILL.md + MCP AAS Core; installer ghim phiên bản, --ignore-scripts, --dry-run; 14 workflow (CodeQL, dependency-review, skill-review); cài --all làm phình ngữ cảnh; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+Awesome OpenClaw Skills,VoltAgent/awesome-openclaw-skills,,awesome-list,MIT,53470,True,08,"5.213 skill OpenClaw từ ClawHub, 30 nhóm, công bố đã loại 7.215 (373 độc hại); 'curated, not audited'; link qua clawskills.sh (10/10 sống); CI chỉ đòi link ClawHub; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+Awesome GitHub Copilot,github/awesome-copilot,,awesome-list,MIT,40630,True,08,"Kho chính chủ GitHub: 222 agent, 193 instruction, 448 skill, 110 plugin, 8 hook; 64 workflow, pr-risk-scan 5 luật regex (curl|bash, npx -y, không ghim) chỉ là soft gate; link cài trỏ main; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+Awesome AI Agents (E2B),e2b-dev/awesome-ai-agents,,awesome-list,CC BY-NC-SA 4.0,30733,True,08,"215 agent; nội dung dừng từ 2024 (3 commit 2025, 5 commit 2026 chỉ gắn UTM); thử 10 link: 2 chết; license phi thương mại, GitHub báo NOASSERTION; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+Awesome Generative AI Guide,aishwaryanr/awesome-generative-ai-guide,,learning,MIT,30055,True,08,"Lộ trình + ~116 khoá ngoài + khoá tự soạn + ngân hàng câu hỏi phỏng vấn; thử 10 link: 9 sống, 1 YouTube 429; kèm quảng cáo khoá Maven trả phí; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+MCP for Beginners,microsoft/mcp-for-beginners,,learning,MIT,17574,True,08,"13 module MCP theo spec 2026-07-28, 54 bản dịch (có vi, chậm hơn bản gốc); không có CI cho mẫu code, mẫu TS khai báo @modelcontextprotocol/sdk >=1.32.0; ★ 31/10/2026 (GitHub API), mục 08 §2j"
+Node.js Best Practices,goldbergyoni/nodebestpractices,,checklist,CC BY-SA 4.0,105697,True,09,"108 mục trong 8 nhóm, 10 bản dịch; '2026 edition' chỉ là commit đổi chữ 2024→2026 (15/6/2026), sections/ không đổi từ 16/4/2025; ★ 31/10/2026 (GitHub API), mục 09 §3b"
+Claude Code Best Practice,shanraisshan/claude-code-best-practice,,checklist,MIT,68384,True,09,"Tài liệu settings/skills/subagents/memory + .claude/ mẫu; 67% commit tác giả Claude; settings.json của repo cho Bash(*), WebFetch(domain:*), deny rỗng, enableAllProjectMcpServers; không CI; ★ 31/10/2026 (GitHub API), mục 09 §3b"
+API Security Checklist,shieldfy/API-Security-Checklist,,checklist,MIT,23341,True,09,"66 mục ngắn, 30 bản dịch (có vi); thiếu BOLA, SSRF, PKCE, OWASP API Top 10; nội dung sửa cuối 2/2026; ★ 31/10/2026 (GitHub API), mục 09 §3b"
+OWASP ASVS,OWASP/ASVS,,checklist,CC BY-SA 4.0,3736,True,09,"ASVS 5.0.0 (30/5/2025): 17 chương, 345 yêu cầu L1–L3, xuất CSV/JSON/XML/CycloneDX máy đọc được; 11 ngôn ngữ, chưa có vi; ★ 31/10/2026 (GitHub API), mục 09 §3b"
+OWASP Web Security Testing Guide,OWASP/wstg,,checklist,CC BY-SA 4.0,10164,True,09,"134 bài kiểm thử, checklist JSON 13 nhóm/115 mục tự build; CI kiểm link + lint; bài 'Human-AI Collaborative Testing' (23/10/2026); bản ổn định v4.2 (12/2020); ★ 31/10/2026 (GitHub API), mục 09 §3b"
+Prompt Engineering Interactive Tutorial,anthropics/prompt-eng-interactive-tutorial,,prompt,không có LICENSE,38962,False,17,"9 chương + 3 phụ lục notebook (1P và Bedrock); master dừng 7/4/2024 (9 commit), dùng claude-3-haiku-20240307; không LICENSE nên chỉ học/tham khảo; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+Prompt Optimizer,linshenkx/prompt-optimizer,,prompt,AGPL-3.0-only,40118,True,17,"Web/desktop/extension/Docker/MCP, v2.13.0; MIT→AGPL 30/10/2025; bản Docker ghi VITE_* API key vào config.js và log, /mcp auth_basic off, compose mặc định mật khẩu 123456; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+GEPA,gepa-ai/gepa,,prompt,MIT,7224,True,17,"Tối ưu prompt bằng phản tư + Pareto (arXiv 2507.19457), optimizer dspy.GEPA; gói lõi dependencies = [], 71 file test, contract test với DSPy; 32% commit có trailer Claude; '35x faster' thực là ít rollout hơn; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+Fabric,danielmiessler/Fabric,,prompt,MIT,44516,True,17,"265 pattern system.md + CLI Go, ~15 nhà cung cấp; không eval cho pattern, 41 pattern còn 'Take a deep breath'; LICENSE ghi nhầm Scott Chacon; không thấy telemetry; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+System Prompts Leaks,asgeirtj/system_prompts_leaks,,prompt,CC0-1.0 (phần biên soạn),70531,True,17,"1.856 file system prompt rò rỉ (649 Anthropic), cập nhật trong ngày; không mô tả cách trích xuất/kiểm chứng; văn bản thuộc các hãng, chỉ dùng học cấu trúc; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+CL4R1T4S,elder-plinius/CL4R1T4S,,prompt,AGPL-3.0 (phần biên soạn),51664,True,17,"80 file prompt rò rỉ của 26 hãng/sản phẩm, một người duy trì, kêu gọi 'leak, extract'; nguồn so sánh, không chuẩn; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+Claude Code System Prompts,Piebald-AI/claude-code-system-prompts,,prompt,MIT (phần biên soạn),13050,True,17,"1.057 file prompt/tool/agent/skill của Claude Code theo từng bản (v2.1.316), token đếm bằng API count_tokens; README ghi 515 prompt; rủi ro bản quyền như baoyu-design; ★ 31/10/2026 (GitHub API), mục 17 §4b"

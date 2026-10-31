@@ -839,12 +839,12 @@
     },
     {
       "name": "developer-roadmap",
-      "repo": "kamranahmedse/developer-roadmap",
+      "repo": "nilbuild/developer-roadmap",
       "category": "learning",
       "license": "custom",
       "stars": 371000,
       "open_source": true,
-      "notes": "; ★ 31/10/2026: 371.000 (shields)",
+      "notes": "; ★ 31/10/2026: 371.000 (shields); repo chuyển sang nilbuild/developer-roadmap (31/10/2026)",
       "section": "08"
     },
     {
@@ -1942,12 +1942,12 @@
     },
     {
       "name": "awesome-chatgpt-prompts",
-      "repo": "f/awesome-chatgpt-prompts",
+      "repo": "f/prompts.chat",
       "category": "prompt",
       "license": "CC0",
       "stars": null,
       "open_source": true,
-      "notes": "",
+      "notes": "; repo đổi tên f/prompts.chat (mã MIT, prompt CC0) (31/10/2026)",
       "section": "17"
     },
     {
@@ -7186,6 +7186,196 @@
       "open_source": false,
       "notes": "ASR tiếng Việt Zipformer RNN-T 68M tham số, mạnh trên tập tổng đài riêng tư; README ghi MIT nhưng repo không có file LICENSE; ★ 31/10/2026 (GitHub API), mục 18 §4d",
       "section": "18"
+    },
+    {
+      "name": "AI Engineering from Scratch",
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 76093,
+      "open_source": true,
+      "notes": "Khoá 542 bài/20 phase (khớp cây thư mục), code Python/TS/Rust/Julia, CI audit bài + test lab, README dịch bằng NLLB chạy trong runner (có vi); 2.368/2.631 commit của một tác giả trong 7 tháng; chứng chỉ Claude là tài liệu ôn không chính thức; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "Agentic Awesome Skills",
+      "repo": "sickn33/agentic-awesome-skills",
+      "category": "awesome-list",
+      "license": "MIT (code) + CC BY 4.0 (nội dung)",
+      "stars": 48916,
+      "open_source": true,
+      "notes": "2.886 SKILL.md + MCP AAS Core; installer ghim phiên bản, --ignore-scripts, --dry-run; 14 workflow (CodeQL, dependency-review, skill-review); cài --all làm phình ngữ cảnh; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "Awesome OpenClaw Skills",
+      "repo": "VoltAgent/awesome-openclaw-skills",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 53470,
+      "open_source": true,
+      "notes": "5.213 skill OpenClaw từ ClawHub, 30 nhóm, công bố đã loại 7.215 (373 độc hại); 'curated, not audited'; link qua clawskills.sh (10/10 sống); CI chỉ đòi link ClawHub; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "Awesome GitHub Copilot",
+      "repo": "github/awesome-copilot",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 40630,
+      "open_source": true,
+      "notes": "Kho chính chủ GitHub: 222 agent, 193 instruction, 448 skill, 110 plugin, 8 hook; 64 workflow, pr-risk-scan 5 luật regex (curl|bash, npx -y, không ghim) chỉ là soft gate; link cài trỏ main; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "Awesome AI Agents (E2B)",
+      "repo": "e2b-dev/awesome-ai-agents",
+      "category": "awesome-list",
+      "license": "CC BY-NC-SA 4.0",
+      "stars": 30733,
+      "open_source": true,
+      "notes": "215 agent; nội dung dừng từ 2024 (3 commit 2025, 5 commit 2026 chỉ gắn UTM); thử 10 link: 2 chết; license phi thương mại, GitHub báo NOASSERTION; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "Awesome Generative AI Guide",
+      "repo": "aishwaryanr/awesome-generative-ai-guide",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 30055,
+      "open_source": true,
+      "notes": "Lộ trình + ~116 khoá ngoài + khoá tự soạn + ngân hàng câu hỏi phỏng vấn; thử 10 link: 9 sống, 1 YouTube 429; kèm quảng cáo khoá Maven trả phí; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "MCP for Beginners",
+      "repo": "microsoft/mcp-for-beginners",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 17574,
+      "open_source": true,
+      "notes": "13 module MCP theo spec 2026-07-28, 54 bản dịch (có vi, chậm hơn bản gốc); không có CI cho mẫu code, mẫu TS khai báo @modelcontextprotocol/sdk >=1.32.0; ★ 31/10/2026 (GitHub API), mục 08 §2j",
+      "section": "08"
+    },
+    {
+      "name": "Node.js Best Practices",
+      "repo": "goldbergyoni/nodebestpractices",
+      "category": "checklist",
+      "license": "CC BY-SA 4.0",
+      "stars": 105697,
+      "open_source": true,
+      "notes": "108 mục trong 8 nhóm, 10 bản dịch; '2026 edition' chỉ là commit đổi chữ 2024→2026 (15/6/2026), sections/ không đổi từ 16/4/2025; ★ 31/10/2026 (GitHub API), mục 09 §3b",
+      "section": "09"
+    },
+    {
+      "name": "Claude Code Best Practice",
+      "repo": "shanraisshan/claude-code-best-practice",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 68384,
+      "open_source": true,
+      "notes": "Tài liệu settings/skills/subagents/memory + .claude/ mẫu; 67% commit tác giả Claude; settings.json của repo cho Bash(*), WebFetch(domain:*), deny rỗng, enableAllProjectMcpServers; không CI; ★ 31/10/2026 (GitHub API), mục 09 §3b",
+      "section": "09"
+    },
+    {
+      "name": "API Security Checklist",
+      "repo": "shieldfy/API-Security-Checklist",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 23341,
+      "open_source": true,
+      "notes": "66 mục ngắn, 30 bản dịch (có vi); thiếu BOLA, SSRF, PKCE, OWASP API Top 10; nội dung sửa cuối 2/2026; ★ 31/10/2026 (GitHub API), mục 09 §3b",
+      "section": "09"
+    },
+    {
+      "name": "OWASP ASVS",
+      "repo": "OWASP/ASVS",
+      "category": "checklist",
+      "license": "CC BY-SA 4.0",
+      "stars": 3736,
+      "open_source": true,
+      "notes": "ASVS 5.0.0 (30/5/2025): 17 chương, 345 yêu cầu L1–L3, xuất CSV/JSON/XML/CycloneDX máy đọc được; 11 ngôn ngữ, chưa có vi; ★ 31/10/2026 (GitHub API), mục 09 §3b",
+      "section": "09"
+    },
+    {
+      "name": "OWASP Web Security Testing Guide",
+      "repo": "OWASP/wstg",
+      "category": "checklist",
+      "license": "CC BY-SA 4.0",
+      "stars": 10164,
+      "open_source": true,
+      "notes": "134 bài kiểm thử, checklist JSON 13 nhóm/115 mục tự build; CI kiểm link + lint; bài 'Human-AI Collaborative Testing' (23/10/2026); bản ổn định v4.2 (12/2020); ★ 31/10/2026 (GitHub API), mục 09 §3b",
+      "section": "09"
+    },
+    {
+      "name": "Prompt Engineering Interactive Tutorial",
+      "repo": "anthropics/prompt-eng-interactive-tutorial",
+      "category": "prompt",
+      "license": "không có LICENSE",
+      "stars": 38962,
+      "open_source": false,
+      "notes": "9 chương + 3 phụ lục notebook (1P và Bedrock); master dừng 7/4/2024 (9 commit), dùng claude-3-haiku-20240307; không LICENSE nên chỉ học/tham khảo; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
+    },
+    {
+      "name": "Prompt Optimizer",
+      "repo": "linshenkx/prompt-optimizer",
+      "category": "prompt",
+      "license": "AGPL-3.0-only",
+      "stars": 40118,
+      "open_source": true,
+      "notes": "Web/desktop/extension/Docker/MCP, v2.13.0; MIT→AGPL 30/10/2025; bản Docker ghi VITE_* API key vào config.js và log, /mcp auth_basic off, compose mặc định mật khẩu 123456; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
+    },
+    {
+      "name": "GEPA",
+      "repo": "gepa-ai/gepa",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 7224,
+      "open_source": true,
+      "notes": "Tối ưu prompt bằng phản tư + Pareto (arXiv 2507.19457), optimizer dspy.GEPA; gói lõi dependencies = [], 71 file test, contract test với DSPy; 32% commit có trailer Claude; '35x faster' thực là ít rollout hơn; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
+    },
+    {
+      "name": "Fabric",
+      "repo": "danielmiessler/Fabric",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 44516,
+      "open_source": true,
+      "notes": "265 pattern system.md + CLI Go, ~15 nhà cung cấp; không eval cho pattern, 41 pattern còn 'Take a deep breath'; LICENSE ghi nhầm Scott Chacon; không thấy telemetry; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
+    },
+    {
+      "name": "System Prompts Leaks",
+      "repo": "asgeirtj/system_prompts_leaks",
+      "category": "prompt",
+      "license": "CC0-1.0 (phần biên soạn)",
+      "stars": 70531,
+      "open_source": true,
+      "notes": "1.856 file system prompt rò rỉ (649 Anthropic), cập nhật trong ngày; không mô tả cách trích xuất/kiểm chứng; văn bản thuộc các hãng, chỉ dùng học cấu trúc; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
+    },
+    {
+      "name": "CL4R1T4S",
+      "repo": "elder-plinius/CL4R1T4S",
+      "category": "prompt",
+      "license": "AGPL-3.0 (phần biên soạn)",
+      "stars": 51664,
+      "open_source": true,
+      "notes": "80 file prompt rò rỉ của 26 hãng/sản phẩm, một người duy trì, kêu gọi 'leak, extract'; nguồn so sánh, không chuẩn; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
+    },
+    {
+      "name": "Claude Code System Prompts",
+      "repo": "Piebald-AI/claude-code-system-prompts",
+      "category": "prompt",
+      "license": "MIT (phần biên soạn)",
+      "stars": 13050,
+      "open_source": true,
+      "notes": "1.057 file prompt/tool/agent/skill của Claude Code theo từng bản (v2.1.316), token đếm bằng API count_tokens; README ghi 515 prompt; rủi ro bản quyền như baoyu-design; ★ 31/10/2026 (GitHub API), mục 17 §4b",
+      "section": "17"
     }
   ]
 }

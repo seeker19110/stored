@@ -193,6 +193,50 @@ Phần: Dependencies & build · Environment & secrets · Rendering/caching/data 
 
 ---
 
+## 3b. Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại sao, license, ngày push của **8 repo** mục 09 trong catalog (GitHub search API, 31/10/2026). (2) Tìm repo lớn còn thiếu: truy vấn GitHub "checklist", "best practices", "security checklist", `topic:best-practices`, "engineering handbook", "production readiness", lọc theo `data/projects.json`. Chọn **5 repo**, clone `--filter=blob:none`, đọc LICENSE, cấu trúc, file chính, CI, lịch sử commit. Đã xét nhưng **không thêm**: `google/eng-practices` (23,3k★, **đã archive**, push cuối 19/9/2024) và `thedaviddias/Front-End-Performance-Checklist` (17,4k★; nhánh `main` đứng yên từ 23/3/2025, 164/224 commit là năm 2018, không nhắc tới INP). **Không chạy script nào của các repo.**
+
+### 3b.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (→ 31/10/2026) | Hệ quả |
+|---|---|---|
+| `thedaviddias/Front-End-Checklist` | Catalog ghi `null`; nay **74,6k★** MIT, push 31/10. Mô tả GitHub đổi thành "for humans and AI agents" | Bổ sung số; checklist đã nhắm tới agent như `agent.md` ở §1.5 |
+| `OWASP/CheatSheetSeries` | Catalog `null`; nay **33,8k★** CC-BY-SA-4.0, push 30/10 | Bổ sung số |
+| `shenril/owasp-asvs-checklist` | Catalog `null`; nay 220★, push 2/9/2026 | Nên đối chiếu với ASVS 5.0 gốc (dưới) trước khi dùng |
+| `jeremychoi/owasp-asvs-wstg-checklist` | 22★, **push cuối 11/8/2020** | Đứng yên 6 năm, theo ASVS 4.0; thay bằng CSV chính thức của ASVS 5.0 |
+| `trimstray/the-book-of-secret-knowledge` (bảng §2, chưa có trong catalog) | 254,8k★, push cuối 19/11/2024 | Đứng yên gần 2 năm (khớp mục 08 §2i) |
+| `MarinJursic/production-readiness-checklist`, `PinoyFreeCoder/deployment-checklist`, `greenarmor/GESF` | 41 / 49 / 45★, đều còn push trong tháng 10 | Không đổi |
+
+### 3b.2 Bảng nhanh 5 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `goldbergyoni/nodebestpractices` | Best practice Node.js | 105,7k · CC BY-SA 4.0 | 15/6/2026 | 108 mục ✔ trong 8 nhóm (kiến trúc, lỗi, test, bảo mật…), 10 bản dịch | **"2026 edition" chỉ là đổi chữ** |
+| `shanraisshan/claude-code-best-practice` | Best practice Claude Code | 68,4k · MIT | 31/10/2026 | Ghi chú, 83 mẹo, workflow, `.claude/` mẫu đầy đủ hook/agent/skill | `settings.json` mở rộng quyền; 67% commit do Claude viết |
+| `shieldfy/API-Security-Checklist` | Checklist bảo mật API | 23,3k · MIT | 21/7/2026 | 66 mục ngắn, 30 bản dịch (có `README-vi.md`) | Thiếu BOLA, SSRF, PKCE |
+| `OWASP/ASVS` | Chuẩn xác minh bảo mật | 3,7k · CC BY-SA 4.0 | 26/10/2026 | ASVS 5.0.0 (30/5/2025): 17 chương, 345 yêu cầu, xuất CSV/JSON/CycloneDX | Sao thấp nhưng là chuẩn gốc |
+| `OWASP/wstg` | Hướng dẫn kiểm thử web | 10,2k · CC BY-SA 4.0 | 30/10/2026 | 134 bài kiểm thử (không tính README), checklist JSON 13 nhóm / 115 mục, mục mới "Human-AI Collaborative Testing" | Bản ổn định v4.2 từ 12/2020 |
+
+### 3b.3 Hồ sơ ngắn
+
+- **nodebestpractices (Yoni Goldberg).** 3.917 commit, 275 tác giả (505 commit là bot all-contributors). Nội dung vẫn tốt cho backend Node: cấu trúc theo thành phần, phân biệt lỗi vận hành và lỗi lập trình, bảo mật, Docker. Kiểm lời quảng cáo: ❌ README ghi **"2026 edition is here! Modernized to 2026"**, nhưng commit duy nhất của 2026 (15/6) chỉ sửa 2 dòng, đổi "2024" thành "2026"; thư mục `sections/` không đổi từ 16/4/2025. Badge ghi "102 Best Practices", README đếm được 108 tiêu đề ✔ (⚠️ lệch nhẹ). License CC BY-SA 4.0: trích dẫn được, nhưng chép vào tài liệu nội bộ thì tài liệu đó phải cùng license. Đọc tại https://github.com/goldbergyoni/nodebestpractices.
+- **claude-code-best-practice (Shayan Rais).** Tạo 31/10/2025, 2.633 commit, trong đó **1.375 commit tác giả "Claude" và 401 "Claude Routine"** (67%), chỉ 5 tác giả. Không có CI. Giá trị nằm ở tài liệu `best-practice/*.md` (settings, skills, subagents, memory, MCP) và thư mục `.claude/` làm mẫu chạy được (77 file hook, agent, command, skill). **Nhưng `.claude/settings.json` của chính repo** cho phép `Bash(*)`, `Edit(*)`, `Write(*)`, `WebFetch(domain:*)`, `deny: []`, `enableAllProjectMcpServers: true` (tự bật 3 MCP chạy bằng `npx -y`, đã ghim phiên bản) và đổi spinner thành câu khen tác giả. Danh sách `ask` có `rm`, `wget` nhưng không có `curl`. ⚠️ Mâu thuẫn: `best-practice/claude-settings.md` tự ghi `Write(path)` và `NotebookEdit` trong `allow` "never consulted", nhưng settings mẫu vẫn dùng. Không mở repo này bằng Claude Code rồi chấp nhận trust nếu chưa đọc `settings.json`; chép từng phần thay vì cả `.claude/`.
+- **API-Security-Checklist (Shieldfy).** Checklist cổ điển (2017), 374 commit, 104 tác giả, gần như chỉ còn nhận bản dịch (commit nội dung cuối 2/2026: "You don't need JWT", khuyên dùng API key ngẫu nhiên). Phần "Advanced" (rate limit, GraphQL, secrets, zero trust) thêm 1/2026. ⚠️ Không nhắc BOLA/IDOR theo đối tượng, SSRF, PKCE hay OWASP API Top 10: dùng làm danh sách nhắc nhanh, kiểm sâu thì theo ASVS V4/V8/V10.
+- **OWASP ASVS.** 3.292 commit, 153 tác giả, đầu bảng Josh Grossman và Elar Lang. Bản 5.0.0 (tag `v5.0.0_release`, 30/5/2025) có chương mới cho token tự chứa (V9), OAuth/OIDC (V10), WebRTC (V17). Điểm hợp với agent: **file máy đọc được** `5.0/docs_en/*.csv|json|xml|cdx.json` (cột `req_id`, `req_description`, `L`), đủ để sinh checklist theo cấp L1–L3 hay đối chiếu tự động. Commit gần nhất cập nhật tham chiếu RFC mới và bản dịch tiếng Ba Tư. Có 11 ngôn ngữ, chưa có tiếng Việt.
+- **OWASP WSTG.** 1.397 commit, 199 tác giả, 156 commit từ 1/7/2026. CI kiểm link (`md-link-check`), lint markdown, textlint, tự build checklist (`wstgbot` đăng checklist mới 30/10/2026). Bài mới **"Human-AI Collaborative Testing"** (23/10/2026) nói rõ AI đổi tốc độ và độ lặp lại, không đổi trách nhiệm và phạm vi kiểm thử. Bản ổn định vẫn là v4.2 (3/12/2020); bản "latest" là nhánh chính.
+
+### 3b.4 Mẫu chung rút ra
+
+1. **Chuẩn gốc thắng checklist cộng đồng**: ASVS 5.0 có CSV/JSON chính thức; các checklist ASVS cộng đồng ở §2 (shenril, jeremychoi) theo bản cũ. Agent nên đọc nguồn máy đọc được của chuẩn, không đọc bản chép lại.
+2. **Nhãn năm không phải bằng chứng cập nhật**: nodebestpractices "2026 edition" chỉ đổi chữ; Front-End-Performance-Checklist không biết INP. Kiểm `git log -- <thư mục nội dung>`, đừng tin tiêu đề.
+3. **Repo "best practice" cho agent cũng cần kiểm như code**: claude-code-best-practice mang settings mở quyền và tự bật MCP. Tài liệu đúng nhưng cấu hình mẫu thì không.
+4. **License chia sẻ tương tự (CC BY-SA)** phổ biến ở checklist lớn (nodebestpractices, ASVS, WSTG, CheatSheetSeries): trích dẫn và link thì được; nhúng nguyên khối vào template thương mại thì phải giữ license.
+
+**Nguồn §3b:** GitHub search API 31/10/2026 (`repo:` cho 8 repo cũ, 5 repo mới, `google/eng-practices`, `trimstray/the-book-of-secret-knowledge`; 6 truy vấn chủ đề) · `meta_all.json`/`status_all.json` đợt rà 31/10 · clone `--filter=blob:none`, đọc: goldbergyoni/nodebestpractices (LICENSE, README.md, `git show` commit 15/6/2026, lịch sử `sections/`), shanraisshan/claude-code-best-practice (LICENSE, README.md, .claude/settings.json, .mcp.json, .claude/hooks/scripts/hooks.py, best-practice/claude-settings.md, tác giả commit), shieldfy/API-Security-Checklist (LICENSE, README.md, lịch sử commit), OWASP/ASVS (LICENSE.md, 5.0/en/*.md, 5.0/docs_en/*.csv, 5.0/languages.txt, tag), OWASP/wstg (LICENSE, checklists/checklist.json, document/3-The_OWASP_Testing_Framework/2-Human-AI_Collaborative_Testing.md, .github/workflows/), thedaviddias/Front-End-Performance-Checklist (README.md, nhánh) · https://owasp.org/www-project-application-security-verification-standard/ · https://owasp.org/www-project-web-security-testing-guide/
+
+---
+
 ## 4. Nguồn
 
 - https://github.com/PinoyFreeCoder/deployment-checklist (README, `agent.md`, `CONTRIBUTING.md`, `checklists/base.md`, `checklists/nextjs.md`, cây `checklists/`, lịch sử commit – đọc 2026-10-12)
