@@ -401,7 +401,7 @@
 |---|---|---|---|---|---|
 | **E2B** | Apache-2.0 (SDK + infra) | Firecracker microVM, kernel riêng | ~0.5s (đo độc lập, nhanh nhất) | SDK đơn giản, nhiều template | ~$0.0504/vCPU-giờ |
 | **Modal** | SDK mở, nền tảng đóng | gVisor (user-space kernel), tùy chọn VM | nhanh | **Có GPU** trong sandbox, serverless Python | ~$0.071/vCPU-giờ |
-| **Daytona** | Từng mở; một nguồn nói đóng từ 6/2026 **(chưa xác minh)** | Container (tùy chọn VM) | Claim 90ms, đo được ~0.75s | Snapshot/fork stateful | |
+| **Daytona** | **Repo `daytonaio/daytona` đã archive** (GitHub API 31/10/2026; push cuối 24/7/2026); bản mở cuối, ngày đóng mã theo blog **(chưa xác minh)**, §3c.1 | Container (tùy chọn VM) | Claim 90ms, đo được ~0.75s | Snapshot/fork stateful | |
 | **Fly Machines** | Nền tảng | Firecracker | | Máy ảo nhanh, giá theo giây | |
 | **Vercel Sandbox / Cloudflare Sandbox** | Nền tảng | microVM / isolate | | Gắn hệ sinh thái | |
 | **microsandbox** | mã mở (`superradcompany/microsandbox`, ~8,7k★, beta, 12/10/2026) | microVM | | Self-host | |
@@ -428,6 +428,52 @@
 - Cập nhật bảng §3: microsandbox đã chuyển sang `superradcompany/microsandbox` (8,7k★, còn beta).
 - Firecrawl (190,7k★) lớn gấp đôi crawl4ai nhưng là AGPL; nếu tự host làm dịch vụ cho người khác, crawl4ai (Apache-2.0) an toàn hơn về license.
 - Đã cân nhắc nhưng không thêm: microsoft/OmniParser (25,5k★; code thật ra là CC-BY-4.0 dù badge ghi MIT, chỉ 2 commit từ 9/2025), browserless (13,8k★, SSPL-1.0, không OSI), jina-ai/reader (12,1k★, commit cuối 22/5/2026), steel-browser (7,8k★, beta), openai-cua-sample-app (1,9k★), OpenAdapt (1,8k★).
+
+## 3c. Nâng cấp 31/10/2026: rà repo lớn (sandbox và computer use chưa có trong kho)
+
+> Mục 1 (browser) đã được làm mới trong ngày (§1c–§1i), nên đợt này chỉ tìm ở **sandbox và computer use**. Cách làm: 7 truy vấn GitHub search (`sandbox agent`, topic `sandbox`/`computer-use`, `microvm`, repo tạo sau 1/10/2025), lọc bỏ repo đã có trong `data/projects.json`, chọn 7 repo; clone `--filter=blob:none` rồi đọc LICENSE, manifest, cấu hình mặc định, mã mạng/telemetry, CI và lịch sử git. **Không cài, không chạy script nào.** Số sao từ GitHub search API ngày 31/10/2026.
+
+### 3c.1 Trạng thái repo cũ của mục
+
+| Repo | Thay đổi | Hệ quả |
+|---|---|---|
+| `daytonaio/daytona` | **GitHub báo `archived: true`**, push cuối 24/7/2026, license trả về rỗng; 71,4k★. Một blog của đối thủ nói Daytona đóng mã 11/6/2026, bản mở cuối v0.190.0 (23/6) và archive 3/10 **(chưa xác minh)** | Bỏ khỏi nhóm "tự host được"; bảng §3 đã sửa. Ai còn dùng bản mở phải tự bảo trì |
+| `browserbase/mcp-server-browserbase` | Archive 20/7/2026 | Đã ghi ở §1i.1 |
+| `anthropics/sandbox-runtime` | 5,5k → **6,9k★** | Hồ sơ §3b vẫn đúng |
+| `tester-army/e2e` | 9,7k → **12,4k★** | §1b |
+| `Skyvern-AI/skyvern`, `e2b-dev/E2B`, `modal-labs/modal-client` | Lần đầu có số: 23,3k · 14,6k · 531★ (`modal-client` nhỏ vì chỉ là SDK, nền tảng đóng) | Catalog bổ sung sao |
+
+### 3c.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `opensandbox-group/OpenSandbox` | Nền tảng sandbox tự host | 16,3k · Apache-2.0 | 30/10/2026 | API sandbox thống nhất, Docker → Kubernetes, SDK 5 ngôn ngữ, MCP | Mặc định là container runc |
+| `TencentCloud/CubeSandbox` | MicroVM tương thích E2B | 13,1k · Apache-2.0 + phần bên thứ ba (GitHub: NOASSERTION) | 30/10/2026 | Dịch vụ sandbox KVM (fork cloud-hypervisor + kata agent), API kiểu E2B | Quickstart thay kernel host bằng `curl \| bash` |
+| `superradcompany/microsandbox` | MicroVM cục bộ | 8,9k · Apache-2.0 | 31/10/2026 | Thư viện + CLI `msb` chạy microVM libkrun trên máy dev, secret không vào VM | Beta; mạng công cộng mở mặc định |
+| `kubernetes-sigs/agent-sandbox` | CRD Kubernetes | 4,5k · Apache-2.0 | 31/10/2026 | CRD `Sandbox` + warm pool, giao cách ly cho gVisor/Kata qua RuntimeClass | API còn `v1beta1` dù tag v1.0.9 |
+| `pydantic/monty` | Trình thông dịch an toàn | 8,8k · MIT | 30/10/2026 | Tập con Python 3.14 viết bằng Rust, không có FS/mạng/env bên trong | Không phải Python đầy đủ |
+| `vercel-labs/agent-desktop` | Computer use desktop | 4,2k · Apache-2.0 | 31/10/2026 | CLI Rust đọc accessibility tree của macOS/Windows/Linux, ref theo snapshot | Snapshot chứa dữ liệu màn hình riêng tư |
+| `microsoft/fara` | Mô hình CUA | 6,2k · MIT (mã) | 22/7/2026 | Fara1.5 4B/9B/27B (Qwen3.5) + harness Playwright + bộ đánh giá | Chỉ web; điểm tự báo cáo |
+
+### 3c.3 Hồ sơ từng repo
+
+- **OpenSandbox.** 4.195 commit từ 13/11/2025, 199 tác giả (1.892 commit dùng email alibaba), nay là dự án của Agentic AI Foundation, có `CHARTER.md`/`GOVERNANCE.md`, 22 workflow CI. Server Python + `execd`, `egress`, `ingress` viết bằng Go; SDK Python/Java/TS/C#/Go; thư mục `specs/` định nghĩa giao thức lifecycle. Đọc `example.config.toml`: `runtime.type = "docker"`, nên **mặc định là container thường**; gVisor/Kata/Firecracker chỉ bật qua `secure_runtime`. ✅ Server bind `127.0.0.1` và **không chịu khởi động khi thiếu `api_key`** trừ khi gõ YES hoặc đặt `OPENSANDBOX_INSECURE_SERVER=YES`. ✅ Egress theo từng sandbox (DNS hoặc DNS+nftables, có MITM tuỳ chọn cho "Credential Vault"). ⚠️ "Firecracker 64 ms P50" chỉ có trong `docs/architecture/fast-sandbox/performance.md`, chưa tái lập. Không thấy telemetry gửi ra ngoài; "telemetry" trong `components/egress` là metric OTLP tuỳ chọn. Cài: `uvx opensandbox-server init-config ~/.sandbox.toml --example docker` rồi `uvx opensandbox-server`.
+- **CubeSandbox (Tencent Cloud).** 1.131 commit từ 16/4/2026, 141 tác giả. `hypervisor/` là bản sửa của cloud-hypervisor, `agent/` của kata-containers; tách CubeAPI, CubeMaster, Cubelet, CubeNet (eBPF). LICENSE là Apache-2.0 kèm lời dẫn của Tencent và điều khoản BSD-2 cho `cilium/bpf` trong cùng một file, nên GitHub báo NOASSERTION. ✅ Tương thích SDK E2B (cùng ý tưởng với E2B ở §3). ⚠️ Quickstart dùng **PVM** để có KVM trên VM đám mây thường: chạy `curl -sL …/host_grub_config.sh | bash` sửa GRUB và **thay kernel host**, chỉ x86_64. Script dựng môi trường tải image từ `mirrors.tencent.com`; mẫu Terraform dành cho Tencent Cloud. Chỉ nên chạy trên máy riêng cho sandbox.
+- **microsandbox.** 1.357 commit từ 10/2024, chủ yếu 2 người viết. Dựa trên **libkrun** (submodule `superradcompany/libkrunfw`, gói kernel Linux) và smoltcp làm network stack trong tiến trình. README tự ghi **"beta software"**. Đọc `crates/network/lib/model/policy/types.rs`: `NetworkPolicy::default()` = profile `Public`, tức **cho ra Internet công cộng, chặn LAN/host/metadata**; muốn chặn hẳn phải tự khai báo. "Secrets that can't leak": secret là placeholder, proxy chỉ thay giá trị thật khi request đi tới `allowed_host`. Không thấy telemetry. Cài: `cargo add microsandbox`, `uv add microsandbox` hoặc `npm i microsandbox`; tránh `curl … | sh` nếu chính sách cấm.
+- **kubernetes-sigs/agent-sandbox.** Dự án SIG Apps, 1.284 commit, 201 tác giả, **0 commit có trailer Claude**. Chỉ là **bộ điều phối**: CRD `Sandbox` (pod đơn, danh tính và ổ đĩa ổn định), thêm `SandboxTemplate`, `SandboxClaim`, `SandboxWarmPool`; cách ly thật giao cho gVisor/Kata. ✅ NetworkPolicy mặc định do controller tạo (`buildDefaultNetworkPolicySpec`): ingress chỉ từ sandbox-router, egress cho `0.0.0.0/0` **trừ** dải riêng và `169.254.0.0/16` (metadata). ⚠️ README vẫn bảo ghim `v1.0.2` trong khi tag mới nhất là v1.0.9 (29/10), và API group vẫn `agents.x-k8s.io/v1beta1`. Cài: `kubectl apply -f https://github.com/kubernetes-sigs/agent-sandbox/releases/download/v1.0.9/sandbox-with-extensions.yaml`.
+- **Monty (Pydantic).** Không phải VM hay container mà là **trình thông dịch một tập con Python 3.14 viết bằng Rust**: không có filesystem, env, mạng; mọi thứ ra ngoài đi qua hàm host truyền vào. `limitations/` có một file cho từng builtin/module ghi chỗ lệch CPython. 923 commit (lịch sử từ 2023 nhưng thực chất bắt đầu lại 11/2025), **31% commit có trailer Claude**, có fuzz target, CodSpeed. "telemetry" là cầu OpenTelemetry cho ứng dụng host, không gửi về Pydantic. ⚠️ "<1 ms" so với "~1500 ms của dịch vụ sandbox" là số của chính Pydantic. Có bản thương mại "Full Monty". Cài: `uv add pydantic-monty` / `npm install @pydantic/monty`. Hợp cho "code mode" (agent viết code gọi tool) hơn là chạy mã tùy ý.
+- **agent-desktop (Vercel Labs).** Anh em của `agent-browser` (§1h.2) cho desktop: `snapshot` trả JSON có ref gắn với snapshot (`@s8f3k2p9:e8`), ref cũ trả `STALE_REF`, không đoán pixel. ✅ `postinstall` của npm tải binary từ GitHub Releases và **kiểm SHA256**; CI ghim action theo SHA và chạy zizmor, có gitleaks. ⚠️ Skill tuỳ chọn `jev-desktop` gửi mô tả phần tử màn hình tới `api.typesafe.ai` (cần `TYPESAFE_API_KEY`), cùng nhà cung cấp mà OpenIntelligentUI bắt buộc (mục 06 §7p.6). macOS cần quyền Accessibility. Cài: `npm install -g agent-desktop`.
+- **Fara (Microsoft Research).** Repo chứa harness, prompt và bộ đánh giá (WebTailBench, CUAVerifierBench); weights ở Hugging Face/Foundry. Agent nhìn screenshot rồi bấm theo toạ độ, **chỉ trong trình duyệt** (Playwright 1.51), không phải desktop. ⚠️ Điểm "63,4% Online-Mind2Web (9B), 72,3% (27B)" là tự báo cáo theo paper arXiv 2606.20785. "Critical points" (dừng hỏi người trước hành động không đảo ngược) chỉ là lời dặn trong `_prompts.py`, và `auto_user_reply=True` cho phép bỏ qua việc dừng. Chỉ 67 commit, đứng yên từ 22/7/2026. Cài: clone rồi `pip install -e .` và `playwright install`.
+
+### 3c.4 Mẫu chung rút ra
+
+1. **"Sandbox" giờ có bốn tầng khác hẳn nhau**: trình thông dịch hạn chế (Monty), sandbox tiến trình bằng kernel (sandbox-runtime, nono ở mục 12 §4b), container/microVM (OpenSandbox, microsandbox, CubeSandbox), và bộ điều phối (agent-sandbox). Khi một dự án nói "chạy trong sandbox", phải hỏi tầng nào.
+2. **Mặc định mạng gần như giống nhau**: cho Internet công cộng, chặn LAN và metadata 169.254 (microsandbox, agent-sandbox). Chặn exfiltration thì phải tự viết allowlist.
+3. **Secret không vào sandbox** đã thành tính năng chuẩn: proxy thay placeholder (microsandbox, OpenSandbox Credential Vault).
+4. **Mặc định yếu hơn tên gọi**: OpenSandbox mặc định là runc; agent-sandbox chỉ cách ly bằng runtime bạn tự cấu hình. Đọc file config, đừng đọc tagline.
+5. **Cài đặt chạm hệ thống host**: CubeSandbox thay kernel; microsandbox, nono và Strix (mục 12 §4b) đều quảng bá `curl | sh`. Chỉ cài trên máy dành riêng.
+
+**Nguồn §3c:** GitHub search API 31/10/2026 (7 truy vấn; `repo:daytonaio/daytona` cho trạng thái archive) · `../meta_all.json`, `status_all.json` (GitHub API 31/10) · clone `--filter=blob:none` 7 repo, đọc: OpenSandbox (LICENSE, README.md, GOVERNANCE.md, server/opensandbox_server/{examples/example.config.toml, config.py}, components/egress/*, .github/workflows), CubeSandbox (LICENSE, README.md, docs/guide/quickstart.md, deploy/one-click/terraform/tencentcloud/*.sh, dev-env/*.sh, hypervisor/, .gitmodules), microsandbox (LICENSE, README.md, .gitmodules, crates/network/lib/model/policy/types.rs), agent-sandbox (README.md, api/v1beta1/groupversion_info.go, extensions/api/v1beta1/sandboxtemplate_types.go, extensions/controllers/sandboxtemplate_controller.go), monty (README.md, limitations/index.md, crates/monty-js/src/telemetry.rs, crates/fuzz/), agent-desktop (README.md, npm/package.json, npm/scripts/postinstall.js, skills/jev-desktop/SKILL.md, .github/workflows/supply-chain.yml), fara (LICENSE, README.md, pyproject.toml, src/fara/agents/fara/{_prompts.py, fara15_agent.py}) · Web: agent37.com/blog/daytona-alternative, developersdigest.tech/agent-sandboxes/daytona-oss (blog, chưa xác minh) · https://github.com/opensandbox-group/OpenSandbox · https://github.com/TencentCloud/CubeSandbox · https://github.com/superradcompany/microsandbox · https://github.com/kubernetes-sigs/agent-sandbox · https://github.com/pydantic/monty · https://github.com/vercel-labs/agent-desktop · https://github.com/microsoft/fara
 
 ## 4. Nguồn
 
