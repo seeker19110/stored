@@ -1181,10 +1181,10 @@
       "name": "agent-browser",
       "repo": "vercel-labs/agent-browser",
       "category": "browser-agent",
-      "license": null,
-      "stars": 29500,
+      "license": "Apache-2.0",
+      "stars": 45000,
       "open_source": false,
-      "notes": "CLI Rust",
+      "notes": "CLI Rust; hồ sơ đầy đủ mục 11 §1h.2 (31/10/2026): 45k★, v0.41.0, CLI Rust; hàng rào opt-in: auth vault mã hóa, --allowed-domains, --action-policy (fail closed), --confirm-actions, --content-boundaries, --max-output; MCP server; không thấy telemetry; 582 issue+PR tồn, test mỏng",
       "section": "11"
     },
     {
@@ -1192,9 +1192,9 @@
       "repo": "browserbase/stagehand",
       "category": "browser-agent",
       "license": "MIT",
-      "stars": 25600,
+      "stars": 26000,
       "open_source": true,
-      "notes": "v4 CDP",
+      "notes": "v4 CDP; hồ sơ đầy đủ mục 11 §1h.1 (31/10/2026): 26k★, sdk-ts v4.3.0 + Python + Go; observe trả selector để secret không vào model, act tự sửa, extract theo schema; SDK không telemetry, CLI browse gửi PostHog (DO_NOT_TRACK=1); MCP hosted + cloud trả phí; CI ghim SHA; 295 PR mở",
       "section": "11"
     },
     {

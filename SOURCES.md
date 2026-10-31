@@ -700,3 +700,8 @@
 
 - `microsoft/playwright-cli`: clone 31/10/2026 (119 commit, HEAD 0a80807); shields 15k★/878 fork, Apache-2.0, v0.1.23. Mục 11 §1g.1.
 - `browser-use/browser-use-pi`: clone 31/10/2026 (184 commit, HEAD 5569fba 20/10/2026); shields 458★/25 fork, MIT, chưa release; `src/telemetry.ts` gửi PostHog EU. Mục 11 §1g.2; catalog +2 = 575.
+
+## Bổ sung 2026-10-31n (Stagehand, agent-browser)
+
+- `browserbase/stagehand`: clone 31/10/2026 (1.663 commit, HEAD b7a4b899); shields 26k★/1,8k fork, MIT, 107 issue/295 PR mở; `packages/cli/src/lib/telemetry.ts` gửi PostHog. Mục 11 §1h.1.
+- `vercel-labs/agent-browser`: clone 31/10/2026 (780 commit, HEAD 5868f7c); shields 45k★/3,1k fork, Apache-2.0, v0.41.0, 275 issue/307 PR mở. Mục 11 §1h.2; catalog sửa license "–" → Apache-2.0.

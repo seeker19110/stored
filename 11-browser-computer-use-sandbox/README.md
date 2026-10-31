@@ -7,7 +7,7 @@
 | Dự án | Repo | License | ★ (2026) | Cách hoạt động | Ghi chú |
 |---|---|---|---|---|---|
 | **Browser Use** | browser-use/browser-use | MIT | ~118k (13/10/2026) | Agent Python điều khiển Chromium qua CDP (bỏ Playwright), DOM + accessibility + vision | Lớn nhất; có cloud; telemetry bật mặc định, xem §1c |
-| **agent-browser** (Vercel Labs) | vercel-labs/agent-browser | – | ~29.5k | CLI Rust cho agent điều khiển trình duyệt | Mới, tăng nhanh |
+| **agent-browser** (Vercel Labs) | vercel-labs/agent-browser | Apache-2.0 | ~29.5k (45k ngày 31/10, §1h.2) | CLI Rust cho agent điều khiển trình duyệt | Mới, tăng nhanh |
 | **Stagehand** (Browserbase) | browserbase/stagehand | MIT | ~25.6k | SDK `act/extract/observe`, v4 dùng CDP trực tiếp (không Playwright) | Tích hợp Claude Code, Codex, Mastra |
 | **Skyvern** | Skyvern-AI/skyvern | AGPL-3.0 | – | Vision + LLM, workflow form | |
 | **Playwright MCP** | microsoft/playwright-mcp | Apache-2.0 | – | MCP server, làm việc trên accessibility tree (không screenshot) | Server MCP phổ biến nhất nhóm browser |
@@ -287,6 +287,55 @@
 | Dùng trình duyệt đã đăng nhập thật | Chỉ với profile riêng cho test (Playwright extension, `--autoConnect`, Browsentic §1d đều thấy mọi tab) |
 
 **Nguồn §1g:** clone github.com/microsoft/playwright-cli 31/10/2026 (119 commit, HEAD 0a80807; README.md (CLI vs MCP, Sessions), skills/playwright-cli/{SKILL.md, references/*}, playwright-cli.js, package.json, .github/workflows/*) · clone github.com/browser-use/browser-use-pi 31/10/2026 (184 commit, HEAD 5569fba 20/10/2026; README.md, docs/{benchmarks,api,sessions,models}.md, src/{telemetry,index}.ts, package.json, python/pyproject.toml) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
+
+## 1h. Hồ sơ `browserbase/stagehand` và `vercel-labs/agent-browser` (yêu cầu người dùng, clone 2026-10-31)
+
+> Trước chỉ có dòng bảng §1 và §1b. Clone đủ lịch sử (blob:none), đọc README (đặc biệt mục Security của agent-browser), cấu trúc package, mã telemetry, workflow CI. **Không cài, không chạy.**
+
+### 1h.1 `browserbase/stagehand` — SDK `act/observe/extract` cho browser agent
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/browserbase/stagehand · **26k★, 1,8k fork** · **MIT** · npm `@browserbasehq/stagehand` **v4.3.0**, Python `stagehand` (bản dev 4.4.0a0), có driver Go · **107 issue / 295 PR mở** |
+| Lịch sử | **1.663 commit** từ 20/3/2024, 51 tác giả; Sean McGuire 570, Miguel 282, Shrey Pandya 115 (Browserbase); 115 trailer Claude; 68 commit từ 12/10 |
+| Monorepo | `packages/`: `sdk-ts`, `sdk-python`, `protocol`, `cli` (lệnh `browse` v0.11.3), `extension` (chạy cạnh trình duyệt để giảm độ trễ), `evals`, `integrations`, `docs`, `examples` |
+| API | Kiểu Playwright (`goto`, `click`, `locator`) + 3 lệnh AI: **`observe()`** trả selector thật (README: "credentials never reach the model" — điền mật khẩu bằng selector, không đưa vào prompt), **`act()`** tự sửa khi giao diện đổi ("self-healing"), **`extract()`** trả dữ liệu đã kiểm theo schema Zod/Pydantic. Cắt gọn cây accessibility, hỗ trợ WebMCP, iframe lồng, Shadow DOM đóng, trace OpenTelemetry |
+| Chạy ở đâu | `localBrowser.launch()` cục bộ (`userDataDir` để giữ đăng nhập) hoặc **Browserbase cloud** (trả phí, README: "2x faster than Playwright cloud equivalent"); MCP **hosted** `mcp.browserbase.com/mcp` cho Claude Code/Cursor/Codex, cần `BROWSERBASE_API_KEY` |
+| CI / test | 7 workflow (ci, release, publish-python, preview, docs-preview, 2 workflow duyệt PR người ngoài); ~491 file test; action **ghim SHA** (ci.yml 31 chỗ); review PR tự động bằng cubic (`cubic.yaml`) |
+
+**Dữ liệu:** SDK không thấy telemetry gửi về (chỉ OpenTelemetry để người dùng tự thu trace). **CLI `browse` gửi PostHog** (`us.i.posthog.com`, sự kiện lệnh đã lọc), tắt bằng `DO_NOT_TRACK=1` hoặc `BROWSERBASE_TELEMETRY_DISABLED=1`, tự tắt khi `CI` được đặt. Dùng MCP hosted hoặc Browserbase cloud thì trang và hành động đi qua hạ tầng Browserbase.
+
+**Đánh giá:** SDK có kiểm soát nhất trong nhóm cho ứng dụng TypeScript/Python — dev viết luồng, chỉ giao các bước mờ cho AI; mẫu `observe` → điền bằng selector là cách đúng để không đưa secret vào model. Đổi lại: mã nguồn mở nhưng đường "dễ nhất" (MCP, cloud, Model Gateway) đều dẫn về dịch vụ trả phí; 295 PR chờ. Ghim phiên bản (v4 đổi lớn so với v3, tag `stagehand-server-v3/*` vẫn phát hành song song).
+
+### 1h.2 `vercel-labs/agent-browser` — CLI Rust cho agent, nhiều hàng rào an toàn nhất
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/vercel-labs/agent-browser · **45k★, 3,1k fork** (12/10: ~29,5k) · **Apache-2.0** (bảng §1 ghi "–", nay xác nhận) · v0.41.0 · **275 issue / 307 PR mở** · npm/Homebrew/Cargo `agent-browser` |
+| Lịch sử | **780 commit** từ 10/1/2026, 120 tác giả; Chris Tate 408 (Vercel), bot 68; 109 trailer Claude; 81 commit từ 12/10 |
+| Kiến trúc | Binary **Rust** (`cli/`, giao thức CDP tự sinh) + package TS; `agent-browser install` tải Chrome for Testing; engine thử nghiệm **Obscura** |
+| Lệnh | Snapshot có ref (`@e1`), semantic locator, batch JSON, `read` (lấy trang không cần mở Chrome, hỗ trợ `llms.txt`), diff, React tree + Web Vitals, audit accessibility, mạng, cookie/storage, tab/frame, WebMCP, dashboard quan sát cục bộ (cổng 4848), streaming preview, **MCP server** với tool có trường kiểu (`allowedDomains`…) để client hiện prompt duyệt rõ ràng |
+| Skill | Một skill mỏng `skills/agent-browser` + skill phục vụ qua CLI (`agent-browser skills get …`; `skill-data/`: core, electron, slack, dogfood, protected-vercel-deployments…); plugin Claude Code (`.claude-plugin`) |
+| Eval | `evals/`: kiểm agent (Claude Code, Codex) có nạp đúng skill qua CLI và sinh đúng lệnh không; đo "context footprint"; chạy qua **Vercel AI Gateway** (cần key) |
+| CI / test | 2 workflow (`ci`, `release`), action ghim tag; 20 file test Rust trong `cli/tests` |
+
+**An toàn (mục Security của README) — "opt-in, mặc định không giới hạn":**
+
+- **Authentication Vault:** credential lưu cục bộ, luôn mã hóa, gọi theo tên — "the LLM never sees passwords".
+- **`--allowed-domains`** (kể cả sub-resource, WebSocket), **`--action-policy policy.json`** (file thiếu/lỗi thì chặn mọi lệnh trừ `close` — fail closed), **`--confirm-actions eval,download`**, **`--content-boundaries`** (bọc nội dung trang bằng marker có nonce để model phân biệt dữ liệu không tin cậy), **`--max-output`** chống tràn ngữ cảnh. Metadata WebMCP từ trang luôn gắn `untrusted: true`.
+- **Plugin** chạy ngoài tiến trình qua giao thức stdio, khai báo năng lực (`credential.read`, `browser.provider`…).
+- Mặc định `alert`/`beforeunload` **tự chấp nhận** để không kẹt agent (`--no-auto-dialog` để tắt); không thấy telemetry trong README/mã Rust (grep 31/10/2026).
+
+**Đánh giá:** CLI cho coding agent cùng hướng với playwright-cli (§1g.1) nhưng **nhiều hàng rào prompt-injection/hành động nhất** trong mọi công cụ trình duyệt kho đã đọc — có điều phải tự bật. Rủi ro: tăng sao nhanh (+15k trong 19 ngày), 582 issue/PR tồn, test mỏng so với quy mô, phát hành v0.x liên tục. Dùng: bật tối thiểu `--allowed-domains`, `--content-boundaries`, `--confirm-actions eval,download`, `--max-output`; dùng vault thay vì đưa mật khẩu vào prompt; ghim phiên bản.
+
+### 1h.3 Bổ sung bảng chọn §1g.3
+
+| Nhu cầu | Gợi ý |
+|---|---|
+| Ứng dụng TS/Python tự viết luồng, chỉ giao bước mờ cho AI, dữ liệu có schema | **Stagehand** (`observe` → selector, `extract` + Zod) |
+| Coding agent cần trình duyệt có hàng rào domain/hành động/prompt-injection | **agent-browser** với các cờ an toàn bật sẵn |
+
+**Nguồn §1h:** clone github.com/browserbase/stagehand 31/10/2026 (blob:none, 1.663 commit, HEAD b7a4b899 29/10/2026; README.md (Why Stagehand, Run it on Browserbase, Give your coding agent a browser), packages/{sdk-ts, sdk-python, cli/src/lib/telemetry.ts, extension, evals}, .github/workflows/ci.yml, cubic.yaml; git tag) · clone github.com/vercel-labs/agent-browser 31/10/2026 (blob:none, 780 commit, HEAD 5868f7c 30/10/2026; README.md (Commands, Security, MCP Server, Observability Dashboard, Obscura), cli/, skills/, skill-data/, evals/README.md, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
 
 ## 2. Computer use (điều khiển máy tính)
 
