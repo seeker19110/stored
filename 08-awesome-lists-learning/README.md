@@ -448,6 +448,67 @@ Dùng được làm **danh sách tự kiểm** 13 mảng. Trước khi dùng là
 
 **Nguồn §2i:** ảnh người dùng gửi 25/10/2026 · img.shields.io/github/{{stars,license,last-commit}}/<repo>.json cho 47 repo (25/10/2026) · `git ls-remote` so HEAD: comfyanonymous/ComfyUI = Comfy-Org/ComfyUI, geekan/MetaGPT = FoundationAgents/MetaGPT, mendableai/firecrawl = firecrawl/firecrawl, lobehub/lobe-chat = lobehub/lobehub · README: github.com/karpathy/nanoGPT (thông báo 11/2025), github.com/perplexityai/bumblebee (26 commit, v0.1.2), github.com/ifixai-ai/iFixAi (331 commit từ 27/4/2026), github.com/ComposioHQ/awesome-claude-skills (`document-skills/*/LICENSE.txt`), github.com/TauricResearch/TradingAgents, github.com/soxoj/maigret · img.shields.io/pypi/dm/ifixai.json · bên thứ ba: decrypt.co/368944/perplexity-open-source-bumblebee-ai-scanner-mcp-infection-malware · discuss.pytorch.kr/t/ifixai-ai-45/11296 · pypi.org/project/iFixAi
 
+## 2j. Nâng cấp 31/10/2026: rà repo lớn (awesome list và khoá học)
+
+> Hai việc. (1) Đọc lại sao, license, ngày push của **31 repo** mục 08 đã có trong catalog (GitHub search API, 31/10/2026). (2) Tìm repo lớn còn thiếu: 7 truy vấn GitHub (`topic:awesome-list llm`, "awesome agents", "awesome claude", `topic:awesome ai`, "llm course tutorial", "for-beginners", và "awesome" tạo sau 1/10/2025), lọc theo `data/projects.json`. Chọn **7 repo**, clone `--filter=blob:none` và đọc file thật. Với awesome list, "độ sâu" là: sao, commit cuối, license đọc từ file, số mục đếm được, **thử 10 link** (lấy đều trong danh sách; link GitHub kiểm bằng `git ls-remote` vì proxy chặn trang HTML của github.com), người duy trì. **Không chạy script nào của các repo.**
+
+### 2j.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (12/10 → 31/10/2026) | Hệ quả |
+|---|---|---|
+| `kamranahmedse/developer-roadmap` | **Đã chuyển sang `nilbuild/developer-roadmap`** (370,9k★, GitHub báo `NOASSERTION`, push 31/10/2026); tìm theo tên cũ không còn kết quả | Catalog nên đổi `repo`; link cũ vẫn chuyển hướng **(chưa xác minh)** |
+| `Shubhamsaboo/awesome-llm-apps` | ~105k → **143,6k** (+37%) | Vẫn là danh sách "có code" lớn nhất §2 |
+| `hesreallyhim/awesome-claude-code` | ~45k → **57k**; GitHub báo `NOASSERTION` | Bảng §2 ghi "37–55k" đã cũ |
+| `AgriciDaniel/claude-seo` | ~20k → **25k** | §2h |
+| `mlabonne/llm-course` | Push cuối **5/2/2026** (gần 9 tháng) | Coi là tài liệu tĩnh; §2b đã ghi "ít commit" |
+| `KalyanKS-NLP/LLM-Interview-Questions-and-Answers-Hub` | Push cuối **9/2/2026** | Bộ câu hỏi không theo kịp chủ đề 2026 (§2c.3) |
+| `wong2/awesome-mcp-servers` · `EvanLi/Github-Ranking` | Catalog ghi `null`; nay **4,4k★ MIT** (push 13/7) · **12,7k★ MIT** (push 31/10) | Bổ sung số và license |
+| `rasbt/LLMs-from-scratch`, `donnemartin/system-design-primer`, `NirDiamant/RAG_Techniques` | GitHub báo `NOASSERTION` | Không đổi license: catalog giữ license đã đọc trong file (Apache-2.0 + phần sách; CC BY 4.0; phi thương mại) |
+
+Các repo khác dao động dưới 5%. `ai-engineering-from-scratch` ở §3 mục 8 ghi "(chưa xác minh)": nay đã xác minh, xem `rohitg00/…` dưới đây.
+
+### 2j.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `rohitg00/ai-engineering-from-scratch` | Khoá học | 76,1k · MIT | 29/10/2026 | 542 bài trong 20 phase, code Python/TS/Rust/Julia, có bản README tiếng Việt | Gần như một người viết, 7 tháng tuổi |
+| `sickn33/agentic-awesome-skills` | Kho skill + danh mục | 48,9k · MIT (code) + CC BY 4.0 (nội dung) | 31/10/2026 | 2.886 `SKILL.md`, installer npm ghim phiên bản, MCP "AAS Core" | Cài cả bộ làm phình ngữ cảnh |
+| `VoltAgent/awesome-openclaw-skills` | Awesome list | 53,5k · MIT | 30/10/2026 | 5.213 skill OpenClaw lọc từ ClawHub, chia 30 nhóm | "Curated, not audited"; link đi qua `clawskills.sh` |
+| `github/awesome-copilot` | Kho tuỳ biến chính chủ | 40,6k · MIT | 30/10/2026 | 222 agent, 193 instruction, 448 skill, 110 plugin, 8 hook cho Copilot | Quét rủi ro PR chỉ là "soft gate" |
+| `e2b-dev/awesome-ai-agents` | Awesome list | 30,7k · **CC BY-NC-SA 4.0** | 21/8/2026 | 215 agent (mở và đóng), mỗi mục có category/mô tả/link | **Nội dung đứng yên từ 2024**, commit 2026 chỉ gắn UTM |
+| `aishwaryanr/awesome-generative-ai-guide` | Lộ trình + danh sách khoá | 30,1k · MIT | 28/10/2026 | ~116 khoá ngoài + khoá miễn phí tự soạn, ngân hàng câu hỏi phỏng vấn | Kèm quảng cáo khoá Maven trả phí |
+| `microsoft/mcp-for-beginners` | Khoá học | 17,6k · MIT | 30/10/2026 | 13 module MCP, mẫu đa ngôn ngữ, 54 bản dịch (có `vi`) | Không có CI cho code mẫu; SDK ghim `>=` |
+
+### 2j.3 Awesome list: đếm mục và thử link
+
+| Repo | Số mục (đếm 31/10) | 10 link thử | Người duy trì | Ghi chú |
+|---|---|---|---|---|
+| `VoltAgent/awesome-openclaw-skills` | 5.213 dòng `- [` trong `categories/*.md` (badge ghi 5.200, README ghi 5.300+) | **10/10 sống** (trang `clawskills.sh`; slug giả trả 404, nên 200 là thật) | VoltAgent (Necati Özmen, ~300/566 commit), 161 tác giả | README công bố đã loại 7.215 skill (4.065 spam, 373 độc hại theo báo cáo bảo mật công khai, 886 crypto…). CI chỉ bắt PR phải có link ClawHub. Repo lỡ commit `.claude/settings.local.json` chứa đường dẫn máy tác giả. Badge vẫn trỏ tên cũ `awesome-clawdbot-skills` |
+| `e2b-dev/awesome-ai-agents` | 215 mục `## [` | 7 sống, **2 chết** (`encode.software` hết phân giải, ảnh `useinput.com`), 1 không kiểm được (trang org GitHub) | E2B (Tereza Tizkova ~340/473 commit) | Commit theo năm: 345 (2023), 120 (2024), 3 (2025), 5 (2026); 5 commit gần nhất đều là **thêm `utm_source` vào link e2b.dev**. LICENSE là CC BY-NC-SA 4.0 nên GitHub báo `NOASSERTION`; không chép nội dung vào sản phẩm thương mại |
+| `aishwaryanr/awesome-generative-ai-guide` | `courses.md`: 116 link ngoài; 695 file (khoá tự soạn, 134 file phỏng vấn) | **9/10 sống**, 1 YouTube trả 429 (giới hạn tần suất, không phải chết) | Aishwarya Naresh Reganti (LevelUp Labs), 32 tác giả; 55/508 commit có trailer Claude | README tự ghi "một số listing bên ngoài có thể cần trả phí"; mỗi trang dẫn sang khoá Maven có phí |
+| `sickn33/agentic-awesome-skills` | 2.886 `SKILL.md` trong `skills/` (+5.988 bản trong `plugins/`); mô tả ghi "2.884+" ✅ | `docs/sources/sources.md` có 64 link upstream: **10/10 sống** | `sickn33` (Nick), 502 tác giả; 899 commit của bot | Phần lớn mục là file trong repo, nên "link rot" ít liên quan; rủi ro là chất lượng từng skill |
+| `github/awesome-copilot` | 222 / 193 / 448 / 110 / 8 (agent / instruction / skill / plugin / hook) | 10/10 là link `aka.ms` cài vào VS Code, trỏ về file `main` của chính repo | GitHub (Aaron Powell ~790 commit), 598 tác giả | Link cài trỏ `main`, không ghim commit |
+
+### 2j.4 Hồ sơ ngắn
+
+- **`rohitg00/ai-engineering-from-scratch`.** Tạo 18/3/2026, 2.631 commit, **2.368 commit của Rohit Ghumare** (nhịp 725 commit tháng 4, 808 tháng 10). Lời "542 lessons, 20 phases" ✅ khớp số thư mục `phases/*/*`. Có 1.423 file code trong `phases/`, CI `curriculum.yml` chạy `audit_lessons.py` và test lab chứng chỉ; bản dịch README do workflow chạy **NLLB-200 ngay trong runner** (không gửi API ngoài). Thư mục `certifications/claude` là tài liệu ôn **không chính thức**, tự ghi "confirm facts in the official…" và dẫn trang FAQ của Anthropic. `i18n/vi/README.md` chỉ dịch README, bài học vẫn tiếng Anh. Rủi ro: một người viết rất nhanh, chất lượng từng bài chưa ai đánh giá độc lập **(chưa xác minh)**. Học trên web hoặc `git clone https://github.com/rohitg00/ai-engineering-from-scratch`.
+- **`sickn33/agentic-awesome-skills`.** Không chỉ là danh sách: monorepo có app web (Supabase, Vercel), 14 workflow (CodeQL, dependency-review, `skill-review` dùng Tessl khi có token), `LICENSE-CONTENT` tách CC BY 4.0 cho nội dung. Installer đáng học: README hướng dẫn **`npm exec --yes --ignore-scripts --package=agentic-awesome-skills@20.3.0 -- agentic-awesome-skills --release 20.3.0 --path .agents/skills --skills brainstorming,systematic-debugging --dry-run`**, tức ghim phiên bản, tắt script npm, xem trước rồi mới ghi. `tools/bin/install.js` chỉ gọi `git` và registry npm. Thận trọng: cài `--all` đưa hàng nghìn mô tả skill vào ngữ cảnh; README tự cảnh báo Antigravity bị quá tải.
+- **`VoltAgent/awesome-openclaw-skills`.** Cùng chủ với `VoltAgent/awesome-agent-skills` (đã có trong catalog). Bảng "đã loại 7.215" là điểm cộng hiếm thấy, nhưng README nói rõ **"curated, not audited"** và khuyên xem báo cáo VirusTotal trên ClawHub trước khi cài. Mọi link đi qua `clawskills.sh` (site của VoltAgent) chứ không thẳng tới ClawHub, nên danh sách phụ thuộc một domain trung gian. Có khối quảng cáo Cloudways kèm mã giảm giá. Cài: `openclaw skills install <slug>` hoặc `npx clawhub install <slug>`.
+- **`github/awesome-copilot`.** Repo chính chủ GitHub, 2.947 commit, 1.044 commit từ 1/7/2026. **64 workflow**, trong đó `pr-risk-scan.yml` chạy `eng/pr-risk-scan.mjs` với 5 luật regex: lời lẽ "bỏ qua guardrail", `curl | bash`, `npx -y`/`uvx`, lệnh chạy gói động, phiên bản không ghim. Kết quả chỉ được **bình luận vào PR (soft gate)**, không chặn merge. Có cả `resource-staleness-report` và `duplicate-resource-detector` viết bằng GitHub Agentic Workflows. Cài: `copilot plugin install <plugin>@awesome-copilot`.
+- **`e2b-dev/awesome-ai-agents`.** Danh sách agent sớm nhất (6/2023) và được dẫn nhiều nhất. Đến 2026 nó là **tài liệu lịch sử**: hầu như không có mục mới sau 2024, nhiều agent trong list có thể đã ngừng (chưa kiểm từng mục), và commit gần đây chỉ gắn UTM cho link sản phẩm E2B. License CC BY-NC-SA (phi thương mại, chia sẻ tương tự), GitHub không nhận ra. Dùng để tra lịch sử, không để chọn công cụ.
+- **`aishwaryanr/awesome-generative-ai-guide`.** Kết hợp danh sách khoá, lộ trình theo cấp, cập nhật nghiên cứu và **ngân hàng câu hỏi phỏng vấn** (bổ sung cho §2c.4). Commit đều (60 từ 1/7). Mỗi khoá có ký hiệu miễn phí/ngoài/video và năm. Nhược: lẫn quảng cáo khoá trả phí của chính tác giả.
+- **`microsoft/mcp-for-beginners`.** 13 module từ khái niệm tới lab, README nói theo **MCP spec 2026-07-28** (khớp mục 04), có `02-Security`. 8.415 file là bản dịch tự động (`localizeflow[bot]` 831 commit), có `translations/vi` (cập nhật 19/9/2026, chậm hơn bản gốc). **Không có workflow CI nào**, nên 26 manifest mẫu trong `03-GettingStarted` (npm, pip, .NET, Maven) không được build tự động; mẫu TypeScript khai báo `"@modelcontextprotocol/sdk": ">=1.32.0"`, có thể kéo SDK v2 thay đổi API. Khi học, ghim phiên bản SDK trước khi chạy.
+
+### 2j.5 Mẫu chung rút ra
+
+1. **"Awesome list" đã thành kho nội dung**: 3/5 danh sách lớn mới (agentic-awesome-skills, awesome-copilot, openclaw-skills) chứa hoặc trỏ tới mã chạy được (skill, hook, plugin). Kiểm tra lúc này là kiểm **chuỗi cung ứng**, không chỉ kiểm link chết.
+2. **Cổng tự động ít khi chặn thật**: risk-scan của awesome-copilot chỉ bình luận; CI của openclaw-skills chỉ đòi link ClawHub. Lớp lọc thật nằm ở registry (ClawHub + VirusTotal) hoặc người duyệt.
+3. **Link rot thấp ở list còn sống, cao ở list đứng yên**: 10/10 ở openclaw-skills và sources của agentic-awesome-skills; 2/10 chết ở e2b. Ngày commit cuối không đủ: e2b "push 21/8/2026" nhưng nội dung dừng từ 2024.
+4. **License nội dung khác license code**: CC BY-NC-SA (e2b), MIT + CC BY (agentic-awesome-skills), MIT + CC0 (prompts.chat, mục 17). GitHub báo `NOASSERTION` hoặc sai; đọc file.
+5. **Sao tăng nhanh ở repo một người viết bằng agent**: ai-engineering-from-scratch (76k trong 7 tháng). Nội dung có CI kiểm cấu trúc nhưng chưa có đánh giá sư phạm độc lập.
+
+**Nguồn §2j:** GitHub search API 31/10/2026 (`repo:` cho repo cũ và mới; 7 truy vấn chủ đề) · `meta_all.json`/`status_all.json` đợt rà 31/10 · clone `--filter=blob:none` 7 repo, đọc: rohitg00/ai-engineering-from-scratch (LICENSE, README.md, i18n/, phases/ (cây), .github/workflows/{curriculum,translate}.yml, certifications/claude/README.md), sickn33/agentic-awesome-skills (LICENSE, LICENSE-CONTENT, package.json, README.md, tools/bin/install.js, .github/workflows/skill-review.yml, docs/sources/sources.md), VoltAgent/awesome-openclaw-skills (LICENSE, README.md, categories/*.md, .github/workflows/pr-check.yml, .claude/settings.local.json), github/awesome-copilot (LICENSE, README.md, .github/workflows/pr-risk-scan.yml, eng/pr-risk-scan.mjs, docs/README.agents.md), e2b-dev/awesome-ai-agents (LICENSE.md, README.md, lịch sử commit), aishwaryanr/awesome-generative-ai-guide (LICENSE.md, README.md, courses.md), microsoft/mcp-for-beginners (LICENSE, README.md, 03-GettingStarted/01-first-server/solution/typescript/package.json, .github/) · thử link bằng curl và `git ls-remote` 31/10/2026 · https://github.com/nilbuild/developer-roadmap · https://clawskills.sh · https://aiengineeringfromscratch.com
+
 ## 3. Tài liệu nền tảng nên đọc (thứ tự gợi ý)
 
 1. Anthropic – *Building Effective Agents* → *Effective Context Engineering for AI Agents* → *Writing tools for agents*.
