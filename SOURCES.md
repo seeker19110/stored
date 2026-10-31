@@ -714,3 +714,10 @@
 ## Bổ sung 2026-10-31p (thư viện cho X-Templates)
 
 - Clone `seeker19110/X-Templates` (shallow, HEAD `0b90230` 31/10/2026, v3.29.0): README.md, `framework/**` (grep ID cho 18 bài học), `.claude/{settings.json, agents/, skills/}`, `research/2026-10-30-stored-delta-and-web.md` (định dạng ba cột và khoảng commit đợt trước `9f87dd1..fa02a75`). Kết quả: [X-TEMPLATES.md](X-TEMPLATES.md), `data/xt-handoff.json` (18 mục: 3 missing, 7 shallower, 7 deeper, 1 not_adding).
+
+## Bổ sung 2026-10-31q (ảnh ba skill thiết kế: figma-use-motion, design-critique, design-handoff)
+
+- `figma/mcp-server-guide`: clone 31/10/2026 (88 commit, HEAD f3f264d 28/10/2026); GitHub search API 2.137★/211 fork, không có LICENSE; plugin.json v2.2.174; skills/{figma-use-motion, figma-implement-motion}, skills-figquery/figma-use-motion (tên cờ `metronome`). Mục 06 §7o; catalog +1 = 578.
+- `anthropics/knowledge-work-plugins`: clone 31/10/2026 (1.128 commit, HEAD 2574e29); 34k★/3,8k fork, Apache-2.0; design/{plugin.json v1.2.0, .mcp.json, CONNECTORS.md, skills/design-critique, skills/design-handoff}. Mục 06 §7o.
+- `openai/plugins`: clone 31/10/2026 (HEAD 0722921d); plugins/figma/skills/figma-use-motion (đồng bộ cuối 9/7/2026, thiếu 2 reference).
+- Tìm web 31/10/2026: skills.sh/figma/mcp-server-guide/figma-use-motion, tessl.io/registry/skills/github/openai/plugins/figma-use-motion, figma.com/blog/try-these-10-skills-and-show-off-your-own, uxplanet.org (claude-codes-new-design-plugin…, design-handoff-with-claude-code, chỉ đọc tóm tắt).

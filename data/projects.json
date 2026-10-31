@@ -2137,7 +2137,7 @@
       "license": "Apache-2.0",
       "stars": 29200,
       "open_source": true,
-      "notes": "123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12",
+      "notes": "123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12; plugin design v1.2.0 (7 skill: design-critique, design-handoff… prompt thuần, không sửa từ 13/3/2026) ở mục 06 §7o",
       "section": "20"
     },
     {
@@ -5855,6 +5855,16 @@
       "open_source": true,
       "notes": "283 persona subagent (Markdown) trong 18 phòng ban, installer cho 17 công cụ (Claude Code, Copilot, Cursor, Gemini…); 266/283 không khai tools: (thừa hưởng mọi công cụ); cài toàn bộ vào ~/.claude/agents ~15k token mô tả/phiên (ước lượng); cp ghi đè file trùng tên; 840 commit, 116 người đóng góp; ★ 28/10/2026 (shields), mục 20 §3j",
       "section": "20"
+    },
+    {
+      "name": "Figma MCP Server Guide (figma plugin + skills)",
+      "repo": "figma/mcp-server-guide",
+      "category": "design-skill",
+      "license": "Figma Developer Terms (không có LICENSE)",
+      "stars": 2137,
+      "open_source": false,
+      "notes": "Plugin figma v2.2.174 (Beta): Figma MCP + 16 skill (figma-use, figma-use-motion, figma-implement-motion, figma-design-to-code…); figma-use-motion tạo keyframe/animation style trên canvas, bị khoá theo cờ tính năng (metronome), kiểm bằng export_video tốn phí; Starter/View/Collab chỉ 6 lần gọi/tháng; bản sao trong openai/plugins cũ hơn; ★ 31/10/2026 (GitHub API), mục 06 §7o",
+      "section": "06"
     }
   ]
 }
