@@ -1862,12 +1862,12 @@
     },
     {
       "name": "Docusaurus",
-      "repo": "facebook/docusaurus",
+      "repo": "meta/docusaurus",
       "category": "docs",
       "license": "MIT",
-      "stars": null,
+      "stars": 66600,
       "open_source": true,
-      "notes": "",
+      "notes": "; repo chuyển sang meta/docusaurus, ★ 31/10/2026: ~66,6k",
       "section": "16"
     },
     {
@@ -1984,10 +1984,10 @@
       "name": "underthesea",
       "repo": "undertheseanlp/underthesea",
       "category": "vietnam",
-      "license": "GPL-3.0",
+      "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "v9.5.0 5/2026",
+      "notes": "v9.5.0 5/2026; đổi license GPL-3.0 → Apache-2.0 ngày 7/2/2026 (commit d9c9ad3)",
       "section": "18"
     },
     {
@@ -2017,8 +2017,9 @@
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "HF",
-      "section": "18"
+      "notes": "HF; là model Hugging Face, không phải repo GitHub (31/10/2026)",
+      "section": "18",
+      "url": "https://huggingface.co/Viet-Mistral/Vistral-7B-Chat"
     },
     {
       "name": "ADHD (adhd-agent)",
@@ -2510,7 +2511,7 @@
       "license": "–",
       "stars": null,
       "open_source": true,
-      "notes": "Tiền thân khung; AI-HARNESS-AND-COMPANY-SPEC ~2.700 dòng (C1–C7, P1–P12, R0–R9, G0–G8); rulesets-as-code",
+      "notes": "Tiền thân khung; AI-HARNESS-AND-COMPANY-SPEC ~2.700 dòng (C1–C7, P1–P12, R0–R9, G0–G8); rulesets-as-code; 31/10/2026: repo đổi tên X-Templates (cùng HEAD) (mục 23 §8b)",
       "section": "23"
     },
     {
@@ -2590,7 +2591,7 @@
       "license": "MIT",
       "stars": null,
       "open_source": true,
-      "notes": "Gateway LLM Node 3 dep: pool đa tài khoản, cooldown theo lỗi, OpenAI-compatible, MCP Streamable HTTP /mcp, Prometheus",
+      "notes": "Gateway LLM Node 3 dep: pool đa tài khoản, cooldown theo lỗi, OpenAI-compatible, MCP Streamable HTTP /mcp, Prometheus; 31/10/2026: repo đổi tên x-shop, mã cũ bị xoá 24/10 (commit 9311a21) và thay bằng webshop, LICENSE bị gỡ — mục này không còn đúng (mục 23 §8b)",
       "section": "23"
     },
     {
@@ -7045,6 +7046,146 @@
       "open_source": false,
       "notes": "Hook 12 harness (Claude Code, Codex, Copilot CLI, OpenClaw…), 40 policy chặn tool call + trace phiên; tạo 4/2026; telemetry PostHog mặc định (tắt FAILPROOFAI_TELEMETRY_DISABLED=1), README không nhắc; không phải OSI; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
       "section": "07"
+    },
+    {
+      "name": "Mermaid",
+      "repo": "mermaid-js/mermaid",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 90949,
+      "open_source": true,
+      "notes": "Sơ đồ dạng văn bản nhúng trong Markdown/docs; 37 thư mục sơ đồ, v12.2.0, mặc định securityLevel strict, 97/99 action ghim SHA; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "codebase-memory-mcp",
+      "repo": "DeusData/codebase-memory-mcp",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 47907,
+      "open_source": true,
+      "notes": "MCP server viết bằng C: đồ thị code + docs + hạ tầng, 17 tool, 162 grammar; installer kiểm sha256, release có attestation/SBOM/cosign; không telemetry; ~78% commit một người; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "GitBook (renderer mã mở)",
+      "repo": "GitbookIO/gitbook",
+      "category": "docs",
+      "license": "GPL-3.0",
+      "stars": 29082,
+      "open_source": true,
+      "notes": "Phần render site GitBook (Next.js): route llms.txt, llms-full.txt, Markdown từng trang, MCP; nội dung vẫn lấy từ API GitBook; GPL-3.0 buộc fork public; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "OpenWiki",
+      "repo": "langchain-ai/openwiki",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 17644,
+      "open_source": true,
+      "notes": "CLI + MCP viết wiki Markdown cho repo, Grounded Claims trỏ về dòng mã; telemetry PostHog bật mặc định (tắt DO_NOT_TRACK=1); từ 10/10/2026 chỉ còn bump dependency; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "Scalar",
+      "repo": "scalar/scalar",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 16356,
+      "open_source": true,
+      "notes": "API reference từ OpenAPI + API client offline + gói openapi-to-markdown cho LLM; PostHog chỉ là plugin tuỳ chọn; agent chat/proxy gọi dịch vụ Scalar; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "Repowise",
+      "repo": "repowise-dev/repowise",
+      "category": "codebase-knowledge",
+      "license": "AGPL-3.0",
+      "stars": 8072,
+      "open_source": true,
+      "notes": "Index code + git + test, dashboard, MCP, sinh docs (LLM tuỳ chọn); telemetry opt-out; cách cài bảo agent đọc URL setup.md; 0/56 action ghim SHA; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "code2prompt",
+      "repo": "mufeedvh/code2prompt",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 7747,
+      "open_source": true,
+      "notes": "CLI Rust gói repo thành một prompt có cây thư mục và đếm token; không quét secret như repomix; không commit từ 7/9/2026; ★ 31/10/2026 (GitHub API), mục 16 §2g",
+      "section": "16"
+    },
+    {
+      "name": "Vietnamese Provinces Database",
+      "repo": "thanglequoc/vietnamese-provinces-database",
+      "category": "vietnam",
+      "license": "MIT",
+      "stars": 1847,
+      "open_source": true,
+      "notes": "34 tỉnh, 3.321 xã/phường sau sáp nhập (v5.2.0 theo 388/NQ-UBTVQH16); SQL 6 CSDL, JSON, GIS, mã bưu chính; GIS lấy từ bản đồ NXB, quyền phân phối lại chưa xác minh; ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
+    },
+    {
+      "name": "Local AI OCR",
+      "repo": "th1nhhdk/local_ai_ocr",
+      "category": "vietnam",
+      "license": "Apache-2.0",
+      "stars": 888,
+      "open_source": true,
+      "notes": "App PySide6 chạy DeepSeek-OCR-2 cục bộ, ảnh/PDF → Markdown/Word; nạp repo model bên thứ ba với trust_remote_code, không ghim revision; ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
+    },
+    {
+      "name": "Elasticsearch Vietnamese Analysis",
+      "repo": "duydo/elasticsearch-analysis-vietnamese",
+      "category": "vietnam",
+      "license": "Apache-2.0",
+      "stars": 565,
+      "open_source": true,
+      "notes": "Plugin vi_analyzer cho Elasticsearch 9.x dùng bộ tách từ C++ của Cốc Cốc; hợp BM25 trong RAG lai tiếng Việt; ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
+    },
+    {
+      "name": "V-TTS",
+      "repo": "tronghieuit/v-tts",
+      "category": "speech",
+      "license": "CC-BY-NC-4.0",
+      "stars": 385,
+      "open_source": false,
+      "notes": "TTS tiếng Việt 74,8M tham số, 5 giọng, clone giọng zero-shot, app .exe không ký; license cấm thương mại (GitHub báo NOASSERTION); ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
+    },
+    {
+      "name": "ZeroTTS",
+      "repo": "zeroweight-ai/ZeroTTS",
+      "category": "speech",
+      "license": "MIT",
+      "stars": 308,
+      "open_source": true,
+      "notes": "TTS tiếng Việt zero-shot 202M tham số chạy ONNX trên CPU, code + weights MIT; benchmark tự làm không so VieNeu-TTS; ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
+    },
+    {
+      "name": "Vietnamese_LLMs (VietnamAIHub)",
+      "repo": "VietnamAIHub/Vietnamese_LLMs",
+      "category": "vietnam",
+      "license": "Apache-2.0",
+      "stars": 285,
+      "open_source": true,
+      "notes": "Bộ instruction tiếng Việt dịch máy + LLaMA-2 tinh chỉnh từ 2023; commit 10/2026 chỉ là CI; dùng làm tư liệu lịch sử; ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
+    },
+    {
+      "name": "Gipformer",
+      "repo": "ggroup-ai-lab/gipformer",
+      "category": "speech",
+      "license": null,
+      "stars": 156,
+      "open_source": false,
+      "notes": "ASR tiếng Việt Zipformer RNN-T 68M tham số, mạnh trên tập tổng đài riêng tư; README ghi MIT nhưng repo không có file LICENSE; ★ 31/10/2026 (GitHub API), mục 18 §4d",
+      "section": "18"
     }
   ]
 }

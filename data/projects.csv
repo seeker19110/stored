@@ -177,7 +177,7 @@ Ibis,ibis-project/ibis,,data,Apache-2.0,6688,True,15,; ★ 31/10/2026: 6.688 (Gi
 Data Formulator,microsoft/data-formulator,,data,MIT,,True,15,
 MindsDB,mindsdb/mindsdb,,data,Elastic-2.0,,True,15,
 Open Interpreter,openinterpreter/open-interpreter,,data,AGPL-3.0,,True,15,
-Docusaurus,facebook/docusaurus,,docs,MIT,,True,16,
+Docusaurus,meta/docusaurus,,docs,MIT,66600,True,16,"; repo chuyển sang meta/docusaurus, ★ 31/10/2026: ~66,6k"
 Material for MkDocs,squidfunk/mkdocs-material,,docs,MIT,,True,16,kế nhiệm Zensical
 Starlight,withastro/starlight,,docs,MIT,,True,16,
 Fumadocs,fuma-nama/fumadocs,,docs,MIT,,True,16,
@@ -189,10 +189,10 @@ awesome-chatgpt-prompts,f/awesome-chatgpt-prompts,,prompt,CC0,,True,17,
 system-prompts-and-models-of-ai-tools,x1xhlol/system-prompts-and-models-of-ai-tools,,prompt,,,True,17,bộ sưu tập system prompt
 TextGrad,zou-group/textgrad,,prompt,MIT,,True,17,
 PhoGPT,VinAIResearch/PhoGPT,,vietnam,custom,,True,18,VinAI
-underthesea,undertheseanlp/underthesea,,vietnam,GPL-3.0,,True,18,v9.5.0 5/2026
+underthesea,undertheseanlp/underthesea,,vietnam,Apache-2.0,,True,18,v9.5.0 5/2026; đổi license GPL-3.0 → Apache-2.0 ngày 7/2/2026 (commit d9c9ad3)
 VnCoreNLP,vncorenlp/VnCoreNLP,,vietnam,GPL-3.0,,True,18,
 awsome-vietnamese-nlp,vndee/awsome-vietnamese-nlp,,vietnam,,,True,18,
-Vistral,Viet-Mistral/Vistral-7B-Chat,,vietnam,Apache-2.0,,True,18,HF
+Vistral,Viet-Mistral/Vistral-7B-Chat,https://huggingface.co/Viet-Mistral/Vistral-7B-Chat,vietnam,Apache-2.0,,True,18,"HF; là model Hugging Face, không phải repo GitHub (31/10/2026)"
 ADHD (adhd-agent),UditAkhourii/adhd,,reasoning-skill,MIT,4491,True,03,Skill parallel divergent ideation (5 frame cô lập → critic → deepen top-3); 5–10× chi phí; eval tự báo cáo 5/6; link từ người dùng 2026-10-12; ★ 31/10/2026: 4.491 (GitHub API)
 neuroarxiv,UditAkhourii/neuroarxiv,,reasoning-skill,MIT,438,True,03,Skill check prior art arXiv; cùng tác giả ADHD; ★ 31/10/2026: 438 (GitHub API)
 OpenMontage,calesthio/OpenMontage,,agentic-video,AGPL-3.0,73950,True,19,"Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12; cập nhật mục 19 §1.6 (31/10/2026): 74k★, 500 commit, 13 pipeline/195 tool Python/157 skill .md; vá bảo mật showcase_card qua advisory riêng 28/10; Backlot từ chối Host header không tin cậy; badge 'Repo of the Day' là SVG tự lưu; 1 workflow CI; ★ 31/10/2026: 73.950 (GitHub API)"
@@ -241,7 +241,7 @@ claude-remotion-skill,haidrrrry/claude-remotion-skill,,motion-design,MIT,742,Tru
 motion-dev-animations-skill,199-biotechnologies/motion-dev-animations-skill,,motion-design,MIT,217,True,22,"Skill Motion.dev nhắm v11 (cũ), dừng 11/2025; ★ 31/10/2026: 217 (GitHub API)"
 motionmaxxing,Tejashmakwana/motionmaxxing,,motion-design,Apache-2.0,1193,True,22,"Skill director/critic: brand capture, protocol 10 bước, gate G0–G5, moments.jsonl 716 dòng; 2 commit 6/10/2026; ★ 31/10/2026: 1.193 (GitHub API)"
 projects-template,seeker19110/projects-template,,own-repo,–,,True,23,"Khung drop-in cho Claude Code/Codex/Gemini/Cursor: hook lifecycle có test, ba cổng máy cho /auto-complete (PR #287), 3-tier orchestration 2 trục, adopt-from-outside 3 cột, TRAPS.md; đọc 2026-10-12"
-xboss-manager,seeker19110/xboss-manager,,own-repo,–,,True,23,"Tiền thân khung; AI-HARNESS-AND-COMPANY-SPEC ~2.700 dòng (C1–C7, P1–P12, R0–R9, G0–G8); rulesets-as-code"
+xboss-manager,seeker19110/xboss-manager,,own-repo,–,,True,23,"Tiền thân khung; AI-HARNESS-AND-COMPANY-SPEC ~2.700 dòng (C1–C7, P1–P12, R0–R9, G0–G8); rulesets-as-code; 31/10/2026: repo đổi tên X-Templates (cùng HEAD) (mục 23 §8b)"
 case-study-ft41,seeker19110/case-study-ft41,,own-repo,– (private),,False,23,"Next.js 16 áp khung: CI/DevSecOps đầy đủ, Dependabot gom nhóm + WIP cap, model-rates.json; bẫy next dev ghi đè AGENTS.md"
 X-Agents,seeker19110/X-Agents,,own-repo,–,,True,23,"""Công ty AI"" Python: bus SQLite, gateway Antigravity, verified_by do code điền, eval record/replay CI, human gate 24h, keeper; đối chiếu 12 framework"
 X-Studio,seeker19110/X-Studio,,own-repo,–,,True,23,"Fork X-Agents cho xưởng video: 14 agent/24 skill, FFmpeg + edge-tts + Playwright, render cache SHA-256, MotionSpec, qc.py; research video factory, Wan/LTX-2"
@@ -249,7 +249,7 @@ qlkh,donghanhcungban/qlkh,,own-repo,–,,True,23,"Quản lý khóa học (Python
 dhcb,seeker19110/dhcb,,own-repo,–,,True,23,"Gia sư AI Việt⇄Anh production (Node 22, React 19, Postgres, Gemini Live): open-code-review rule.json, ECC chuyển thể chọn lọc, ProposedAction + safetyGuard, SePay; settings.json còn opusplan"
 Xgold,seeker19110/Xgold,,own-repo,–,,True,23,"App giá vàng/bạc (Next 16, Supabase): 15 ADR, Playwright CI 4 worker, Lighthouse CI, 3-tier orchestration"
 X-Scanner,seeker19110/X-Scanner,,own-repo,–,,True,23,App scan tài liệu Flutter; áp khung qua GitHub Action pin SHA; preamble giới hạn bằng chứng; thiếu auto-complete-guard.sh
-ai-gateway (seeker19110),seeker19110/ai-gateway,,llm-gateway,MIT,,True,23,"Gateway LLM Node 3 dep: pool đa tài khoản, cooldown theo lỗi, OpenAI-compatible, MCP Streamable HTTP /mcp, Prometheus"
+ai-gateway (seeker19110),seeker19110/ai-gateway,,llm-gateway,MIT,,True,23,"Gateway LLM Node 3 dep: pool đa tài khoản, cooldown theo lỗi, OpenAI-compatible, MCP Streamable HTTP /mcp, Prometheus; 31/10/2026: repo đổi tên x-shop, mã cũ bị xoá 24/10 (commit 9311a21) và thay bằng webshop, LICENSE bị gỡ — mục này không còn đúng (mục 23 §8b)"
 Plugin-4-Hermes,seeker19110/Plugin-4-Hermes,,own-repo,MIT,,True,23,Plugin model-provider cho Hermes Agent qua OAuth Google Antigravity; bridge :8100; vùng xám ToS
 Hermes-Agents,donghanhcungban/hermes-agents,,own-repo,MIT,,True,23,"Gói mở rộng Hermes Agent: provider Antigravity/claude -p/Codex CLI, engineering-workbench, grill-tab, 112 SKILL.md (vendor có provenance + tự viết: evidence-driven-delivery, project-harness-engineering, safe-ai-state-authority, ai-eval-evidence-integrity)"
 xboss,seeker19110/xboss,,own-repo,–,,True,23,"Quản lý tiến độ MEP/ACMV (Next 16 + Postgres raw SQL): vendor ECC có lock (ADR-0013), 5 hook bash có test, OCR review theo đường dẫn, /hoc, AI Delivery Loop, 17+ cổng tĩnh, mutation test tự viết, TRAPS/sổ nợ"
@@ -695,3 +695,17 @@ LangWatch,langwatch/langwatch,,eval-observability,Apache-2.0 (enterprise/ licens
 Pydantic Logfire (SDK),pydantic/logfire,,eval-observability,MIT (SDK; backend đóng),4528,True,07,"SDK Python bọc OpenTelemetry, che secret mặc định (scrubbing.py: password, secret, auth, api key, session, cookie); server đóng mã, cần dịch vụ Pydantic; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
 Coze Loop,coze-dev/coze-loop,,eval-observability,Apache-2.0,5798,True,07,"Bản mở Coze Loop (ByteDance): playground prompt, bộ eval, trace; model mặc định Volcengine Ark; workflow AI CR bắt buộc đã bị tắt bằng đổi nhánh kích hoạt; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
 FailproofAI,FailproofAI/failproofai,,eval-observability,MIT + Commons Clause,7103,False,07,"Hook 12 harness (Claude Code, Codex, Copilot CLI, OpenClaw…), 40 policy chặn tool call + trace phiên; tạo 4/2026; telemetry PostHog mặc định (tắt FAILPROOFAI_TELEMETRY_DISABLED=1), README không nhắc; không phải OSI; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
+Mermaid,mermaid-js/mermaid,,docs,MIT,90949,True,16,"Sơ đồ dạng văn bản nhúng trong Markdown/docs; 37 thư mục sơ đồ, v12.2.0, mặc định securityLevel strict, 97/99 action ghim SHA; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+codebase-memory-mcp,DeusData/codebase-memory-mcp,,codebase-knowledge,MIT,47907,True,16,"MCP server viết bằng C: đồ thị code + docs + hạ tầng, 17 tool, 162 grammar; installer kiểm sha256, release có attestation/SBOM/cosign; không telemetry; ~78% commit một người; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+GitBook (renderer mã mở),GitbookIO/gitbook,,docs,GPL-3.0,29082,True,16,"Phần render site GitBook (Next.js): route llms.txt, llms-full.txt, Markdown từng trang, MCP; nội dung vẫn lấy từ API GitBook; GPL-3.0 buộc fork public; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+OpenWiki,langchain-ai/openwiki,,codebase-knowledge,MIT,17644,True,16,"CLI + MCP viết wiki Markdown cho repo, Grounded Claims trỏ về dòng mã; telemetry PostHog bật mặc định (tắt DO_NOT_TRACK=1); từ 10/10/2026 chỉ còn bump dependency; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+Scalar,scalar/scalar,,docs,MIT,16356,True,16,"API reference từ OpenAPI + API client offline + gói openapi-to-markdown cho LLM; PostHog chỉ là plugin tuỳ chọn; agent chat/proxy gọi dịch vụ Scalar; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+Repowise,repowise-dev/repowise,,codebase-knowledge,AGPL-3.0,8072,True,16,"Index code + git + test, dashboard, MCP, sinh docs (LLM tuỳ chọn); telemetry opt-out; cách cài bảo agent đọc URL setup.md; 0/56 action ghim SHA; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+code2prompt,mufeedvh/code2prompt,,codebase-knowledge,MIT,7747,True,16,"CLI Rust gói repo thành một prompt có cây thư mục và đếm token; không quét secret như repomix; không commit từ 7/9/2026; ★ 31/10/2026 (GitHub API), mục 16 §2g"
+Vietnamese Provinces Database,thanglequoc/vietnamese-provinces-database,,vietnam,MIT,1847,True,18,"34 tỉnh, 3.321 xã/phường sau sáp nhập (v5.2.0 theo 388/NQ-UBTVQH16); SQL 6 CSDL, JSON, GIS, mã bưu chính; GIS lấy từ bản đồ NXB, quyền phân phối lại chưa xác minh; ★ 31/10/2026 (GitHub API), mục 18 §4d"
+Local AI OCR,th1nhhdk/local_ai_ocr,,vietnam,Apache-2.0,888,True,18,"App PySide6 chạy DeepSeek-OCR-2 cục bộ, ảnh/PDF → Markdown/Word; nạp repo model bên thứ ba với trust_remote_code, không ghim revision; ★ 31/10/2026 (GitHub API), mục 18 §4d"
+Elasticsearch Vietnamese Analysis,duydo/elasticsearch-analysis-vietnamese,,vietnam,Apache-2.0,565,True,18,"Plugin vi_analyzer cho Elasticsearch 9.x dùng bộ tách từ C++ của Cốc Cốc; hợp BM25 trong RAG lai tiếng Việt; ★ 31/10/2026 (GitHub API), mục 18 §4d"
+V-TTS,tronghieuit/v-tts,,speech,CC-BY-NC-4.0,385,False,18,"TTS tiếng Việt 74,8M tham số, 5 giọng, clone giọng zero-shot, app .exe không ký; license cấm thương mại (GitHub báo NOASSERTION); ★ 31/10/2026 (GitHub API), mục 18 §4d"
+ZeroTTS,zeroweight-ai/ZeroTTS,,speech,MIT,308,True,18,"TTS tiếng Việt zero-shot 202M tham số chạy ONNX trên CPU, code + weights MIT; benchmark tự làm không so VieNeu-TTS; ★ 31/10/2026 (GitHub API), mục 18 §4d"
+Vietnamese_LLMs (VietnamAIHub),VietnamAIHub/Vietnamese_LLMs,,vietnam,Apache-2.0,285,True,18,"Bộ instruction tiếng Việt dịch máy + LLaMA-2 tinh chỉnh từ 2023; commit 10/2026 chỉ là CI; dùng làm tư liệu lịch sử; ★ 31/10/2026 (GitHub API), mục 18 §4d"
+Gipformer,ggroup-ai-lab/gipformer,,speech,,156,False,18,"ASR tiếng Việt Zipformer RNN-T 68M tham số, mạnh trên tập tổng đài riêng tư; README ghi MIT nhưng repo không có file LICENSE; ★ 31/10/2026 (GitHub API), mục 18 §4d"
