@@ -721,3 +721,9 @@
 - `anthropics/knowledge-work-plugins`: clone 31/10/2026 (1.128 commit, HEAD 2574e29); 34k★/3,8k fork, Apache-2.0; design/{plugin.json v1.2.0, .mcp.json, CONNECTORS.md, skills/design-critique, skills/design-handoff}. Mục 06 §7o.
 - `openai/plugins`: clone 31/10/2026 (HEAD 0722921d); plugins/figma/skills/figma-use-motion (đồng bộ cuối 9/7/2026, thiếu 2 reference).
 - Tìm web 31/10/2026: skills.sh/figma/mcp-server-guide/figma-use-motion, tessl.io/registry/skills/github/openai/plugins/figma-use-motion, figma.com/blog/try-these-10-skills-and-show-off-your-own, uxplanet.org (claude-codes-new-design-plugin…, design-handoff-with-claude-code, chỉ đọc tóm tắt).
+
+## Bổ sung 2026-10-31r (nâng cấp mục 06 UI/UX)
+
+- Rà 72 repo mục 06 bằng GitHub search API (31/10/2026) + clone nông 20 repo §1–§6 lấy ngày commit nhánh chính; shields cho `stackblitz-labs/bolt.diy`. `Shopify/polaris` → `Shopify/polaris-react-archive` (archive 11/8/2026): infoq.com/news/2026/10/shopify-web-components, community.shopify.dev/t/is-polaris-shopify-com-going-to-be-shut-down/26216.
+- 18 repo mới (clone `--filter=blob:none` 31/10/2026): meta/astryx, shadcn-ui/lint, DouyinFE/semi-design, jnsahaj/tweakcn, GLips/Figma-Context-MCP, Manavarya09/design-extract, dembrandt/dembrandt, ZSeven-W/openpencil, benjitaylor/agentation, alchaincyf/huashu-design, google-labs-code/stitch-skills, heydamir/unslop, Owl-Listener/designer-skills, Jakubantalik/transitions.dev, thesysdev/openui, tambo-ai/tambo, CopilotKit/OpenIntelligentUI, JimLiu/baoyu-design. File đã đọc ghi ở cuối mục 06 §7p. Catalog +18 = 596.
+- Web: infoq.com/news/2026/09/meta-astryx-design-system, opensourceforu.com/2026/06/meta-open-sources-astryx, betterstack.com/community/guides/ai/astryx-meta-design-system, releases.sh/tailwind-css/headless-ui-releases.md, toolradar.com/compare/openui-vs-figma-for-agents.
