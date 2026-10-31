@@ -519,9 +519,9 @@
       "repo": "shadcn-ui/ui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 126000,
+      "stars": 127054,
       "open_source": true,
-      "notes": "Base UI mặc định từ 7/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h); ★ 19/10/2026 (shields)",
+      "notes": "Base UI mặc định từ 7/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h); ★ 19/10/2026 (shields); ★ 31/10/2026: 127.054 (GitHub API)",
       "section": "06"
     },
     {
@@ -529,9 +529,9 @@
       "repo": "mui/material-ui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 99000,
+      "stars": 99287,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 99.287 (GitHub API)",
       "section": "06"
     },
     {
@@ -539,9 +539,9 @@
       "repo": "radix-ui/primitives",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 19000,
+      "stars": 19457,
       "open_source": true,
-      "notes": "shields đọc thẳng GitHub ra 19k (trước ghi nguồn lệch 19k–35k); ★ 19/10/2026 (shields)",
+      "notes": "shields đọc thẳng GitHub ra 19k (trước ghi nguồn lệch 19k–35k); ★ 19/10/2026 (shields); ★ 31/10/2026: 19.457 (GitHub API)",
       "section": "06"
     },
     {
@@ -549,9 +549,9 @@
       "repo": "mui/base-ui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 11000,
+      "stars": 11271,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 11.271 (GitHub API)",
       "section": "06"
     },
     {
@@ -559,9 +559,9 @@
       "repo": "mantinedev/mantine",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 32000,
+      "stars": 31892,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 31.892 (GitHub API)",
       "section": "06"
     },
     {
@@ -569,9 +569,9 @@
       "repo": "vuetifyjs/vuetify",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 41000,
+      "stars": 41029,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 41.029 (GitHub API)",
       "section": "06"
     },
     {
@@ -579,9 +579,9 @@
       "repo": "storybookjs/storybook",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 91000,
+      "stars": 91417,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 91.417 (GitHub API)",
       "section": "06"
     },
     {
@@ -589,9 +589,9 @@
       "repo": "tailwindlabs/headlessui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 29000,
+      "stars": 28804,
       "open_source": true,
-      "notes": "Component headless của Tailwind Labs (React, Vue); commit cuối 13/4/2026; ★ 19/10/2026 (shields)",
+      "notes": "Component headless của Tailwind Labs (React, Vue); commit cuối 13/4/2026; ★ 19/10/2026 (shields); ★ 31/10/2026: 28.804 (GitHub API)",
       "section": "06"
     },
     {
@@ -599,9 +599,9 @@
       "repo": "nexu-io/open-design",
       "category": "design-tool",
       "license": "Apache-2.0",
-      "stars": 102000,
+      "stars": 105187,
       "open_source": true,
-      "notes": "\"Workspace agent thiết kế\" local-first (Apache-2.0): brief → prototype/slides/ảnh/HyperFrames motion; nối coding agent qua skills/CLI/MCP + runtime adapter; 151 gói design-system (manifest+DESIGN.md+tokens.css, có evidence provenance); telemetry opt-out + safety luôn bật (PRIVACY.md), fork không gửi; tên đổi từ \"Open Claude Design\"; Cloud/Go trả phí; 3.764 commit từ 28/4/2026, nhiều bot/agent; chưa audit mã sâu; ★ 19/10/2026 (trang GitHub ~102k; aggregator 76–91k); hồ sơ mục 06 §7k",
+      "notes": "\"Workspace agent thiết kế\" local-first (Apache-2.0): brief → prototype/slides/ảnh/HyperFrames motion; nối coding agent qua skills/CLI/MCP + runtime adapter; 151 gói design-system (manifest+DESIGN.md+tokens.css, có evidence provenance); telemetry opt-out + safety luôn bật (PRIVACY.md), fork không gửi; tên đổi từ \"Open Claude Design\"; Cloud/Go trả phí; 3.764 commit từ 28/4/2026, nhiều bot/agent; chưa audit mã sâu; ★ 19/10/2026 (trang GitHub ~102k; aggregator 76–91k); hồ sơ mục 06 §7k; ★ 31/10/2026: 105.187 (GitHub API)",
       "section": "06"
     },
     {
@@ -609,9 +609,9 @@
       "repo": "maxbogo/awesome-ai-tools-for-ui",
       "category": "awesome-list",
       "license": null,
-      "stars": 969,
+      "stars": 1002,
       "open_source": true,
-      "notes": "Danh sách công cụ AI cho UI (Taste Skill, Refactoring UI skill…); không ghi license; commit cuối 25/9/2026; ★ 19/10/2026 (shields)",
+      "notes": "Danh sách công cụ AI cho UI (Taste Skill, Refactoring UI skill…); không ghi license; commit cuối 25/9/2026; ★ 19/10/2026 (shields); ★ 31/10/2026: 1.002 (GitHub API)",
       "section": "06"
     },
     {
@@ -619,9 +619,9 @@
       "repo": "excalidraw/excalidraw",
       "category": "design-tool",
       "license": "MIT",
-      "stars": 134000,
+      "stars": 134935,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 134.935 (GitHub API)",
       "section": "06"
     },
     {
@@ -629,9 +629,9 @@
       "repo": "penpot/penpot",
       "category": "design-tool",
       "license": "MPL-2.0",
-      "stars": 61000,
+      "stars": 61929,
       "open_source": true,
-      "notes": "Figma alternative; ★ 19/10/2026 (shields)",
+      "notes": "Figma alternative; ★ 19/10/2026 (shields); ★ 31/10/2026: 61.929 (GitHub API)",
       "section": "06"
     },
     {
@@ -639,9 +639,9 @@
       "repo": "tldraw/tldraw",
       "category": "design-tool",
       "license": "tldraw license",
-      "stars": 51000,
+      "stars": 51170,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 51.170 (GitHub API)",
       "section": "06"
     },
     {
@@ -649,9 +649,9 @@
       "repo": "onlook-dev/onlook",
       "category": "design-tool",
       "license": "Apache-2.0",
-      "stars": 27000,
+      "stars": 27064,
       "open_source": true,
-      "notes": "Visual editor React; commit cuối 21/7/2026; ★ 19/10/2026 (shields)",
+      "notes": "Visual editor React; commit cuối 21/7/2026; ★ 19/10/2026 (shields); ★ 31/10/2026: 27.064 (GitHub API)",
       "section": "06"
     },
     {
@@ -702,9 +702,9 @@
       "repo": "Leonxlnx/taste-skill",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 106000,
+      "stars": 106995,
       "open_source": true,
-      "notes": "Skill chống \"AI slop\" cho frontend; v2 có draw.mjs (chia 3/20 hướng từ thư viện rút từ nghiên cứu 247 site) + inspect.mjs (inspector Chrome/Edge qua CDP, không cần Playwright, đo + screenshot 1440/768/390px) + lint.mjs; tự chạy tests/draw/lint OK 19/10/2026 (inspector cần Chrome, chưa chạy end-to-end tại đây); có app TasteCode + tài trợ; 13 skill; ★ 19/10/2026 (shields/trang GitHub 98,9k); hồ sơ mục 06 §7j; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "notes": "Skill chống \"AI slop\" cho frontend; v2 có draw.mjs (chia 3/20 hướng từ thư viện rút từ nghiên cứu 247 site) + inspect.mjs (inspector Chrome/Edge qua CDP, không cần Playwright, đo + screenshot 1440/768/390px) + lint.mjs; tự chạy tests/draw/lint OK 19/10/2026 (inspector cần Chrome, chưa chạy end-to-end tại đây); có app TasteCode + tài trợ; 13 skill; ★ 19/10/2026 (shields/trang GitHub 98,9k); hồ sơ mục 06 §7j; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); ★ 31/10/2026: 106.995 (GitHub API)",
       "section": "06"
     },
     {
@@ -712,9 +712,9 @@
       "repo": "emilkowalski/skills",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 51327,
+      "stars": 52418,
       "open_source": true,
-      "notes": "Skills for Designers and Engineers (Emil Kowalski — sonner/vaul): animation, design, code, performance cho design engineer; npx skills add; Claude Code/Codex/Cursor; 51.327★/3.001 fork (29/10/2026, API GitHub); ảnh infographic §7m.1",
+      "notes": "Skills for Designers and Engineers (Emil Kowalski — sonner/vaul): animation, design, code, performance cho design engineer; npx skills add; Claude Code/Codex/Cursor; 51.327★/3.001 fork (29/10/2026, API GitHub); ảnh infographic §7m.1; ★ 31/10/2026: 52.418 (GitHub API)",
       "section": "06"
     },
     {
@@ -722,9 +722,9 @@
       "repo": "evondev/evondevKit",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 432,
+      "stars": 437,
       "open_source": true,
-      "notes": "Skill ui-ux tiếng Việt cho dashboard/app của Tuấn Trần (evondev): brief → 2–3 wireframe → dựng bằng component sẵn có; probe.mjs (~4.700 dòng, Playwright) đo tràn/cắt chữ/tương phản ở 375–1920px và so với wireframe; SKILL.md 44,5 KB (~11k token) + references ~1,2 MB; Beta, '70 prompt' tự khai; không CI, không telemetry (check-update 1 lần/ngày, tắt EVONDEVKIT_NO_UPDATE_CHECK=1); 259 commit một tác giả, 258 trailer Claude, tạo 20/9/2026; plugin evon v0.3.27; 432★ (31/10/2026, shields); hồ sơ mục 06 §7n",
+      "notes": "Skill ui-ux tiếng Việt cho dashboard/app của Tuấn Trần (evondev): brief → 2–3 wireframe → dựng bằng component sẵn có; probe.mjs (~4.700 dòng, Playwright) đo tràn/cắt chữ/tương phản ở 375–1920px và so với wireframe; SKILL.md 44,5 KB (~11k token) + references ~1,2 MB; Beta, '70 prompt' tự khai; không CI, không telemetry (check-update 1 lần/ngày, tắt EVONDEVKIT_NO_UPDATE_CHECK=1); 259 commit một tác giả, 258 trailer Claude, tạo 20/9/2026; plugin evon v0.3.27; 432★ (31/10/2026, shields); hồ sơ mục 06 §7n; ★ 31/10/2026: 437 (GitHub API)",
       "section": "06"
     },
     {
@@ -732,9 +732,9 @@
       "repo": "DavidHDev/canvas-ui",
       "category": "ui-library",
       "license": "NOASSERTION",
-      "stars": 5166,
+      "stars": 5180,
       "open_source": true,
-      "notes": "Thư viện canvas component (cùng tác giả React Bits): html-in-canvas vẽ DOM thật + shader WebGL, giữ chọn chữ/link; registry MCP-ready (shadcn); React/Vue/Svelte/vanilla; license phi chuẩn (đọc LICENSE trước khi dùng TM); 5.166★ (29/10/2026, API GitHub); ảnh infographic §7m.2",
+      "notes": "Thư viện canvas component (cùng tác giả React Bits): html-in-canvas vẽ DOM thật + shader WebGL, giữ chọn chữ/link; registry MCP-ready (shadcn); React/Vue/Svelte/vanilla; license phi chuẩn (đọc LICENSE trước khi dùng TM); 5.166★ (29/10/2026, API GitHub); ảnh infographic §7m.2; ★ 31/10/2026: 5.180 (GitHub API)",
       "section": "06"
     },
     {
@@ -742,9 +742,9 @@
       "repo": "CopilotKit/CopilotKit",
       "category": "agentic-ui",
       "license": "MIT",
-      "stars": 38000,
+      "stars": 38435,
       "open_source": true,
-      "notes": "$27M 5/2026; ★ 19/10/2026 (shields)",
+      "notes": "$27M 5/2026; ★ 19/10/2026 (shields); ★ 31/10/2026: 38.435 (GitHub API)",
       "section": "06"
     },
     {
@@ -752,9 +752,9 @@
       "repo": "assistant-ui/assistant-ui",
       "category": "agentic-ui",
       "license": "MIT",
-      "stars": 13000,
+      "stars": 12874,
       "open_source": true,
-      "notes": "★ 19/10/2026 (shields)",
+      "notes": "★ 19/10/2026 (shields); ★ 31/10/2026: 12.874 (GitHub API)",
       "section": "06"
     },
     {
@@ -762,9 +762,9 @@
       "repo": "vercel/ai",
       "category": "agentic-ui",
       "license": "Apache-2.0",
-      "stars": 27000,
+      "stars": 27655,
       "open_source": true,
-      "notes": "+ AI Elements; ★ 19/10/2026 (shields)",
+      "notes": "+ AI Elements; ★ 19/10/2026 (shields); ★ 31/10/2026: 27.655 (GitHub API)",
       "section": "06"
     },
     {
@@ -2165,9 +2165,9 @@
       "repo": "wheresryan22/anatomy",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 3800,
+      "stars": 23331,
       "open_source": true,
-      "notes": "Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12",
+      "notes": "Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12; ★ 31/10/2026: 23.331 (GitHub API)",
       "section": "06"
     },
     {
@@ -2175,19 +2175,19 @@
       "repo": "wheresryan22/anatomy-figures",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 10,
+      "stars": 26,
       "open_source": true,
-      "notes": "51–52 máy isometric dạng React/custom elements",
+      "notes": "51–52 máy isometric dạng React/custom elements; ★ 31/10/2026: 26 (GitHub API)",
       "section": "06"
     },
     {
       "name": "ui-skills",
       "repo": "ibelick/ui-skills",
       "category": "design-skill",
-      "license": null,
-      "stars": 9400,
+      "license": "MIT",
+      "stars": 10418,
       "open_source": true,
-      "notes": "Directory skill UI/visual/motion cho coding agent",
+      "notes": "Directory skill UI/visual/motion cho coding agent; ★ 31/10/2026: 10.418 (GitHub API)",
       "section": "06"
     },
     {
@@ -4578,9 +4578,9 @@
       "repo": "cathrynlavery/diagram-design",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 51800,
+      "stars": 63470,
       "open_source": true,
-      "notes": "Skill sơ đồ HTML+SVG theo brand, 44 loại, cổng onboarding brand, 30 verifier, không telemetry (chỉ Google Fonts); 6+ host; ★ đọc 12/10/2026",
+      "notes": "Skill sơ đồ HTML+SVG theo brand, 44 loại, cổng onboarding brand, 30 verifier, không telemetry (chỉ Google Fonts); 6+ host; ★ đọc 12/10/2026; ★ 31/10/2026: 63.470 (GitHub API)",
       "section": "06"
     },
     {
@@ -4769,9 +4769,9 @@
       "repo": "VoltAgent/official-design-md",
       "category": "awesome-list",
       "license": "MIT",
-      "stars": 519,
+      "stars": 528,
       "open_source": true,
-      "notes": "11 DESIGN.md chính chủ; 1/11 qua linter Google sạch; mục VoltAgent là bản trích xuất đăng lại (13/10/2026)",
+      "notes": "11 DESIGN.md chính chủ; 1/11 qua linter Google sạch; mục VoltAgent là bản trích xuất đăng lại (13/10/2026); ★ 31/10/2026: 528 (GitHub API)",
       "section": "06"
     },
     {
@@ -4779,9 +4779,9 @@
       "repo": "VoltAgent/awesome-design-md",
       "category": "awesome-list",
       "license": "MIT",
-      "stars": 121000,
+      "stars": 124854,
       "open_source": true,
-      "notes": "84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026)",
+      "notes": "84 DESIGN.md trích xuất từ website; getdesign.md bán bản riêng $39 (13/10/2026); ★ 31/10/2026: 124.854 (GitHub API)",
       "section": "06"
     },
     {
@@ -4789,9 +4789,9 @@
       "repo": "google-labs-code/design.md",
       "category": "protocol",
       "license": "Apache-2.0",
-      "stars": 28000,
+      "stars": 28675,
       "open_source": true,
-      "notes": "Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026); ★ 19/10/2026 (shields)",
+      "notes": "Đặc tả alpha từ Stitch, mở 21/4/2026; CLI lint/diff/export 0.4.0 (13/10/2026); ★ 19/10/2026 (shields); ★ 31/10/2026: 28.675 (GitHub API)",
       "section": "06"
     },
     {
@@ -4980,9 +4980,9 @@
       "repo": "plugin87/ux-ui-agent-skills",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 2000,
+      "stars": 3066,
       "open_source": true,
-      "notes": "25 skill + 52 cổng đo trên trình duyệt thật (script axe/contrast/verify_*, tự chạy 49/52 không phải 52/52 như README); 138 design system phần lớn chép từ awesome-design-md + bergside/awesome-design-skills không ghi nguồn MIT; gates & hook là thật đáng học, persona \"15y\" không đo được; rà lại 18/10/2026 (ảnh PASSED ALL GATES): HEAD 62092bd/v2.9.8 không đổi, ★ ~2,0k/218 fork",
+      "notes": "25 skill + 52 cổng đo trên trình duyệt thật (script axe/contrast/verify_*, tự chạy 49/52 không phải 52/52 như README); 138 design system phần lớn chép từ awesome-design-md + bergside/awesome-design-skills không ghi nguồn MIT; gates & hook là thật đáng học, persona \"15y\" không đo được; rà lại 18/10/2026 (ảnh PASSED ALL GATES): HEAD 62092bd/v2.9.8 không đổi, ★ ~2,0k/218 fork; ★ 31/10/2026: 3.066 (GitHub API)",
       "section": "06"
     },
     {
@@ -4990,9 +4990,9 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 143000,
+      "stars": 143399,
       "open_source": true,
-      "notes": "Kho tra cứu CSV + BM25 sinh design system theo loại sản phẩm (79 style searchable, 192 palette/loại sản phẩm, 74 font pairing, 22 stack) + 6 skill phụ; CLI cho 19 agent; 164/164 test pass tự chạy; không có cổng đo render; provenance phủ 51/192; ★ trang GitHub 18/10/2026, mục 06 §7g.2; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "notes": "Kho tra cứu CSV + BM25 sinh design system theo loại sản phẩm (79 style searchable, 192 palette/loại sản phẩm, 74 font pairing, 22 stack) + 6 skill phụ; CLI cho 19 agent; 164/164 test pass tự chạy; không có cổng đo render; provenance phủ 51/192; ★ trang GitHub 18/10/2026, mục 06 §7g.2; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); ★ 31/10/2026: 143.399 (GitHub API)",
       "section": "06"
     },
     {
@@ -5011,9 +5011,9 @@
       "repo": "s0xDk/refactoring-ui-skill",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 646,
+      "stars": 678,
       "open_source": true,
-      "notes": "Skill quy tắc sách Refactoring UI (thang spacing/type/màu HSL/bóng, 9 hard rule, bảng chẩn đoán) + tokens.css có dark mode; tương phản light + dark mode tính lại khớp chú thích (19/10/2026); 2 commit 27/8/2026; trùng tên lovropodobnik (không LICENSE); ★ 18/10/2026, mục 06 §7g.4",
+      "notes": "Skill quy tắc sách Refactoring UI (thang spacing/type/màu HSL/bóng, 9 hard rule, bảng chẩn đoán) + tokens.css có dark mode; tương phản light + dark mode tính lại khớp chú thích (19/10/2026); 2 commit 27/8/2026; trùng tên lovropodobnik (không LICENSE); ★ 18/10/2026, mục 06 §7g.4; ★ 31/10/2026: 678 (GitHub API)",
       "section": "06"
     },
     {
@@ -5021,9 +5021,9 @@
       "repo": "bergside/awesome-design-skills",
       "category": "awesome-list",
       "license": "MIT",
-      "stars": 3200,
+      "stars": 3429,
       "open_source": true,
-      "notes": "67 cặp SKILL.md + DESIGN.md theo style, kéo bằng CLI typeui.sh; 81% dòng là khuôn chung, 17/67 cùng primary #3B82F6, 40/67 primary <4,5:1 với chữ trắng; nguồn của 51 style trong XIAS; ★ 18/10/2026, mục 06 §7g.5",
+      "notes": "67 cặp SKILL.md + DESIGN.md theo style, kéo bằng CLI typeui.sh; 81% dòng là khuôn chung, 17/67 cùng primary #3B82F6, 40/67 primary <4,5:1 với chữ trắng; nguồn của 51 style trong XIAS; ★ 18/10/2026, mục 06 §7g.5; ★ 31/10/2026: 3.429 (GitHub API)",
       "section": "06"
     },
     {
@@ -5031,9 +5031,9 @@
       "repo": "miqdadbadjuber/anti-slop",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 6500,
+      "stars": 7761,
       "open_source": true,
-      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i",
+      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i; ★ 31/10/2026: 7.761 (GitHub API)",
       "section": "06"
     },
     {
@@ -5041,9 +5041,9 @@
       "repo": "markmead/hyperui",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 12300,
+      "stars": 12274,
       "open_source": true,
-      "notes": "306 mẫu HTML+Tailwind bản sáng (marketing 106, application 163, neobrutalism 37) + 12 trang template; copy-paste, không gói npm; ★ 18/10/2026, mục 06 §7h",
+      "notes": "306 mẫu HTML+Tailwind bản sáng (marketing 106, application 163, neobrutalism 37) + 12 trang template; copy-paste, không gói npm; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 12.274 (GitHub API)",
       "section": "06"
     },
     {
@@ -5051,9 +5051,9 @@
       "repo": "once-ui-system/core",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 268,
+      "stars": 269,
       "open_source": true,
-      "notes": "175 block Next.js (Hero 14, Features 18, Sidebar 9, Login, Dashboard, Pricing); template magic-portfolio là CC BY-NC 4.0 cấm thương mại; ★ 18/10/2026, mục 06 §7h",
+      "notes": "175 block Next.js (Hero 14, Features 18, Sidebar 9, Login, Dashboard, Pricing); template magic-portfolio là CC BY-NC 4.0 cấm thương mại; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 269 (GitHub API)",
       "section": "06"
     },
     {
@@ -5061,9 +5061,9 @@
       "repo": "htmlstreamofficial/preline",
       "category": "layout-template",
       "license": "MIT + Preline UI Fair Use License",
-      "stars": 6500,
+      "stars": 6515,
       "open_source": true,
-      "notes": "Repo chỉ 29 plugin JS + 5 template; \"204 free blocks\" nằm trên preline.co; Fair Use cấm competing products, tác giả có quyền chấm dứt; Pro 740 block; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Repo chỉ 29 plugin JS + 5 template; \"204 free blocks\" nằm trên preline.co; Fair Use cấm competing products, tác giả có quyền chấm dứt; Pro 740 block; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 6.515 (GitHub API)",
       "section": "06"
     },
     {
@@ -5071,9 +5071,9 @@
       "repo": "themesberg/flowbite",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 9400,
+      "stars": 9381,
       "open_source": true,
-      "notes": "Lõi component Tailwind MIT; Blocks 400+ section và dashboard thuộc Flowbite Pro trả phí; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Lõi component Tailwind MIT; Blocks 400+ section và dashboard thuộc Flowbite Pro trả phí; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 9.381 (GitHub API)",
       "section": "06"
     },
     {
@@ -5081,9 +5081,9 @@
       "repo": "themesberg/flowbite-admin-dashboard",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 2900,
+      "stars": 2897,
       "open_source": true,
-      "notes": "17 trang (auth 5, CRUD, layout sidebar/stacked, 404/500, settings), Hugo + Tailwind; commit cuối 20/3/2025; ★ 18/10/2026, mục 06 §7h",
+      "notes": "17 trang (auth 5, CRUD, layout sidebar/stacked, 404/500, settings), Hugo + Tailwind; commit cuối 20/3/2025; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 2.897 (GitHub API)",
       "section": "06"
     },
     {
@@ -5091,9 +5091,9 @@
       "repo": "saadeghi/daisyui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 42600,
+      "stars": 42717,
       "open_source": true,
-      "notes": "Plugin Tailwind 61 component, không có trang mẫu; template đầy đủ bán ở daisyui.com/store (dashboard từ $69); ★ 18/10/2026, mục 06 §7h",
+      "notes": "Plugin Tailwind 61 component, không có trang mẫu; template đầy đủ bán ở daisyui.com/store (dashboard từ $69); ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 42.717 (GitHub API)",
       "section": "06"
     },
     {
@@ -5111,9 +5111,9 @@
       "repo": "satnaing/shadcn-admin",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 15800,
+      "stars": 16339,
       "open_source": true,
-      "notes": "Starter admin Vite + React 19 + TanStack Router, 31 route (auth/OTP, lỗi 5, dashboard, tasks, users, chats, settings); commit cuối 11/6/2026; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Starter admin Vite + React 19 + TanStack Router, 31 route (auth/OTP, lỗi 5, dashboard, tasks, users, chats, settings); commit cuối 11/6/2026; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 16.339 (GitHub API)",
       "section": "06"
     },
     {
@@ -5121,9 +5121,9 @@
       "repo": "Kiranism/next-shadcn-dashboard-starter",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 7100,
+      "stars": 7207,
       "open_source": true,
-      "notes": "Starter Next 16 + shadcn, 28 page (overview, CRUD, kanban, chat, billing, form); phụ thuộc Clerk; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Starter Next 16 + shadcn, 28 page (overview, CRUD, kanban, chat, billing, form); phụ thuộc Clerk; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 7.207 (GitHub API)",
       "section": "06"
     },
     {
@@ -5131,9 +5131,9 @@
       "repo": "tremorlabs/tremor-blocks",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 545,
+      "stars": 546,
       "open_source": true,
-      "notes": "323 block dashboard (page shell, KPI, bảng, billing, login, onboarding); Vercel mua Tremor 1/2025 và mở free; chỉ 3 commit, dừng 1/2025; ★ 18/10/2026, mục 06 §7h",
+      "notes": "323 block dashboard (page shell, KPI, bảng, billing, login, onboarding); Vercel mua Tremor 1/2025 và mở free; chỉ 3 commit, dừng 1/2025; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 546 (GitHub API)",
       "section": "06"
     },
     {
@@ -5141,9 +5141,9 @@
       "repo": "tremorlabs/tremor",
       "category": "ui-library",
       "license": "Apache-2.0",
-      "stars": 3700,
+      "stars": 3684,
       "open_source": true,
-      "notes": "39 component chart/dashboard React 18 + Recharts 2; commit cuối 10/10/2025; ★ 18/10/2026, mục 06 §7h",
+      "notes": "39 component chart/dashboard React 18 + Recharts 2; commit cuối 10/10/2025; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 3.684 (GitHub API)",
       "section": "06"
     },
     {
@@ -5151,9 +5151,9 @@
       "repo": "TailAdmin/free-react-tailwind-admin-dashboard",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 1300,
+      "stars": 1292,
       "open_source": true,
-      "notes": "18 trang, 1 dashboard ecommerce; bản Pro 7 dashboard trả phí; ★ 18/10/2026, mục 06 §7h",
+      "notes": "18 trang, 1 dashboard ecommerce; bản Pro 7 dashboard trả phí; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 1.292 (GitHub API)",
       "section": "06"
     },
     {
@@ -5161,9 +5161,9 @@
       "repo": "refinedev/refine",
       "category": "layout-template",
       "license": "MIT",
-      "stars": 35900,
+      "stars": 35969,
       "open_source": true,
-      "notes": "Framework CRUD/admin React; 6 template theo UI kit (antd, mui, mantine, chakra, headless) + app CRM; npm create refine-app; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Framework CRUD/admin React; 6 template theo UI kit (antd, mui, mantine, chakra, headless) + app CRM; npm create refine-app; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 35.969 (GitHub API)",
       "section": "06"
     },
     {
@@ -5171,9 +5171,9 @@
       "repo": "founded-labs/react-native-reusables",
       "category": "mobile",
       "license": "MIT",
-      "stars": 8700,
+      "stars": 8713,
       "open_source": true,
-      "notes": "shadcn cho React Native: 32 component (NativeWind/Uniwind), 7 block auth có bản Clerk; ★ 18/10/2026, mục 06 §7h",
+      "notes": "shadcn cho React Native: 32 component (NativeWind/Uniwind), 7 block auth có bản Clerk; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 8.713 (GitHub API)",
       "section": "06"
     },
     {
@@ -5181,9 +5181,9 @@
       "repo": "tamagui/tamagui",
       "category": "mobile",
       "license": "MIT",
-      "stars": 14300,
+      "stars": 14292,
       "open_source": true,
-      "notes": "UI RN + web; Bento ~70 file: shell (tab bar, drawer, sidebar), form layout, list, ecommerce, nay miễn phí; v3; ★ 18/10/2026, mục 06 §7h",
+      "notes": "UI RN + web; Bento ~70 file: shell (tab bar, drawer, sidebar), form layout, list, ecommerce, nay miễn phí; v3; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 14.292 (GitHub API)",
       "section": "06"
     },
     {
@@ -5191,9 +5191,9 @@
       "repo": "gluestack/gluestack-ui",
       "category": "mobile",
       "license": "MIT",
-      "stars": 5300,
+      "stars": 5340,
       "open_source": true,
-      "notes": "v3: 61 component RN + web trên NativeWind, 4 starter kit; LICENSE chỉ trong packages/gluestack-ui, gốc repo không có; ★ 18/10/2026, mục 06 §7h",
+      "notes": "v3: 61 component RN + web trên NativeWind, 4 starter kit; LICENSE chỉ trong packages/gluestack-ui, gốc repo không có; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 5.340 (GitHub API)",
       "section": "06"
     },
     {
@@ -5201,9 +5201,9 @@
       "repo": "nativewind/nativewind",
       "category": "mobile",
       "license": "MIT",
-      "stars": 8100,
+      "stars": 8117,
       "open_source": true,
-      "notes": "Tailwind cho React Native, nền của RNR và gluestack; v4 ổn định, v5 RC; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Tailwind cho React Native, nền của RNR và gluestack; v4 ổn định, v5 RC; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 8.117 (GitHub API)",
       "section": "06"
     },
     {
@@ -5211,9 +5211,9 @@
       "repo": "flutter/samples",
       "category": "mobile",
       "license": "BSD-3-Clause",
-      "stars": 19300,
+      "stars": 19281,
       "open_source": true,
-      "notes": "Mẫu chính thức Flutter: material_3_demo, cupertino_gallery, platform_design, compass_app; flutter_adaptive_scaffold đã discontinued; ★ 18/10/2026, mục 06 §7h",
+      "notes": "Mẫu chính thức Flutter: material_3_demo, cupertino_gallery, platform_design, compass_app; flutter_adaptive_scaffold đã discontinued; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 19.281 (GitHub API)",
       "section": "06"
     },
     {
@@ -5221,9 +5221,9 @@
       "repo": "mitesh77/Best-Flutter-UI-Templates",
       "category": "mobile",
       "license": "MIT",
-      "stars": 22800,
+      "stars": 22852,
       "open_source": true,
-      "notes": "5 app demo UI Flutter, không kiến trúc; commit cuối 16/12/2025; ★ 18/10/2026, mục 06 §7h",
+      "notes": "5 app demo UI Flutter, không kiến trúc; commit cuối 16/12/2025; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 22.852 (GitHub API)",
       "section": "06"
     },
     {
@@ -5231,9 +5231,9 @@
       "repo": "abuanwar072/Flutter-Responsive-Admin-Panel-or-Dashboard",
       "category": "mobile",
       "license": "MIT",
-      "stars": 7100,
+      "stars": 7123,
       "open_source": true,
-      "notes": "1 layout dashboard responsive (side menu + dashboard), 17 file dart; ★ 18/10/2026, mục 06 §7h",
+      "notes": "1 layout dashboard responsive (side menu + dashboard), 17 file dart; ★ 18/10/2026, mục 06 §7h; ★ 31/10/2026: 7.123 (GitHub API)",
       "section": "06"
     },
     {
@@ -5271,9 +5271,9 @@
       "repo": "storytold/figcraft",
       "category": "design-tool",
       "license": "MIT OR Apache-2.0",
-      "stars": 2700,
+      "stars": 3966,
       "open_source": true,
-      "notes": "Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ 616 ngày 14/10 → ~2,7k ngày 19/10/2026 (shields)",
+      "notes": "Dựng lại Figma bằng Rust, 204k dòng sau 5 ngày, 72% commit Claude đồng tác giả; CI chạy test (tự chạy 1.092 pass), CLI/MCP render headless; chưa kiểm trên file Figma thật; ★ 616 ngày 14/10 → ~2,7k ngày 19/10/2026 (shields); ★ 31/10/2026: 3.966 (GitHub API)",
       "section": "06"
     },
     {
@@ -5291,9 +5291,9 @@
       "repo": "umami-software/zen",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 58,
+      "stars": 59,
       "open_source": true,
-      "notes": "Design system của Umami: quy ước shadcn, primitive Base UI, Tailwind v4; npm @umami/react-zen 0.255.0; có SKILL.md cho agent; ★ 16/10/2026",
+      "notes": "Design system của Umami: quy ước shadcn, primitive Base UI, Tailwind v4; npm @umami/react-zen 0.255.0; có SKILL.md cho agent; ★ 16/10/2026; ★ 31/10/2026: 59 (GitHub API)",
       "section": "06"
     },
     {
@@ -5301,9 +5301,9 @@
       "repo": "ant-design/ant-design",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 100000,
+      "stars": 100024,
       "open_source": true,
-      "notes": "Component đầy đủ cho ứng dụng doanh nghiệp; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026",
+      "notes": "Component đầy đủ cho ứng dụng doanh nghiệp; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026; ★ 31/10/2026: 100.024 (GitHub API)",
       "section": "06"
     },
     {
@@ -5311,9 +5311,9 @@
       "repo": "chakra-ui/chakra-ui",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 41000,
+      "stars": 40711,
       "open_source": true,
-      "notes": "Component có style; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026",
+      "notes": "Component có style; MCP theo bài tổng hợp (chưa xác minh); ★ 16/10/2026; ★ 31/10/2026: 40.711 (GitHub API)",
       "section": "06"
     },
     {
@@ -5321,9 +5321,9 @@
       "repo": "chakra-ui/ark",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 5400,
+      "stars": 5449,
       "open_source": true,
-      "notes": "Headless của đội Chakra; ★ 16/10/2026",
+      "notes": "Headless của đội Chakra; ★ 16/10/2026; ★ 31/10/2026: 5.449 (GitHub API)",
       "section": "06"
     },
     {
@@ -5331,9 +5331,9 @@
       "repo": "heroui-inc/heroui",
       "category": "ui-library",
       "license": "Apache-2.0",
-      "stars": 31000,
+      "stars": 31076,
       "open_source": true,
-      "notes": "React + Tailwind; ★ 16/10/2026",
+      "notes": "React + Tailwind; ★ 16/10/2026; ★ 31/10/2026: 31.076 (GitHub API)",
       "section": "06"
     },
     {
@@ -5341,9 +5341,9 @@
       "repo": "microsoft/fluentui",
       "category": "ui-library",
       "license": null,
-      "stars": 20000,
+      "stars": 20374,
       "open_source": true,
-      "notes": "Fluent 2 của Microsoft; llms.txt theo UICentral; không thấy MCP chính thức; ★ 16/10/2026",
+      "notes": "Fluent 2 của Microsoft; llms.txt theo UICentral; không thấy MCP chính thức; ★ 16/10/2026; ★ 31/10/2026: 20.374 (GitHub API)",
       "section": "06"
     },
     {
@@ -5351,9 +5351,9 @@
       "repo": "adobe/react-spectrum",
       "category": "ui-library",
       "license": "Apache-2.0",
-      "stars": 16000,
+      "stars": 16004,
       "open_source": true,
-      "notes": "Headless + Spectrum của Adobe, mạnh về a11y; ★ 16/10/2026",
+      "notes": "Headless + Spectrum của Adobe, mạnh về a11y; ★ 16/10/2026; ★ 31/10/2026: 16.004 (GitHub API)",
       "section": "06"
     },
     {
@@ -5361,9 +5361,9 @@
       "repo": "material-components/material-web",
       "category": "ui-library",
       "license": "Apache-2.0",
-      "stars": 11000,
+      "stars": 11392,
       "open_source": true,
-      "notes": "Web component Material 3 của Google; ★ 16/10/2026",
+      "notes": "Web component Material 3 của Google; ★ 16/10/2026; ★ 31/10/2026: 11.392 (GitHub API)",
       "section": "06"
     },
     {
@@ -5371,9 +5371,9 @@
       "repo": "carbon-design-system/carbon",
       "category": "ui-library",
       "license": "Apache-2.0",
-      "stars": 9500,
+      "stars": 9594,
       "open_source": true,
-      "notes": "IBM; Carbon MCP public preview (cần IBMid) + llms.txt; ★ 16/10/2026",
+      "notes": "IBM; Carbon MCP public preview (cần IBMid) + llms.txt; ★ 16/10/2026; ★ 31/10/2026: 9.594 (GitHub API)",
       "section": "06"
     },
     {
@@ -5381,19 +5381,19 @@
       "repo": "uswds/uswds",
       "category": "ui-library",
       "license": null,
-      "stars": 7200,
+      "stars": 7237,
       "open_source": true,
-      "notes": "Design system chính phủ Mỹ; ★ 16/10/2026",
+      "notes": "Design system chính phủ Mỹ; ★ 16/10/2026; ★ 31/10/2026: 7.237 (GitHub API)",
       "section": "06"
     },
     {
       "name": "Polaris",
-      "repo": "Shopify/polaris",
+      "repo": "Shopify/polaris-react-archive",
       "category": "ui-library",
       "license": null,
-      "stars": 6200,
+      "stars": 6164,
       "open_source": true,
-      "notes": "Shopify; đã chuyển sang web component; ★ 16/10/2026",
+      "notes": "Shopify; đã chuyển sang web component; ★ 16/10/2026; ARCHIVE 11/8/2026 (đổi tên polaris-react-archive, README \"Deprecated\"); Shopify chuyển sang Polaris Web Components (1/10/2025); ★ 31/10/2026: 6.164 (GitHub API)",
       "section": "06"
     },
     {
@@ -5401,9 +5401,9 @@
       "repo": "primer/react",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 3900,
+      "stars": 3928,
       "open_source": true,
-      "notes": "GitHub; @primer/mcp chính thức, stdio cục bộ (token, component, pattern, icon); ★ 16/10/2026",
+      "notes": "GitHub; @primer/mcp chính thức, stdio cục bộ (token, component, pattern, icon); ★ 16/10/2026; ★ 31/10/2026: 3.928 (GitHub API)",
       "section": "06"
     },
     {
@@ -5411,9 +5411,9 @@
       "repo": "alphagov/govuk-frontend",
       "category": "ui-library",
       "license": "MIT",
-      "stars": 1500,
+      "stars": 1477,
       "open_source": true,
-      "notes": "Design system chính phủ Anh, chuẩn a11y; ★ 16/10/2026",
+      "notes": "Design system chính phủ Anh, chuẩn a11y; ★ 16/10/2026; ★ 31/10/2026: 1.477 (GitHub API)",
       "section": "06"
     },
     {
@@ -5421,9 +5421,9 @@
       "repo": "zendeskgarden/react-components",
       "category": "ui-library",
       "license": "Apache-2.0",
-      "stars": 1100,
+      "stars": 1110,
       "open_source": true,
-      "notes": "Design system Zendesk; hay bị nhầm với 'Zen'; ★ 16/10/2026",
+      "notes": "Design system Zendesk; hay bị nhầm với 'Zen'; ★ 16/10/2026; ★ 31/10/2026: 1.110 (GitHub API)",
       "section": "06"
     },
     {
@@ -5761,9 +5761,9 @@
       "repo": "Nutlope/hallmark",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 33000,
+      "stars": 43870,
       "open_source": true,
-      "notes": "Together AI (Youssef + Nutlope): skill build trang chống 'AI slop' cho Claude Code/Codex/Cursor/OpenCode; 48 theme chia 3 bằng thuật toán tất định (theme.mjs); sloplint 90 gate (39 Floor/50 Reflex), render Puppeteer chỉ khi có Chrome + puppeteer-core; gate 'invented facts' chỉ WARN; review subagent chỉ trên Claude Code/OpenCode; font Google/ảnh Wikimedia hotlink (547 CC BY-SA); ~30k token/lần build; ★ 25/10/2026 (shields), mục 06 §7l",
+      "notes": "Together AI (Youssef + Nutlope): skill build trang chống 'AI slop' cho Claude Code/Codex/Cursor/OpenCode; 48 theme chia 3 bằng thuật toán tất định (theme.mjs); sloplint 90 gate (39 Floor/50 Reflex), render Puppeteer chỉ khi có Chrome + puppeteer-core; gate 'invented facts' chỉ WARN; review subagent chỉ trên Claude Code/OpenCode; font Google/ảnh Wikimedia hotlink (547 CC BY-SA); ~30k token/lần build; ★ 25/10/2026 (shields), mục 06 §7l; ★ 31/10/2026: 43.870 (GitHub API)",
       "section": "06"
     },
     {
