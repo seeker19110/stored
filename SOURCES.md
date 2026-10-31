@@ -680,3 +680,7 @@
 ## Bổ sung 2026-10-31i (đợt 2–3 hồ sơ còn lại: claude-code-templates, awesome-claude-code-subagents, oh-my-hermes, anthropics/skills)
 
 - Clone 31/10/2026: `davila7/claude-code-templates` (1.927 commit, HEAD e4c13da5; 33k★/3,8k fork, MIT, v1.29.7; tracking-service.js gửi aitmpl.com) · `VoltAgent/awesome-claude-code-subagents` (533 commit, HEAD f2e2ea7; 26k★/3k fork, MIT) · `rlaope/oh-my-hermes` (6.337 commit, HEAD 812ec53a; 5k★/398 fork, MIT, v4.0.3) · `anthropics/skills` (61 commit, HEAD ca45fc4; 186k★/22k fork, license theo từng skill). Shields 31/10/2026. Mục 20 §3s.
+
+## Bổ sung 2026-10-31j (bài viết "Claude Code Agent Teams")
+
+- Bài tiếng Việt người dùng gửi 31/10/2026; đối chiếu https://code.claude.com/docs/en/agent-teams (đọc 31/10/2026). 7/8 ý đúng; các vai Frontend/Backend/Review chỉ là ví dụ prompt. Bổ sung: bật lên thì subagent có tên thành teammate, kế thừa quyền lead, plan teammate tự duyệt, giới hạn resume/lồng nhau, hook TeammateIdle/TaskCreated/TaskCompleted. Mục 03 §8f; catalog +1 = 573 (mục dạng url).
