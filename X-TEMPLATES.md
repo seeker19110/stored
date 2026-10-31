@@ -101,4 +101,5 @@ Phạm vi: mục 01 §3b.5 · 03 §8e, §8f · 06 §7n · 10 §4e · 11 §1c (c�
 
 - Mỗi đợt cập nhật `stored` có nội dung đáng bàn giao: thêm dòng vào `data/xt-handoff.json` (và bảng §4 nếu đợt lớn), ghi `date` và `stored_ref`.
 - Đợt trích tiếp theo của X-Templates bắt đầu từ commit **`e3fdcb0`** (merge PR #90, 31/10/2026).
+- **Đã tiêu thụ (31/10/2026):** X-Templates PR [#364](https://github.com/seeker19110/X-Templates/pull/364) (`research/2026-10-31-stored-delta-autonomy.md`) thêm `LOOP-ORCH-021/022/023`, `SEC-INFRA-027`, `SEC-AI-028`, `QA-E2E-030`, `XC-DOCAI-024/025`, `BASE-DEP-019/020` từ XT-H-001…010 và bẫy cho XT-H-004/010. Máy hoá đi ở PR #366 (doctor + test kích hoạt skill); sáu skill tác vụ ở PR #365 (ADR-0060); nâng nền repo khung ở PR #367.
 - Khi X-Templates đã xử lý một dòng, ghi lại trong research note phía X-Templates; `stored` không sửa trạng thái thay X-Templates (theo phạm vi kho ở `WORKFLOW.md`).
