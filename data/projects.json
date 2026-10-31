@@ -3084,6 +3084,16 @@
       "section": "03"
     },
     {
+      "name": "Claude Advisor Tool",
+      "url": "https://code.claude.com/docs/en/advisor",
+      "category": "pattern-loop",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Executor (vd Sonnet) tự gọi advisor mạnh hơn (vd Opus) ở điểm quyết định; advisor đọc toàn transcript, không có tool, trả lời khuyên ~400–700 token; Claude Code experimental (/advisor, advisorModel, --advisor; tắt CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1), API beta advisor_20260301 (max_uses, max_tokens, caching); advisor phải xếp hạng ≥ model chính; chỉ Anthropic API, không Bedrock/Vertex/Foundry; DISABLE_TELEMETRY làm tắt advisor; advisor đời mới trả lời mã hóa; blog Anthropic: Sonnet+Opus +2,7 điểm SWE-bench Multilingual, −11,9% chi phí (tự đo); docs đọc 31/10/2026; mục 03 §8e",
+      "section": "03"
+    },
+    {
       "name": "Audio8 TTS",
       "repo": "Edge0-AI/Audio8_TTS",
       "category": "speech",

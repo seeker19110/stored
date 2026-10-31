@@ -273,6 +273,55 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng thiếu ý quan trọng · ❌ sa
 
 **Nguồn §8d:** https://arxiv.org/abs/2210.03629 (ReAct, Yao et al.) · https://arxiv.org/abs/2309.02427 (CoALA, Sumers et al.) · https://genai.owasp.org/llmrisk/llm01-prompt-injection/ · https://genai.owasp.org (OWASP Top 10 for Agentic Applications, mục 12) · https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization (OAuth 2.1) · https://opentelemetry.io/docs/specs/semconv/gen-ai/ · https://www.tredence.com/blog/agentic-ai-architectures · https://www.techjockey.com/blog/?p=60555 · https://www.anthropic.com/research/building-effective-agents
 
+## 8e. Kiểm bài viết "Claude Code có Advisor Tool": model chính hỏi ý model mạnh hơn ở điểm quyết định (bài người dùng gửi, đối chiếu docs 2026-10-31)
+
+> Bài tiếng Việt người dùng gửi mô tả Advisor Tool: Main Model (ví dụ Sonnet) làm việc thường ngày, Advisor Model (ví dụ Opus) được tham vấn ở thời điểm quan trọng; Claude tự quyết khi nào gọi; advisor nhận toàn bộ lịch sử gồm tool call và kết quả; khác subagent; đang experimental, cần Anthropic API. Đã đối chiếu với **docs Claude Code** (code.claude.com/docs/en/advisor), **docs Claude API** (platform.claude.com/…/advisor-tool) và **blog Anthropic** "The advisor strategy" (9/4/2026), đọc 31/10/2026. Chưa chạy thử trong phiên.
+
+### 8e.1 Nó là gì (theo docs chính thức)
+
+| Mục | Claude Code | Claude API |
+|---|---|---|
+| Trạng thái | **Experimental**; cần Claude Code v2.1.98+ (`/advisor` ở `-p`/SDK/desktop/Remote Control cần v2.1.260+) | **Beta**, header `advisor-tool-2026-03-01`, tool `type: "advisor_20260301"`, `name: "advisor"`, `model: "<advisor>"` |
+| Bật | `/advisor opus` (lưu vào `advisorModel`), setting `"advisorModel": "opus"`, cờ `claude --advisor opus` (không hiện trong `--help`); tắt `/advisor off`; vô hiệu hẳn `CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1` | Thêm vào mảng `tools`; tùy chọn `max_uses` (trần mỗi request), `max_tokens` (≥ 1024, khuyên 2048), `caching` |
+| Cơ chế | Server tool chạy trên hạ tầng Anthropic, có cho cả gói subscription lẫn API | Executor phát `server_tool_use` với **input rỗng**; server tự dựng transcript → một lượt suy luận riêng trên model advisor với system prompt của Anthropic → trả `advisor_tool_result`; tất cả trong một request `/v1/messages` |
+| Advisor thấy gì | **Toàn bộ hội thoại**, gồm mọi tool call và kết quả | System prompt, định nghĩa tool, các lượt trước, tool result, phần text executor đã viết; **advisor không có tool, không có context management**, thinking của nó bị bỏ, chỉ trả lời khuyên (thường 400–700 token text) |
+| Ghép cặp | Advisor phải **xếp hạng ≥ model chính**; ví dụ Sonnet 4.6 chính nhận Fable/Opus/Sonnet/Haiku 5.5; Opus 5/5.5 chính chỉ nhận Fable hoặc Opus 5+; Haiku 4.5 gọi được advisor nhưng không làm advisor được | Advisor phải ≥ Sonnet 4.6 và ≥ năng lực executor; cặp sai trả 400 |
+
+### 8e.2 Kiểm từng ý trong bài
+
+| Ý trong bài | Docs nói | Kiểm |
+|---|---|---|
+| Anthropic đang thử nghiệm trong Claude Code | "experimental… behavior, pricing, and availability may change" | ✅ |
+| Sonnet làm việc thường, Opus đánh giá quyết định khó | Đúng cặp "Sonnet main + Opus advisor" trong bảng gợi ý; ngoài ra Haiku+Opus, Opus+Opus, Fable+Fable, Sonnet+Sonnet | ✅ |
+| Advisor không thay model chính, chỉ đưa nhận định | Advisor không có tool, chỉ trả văn bản khuyên | ✅ |
+| Claude tự quyết thời điểm: trước khi chọn kiến trúc, khi lỗi lặp lại, trước khi kết luận xong | Gần nguyên văn docs; "model-driven rather than rule-based". **Không có setting để giới hạn hay ép số lần gọi** trong Claude Code — chỉ nhắc bằng prompt ("consult the advisor before you continue"); API mới có `max_uses` | ✅ (thiếu ý không có trần) |
+| Advisor nhận toàn bộ lịch sử, gồm tool call và kết quả | Đúng | ✅ |
+| Xử lý lại toàn bộ context tốn thêm token | Đúng: trong Claude Code **lượt đọc của advisor không được cache**, mỗi lần gọi đọc lại toàn transcript. API có tham số `caching` (hòa vốn khi ≥ ~3 lần gọi/hội thoại) | ✅ |
+| Model chính có thể không theo advisor nếu kết quả thực thi mâu thuẫn | Docs: Claude "surfaces the conflict rather than following the guidance unconditionally" | ✅ |
+| Khác subagent | Bảng so sánh chính thức: advisor = điểm quyết định giữa task; subagent = chạy cả subtask; `opusplan` = Opus khi plan mode rồi Sonnet thực thi; `/model` = đổi từ request sau | ✅ |
+| Tiết kiệm chi phí so với chạy model mạnh suốt | Docs: "typically costs less"; blog: Sonnet 4.6 + Opus 4.6 advisor **+2,7 điểm % SWE-bench Multilingual, chi phí/task −11,9%**; Haiku 4.5 + Opus **41,2% BrowseComp so với 19,7%** khi chạy một mình, rẻ hơn Sonnet 85%/task nhưng điểm thấp hơn 29%. Số do Anthropic tự đo | ✅ (số của nhà cung cấp, chưa xác minh độc lập) |
+| Yêu cầu Anthropic API, giới hạn model, thêm chi phí | Đúng; **gói subscription**: advisor tính vào hạn mức sử dụng của gói (Fable advisor tính vào usage credits trên một số gói) | ✅ |
+
+**Tổng:** bài đúng cả 10 ý, không có ý sai; thiếu vài chi tiết vận hành ở dưới.
+
+### 8e.3 Điều bài không nói
+
+- **Tắt telemetry thì mất advisor:** Claude Code bật advisor qua feature flag tải từ Anthropic; đặt `DISABLE_TELEMETRY` (hay biến tắt tải flag tương tự) thì advisor **luôn tắt**. Máy đã tắt telemetry vì chính sách công ty sẽ không dùng được.
+- **Không chạy trên Bedrock/Vertex/Foundry.** Hai trang docs lệch nhau về AWS: docs Claude Code ghi không có trên *Claude Platform on AWS* và *Google Cloud's Agent Platform*, còn docs API liệt kê beta trên *Claude Platform on AWS* và *Claude Models on Google Cloud (Anthropic managed)* — tức API có, nhưng Claude Code chưa hỗ trợ đường đó **(lệch tài liệu, chưa xác minh)**. Qua LLM gateway (`ANTHROPIC_BASE_URL`) chỉ chạy nếu gateway chuyển nguyên request.
+- **Lời khuyên có thể bị mã hóa:** với advisor đời mới (Opus 5/5.5, Sonnet 5.5, Fable 5/5.1, Haiku 5.5…) API trả `advisor_redacted_result` — executor đọc được nhưng **client không đọc được**. Muốn log/kiểm lời khuyên dạng chữ phải dùng advisor đời cũ (docs gợi ý Opus 4.8). Trong Claude Code, `Ctrl+O` chỉ hiện lời khuyên "khi advisor trả văn bản đọc được".
+- **Cặp không hợp lệ bị bỏ lặng lẽ:** nếu API từ chối cặp, Claude Code gửi lại request **không kèm advisor** mà không báo lỗi; advisor xếp hạng thấp hơn model chính thì không được gắn. Subagent kế thừa advisor và tự kiểm cặp theo model của mình.
+- **Không làm hỏng prompt cache của model chính:** bật/tắt `/advisor` giữa phiên giữ nguyên prefix cache (khác với đổi `/model`).
+- **Lỗi advisor không làm hỏng request:** `overloaded`, `prompt_too_long` (transcript vượt context của advisor), `too_many_requests`… → executor chạy tiếp không có lời khuyên; transcript hiện "Advisor unavailable (…)" hoặc "Advisor declined…".
+
+### 8e.4 Vị trí trong các pattern của kho và dùng thế nào
+
+- Đây là biến thể **evaluator / generator–evaluator** (§1, §2) nhưng **đồng bộ, theo yêu cầu của chính executor**, và evaluator **không có tool** — chỉ đọc transcript, khác khuyến nghị §6 điểm 5 ("evaluator nên có công cụ độc lập"). Vì vậy advisor không thay được test/CI: nó cùng nhìn một transcript với executor, có thể chia sẻ cùng giả định sai (đúng như bài kết luận).
+- So với "Santa Method"/"Council" của ECC (mục 07, mục 20 §3l) — hai reviewer độc lập cùng rubric: advisor rẻ hơn (một lượt, không tool) nhưng không độc lập về dữ kiện.
+- **Dùng khi:** task dài nhiều bước (refactor lớn, debug lặp), muốn chất lượng gần model mạnh mà phần lớn lượt chạy model rẻ. Cặp khởi đầu: Sonnet chính + Opus advisor. Trong `CLAUDE.md` có thể ghi "gọi advisor sau khi đọc code định hướng, và một lần trước khi báo xong (sau khi đã ghi file/commit)" — đúng mẫu thời điểm docs API khuyên.
+- **Không dùng khi:** task ngắn, hỏi–đáp một lượt, hoặc mọi lượt đều cần model mạnh (đổi `/model` thì hơn). Theo dõi chi phí bằng `/usage`; dùng qua API thì đặt `max_uses` và `max_tokens: 2048`.
+
+**Nguồn §8e:** bài viết tiếng Việt người dùng gửi 31/10/2026 · https://code.claude.com/docs/en/advisor (đọc 31/10/2026: enable, pairing table, cost, prompt caching, requirements, compare) · https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool (đọc 31/10/2026: tool parameters, how it works, response format, model compatibility, usage and billing, caching, limitations, best practices) · https://claude.com/blog/the-advisor-strategy (9/4/2026; số benchmark do Anthropic tự đo) · bên thứ ba (không dùng làm căn cứ): claudelog.com/faqs/what-is-advisor-in-claude-code · docs.litellm.ai/docs/completion/anthropic_advisor_tool (LiteLLM tự dựng vòng lặp cho Bedrock/Vertex, không phải hỗ trợ gốc)
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)
