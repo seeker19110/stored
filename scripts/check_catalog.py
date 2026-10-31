@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Kiểm tra tính nhất quán của catalog: JSON hợp lệ, trường bắt buộc, không trùng tên,
-category nằm trong meta.categories, section có thư mục tương ứng, CSV khớp số dòng với JSON."""
+category nằm trong meta.categories, section có thư mục tương ứng, CSV khớp số dòng với JSON;
+data/xt-handoff.json (bàn giao cho X-Templates) đúng schema."""
 import csv
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,7 +47,38 @@ missing = seen - csv_names
 if missing:
     errors.append(f"CSV thiếu: {sorted(missing)[:5]}...")
 
+# Bàn giao cho X-Templates (X-TEMPLATES.md): id duy nhất, cột hợp lệ, có neo về kho, đề xuất khi cột là shallower/missing.
+HANDOFF_PATH = os.path.join(ROOT, "data", "xt-handoff.json")
+handoff_items = []
+if os.path.exists(HANDOFF_PATH):
+    with open(HANDOFF_PATH, encoding="utf-8") as f:
+        handoff = json.load(f)
+    columns = set(handoff.get("meta", {}).get("columns", []))
+    handoff_items = handoff.get("items", [])
+    seen_ids = set()
+    for item in handoff_items:
+        hid = item.get("id", "?")
+        if not re.fullmatch(r"XT-H-\d{3}", hid):
+            errors.append(f"xt-handoff: id '{hid}' sai dạng XT-H-NNN")
+        if hid in seen_ids:
+            errors.append(f"xt-handoff: trùng id {hid}")
+        seen_ids.add(hid)
+        if item.get("column") not in columns:
+            errors.append(f"xt-handoff {hid}: column '{item.get('column')}' không có trong meta.columns")
+        refs = item.get("stored_ref") or []
+        if not refs:
+            errors.append(f"xt-handoff {hid}: thiếu stored_ref")
+        for ref in refs:
+            if ref[:2] not in sections:
+                errors.append(f"xt-handoff {hid}: stored_ref '{ref}' trỏ tới mục không có thư mục")
+        for xid in item.get("xt_ids", []):
+            if not re.fullmatch(r"[A-Z]+-[A-Z]+-\d{3}", xid):
+                errors.append(f"xt-handoff {hid}: xt_id '{xid}' sai dạng")
+        needs_proposal = item.get("column") in ("shallower", "missing")
+        if needs_proposal != ("proposal" in item):
+            errors.append(f"xt-handoff {hid}: cột shallower/missing phải có proposal, cột khác thì không")
+
 if errors:
     print("\n".join(errors))
     sys.exit(1)
-print(f"OK: {len(projects)} dự án, {len(categories)} category, CSV khớp.")
+print(f"OK: {len(projects)} dự án, {len(categories)} category, CSV khớp; xt-handoff {len(handoff_items)} mục.")

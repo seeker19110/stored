@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
+    "xt_commit": "0b90230",
+    "stored_range": "fa02a75..e3fdcb0",
+    "columns": [
+      "deeper",
+      "shallower",
+      "missing",
+      "not_adding"
+    ],
+    "updated": "2026-10-31"
+  },
+  "items": [
+    {
+      "id": "XT-H-001",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "03 §8f"
+      ],
+      "lesson": "Agent Teams: bật `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` thì mọi subagent có `name` thành teammate **không hỏi**; teammate **kế thừa chế độ quyền của lead (kể cả skip-permissions)**, plan teammate tự duyệt, nhắn nhau trực tiếp (03 §8f)",
+      "xt_ids": [
+        "LOOP-ORCH-001",
+        "LOOP-ORCH-003",
+        "LOOP-ORCH-009"
+      ],
+      "column": "missing",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "SHOULD (`orchestration-and-subagents.md`): vòng autopilot giữ biến này tắt trừ khi có ADR; `xt.py doctor` báo khi biến = `1` ở settings/env"
+      }
+    },
+    {
+      "id": "XT-H-002",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "11 §1e",
+        "11 §1c",
+        "20 §3s.1",
+        "03 §8e"
+      ],
+      "lesson": "`DO_NOT_TRACK` không phủ mọi công cụ; nhiều công cụ chỉ tắt bằng biến/cờ riêng (§2 trên; 11 §1e, 11 §1c, 20 §3s.1, 03 §8e)",
+      "xt_ids": [
+        "SEC-INFRA-018"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bổ sung Kiểm: bảng \"công cụ đã cài → công tắc telemetry riêng\" trong `docs/` + egress allowlist; bẫy: `DISABLE_TELEMETRY` của Claude Code tắt luôn Advisor"
+      }
+    },
+    {
+      "id": "XT-H-003",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3n.2"
+      ],
+      "lesson": "Skill không chứa nội dung mà bảo agent **WebFetch chỉ dẫn từ nhánh `main`** của repo khác mỗi lần chạy (vercel `web-design-guidelines`, `writing-guidelines` — 20 §3n.2)",
+      "xt_ids": [
+        "AI-PROTO-008",
+        "SEC-SUPPLY-016",
+        "SEC-AI-018"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Thêm luật quét tài sản prompt: URL tới `raw.githubusercontent.com/*/main` hoặc lệnh \"fetch latest guidelines\" trong `SKILL.md` = chưa vendor → ghim commit hoặc chép nội dung"
+      }
+    },
+    {
+      "id": "XT-H-004",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3q.1"
+      ],
+      "lesson": "Marketplace \"official\" bump SHA plugin ngoài **hằng đêm** sau scan tự động (20 §3q.1)",
+      "xt_ids": [
+        "SEC-SUPPLY-016",
+        "LOOP-HARNESS-031"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bẫy: nguồn kiểm duyệt ≠ phiên bản đứng yên; repo cần hành vi ổn định ghim phiên bản plugin hoặc vendor"
+      }
+    },
+    {
+      "id": "XT-H-005",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "11 §1e",
+        "11 §1f",
+        "11 §1g.1"
+      ],
+      "lesson": "Công cụ trình duyệt cho agent: profile bền mặc định (Playwright MCP, chrome-devtools-mcp), `--autoConnect`/extension thấy **mọi tab đã đăng nhập**; playwright-cli mặc định profile trong bộ nhớ (11 §1e, 11 §1f, 11 §1g.1)",
+      "xt_ids": [
+        "AI-AGENT-007"
+      ],
+      "column": "missing",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "SHOULD (`14-testing-quality/e2e-and-accessibility.md`): agent kiểm UI dùng profile cô lập (`--isolated` / mặc định playwright-cli), không gắn vào profile cá nhân; trang ngoài bật ranh giới nội dung + allowlist domain"
+      }
+    },
+    {
+      "id": "XT-H-006",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "11 §1f",
+        "11 §1g.1"
+      ],
+      "lesson": "Coding agent nên ưu tiên **CLI + skill** thay MCP khi có cả hai (Microsoft tự khuyên với playwright-cli; Google có `chrome-devtools-cli`) vì không nạp schema tool + cây trang vào mọi lượt (11 §1f, 11 §1g.1)",
+      "xt_ids": [
+        "XC-DOCAI-022"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "SHOULD: chọn biến thể CLI+skill trước MCP cho tool dev; MCP khi cần phiên bền hoặc client chỉ nói MCP"
+      }
+    },
+    {
+      "id": "XT-H-007",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3q.2",
+        "20 §3s.2"
+      ],
+      "lesson": "Định nghĩa agent bên thứ ba **ghim `model: opus`** (54/202 agent wshobson) → subagent luôn chạy Opus dù phiên rẻ (20 §3q.2); VoltAgent không ghim (20 §3s.2)",
+      "xt_ids": [
+        "LOOP-ORCH-019",
+        "XC-DOCAI-022"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bẫy/Kiểm: agent cài từ ngoài phải có `model:` ∈ {`inherit`, tầng của khung}; `harness-check` báo model cứng"
+      }
+    },
+    {
+      "id": "XT-H-008",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3o.2"
+      ],
+      "lesson": "Eval **kích hoạt skill** tất định trong CI (prompt mẫu → skill đúng ở hạng 1 ≥ 95 %, TF-IDF, không tốn token) + sổ thay đổi bị từ chối vì eval (20 §3o.2)",
+      "xt_ids": [
+        "AI-EVAL-021",
+        "XC-DOCAI-021",
+        "LOOP-DESIGN-025"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "SHOULD khi repo có ≥ 5 skill (X-Templates có 10): test routing tất định cho `description`; sổ \"rejected on eval\" cạnh `.out-of-scope/`"
+      }
+    },
+    {
+      "id": "XT-H-009",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "03 §8e"
+      ],
+      "lesson": "Advisor Tool: executor tự hỏi model mạnh hơn; advisor **không có tool**, đọc toàn transcript, lời khuyên đời mới mã hóa (03 §8e)",
+      "xt_ids": [
+        "LOOP-ORCH-005",
+        "LOOP-ORCH-018"
+      ],
+      "column": "missing",
+      "proposal": {
+        "level": "MAY",
+        "text": "MAY: bật advisor cho phiên autopilot ở bước duyệt PLAN và trước `/complete`; ghi rõ **không thay** `reviewer` (không tool, không độc lập dữ kiện)"
+      }
+    },
+    {
+      "id": "XT-H-010",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3s.4"
+      ],
+      "lesson": "License **theo từng skill** trong một repo: anthropics/skills có 4 skill tài liệu \"© All rights reserved\", 1 skill không license (20 §3s.4)",
+      "xt_ids": [
+        "CMP-LIC-004"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bẫy `licensing-and-ip.md`: kiểm LICENSE từng thư mục skill khi vendor, không chỉ LICENSE gốc"
+      }
+    },
+    {
+      "id": "XT-H-011",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "11 §1i.1"
+      ],
+      "lesson": "Repo MCP chính chủ **archive**, chuyển sang bản hosted (Browserbase, 11 §1i.1)",
+      "xt_ids": [
+        "AI-PROTO-001"
+      ],
+      "column": "deeper",
+      "note": "Đã có (trạng thái archive là điều kiện cài)"
+    },
+    {
+      "id": "XT-H-012",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "16 §2f",
+        "20 §3s.3",
+        "20 §3n.1"
+      ],
+      "lesson": "Installer `curl \\| sh` không kiểm checksum (codegraph, oh-my-hermes) vs manifest checksum + bundle ký (impeccable) (16 §2f, 20 §3s.3, 20 §3n.1)",
+      "xt_ids": [
+        "SEC-SUPPLY-019",
+        "LOOP-HARNESS-025",
+        "BASE-SEC-017"
+      ],
+      "column": "deeper",
+      "note": "Đã có"
+    },
+    {
+      "id": "XT-H-013",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3n.1"
+      ],
+      "lesson": "Hook plugin bên thứ ba **chạy cả khi lệnh model bị từ chối**, lần sửa đầu có thể tải binary (impeccable README, 20 §3n.1)",
+      "xt_ids": [
+        "SEC-SUPPLY-016",
+        "LOOP-STOP-023"
+      ],
+      "column": "deeper",
+      "note": "Đã có (vendor + quét trước khi bật)"
+    },
+    {
+      "id": "XT-H-014",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "20 §3m",
+        "20 §3r.3"
+      ],
+      "lesson": "Mutation test và CRAP (crapper/dryer/mutator — 20 §3m; Stryker trong gsd-core — 20 §3r.3)",
+      "xt_ids": [
+        "QA-COV-005",
+        "QA-COV-006",
+        "QA-STATIC-009"
+      ],
+      "column": "deeper",
+      "note": "Đã có; crapper có thể ghi làm công cụ tham khảo cho ngôn ngữ ngoài JS"
+    },
+    {
+      "id": "XT-H-015",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "19 §1.6",
+        "01 §3b.5"
+      ],
+      "lesson": "Badge \"Repo of the Day\" là SVG tự lưu; sao tăng không kèm commit (OpenMontage 19 §1.6, Understand-Anything 01 §3b.5)",
+      "xt_ids": [
+        "SEC-SUPPLY-026"
+      ],
+      "column": "deeper",
+      "note": "Đã có"
+    },
+    {
+      "id": "XT-H-016",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "19 §1.6"
+      ],
+      "lesson": "Daemon/server cục bộ chặn Host header lạ (OpenMontage Backlot 19 §1.6)",
+      "xt_ids": [
+        "SEC-INFRA-011"
+      ],
+      "column": "deeper",
+      "note": "Đã có (app X-Templates làm đúng)"
+    },
+    {
+      "id": "XT-H-017",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "11 §1i.2"
+      ],
+      "lesson": "Engine trình duyệt \"anti-detect\" cho scraping (Obscura, 11 §1i.2)",
+      "xt_ids": [],
+      "column": "not_adding",
+      "note": "Ngoài phạm vi khung; nếu thêm hồ sơ data/scraping thì chỉ ghi bẫy ToS/pháp lý"
+    },
+    {
+      "id": "XT-H-018",
+      "date": "2026-10-31",
+      "stored_ref": [
+        "11 §1g.2"
+      ],
+      "lesson": "Browser agent viết và chạy JavaScript tùy ý có quyền FS + mạng (browser-use-pi, 11 §1g.2)",
+      "xt_ids": [
+        "AI-AGENT-007"
+      ],
+      "column": "deeper",
+      "note": "Đã có (công cụ có quyền thực thi chạy trong sandbox)"
+    }
+  ]
+}

@@ -710,3 +710,7 @@
 
 - `browserbase/mcp-server-browserbase`: clone 31/10/2026 (200 commit, HEAD 3e6f534 20/7/2026, README "Archived"); shields 3,4k★/372 fork, Apache-2.0, v3.0.0. Mục 11 §1i.1.
 - `h4ckf0r0day/obscura`: clone 31/10/2026 (1.626 commit, HEAD 800b5ba); shields 30k★/2,3k fork, Apache-2.0, v0.2.5, 110 issue/97 PR mở; blog.cloudflare.com/kitesurf (6/8/2026) xác nhận "initial inspiration from obscura". Mục 11 §1i.2; catalog +2 = 577.
+
+## Bổ sung 2026-10-31p (thư viện cho X-Templates)
+
+- Clone `seeker19110/X-Templates` (shallow, HEAD `0b90230` 31/10/2026, v3.29.0): README.md, `framework/**` (grep ID cho 18 bài học), `.claude/{settings.json, agents/, skills/}`, `research/2026-10-30-stored-delta-and-web.md` (định dạng ba cột và khoảng commit đợt trước `9f87dd1..fa02a75`). Kết quả: [X-TEMPLATES.md](X-TEMPLATES.md), `data/xt-handoff.json` (18 mục: 3 missing, 7 shallower, 7 deeper, 1 not_adding).
