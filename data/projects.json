@@ -1172,9 +1172,9 @@
       "repo": "browser-use/browser-use",
       "category": "browser-agent",
       "license": "MIT",
-      "stars": 118000,
+      "stars": 120000,
       "open_source": true,
-      "notes": "13/10/2026",
+      "notes": "13/10/2026; cập nhật mục 11 §1c (31/10/2026): 120k★, 0.13.14 là bản Python cuối trước khi chuyển sang agent TypeScript trên Pi (browser-use/browser-use-pi); 445 PR mở; đẩy mạnh Browser Use Cloud; telemetry PostHog vẫn mặc định",
       "section": "11"
     },
     {
@@ -1212,9 +1212,9 @@
       "repo": "microsoft/playwright-mcp",
       "category": "browser-agent",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 39000,
       "open_source": true,
-      "notes": "accessibility tree",
+      "notes": "accessibility tree; hồ sơ đầy đủ mục 11 §1f (31/10/2026): 39k★, v0.0.84; lõi đã chuyển vào monorepo microsoft/playwright, repo này chỉ là vỏ (issue/PR ở monorepo); 72 tool browser_*; README khuyên coding agent dùng microsoft/playwright-cli (15k★) vì tiết kiệm token; profile bền mặc định; allowed-origins và secrets tự ghi không phải hàng rào bảo mật; không thấy telemetry",
       "section": "11"
     },
     {
@@ -2005,9 +2005,9 @@
       "repo": "calesthio/OpenMontage",
       "category": "agentic-video",
       "license": "AGPL-3.0",
-      "stars": 67100,
+      "stars": 74000,
       "open_source": true,
-      "notes": "Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12",
+      "notes": "Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12; cập nhật mục 19 §1.6 (31/10/2026): 74k★, 500 commit, 13 pipeline/195 tool Python/157 skill .md; vá bảo mật showcase_card qua advisory riêng 28/10; Backlot từ chối Host header không tin cậy; badge 'Repo of the Day' là SVG tự lưu; 1 workflow CI",
       "section": "19"
     },
     {
