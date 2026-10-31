@@ -672,3 +672,7 @@
 
 - `anthropics/claude-plugins-official`: clone 31/10/2026 (4.658 commit, HEAD a7ba5b93); shields 46k★/4,7k fork, Apache-2.0, 1,1k issue/192 PR mở; đọc toàn bộ marketplace.json (315 entry) và 9 workflow. Mục 20 §3q.1.
 - `wshobson/agents`: clone 31/10/2026 (629 commit, HEAD 7e2fb55); shields 42k★/4,4k fork, MIT, 2 issue/1 PR mở. Mục 20 §3q.2.
+
+## Bổ sung 2026-10-31h (đợt 1 hồ sơ còn lại: compound-engineering, SuperClaude, gsd-core)
+
+- Clone 31/10/2026: `EveryInc/compound-engineering-plugin` (1.534 commit, HEAD 34492307; 26k★/2k fork, MIT, v3.34.0) · `SuperClaude-Org/SuperClaude_Framework` (349 commit, HEAD fe68862 27/9/2026; 24k★/2k fork, MIT, v4.3.0) · `open-gsd/gsd-core` (6.453 commit, HEAD 1ec5c812; 11k★/780 fork, MIT, v1.19.0, 208 issue/62 PR mở). Shields 31/10/2026. Mục 20 §3r.
