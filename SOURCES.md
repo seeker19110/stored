@@ -657,3 +657,8 @@
 
 - `pbakaus/impeccable`: clone 31/10/2026 (2.600 commit, HEAD df3a4abe 30/10/2026; skill/cli v4.8.0 26/10, engine v0.1.18); shields 97k★/5,7k fork, Apache-2.0, 42 issue/24 PR mở. Mới: kiểm checksum engine (#813, docs/BUNDLE-SIGNING.md), action ghim SHA, 62 rule. Mục 20 §3n.1.
 - `vercel-labs/agent-skills`: clone 31/10/2026 (280 commit, HEAD 1a2c79d 27/10/2026); shields 33k★/2,9k fork, license "not specified", 70 issue/121 PR mở. Mới: hai skill tải chỉ dẫn từ xa không ghim; deploy fallback `--temporary`. Mục 20 §3n.2; vercel.com/docs/deployments/deploy-without-logging-in.
+
+## Bổ sung 2026-10-31e (hồ sơ đầy đủ superpowers và addyosmani/agent-skills)
+
+- `obra/superpowers`: clone 31/10/2026 (686 commit, HEAD 2ce8aa1 21/10/2026, v7.0.1); shields 310k★/28k fork, MIT, 195 issue/180 PR mở. Không có `.github/workflows`; eval ở `prime-radiant-inc/superpowers-evals` (142★, không license). Đính chính §3d. Mục 20 §3o.1.
+- `addyosmani/agent-skills`: clone 31/10/2026 (772 commit, HEAD eb07f19 28/10/2026, v0.6.14); shields 112k★/12k fork, MIT, 60 issue/85 PR mở. CI `test-plugin-install.yml` chạy validate + `run-evals.js --min-rank1 95`. Mục 20 §3o.2.
