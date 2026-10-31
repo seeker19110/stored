@@ -54,6 +54,32 @@
 
 ---
 
+### 1.6 Cập nhật 2026-10-31: kiểm ảnh README người dùng gửi và clone lại
+
+Ảnh là phần đầu README: tab "README · Contributing · AGPL-3.0 license", mascot **"Monty the Clapper — the official mascot of OpenMontage"**, dòng "The first open-source, agentic video production system", nút website openmontage.video, các link mục lục, badge `license AGPLv3` và khung **"GitHub Trending #1 Repository Of The Day"**.
+
+| Ý trong ảnh | Thực tế (clone 31/10/2026) | Kiểm |
+|---|---|---|
+| License AGPL-3.0 | File `LICENSE` là GNU AGPL v3 | ✅ — nhắc lại: dùng trong dịch vụ mạng phải công bố mã sửa đổi |
+| "The first open-source, agentic video production system" | Khẩu hiệu tự nhận; mục 19 có các hệ tương tự (OpenCreator §1b, mục 22) ra đời gần cùng thời | ⚠️ tuyên bố marketing |
+| "#1 Repository Of The Day" | Badge là **file SVG tự lưu trong repo** (`.github/assets/repo-of-the-day-light.svg`), không phải badge động từ dịch vụ bên ngoài; §1.1 đã ghi nhận sự kiện trending này | ⚠️ không tự kiểm được qua badge |
+| Mascot Monty | Đúng (`assets/monty-*.svg`) | ✅ |
+
+| Mục | 12/10/2026 (§1.1) | 31/10/2026 |
+|---|---|---|
+| ★ / fork | 67,1k / 8,5k | **74k / 9,7k** (shields) |
+| Commit | 455 | **500** từ 29/3/2026, 80 tác giả (calesthio ~320, 2 tên); 43 trailer Claude; 22 commit từ 13/10 |
+| Issue / PR mở | 113 / 284 | **114 / 304** |
+| Quy mô (đếm bằng script) | "12 pipeline, 100+ tool, 700+ file skill" (README) | `pipeline_defs/` **13** file, `tools/` **195** file Python, `skills/` **157** file `.md` (con số "700+" của README gộp cả file tri thức khác) |
+| CI | – | **1 workflow** (`ci.yml`) |
+
+- **Vá bảo mật qua advisory riêng (28/10):** "Merge commit from fork" sửa `tools/video/showcase_card.py` + `video_compose.py` và thêm 231 dòng `tests/tools/test_showcase_card_security.py` (kiểm thuộc tính `force_style` thật) — dấu hiệu một lỗ hổng chèn tham số vào phụ đề/khung hình được báo riêng *(chưa thấy GHSA công khai, chưa xác minh chi tiết)*. Cập nhật lên commit sau 28/10 nếu dùng `showcase_card`.
+- **Backlot** (`python -m backlot open`, có từ 1/7/2026): bảng storyboard cục bộ chỉ đọc, hiển thị pipeline, kịch bản, scene plan, chi phí; commit 24/10 **từ chối request có Host header không tin cậy** (chống DNS rebinding). **Ink Theater** (30/6/2026): engine "moving art" mực đen tất định, ghi rõ cảm hứng từ skill 小黑/Xiaohei (MIT).
+- Đợt 23–24/10 là loạt sửa cache, audio/video, phụ đề RTL, cập nhật provider (Gemini TTS, ElevenLabs, Google); 16/10 gỡ mục Sponsors khỏi README.
+- Nhận định §1.5 giữ nguyên.
+
+**Nguồn §1.6:** ảnh README người dùng gửi 31/10/2026 · clone github.com/calesthio/OpenMontage 31/10/2026 (blob:none, 500 commit, HEAD 195eab2 28/10/2026; README.md, LICENSE, backlot/README.md, ink-theater/README.md, pipeline_defs/, tools/, skills/, .github/workflows/ci.yml; git show của commit "Merge commit from fork" 28/10) · img.shields.io/github/{stars,forks,license,last-commit,issues,issues-pr}/calesthio/OpenMontage.json (31/10/2026)
+
 ## 1b. krillinai/OpenCreator, tên cũ KrillinAI (ảnh README người dùng gửi, 2026-10-13)
 
 ### 1b.1 Hồ sơ nhanh

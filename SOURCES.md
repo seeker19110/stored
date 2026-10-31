@@ -689,3 +689,9 @@
 
 - `colbymchenry/codegraph`: clone 31/10/2026 (1.802 commit, HEAD 2008e2f); shields 76k★/5k fork, MIT, v1.6.2, 161 issue/46 PR mở; TELEMETRY.md, install.sh, telemetry-worker/. Mục 16 §2f.
 - `ChromeDevTools/chrome-devtools-mcp`: clone 31/10/2026 (1.549 commit, HEAD 8d009e8); shields 55k★/5,9k fork, Apache-2.0, v1.12.0, 81 issue/43 PR mở; docs/tool-reference.md, docs/advanced-usage.md. Mục 11 §1e.
+
+## Bổ sung 2026-10-31l (Playwright MCP, browser-use, ảnh README OpenMontage)
+
+- `microsoft/playwright-mcp`: clone 31/10/2026 (607 commit, HEAD be26c08); shields 39k★/3,4k fork, Apache-2.0, v0.0.84; CONTRIBUTING ghi lõi đã chuyển vào `microsoft/playwright`; `microsoft/playwright-cli` 15k★. Mục 11 §1f.
+- `browser-use/browser-use`: clone 31/10/2026 (10.438 commit, HEAD b49a68e4); shields 120k★/13k fork, MIT, 187 issue/445 PR mở; commit #6220 "final Python runtime release before the separate Pi migration"; `browser-use/browser-use-pi` 458★. Cập nhật mục 11 §1c.
+- `calesthio/OpenMontage`: ảnh README người dùng gửi 31/10/2026; clone (500 commit, HEAD 195eab2); shields 74k★/9,7k fork, AGPL-3.0, 114 issue/304 PR mở. Mục 19 §1.6.

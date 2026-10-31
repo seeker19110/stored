@@ -90,6 +90,22 @@
 
 **Nhận định:** đây vẫn là thư viện browser agent mã nguồn mở lớn nhất và hợp để thử nhanh. Kiến trúc đã chuyển hẳn sang CDP như Stagehand v4. Trước khi dùng cho việc thật: tắt ba biến telemetry, đặt `allowed_domains`, truyền `judge_llm` rẻ hơn hoặc tắt `use_judge` nếu không cần, và không chạy `skill install`, `profile.sh` hay bản beta khi chưa đọc mã. So với Stagehand (MIT, TypeScript), Browser Use mạnh về hệ sinh thái Python và số provider; Stagehand kiểm soát từng bước rõ hơn.
 
+### Cập nhật 2026-10-31 (yêu cầu người dùng, clone lại)
+
+| Mục | 13/10/2026 | 31/10/2026 |
+|---|---|---|
+| ★ / fork | ~118k / ~13k | **120k / 13k** (shields) |
+| Commit / tác giả | 10.299 / 365 contributor (trang GitHub) | **10.438 / 452 tác giả** (git shortlog); Magnus Müller 3.229, Nick Sweeting 1.810, Saurav Panda 722; 148 trailer Claude; 90 commit từ 13/10 |
+| Issue / PR mở | – | **187 / 445** |
+| Phiên bản | 0.13.11 (PyPI), mã 0.13.11 | **0.13.14** trong `pyproject.toml` (26/10); PyPI vẫn phát 0.13.11 lúc viết commit |
+
+- **Python đang được thay thế:** commit 26/10 (#6220) ghi rõ 0.13.14 là **"final Python runtime release before the separate Pi migration"** — giữ nguyên agent, model và telemetry Python hiện tại, rồi chuyển sang **agent TypeScript chạy trên Pi** (`browser-use/browser-use-pi`, 458★, MIT, đã có trong README mục Ecosystem). Dự án tích hợp bằng Python nên **ghim 0.13.14** và theo dõi lộ trình trước khi đầu tư sâu.
+- **Đẩy mạnh bản cloud:** nhiều commit 15–17/10 sửa README để "một dòng chuyển sang cloud browser", thêm `context7.json` mô tả Browser Use Cloud và bậc giá ($100/$200 — tự mâu thuẫn giữa trang giá và backend, commit 17/10 ghi nhận); `use_cloud` là trình duyệt từ xa cho agent cục bộ.
+- **Sửa đáng chú ý:** giới hạn kích thước text trang và kết quả JavaScript trước khi gửi model; khôi phục observation cho tool OpenAI; dọn kết nối lại trình duyệt. README thêm FAQ: **bản ghi phiên đã lưu vẫn có thể chứa secret trong snapshot trang**.
+- **Telemetry không đổi:** `browser_use/telemetry/service.py` vẫn gửi PostHog (`eu.i.posthog.com`) mặc định; tắt bằng `ANONYMIZED_TELEMETRY=false`. Các nhận định ở phần "Telemetry" và "Rủi ro" phía trên giữ nguyên.
+
+**Nguồn cập nhật §1c:** clone github.com/browser-use/browser-use 31/10/2026 (blob:none, 10.438 commit, HEAD b49a68e4 29/10/2026; pyproject.toml, README.md, git log --since=2026-10-13, commit #6220, browser_use/telemetry/service.py) · shields 31/10/2026 cho browser-use/browser-use và browser-use/browser-use-pi
+
 ## 1d. Hồ sơ: `imshaikot/browsentic`, agent chạy trên trình duyệt thật đã đăng nhập, qua CLI agent sẵn có (link người dùng gửi, rà mã 2026-10-26)
 
 > Link repo người dùng gửi. Đã clone đủ lịch sử (615 commit, HEAD `f323a0d`, tag v0.9.0) và đọc mã trước tài liệu: `src/daemon/` (bridge, guardrails, agent), `wxt.config.ts`, các workflow CI/release, `docs/guide/` và `docs/internals/`. **Không chạy installer hay script nào của repo.**
@@ -186,6 +202,40 @@
 - **Cấu hình tối thiểu an toàn:** `--isolated --no-usage-statistics`, thêm `--no-performance-crux` khi đo trang nội bộ, ghim phiên bản thay vì `chrome-devtools-mcp@latest`; chỉ dùng `--autoConnect` với profile riêng cho test. Dùng `--slim` khi chỉ cần thao tác cơ bản để giảm tool nạp vào ngữ cảnh.
 
 **Nguồn §1e:** clone github.com/ChromeDevTools/chrome-devtools-mcp 31/10/2026 (blob:none, 1.549 commit, HEAD 8d009e8 30/10/2026; README.md (Disclaimers, Usage statistics, CrUX), docs/{tool-reference.md (60 tool / 12 nhóm, đếm bằng script), advanced-usage.md (profile, --isolated, --autoConnect), configuration.md, slim-tool-reference.md}, skills/*, plugin.json, .github/workflows/*; git shortlog, git tag) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/ChromeDevTools/chrome-devtools-mcp.json (31/10/2026)
+
+## 1f. Hồ sơ `microsoft/playwright-mcp` (yêu cầu người dùng, clone 2026-10-31)
+
+> Trước chỉ có dòng bảng §1. Đã clone đủ lịch sử (blob:none), đọc README (bảng tham số, phần User profile, Browser Extension), CONTRIBUTING, `package.json`, `cli.js`, cấu hình. **Không cài, không chạy.**
+
+### 1f.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/microsoft/playwright-mcp · **39k★, 3,4k fork** · **Apache-2.0** · v0.0.84 · **1 issue / 0 PR mở** · npm `@playwright/mcp`, có trong MCP Registry (`server.json`) |
+| Lịch sử | **607 commit** từ 21/3/2025, 72 tác giả; Pavel Feldman 245, Yury Semikhatsky 172, Simon Knott 38 (nhóm Playwright, Microsoft); **0 trailer Claude**; chỉ 9 commit từ 13/10 |
+| **Mã thật ở đâu** | CONTRIBUTING: **"The core of the Playwright MCP was moved to the Playwright monorepo"** (`microsoft/playwright`). Repo này chỉ còn **vỏ**: `src/` chỉ có README, `cli.js` gọi thẳng `playwright-core/lib/coreBundle`; phụ thuộc `playwright@1.65.0-alpha-2026-10-30` (bản alpha, cập nhật theo ngày bằng workflow `roll.yml`). Issue/PR được chuyển về monorepo nên con số tồn đọng ở đây gần 0 không phản ánh tình trạng thật |
+| Cách làm việc | Mặc định đọc trang qua **accessibility snapshot** (cấu trúc), không cần model thị giác; bật thêm năng lực bằng `--caps vision,pdf,devtools`; hỗ trợ chrome/firefox/webkit/msedge |
+| Tool | **72 tool `browser_*`** liệt kê trong README (điều hướng, click, nhập, tab, network, console, PDF, vision, devtools…) |
+| Tự khuyến nghị | README đầu trang: **coding agent nên dùng `microsoft/playwright-cli` (CLI + skill, 15k★) thay vì MCP** vì CLI "token-efficient" — không nạp schema tool lớn và cây accessibility dài vào ngữ cảnh. MCP còn hợp cho vòng lặp cần giữ trạng thái trình duyệt lâu (khám phá, test tự sửa, workflow tự trị dài) |
+
+### 1f.2 Dữ liệu và an toàn
+
+- **Profile bền mặc định:** chạy như trình duyệt thường với profile lưu tại `~/Library/Caches/ms-playwright/mcp-{channel}-{workspace-hash}` (macOS; Linux/Windows tương tự) — **mọi đăng nhập được giữ lại** giữa các phiên. `--isolated` dùng context tạm; `--user-data-dir` đổi chỗ lưu.
+- **Browser Extension** (nằm trong monorepo `packages/extension`): kết nối vào **tab đang mở của trình duyệt thật**, dùng phiên đã đăng nhập — cùng loại rủi ro với `--autoConnect` của chrome-devtools-mcp (§1e).
+- **Các cờ "giống bảo mật" nhưng README tự nói không phải:** `--allowed-origins`/`--blocked-origins` "**does not serve as a security boundary** and does not affect redirects"; `secrets` (thay chuỗi bí mật trong phản hồi tool) "a convenience and **not a security feature**". Hàng rào thật: truy cập file mặc định giới hạn trong workspace root (mở rộng bằng `--allow-unrestricted-file-access`), `--allowed-hosts` cho chế độ HTTP (mặc định chỉ localhost).
+- **Không thấy telemetry** trong README (grep 31/10/2026).
+
+### 1f.3 So sánh và dùng thế nào
+
+| | Playwright MCP | chrome-devtools-mcp (§1e) | playwright-cli | browser-use (§1c) |
+|---|---|---|---|---|
+| Trọng tâm | Tự động hóa đa trình duyệt qua accessibility tree | Debug/hiệu năng trên Chrome | Như Playwright MCP nhưng qua CLI + skill, tiết kiệm token | Agent tự lái trình duyệt (có LLM bên trong) |
+| Telemetry | Không thấy | Có, mặc định bật | – | Có, mặc định bật |
+| Ai bảo trì | Microsoft (monorepo) | Google Chrome DevTools | Microsoft | browser-use (công ty) |
+
+**Dùng:** cho coding agent (Claude Code, Codex…) làm test/kiểm UI, thử **playwright-cli** trước vì rẻ ngữ cảnh hơn; dùng Playwright MCP khi cần giữ phiên trình duyệt dài hoặc client chỉ nói MCP. Cấu hình tối thiểu: `--isolated`, ghim phiên bản `@playwright/mcp`, không dựa vào `allowed-origins`/`secrets` để chặn rò rỉ — nếu cần cô lập mạng thì chạy trong sandbox/container (§3). Báo lỗi và đọc mã ở `microsoft/playwright`, không phải repo này.
+
+**Nguồn §1f:** clone github.com/microsoft/playwright-mcp 31/10/2026 (blob:none, 607 commit, HEAD be26c08 31/10/2026; README.md (CLI vs MCP, bảng tham số `--allowed-origins`, `--allowed-hosts`, `--caps`, User profile, Browser Extension, ghi chú `secrets`), CONTRIBUTING.md, package.json, cli.js, src/README.md, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/microsoft/playwright-mcp.json và microsoft/playwright-cli (31/10/2026)
 
 ## 2. Computer use (điều khiển máy tính)
 

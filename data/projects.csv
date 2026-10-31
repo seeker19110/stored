@@ -108,11 +108,11 @@ Mem0,mem0ai/mem0,,agent-memory,Apache-2.0,65600,True,10,18/9/2026
 Graphiti (Zep),getzep/graphiti,,agent-memory,Apache-2.0,31000,True,10,temporal KG
 Letta,letta-ai/letta,,agent-memory,Apache-2.0,24800,True,10,MemGPT
 cognee,topoteretes/cognee,,agent-memory,Apache-2.0,30000,True,10,
-Browser Use,browser-use/browser-use,,browser-agent,MIT,118000,True,11,13/10/2026
+Browser Use,browser-use/browser-use,,browser-agent,MIT,120000,True,11,"13/10/2026; cập nhật mục 11 §1c (31/10/2026): 120k★, 0.13.14 là bản Python cuối trước khi chuyển sang agent TypeScript trên Pi (browser-use/browser-use-pi); 445 PR mở; đẩy mạnh Browser Use Cloud; telemetry PostHog vẫn mặc định"
 agent-browser,vercel-labs/agent-browser,,browser-agent,,29500,False,11,CLI Rust
 Stagehand,browserbase/stagehand,,browser-agent,MIT,25600,True,11,v4 CDP
 Skyvern,Skyvern-AI/skyvern,,browser-agent,AGPL-3.0,,True,11,
-Playwright MCP,microsoft/playwright-mcp,,browser-agent,Apache-2.0,,True,11,accessibility tree
+Playwright MCP,microsoft/playwright-mcp,,browser-agent,Apache-2.0,39000,True,11,"accessibility tree; hồ sơ đầy đủ mục 11 §1f (31/10/2026): 39k★, v0.0.84; lõi đã chuyển vào monorepo microsoft/playwright, repo này chỉ là vỏ (issue/PR ở monorepo); 72 tool browser_*; README khuyên coding agent dùng microsoft/playwright-cli (15k★) vì tiết kiệm token; profile bền mặc định; allowed-origins và secrets tự ghi không phải hàng rào bảo mật; không thấy telemetry"
 E2B,e2b-dev/E2B,,sandbox,Apache-2.0,,True,11,Firecracker microVM
 Modal,modal-labs/modal-client,,sandbox,Apache-2.0 (SDK),,True,11,gVisor; GPU
 Daytona,daytonaio/daytona,,sandbox,,,False,11,Trạng thái mở chưa rõ từ 6/2026
@@ -191,7 +191,7 @@ awsome-vietnamese-nlp,vndee/awsome-vietnamese-nlp,,vietnam,,,True,18,
 Vistral,Viet-Mistral/Vistral-7B-Chat,,vietnam,Apache-2.0,,True,18,HF
 ADHD (adhd-agent),UditAkhourii/adhd,,reasoning-skill,MIT,4400,True,03,Skill parallel divergent ideation (5 frame cô lập → critic → deepen top-3); 5–10× chi phí; eval tự báo cáo 5/6; link từ người dùng 2026-10-12
 neuroarxiv,UditAkhourii/neuroarxiv,,reasoning-skill,MIT,434,True,03,Skill check prior art arXiv; cùng tác giả ADHD
-OpenMontage,calesthio/OpenMontage,,agentic-video,AGPL-3.0,67100,True,19,"Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12"
+OpenMontage,calesthio/OpenMontage,,agentic-video,AGPL-3.0,74000,True,19,"Agentic video production: 11–12 pipeline, agent là orchestrator, director skills + JSON schema + approval gate + cost tracker; link từ người dùng 2026-10-12; cập nhật mục 19 §1.6 (31/10/2026): 74k★, 500 commit, 13 pipeline/195 tool Python/157 skill .md; vá bảo mật showcase_card qua advisory riêng 28/10; Backlot từ chối Host header không tin cậy; badge 'Repo of the Day' là SVG tự lưu; 1 workflow CI"
 Crucix,calesthio/Crucix,,personal-agent,,12100,True,19,Agent giám sát nguồn dữ liệu; cùng tác giả OpenMontage
 generative-media-skills,calesthio/generative-media-skills,,agentic-video,,199,True,19,Skills sinh ảnh/video/audio cho coding agent
 awesome-claude-video-skills,zhuyansen/awesome-claude-video-skills,,agentic-video,,55000,True,19,"Số từ trendshift, chưa xác minh"
