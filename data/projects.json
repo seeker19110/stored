@@ -2758,9 +2758,9 @@
       "repo": "EveryInc/compound-engineering-plugin",
       "category": "harness-pack",
       "license": "–",
-      "stars": 25500,
+      "stars": 26000,
       "open_source": true,
-      "notes": "Plugin research→plan→work→review→compound",
+      "notes": "Plugin research→plan→work→review→compound; hồ sơ đầy đủ mục 20 §3r.1 (31/10/2026): 26k★, v3.34.0, 1.534 commit, 36 skill ce-* + 41 agent, bước ce-compound ghi bài học, cross-model qua acpx khi người dùng yêu cầu, 826 file test, PRIVACY.md không telemetry",
       "section": "20"
     },
     {
@@ -4268,9 +4268,9 @@
       "repo": "SuperClaude-Org/SuperClaude_Framework",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 23900,
+      "stars": 24000,
       "open_source": true,
-      "notes": "30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026",
+      "notes": "30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026; hồ sơ mục 20 §3r.2 (31/10/2026): 24k★, v4.3.0 (3/2026), commit cuối 27/9/2026, 0 commit từ 12/10; 30 command/20 agent/7 mode/8 MCP; plugin v5 chưa có; command tham chiếu MCP vô điều kiện (#574); không khuyến nghị cho dự án mới",
       "section": "20"
     },
     {
@@ -4278,9 +4278,9 @@
       "repo": "open-gsd/gsd-core",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 10400,
+      "stars": 11000,
       "open_source": true,
-      "notes": "Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026",
+      "notes": "Kế nhiệm gsd-build/get-shit-done (archive 26/6/2026, 64,3k★); ★ đọc 12/10/2026; hồ sơ đầy đủ mục 20 §3r.3 (31/10/2026): 11k★, v1.19.0, 6.453 commit, 300 commit từ 12/10; vòng Discuss→Plan→Execute (context 200k sạch)→Verify→Ship; 72 skill/64 agent/32 hook; 34 workflow gồm mutation test Stryker, 1.632 file test; cài npx @latest không ghim",
       "section": "20"
     },
     {

@@ -982,6 +982,50 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Nguồn §3q:** clone github.com/anthropics/claude-plugins-official 31/10/2026 (blob:none, 4.658 commit, HEAD a7ba5b93 30/10/2026; `.claude-plugin/marketplace.json` đọc toàn bộ bằng script (315 entry, nguồn, sha, category, strict, renames), `plugins/`, `external_plugins/`, `.github/workflows/{bump-plugin-shas, scan-plugins, revert-failed-bumps, external-pr-scope-guard, close-external-prs, validate-licenses, validate-frontmatter, validate-plugins, check-mcp-urls}.yml`; git shortlog) · clone github.com/wshobson/agents 31/10/2026 (blob:none, 629 commit, HEAD 7e2fb55 30/10/2026; README.md, Makefile, evals/README.md, plugins/*/{agents,skills,commands,hooks}, tools/*, .github/workflows/*; đếm bằng script) · img.shields.io/github/{stars,forks,license,last-commit,issues,issues-pr}/… cho hai repo (31/10/2026)
 
+## 3r. Hồ sơ đầy đủ ba bộ quy trình: compound-engineering, SuperClaude, gsd-core (đợt 1 "hồ sơ còn lại", clone 2026-10-31)
+
+> Ba repo trước chỉ có dòng bảng §3d (12/10/2026). Clone đủ lịch sử (blob:none), đọc README, PRIVACY/SECURITY, cấu trúc skill/agent/hook, workflow CI; số đếm bằng script. **Không cài, không chạy.**
+
+### 3r.1 `EveryInc/compound-engineering-plugin` — vòng lặp "ghi lại điều đã học"
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/EveryInc/compound-engineering-plugin · **26k★, 2k fork** · **MIT** · `compound-engineering-v3.34.0` · 76 issue / 22 PR mở |
+| Lịch sử | **1.534 commit** từ 9/10/2025, 114 tác giả; Trevin Chow 900, Kieran Klaassen 269 (Every Inc.), bot 125; 406 trailer Claude; **86 commit từ 12/10** |
+| Nội dung | **36 skill** tiền tố `ce-` + 41 agent: vòng `ce-brainstorm` → `ce-plan` → `ce-work` → `ce-code-review` → **`ce-compound`** (ghi bài học thành tài liệu để lần sau dễ hơn — tên gọi của cả bộ); thêm `ce-debug`, `ce-strategy`, `ce-explain`, `ce-pov` (đánh giá đề xuất theo bằng chứng dự án), `ce-bakeoff`, `ce-noslop`, `ce-babysit-pr`, `ce-test-browser`/`ce-test-xcode`, `lfg`, `wtf` |
+| Hỏi model khác | `ce-pov`/`ce-bakeoff`: khi người dùng nói "panel", "cross-check", "oracle" thì gọi **model/agent khác** (Codex, Gemini, Antigravity…) qua **acpx** (Agent Client Protocol) — dùng quyền truy cập model người dùng đã có |
+| Đa host | 14 host (Claude Code, Cursor, Codex, Grok Bot…); CLI `@every-env/compound-plugin` chuyển đổi và cài nội dung cho từng host |
+| CI / test | 5 workflow (`ci`, `acpx-canary`, `release-pr`, `release-preview`, `pages`); **826 file test** (bun) gồm contract test cho acpx và từng converter; action ghim tag |
+| Dữ liệu | `PRIVACY.md`: **không telemetry**, không dịch vụ nền; mạng chỉ khi gọi tích hợp tùy chọn (Context7 MCP, Proof editor `proofeditor.ai` khi chia sẻ) |
+
+**Đánh giá:** gần superpowers (§3o.1) về vòng brainstorm → plan → work → review, khác ở bước **compound** (tích lũy tri thức thành tài liệu dự án) và ở **cross-model** (hỏi ý agent khác — cùng ý tưởng với Advisor Tool, mục 03 §8e, nhưng chạy phía client qua acpx). Test dày, phát hành semver đều, privacy rõ. README dặn **làm mới marketplace trước khi `/plugin update`**, nếu không sẽ kẹt bản cũ. Quan điểm quy trình của một công ty (Every) — chọn skill lẻ nếu không theo cả vòng.
+
+### 3r.2 `SuperClaude-Org/SuperClaude_Framework` — đã chững lại
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/SuperClaude-Org/SuperClaude_Framework · **24k★, 2k fork** · **MIT** · v4.3.0 (22/3/2026) · 60 issue / 11 PR mở |
+| Lịch sử | **349 commit** từ 14/7/2025, 51 tác giả (NomenAK 120, Mithun Gowda B ~143); **357 trailer Claude** (nhiều hơn số commit); **commit cuối 27/9/2026, 0 commit từ 12/10**; không release từ 3/2026 |
+| Nội dung | README: **30 slash command `/sc:*`, 20 agent, 7 "mode" hành vi, 8 MCP server** (Context7, Sequential, Tavily, Magic/21st.dev…); "meta-programming configuration framework" chèn chỉ dẫn hành vi vào Claude Code |
+| Cài | `pipx install superclaude` → `superclaude install` (chép 30 command), `superclaude mcp` cài MCP; **plugin TypeScript "planned for v5.0" chưa có** dù docs cũ nhắc |
+| CI | 6 workflow (test, quick-check, publish-pypi, readme-quality-check…) |
+
+**Đánh giá:** một trong những framework sớm nhất (7/2025), nay **gần như đứng yên** (4 commit từ 7/2026). Issue #574 (9/2026) hỏi vì sao command tham chiếu **vô điều kiện** tới MCP Sequential/Context7 — command có thể hỏng nếu không cài MCP đó. Gốc repo đầy file kế hoạch nội bộ (`PLANNING.md`, `TASK.md`, `PARALLEL_INDEXING_PLAN.md`, `DELETION_RATIONALE.md`…). **Không khuyến nghị cho dự án mới**; superpowers/addyosmani/compound-engineering đang được bảo trì và phủ cùng phạm vi.
+
+### 3r.3 `open-gsd/gsd-core` — kế nhiệm GSD, tự động hóa quy trình nặng nhất
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/open-gsd/gsd-core (kế nhiệm `gsd-build/get-shit-done`, archive 26/6/2026) · **11k★, 780 fork** · **MIT** · v1.19.0 · **208 issue / 62 PR mở** · npm `@opengsd/gsd-core` |
+| Lịch sử | **6.453 commit** từ 14/12/2025 (gồm lịch sử repo cũ), 199 tác giả; Tom Boucher 3.945, Lex Christopherson 874 (tác giả GSD gốc); **7.377 trailer Claude**; **300 commit từ 12/10** (~16/ngày) |
+| Quy trình | Mỗi milestone lặp 5 bước: **Discuss** (chốt quyết định) → **Plan** (nghiên cứu, chia nhỏ, kiểm plan vừa một context window mới) → **Execute** (chạy plan song song theo đợt, **mỗi executor bắt đầu với context 200k sạch**) → **Verify** → **Ship** (tạo PR, lưu trữ phase). Lệnh `/gsd-new-project`, `/gsd-onboard` |
+| Quy mô | **72 skill, 64 agent, 32 hook** (gồm `gsd-context-monitor`, `gsd-agent-isolation-guard`, `gsd-check-update` chạy nền lúc SessionStart, bộ hook riêng cho Cursor); 10+ runtime (Claude Code, OpenCode, Codex, Copilot, Cursor, Windsurf, Kimi, Kilo, Antigravity…) |
+| CI / test | **34 workflow** (test, **mutation testing bằng Stryker**, install-smoke, security-scan, version-gate, changeset-required, require-issue-link, reviewed-or-maintainer, auto-close-unsolicited-prs, dismiss-unauthorized-pr-approvals…); **1.632 file test**; `TESTING-STANDARDS.md`; action ghim SHA (test.yml 29 chỗ) |
+
+**Đánh giá:** bộ **spec-driven có cổng máy dày nhất** trong nhóm (mutation test, 34 workflow quản trị PR), phù hợp ai muốn agent đi theo milestone/phase có kiểm. Đổi lại: **32 hook** và cài qua `npx …@latest` (không ghim) — kiểm hook nào được ghi vào settings sau khi cài; hook `gsd-check-update` gọi mạng kiểm phiên bản mỗi phiên. Nhịp ~16 commit/ngày và 208 issue mở → hành vi đổi nhanh, nên ghim phiên bản npm. Hermes-Agents (mục 23) vẫn vendor từ repo cũ đã archive — nên chuyển sang repo này hoặc ghim lại.
+
+**Nguồn §3r:** clone 31/10/2026 (blob:none) github.com/EveryInc/compound-engineering-plugin (1.534 commit, HEAD 34492307; README.md, PRIVACY.md, skills/*/SKILL.md (ce-pov, ce-bakeoff), docs/plans/*acpx*, tests/, .github/workflows/*) · github.com/SuperClaude-Org/SuperClaude_Framework (349 commit, HEAD fe68862 27/9/2026; README.md, git log, cấu trúc gốc) · github.com/open-gsd/gsd-core (6.453 commit, HEAD 1ec5c812; README.md, agents/, skills/, hooks/ (gsd-check-update.js), tests/, stryker.config.mjs, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho ba repo (31/10/2026)
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
