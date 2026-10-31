@@ -684,3 +684,8 @@
 ## Bổ sung 2026-10-31j (bài viết "Claude Code Agent Teams")
 
 - Bài tiếng Việt người dùng gửi 31/10/2026; đối chiếu https://code.claude.com/docs/en/agent-teams (đọc 31/10/2026). 7/8 ý đúng; các vai Frontend/Backend/Review chỉ là ví dụ prompt. Bổ sung: bật lên thì subagent có tên thành teammate, kế thừa quyền lead, plan teammate tự duyệt, giới hạn resume/lồng nhau, hook TeammateIdle/TaskCreated/TaskCompleted. Mục 03 §8f; catalog +1 = 573 (mục dạng url).
+
+## Bổ sung 2026-10-31k (hồ sơ codegraph và chrome-devtools-mcp)
+
+- `colbymchenry/codegraph`: clone 31/10/2026 (1.802 commit, HEAD 2008e2f); shields 76k★/5k fork, MIT, v1.6.2, 161 issue/46 PR mở; TELEMETRY.md, install.sh, telemetry-worker/. Mục 16 §2f.
+- `ChromeDevTools/chrome-devtools-mcp`: clone 31/10/2026 (1.549 commit, HEAD 8d009e8); shields 55k★/5,9k fork, Apache-2.0, v1.12.0, 81 issue/43 PR mở; docs/tool-reference.md, docs/advanced-usage.md. Mục 11 §1e.
