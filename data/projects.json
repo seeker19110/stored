@@ -1188,6 +1188,26 @@
       "section": "11"
     },
     {
+      "name": "Browserbase MCP (self-host, archived)",
+      "repo": "browserbase/mcp-server-browserbase",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 3400,
+      "open_source": true,
+      "notes": "ĐÃ ARCHIVE 20/7/2026 ('no longer maintained'); MCP 6 tool (start/end/navigate/act/observe/extract) trên Stagehand v3; thay bằng MCP hosted mcp.browserbase.com (trả phí, LLM Gemini do Browserbase trả → trang + prompt qua Browserbase/Gemini) hoặc Stagehand v4 tự host; 3,4k★ (31/10/2026, shields); mục 11 §1i.1",
+      "section": "11"
+    },
+    {
+      "name": "Obscura",
+      "repo": "h4ckf0r0day/obscura",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 30000,
+      "open_source": true,
+      "notes": "Engine trình duyệt headless Rust: V8 + render native (không Chromium) + CDP (Puppeteer/Playwright) + MCP + crate chặn SSRF; RAM ~30 MB (tự đo); được Cloudflare Kitesurf ghi nhận là nguồn cảm hứng (blog 6/8/2026); định vị scraping + anti-detect (bản -stealth) → rủi ro ToS/pháp lý; v0.2.5, ~72% commit của một tài khoản ẩn danh; Obscura Cloud có residential proxies (waitlist); agent-browser hỗ trợ thử nghiệm (--engine obscura); 30k★ (31/10/2026, shields); mục 11 §1i.2",
+      "section": "11"
+    },
+    {
       "name": "Stagehand",
       "repo": "browserbase/stagehand",
       "category": "browser-agent",

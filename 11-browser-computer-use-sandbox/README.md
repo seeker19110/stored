@@ -337,6 +337,55 @@
 
 **Nguồn §1h:** clone github.com/browserbase/stagehand 31/10/2026 (blob:none, 1.663 commit, HEAD b7a4b899 29/10/2026; README.md (Why Stagehand, Run it on Browserbase, Give your coding agent a browser), packages/{sdk-ts, sdk-python, cli/src/lib/telemetry.ts, extension, evals}, .github/workflows/ci.yml, cubic.yaml; git tag) · clone github.com/vercel-labs/agent-browser 31/10/2026 (blob:none, 780 commit, HEAD 5868f7c 30/10/2026; README.md (Commands, Security, MCP Server, Observability Dashboard, Obscura), cli/, skills/, skill-data/, evals/README.md, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
 
+## 1i. Hồ sơ `browserbase/mcp-server-browserbase` (đã archive) và `h4ckf0r0day/obscura` (yêu cầu người dùng, clone 2026-10-31)
+
+> Hai repo được nhắc trong §1h: Stagehand quảng bá MCP hosted của Browserbase; agent-browser hỗ trợ Obscura làm engine thử nghiệm (`--engine obscura`). Clone đủ lịch sử, đọc README, SECURITY, cấu trúc crate/package, docs adapter của agent-browser; đối chiếu một tuyên bố với blog Cloudflare. **Không cài, không chạy.**
+
+### 1i.1 `browserbase/mcp-server-browserbase` — **đã archive 20/7/2026**
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/browserbase/mcp-server-browserbase · 3,4k★, 372 fork · **Apache-2.0** · v3.0.0 (30/3/2026, npm đổi tên `@browserbasehq/mcp`) · 34 issue / 18 PR mở bị bỏ lại |
+| Trạng thái | README mở đầu: **"Archived. This repository is archived and no longer maintained… retained for historical purposes. It should not be interpreted as representative of Browserbase's current production services"** — commit cuối 20/7/2026 (#198). Mục 04 §2 đã liệt kê repo này trong 11 MCP server đã archive |
+| Lịch sử | 200 commit từ 5/12/2024, 20 tác giả (Kyle Jeong ~77, AP 37); 16 trailer Claude |
+| Nội dung | MCP server dựa trên **Stagehand ^3.3** + Browserbase SDK; 6 tool khớp bản hosted: `start`, `end`, `navigate`, `act`, `observe`, `extract`; STDIO (tự host) hoặc SHTTP; cấu hình model; commit 5/2026 đổi cờ `advancedStealth` thành `verified` |
+
+**Thay thế hiện tại:** **MCP hosted** `https://mcp.browserbase.com/mcp` (Stagehand README §1h.1) — không cài, không chạy trình duyệt cục bộ; README cũ ghi Browserbase **trả chi phí LLM Gemini** cho bản hosted, tức nội dung trang và chỉ dẫn đi qua Browserbase rồi tới Gemini. Cần `BROWSERBASE_API_KEY` và tài khoản trả phí cho phiên trình duyệt.
+
+**Đánh giá:** không dùng repo này cho dự án mới (không vá lỗi, phụ thuộc Stagehand v3 cũ). Muốn tự host thì dùng thẳng Stagehand v4 (§1h.1) hoặc agent-browser/playwright-cli; chỉ dùng MCP hosted khi chấp nhận gửi trang + prompt qua Browserbase và Gemini. Đây là ví dụ điển hình của mẫu "MCP chính chủ bị archive, chuyển sang bản hosted" — kiểm trạng thái archive trước khi đưa MCP vào danh sách cài (mục 04 §2).
+
+### 1i.2 `h4ckf0r0day/obscura` — engine trình duyệt headless viết bằng Rust, có chế độ stealth
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/h4ckf0r0day/obscura · **30k★, 2,3k fork** · **Apache-2.0** · v0.2.5 · 110 issue / 97 PR mở · site obscura.sh |
+| Lịch sử | **1.626 commit** từ 13/4/2026 (6,5 tháng), 104 tác giả; **`SGavrl` 1.167 commit (~72%)**, Andrey Mnatsakanov 94, `h4ckf0r0day` 34; 8 trailer Claude. Hai tài khoản chính có ID GitHub rất lớn (tài khoản tạo gần đây), không ghi danh tính tổ chức — **bus factor 1, tác giả ẩn danh** |
+| Kiến trúc | 11 crate Rust: `obscura-js` (V8), `obscura-dom`, `obscura-render` (**render native, không cần Chromium**: screenshot, screencast, PDF), `obscura-cdp` (nói **Chrome DevTools Protocol** → chạy được với Puppeteer/Playwright), `obscura-net`, **`obscura-ssrf`** (chặn SSRF), `obscura-mcp`, `obscura-cli`; lệnh `serve` (CDP), `fetch`, `scrape` song song (worker riêng) |
+| MCP | Tool `browser_navigate`, `browser_snapshot`, `browser_screenshot`, `browser_pdf`, `browser_click`, `browser_fill`, `browser_type`, `browser_press_key`, `browser_select_option`, `browser_evaluate`… |
+| Hiệu năng (tự đo) | README: bộ nhớ ~30 MB vs Chrome 200+ MB, binary ~70 MiB, tải trang 51–84 ms vs Chrome 500–800 ms; bộ benchmark đầy đủ (WPT conformance, real-world corpus) ở repo riêng `obscura-benchmark` *(chưa xác minh độc lập)* |
+| CI | 3 workflow (`ci`, `docker`, `release`), action **ghim SHA** (ci.yml 15 chỗ); `deny.toml` (cargo-deny) |
+
+**Kiểm tuyên bố:** README ghi "Obscura inspired Cloudflare Kitesurf's first prototype". Blog Cloudflare (6/8/2026, "Kitesurf" — trình duyệt nhẹ cho agent trên Workers) viết: *"We got the initial inspiration from obscura, a headless engine written in Rust for AI automation"* → **đúng** (đọc 31/10/2026).
+
+**Điều cần cân nhắc (đọc README, SECURITY.md, docs adapter của agent-browser):**
+
+- **Định vị "stealth":** README quảng bá "stealthy", cột "Anti-detect: Built-in", bản build `-stealth` với ngẫu nhiên hóa fingerprint theo phiên và chặn tracker/analytics. Đây là năng lực **hai mặt**: hợp lệ cho kiểm thử riêng tư/chặn theo dõi, nhưng dùng để vượt cơ chế chống bot của site khác có thể **vi phạm điều khoản dịch vụ và luật** tùy nơi. Kho không ghi hướng dẫn cấu hình stealth; dự án tích hợp nên dùng bản build **không** stealth và chỉ truy cập site mình sở hữu hoặc được phép.
+- **Độ tương thích thấp hơn Chrome:** docs agent-browser ghi Obscura "experimental… does not imply Chrome parity", còn hạn chế về accessibility, iframe, rendering (v0.2.2 lúc đó), không hỗ trợ proxy bypass rules. Dùng Chrome khi cần kết quả đúng.
+- **Chạy JavaScript không tin cậy qua V8:** SECURITY.md nêu rõ phạm vi (SSRF, DoS, rò dữ liệu giữa session); Docker mẫu bind `127.0.0.1:9222` kèm `OBSCURA_CDP_TOKEN` ngẫu nhiên — **không mở cổng CDP ra mạng**.
+- **Thương mại:** đang làm **Obscura Cloud** (hosted, **residential proxies**), waitlist; cam kết bản mã nguồn mở giữ Apache-2.0 "no feature gating".
+- Không thấy telemetry gửi về (grep 31/10/2026; chữ "telemetry" trong README là tính năng **chặn** telemetry của trang).
+
+**Đánh giá:** kỹ thuật ấn tượng (engine tự viết, render native, CDP tương thích Puppeteer/Playwright, được Cloudflare ghi nhận) và tiết kiệm tài nguyên khi chạy nhiều phiên song song. Nhưng còn v0.2.x, tác giả ẩn danh gần như một người, và định vị chính là scraping + anti-detect → **không đưa vào stack mặc định**. Có thể thử làm engine phụ cho tác vụ đọc trang hàng loạt trên site nội bộ, sau khi so kết quả với Chrome.
+
+### 1i.3 Bổ sung bảng chọn §1g.3
+
+| Nhu cầu | Gợi ý |
+|---|---|
+| MCP trình duyệt hosted, không chạy trình duyệt cục bộ | Browserbase MCP hosted (trả phí; dữ liệu qua Browserbase + Gemini). **Không** dùng repo tự host đã archive |
+| Nhiều phiên đọc trang nhẹ, song song, tiết kiệm RAM | Obscura (bản không stealth, site được phép), so kết quả với Chrome trước |
+
+**Nguồn §1i:** clone github.com/browserbase/mcp-server-browserbase 31/10/2026 (200 commit, HEAD 3e6f534 20/7/2026; README.md (Archived, Tools, SHTTP/STDIO), package.json, git log, git tag) · clone github.com/h4ckf0r0day/obscura 31/10/2026 (blob:none, 1.626 commit, HEAD 800b5ba 31/10/2026; README.md (Why Obscura, Install, Benchmarks, Stealth Mode, MCP, Obscura Cloud), SECURITY.md, crates/, deny.toml, .github/workflows/*; git log tác giả) · vercel-labs/agent-browser `docs/content/docs/engines/obscura.mdx` (31/10/2026) · https://blog.cloudflare.com/kitesurf/ (6/8/2026, đọc 31/10/2026) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
+
 ## 2. Computer use (điều khiển máy tính)
 
 | Nhà cung cấp / dự án | Ghi chú |
