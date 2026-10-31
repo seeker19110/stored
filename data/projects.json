@@ -718,6 +718,16 @@
       "section": "06"
     },
     {
+      "name": "evondevKit (ui-ux)",
+      "repo": "evondev/evondevKit",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 432,
+      "open_source": true,
+      "notes": "Skill ui-ux tiếng Việt cho dashboard/app của Tuấn Trần (evondev): brief → 2–3 wireframe → dựng bằng component sẵn có; probe.mjs (~4.700 dòng, Playwright) đo tràn/cắt chữ/tương phản ở 375–1920px và so với wireframe; SKILL.md 44,5 KB (~11k token) + references ~1,2 MB; Beta, '70 prompt' tự khai; không CI, không telemetry (check-update 1 lần/ngày, tắt EVONDEVKIT_NO_UPDATE_CHECK=1); 259 commit một tác giả, 258 trailer Claude, tạo 20/9/2026; plugin evon v0.3.27; 432★ (31/10/2026, shields); hồ sơ mục 06 §7n",
+      "section": "06"
+    },
+    {
       "name": "canvas-ui",
       "repo": "DavidHDev/canvas-ui",
       "category": "ui-library",
@@ -4588,9 +4598,9 @@
       "repo": "Graphify-Labs/graphify",
       "category": "codebase-knowledge",
       "license": "Apache-2.0",
-      "stars": 139000,
+      "stars": 140000,
       "open_source": true,
-      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng)",
+      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng); hồ sơ đầy đủ mục 16 §2e (31/10/2026): 140k★/13k fork, v0.9.99, 2.675 commit/408 tác giả, 722 issue/920 PR mở, PyPI `graphifyy` (hai chữ y), không telemetry, query log tắt mặc định, hook PreToolUse đẩy agent sang graph, action CI ghim tag không ghim SHA",
       "section": "16"
     },
     {
@@ -5377,13 +5387,33 @@
       "section": "20"
     },
     {
+      "name": "ub-mode",
+      "repo": "unclebob/ub-mode",
+      "category": "harness-pack",
+      "license": null,
+      "stars": 5400,
+      "open_source": true,
+      "notes": "Skill của Robert C. Martin (Uncle Bob): SKILL.md 6 KB, 3 giai đoạn (Make it Work → Make it Right → Practice), rút gọn từ pstack của poteto (Cursor); không hook/cổng máy; KHÔNG có file LICENSE; 4 commit cùng 25/10/2026; dòng 'Push to the main line' cần sửa với workflow PR; giá trị chính ở công cụ đi kèm crapper/dryer/mutator; 5,4k★ (31/10/2026, shields); mục 20 §3m",
+      "section": "20"
+    },
+    {
+      "name": "crapper / dryer / mutator (Uncle Bob)",
+      "repo": "unclebob/crapper",
+      "category": "quality-gate",
+      "license": "0BSD",
+      "stars": 156,
+      "open_source": true,
+      "notes": "Bộ cổng chất lượng Python của Robert C. Martin cho Clojure/Java/Go/TypeScript/Rust/Python: crapper (CRAP = độ phức tạp × thiếu coverage, ngưỡng <10), unclebob/dryer (trùng cấu trúc ≥0,8; 73★), unclebob/mutator (mutation testing, cần ../crapper; 92★); 0BSD; chưa lên PyPI, chạy script tạo .venv; tuổi ~1 tháng (từ 30/9/2026); uml-viewer (476★, Clojure, không license) hiển thị kết quả; 156★ crapper (31/10/2026, shields); mục 20 §3m.2",
+      "section": "20"
+    },
+    {
       "name": "Caveman",
       "repo": "JuliusBrussee/caveman",
       "category": "context-optimization",
       "license": "Apache-2.0",
       "stars": 116000,
       "open_source": true,
-      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật mục 20 §3g.6 (31/10/2026): 116k★, 1.886 commit, 63 issue/68 PR mở, bin-v4.0.2 vá Go CVE, ENABLE_TOOL_SEARCH mặc định true, telemetry CLI vẫn bật mặc định (IP giữ 90 ngày)",
       "section": "20"
     },
     {

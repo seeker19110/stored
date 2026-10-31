@@ -118,7 +118,7 @@ README tự cảnh báo: lần chạy đầu trên codebase lớn **tốn nhiề
 - **Hook thật** (`understand-anything-plugin/hooks/hooks.json`): chỉ 2 hook — PostToolUse `Bash` (gợi ý cập nhật graph sau commit) và SessionStart (kiểm `autoUpdate` trong `config.json` của `.understand-anything/` hoặc `.ua/`). Không thấy telemetry trong mã (grep `posthog|telemetry|analytics` 30/10/2026). Dữ liệu chỉ rời máy qua model của chính agent host (và Figma API khi dùng skill Figma).
 - **Thư mục dữ liệu:** mặc định `.ua/` (như §3b.2); dự án đã có `.understand-anything/` (tên cũ) tiếp tục dùng thư mục đó, không cần chuyển; installer ngoài Claude Code clone repo vào `~/.understand-anything/repo` rồi symlink.
 - **CI:** 2 workflow (ci, deploy-homepage), 67 file test (Vitest) — mỏng hơn nhiều so với claude-mem (1.098) hay ECC (483).
-- Nhận định ở §3b.4 giữ nguyên. Lựa chọn thay thế tất định, không cần LLM cho phần code: Graphify (mục 16 §4b).
+- Nhận định ở §3b.4 giữ nguyên. Lựa chọn thay thế tất định, không cần LLM cho phần code: Graphify (mục 16 §2d, §2e).
 
 **Nguồn §3b.5:** clone github.com/Egonex-AI/Understand-Anything 30/10/2026 (blob:none, 866 commit, HEAD 4e6d329 26/10/2026; README.md, SECURITY.md, understand-anything-plugin/{.claude-plugin/plugin.json, hooks/hooks.json, agents/*.md, skills/*/SKILL.md}, .github/workflows/*; git log/tag/shortlog) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/Egonex-AI/Understand-Anything.json (30/10/2026)
 
