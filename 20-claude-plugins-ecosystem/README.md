@@ -174,6 +174,8 @@ plugin-name/
 
 ## 3c. Case study: mattpocock/skills – "Skills For Real Engineers" (ảnh người dùng gửi, 2026-10-12)
 
+*Cập nhật 31/10/2026 ở §3p.1: 308k★, v1.3.2, 39 SKILL.md, hướng mới chief-of-staff/implement-spec.*
+
 > Nguồn: ảnh README người dùng gửi + clone đầy đủ `github.com/mattpocock/skills` (545 commit): README, `SCOPE.md`, `.out-of-scope/*.md`, `.agents/adr/*.md`, `CLAUDE.md`, `skills/**/SKILL.md`, `.claude-plugin/{plugin,marketplace}.json`, `.github/workflows/`; trang GitHub; skills.sh.
 
 ### Hồ sơ nhanh
@@ -369,6 +371,8 @@ plugin-name/
 ### 3g.3 Hồ sơ nhanh 4 repo mới (clone 14/10/2026)
 
 #### DietrichGebert/ponytail — "lazy senior dev mode"
+
+*Cập nhật 31/10/2026 ở §3p.2: 181k★, v5.3.3, thêm band/board/codebase map và webhook tùy chọn.*
 
 | Mục | Thông tin |
 |---|---|
@@ -883,6 +887,52 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 | `DietrichGebert/ponytail` (§3g.3) | 181k | Benchmark tự đo | Có | Không thấy |
 
 **Nguồn §3o:** clone github.com/obra/superpowers 31/10/2026 (blob:none, 686 commit, HEAD 2ce8aa1 21/10/2026; README.md (What's Inside, Visual companion telemetry), RELEASE-NOTES.md, docs/testing.md, docs/porting-to-a-new-harness.md, hooks/{hooks.json, session-start, run-hook.cmd}, skills/*/SKILL.md (kích thước bằng script), tests/*; kiểm không có .github/workflows và evals/) · github.com/prime-radiant-inc/superpowers-evals (shields 142★, license not specified, `git ls-remote`) · clone github.com/addyosmani/agent-skills 31/10/2026 (blob:none, 772 commit, HEAD eb07f19 28/10/2026; README.md, plugin.json, .claude-plugin/, skills/, agents/, commands/, references/, hooks/{SDD-CACHE.md, *.sh}, evals/{README.md, skill-impact.md, cases}, .github/workflows/test-plugin-install.yml; git log --since=2026-10-12) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
+
+## 3p. Cập nhật `mattpocock/skills` (§3c) và `DietrichGebert/ponytail` (§3g.3) (yêu cầu người dùng, clone lại 2026-10-31)
+
+> Hai repo đã có hồ sơ: mattpocock/skills là case study đầy đủ ở §3c (12/10/2026), ponytail là hồ sơ nhanh ở §3g.3 (14/10/2026). Mục này clone lại đủ lịch sử (blob:none), đọc commit mới, CHANGELOG, README, hook và module band. **Không cài, không chạy.** Nhận định cũ giữ nguyên trừ chỗ ghi đính chính.
+
+### 3p.1 `mattpocock/skills`
+
+| Mục | 12/10/2026 (§3c) | 31/10/2026 |
+|---|---|---|
+| ★ / fork | 287,2k / 24,1k | **308k / 26k** (shields) |
+| Commit | 545 | **553** — chỉ 8 commit trong 19 ngày; 506 của Matt Pocock, 11 ký "Claude", 9 bot; 298 dòng trailer Claude |
+| Issue / PR mở | 148 / 15 | **175 / 20** |
+| Phát hành | "dùng changesets" | **10 tag, v1.3.2 (29/10/2026)**; v1.0.0 ngày 17/6, v1.3.0 ngày 29/9 |
+| Số SKILL.md | 38 | **39**: engineering 20, productivity 7, misc 4 (đóng băng), **in-progress 8**, thêm thư mục `deprecated/` (chỉ README) |
+| CI | `triage-label`, `needs-info`, `release` | Không đổi — vẫn **không có workflow kiểm nội dung skill**, chỉ quản trị issue và phát hành |
+
+**Hướng phát triển mới (đều ở `in-progress/`, chưa ổn định):**
+
+- `chief-of-staff`: giữ bộ nhớ dự án trong **wiki có ngày và trích commit**, "shared wiki first"; retro và implement-spec thành quy trình con.
+- `implement-spec`: **mỗi ticket một subagent implementer mới**; commit 29/10 đổi nguyên tắc chung "subagent bắt đầu với context window mới, không fork ngữ cảnh" — cùng hướng với subagent-driven-development của superpowers (§3o.1).
+- `software-factory` (31/10): skill glossary để thiết kế một "software factory"; `loop-me`, `claude-handoff`, `setup-ts-deep-modules`, nhóm `writing-*`.
+- `setup-matt-pocock-skills` sửa: kiểm repo truy cập được, đọc `CONTEXT.md` kiểu cũ, sửa template tracker; issue trống tự đóng và phân luồng theo loại (thắt chặt thêm `SCOPE.md`).
+
+**Ý nghĩa khi tích hợp:** bộ ổn định (engineering/productivity) gần như không đổi trong 19 ngày — vendor theo lock (mục 23) vẫn hợp lệ. Các skill mới về **bộ nhớ dạng wiki** và **subagent sạch ngữ cảnh** đáng theo dõi nhưng đang ở `in-progress/`, đừng cài vào môi trường ổn định.
+
+### 3p.2 `DietrichGebert/ponytail`
+
+| Mục | 14/10/2026 (§3g.3) | 31/10/2026 |
+|---|---|---|
+| ★ / fork | 163k / 8,8k | **181k / 10k** (shields) |
+| Commit / tác giả | 344 / 128 | **369 / 137**; 25 commit từ 14/10; 113 dòng trailer Claude |
+| Issue / PR mở | – | **61 / 81** |
+| Phiên bản | v5.2.0 | **v5.3.0 (16/10) → v5.3.3 (29/10)** |
+| Prompt lõi | `SKILL.md` 52 dòng, `AGENTS.md` 32 dòng | **Không đổi** (52/32 dòng) |
+
+**Mới trong 5.3 — "band" và "board" (chỉ Claude Code ≥ 2.1.290, terminal/desktop; không có trong VS Code chat panel hay phiên cloud):**
+
+- **Band:** module UI (`hooks/claude-band.json` → `hooks/band/register.tsx`, cơ chế "mod" của Claude Code, không phải hook lệnh) hiện thanh phía trên ô prompt: chi phí task, token, thời gian agent, **tỉ lệ dùng lại code có sẵn**, test có qua sau thay đổi cuối; nút đổi mức, chạy `/ponytail-review`/`-audit`, chép task dạng Markdown. Tắt: `/ponytail band`.
+- **Board:** trang HTML cục bộ tổng hợp mọi phiên theo dự án (chi phí, token, thời gian, test, ngày làm việc), lưu ở `~/.config/ponytail/band/`. `/ponytail band import` đọc **lịch sử phiên Claude Code cũ** để đưa vào board.
+- **Dữ liệu rời máy:** mặc định không. Có **webhook tùy chọn** (`webhookUrl`, `webhookToken`) gửi mỗi dòng ledger tới URL người dùng tự cấu hình, **mặc định kèm tên** (`sendNames` phải đặt `false` để bỏ) — cần biết nếu nối vào hệ thống nhóm.
+- **Codebase map** (`hooks/ponytail-map.js`): lúc SessionStart liệt kê hàm/class/export cấp cao theo thư mục trong ngân sách ký tự, bằng `git ls-files` + regex (README tự ghi "regex, not a parser", sẽ thiếu định nghĩa lồng/động). Giúp quy tắc "dùng lại trước" khỏi tốn lượt tìm kiếm, nhưng **tăng ngữ cảnh mỗi phiên**.
+- Còn lại là sửa lỗi Windows (timeout hook 15 s, map 3 s), Codex icon nhỏ hơn (554 KB → nhỏ), CI chạy selftest benchmark agentic (17/10).
+
+**Đánh giá cập nhật:** ponytail đang chuyển từ "một prompt" sang **công cụ đo chi phí/hiệu quả phiên** (band + board) — hữu ích để chứng minh lợi ích bằng số của chính mình thay vì tin benchmark tác giả (§3g.2). Đổi lại, cài đủ thì có thêm module UI, codebase map chèn vào mỗi phiên, và file ledger trong `~/.config`. Nếu chỉ cần hành vi "code tối giản", vẫn có thể chép 32 dòng `AGENTS.md` vào dự án mà không cài plugin.
+
+**Nguồn §3p:** clone github.com/mattpocock/skills 31/10/2026 (blob:none, 553 commit, HEAD 4ae2317 31/10/2026; CHANGELOG.md, skills/{engineering,productivity,misc,in-progress,deprecated}, .github/workflows/*; git log --since=2026-10-12, git tag) · clone github.com/DietrichGebert/ponytail 31/10/2026 (blob:none, 369 commit, HEAD 96608e0 29/10/2026; README.md ("New in 5.3: the band", lệnh `/ponytail band`), skills/ponytail/SKILL.md, AGENTS.md, hooks/{claude-codex-hooks.json, claude-band.json, band/register.tsx (webhook), ponytail-map.js}; git log --since=2026-10-14, git tag) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
 
 ## 4. Nguồn
 

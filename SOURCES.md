@@ -662,3 +662,8 @@
 
 - `obra/superpowers`: clone 31/10/2026 (686 commit, HEAD 2ce8aa1 21/10/2026, v7.0.1); shields 310k★/28k fork, MIT, 195 issue/180 PR mở. Không có `.github/workflows`; eval ở `prime-radiant-inc/superpowers-evals` (142★, không license). Đính chính §3d. Mục 20 §3o.1.
 - `addyosmani/agent-skills`: clone 31/10/2026 (772 commit, HEAD eb07f19 28/10/2026, v0.6.14); shields 112k★/12k fork, MIT, 60 issue/85 PR mở. CI `test-plugin-install.yml` chạy validate + `run-evals.js --min-rank1 95`. Mục 20 §3o.2.
+
+## Bổ sung 2026-10-31f (cập nhật mattpocock/skills và ponytail)
+
+- `mattpocock/skills`: clone 31/10/2026 (553 commit, HEAD 4ae2317, v1.3.2 29/10/2026); shields 308k★/26k fork, MIT, 175 issue/20 PR mở. Mục 20 §3p.1.
+- `DietrichGebert/ponytail`: clone 31/10/2026 (369 commit, HEAD 96608e0 29/10/2026, v5.3.3); shields 181k★/10k fork, MIT, 61 issue/81 PR mở; module band (`hooks/band/register.tsx`, webhook tùy chọn). Mục 20 §3p.2.
