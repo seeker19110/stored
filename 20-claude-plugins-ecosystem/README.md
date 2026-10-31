@@ -1026,6 +1026,63 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Nguồn §3r:** clone 31/10/2026 (blob:none) github.com/EveryInc/compound-engineering-plugin (1.534 commit, HEAD 34492307; README.md, PRIVACY.md, skills/*/SKILL.md (ce-pov, ce-bakeoff), docs/plans/*acpx*, tests/, .github/workflows/*) · github.com/SuperClaude-Org/SuperClaude_Framework (349 commit, HEAD fe68862 27/9/2026; README.md, git log, cấu trúc gốc) · github.com/open-gsd/gsd-core (6.453 commit, HEAD 1ec5c812; README.md, agents/, skills/, hooks/ (gsd-check-update.js), tests/, stryker.config.mjs, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho ba repo (31/10/2026)
 
+## 3s. Hồ sơ đầy đủ claude-code-templates, awesome-claude-code-subagents, oh-my-hermes, anthropics/skills (đợt 2–3 "hồ sơ còn lại", clone 2026-10-31)
+
+> Bốn repo trước chỉ có dòng bảng (§3b, §3d, §3j.4, mục 22). Clone đủ lịch sử (blob:none), đọc README, cấu trúc, workflow CI và mã gửi dữ liệu; số đếm bằng script. **Không cài, không chạy.**
+
+### 3s.1 `davila7/claude-code-templates` — CLI + kho component lớn nhất, có tracking
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/davila7/claude-code-templates · **33k★, 3,8k fork** · **MIT** · v1.29.7 · **103 issue / 379 PR mở** · web aitmpl.com · npm `claude-code-templates` |
+| Lịch sử | **1.927 commit** từ 3/7/2025, 145 tác giả; Daniel Avila ~1.071 (2 tên), `github-actions[bot]` 477; 1.162 trailer Claude; 106 commit từ 12/10 (một nửa do bot cập nhật dữ liệu) |
+| Kho component (`cli-tool/components/`, đếm file) | agents 422, commands 348, hooks 64, MCP 108, settings 77, **skills 3.247 file**; thêm `loops`, `mods`, `sandbox` |
+| Công cụ kèm | `--analytics` (dashboard theo dõi phiên Claude Code thời gian thực), conversation monitor có truy cập từ xa, skills dashboard, CLI Rust, Cloudflare Workers, dashboard web |
+| CI | **24 workflow**: validate component, **SkillSpector (NVIDIA) quét skill trong PR** — chặn khi điểm rủi ro > 50 và tăng so với base (mục 12 §3e), security-audit, generated-files guard, prod smoke test; phần còn lại là bot Discord/cập nhật dữ liệu/star history |
+| Tài trợ | Z.AI, Neon, Swiftproxy (proxy dân cư), chương trình "Claude for Open Source" |
+
+**Dữ liệu rời máy:** `cli-tool/src/tracking-service.js` gửi về **aitmpl.com** (`/api/track-download-supabase`, `/api/track-command-usage`, `/api/track-installation-outcome`): loại + tên + đường dẫn component, category, phiên bản CLI. **Bật mặc định**, tắt bằng `CCT_NO_TRACKING=true` hoặc `CCT_NO_ANALYTICS=true` (tự tắt khi `CI=true`); **không đọc `DO_NOT_TRACK`**. README không có mục privacy nói rõ điều này.
+
+**Đánh giá:** catalog lớn nhất để "lấy một component", có quét bảo mật skill tự động trong CI — điểm cộng hiếm. Nhưng 379 PR chờ, nội dung phần lớn từ cộng đồng (chất lượng không đều), cài qua `npx …@latest` không ghim, và tracking mặc định. Dùng: duyệt trên aitmpl.com, đọc file component trước khi cài, đặt `CCT_NO_TRACKING=true`; chép tay file cần thay vì cài cả stack.
+
+### 3s.2 `VoltAgent/awesome-claude-code-subagents` — 165 subagent, đã giới hạn tool
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/VoltAgent/awesome-claude-code-subagents · **26k★, 3k fork** · **MIT** · không release · **0 issue / 1 PR mở** |
+| Lịch sử | **533 commit** từ 30/7/2025, 51 tác giả; Necati Özmen ~268 (2 tên), William Lay 127 (VoltAgent); 108 trailer Claude; 6 commit từ 12/10 |
+| Nội dung | **165 subagent** trong 10 nhóm (core-development, language-specialists, infrastructure, quality-security, data-ai, developer-experience, specialized-domains, business-product, meta-orchestration, research-analysis); README cũ ghi "100+"/"161+" |
+| Tool và model | **Mọi agent đều khai `tools:`** — phổ biến nhất `Read, Write, Edit, Bash, Glob, Grep` (105), agent nghiên cứu chỉ `Read, Grep, Glob, WebFetch, WebSearch`; `model:` sonnet 110, inherit 27, haiku 19 — **không agent nào ghim opus** |
+| Cài | `install-agents.sh` (chọn và chép agent vào thư mục agent), hoặc chép tay; có plugin theo nhóm, CI `enforce-plugin-version-bump` |
+
+**Đánh giá:** so với agency-agents (§3j: 266/283 agent không giới hạn tool) và wshobson (§3q.2: 54 agent ghim opus), bộ này **an toàn nhất về quyền và chi phí mặc định**; bảo trì gọn (không tồn đọng). Vẫn là prompt thuần, không test hành vi. Hợp để chép vài agent đúng việc vào `.claude/agents/` của dự án.
+
+### 3s.3 `rlaope/oh-my-hermes` — lớp vận hành cho Hermes Agent, tốc độ commit cực cao
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/rlaope/oh-my-hermes · **5k★, 398 fork** (12/10: 3,3k) · **MIT** · v4.0.3 · 9 issue / 3 PR mở |
+| Lịch sử | **6.337 commit** từ 3/6/2026 (5 tháng), 44 tác giả; rlaope 3.525; **1.975 commit từ 12/10 (~100/ngày)**; 505 trailer Claude |
+| Nội dung | "Operating layer" cho **Hermes Agent** (NousResearch): người dùng nói chuyện với Hermes, OMH chọn skill và model cho từng "lane" rồi chạy song song; lệnh tắt `dag-ulw`. **274 SKILL.md** (12/10 ghi 108), Python package `omh`, HUD có **chi phí ước tính theo bảng giá có trích nguồn** ("unknown" khi không định giá được) |
+| Cài | `curl -fsSL …/install.sh \| sh` rồi `omh setup` (mẫu cần tránh, mục 12 §3) |
+| CI / test | 5 workflow (ci, hermes-compatibility, release, auto-release, pages); 1.196 file test |
+
+**Đánh giá:** chỉ có giá trị nếu dùng Hermes Agent. Tốc độ ~100 commit/ngày và số skill tăng 2,5 lần trong 19 ngày nghĩa là hành vi đổi liên tục — ghim phiên bản, không cài bằng `curl | sh` trên máy có dữ liệu nhạy cảm. Repo Plugin-4-Hermes/Hermes-Agents của chủ kho (mục 23) nên ghim commit nếu vendor từ đây.
+
+### 3s.4 `anthropics/skills` — skill mẫu và spec Agent Skills của Anthropic
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/anthropics/skills · **186k★, 22k fork** · shields "not specified" vì license **theo từng skill** · **426 issue / ~1k PR mở** |
+| Lịch sử | **chỉ 61 commit** từ 15/10/2025, 17 tác giả (Lance Martin 17, Keith Lazuka 13); 1 commit từ 12/10 (mcp-builder dạy MCP TypeScript SDK v2); phần lớn commit gần đây cập nhật skill `claude-api` (model mới, Managed Agents) |
+| 19 skill | Sáng tạo/thiết kế: `algorithmic-art`, `canvas-design`, `frontend-design` (mục 06), `theme-factory`, `brand-guidelines`, `slack-gif-creator`; kỹ thuật: `claude-api`, `mcp-builder`, `skill-creator`, `web-artifacts-builder`, `webapp-testing`; doanh nghiệp: `internal-comms`, `doc-coauthoring`, `academy-guide`, `discernment-nudge`; **tài liệu: `docx`, `pdf`, `pptx`, `xlsx`** |
+| License | **15 skill Apache-2.0**; **4 skill tài liệu (docx/pdf/pptx/xlsx) "© Anthropic, All rights reserved"** — source-available, chỉ dùng theo điều khoản trong file, không phải mã nguồn mở; `doc-coauthoring` **không có file license** |
+| Khác | `spec/agent-skills-spec.md` (spec Agent Skills; chuẩn mở tại agentskills.io, mục 04) và `template/SKILL.md`; cài trong Claude Code bằng `/plugin marketplace add anthropics/skills` |
+
+**Đánh giá:** đây là **mẫu tham chiếu**, README tự ghi "for demonstration and educational purposes only", hành vi trong sản phẩm Claude có thể khác. 186k★ trên 61 commit và ~1k PR không được xử lý — repo nhận đóng góp rất hạn chế. Giá trị nhất: `skill-creator` (tạo + eval skill), `mcp-builder`, `claude-api`, spec. **Không vendor 4 skill tài liệu vào sản phẩm** vì license độc quyền; với dự án mở chỉ lấy skill Apache-2.0.
+
+**Nguồn §3s:** clone 31/10/2026 (blob:none): github.com/davila7/claude-code-templates (1.927 commit, HEAD e4c13da5; README.md, cli-tool/{README.md, components/, src/tracking-service.js}, .github/workflows/{skill-security-scan, component-security-validation}.yml) · github.com/VoltAgent/awesome-claude-code-subagents (533 commit, HEAD f2e2ea7; categories/*, install-agents.sh, frontmatter `tools:`/`model:` đếm bằng script) · github.com/rlaope/oh-my-hermes (6.337 commit, HEAD 812ec53a; README.md, skills/, agent-skills/, tests/, .github/workflows/*) · github.com/anthropics/skills (61 commit, HEAD ca45fc4 28/10/2026; README.md, skills/*/LICENSE*, spec/, template/) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho bốn repo (31/10/2026)
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

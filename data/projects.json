@@ -2768,9 +2768,9 @@
       "repo": "rlaope/oh-my-hermes",
       "category": "harness-pack",
       "license": "–",
-      "stars": 3300,
+      "stars": 5000,
       "open_source": true,
-      "notes": "Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill",
+      "notes": "Workflow pack cho Hermes/Agent Skills: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill; hồ sơ đầy đủ mục 20 §3s.3 (31/10/2026): 5k★, v4.0.3, 6.337 commit (1.975 từ 12/10, ~100/ngày), 274 SKILL.md, HUD chi phí có bảng giá trích nguồn, cài curl|sh",
       "section": "20"
     },
     {
@@ -3288,9 +3288,9 @@
       "repo": "anthropics/skills",
       "category": "plugin-marketplace",
       "license": "Apache-2.0 (một phần source-available)",
-      "stars": 185000,
+      "stars": 186000,
       "open_source": true,
-      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3s.4 (31/10/2026): 186k★, chỉ 61 commit, ~1k PR mở; 19 skill: 15 Apache-2.0, 4 skill tài liệu docx/pdf/pptx/xlsx © Anthropic all rights reserved, doc-coauthoring không license; spec Agent Skills + template; README: chỉ để minh họa",
       "section": "22"
     },
     {
@@ -4248,9 +4248,9 @@
       "repo": "davila7/claude-code-templates",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 32600,
+      "stars": 33000,
       "open_source": true,
-      "notes": "CLI cài 100+ thành phần Claude Code; ★ đọc 12/10/2026",
+      "notes": "CLI cài 100+ thành phần Claude Code; ★ đọc 12/10/2026; hồ sơ đầy đủ mục 20 §3s.1 (31/10/2026): 33k★, v1.29.7, 379 PR mở; agents 422/commands 348/hooks 64/MCP 108/skills 3.247 file; CI quét skill bằng SkillSpector; CLI gửi tracking tới aitmpl.com mặc định (tắt CCT_NO_TRACKING=true, không đọc DO_NOT_TRACK)",
       "section": "20"
     },
     {
@@ -4258,9 +4258,9 @@
       "repo": "VoltAgent/awesome-claude-code-subagents",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 25700,
+      "stars": 26000,
       "open_source": true,
-      "notes": "161+ subagent, 10 nhóm; ★ đọc 12/10/2026",
+      "notes": "161+ subagent, 10 nhóm; ★ đọc 12/10/2026; hồ sơ đầy đủ mục 20 §3s.2 (31/10/2026): 26k★, 165 subagent/10 nhóm, mọi agent khai tools:, model sonnet/inherit/haiku (không opus), 0 issue/1 PR mở",
       "section": "20"
     },
     {
