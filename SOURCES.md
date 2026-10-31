@@ -667,3 +667,8 @@
 
 - `mattpocock/skills`: clone 31/10/2026 (553 commit, HEAD 4ae2317, v1.3.2 29/10/2026); shields 308k★/26k fork, MIT, 175 issue/20 PR mở. Mục 20 §3p.1.
 - `DietrichGebert/ponytail`: clone 31/10/2026 (369 commit, HEAD 96608e0 29/10/2026, v5.3.3); shields 181k★/10k fork, MIT, 61 issue/81 PR mở; module band (`hooks/band/register.tsx`, webhook tùy chọn). Mục 20 §3p.2.
+
+## Bổ sung 2026-10-31g (claude-plugins-official, wshobson/agents)
+
+- `anthropics/claude-plugins-official`: clone 31/10/2026 (4.658 commit, HEAD a7ba5b93); shields 46k★/4,7k fork, Apache-2.0, 1,1k issue/192 PR mở; đọc toàn bộ marketplace.json (315 entry) và 9 workflow. Mục 20 §3q.1.
+- `wshobson/agents`: clone 31/10/2026 (629 commit, HEAD 7e2fb55); shields 42k★/4,4k fork, MIT, 2 issue/1 PR mở. Mục 20 §3q.2.
