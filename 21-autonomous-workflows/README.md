@@ -142,7 +142,7 @@ Ralph Wiggum loop giải bài "không cho agent dừng" trong một session (Sto
 |---|---|---|---|
 | **AutoGPT** (Toran Bruce Richards) | 3/2023 | Chuyển thành nền tảng builder agent (block-based) | >187k (nguồn thứ cấp) |
 | **BabyAGI** (Yohei Nakajima) | 4/2023 | Bản gốc archive 9/2024; chuyển sang framework "functions" thực nghiệm | — |
-| **AgentGPT** | 4/2023 | Dừng phát triển 11/2023, công ty pivot 7/2024; maintenance mode | ~35k |
+| **AgentGPT** | 4/2023 | Dừng phát triển 11/2023, công ty pivot 7/2024; **đã archive** (push cuối 29/4/2025, §10d.1) | ~36k |
 
 - Loop gốc: tạo task → ưu tiên → thực thi, ba vai trò prompt trên GPT-4. Bài học thống nhất: **độ tin cậy là nút thắt** — chạy không giám sát thì drift, lặp cùng subgoal, đốt token, không biết output đúng hay sai; không học qua lần chạy. Hệ quả: production chọn thiết kế **có giám sát + ràng buộc** thay vì tự trị toàn phần, chính là hướng Anthropic harness, Ralph loop có max vòng, và Routines không kế thừa session.
 - Khảo sát kiến trúc (arXiv 2404.11584) xếp ReAct, RAISE, Reflexion, AutoGPT+P, LATS cùng nhóm single-agent; thành công phụ thuộc planning + self-correction (mục 03).
@@ -303,6 +303,61 @@ Nhận xét độc lập: hai điểm này **khớp với thứ playbook tự gh
 - Một số tính năng playbook dựa vào vẫn chưa ổn định (đọc 16/10/2026): Code Review là research preview; Claude Security và Claude Tag là public beta; Claude Design là beta.
 
 **Nguồn §10c:** https://claude.com/blog/the-ai-native-sdlc-playbook (21/8/2026; HTML + ảnh `assets.claude.com/75c8e050ace91c2b288498fe45384469cfb00aa2.png`) · PDF "AI Native SDLC Playbook_designv2" (54 trang, link từ trang blog, đọc toàn văn) · https://academy.claude.com/courses/ai-native-sdlc-playbook · https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle (Jason Clinton, 21/7/2026) · https://waydev.co/anthropics-ai-native-sdlc-playbook-has-a-missing-layer-measurement/ · https://www.port.io/blog/anthropic-ai-native-sdlc-playbook
+
+## 10d. Nâng cấp 31/10/2026: rà repo lớn, cập nhật trạng thái và 5 repo mới
+
+> **Cách làm.** (1) Đọc lại số sao, license, trạng thái của 18 mục trong catalog mục 21 bằng GitHub API (31/10/2026); nhiều mục trước đây để trống số sao. (2) Chạy 6 truy vấn GitHub search (`ralph loop`, `durable execution`, `workflow orchestration`, `autonomous coding loop` tạo sau 1/10/2025, `agent orchestrator parallel`, `harness agent`), lọc repo đã có trong kho. Chọn **5 repo** phủ ba tầng của §1: loop trong session, harness dài hạn, durable runtime. Clone `--filter=blob:none`, đọc LICENSE, hook, script loop, CI, grep telemetry. **Không cài, không chạy.**
+
+### 10d.1 Thay đổi trạng thái của repo đã có
+
+| Repo | Thay đổi (GitHub API 31/10/2026) | Hệ quả |
+|---|---|---|
+| `reworkd/AgentGPT` | **Đã archive** (read-only); push cuối 29/4/2025; 36,3k★, GPL-3.0 | §7 đổi "maintenance mode" thành **archive**. Chỉ còn giá trị lịch sử |
+| `yoheinakajima/babyagi` | 22,4k★; push cuối **31/1/2026**; GitHub **không nhận file license** (catalog ghi MIT) | Gần 9 tháng đứng yên. Kiểm lại license trước khi chép mã |
+| `githubnext/gh-aw` | Repo đã chuyển sang **`github/gh-aw`** (5.545★, MIT, push 31/10/2026) | Link cũ vẫn chuyển hướng; nên trích `github/gh-aw` |
+| `temporalio/temporal` | 24,1k★ (catalog trống) | Bổ sung số |
+| `restatedev/restate` | 4,6k★; GitHub `NOASSERTION` (catalog ghi BUSL-1.1) | Không phải mã mở OSI; giữ cờ |
+| `inngest/inngest` | 6k★; GitHub `NOASSERTION` (server SSPL chuyển Apache sau 3 năm, theo docs, **chưa xác minh** lại) | Giữ ghi chú "Apache-2.0 (server)" kèm cờ kiểm |
+| `dbos-inc/dbos-transact-py` | 1,7k★, MIT | Bổ sung số |
+| `activepieces/activepieces`, `windmill-labs/windmill` | 25,3k★ và 18,3k★; GitHub `NOASSERTION` (catalog ghi MIT và AGPL-3.0) | Nhiều khả năng do có phần enterprise license riêng (**chưa xác minh** lại); đọc LICENSE trước khi nhúng |
+| `Significant-Gravitas/AutoGPT` | 187,8k★; `NOASSERTION` (MIT + Polyform Shield cho platform) | Như §7 |
+| `kestra-io/kestra`, `huginn/huginn` | 30,1k★, 50,2k★, vẫn hoạt động | §6 cập nhật số: Kestra ~28,4k → 30,1k, Huginn ~49k → 50,2k |
+
+### 10d.2 Bảng nhanh 5 repo mới
+
+| Repo | Tầng (§1) | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `OthmanAdi/planning-with-files` | Harness + loop | 27,8k · MIT | 30/10/2026 | Lập kế hoạch bằng file (`task_plan.md`, `findings.md`, `progress.md`) + hook giữ plan qua compaction và chặn dừng sớm | Hook chạy trên mọi Read/Grep |
+| `snarktank/ralph` | Loop | 22,1k · MIT | 2/2/2026 | Bản Ralph loop gọn nhất: `ralph.sh` + `prd.json` (`passes`) + `progress.txt` | **`--dangerously-skip-permissions`**, đứng yên 9 tháng |
+| `wanshuiyin/Auto-claude-code-research-in-sleep` (ARIS) | Harness nghiên cứu | 18,4k · MIT | 1/11/2026 | 91 skill cho vòng nghiên cứu ML chạy qua đêm: review chéo model, thí nghiệm, viết paper | 834/1.300 commit có trailer Claude |
+| `conductor-oss/conductor` | Durable runtime | 32,4k · Apache-2.0 | 30/10/2026 | Engine workflow (gốc Netflix, 2016) nay có task LLM, MCP, A2A, `DO_WHILE` cho agent | Cần Java 21; "agentspan" mới từ 7/2026 |
+| `triggerdotdev/trigger.dev` | Durable runtime | 16,7k · Apache-2.0 | 31/10/2026 | Task TypeScript dài không timeout, retry, queue, waitpoint chờ người, cron; tự host bằng Docker/K8s | **PostHog ở MCP CLI, không đọc `DO_NOT_TRACK`** |
+
+### 10d.3 Hồ sơ từng repo
+
+- **`planning-with-files`.** 580 commit từ 3/1/2026, 78 tác giả, v3.27.0 (126 tag), 245 commit từ 1/8. Hỗ trợ ~15 host (thư mục `.codex`, `.cursor`, `.gemini`, `.kiro`, `.hermes`, `.pi`…). Phần đáng học nằm trong `scripts/check-complete.sh --gate` (Stop hook): chỉ chặn dừng khi **đủ 5 điều kiện**: plan ở chế độ gated, phase còn `in_progress`, `stop_hook_active` không bật, **số lần chặn dưới trần `PWF_GATE_CAP` (mặc định 20)**, và **ledger có tiến triển từ lần chặn trước** (không tiến triển thì cho dừng). Code còn ghi chú lỗi cũ (#178: glob `*stop_hook_active*true*` từng khớp nhầm). `attest-plan.sh` khoá `task_plan.md` bằng SHA-256; nếu file bị sửa ngoài ý muốn, hook **từ chối nạp plan vào ngữ cảnh** và báo `[PLAN TAMPERED]`. `PLANNING_DISABLED=1` tắt cho phiên CI. 103 file test. "Crash-proof" trong mô tả ⚠️: thực chất là khôi phục bằng `session-catchup.py` đọc lại file, không có bảo đảm giao dịch. Cài: `/plugin marketplace add OthmanAdi/planning-with-files` rồi `/plugin install planning-with-files@planning-with-files`; agent khác: `npx skills add OthmanAdi/planning-with-files --skill planning-with-files -g`.
+- **`snarktank/ralph`** (Ryan Carson). Chỉ 20 commit (7/1–2/2/2026), không tag. `ralph.sh` lặp tối đa `MAX_ITERATIONS` (mặc định 10), mỗi vòng mở **tiến trình mới** (context sạch) chạy `amp --dangerously-allow-all` hoặc `claude --dangerously-skip-permissions --print`; agent chọn story ưu tiên cao nhất có `passes: false` trong `prd.json`, chạy check, commit, ghi `progress.txt`. Dừng khi output có `<promise>COMPLETE</promise>`. Bẫy: chuỗi này cũng có trong chính `CLAUDE.md`/`prompt.md`, và script grep **toàn bộ output** nên agent chỉ cần trích lại hướng dẫn là loop dừng sai; lỗi từng vòng bị nuốt (`|| true`). Hợp làm ví dụ dạy, không hợp chạy trên máy có dữ liệu thật. Bản Claude Code dài hơi hơn đã có ở mục 03 (`frankbria/ralph-claude-code`).
+- **ARIS.** 1.300 commit từ 10/3/2026, 116 tác giả, 197 `SKILL.md` (91 skill chính + bản Codex). Mô tả "Markdown-only skills" ⚠️: repo có 11 MCP server (`codex-exec`, `gemini-review`, `claude-review`…), ~50 tool Python (watchdog GPU, hàng đợi thí nghiệm, kiểm trích dẫn). `auto-review-loop`: **`MAX_ROUNDS = 4`**, dừng khi reviewer ở model khác cho **điểm ≥ 6/10 và** verdict `ready`/`almost`; trạng thái lưu file để khôi phục; skill **tự dặn không bọc trong `/loop` hay cron** vì sẽ mất bộ nhớ reviewer và tốn token vô ích. `tools/threat_scan.py` là lớp quét prompt-injection bằng regex, fail-closed, lấy mẫu từ Hermes Agent (MIT, có ghi công). CLI riêng ARIS-Code (Rust, MIT) nằm ở nhánh `aris-code`. Cài: `claude plugin marketplace add wanshuiyin/Auto-claude-code-research-in-sleep` rồi `claude plugin install aris@aris` và `/aris:setup`.
+- **`conductor-oss/conductor`.** 6.119 commit từ 7/12/2016, 464 tác giả, v3.34.0-rc1; Orkes giữ nhịp chính (Netflix ngừng bản gốc cuối 2023, **chưa xác minh** ngày). Module `ai/` (từ 2/2026) thêm task `LLM_CHAT_COMPLETE`, `LIST_MCP_TOOLS`, `CALL_MCP_TOOL`, A2A, vector DB; `SWITCH` có `evaluatorType: decision` gọi model để chọn nhánh. Ví dụ agent trong README dùng `DO_WHILE` với điều kiện **`iteration < 10`**: trần vòng nằm trong định nghĩa workflow ✅ đúng guardrail §8. Có ví dụ human-in-loop và cancel. "Chạy trong 60 giây" cần Node + Java 21, CLI tải JAR server về `~/.conductor-cli/`. Telemetry server **chưa kiểm**. Cài: `npm install -g @conductor-oss/conductor-cli` rồi `conductor server start`.
+- **`triggerdotdev/trigger.dev`.** 8.610 commit từ 30/11/2022, 167 tác giả, 896 commit từ 1/8. SDK v3 có nhóm module mới cho agent: `chat.ts` (từ 5/2026), `skills.ts`, `subAgentStream.ts`, `steeringContext.ts`, `compactionResponse.ts`, cùng `wait`/waitpoint token cho người duyệt, `schedules` (cron), `idempotencyKeys`, `concurrencyLimits`. LICENSE Apache-2.0 ở gốc và từng package ✅. Tự host: `hosting/docker`, `hosting/k8s`. Telemetry: MCP server trong CLI gửi PostHog (phản hồi người dùng); tắt bằng `--skip-telemetry` hoặc `TRIGGER_TELEMETRY_DISABLED`, **không đọc `DO_NOT_TRACK`** ⚠️. Mặc định SDK kết nối cloud của Trigger.dev. Cài (theo `docs/snippets/step-cli-init.mdx`): `npx trigger.dev@latest init` (nên ghim phiên bản thay `@latest`).
+
+### 10d.4 Vị trí trong bản đồ §1 và §5
+
+| Tầng | Thêm vào | So với đã có |
+|---|---|---|
+| Loop trong session | `snarktank/ralph`, Stop gate của planning-with-files | Ralph cũ (mục 03) dùng Stop hook; bản snarktank dùng tiến trình mới mỗi vòng |
+| Harness dài hạn | planning-with-files, ARIS | Gần với harness Anthropic §2.1 (progress file, feature list `passes`), thêm plan có băm và reviewer khác model |
+| Durable runtime | Trigger.dev, Conductor | Trigger.dev cạnh Inngest (TypeScript, có cloud); Conductor cạnh Temporal (JVM, workflow JSON) |
+
+### 10d.5 Mẫu chung rút ra
+
+1. **Stop gate tốt có trần và phát hiện đứng yên**: planning-with-files (20 lần, ledger không đổi thì cho dừng), ARIS (4 vòng), Conductor (`iteration < 10`). Ralph chỉ có trần vòng và điều kiện dừng dễ khớp nhầm.
+2. **Không đặt loop trong loop**: ARIS cấm bọc vòng review trong `/loop`/cron; lịch nên kích hoạt *sự kiện bên ngoài* (thí nghiệm xong), không kích hoạt lại cả vòng.
+3. **Bảo vệ file trạng thái khỏi bị sửa lén** (băm SHA-256 plan) là bước tiếp theo của "feature list chỉ đổi `passes`" (§2.1).
+4. **Reviewer khác model là mặc định mới** (ARIS, codex-plugin-cc ở mục 20 §3t), đúng bài generator–evaluator §2.2, nhưng luôn kèm số vòng tối đa.
+5. **Durable runtime đã có primitive cho agent** (waitpoint, chat stream, MCP task); trước khi tự viết harness có trạng thái, xem runtime đã có chưa. Telemetry của CLI vẫn phải kiểm từng cái: `DO_NOT_TRACK` chưa phổ quát.
+
+**Nguồn §10d:** GitHub search API 31/10/2026 (6 truy vấn; `repo:` cho `github/gh-aw`, `yoheinakajima/babyagi`) · `meta_all.json`/`status_all.json` của đợt rà · clone `--filter=blob:none` 31/10/2026, đọc: OthmanAdi/planning-with-files (LICENSE, hooks/hooks.json, scripts/{gate-stop.sh, check-complete.sh, attest-plan.sh}, tests/) · snarktank/ralph (LICENSE, ralph.sh, prompt.md, CLAUDE.md, .claude-plugin/marketplace.json) · wanshuiyin/Auto-claude-code-research-in-sleep (LICENSE, README.md, .claude-plugin/marketplace.json, skills/auto-review-loop/SKILL.md, tools/{watchdog.py, threat_scan.py}, nhánh `aris-code`: LICENSE, cây thư mục) · conductor-oss/conductor (LICENSE, README.md, ai/DECISION_SWITCH.md, cây `ai/examples/`) · triggerdotdev/trigger.dev (LICENSE, README.md, packages/cli-v3/src/{mcp/telemetry.ts, cli/common.ts}, cây packages/trigger-sdk/src/v3/, hosting/) · https://github.com/OthmanAdi/planning-with-files · https://github.com/snarktank/ralph · https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep · https://github.com/conductor-oss/conductor · https://github.com/triggerdotdev/trigger.dev · https://github.com/github/gh-aw · https://github.com/reworkd/AgentGPT
 
 ---
 

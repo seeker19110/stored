@@ -2155,7 +2155,7 @@
       "name": "claude-plugins-official",
       "repo": "anthropics/claude-plugins-official",
       "category": "plugin-marketplace",
-      "license": null,
+      "license": "Apache-2.0",
       "stars": 45573,
       "open_source": true,
       "notes": "Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026); cập nhật 31/10/2026 (mục 20 §3q.1): 46k★, 315 entry (39 nội bộ + 14 external_plugins + 262 repo ngoài đều ghim sha), bot bump SHA hằng đêm sau `claude plugin validate` + Claude policy scan, PR người ngoài chỉ được thêm entry; ★ 31/10/2026: 45.573 (GitHub API)",
@@ -2203,12 +2203,12 @@
     },
     {
       "name": "gh-aw (GitHub Agentic Workflows)",
-      "repo": "githubnext/gh-aw",
+      "repo": "github/gh-aw",
       "category": "scheduling",
       "license": "MIT",
       "stars": 5500,
       "open_source": true,
-      "notes": "Markdown+frontmatter → .lock.yml GitHub Actions; engine Copilot/Claude/Codex/Gemini/Pi; safe-outputs; ★ 31/10/2026: 5.500 (shields)",
+      "notes": "Markdown+frontmatter → .lock.yml GitHub Actions; engine Copilot/Claude/Codex/Gemini/Pi; safe-outputs; ★ 31/10/2026: 5.500 (shields); repo chuyển sang github/gh-aw (31/10/2026)",
       "section": "21"
     },
     {
@@ -7586,6 +7586,86 @@
       "open_source": true,
       "notes": "Bộ lệnh/prompt rút chuẩn mã từ codebase và shape spec; 22 file, docs ở buildermethods.com; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
       "section": "13"
+    },
+    {
+      "name": "skills CLI (npx skills)",
+      "repo": "vercel-labs/skills",
+      "category": "plugin-marketplace",
+      "license": "MIT",
+      "stars": 37428,
+      "open_source": true,
+      "notes": "CLI cài skill cho 79 agent, skills-lock.json băm SHA-256 nội dung; telemetry bật sẵn gửi skills.sh (tắt DISABLE_TELEMETRY/DO_NOT_TRACK, tắt luôn bảng audit); ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "section": "20"
+    },
+    {
+      "name": "Codex plugin for Claude Code",
+      "repo": "openai/codex-plugin-cc",
+      "category": "plugin-marketplace",
+      "license": "Apache-2.0",
+      "stars": 34769,
+      "open_source": true,
+      "notes": "Plugin OpenAI chính chủ: /codex:review chạy read-only, rescue mặc định --write, Stop hook review gate ALLOW/BLOCK có thể đốt hạn mức; 29 commit, push cuối 7/7/2026; ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "section": "20"
+    },
+    {
+      "name": "claude-skills (Alireza Rezvani)",
+      "repo": "alirezarezvani/claude-skills",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 29071,
+      "open_source": true,
+      "notes": "407 skill + 127 agent + 165 command đa phòng ban; 545/1.668 commit có trailer Claude; CI skill-security-audit; 'stdlib-only' sai với ít nhất 13 file .py; ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "section": "20"
+    },
+    {
+      "name": "Claude HUD",
+      "repo": "jarrodwatts/claude-hud",
+      "category": "plugin-marketplace",
+      "license": "MIT",
+      "stars": 29062,
+      "open_source": true,
+      "notes": "Plugin statusline: context, tool, agent, chi phí, hạn mức; không gọi mạng, --extra-cmd cần opt-in env; hiện tên tài khoản trên màn hình; ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "section": "20"
+    },
+    {
+      "name": "Waza",
+      "repo": "tw93/Waza",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 7483,
+      "open_source": true,
+      "notes": "8 skill kỹ thuật khoá cứng bằng SCOPE.md + .out-of-scope; make test dày (routing drift, shellcheck ghim SHA, 28 smoke test), chặn curl|sh trong docs; /read chỉ gửi URL ra proxy khi --use-proxy; ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "section": "20"
+    },
+    {
+      "name": "ARIS (Auto Research in Sleep)",
+      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 18370,
+      "open_source": true,
+      "notes": "91 skill vòng nghiên cứu ML qua đêm; auto-review-loop MAX_ROUNDS=4, dừng khi reviewer khác model chấm ≥6 và ready/almost; cấm bọc trong /loop; threat_scan.py regex fail-closed; 834/1.300 commit trailer Claude; ★ 31/10/2026 (GitHub API), mục 21 §10d",
+      "section": "21"
+    },
+    {
+      "name": "Conductor OSS",
+      "repo": "conductor-oss/conductor",
+      "category": "durable-execution",
+      "license": "Apache-2.0",
+      "stars": 32399,
+      "open_source": true,
+      "notes": "Engine workflow gốc Netflix (2016), nay có task LLM/MCP/A2A, SWITCH theo quyết định model, DO_WHILE có trần vòng; cần Java 21; ★ 31/10/2026 (GitHub API), mục 21 §10d",
+      "section": "21"
+    },
+    {
+      "name": "Trigger.dev",
+      "repo": "triggerdotdev/trigger.dev",
+      "category": "durable-execution",
+      "license": "Apache-2.0",
+      "stars": 16667,
+      "open_source": true,
+      "notes": "Task TypeScript dài không timeout, retry, queue, waitpoint người duyệt, cron, module chat/skills cho agent; tự host Docker/K8s; MCP CLI gửi PostHog, không đọc DO_NOT_TRACK; ★ 31/10/2026 (GitHub API), mục 21 §10d",
+      "section": "21"
     }
   ]
 }
