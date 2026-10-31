@@ -647,3 +647,8 @@
 - Ảnh người dùng gửi 31/10/2026. Clone `unclebob/ub-mode` (4 commit, 25/10/2026, không LICENSE; shields 5,4k★/300 fork) và `unclebob/{crapper, dryer, mutator, uml-viewer}` (0BSD ×3, uml-viewer không license; 156/73/92/476★). Hồ sơ mục 20 §3m; catalog +2 = 571.
 - Nguồn gốc pstack: upstream `cursor/plugins/pstack` (15k★, không khai license), mirror `backnotprop/pstack` (3,2k★, MIT, "standalone mirror", Plannotator tài trợ); cursor.com/lp-team/lauren. Ảnh diễn giải pstack là "kiểm soát chặt AI" — ngược với principle `never-block-on-the-human`.
 - Phụ: thecode.media (bài tiếng Nga về ub-mode) · github.com/unclebob/ub-mode/wiki · `robert-hoffmann/uncle-bob` là dự án khác, không liên quan.
+
+## Bổ sung 2026-10-31c (bài viết "Claude Code có Advisor Tool")
+
+- Bài tiếng Việt người dùng gửi 31/10/2026; đối chiếu docs chính thức đọc 31/10/2026: code.claude.com/docs/en/advisor · platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool · claude.com/blog/the-advisor-strategy (9/4/2026). Kết quả 10/10 ý đúng; bổ sung: DISABLE_TELEMETRY tắt advisor, advisor đời mới trả `advisor_redacted_result`, cặp sai bị bỏ lặng lẽ, hai trang docs lệch nhau về Claude Platform on AWS/Google Cloud.
+- Phụ (không làm căn cứ): claudelog.com, docs.litellm.ai (LiteLLM tự dựng vòng lặp cho Bedrock/Vertex). Hồ sơ mục 03 §8e; catalog +1 = 572 (mục dạng url, không có repo).
