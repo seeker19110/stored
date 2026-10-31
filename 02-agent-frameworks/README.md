@@ -115,6 +115,61 @@
 - **Rủi ro:** cổng "critical" là LLM; bypass permission mặc định cho các CLI ngoài Codex; pre-release (0.5.x) nhưng có tới 125 PR mở; repo vừa đổi chủ; commit SEO tự động làm loãng lịch sử; chưa có đánh giá độc lập về chất lượng phối hợp nhiều agent.
 - **So sánh:** cùng họ "công ty/văn phòng AI" với OpenCompany (§4), Paperclip, OpenOPC, và cùng nhóm ADE ở mục 01 §1.3 (Personal Jarvis, T3 Code, Claude Squad). Điểm khác biệt là dồn mọi CLI về **một** agent điều phối bằng giọng nói/chat và hiển thị như một văn phòng.
 
+## 4c. Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại sao, license, trạng thái của các repo mục 02 bằng GitHub search API (31/10/2026). (2) Tìm framework lớn còn thiếu: 5 truy vấn (`agent framework`, topic `ai-agents`, `multi-agent`, `agent sdk`, `agent harness`, repo tạo sau 1/10/2025), lọc bỏ repo đã có trong `data/projects.json`. Chọn **7 repo**, clone `--filter=blob:none` (lịch sử) và `--depth 1` (đọc/grep mã): LICENSE, manifest, cấu trúc gốc, file nguồn chính, CI, grep telemetry/host mạng; đếm commit, tác giả, trailer `Co-Authored-By: Claude`. **Không cài, không chạy script nào của repo.**
+
+### 4c.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (bảng §1 → 31/10/2026) | Hệ quả |
+|---|---|---|
+| `FoundationAgents/MetaGPT` | **Push cuối 21/1/2026** (hơn 9 tháng); 71,1k★ | Coi như ngừng phát triển; chỉ đọc để học mẫu SOP, không chọn cho dự án mới |
+| `Pythagora-io/gpt-pilot` | Push cuối 18/6/2026; GitHub báo `NOASSERTION` | Khớp ghi chú "ngừng bảo trì" ở §1 |
+| `HKUDS/OpenOPC` | **Không còn trong kết quả search API** (meta_all không có) | Có thể đã đổi tên, chuyển private hoặc xoá **(chưa xác minh)**; tạm không dùng URL cũ |
+| `NousResearch/hermes-agent` | "–" → **259,2k★**, MIT | Lớn thứ hai trong bảng sau OpenClaw (393,6k) |
+| `ruvnet/ruflo` | "–" → 80,4k★, MIT | Số sao lớn nhưng tuyên bố hiệu năng vẫn **chưa kiểm chứng** |
+| `langchain-ai/langchain` / `langgraph` | ~130k → 148,8k★ / ~40k → 44,2k★ | |
+| `deepset-ai/haystack` | ~20k → 26,9k★ | Tăng mạnh nhất nhóm RAG |
+| `pydantic/pydantic-ai` | ~16k → 21k★ | |
+| `google/adk-python` | "–" → 22,1k★ | Bổ sung số |
+| `mastra-ai/mastra` | "–" → 29,2k★; GitHub báo `NOASSERTION` | GitHub không nhận diện được license; catalog ghi Apache-2.0, cần đọc lại LICENSE trước khi nhúng **(chưa đọc lại đợt này)** |
+| `microsoft/agent-framework` | "–" → 14,4k★ | Bổ sung số |
+| `microsoft/autogen` | 61,7k★; GitHub nhận **CC-BY-4.0** | Nhiều khả năng do file `LICENSE` là license tài liệu, mã theo `LICENSE-CODE` (MIT) **(chưa đọc lại đợt này)**. Catalog giữ MIT |
+| `camel-ai/camel` · `ag2ai/ag2` · `VRSEN/agency-swarm` | ~13k → 18k★ · "–" → 5k★ · "–" → 4,6k★ | |
+| `paperclipai/paperclip` · `bytedance/deer-flow` · `crewAIInc/crewAI` | 100,5k → 109,5k · 83,7k → 84,8k · ~57k → 60,4k★ | |
+
+### 4c.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `HKUDS/nanobot` | Agent cá nhân | 49,7k · MIT | 31/10/2026 | Agent cá nhân tự host, WebUI/TUI/chat app, memory "Dream", cron, SDK + API kiểu OpenAI | "Siêu nhẹ" nhưng ~188k dòng Python; `restrict_to_workspace` mặc định tắt |
+| `agentscope-ai/agentscope` | Framework | 35k · Apache-2.0 | 31/10/2026 | AgentScope 2.0 (Alibaba): middleware, permission engine, SOP, A2A, realtime voice | Lịch sử viết lại từ 8/2025 |
+| `nanocoai/nanoclaw` | Agent cá nhân | 31,1k · MIT | 26/10/2026 | "OpenClaw thu nhỏ": mỗi agent một container, chạy trên Claude Agent SDK | **PostHog lúc setup bật sẵn**; 43% commit có trailer Claude |
+| `langchain-ai/deepagents` | Agent harness | 30,8k · MIT | 31/10/2026 | Harness "đủ pin" trên LangGraph: subagent, filesystem, nén ngữ cảnh, skills, HITL | `recursion_limit` 9.999 |
+| `strands-agents/harness-sdk` | Framework + harness | 9k · Apache-2.0 | 30/10/2026 | Monorepo Strands (AWS) Python/TS: SDK vòng lặp + `create_harness()` | Mặc định Bedrock Claude Sonnet 4.6 |
+| `anthropics/claude-agent-sdk-python` | SDK | 8,4k · MIT (+ điều khoản thương mại) | 31/10/2026 | SDK Python chạy Claude Code CLI làm vòng lặp agent | **Wheel nhúng CLI Claude Code mã đóng** |
+| `vercel/eve` | Framework | 5,8k · Apache-2.0 | 31/10/2026 | Agent "filesystem-first": `instructions.md`, `tools/`, `skills/`, `channels/`, `schedules/` | 1.0.0-rc.1; telemetry CLI bật sẵn; gắn hạ tầng Vercel |
+
+### 4c.3 Hồ sơ từng repo
+
+- **deepagents** (LangChain). 4.546 commit từ 27/7/2025, 177 tác giả, phiên bản `deepagents` 0.7.32. Lõi là `create_deep_agent()` trong `graph.py` ghép chuỗi middleware: subagent (đồng bộ và async), filesystem kèm quyền (`FilesystemPermission`), summarization, memory, skills, prompt caching; thư mục `middleware/` còn có `_message_eviction`, `_blob_offload` (đẩy output tool ra đĩa). ✅ README "context management: summarize + offload to disk" khớp middleware thật. Đáng học nhất là **`RubricMiddleware`** (tuỳ chọn, không nằm trong graph mặc định): khi model định dừng, một grader sub-agent chấm transcript theo rubric; `needs_revision` thì đưa phản hồi lại và lặp tiếp, dừng ở `satisfied`/`failed` hoặc `max_iterations`. Đây là mẫu evaluator–optimizer đóng gói sẵn (mục 03 §1). ⚠️ Graph đặt `recursion_limit = 9_999`, nên trần vòng lặp thật nằm ở middleware/người gọi. Mạng: thư viện chỉ gọi model; `deepagents-code` (CLI kèm theo) tự bật trace LangSmith khi lưu key qua `/auth`, tắt bằng `DEEPAGENTS_CODE_LANGSMITH_TRACING=false`. Cài: `uv add deepagents`.
+- **AgentScope 2.0** (Alibaba/Tongyi). Repo tạo 1/2024 nhưng lịch sử hiện tại bắt đầu 15/8/2025 (viết lại cho 2.0), 828 commit, 191 tác giả, `__version__` 2.0.12dev, cần Python ≥ 3.11. Có `permission/` (engine + rule + decision), `sop/` (chạy việc nhiều bước theo quy trình chuẩn), `pipeline/` (`TeamPipeline` leader giao việc), `realtime/`, A2A. Tracing OpenTelemetry nằm trong middleware, không thấy endpoint thu thập mặc định. Host mặc định nghiêng về Aliyun Bailian/DashScope. Cài: `pip install agentscope`.
+- **Claude Agent SDK (Python)**. 952 commit từ 11/6/2025, **26,7% có trailer Claude**, phát hành tự động (bot GitHub Actions đứng đầu). ❌ Điều README không nói ở đầu: **wheel nhúng sẵn CLI Claude Code** (`_cli_version.py` = 2.1.316) là phần mềm mã đóng; LICENSE MIT chỉ phủ phần SDK, và README §"License and terms" đặt toàn bộ việc dùng dưới **Commercial Terms** của Anthropic. ⚠️ Bẫy quyền: `allowed_tools` chỉ là danh sách **tự duyệt**, không giới hạn tool; muốn chặn phải dùng `disallowed_tools` (README tự ghi). Script build `download_cli.py` tải `install.sh` và chỉ kiểm shebang, không kiểm hash. Cài: `pip install claude-agent-sdk`.
+- **Strands harness-sdk** (AWS). Repo `sdk-python` cũ (tạo 14/5/2025) nay là monorepo `harness-sdk`: `strands-py`, `strands-ts`, `harness-py`, `harness-ts`, CLI, MCP server, site docs, `team/` (tenets, quyết định). 3.187 commit, 365 tác giả, 56 workflow. ✅ README "lifecycle controls (turn limits, token budgets, cancellation)" có trong SDK. ✅ Telemetry đúng mực: `harness-py/telemetry.py` **chỉ bật exporter OTel khi đặt `OTEL_TRACES_EXPORTER`**, cố ý không theo mặc định `otlp` của spec để tránh âm thầm dựng exporter. Mặc định model `global.anthropic.claude-sonnet-4-6` trên Bedrock (cần tài khoản AWS). Cài: `pip install strands-harness` hoặc `pip install strands-agents`.
+- **nanobot** (HKU Data Intelligence Lab). 5.171 commit từ 1/2/2026, 543 tác giả, v0.4.0. ⚠️ Tự gọi "ultra-lightweight" nhưng gói `nanobot/` có 445 file, ~188k dòng Python, kèm cả một bộ cập nhật tự động (~20 module `update_*`). ⚠️ `restrict_to_workspace` mặc định `False`: shell và file tool không bị giới hạn trong workspace trừ khi bật. Không thấy telemetry trong mã Python. Kênh: Telegram, Discord, Slack, WeChat, Feishu, email, Linear. Cài: `pip install nanobot-ai` (Python ≥ 3.11).
+- **NanoClaw**. 3.052 commit từ 31/1/2026, 196 tác giả, **43,1% commit có trailer Claude** (cao nhất đợt). Ý tưởng: thay vì OpenClaw (~500k dòng, bảo mật ở tầng ứng dụng), mỗi agent chạy trong **container Linux riêng**, chỉ thấy thư mục được mount, khoá API đi qua Agent Vault của OneCLI (agent không giữ khoá thô). ⚠️ "Một tiến trình, vài file nguồn" không khớp: `src/` có 242 file TS, ~37,7k dòng (không tính test). ⚠️ `setup/lib/diagnostics.sh` gửi sự kiện cài đặt tới PostHog (`us.i.posthog.com`, khoá nhúng sẵn) với install-id lưu ở `data/install-id`; README có nói, tắt bằng `NANOCLAW_NO_DIAGNOSTICS=1`. Khi một bước cài lỗi, script **tự gọi Claude Code để sửa**, nên cần giám sát lần cài đầu. Cài: `git clone https://github.com/nanocoai/nanoclaw.git && cd nanoclaw && bash nanoclaw.sh`.
+- **eve** (Vercel). 2.360 commit từ 16/6/2026, 77 tác giả, `eve@1.0.0-rc.1`. Agent khai báo bằng thư mục: `instructions.md` bắt buộc, `tools/*.ts`, `skills/*.md`, `channels/`, `schedules/`; gói npm kèm toàn bộ docs để coding agent đọc tại `node_modules/eve/docs`. Phụ thuộc chặt hệ Vercel (`@vercel/sandbox`, `@vercel/queue`, `@vercel/oidc`, AI Gateway). ⚠️ CLI telemetry **bật sẵn** gửi `telemetry.vercel.com/api/eve-cli/v1/events`, tắt bằng `eve telemetry disable` hoặc `EVE_TELEMETRY_DISABLED=1`; **không đọc `DO_NOT_TRACK`**. Có gói `eve-self-modification` (agent tự sửa mình), nên khoá quyền ghi khi chạy production. Cài: `npx eve@latest init my-agent`.
+
+### 4c.4 Mẫu chung rút ra
+
+1. **"Harness" thay chữ "framework"**: deepagents ("batteries-included agent harness"), Strands đổi tên repo thành `harness-sdk` và thêm `create_harness()`, Claude Agent SDK bọc nguyên Claude Code. Xu hướng là bán một agent đã lắp sẵn với mặc định tốt, kèm lối thoát để thay từng phần.
+2. **Thư mục là giao diện viết agent**: eve (`agent/` theo quy ước), nanobot/NanoClaw (`CLAUDE.md` và memory theo từng nhóm), deepagents (skills, memory trên backend file). Hợp với hướng "trạng thái bền trong file" của mục 03 §6.
+3. **Cách ly bằng container thay cho allowlist** (NanoClaw) là câu trả lời trực tiếp cho rủi ro "agent cá nhân có quyền shell" của OpenClaw/nanobot; nanobot vẫn để `restrict_to_workspace` tắt.
+4. **Telemetry: Strands là mẫu tốt** (tắt đến khi người dùng bật bằng biến chuẩn OTel). eve, NanoClaw, deepagents-code bật sẵn; chỉ một phần tôn trọng `DO_NOT_TRACK`.
+5. **"Nhẹ" là lời quảng cáo, không phải số đo**: nanobot ~188k dòng, NanoClaw ~38k dòng. Đếm dòng trước khi tin.
+
+**Nguồn §4c:** GitHub search API 31/10/2026 (5 truy vấn + `user:HKUDS`) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` và `--depth 1` 7 repo, đọc: deepagents (README.md, LICENSE, `libs/deepagents/pyproject.toml`, `deepagents/graph.py`, `deepagents/middleware/{rubric,summarization,subagents,permissions}.py`, `libs/code/DEVELOPMENT.md`, `deepagents_code/config.py`) · agentscope (README.md, LICENSE, pyproject.toml, `src/agentscope/{_version.py, permission/, sop/, middleware/_tracing/}`) · claude-agent-sdk-python (README.md, LICENSE, pyproject.toml, `src/claude_agent_sdk/_cli_version.py`, `scripts/download_cli.py`) · harness-sdk (README.md, LICENSE.APACHE, NOTICE, `harness-py/src/strands_harness/telemetry.py`, `strands-py/src/strands/models/bedrock.py`) · nanobot (README.md, LICENSE, `nanobot/config/schema.py`, `nanobot/config/loader.py`) · nanoclaw (README.md, README_zh.md, LICENSE, nanoclaw.sh, `setup/lib/diagnostics.sh`, `src/`) · eve (README.md, LICENSE, `packages/eve/package.json`, `packages/eve/src/cli/telemetry/{index,flush,preference}.ts`) · https://github.com/HKUDS/OpenOPC (không tìm thấy qua search API)
+
 ## 5. Nguồn
 
 - https://www.firecrawl.dev/blog/best-open-source-agent-frameworks

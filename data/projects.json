@@ -6535,6 +6535,216 @@
       "open_source": true,
       "notes": "~74 link chọn lọc; cấm bài gửi do AI viết và bài trả phí; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
       "section": "06"
+    },
+    {
+      "name": "Claw Code",
+      "repo": "ultraworkers/claw-code",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 194996,
+      "open_source": true,
+      "notes": "CLI `claw` viết lại bằng Rust, tự nhận 'museum exhibit' do agent bảo trì; tạo 31/3/2026, gắn với vụ lộ mã Claude Code; không khuyên dùng; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "Open Interpreter (fork Codex)",
+      "repo": "openinterpreter/openinterpreter",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 68760,
+      "open_source": true,
+      "notes": "Nay là fork OpenAI Codex với /harness giả lập 14 harness; metrics Statsig (ab.chatgpt.com) bật sẵn; nhúng system prompt Claude Code; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "Warp",
+      "repo": "warpdotdev/warp",
+      "category": "coding-agent",
+      "license": "AGPL-3.0 (crate UI MIT)",
+      "stars": 65807,
+      "open_source": true,
+      "notes": "ADE/terminal mở mã client từ 4/2026; server, Drive, Oz vẫn đóng; telemetry RudderStack và Sentry bật sẵn; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "Codewhale (ex-DeepSeek-TUI)",
+      "repo": "codewhale-hq/Codewhale",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 41160,
+      "open_source": true,
+      "notes": "CLI agent Rust 40+ provider, /receipts liệt kê thay đổi; telemetry bật sẵn, tắt bằng config hoặc DO_NOT_TRACK; link giới thiệu có hoa hồng; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "oh-my-pi (omp)",
+      "repo": "can1357/oh-my-pi",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 37342,
+      "open_source": true,
+      "notes": "Fork Pi của Stencil Labs: LSP, DAP, 60+ provider, lõi Rust; Auto QA cục bộ bật sẵn, đẩy lên qa.omp.sh cần đồng ý; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "Qwen Code",
+      "repo": "QwenLM/qwen-code",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 28853,
+      "open_source": true,
+      "notes": "Agent terminal của Qwen, gốc Gemini CLI 0.8.2; CLI, desktop, IDE, SDK; usage stats bật sẵn gửi Aliyun RUM; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "Grok Build",
+      "repo": "xai-org/grok-build",
+      "category": "coding-agent",
+      "license": "Apache-2.0",
+      "stars": 27632,
+      "open_source": true,
+      "notes": "Mã nguồn CLI/TUI grok của SpaceXAI, đồng bộ một chiều từ monorepo, không nhận PR; ~2 triệu dòng Rust; ★ 31/10/2026 (GitHub API), mục 01 §3i.3",
+      "section": "01"
+    },
+    {
+      "name": "nanobot",
+      "repo": "HKUDS/nanobot",
+      "category": "personal-agent",
+      "license": "MIT",
+      "stars": 49705,
+      "open_source": true,
+      "notes": "Agent cá nhân tự host (WebUI, TUI, chat app, cron, memory); ~188k dòng Python dù gọi 'siêu nhẹ'; restrict_to_workspace mặc định tắt; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "AgentScope 2.0",
+      "repo": "agentscope-ai/agentscope",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 35037,
+      "open_source": true,
+      "notes": "Framework Alibaba: middleware, permission engine, SOP, TeamPipeline, A2A, realtime voice; lịch sử viết lại từ 8/2025; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "NanoClaw",
+      "repo": "nanocoai/nanoclaw",
+      "category": "personal-agent",
+      "license": "MIT",
+      "stars": 31064,
+      "open_source": true,
+      "notes": "Thay OpenClaw: mỗi agent một container, khoá API qua OneCLI vault, chạy trên Claude Agent SDK; PostHog lúc setup bật sẵn; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "Deep Agents",
+      "repo": "langchain-ai/deepagents",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 30830,
+      "open_source": true,
+      "notes": "Harness 'đủ pin' trên LangGraph: subagent, filesystem, summarization, skills, HITL; RubricMiddleware kiểu evaluator–optimizer; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "Strands Agents harness-sdk",
+      "repo": "strands-agents/harness-sdk",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 9014,
+      "open_source": true,
+      "notes": "Monorepo AWS Python/TS: SDK vòng lặp + create_harness(); OTel chỉ bật khi đặt OTEL_TRACES_EXPORTER; mặc định Bedrock; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "Claude Agent SDK (Python)",
+      "repo": "anthropics/claude-agent-sdk-python",
+      "category": "agent-framework",
+      "license": "MIT (+ Anthropic Commercial Terms; CLI nhúng mã đóng)",
+      "stars": 8395,
+      "open_source": true,
+      "notes": "SDK chạy Claude Code CLI làm vòng lặp agent; wheel nhúng CLI mã đóng; allowed_tools chỉ là danh sách tự duyệt; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "eve",
+      "repo": "vercel/eve",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 5754,
+      "open_source": true,
+      "notes": "Framework agent 'filesystem-first' của Vercel (instructions.md, tools/, skills/, channels/, schedules/); 1.0.0-rc.1; telemetry CLI bật sẵn, không đọc DO_NOT_TRACK; ★ 31/10/2026 (GitHub API), mục 02 §4c.3",
+      "section": "02"
+    },
+    {
+      "name": "learn-claude-code",
+      "repo": "shareAI-lab/learn-claude-code",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 79633,
+      "open_source": true,
+      "notes": "17 chương Python dựng lại từng khối harness kiểu Claude Code; mã dạy học (denylist chuỗi, max_turns mặc định không giới hạn); ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
+    },
+    {
+      "name": "Headroom",
+      "repo": "headroomlabs-ai/headroom",
+      "category": "context-optimization",
+      "license": "Apache-2.0",
+      "stars": 78471,
+      "open_source": true,
+      "notes": "Nén output tool, log, RAG, file trước khi tới LLM; proxy, MCP, wrap 15 agent, headroom learn; beacon bật sẵn, tôn trọng DO_NOT_TRACK; ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
+    },
+    {
+      "name": "oh-my-claudecode",
+      "repo": "Yeachan-Heo/oh-my-claudecode",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 40463,
+      "open_source": true,
+      "notes": "Gói orchestration cho Claude Code: 19 agent, ~50 skill, ralph có cổng test theo baseline; worker team chạy --dangerously-skip-permissions; ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
+    },
+    {
+      "name": "planning-with-files",
+      "repo": "OthmanAdi/planning-with-files",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 27795,
+      "open_source": true,
+      "notes": "Kế hoạch 3 file trên đĩa + hook mỗi lượt; cổng Stop opt-in, trần 20, dừng khi ledger không tiến; benchmark tự chạy; ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
+    },
+    {
+      "name": "Ralph (snarktank)",
+      "repo": "snarktank/ralph",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 22099,
+      "open_source": true,
+      "notes": "Ralph loop tối giản (ralph.sh 113 dòng + prd.json); dừng bằng promise string, bỏ qua quyền; đứng yên từ 2/2026; ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
+    },
+    {
+      "name": "Agent Skills for Context Engineering",
+      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 18263,
+      "open_source": true,
+      "notes": "18 skill kiến thức về context, harness, memory, multi-agent, eval; prompt thuần, cài như plugin marketplace; ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
+    },
+    {
+      "name": "Loop Engineering",
+      "repo": "cobusgreyling/loop-engineering",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 11674,
+      "open_source": true,
+      "notes": "8 pattern vận hành loop quanh repo với mức tự chủ L1/L2, gate.yaml denylist, ngân sách, kill switch bằng label; ★ 31/10/2026 (GitHub API), mục 03 §8g.3",
+      "section": "03"
     }
   ]
 }
