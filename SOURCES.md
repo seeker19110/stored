@@ -652,3 +652,8 @@
 
 - Bài tiếng Việt người dùng gửi 31/10/2026; đối chiếu docs chính thức đọc 31/10/2026: code.claude.com/docs/en/advisor · platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool · claude.com/blog/the-advisor-strategy (9/4/2026). Kết quả 10/10 ý đúng; bổ sung: DISABLE_TELEMETRY tắt advisor, advisor đời mới trả `advisor_redacted_result`, cặp sai bị bỏ lặng lẽ, hai trang docs lệch nhau về Claude Platform on AWS/Google Cloud.
 - Phụ (không làm căn cứ): claudelog.com, docs.litellm.ai (LiteLLM tự dựng vòng lặp cho Bedrock/Vertex). Hồ sơ mục 03 §8e; catalog +1 = 572 (mục dạng url, không có repo).
+
+## Bổ sung 2026-10-31d (hồ sơ đầy đủ impeccable và vercel-labs/agent-skills)
+
+- `pbakaus/impeccable`: clone 31/10/2026 (2.600 commit, HEAD df3a4abe 30/10/2026; skill/cli v4.8.0 26/10, engine v0.1.18); shields 97k★/5,7k fork, Apache-2.0, 42 issue/24 PR mở. Mới: kiểm checksum engine (#813, docs/BUNDLE-SIGNING.md), action ghim SHA, 62 rule. Mục 20 §3n.1.
+- `vercel-labs/agent-skills`: clone 31/10/2026 (280 commit, HEAD 1a2c79d 27/10/2026); shields 33k★/2,9k fork, license "not specified", 70 issue/121 PR mở. Mới: hai skill tải chỉ dẫn từ xa không ghim; deploy fallback `--temporary`. Mục 20 §3n.2; vercel.com/docs/deployments/deploy-without-logging-in.
