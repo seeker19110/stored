@@ -89,6 +89,54 @@
 - **Điểm yếu:** mới mở mã 4 tuần, vẫn 0.x; số liệu chất lượng (0,12% so với 3,36% trích dẫn bịa; ít "phantom clause" hơn 20–30 lần với Qwen3.5-9B) là số tự công bố **(chưa xác minh)**; tự host vẫn phụ thuộc OpenRouter + Modal + S3; platform AGPL.
 - **Nếu dùng:** thử bản hosted với dữ liệu không nhạy cảm; nếu tự host thì chỉ chạy sau localhost/VPN, đổi `DJANGO_SECRET_KEY` và mật khẩu Postgres, bỏ publish cổng 5432/6379, không mời thành viên bằng email trên bản mở ra mạng, đặt `DO_NOT_TRACK=1` cho SDK/CLI.
 
+## Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại số sao, license, ngày push của mọi repo mục 07 trong catalog bằng GitHub search API (31/10/2026); repo search trả "không tồn tại" thì tìm theo tên để phát hiện đổi chủ. (2) Tìm repo lớn còn thiếu bằng 8 truy vấn (topic `llmops`, `llm-evaluation`, `llm-observability`; từ khoá "llm evaluation", "llm observability", "agent tracing opentelemetry", "agent evaluation benchmark", repo eval tạo sau 1/10/2025). Chọn **6 repo**, clone `--filter=blob:none` đủ lịch sử, đọc LICENSE, cấu trúc, CI, file telemetry. **Không cài, không chạy script nào.**
+
+### Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (12/10 → 31/10/2026) | Hệ quả |
+|---|---|---|
+| `explodinggradients/ragas` | **Đã chuyển sang `vibrantlabsai/ragas`** (16,2k★, Apache-2.0); **commit cuối 23/2/2026**, hơn 8 tháng không commit | "Stack miễn phí gợi ý" đầu mục nên dùng DeepEval làm chính, Ragas chỉ khi cần đúng metric RAG của nó; catalog đổi trường `repo` |
+| `langfuse/langfuse` · `promptfoo/promptfoo` · `confident-ai/deepeval` · `Arize-ai/phoenix` | Bảng đầu chưa có số → **36,8k · 26,7k · 19,2k · 12,1k**, đều push 29–31/10 | Bổ sung số. Langfuse và Phoenix hiện `NOASSERTION` vì MIT + `ee/` và Elastic License 2.0, đúng như bảng |
+| `harbor-framework/harbor` | 6,0k → **6,7k** (+11%) | Terminal-Bench tiếp tục kéo người dùng |
+| `overmind-core/overmind` | 632 → **737** (+17%) | Case study bên trên vẫn đúng |
+| `EleutherAI/lm-evaluation-harness` | 14,2k → 14,4k; **push cuối vẫn 14/9/2026** | Bảy tuần đứng yên; vẫn là chuẩn chấm model |
+| `traceloop/openllmetry` | Push cuối 19/10/2026 | Bình thường sau thương vụ ServiceNow |
+| `OpenPipe/ART` | Catalog để trống license → GitHub: **Apache-2.0** | Catalog bổ sung license |
+| `ifixai-ai/iFixAi` | Catalog xếp mục 07 (41,4k★) nhưng README mục này không có hồ sơ; đánh giá nằm ở mục 08 (sao lệch so với lượt tải PyPI) | Giữ cảnh báo của mục 08 |
+| Inspect, Opik, MLflow, Laminar, OpenCompass, Lighteval, tau2-bench | Dao động 1–8% | Không đổi nhận định |
+
+### Bảng nhanh 6 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `evidentlyai/evidently` | Eval + giám sát ML/LLM | 8,0k · Apache-2.0 | 11/9/2026 | 100+ metric, test, dashboard tự host cho dữ liệu, model và LLM | **Telemetry qua HTTP thường tới IP trần**; nhịp chậm |
+| `Giskard-AI/giskard-oss` | Test + quét lỗ hổng agent | 5,9k · Apache-2.0 | 29/10/2026 | v3 viết lại: checks, scan, kịch bản nhiều lượt | v2 không còn bảo trì; cần Python 3.12+ |
+| `langwatch/langwatch` | Trace + eval + gateway | 5,0k · Apache-2.0 (+ `enterprise/` riêng) | 31/10/2026 | Trace, simulation test agent, AI gateway, theo dõi coding agent | Nhịp commit cực cao, 12% có trailer Claude |
+| `pydantic/logfire` | Observability (SDK) | 4,5k · MIT (SDK) | 30/10/2026 | SDK Python bọc OpenTelemetry, che secret mặc định | **Backend đóng mã** |
+| `coze-dev/coze-loop` | Prompt + eval + trace | 5,8k · Apache-2.0 | 29/10/2026 | Bản mở của Coze Loop (ByteDance): playground prompt, bộ eval, trace | Mặc định dùng Volcengine Ark |
+| `FailproofAI/failproofai` | Trace + chặn tool call cho harness | 7,1k · **MIT + Commons Clause** | 27/10/2026 | Hook 12 harness (Claude Code, Codex…), 40 policy dựng sẵn | Không phải OSI; telemetry bật sẵn |
+
+### Hồ sơ từng repo
+
+- **Evidently.** 2.798 commit từ 11/2020, 112 tác giả; chỉ 8 commit từ 1/5/2026 và 85 commit trong 12 tháng, bản v0.7.22 (10/9/2026) — **đang chậm lại rõ**. Phủ cả ML cổ điển (drift, data quality) lẫn LLM (descriptor, LLM judge, guardrail). Telemetry (`src/evidently/telemetry.py`, `ui/service/components/telemetry.py`) dùng `iterative_telemetry`, gửi tới **`http://35.232.253.5:8000`** (không TLS, địa chỉ IP trần), bật mặc định, tắt bằng `DO_NOT_TRACK`; README không nhắc tới telemetry ⚠️. Cài: `pip install evidently` và đặt `DO_NOT_TRACK=1`.
+- **Giskard (v3).** 10.786 commit từ 3/2022, 131 tác giả. Viết lại thành 5 gói nhỏ (`giskard-checks`, `-scan`, `-agents`, `-llm`, `-core`); README ghi v2 "no longer actively maintained". Telemetry PostHog EU, key viết cứng; tắt bằng `DO_NOT_TRACK=1` hoặc `GISKARD_TELEMETRY_DISABLED=1`. README hứa "No prompts or outputs are sent": decorator trong `giskard-core` chỉ gửi tên loại exception ✅, nhưng hàm `telemetry_capture` chuyển nguyên `properties` của nơi gọi, chưa kiểm hết các nơi gọi **(chưa xác minh trọn)**. CI có `zizmor` (quét bảo mật GitHub Actions) và `.secrets.baseline`. Cài: `pip install "giskard[scan]"`.
+- **LangWatch.** 7.308 commit từ 9/2023, 49 tác giả, 2.648 commit từ 1/5/2026; 12% commit có trailer Claude. Apache-2.0 cho lõi; `NOTICE` liệt kê `enterprise/` theo LangWatch Enterprise License, SDK và MCP là MIT. Ngoài trace/eval còn có **simulation test cho agent** (kể cả voice), AI gateway với virtual key và ngân sách, và mảng "AI governance" kéo dữ liệu từ Copilot Studio, compliance API của Anthropic/OpenAI. Lệnh `npx langwatch claude` gắn trace cho Claude Code; dữ liệu nào được gửi đi **chưa xác minh**. Tự host: `npx @langwatch/server` (cần Node 24). Lời "giúp quota tuần dùng lâu gấp đôi" là quảng cáo, không kiểm được.
+- **Logfire.** 2.241 commit, 170 tác giả. README nói rõ: repo chỉ chứa SDK Python và docs, **"the server application… is closed source"**. Điểm đáng học: `logfire-sdk/logfire/_internal/scrubbing.py` **che giá trị nhạy cảm mặc định** theo mẫu `password`, `secret`, `auth`, `api key`, `session`, `cookie`… trước khi gửi span, có danh sách ngoại lệ cho id phiên agent và test riêng (`tests/test_secret_scrubbing.py`) ✅. Cài: `pip install logfire` rồi `logfire auth`. Chỉ dùng được với dịch vụ Pydantic hoặc bản tự host trả phí.
+- **Coze Loop.** 417 commit từ 6/2025, 49 tác giả, Go + TypeScript; 13% commit có trailer Claude. Tag mới nhất v1.5.1 (20/1/2026) nhưng commit vẫn đều (sandbox eval trên Windows 29/10). Compose để mật khẩu MySQL/Redis/ClickHouse/OSS qua biến môi trường, không ghi cứng ✅; cấu hình model mẫu là Volcengine Ark. Bẫy đáng ghi: workflow `ai-cr-required.yaml` (bắt buộc bot "CozeLoop" review trước khi merge) đã **bị tắt lặng lẽ** bằng cách đổi nhánh kích hoạt thành `disabled-temporarily`; workflow vẫn nằm đó nên đọc lướt dễ tưởng cổng còn chạy.
+- **FailproofAI.** 746 commit, tạo 6/4/2026 (Exosphere Host Inc), 18 tác giả, 38% commit có trailer Claude; tăng lên 7,1k★ trong ~7 tháng. LICENSE là **MIT + Commons Clause** (cấm bán dịch vụ dựa trên phần mềm), nên GitHub báo `NOASSERTION` và đây không phải mã nguồn mở theo OSI. Lời "40 built-in policies" khớp `src/hooks/policy-catalog.ts` (40 mục) ✅; "Runs locally" đúng cho phần chặn, nhưng **telemetry PostHog bật mặc định** (`lib/telemetry-enabled.ts`, key trong `src/posthog-key.ts`), tắt bằng `FAILPROOFAI_TELEMETRY_DISABLED=1`; README không nhắc tới ⚠️. Có `osv-scanner` trong CI và submodule `skills`. Cài: `npm install -g failproofai`. Liên quan mục 12 (guardrail) và mục 03 (hook).
+
+### Mẫu chung rút ra
+
+1. **Eval và observability đang gộp vào một nền tảng** có thêm gateway và chính sách (LangWatch, FailproofAI, Coze Loop); khi chọn, tách rõ phần cần (trace, eval, chặn) để khỏi kéo cả nền tảng.
+2. **Telemetry của chính công cụ observability ít minh bạch:** Evidently gửi qua HTTP tới IP trần, FailproofAI và Evidently không nhắc trong README, Giskard và FailproofAI viết cứng key PostHog. Đặt `DO_NOT_TRACK=1` cùng biến riêng từng công cụ trong CI.
+3. **Che secret ở phía SDK trước khi gửi** (Logfire) là mặc định nên có cho mọi lớp trace, kể cả tự viết.
+4. **Cổng CI có thể chết mà không ai thấy** (Coze Loop đổi nhánh kích hoạt). Cần kiểm định kỳ rằng các check bắt buộc thật sự chạy trên nhánh chính.
+5. **Repo đổi chủ/đứng yên lặng lẽ:** Ragas đổi tổ chức và dừng 8 tháng mà README không báo. Rà catalog bằng API định kỳ là cách duy nhất phát hiện.
+
+**Nguồn (31/10/2026):** GitHub search API (`repo:` cho repo cũ; `ragas in:name`; 8 truy vấn topic/từ khoá) · clone nông vibrantlabsai/ragas (log 5 commit, README.md) · clone `--filter=blob:none`: evidently (LICENSE, README.md, `src/evidently/telemetry.py`, `src/evidently/ui/service/components/telemetry.py`, `git log`), giskard-oss (README.md, LICENSE, `libs/giskard-core/src/giskard/core/telemetry/telemetry.py`, workflows), langwatch (LICENSE.md, NOTICE, README.md, `enterprise/`), logfire (README.md, LICENSE, `logfire-sdk/logfire/_internal/scrubbing.py`, `tests/test_secret_scrubbing.py`), coze-loop (README.md, LICENSE, `.github/workflows/ai-cr-required.yaml`, `release/deployment/docker-compose/docker-compose.yml`), failproofai (LICENSE, README.md, .gitmodules, `lib/telemetry-enabled.ts`, `src/posthog-key.ts`, `src/hooks/{builtin-policies,policy-catalog}.ts`)
+
 ## Nguồn
 
 - Mục 23 §3.1, §4.3, §5 (X-Agents, xboss, Hermes-Agents; đọc 2026-10-12)
