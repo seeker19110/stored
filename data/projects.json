@@ -3118,9 +3118,9 @@
       "repo": "mattpocock/skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 307000,
+      "stars": 308000,
       "open_source": true,
-      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật 31/10/2026 (mục 20 §3p.1): 308k★, v1.3.2, 553 commit (8 từ 12/10), 39 SKILL.md (8 in-progress: chief-of-staff wiki memory, implement-spec subagent sạch ngữ cảnh, software-factory), CI chỉ quản trị issue/phát hành",
       "section": "20"
     },
     {
@@ -5383,7 +5383,7 @@
       "license": "MIT",
       "stars": 181000,
       "open_source": true,
-      "notes": "Prompt 52 dòng \"lazy senior dev\": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k)",
+      "notes": "Prompt 52 dòng \"lazy senior dev\": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật 31/10/2026 (mục 20 §3p.2): 181k★, v5.3.3, prompt lõi không đổi; thêm band (UI chi phí/token/test trên Claude Code ≥2.1.290), board HTML cục bộ ~/.config/ponytail/band, codebase map regex lúc SessionStart, webhook tùy chọn mặc định gửi kèm tên",
       "section": "20"
     },
     {
