@@ -7,6 +7,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **kho `stored` chỉ lưu h
 - **Có trong kho:** hồ sơ và đánh giá từng repo (README chuyên mục), catalog máy-đọc-được (`data/projects.json`, `data/projects.csv`), nguồn (`SOURCES.md`), cùng quy trình và mẫu giữ những thứ đó nhất quán.
 - **Không đặt trong kho:** code, skill, plugin hay công cụ để dùng (chúng thuộc dự án tích hợp); danh sách việc cần làm cho repo khác; nhật ký sửa kho (đã có lịch sử git). Phát hiện về một repo được ghi thành dữ kiện đánh giá kèm ngày đọc; việc sửa làm ở chính repo đó.
 - **Hạ tầng của kho** chỉ gồm phần giữ dữ liệu đúng: CI `markdownlint` và `scripts/check_catalog.py`.
+- **X-Templates dùng kho:** đọc [X-TEMPLATES.md](X-TEMPLATES.md) (hợp đồng, tổng hợp chéo, bàn giao) và `data/xt-handoff.json`; trích phần mới theo khoảng commit ghi ở §6 của file đó.
 - **Dự án khác dùng kho:** đọc README chuyên mục để xem đánh giá; lọc `data/projects.json` theo `category`, `license`, `open_source`, số sao để chọn ứng viên. Trước khi tích hợp, kiểm lại ngày đọc và mọi chỗ ghi **(chưa xác minh)**.
 
 ## Khi người dùng gửi một link (repo, bài viết, sản phẩm)
@@ -25,6 +26,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
    - `data/projects.json` (+ sinh lại `data/projects.csv`);
    - `SOURCES.md`; mục lục & phần tóm tắt trong `README.md` gốc nếu có nhận định mới;
    - ghi ngày khảo sát và đánh dấu **(chưa xác minh)** cho điều chưa kiểm chứng.
+   - nếu bài học có thể thành yêu cầu cho khung **X-Templates**: grep ID trong `framework/` của X-Templates, phân cột *deeper/shallower/missing/not_adding*, thêm dòng `XT-H-NNN` vào `data/xt-handoff.json` (và bảng §4 của [X-TEMPLATES.md](X-TEMPLATES.md) với đợt lớn). Chỉ đề xuất, không sửa repo X-Templates.
 7. **Commit & push** lên nhánh làm việc với message mô tả rõ dự án được thêm.
 8. **PR & auto-merge** (quy ước từ 2026-10-12): nhánh mặc định là `main`. Mỗi đợt cập nhật đi qua PR; **luôn bật auto-merge** cho PR ngay khi tạo. Nếu PR đã ở trạng thái "clean" (không có check chờ) thì GitHub không cho bật auto-merge → merge trực tiếp (merge commit). Sau khi merge, tạo lại nhánh làm việc từ `main` cho đợt kế tiếp. Từ 2026-10-12 `main` có required checks `markdownlint` + `catalog (json + csv)` (bật tay trong Settings → Branches), nên auto-merge là đường đi bình thường; lệnh bật phải gọi **ngay sau khi tạo PR**, trước khi check chạy xong (PR #4, #5 bị "already clean" vì gọi muộn).
 
