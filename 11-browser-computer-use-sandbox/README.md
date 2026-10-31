@@ -158,6 +158,35 @@
 
 **Nguồn §1d:** clone đủ lịch sử github.com/imshaikot/browsentic 26/10/2026 (615 commit, HEAD f323a0d, v0.9.0; README.md, LICENSE + commit 966adaa, package.json, wxt.config.ts, `src/daemon/{daemon.ts, guardrails/{policy,spawn,fence}.ts, agent/{prompt,service,captcha-solver}.ts, runners/*}`, `src/lib/pairing.ts`, `docs/guide/{approvals,limits,features/*}.md`, `docs/internals/{mac-app,android}.md`, `.github/workflows/{ci,release}.yml`, `vitest.coverage.ts`) · img.shields.io: github stars/forks/license, npm/dm/browsentic, chrome-web-store/users/npmocgldfflonjjmdadmdefpnfagnjmp (26/10/2026) · bên thứ ba: producthunt.com/posts/1245747 · mcpservers.org/servers/imshaikot/browsentic · trendshift.io/repositories/249304 · stork.ai/en/browsentic
 
+## 1e. Hồ sơ `ChromeDevTools/chrome-devtools-mcp`: MCP chính thức của nhóm Chrome DevTools (yêu cầu người dùng, clone 2026-10-31)
+
+> Trước chỉ có dòng bảng §3b (12/10/2026) và mục 20 §3g.1. Đã clone đủ lịch sử (blob:none), đọc README, `docs/{tool-reference, advanced-usage, configuration}.md`, `skills/`, workflow CI. **Không cài, không chạy.**
+
+### 1e.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/ChromeDevTools/chrome-devtools-mcp · **55k★, 5,9k fork** · **Apache-2.0** · v1.12.0 (22/10/2026; 12/10: v1.10.1) · 81 issue / 43 PR mở · npm `chrome-devtools-mcp`, có trong MCP Registry |
+| Lịch sử | **1.549 commit** từ 11/9/2025, 164 tác giả; Alex Rudenko 445, Nikolay Vitkov 216 (nhóm Chrome DevTools, Google), dependabot 274; **0 trailer Claude**; 210 commit từ 12/10; phát hành bằng release-please |
+| Công cụ | **60 tool** trong 12 nhóm (`docs/tool-reference.md`): nhập liệu (click, fill_form, drag, upload_file…), điều hướng, emulation, **performance** (trace, Core Web Vitals), network, debugging (console, script), **memory** (heap snapshot), extensions, third-party, **WebMCP**, PWA, WebAuthn. Cờ `--slim` chỉ bật bộ tool cơ bản |
+| Skill kèm theo | `skills/`: `chrome-devtools`, `chrome-devtools-cli`, `a11y-debugging`, `cookie-debugging`, `debug-optimize-lcp`, `memory-leak-debugging`, `troubleshooting`; có `plugin.json` và `gemini-extension.json` |
+| CI | 8 workflow: `run-tests` (135 file test), `test-memory-leaks`, `presubmit`, `conventional-commit`, release-please, publish npm + MCP Registry theo tag; action ghim SHA một phần |
+
+### 1e.2 Dữ liệu và quyền truy cập
+
+- **Usage statistics bật mặc định:** Google thu tỉ lệ thành công của tool, độ trễ, thông tin môi trường; tắt bằng `--no-usage-statistics` trong `args`. Độc lập với cài đặt thống kê của trình duyệt Chrome (tắt bên này không tắt bên kia). Theo Google Privacy Policy.
+- **CrUX:** tool performance có thể **gửi URL của trace tới Google CrUX API** để lấy số liệu người dùng thật; tắt bằng `--no-performance-crux`. Với site nội bộ/staging, URL có thể lộ.
+- **Profile trình duyệt:** mặc định mở Chrome với profile riêng tại `~/.cache/chrome-devtools-mcp/chrome-profile` — **không xóa giữa các lần chạy** (cookie, đăng nhập còn lại). `--isolated` dùng profile tạm, tự xóa khi đóng.
+- **`--autoConnect`:** gắn vào Chrome người dùng đang mở (có hộp thoại xin phép) và **truy cập mọi cửa sổ của profile mặc định** — tức mọi tab đã đăng nhập. README cảnh báo MCP client thấy toàn bộ nội dung trình duyệt; tránh dùng với profile cá nhân.
+
+### 1e.3 Đánh giá và dùng thế nào
+
+- **Mạnh:** do chính nhóm DevTools viết và bảo trì đều; phủ những thứ Playwright MCP không có sẵn (trace hiệu năng, heap snapshot, memory leak, WebAuthn, WebMCP); có CI kiểm rò rỉ bộ nhớ của chính server; không có code do agent viết theo trailer.
+- **So với Playwright MCP (§1):** Playwright MCP thiên về tự động hóa đa trình duyệt bằng cây accessibility; chrome-devtools-mcp thiên về **debug và đo hiệu năng trên Chrome**. Hai cái bổ sung nhau, không cần chọn một — nhưng đừng bật cả hai cho cùng một tác vụ để tránh trùng tool.
+- **Cấu hình tối thiểu an toàn:** `--isolated --no-usage-statistics`, thêm `--no-performance-crux` khi đo trang nội bộ, ghim phiên bản thay vì `chrome-devtools-mcp@latest`; chỉ dùng `--autoConnect` với profile riêng cho test. Dùng `--slim` khi chỉ cần thao tác cơ bản để giảm tool nạp vào ngữ cảnh.
+
+**Nguồn §1e:** clone github.com/ChromeDevTools/chrome-devtools-mcp 31/10/2026 (blob:none, 1.549 commit, HEAD 8d009e8 30/10/2026; README.md (Disclaimers, Usage statistics, CrUX), docs/{tool-reference.md (60 tool / 12 nhóm, đếm bằng script), advanced-usage.md (profile, --isolated, --autoConnect), configuration.md, slim-tool-reference.md}, skills/*, plugin.json, .github/workflows/*; git shortlog, git tag) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/ChromeDevTools/chrome-devtools-mcp.json (31/10/2026)
+
 ## 2. Computer use (điều khiển máy tính)
 
 | Nhà cung cấp / dự án | Ghi chú |
