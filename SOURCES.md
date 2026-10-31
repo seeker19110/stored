@@ -695,3 +695,8 @@
 - `microsoft/playwright-mcp`: clone 31/10/2026 (607 commit, HEAD be26c08); shields 39k★/3,4k fork, Apache-2.0, v0.0.84; CONTRIBUTING ghi lõi đã chuyển vào `microsoft/playwright`; `microsoft/playwright-cli` 15k★. Mục 11 §1f.
 - `browser-use/browser-use`: clone 31/10/2026 (10.438 commit, HEAD b49a68e4); shields 120k★/13k fork, MIT, 187 issue/445 PR mở; commit #6220 "final Python runtime release before the separate Pi migration"; `browser-use/browser-use-pi` 458★. Cập nhật mục 11 §1c.
 - `calesthio/OpenMontage`: ảnh README người dùng gửi 31/10/2026; clone (500 commit, HEAD 195eab2); shields 74k★/9,7k fork, AGPL-3.0, 114 issue/304 PR mở. Mục 19 §1.6.
+
+## Bổ sung 2026-10-31m (playwright-cli, browser-use-pi)
+
+- `microsoft/playwright-cli`: clone 31/10/2026 (119 commit, HEAD 0a80807); shields 15k★/878 fork, Apache-2.0, v0.1.23. Mục 11 §1g.1.
+- `browser-use/browser-use-pi`: clone 31/10/2026 (184 commit, HEAD 5569fba 20/10/2026); shields 458★/25 fork, MIT, chưa release; `src/telemetry.ts` gửi PostHog EU. Mục 11 §1g.2; catalog +2 = 575.

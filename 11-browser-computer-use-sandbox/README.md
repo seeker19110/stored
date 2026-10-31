@@ -237,6 +237,57 @@
 
 **Nguồn §1f:** clone github.com/microsoft/playwright-mcp 31/10/2026 (blob:none, 607 commit, HEAD be26c08 31/10/2026; README.md (CLI vs MCP, bảng tham số `--allowed-origins`, `--allowed-hosts`, `--caps`, User profile, Browser Extension, ghi chú `secrets`), CONTRIBUTING.md, package.json, cli.js, src/README.md, .github/workflows/*) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/microsoft/playwright-mcp.json và microsoft/playwright-cli (31/10/2026)
 
+## 1g. Hồ sơ `microsoft/playwright-cli` và `browser-use/browser-use-pi` — hai hướng "CLI/REPL thay MCP" (yêu cầu người dùng, clone 2026-10-31)
+
+> Hai repo được chính hồ sơ §1f (Playwright MCP) và bản cập nhật §1c (browser-use) chỉ tới: Microsoft khuyên coding agent dùng playwright-cli thay MCP; browser-use chuyển runtime sang browser-use-pi. Clone đủ lịch sử, đọc README, skill, docs, mã telemetry. **Không cài, không chạy.**
+
+### 1g.1 `microsoft/playwright-cli` — Playwright dạng lệnh + skill cho coding agent
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/microsoft/playwright-cli · **15k★, 878 fork** · **Apache-2.0** · v0.1.23 · 0 issue / 0 PR mở (issue chuyển về monorepo như §1f) · npm `@playwright/cli` |
+| Lịch sử | **119 commit** từ 23/1/2026, 14 tác giả; Pavel Feldman 55, Yury Semikhatsky 39, Simon Knott 10 (cùng nhóm Playwright MCP); 0 trailer Claude; repo nhỏ (38 file) |
+| Kiến trúc | `playwright-cli.js` là vỏ gọi `playwright@1.65.0-alpha` (cập nhật theo ngày bằng `roll.yml`); lõi nằm trong monorepo `microsoft/playwright` như Playwright MCP |
+| Skill | `playwright-cli install --skills` cài **một skill** `playwright-cli` (`SKILL.md` 15,7 KB) + 10 file reference: session, storage state, request mocking, tracing, video, test generation, Playwright Test, chạy code, PR attachments. Hoặc "skills-less": để agent tự đọc `playwright-cli --help` |
+| Cách dùng | Lệnh ngắn: `open`, `type`, `press`, `check e21` (tham chiếu phần tử theo id), `screenshot`… Headless mặc định (`--headed` để xem). Session tách theo `-s=<tên>`, `list` liệt kê |
+| Profile | **Mặc định giữ profile trong bộ nhớ** — cookie còn giữa các lệnh trong session, mất khi đóng trình duyệt; `--persistent` mới lưu xuống đĩa. **Ngược với Playwright MCP** (profile bền mặc định, §1f.2) |
+
+**Vì sao tiết kiệm token:** agent không phải nạp schema của ~72 tool MCP vào mọi lượt, và trang không bị đẩy nguyên cây accessibility vào ngữ cảnh ("does not force page data into LLM"); agent chỉ gọi lệnh khi cần, đọc output ngắn. Đây là cùng lập luận "CLI + skill thắng MCP cho coding agent" mà Google (chrome-devtools-mcp có skill `chrome-devtools-cli`, §1e) và nhiều bộ skill ở mục 20 đang theo.
+
+**Đánh giá:** lựa chọn mặc định hợp lý nhất cho Claude Code/Copilot khi cần kiểm UI, viết test Playwright, chụp màn hình bằng chứng cho PR. Mặc định an toàn hơn MCP (profile tạm). Lưu ý: còn v0.1.x, phụ thuộc bản alpha của Playwright theo ngày — ghim phiên bản `@playwright/cli` cho CI; reference "running-code" cho phép agent chạy mã Playwright tùy ý trong trình duyệt, nên chạy trong sandbox với site không tin cậy.
+
+### 1g.2 `browser-use/browser-use-pi` — runtime TypeScript kế nhiệm browser-use Python
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/browser-use/browser-use-pi · **458★, 25 fork** · **MIT** · chưa có release · 1 issue / 5 PR mở · npm `@browser_use/pi` |
+| Lịch sử | **184 commit** từ 5/9/2026, **3 tác giả**; **Gregor Žunič 178** (đồng sáng lập browser-use, tên trong LICENSE của repo Python); 46 trailer Claude; commit cuối 20/10/2026 |
+| Kiến trúc | `Your task → Pi Mono → persistent V8 REPL → raw CDP → Chrome`: dựng trên **Pi** (`@earendil-works/pi-agent-core`, `pi-ai`, `pi-coding-agent` 0.87.1 — cùng nền với ThinkRail, mục 01 §1.3). **Agent tự viết JavaScript** chạy trong REPL V8 bền, điều khiển Chrome qua CDP trực tiếp và tự dựng helper khi cần; phản hồi bằng cây accessibility + ảnh chụp |
+| Tính năng | Session, follow-up, đăng nhập đã lưu, workspace bền; cloud browser (`Browser.cloud`) hoặc Chrome riêng; chế độ `ultrafast`; streaming, hook, kết quả có kiểu; trần bước/thời gian/**chi phí** và giữ phần việc đã làm; highlight, ghi hình, GIF; gói Python `browser-use-next` 0.1.0 làm cầu nối |
+| Model | Ví dụ mặc định dùng OpenRouter (`openrouter/openai/gpt-5.6-luna`, `reasoning: 'xhigh'`) + `BROWSER_USE_API_KEY` cho Browser Use Cloud; danh mục model lấy từ Pi |
+| Benchmark | `docs/benchmarks.md` tự ghi là **"historical… not scores for the current candidate"**: Hard /106 dao động 84–91 (91 là "đỉnh không ổn định", chạy lại ra 79/85/84), V2 34–62/100, chi phí $11–20 mỗi lượt; "does not establish causality… or SOTA". Bằng chứng giữ ở commit cố định — trung thực hiếm thấy |
+
+**Dữ liệu và an toàn (README + `src/telemetry.ts`):**
+
+- **Telemetry bật mặc định:** gửi sự kiện `bu_pi_run` ("anonymous run counters") tới **PostHog EU** mỗi lần chạy; tắt bằng `telemetry: false` hoặc `DO_NOT_TRACK=1`.
+- README tự cảnh báo: **JavaScript của agent chạy trong worker có quyền truy cập filesystem và mạng** — "Use an isolated machine for untrusted tasks". Đây là khác biệt lớn với browser-use Python (agent chọn action có sẵn): ở đây agent **viết và chạy code tùy ý**.
+- Mặc định quảng bá Browser Use Cloud — dữ liệu trang đi qua dịch vụ cloud trả phí nếu dùng `Browser.cloud`.
+
+**Đánh giá:** đây là hướng đi của browser-use sau bản Python cuối 0.13.14 (§1c), nhưng hiện mới **458★, 3 tác giả (gần như một người), chưa có release** — chưa phải thay thế ổn định cho repo 120k★. Hợp để thử nghiệm trong máy/container cô lập; dự án production nên ở lại 0.13.14 (ghim) cho tới khi có bản phát hành và lộ trình chuyển đổi rõ.
+
+### 1g.3 Chọn công cụ trình duyệt cho agent (tổng hợp §1c–§1g, 31/10/2026)
+
+| Nhu cầu | Gợi ý |
+|---|---|
+| Coding agent kiểm UI / viết test Playwright | **playwright-cli** (rẻ token, profile tạm mặc định) |
+| Client chỉ nói MCP, cần giữ phiên dài | Playwright MCP `--isolated` (§1f) |
+| Debug hiệu năng, memory, Core Web Vitals trên Chrome | chrome-devtools-mcp `--isolated --no-usage-statistics` (§1e) |
+| Agent tự lái trình duyệt làm việc đa bước (Python) | browser-use 0.13.14, `ANONYMIZED_TELEMETRY=false` (§1c) |
+| Thử agent viết code điều khiển trình duyệt (TypeScript) | browser-use-pi trong máy cô lập, `DO_NOT_TRACK=1` |
+| Dùng trình duyệt đã đăng nhập thật | Chỉ với profile riêng cho test (Playwright extension, `--autoConnect`, Browsentic §1d đều thấy mọi tab) |
+
+**Nguồn §1g:** clone github.com/microsoft/playwright-cli 31/10/2026 (119 commit, HEAD 0a80807; README.md (CLI vs MCP, Sessions), skills/playwright-cli/{SKILL.md, references/*}, playwright-cli.js, package.json, .github/workflows/*) · clone github.com/browser-use/browser-use-pi 31/10/2026 (184 commit, HEAD 5569fba 20/10/2026; README.md, docs/{benchmarks,api,sessions,models}.md, src/{telemetry,index}.ts, package.json, python/pyproject.toml) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
+
 ## 2. Computer use (điều khiển máy tính)
 
 | Nhà cung cấp / dự án | Ghi chú |

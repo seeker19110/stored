@@ -1218,6 +1218,26 @@
       "section": "11"
     },
     {
+      "name": "playwright-cli",
+      "repo": "microsoft/playwright-cli",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 15000,
+      "open_source": true,
+      "notes": "Playwright dạng lệnh + 1 skill (SKILL.md 15,7 KB + 10 reference) cho coding agent; Microsoft khuyên dùng thay Playwright MCP vì không nạp schema tool và cây accessibility vào ngữ cảnh; profile trong bộ nhớ mặc định (--persistent mới lưu đĩa); v0.1.23, 119 commit, lõi ở monorepo microsoft/playwright, phụ thuộc playwright alpha theo ngày; 15k★ (31/10/2026, shields); mục 11 §1g.1",
+      "section": "11"
+    },
+    {
+      "name": "browser-use-pi",
+      "repo": "browser-use/browser-use-pi",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 458,
+      "open_source": true,
+      "notes": "Runtime TypeScript kế nhiệm browser-use Python: Pi Mono + REPL V8 bền + CDP, agent tự viết JavaScript điều khiển Chrome; worker có quyền filesystem + mạng (README khuyên máy cô lập); telemetry PostHog EU mặc định (DO_NOT_TRACK=1); benchmark tự ghi 'historical, không phải điểm hiện tại'; 184 commit, 178 của Gregor Žunič, chưa release; 458★ (31/10/2026, shields); mục 11 §1g.2",
+      "section": "11"
+    },
+    {
       "name": "E2B",
       "repo": "e2b-dev/E2B",
       "category": "sandbox",
