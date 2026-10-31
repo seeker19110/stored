@@ -461,14 +461,16 @@ Số sao trong ảnh (215/206/181/112) lệch nhẹ so với bảng vì ảnh ch
 
 | Repo | Số hiển thị (★?) | Ghi chú |
 |---|---|---|
-| zhuyansen/awesome-claude-video-skills | ~55k | Danh sách skill video cho Claude |
-| allenv0/SCM | ~47k | |
+| zhuyansen/awesome-claude-video-skills | ~55k **(sai — thực tế 1.359★ ngày 31/10/2026, GitHub API)** | Danh sách skill video cho Claude |
+| allenv0/SCM | ~47k **(sai — 516★ ngày 31/10)** | |
 | howseen-ai/claude-motion-design | ~45k **(sai — thực tế 450★ ngày 12/10, xem mục 22)** | Motion design bằng skill; Playwright + ffmpeg |
-| guanmo-ai/awesome-ai-motion · gongnyang/awesome-ai-motion | ~30k · ~10.5k | |
-| joeseesun/opus-video-prompts · zhuyansen/awesome-opus-5.5-video | ~27.5k · ~15.6k | Prompt video cho Claude Opus |
-| adunext/adu-motion-video · unclejobs-ai/motion-video-skill | ~24k · ~11.6k | |
-| FavioVazquez/showtime · Remocn/remocn-studio | ~23k · ~16k | |
-| ferndesk/no-slop-motion | ~0.9k | Chống "motion slop" (so với Taste Skill, mục 06) |
+| guanmo-ai/awesome-ai-motion · gongnyang/awesome-ai-motion | ~30k · ~10.5k **(sai — 479 · 297★ ngày 31/10)** | |
+| joeseesun/opus-video-prompts · zhuyansen/awesome-opus-5.5-video | ~27.5k · ~15.6k **(sai — 866 · 284★ ngày 31/10)** | Prompt video cho Claude Opus |
+| adunext/adu-motion-video · unclejobs-ai/motion-video-skill | ~24k · ~11.6k **(sai — 655 · 131★ ngày 31/10)** | |
+| FavioVazquez/showtime · Remocn/remocn-studio | ~23k · ~16k **(sai — 310 · 211★ ngày 31/10)** | |
+| ferndesk/no-slop-motion | ~0.9k **(thực tế 92★ ngày 31/10)** | Chống "motion slop" (so với Taste Skill, mục 06) |
+
+**Đính chính 31/10/2026:** đọc lại cả 12 repo trong bảng bằng GitHub search API: **mọi số ★ ở cột giữa đều sai, phóng đại 10–90 lần** (tổng thật ≈5,9k★ so với ≈306k ghi trong bảng). Số đúng ghi trong ngoặc; chi tiết ở §3b.
 
 **Nhận định:** số liệu chỉ từ một trang aggregator và tăng rất nhanh → cần xác minh từng repo (đã kiểm: claude-motion-design thực tế 450★, tức bảng này có thể lệch ~100 lần — **không dùng các số ★ ở bảng này**; 16 repo motion/video đã xác minh ở mục 22); nhưng xu hướng rõ: *video/motion được đóng gói thành skill cho coding agent* thay vì app riêng. OpenMontage là bản "full pipeline" của xu hướng này.
 
@@ -487,6 +489,56 @@ Số sao trong ảnh (215/206/181/112) lệch nhẹ so với bảng vì ảnh ch
 | FRAMEWORKERS (arXiv 2608.29814), *Agentic Artifact Creation* (2608.28122) | – | Nghiên cứu multi-agent cho sản xuất video |
 | LTX-2 (Lightricks), Wan 2.2 | – | X-Studio chọn cho "xưởng video" (mục 23 §3.2): render cache SHA-256, MotionSpec, `qc.py` kiểm LUFS/độ dài/khung; nghiên cứu `RESEARCH-VIDEO-FACTORIES.md` so sánh video factory mở |
 | codebase-video, vimax-agnes, MoneyPrinterTurbo | – | Xem thêm "video factory" trong X-Studio docs |
+
+## 3b. Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại số sao, license, ngày push của **22 repo** mục 19 đã có trong catalog (GitHub API 31/10/2026) và 12 repo trong bảng §2. (2) Tìm repo lớn còn thiếu: 10 truy vấn GitHub search (`video agent`, `short video`, `video editing ai`, `podcast ai`, `comfyui video`, topic `ai-video`, `video-generation`, repo tạo sau 1/10/2025…). Từ ~110 ứng viên chưa có trong kho, chọn **6 repo** gần nhất với "agent sản xuất video", clone `--filter=blob:none` và đọc file thật (LICENSE, manifest, SKILL, script, CI, grep telemetry và host mạng). Repo kiểu "video bằng code" (HTML/Remotion) đưa sang mục 22 §9e. **Không cài, không chạy script nào.** Số sao đọc 31/10/2026.
+
+### 3b.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (đến 31/10/2026) | Hệ quả |
+|---|---|---|
+| `zhuyansen/awesome-claude-video-skills` | Catalog cũ ghi **55k★: sai**, thực tế **1.359★** (tạo 27/9/2026) | Đã sửa bảng §2. Số gốc lấy từ aggregator, đúng loại lỗi WORKFLOW đã cảnh báo |
+| 11 repo còn lại của bảng §2 | Thực tế 92–866★, bảng ghi 0,9k–47k | Bảng §2 chỉ còn giá trị làm danh sách tên; mọi số ★ cũ đã gạch |
+| `hpcaitech/Open-Sora` | ★ ~24k → **29,9k**, nhưng push cuối **9/4/2026** | Gần 7 tháng không commit; coi là model tham khảo, không phải dự án đang chạy |
+| `zai-org/CogVideo` | 13,2k★, push cuối **4/11/2025** | Gần 1 năm đứng yên; Wan 2.2 (`Wan-Video/Wan2.2`, 18,3k★, Apache-2.0, push 21/9/2026) là lựa chọn mở mới hơn **(chưa thêm vào catalog)** |
+| `remotion-dev/remotion` (§3) | 63,4k (12/10) → **69,4k** | Không đổi license (GitHub báo NOASSERTION vì license riêng) |
+| `Tencent-Hunyuan/HunyuanVideo` | ~11,9k → **12,7k**; GitHub báo NOASSERTION | Vẫn là "Tencent Community License", giữ nguyên ghi chú |
+| `calesthio/OpenMontage` (§1) | **73,9k★**, push 28/10/2026 | Vẫn hoạt động; hồ sơ §1 giữ nguyên |
+| `calesthio/Crucix` | 12,2k★, push cuối 20/5/2026 | 5 tháng đứng yên |
+| `souzatharsis/podcastfy` | 6,8k★, push cuối 4/5/2026 | Gần 6 tháng đứng yên |
+
+Không repo nào của mục 19 bị archive. `MoneyPrinterTurbo` được nhắc ở §3 từ trước nhưng chưa có trong catalog; nay thêm (bảng dưới).
+
+### 3b.2 Bảng nhanh 6 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `harry0703/MoneyPrinterTurbo` | Pipeline video ngắn | 136,9k · MIT | 31/10/2026 | Chủ đề → kịch bản, footage stock, TTS, phụ đề, nhạc → MP4; WebUI, API, CLI, skill cho agent | README dày quảng cáo tài trợ; skill dặn agent "không hỏi xác nhận" |
+| `browser-use/video-use` | Skill dựng footage | 30,3k · MIT | 8/10/2026 | Claude Code cắt footage thô theo transcript từng từ, chấm màu, phụ đề, overlay | Âm thanh gửi ElevenLabs; không CI |
+| `ATH-MaaS/Pixelle-Video` | Pipeline video ngắn | 29,6k · Apache-2.0 | 14/6/2026 | Chủ đề → ảnh/video AI (ComfyUI/RunningHub/API) → MP4, có digital human | **Đứng yên 4,5 tháng**, không test |
+| `hypit-ai/hypit` | Agent "clone video viral" | 27,1k · **Apache-2.0 có điều kiện** | 29/10/2026 | Ngôn ngữ SVML + 86 gói TS; agent phân tích video mẫu rồi dựng biến thể | Cấm SaaS/bán lại; không có lời nào về đồng ý hay deepfake |
+| `bradautomates/claude-video` | Skill "xem video" | 19,6k · MIT | 25/9/2026 | `/watch`: URL/file → khung hình có mốc thời gian + transcript cho agent | Engine Gemini gửi video lên Google |
+| `HKUDS/ViMax` | Đa agent sinh phim | 12,8k · MIT | 30/9/2026 | Ý tưởng/kịch bản/tiểu thuyết → nhân vật, storyboard, keyframe → video (Veo, Seedance…) | Đi qua proxy `yunwu.ai`; tốn API |
+
+### 3b.3 Hồ sơ từng repo
+
+- **MoneyPrinterTurbo.** Python 3.11 (Streamlit + FastAPI), 1.220 commit, 174 tác giả, **538 commit từ 1/8/2026**, tag v1.3.9; 35 commit có trailer Claude. CI thật: `ci.yml` chạy ruff + pytest (251 file `test_*.py`) trên nhiều bản Python, `security.yml` chạy Trivy (action ghim SHA). Bản 2026 đã thành "hub nhà cung cấp": 35 module trong `app/services/` (Seedance, MiniMax, Pexels, ElevenLabs, upload-post.com để đăng mạng xã hội…). Đáng chú ý: provider `claude_code` gọi CLI `claude` trong container (`Dockerfile.claude` ghim `@anthropic-ai/claude-code@2.1.260`) để **dùng thuê bao Claude thay API key**; tương tự có OAuth ChatGPT/Codex và Kimi Code. Kiểm điều khoản nhà cung cấp trước khi dùng kiểu này cho dịch vụ nhiều người. `version_checker.py` gọi `api.github.com` để báo bản mới; không thấy telemetry. `docs/skill/SKILL.md` dặn agent **"Do not ask for confirmation before installing"** và tải `mpt_agent.py` từ nhánh `main` không ghim. README ✅ đúng là có đủ 4 đường WebUI/API/CLI/agent; ⚠️ phần đầu README là ~10 khối quảng cáo có link affiliate. Cài: `python -m pip install mpt` (gói PyPI tên `mpt`) hoặc `docker compose -f docker-compose.release.yml up`.
+- **video-use (Browser Use).** 23 commit, 8 tác giả, chưa có tag; 10/23 commit có trailer Claude. Ý chính: **LLM không xem video mà đọc nó**: transcript từng từ (ElevenLabs Scribe) gộp thành `takes_packed.md` ~12KB, chỉ gọi ảnh `timeline_view` (filmstrip + sóng âm) ở điểm quyết định. ✅ `helpers/render.py` (801 dòng) có thật: fade 30ms, loudnorm −14 LUFS. ⚠️ "Self-evaluates at every cut boundary" chỉ là lời dặn trong `SKILL.md` bước 7 (tối đa 3 vòng), không có mã kiểm tự động. ⚠️ Không có Whisper cục bộ: mọi âm thanh đi lên `api.elevenlabs.io`. Không CI (3 file test). Có cloud "video-use.com" đang waitlist. Cài: clone rồi `ln -sfn ~/Developer/video-use ~/.claude/skills/video-use`, `uv sync`.
+- **Pixelle-Video.** Gốc của AIDC-AI (Alibaba), nay nằm ở `ATH-MaaS` (README vẫn trỏ `AIDC-AI/Pixelle-Video`). 377 commit, 21 tác giả, tag v0.1.15. 29 workflow ComfyUI (Flux, Qwen-Image, Wan 2.1/2.2, LTX-2, Index-TTS…) cho bản tự host hoặc RunningHub (cloud). NOTICE liệt kê license bên thứ ba. ⚠️ **Không có file test**, CI chỉ build docs. Commit cuối 14/6/2026: coi như tạm dừng. Không thấy telemetry. Cài: bản Windows trọn gói ở Releases, hoặc `uv run` theo README.
+- **hypit.** Monorepo TypeScript 86 gói (`compiler`, `timeline`, `seedance`, `whisperx`, `yt-dlp`, `volcengine-matting`…), 1.496 commit trong 3 tháng (tạo 30/7/2026), 28 tác giả, tag v0.3.1. Skill `skills/hypit/` dạy agent "đọc" video mẫu tới từng mốc thời gian rồi dựng lại bằng SVML. **License không phải Apache-2.0 thuần**: cấm vận hành dịch vụ nhiều tenant, cấm bán lại, cấm gỡ logo; người đóng góp đồng ý cho công ty đổi license (GitHub báo NOASSERTION). ⚠️ Mô tả GitHub nhắc "swap the face", nhưng README, docs và skill không có chữ nào về đồng ý của người trong video, deepfake hay bản quyền video mẫu. "1 command, 100 variants, 100M views" là khẩu hiệu. Điểm tốt: workflow phân tích issue bằng LLM chỉ chạy tay, quyền đọc, action ghim SHA. Cài: `npx skills add hypit-ai/hypit -g`.
+- **claude-video (`/watch`).** 33 commit, 1 tác giả, **31/33 commit có trailer Claude**, tag v0.3.2; plugin cho Claude Code và Codex, CI chạy 16 file test. Hai engine: `local` (ffmpeg + yt-dlp, transcript bằng WhisperX cục bộ, Groq hoặc OpenAI) và **Gemini** (gửi cả video lên `generativelanguage.googleapis.com`). README tự ghi không chạy trong Cowork/Claude Chat. Hook `SessionStart` chỉ kiểm thiết lập, timeout 5 giây, không gọi mạng. Cài: `/plugin marketplace add bradautomates/claude-video` rồi cài `watch`.
+- **ViMax (HKU Data Intelligence Lab).** Python 3.12, 395 commit, 17 tác giả, v1.2.0 (20/7/2026), có báo cáo kỹ thuật arXiv 2606.07649. Có agent thật cho từng vai (`screenwriter`, `storyboard_artist`, `character_portraits_generator`, `best_image_selector`…), pipeline idea2video, script2video, novel2movie, Web UI và vòng "Agent Loop" có nén ngữ cảnh. 25 file test nhưng **không có CI**. Nhà cung cấp mặc định đi qua `yunwu.ai` (proxy API bên thứ ba) cho Veo, Seedance, Nano Banana; có đường OpenRouter, Google, MiniMax trực tiếp. "telemetry" trong `tool_executor.py` chỉ ghi log cục bộ. Cài: `uv sync` rồi `python main_idea2video.py` với `configs/*.yaml`.
+
+### 3b.4 Mẫu chung rút ra
+
+1. **"Đọc" video thay vì "xem"**: video-use (transcript từng từ + ảnh timeline khi cần), claude-video (khung hình có mốc + transcript), hypit (đọc video mẫu theo mốc thời gian). Cách này rẻ hơn hàng trăm lần so với đưa toàn bộ khung hình cho model.
+2. **Skill tự cài đặt cho agent đang thành chuẩn**, kèm rủi ro chuỗi cung ứng: MoneyPrinterTurbo tải helper từ `main` và dặn không hỏi xác nhận; video-use bảo agent tự clone và đăng ký skill. Nên ghim commit/tag và giữ bước xác nhận.
+3. **Dữ liệu người dùng rời máy theo mặc định**: ElevenLabs (video-use), Gemini (claude-video), RunningHub/yunwu (Pixelle, ViMax). Chọn đường cục bộ khi footage nhạy cảm.
+4. **License "gần mở" và rủi ro nội dung**: hypit (Apache-2.0 + điều kiện), cộng thêm việc clone video viral, đổi mặt mà không có cơ chế đồng ý. Kiểm LICENSE và quyền với video mẫu trước khi dùng thương mại.
+5. **Số sao từ aggregator không dùng được**: bảng §2 sai 10–90 lần; hai repo lớn (Pixelle-Video, Open-Sora) có sao cao nhưng đã đứng yên nhiều tháng.
+
+**Nguồn §3b:** GitHub search API 31/10/2026 (`repo:` cho 13 repo mới/ứng viên và 12 repo bảng §2; 10 truy vấn từ khoá/topic) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` ngày 31/10/2026, đọc: MoneyPrinterTurbo (HEAD 1cebc65; LICENSE, README-en.md, pyproject.toml, Dockerfile.claude, app/services/{llm.py, chatgpt_auth.py, kimi_code_oauth.py, version_checker.py, upload_post.py}, docs/skill/SKILL.md, .github/workflows/{ci.yml, security.yml}) · video-use (HEAD 43cfc56; LICENSE, README.md, SKILL.md, pyproject.toml, helpers/{render.py, transcribe.py}, skills/manim-video/scripts/setup.sh) · Pixelle-Video (HEAD 848b054; LICENSE, NOTICE, README_EN.md, workflows/, .github/workflows/docs.yml) · hypit (HEAD 0762c6be; LICENSE, README.md, package.json, skills/hypit/{SKILL.md, references/creation/reference-video.md}, .github/workflows/repository-analysis.yml) · claude-video (HEAD 03ceb42; LICENSE, README.md, hooks/{hooks.json, scripts/check-setup.sh}, skills/watch/scripts/{gemini.py, whisper.py, setup.py}) · ViMax (HEAD fd4b72e; LICENSE, readme.md, agents/, tools/, agent_runtime/tool_executor.py, tests/) · github.com/{harry0703/MoneyPrinterTurbo, browser-use/video-use, ATH-MaaS/Pixelle-Video, hypit-ai/hypit, bradautomates/claude-video, HKUDS/ViMax} · arxiv.org/abs/2606.07649 (link trong README ViMax, chưa mở)
 
 ## 4. Nguồn
 

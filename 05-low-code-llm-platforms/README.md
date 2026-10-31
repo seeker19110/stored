@@ -123,6 +123,64 @@
 
 **Nguồn:** clone đủ lịch sử github.com/gyoridavid/ai_agents_az 25/10/2026 (110 commit, HEAD 764fac2 19/12/2025; README.md, `episode_*/README.md`, quét 55 file JSON bằng script, `episode_19/flux_kontext_dev_modal.py`, `episode_16/guide-start-server.md`, commit "Remove pinned data from workflow") · github.com/gyoridavid/short-video-maker (clone nông; README, LICENSE MIT, package.json `@remotion/*` ^4.0.286) · hub.docker.com/v2/repositories/gyoridavid/{ai-agents-no-code-tools,narrated-story-creator,short-video-maker} (lượt pull, ngày cập nhật) · img.shields.io/github/{stars,forks,license,last-commit}/gyoridavid/… 25/10/2026 · bên thứ ba: osrepos.com/repo/gyoridavid-ai_agents_az · sourcepulse.org/projects/11055697 · growwstacks.com/blog/free-n8n-automation-templates-goldmine
 
+## Nâng cấp 31/10/2026: rà repo lớn, Flowise đã archive
+
+> Ba việc. (1) Đọc lại số sao, license, ngày push của mọi repo mục 05 trong catalog bằng GitHub search API (31/10/2026). (2) **Điều tra Flowise**: clone đủ lịch sử, đọc commit cuối, `SECURITY.md`, LICENSE, thông báo chính thức và tìm fork cộng đồng. (3) Tìm repo lớn còn thiếu bằng 9 truy vấn (topic `low-code`, `no-code`, `workflow-automation`; từ khoá "visual agent builder", "llm app builder", "agent builder" tạo sau 1/10/2025). Chọn **5 repo**, clone `--filter=blob:none`, đọc LICENSE, manifest, cấu trúc, CI, grep telemetry. **Không cài, không chạy script nào.**
+
+### Flowise: vì sao archive và thay bằng gì
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Trạng thái | `FlowiseAI/Flowise` **archived**, 55,5k★, 25,1k fork; push cuối 13/8/2026. Dòng "Trạng thái chưa rõ" ở bảng đầu mục đã có câu trả lời |
+| Mốc | **29/7/2026** đóng băng code, tag cuối `flowise@3.1.4` cùng ngày; **3/8** `SECURITY.md` đổi thành "PRODUCT SUNSET… no longer accepting new security vulnerability reports" (commit của nhân viên Workday); **13/8** commit cuối thêm "Flowise has been archived" vào README rồi archive; **31/8** hết vòng đời, nhóm lõi rời Discord/GitHub. Trang flowiseai.com/sunset ghi ngày archive là 10/8, lệch 3 ngày với GitHub |
+| Lý do chính thức | Discussion #6727 và trang sunset: lập trình viên chuyển sang coding agent (Claude Code, OpenClaw) cho việc phức tạp; "The typical rigid workflow low code approach quickly hits the limit when it comes to complexity" |
+| Ai quyết | Flowise thuộc Workday (mua khoảng 8/2025 theo tin báo chí, **chưa xác minh** từ thông cáo của Workday). Từ 11/2025 có 200 commit từ email `workday.com`, nhiều hơn email `flowiseai.com` (160) |
+| Thay thế chính thức | **Không có.** Nhóm chỉ khuyên fork; code "Apache 2.0 licensed… is yours to keep building on". Không nêu ngày tắt Flowise Cloud hay cách xuất dữ liệu (một blog nói 30/11/2026, **chưa xác minh**) |
+| License | `LICENSE.md` là Apache-2.0 **trừ** `packages/server/src/enterprise/` và các file ghi bản quyền riêng (FlowiseAI Commercial License), nên GitHub báo `NOASSERTION`. Fork phải bỏ hoặc thay phần enterprise |
+| Fork cộng đồng | `Perruer/keelflow` (43★, tạo 24/9/2026, Apache-2.0 only, tự gọi là "security-maintained continuation"); `davobene/migrateflows` (4★, MIT) chuyển flow Flowise sang n8n. Chưa có fork nào đủ lớn |
+| Rủi ro nếu còn chạy | Không còn nhận báo lỗi bảo mật. Đã có repo khai thác công khai cho **CVE-2026-58057** (RCE trên Windows qua MCP stdio, `CerberusMrXi/Flowise-CVE-2026-58057-exploit`, tạo 23/7/2026); chưa kiểm bản 3.1.4 đã vá hay chưa |
+
+**Nên chuyển sang đâu:** canvas LangChain gần nhất là **Langflow** (MIT, 156,2k★); app LLM/RAG có giao diện quản trị → **Dify**; tự động hoá nhiều SaaS → **n8n** (fair-code); muốn để coding agent dựng workflow thay vì kéo thả → **n8n-mcp** (bảng dưới). Nếu buộc giữ Flowise: chạy sau VPN, không bật node MCP stdio, và tự theo dõi CVE.
+
+### Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (12/10 → 31/10/2026) | Hệ quả |
+|---|---|---|
+| `FlowiseAI/Flowise` | **Archived 13/8/2026** | Xem trên; catalog ghi archived |
+| `danny-avila/LibreChat` | **Đã chuyển sang `LibreChat-AI/LibreChat`**, 45,6k → 46,6k, push 31/10 | Link cũ còn chuyển hướng; catalog cần đổi trường `repo` |
+| `coze-dev/coze-studio` | 21,7k → 21,8k; **push cuối vẫn 29/7/2026** | Hơn 3 tháng không commit trên nhánh chính; coi như tạm dừng. Canvas FlowGram của nó vẫn sống (bảng dưới) |
+| `gyoridavid/ai_agents_az` | Vẫn dừng từ 19/12/2025 | Đúng như hồ sơ 25/10 |
+| `activepieces/activepieces` | Bảng đầu ghi "–" → **25,3k**, push 31/10; GitHub báo `NOASSERTION` (MIT core + phần EE) | Bổ sung số |
+| n8n · Dify · Langflow · Open WebUI | 207k → 209,2k · 158k → 160,1k · ~140–154k → 156,2k · 154k → 157,4k | Không đổi nhận định. n8n, Dify, Open WebUI, LobeHub, FastGPT đều hiện `NOASSERTION` vì license riêng (đúng như bảng đầu) |
+| LobeHub, AnythingLLM, Cherry Studio, Sim, FastGPT | Tăng 0,5–1,5% | Không đổi |
+
+### Bảng nhanh 5 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `czlonkowski/n8n-mcp` | Coding agent → n8n | 23,2k · MIT | 27/10/2026 | MCP server cho agent tra node n8n, kiểm và sửa workflow | **Telemetry mặc định thu workflow để làm dataset ML** |
+| `ToolJet/ToolJet` | Nền tảng internal tool + AI | 41,2k · AGPL-3.0 (EE riêng) | 30/10/2026 | Dựng admin/dashboard bằng prompt hoặc qua MCP | Quickstart dùng image **EE**; submodule EE riêng tư |
+| `Budibase/budibase` | Nền tảng app + agent | 28,4k · GPL-3.0 / MPL-2.0 / BSL | 29/10/2026 | App nội bộ, automation, agent AI có phân quyền theo người dùng | 3 license trong một repo; analytics bật trong compose |
+| `iflytek/astron-agent` | Nền tảng agentic workflow | 9,0k · Apache-2.0 | 28/10/2026 | Workflow agent + RPA + MCP của iFlytek, Java/Python/Go | Mật khẩu mặc định yếu; gắn hệ sinh thái iFlytek |
+| `bytedance/flowgram.ai` | Framework canvas workflow | 8,5k · MIT | 22/10/2026 | Thư viện canvas, form node, biến, runtime để tự dựng "Dify của riêng mình" | Bản Desktop chưa ký số |
+
+### Hồ sơ từng repo
+
+- **n8n-mcp.** 1.336 commit từ 7/6/2025, 39 tác giả nhưng gần như một người (Romuald Członkowski, ~1.230 commit dưới hai tên); **60% commit có trailer Claude**. Bản v2.99.2 (27/10/2026), ghim `n8n-workflow` 2.44.2. Có 7 tool tra cứu (không cần n8n) và 21 tool quản lý (cần `N8N_API_URL`, `N8N_API_KEY`); README hướng dẫn `DISABLED_TOOLS=…` để tắt hẳn tool ghi/xoá và tool credential ✅. **Telemetry bật mặc định** gửi `https://telemetry.n8n-mcp.com`: ID cài đặt băm từ hostname/home dir, tên tool, **workflow đã làm sạch** (giữ node, kết nối, tham số không nhạy cảm) và **câu `intent` người dùng gõ**; `PRIVACY.md` v2 (28/9/2026) nói thẳng mục đích "build datasets and machine learning models". Làm sạch chạy trên máy (`workflow-sanitizer.ts`, `intent-sanitizer.ts`) ✅, nhưng **không đọc `DO_NOT_TRACK`**; tắt bằng `npx n8n-mcp telemetry disable` hoặc `N8N_MCP_TELEMETRY_DISABLED=true`. Đi kèm `czlonkowski/n8n-skills` (6,6k★, MIT). Cài: `npx n8n-mcp` (stdio) sau khi tắt telemetry.
+- **ToolJet.** 19.373 commit từ 3/2021, 760 tác giả. LICENSE là **AGPL-3.0**, nhưng `frontend/ee` và `server/ee` là submodule trỏ tới `ToolJet/ee-frontend`, `ToolJet/ee-server` **không truy cập công khai được**; lệnh Docker trong README chạy `tooljet/try:ee-lts-latest`, tức bản EE chứ không phải bản CE ⚠️. MCP server và plugin cho Claude Code/Codex đang beta. `.env.example`: `CHECK_FOR_UPDATES=true` và telemetry gửi về "ToolJet hub" mỗi 24 giờ, **bật mặc định**, tắt bằng `DISABLE_TOOLJET_TELEMETRY=true`. CI dày (Cypress, CodeQL, grype, license-compliance). Có kênh LTS (`v3.20.252-lts`) tách khỏi kênh beta.
+- **Budibase.** 61.333 commit từ 3/2019, 211 tác giả. `LICENSE` là hướng dẫn: server/builder/worker **GPL-3.0**, client/bbui/sdk/string-templates **MPL-2.0** (để app dựng ra không bị GPL), `packages/pro` **BSL** (đổi sang GPLv3 sau 4 năm) dù `package.json` ghi `UNLICENSED`; kèm `SQS_LICENSE` của bên thứ ba. Agent AI: `packages/server/src/ai/tools/authorization.ts` lọc kết quả tool theo quyền của **người đang dùng** ("Tool is not available in this security context") ✅ — mẫu tốt cho agent nội bộ. Analytics: `hosting/docker-compose.yaml` đặt `ENABLE_ANALYTICS: "true"`, image đơn có sẵn token PostHog mặc định trong `runner.sh`. Bản v3.50.0 (15/10/2026).
+- **Astron Agent (iFlytek).** 3.264 commit từ 22/9/2025, 125 tác giả. Apache-2.0 + NOTICE; README nhấn "no commercial restrictions" ✅ (khác FastGPT, Dify). Gồm `core/` (agent, workflow, knowledge, memory, plugin, tenant), `console/`, Casdoor cho đăng nhập, tuỳ chọn RPA (`iflytek/astron-rpa`). `.env.example` có **mật khẩu mặc định yếu** (`spark123`, `root123`, Redis `123`, MinIO `minioadmin123`); endpoint bot mặc định trỏ Spark của iFlytek (`spark-api-open.xf-yun.com`). Có workflow `claim-issue-reward.yml` trả thưởng cho người đóng issue. Bản v1.1.2 (1/9/2026). Cài: `cd docker/astronAgent && cp .env.example .env` (đổi hết mật khẩu) rồi `docker compose -f docker-compose-with-auth.yaml up -d`.
+- **FlowGram (ByteDance).** 779 commit từ 2/2025, 45 tác giả, MIT. Không phải sản phẩm mà là **bộ khung để tự dựng nền tảng workflow**: `canvas-engine`, `node-engine`, `variable-engine`, `runtime`, `materials` (node LLM, Condition, Code); là canvas của Coze Studio. Mới thêm FlowGram Desktop (10/2026) xuất workflow ra HTTP và MCP, README tự ghi "Preview installers are unsigned". Không thấy telemetry. Hợp khi muốn nhúng canvas vào sản phẩm riêng thay cho Flowise.
+
+### Mẫu chung rút ra
+
+1. **"Low-code bị coding agent nuốt" đã thành lý do đóng cửa chính thức** (Flowise). Hướng sống sót của nhóm này là mở MCP để agent dựng thay người kéo thả: n8n-mcp, ToolJet MCP, FlowGram Desktop xuất MCP.
+2. **Sản phẩm bị mua lại có thể đóng nhanh:** từ đóng băng tới hết vòng đời chỉ 33 ngày, không có đường chuyển đổi dữ liệu. Khi chọn nền tảng, ưu tiên định dạng flow xuất được và license cho phép fork (Apache/MIT không kèm thư mục thương mại).
+3. **Telemetry ngày càng thu nội dung, không chỉ số đếm:** n8n-mcp thu workflow và câu lệnh để huấn luyện mô hình; ToolJet, Budibase bật analytics mặc định ở bản tự host.
+4. **"Open source" nhiều tầng:** ToolJet (AGPL + EE riêng tư), Budibase (GPL + MPL + BSL), Flowise (Apache + thư mục thương mại). Đọc LICENSE từng thư mục và kiểm image Docker mặc định là CE hay EE.
+
+**Nguồn (31/10/2026):** GitHub search API (`repo:` cho repo cũ, 9 truy vấn; `flowise` tạo sau 1/7/2026; `keelflow`) · clone `--filter=blob:none` FlowiseAI/Flowise (README.md, SECURITY.md, LICENSE.md, `packages/server/src/enterprise/LICENSE.md`, `git log` email theo domain, commit ba4c6509 và 9291856d, tag `flowise@3.1.4`) · https://github.com/FlowiseAI/Flowise/discussions/6727 · https://flowiseai.com/sunset · bên thứ ba: https://landing.elest.io/flowise-alternatives · https://byteiota.com/flowise-shutdown-august-31-migrate-your-ai-pipelines-now/ · https://dev.to/nodles/best-flowise-alternatives-in-2026-after-the-workday-acquisition-4834 · https://github.com/Perruer/keelflow · clone repo mới: n8n-mcp (README.md, PRIVACY.md, LICENSE, package.json, `src/telemetry/{config-manager,ingest-client,telemetry-types}.ts`), ToolJet (LICENSE, README.md, .gitmodules, .env.example, workflows), Budibase (LICENSE, `packages/*/package.json`, `packages/pro/license.md`, `packages/server/src/ai/tools/authorization.ts`, `packages/backend-core/src/configs/configs.ts`, `hosting/docker-compose.yaml`, `hosting/single/runner.sh`), astron-agent (README.md, LICENSE, NOTICE, `docker/astronAgent/{.env.example,docker-compose.yaml}`, workflows), flowgram.ai (README.md, LICENSE, `packages/`, `apps/`)
+
 ## Nguồn
 
 - https://www.knowlee.ai/blog/dify-alternatives-2026 · https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026 · https://www.jahanzaib.ai/blog/flowise-vs-dify-vs-n8n-ai-agents · https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026 · https://makerstack.co/reviews/langflow-review/ · https://enterprisedna.co/directories/compare/dify-vs-flowise-vs-langflow/
