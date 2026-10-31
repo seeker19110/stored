@@ -1284,17 +1284,17 @@
       "license": null,
       "stars": null,
       "open_source": false,
-      "notes": "Trạng thái mở chưa rõ từ 6/2026",
+      "notes": "Trạng thái mở chưa rõ từ 6/2026; ARCHIVE theo GitHub API (31/10/2026, mục 11 §3c)",
       "section": "11"
     },
     {
       "name": "NeMo Guardrails",
-      "repo": "NVIDIA/NeMo-Guardrails",
+      "repo": "NVIDIA-NeMo/Guardrails",
       "category": "security",
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "Colang rails",
+      "notes": "Colang rails; repo chuyển sang NVIDIA-NeMo/Guardrails (31/10/2026)",
       "section": "12"
     },
     {
@@ -1304,7 +1304,7 @@
       "license": "MIT",
       "stars": null,
       "open_source": true,
-      "notes": "~35 scanner",
+      "notes": "~35 scanner; ARCHIVE (31/10/2026, mục 12 §4b)",
       "section": "12"
     },
     {
@@ -1622,12 +1622,12 @@
     },
     {
       "name": "Qodo Merge",
-      "repo": "qodo-ai/pr-agent",
+      "repo": "The-PR-Agent/pr-agent",
       "category": "code-review",
-      "license": "AGPL-3.0",
+      "license": "MIT",
       "stars": null,
       "open_source": true,
-      "notes": "self-host",
+      "notes": "self-host; repo chuyển sang The-PR-Agent/pr-agent, LICENSE hiện là MIT (31/10/2026, mục 13 §6g)",
       "section": "13"
     },
     {
@@ -7376,6 +7376,216 @@
       "open_source": true,
       "notes": "1.057 file prompt/tool/agent/skill của Claude Code theo từng bản (v2.1.316), token đếm bằng API count_tokens; README ghi 515 prompt; rủi ro bản quyền như baoyu-design; ★ 31/10/2026 (GitHub API), mục 17 §4b",
       "section": "17"
+    },
+    {
+      "name": "OpenSandbox",
+      "repo": "opensandbox-group/OpenSandbox",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 16343,
+      "open_source": true,
+      "notes": "Nền tảng sandbox tự host (Docker→K8s), SDK 5 ngôn ngữ, MCP; mặc định container runc, gVisor/Kata/Firecracker tuỳ chọn; server từ chối chạy khi thiếu api_key; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "CubeSandbox",
+      "repo": "TencentCloud/CubeSandbox",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 13114,
+      "open_source": true,
+      "notes": "MicroVM KVM của Tencent Cloud, API tương thích E2B; GitHub báo NOASSERTION vì LICENSE gộp phần bên thứ ba; quickstart thay kernel host bằng curl|bash; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "microsandbox",
+      "repo": "superradcompany/microsandbox",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 8888,
+      "open_source": true,
+      "notes": "MicroVM cục bộ dựa trên libkrun, secret không vào VM; beta; policy mạng mặc định cho Internet công cộng, chặn LAN/metadata; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "Agent Sandbox (Kubernetes SIG Apps)",
+      "repo": "kubernetes-sigs/agent-sandbox",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 4464,
+      "open_source": true,
+      "notes": "CRD Sandbox/Template/Claim/WarmPool, cách ly giao cho gVisor/Kata qua RuntimeClass; API v1beta1, tag v1.0.9; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "Monty",
+      "repo": "pydantic/monty",
+      "category": "sandbox",
+      "license": "MIT",
+      "stars": 8807,
+      "open_source": true,
+      "notes": "Trình thông dịch tập con Python 3.14 viết bằng Rust cho code do LLM sinh, không có FS/mạng/env; 31% commit có trailer Claude; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "agent-desktop",
+      "repo": "vercel-labs/agent-desktop",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 4217,
+      "open_source": true,
+      "notes": "Computer use desktop qua accessibility tree macOS/Windows/Linux, ref theo snapshot; postinstall kiểm SHA256; skill jev gửi dữ liệu tới api.typesafe.ai; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "Fara",
+      "repo": "microsoft/fara",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 6238,
+      "open_source": true,
+      "notes": "Mô hình CUA Fara1.5 (4B/9B/27B, Qwen3.5) + harness Playwright + WebTailBench; chỉ web; điểm tự báo cáo; đứng yên từ 22/7/2026; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "section": "11"
+    },
+    {
+      "name": "Strix",
+      "repo": "usestrix/strix",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 73091,
+      "open_source": true,
+      "notes": "Agent pentest tự chủ trong container Kali (dual-use); prompt cấm hỏi lại ủy quyền, không có cổng phạm vi trong mã; telemetry PostHog+Scarf bật mặc định (STRIX_TELEMETRY=0); ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "A.I.G (AI-Infra-Guard)",
+      "repo": "Tencent/AI-Infra-Guard",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 7247,
+      "open_source": true,
+      "notes": "Nền tảng red team AI của Tencent Zhuque Lab: quét hạ tầng AI, MCP, skill, agent, jailbreak; không có xác thực, compose mở 0.0.0.0:8088; NOTICE đòi ghi công; ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "Agent Governance Toolkit",
+      "repo": "microsoft/agent-governance-toolkit",
+      "category": "policy-as-code",
+      "license": "MIT",
+      "stars": 6502,
+      "open_source": true,
+      "notes": "Kernel chính sách tất định chặn tool call, danh tính agent, audit; hook Claude Code fail closed; public preview, ~546k dòng Python trong 8 tháng; ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "dcg (Destructive Command Guard)",
+      "repo": "Dicklesworthstone/destructive_command_guard",
+      "category": "security",
+      "license": "MIT + rider cấm OpenAI/Anthropic",
+      "stars": 6235,
+      "open_source": false,
+      "notes": "Hook Rust chặn lệnh phá huỷ cho 6+ coding agent; license có điều khoản cấm OpenAI/Anthropic nên không OSI; mặc định fail-open (DCG_FAIL_CLOSED=1); ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "nono",
+      "repo": "nolabs-ai/nono",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 4785,
+      "open_source": true,
+      "notes": "Sandbox tiến trình cho agent bằng Landlock/Seatbelt không cần root, proxy tiêm credential, attestation skill bằng Sigstore, audit + rollback; trước 1.0; ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "HexStrike AI",
+      "repo": "0x4m4/hexstrike-ai",
+      "category": "security",
+      "license": "MIT",
+      "stars": 13246,
+      "open_source": true,
+      "notes": "MCP gói 150+ công cụ pentest; phản mẫu: POST /api/command chạy lệnh tuỳ ý không auth, bind 0.0.0.0:8888; không dùng ngoài lab cô lập; ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "Varlock",
+      "repo": "dmno-dev/varlock",
+      "category": "security",
+      "license": "MIT",
+      "stars": 4874,
+      "open_source": true,
+      "notes": ".env.schema cho agent đọc schema không đọc secret, quét rò rỉ, che log, plugin 1Password/Vault/cloud; telemetry PostHog mặc định (DO_NOT_TRACK=1); ★ 31/10/2026 (GitHub API), mục 12 §4b.3",
+      "section": "12"
+    },
+    {
+      "name": "Supabase",
+      "repo": "supabase/supabase",
+      "category": "backend",
+      "license": "Apache-2.0",
+      "stars": 114382,
+      "open_source": true,
+      "notes": "Postgres + Auth + Storage + Realtime, tự host bằng docker/ (tag self-hosted/v*); setup.sh sinh secret, .env.example chứa secret mẫu; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
+    },
+    {
+      "name": "Tauri",
+      "repo": "tauri-apps/tauri",
+      "category": "mobile",
+      "license": "MIT OR Apache-2.0",
+      "stars": 112380,
+      "open_source": true,
+      "notes": "App desktop/mobile với frontend web + lõi Rust; v2.12.5 ổn định, v3 alpha từ 12/9/2026; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
+    },
+    {
+      "name": "Bun",
+      "repo": "oven-sh/bun",
+      "category": "backend",
+      "license": "MIT (+ LGPL-2 link tĩnh)",
+      "stars": 96488,
+      "open_source": true,
+      "notes": "Runtime/bundler/test runner JS của Anthropic; viết lại bằng Rust (#30412, 14/5/2026), v1.4.0 19/8/2026; GitHub NOASSERTION do JavaScriptCore LGPL; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
+    },
+    {
+      "name": "act",
+      "repo": "nektos/act",
+      "category": "devops",
+      "license": "MIT",
+      "stars": 72504,
+      "open_source": true,
+      "notes": "Chạy GitHub Actions cục bộ; SECURITY_AUDIT.md 10/2026: 5 lỗi Critical thoát container, vá bằng --container-options-policy trong v0.2.94; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
+    },
+    {
+      "name": "PocketBase",
+      "repo": "pocketbase/pocketbase",
+      "category": "backend",
+      "license": "MIT",
+      "stars": 61620,
+      "open_source": true,
+      "notes": "Backend Go một file (SQLite, auth, realtime); repo GitHub đã archive 26/10/2026, chuyển sang ganigeorgiev.com, update tải từ domain mới; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
+    },
+    {
+      "name": "code-review-graph",
+      "repo": "tirth8205/code-review-graph",
+      "category": "code-review",
+      "license": "MIT",
+      "stars": 32522,
+      "open_source": true,
+      "notes": "Đồ thị mã Tree-sitter/SQLite cấp blast radius cho review qua MCP; install ghi cấu hình vào ~20 công cụ; 35% commit có trailer Claude; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
+    },
+    {
+      "name": "Agent OS",
+      "repo": "buildermethods/agent-os",
+      "category": "spec-driven",
+      "license": "MIT",
+      "stars": 5566,
+      "open_source": true,
+      "notes": "Bộ lệnh/prompt rút chuẩn mã từ codebase và shape spec; 22 file, docs ở buildermethods.com; ★ 31/10/2026 (GitHub API), mục 13 §6g.3",
+      "section": "13"
     }
   ]
 }

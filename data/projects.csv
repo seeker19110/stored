@@ -119,9 +119,9 @@ playwright-cli,microsoft/playwright-cli,,browser-agent,Apache-2.0,14827,True,11,
 browser-use-pi,browser-use/browser-use-pi,,browser-agent,MIT,461,True,11,"Runtime TypeScript kế nhiệm browser-use Python: Pi Mono + REPL V8 bền + CDP, agent tự viết JavaScript điều khiển Chrome; worker có quyền filesystem + mạng (README khuyên máy cô lập); telemetry PostHog EU mặc định (DO_NOT_TRACK=1); benchmark tự ghi 'historical, không phải điểm hiện tại'; 184 commit, 178 của Gregor Žunič, chưa release; 458★ (31/10/2026, shields); mục 11 §1g.2; ★ 31/10/2026: 461 (GitHub API)"
 E2B,e2b-dev/E2B,,sandbox,Apache-2.0,,True,11,Firecracker microVM
 Modal,modal-labs/modal-client,,sandbox,Apache-2.0 (SDK),,True,11,gVisor; GPU
-Daytona,daytonaio/daytona,,sandbox,,,False,11,Trạng thái mở chưa rõ từ 6/2026
-NeMo Guardrails,NVIDIA/NeMo-Guardrails,,security,Apache-2.0,,True,12,Colang rails
-LLM Guard,protectai/llm-guard,,security,MIT,,True,12,~35 scanner
+Daytona,daytonaio/daytona,,sandbox,,,False,11,"Trạng thái mở chưa rõ từ 6/2026; ARCHIVE theo GitHub API (31/10/2026, mục 11 §3c)"
+NeMo Guardrails,NVIDIA-NeMo/Guardrails,,security,Apache-2.0,,True,12,Colang rails; repo chuyển sang NVIDIA-NeMo/Guardrails (31/10/2026)
+LLM Guard,protectai/llm-guard,,security,MIT,,True,12,"~35 scanner; ARCHIVE (31/10/2026, mục 12 §4b)"
 Guardrails AI,guardrails-ai/guardrails,,security,Apache-2.0,,True,12,
 OWASP MCP Top 10,OWASP/www-project-mcp-top-10,,security,CC,,True,12,
 gitleaks,gitleaks/gitleaks,,security,MIT,,True,12,secret scan
@@ -153,7 +153,7 @@ OpenSpec,Fission-AI/OpenSpec,,spec-driven,MIT,,True,13,
 Kiro,,https://kiro.dev,spec-driven,proprietary,,False,13,AWS IDE
 CodeRabbit,,https://www.coderabbit.ai,code-review,proprietary,,False,13,$24/$48
 Greptile,,https://www.greptile.com,code-review,proprietary,,False,13,
-Qodo Merge,qodo-ai/pr-agent,,code-review,AGPL-3.0,,True,13,self-host
+Qodo Merge,The-PR-Agent/pr-agent,,code-review,MIT,,True,13,"self-host; repo chuyển sang The-PR-Agent/pr-agent, LICENSE hiện là MIT (31/10/2026, mục 13 §6g)"
 Pipecat,pipecat-ai/pipecat,,voice,BSD-2,16964,True,14,; ★ 31/10/2026: 16.964 (GitHub API)
 LiveKit Agents,livekit/agents,,voice,Apache-2.0,15026,True,14,; ★ 31/10/2026: 15.026 (GitHub API)
 TEN Framework,TEN-framework/ten-framework,,voice,Apache-2.0,11215,True,14,; ★ 31/10/2026: 11.215 (GitHub API)
@@ -728,3 +728,24 @@ Fabric,danielmiessler/Fabric,,prompt,MIT,44516,True,17,"265 pattern system.md + 
 System Prompts Leaks,asgeirtj/system_prompts_leaks,,prompt,CC0-1.0 (phần biên soạn),70531,True,17,"1.856 file system prompt rò rỉ (649 Anthropic), cập nhật trong ngày; không mô tả cách trích xuất/kiểm chứng; văn bản thuộc các hãng, chỉ dùng học cấu trúc; ★ 31/10/2026 (GitHub API), mục 17 §4b"
 CL4R1T4S,elder-plinius/CL4R1T4S,,prompt,AGPL-3.0 (phần biên soạn),51664,True,17,"80 file prompt rò rỉ của 26 hãng/sản phẩm, một người duy trì, kêu gọi 'leak, extract'; nguồn so sánh, không chuẩn; ★ 31/10/2026 (GitHub API), mục 17 §4b"
 Claude Code System Prompts,Piebald-AI/claude-code-system-prompts,,prompt,MIT (phần biên soạn),13050,True,17,"1.057 file prompt/tool/agent/skill của Claude Code theo từng bản (v2.1.316), token đếm bằng API count_tokens; README ghi 515 prompt; rủi ro bản quyền như baoyu-design; ★ 31/10/2026 (GitHub API), mục 17 §4b"
+OpenSandbox,opensandbox-group/OpenSandbox,,sandbox,Apache-2.0,16343,True,11,"Nền tảng sandbox tự host (Docker→K8s), SDK 5 ngôn ngữ, MCP; mặc định container runc, gVisor/Kata/Firecracker tuỳ chọn; server từ chối chạy khi thiếu api_key; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+CubeSandbox,TencentCloud/CubeSandbox,,sandbox,Apache-2.0,13114,True,11,"MicroVM KVM của Tencent Cloud, API tương thích E2B; GitHub báo NOASSERTION vì LICENSE gộp phần bên thứ ba; quickstart thay kernel host bằng curl|bash; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+microsandbox,superradcompany/microsandbox,,sandbox,Apache-2.0,8888,True,11,"MicroVM cục bộ dựa trên libkrun, secret không vào VM; beta; policy mạng mặc định cho Internet công cộng, chặn LAN/metadata; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+Agent Sandbox (Kubernetes SIG Apps),kubernetes-sigs/agent-sandbox,,sandbox,Apache-2.0,4464,True,11,"CRD Sandbox/Template/Claim/WarmPool, cách ly giao cho gVisor/Kata qua RuntimeClass; API v1beta1, tag v1.0.9; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+Monty,pydantic/monty,,sandbox,MIT,8807,True,11,"Trình thông dịch tập con Python 3.14 viết bằng Rust cho code do LLM sinh, không có FS/mạng/env; 31% commit có trailer Claude; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+agent-desktop,vercel-labs/agent-desktop,,browser-agent,Apache-2.0,4217,True,11,"Computer use desktop qua accessibility tree macOS/Windows/Linux, ref theo snapshot; postinstall kiểm SHA256; skill jev gửi dữ liệu tới api.typesafe.ai; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+Fara,microsoft/fara,,browser-agent,MIT,6238,True,11,"Mô hình CUA Fara1.5 (4B/9B/27B, Qwen3.5) + harness Playwright + WebTailBench; chỉ web; điểm tự báo cáo; đứng yên từ 22/7/2026; ★ 31/10/2026 (GitHub API), mục 11 §3c.3"
+Strix,usestrix/strix,,security,Apache-2.0,73091,True,12,"Agent pentest tự chủ trong container Kali (dual-use); prompt cấm hỏi lại ủy quyền, không có cổng phạm vi trong mã; telemetry PostHog+Scarf bật mặc định (STRIX_TELEMETRY=0); ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+A.I.G (AI-Infra-Guard),Tencent/AI-Infra-Guard,,security,Apache-2.0,7247,True,12,"Nền tảng red team AI của Tencent Zhuque Lab: quét hạ tầng AI, MCP, skill, agent, jailbreak; không có xác thực, compose mở 0.0.0.0:8088; NOTICE đòi ghi công; ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+Agent Governance Toolkit,microsoft/agent-governance-toolkit,,policy-as-code,MIT,6502,True,12,"Kernel chính sách tất định chặn tool call, danh tính agent, audit; hook Claude Code fail closed; public preview, ~546k dòng Python trong 8 tháng; ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+dcg (Destructive Command Guard),Dicklesworthstone/destructive_command_guard,,security,MIT + rider cấm OpenAI/Anthropic,6235,False,12,"Hook Rust chặn lệnh phá huỷ cho 6+ coding agent; license có điều khoản cấm OpenAI/Anthropic nên không OSI; mặc định fail-open (DCG_FAIL_CLOSED=1); ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+nono,nolabs-ai/nono,,sandbox,Apache-2.0,4785,True,12,"Sandbox tiến trình cho agent bằng Landlock/Seatbelt không cần root, proxy tiêm credential, attestation skill bằng Sigstore, audit + rollback; trước 1.0; ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+HexStrike AI,0x4m4/hexstrike-ai,,security,MIT,13246,True,12,"MCP gói 150+ công cụ pentest; phản mẫu: POST /api/command chạy lệnh tuỳ ý không auth, bind 0.0.0.0:8888; không dùng ngoài lab cô lập; ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+Varlock,dmno-dev/varlock,,security,MIT,4874,True,12,".env.schema cho agent đọc schema không đọc secret, quét rò rỉ, che log, plugin 1Password/Vault/cloud; telemetry PostHog mặc định (DO_NOT_TRACK=1); ★ 31/10/2026 (GitHub API), mục 12 §4b.3"
+Supabase,supabase/supabase,,backend,Apache-2.0,114382,True,13,"Postgres + Auth + Storage + Realtime, tự host bằng docker/ (tag self-hosted/v*); setup.sh sinh secret, .env.example chứa secret mẫu; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
+Tauri,tauri-apps/tauri,,mobile,MIT OR Apache-2.0,112380,True,13,"App desktop/mobile với frontend web + lõi Rust; v2.12.5 ổn định, v3 alpha từ 12/9/2026; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
+Bun,oven-sh/bun,,backend,MIT (+ LGPL-2 link tĩnh),96488,True,13,"Runtime/bundler/test runner JS của Anthropic; viết lại bằng Rust (#30412, 14/5/2026), v1.4.0 19/8/2026; GitHub NOASSERTION do JavaScriptCore LGPL; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
+act,nektos/act,,devops,MIT,72504,True,13,"Chạy GitHub Actions cục bộ; SECURITY_AUDIT.md 10/2026: 5 lỗi Critical thoát container, vá bằng --container-options-policy trong v0.2.94; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
+PocketBase,pocketbase/pocketbase,,backend,MIT,61620,True,13,"Backend Go một file (SQLite, auth, realtime); repo GitHub đã archive 26/10/2026, chuyển sang ganigeorgiev.com, update tải từ domain mới; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
+code-review-graph,tirth8205/code-review-graph,,code-review,MIT,32522,True,13,"Đồ thị mã Tree-sitter/SQLite cấp blast radius cho review qua MCP; install ghi cấu hình vào ~20 công cụ; 35% commit có trailer Claude; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
+Agent OS,buildermethods/agent-os,,spec-driven,MIT,5566,True,13,"Bộ lệnh/prompt rút chuẩn mã từ codebase và shape spec; 22 file, docs ở buildermethods.com; ★ 31/10/2026 (GitHub API), mục 13 §6g.3"
