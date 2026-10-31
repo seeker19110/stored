@@ -831,6 +831,40 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7n:** bài đăng Facebook tác giả (ảnh người dùng gửi 31/10/2026) · clone đủ lịch sử github.com/evondev/evondevKit 31/10/2026 (259 commit, HEAD 4d02153 22/10/2026; README.md, README.vi.md, LICENSE, TESTS.md, .claude-plugin/{marketplace,plugin}.json, skills/ui-ux/{SKILL.md, VERSION, references/*, scripts/{probe,check-update,lint-skill}.mjs}; đếm trailer bằng git log) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/evondev/evondevKit.json (31/10/2026) · evondev-uiux.vercel.app/ui-ux
 
+## 7o. Ba skill thiết kế trong ảnh: `/figma-use-motion` (Figma), `/design-critique` và `/design-handoff` (Anthropic) (ảnh người dùng gửi, clone 2026-10-31)
+
+> Ảnh là ba chip lệnh slash trên nền cam, không kèm chữ (sau chip đầu thấy loáng thoáng "…The faded card behind it rises a…", tức một bài viết về hiệu ứng chuyển động). Đã clone `figma/mcp-server-guide`, `anthropics/knowledge-work-plugins` và `openai/plugins`, đọc `SKILL.md` cùng `references/`, `plugin.json`, `.mcp.json`, `CONNECTORS.md` và lịch sử git của từng skill. **Không cài, không gọi Figma MCP.**
+
+### 7o.1 Hồ sơ nhanh
+
+| Skill | Nguồn thật (đọc 31/10/2026) | Nội dung | Cài |
+|---|---|---|---|
+| `/figma-use-motion` | `figma/mcp-server-guide` · **2.137★, 211 fork** · **không có file LICENSE**, dùng theo Figma Developer Terms · plugin `figma` v2.2.174, **Beta** · skill có từ 24/6/2026, sửa cuối 13/10/2026 | `SKILL.md` 90 dòng + 4 reference (~1.180 dòng: keyframe, easing, custom animation style, text stagger). Dạy agent **tạo/sửa animation ngay trên canvas Figma** qua tool `use_figma` (Plugin API). Phải nạp cùng skill nền `figma-use` | `claude plugin install figma@claude-plugins-official` |
+| `/design-critique` | `anthropics/knowledge-work-plugins`, plugin `design` v1.2.0 · **34k★, 3,8k fork**, **Apache-2.0** · tạo 23/2/2026, đổi từ command sang skill 13/3/2026, **không sửa từ đó** | `SKILL.md` 118 dòng, **chỉ là prompt**: 5 khía cạnh (ấn tượng đầu, usability, phân cấp thị giác, nhất quán, accessibility) và mẫu báo cáo có mức 🔴/🟡/🟢 | `claude plugin install design@knowledge-work-plugins` |
+| `/design-handoff` | Cùng plugin `design`, cùng ngày tạo và sửa | `SKILL.md` 131 dòng, chỉ là prompt: mẫu spec bàn giao gồm token, component, trạng thái, breakpoint, edge case, **bảng Animation/Motion (ms, easing)**, ghi chú a11y | như trên |
+
+Plugin `design` còn 5 skill khác: `accessibility-review`, `design-system`, `ux-copy`, `research-synthesis`, `user-research`. `.mcp.json` của nó nối sẵn Figma (`mcp.figma.com/mcp`), Slack, Linear, Asana, Atlassian, Notion, Intercom (xem mục 20 §1).
+
+### 7o.2 Điều đọc mã mới thấy
+
+- **Motion trên Figma còn bị khoá theo tài khoản.** `figma-use-motion` dặn: nếu API trả `"<name>" is not a supported API` thì dừng ngay, không thử lại. Bản trong `skills-figquery/` (bản phát cho Cursor) và bản trong `openai/plugins` ghi rõ tên cờ là **`metronome`**; bản chính đã bỏ tên cờ ở lần đồng bộ 13/10/2026. Custom animation style có thể tắt riêng dù keyframe vẫn chạy.
+- **Ba bản sao lệch nhau.** Bản `openai/plugins` (đồng bộ cuối 9/7/2026) thiếu `motion-custom-styles.md` và `text-animation.md`; bản figquery cũng khác bản chính. Muốn bản mới nhất thì lấy từ `figma/mcp-server-guide/skills/`.
+- **Kiểm chuyển động tốn tiền thật.** `get_screenshot` chỉ chụp trạng thái nghỉ. Muốn thấy chuyển động phải gọi `export_video` (render phía server, ~10 giây tới vài phút), rồi cắt khung bằng `ffmpeg`. Skill hướng dẫn tiết kiệm: 4–6 khung, `fps` 5, rộng 320px. README Figma: tài khoản Starter hoặc ghế View/Collab chỉ được **6 lần gọi tool/tháng**; ghi lên canvas "sẽ thành tính năng trả phí theo lượng dùng", hiện miễn phí trong beta.
+- **Skill anh em `figma-implement-motion`** làm chiều ngược lại: đọc `get_motion_context` (keyframe, easing, snippet CSS `@keyframes` và motion.dev) rồi viết code. Hai skill tự phân ranh giới với nhau: sửa trong Figma dùng `figma-use(-motion)`, ra code dùng `implement-motion`.
+- **`design-critique` và `design-handoff` không có công cụ đo.** Mục "Color contrast: Pass/fail" và "Touch targets" do model ước lượng từ ảnh hay dữ liệu Figma, không có script tính tỉ lệ tương phản. So với các skill có cổng máy trong kho (Hallmark §7l, evondevKit §7n, taste-skill §7j), đây là khung câu hỏi, không phải bộ kiểm.
+- **Bảng motion của `design-handoff` dễ thành số bịa.** Skill bảo điền "Duration (ms) / Easing" nhưng không gọi `get_motion_context`, nên với frame tĩnh model sẽ đoán. Nguyên tắc "Specify everything" của chính skill càng đẩy model điền đủ ô.
+- **Đầu ra là văn bản tĩnh**, không nối ngược về file Figma; sửa thiết kế xong phải chạy lại.
+
+### 7o.3 Ghép ba skill thành một luồng
+
+1. `/design-critique <link Figma>` → danh sách ưu tiên; tự đo tương phản bằng công cụ riêng thay vì tin cột Pass/fail.
+2. Sửa thiết kế; thêm chuyển động bằng `/figma-use-motion` (nếu tài khoản có quyền motion), kiểm bằng `export_video` ít khung.
+3. `/design-handoff <link Figma>` → spec. **Ghi đè bảng Animation/Motion** bằng số từ `get_motion_context`, hoặc giao phần motion cho `figma-implement-motion` sinh code thẳng.
+
+**Nên dùng khi:** đội đã có Figma (ghế Dev/Full trả phí, vì Starter chỉ 6 lần gọi/tháng) và muốn chuẩn hoá mẫu review/bàn giao. Hai skill của Anthropic ngắn, Apache-2.0, dễ fork để thêm bước đo. `figma-use-motion` còn beta, phụ thuộc cờ tính năng và điều khoản riêng của Figma (không phải giấy phép mã mở); không nên dựng quy trình bắt buộc trên nó lúc này. Phần motion trên web viết bằng code xem mục 22 §6.
+
+**Nguồn §7o:** ảnh người dùng gửi 31/10/2026 · clone github.com/figma/mcp-server-guide (88 commit, HEAD f3f264d 28/10/2026; README.md, plugin.json, skills/{figma-use-motion,figma-implement-motion}/**, skills-figquery/figma-use-motion/SKILL.md; `git log -S metronome`) · clone github.com/anthropics/knowledge-work-plugins (1.128 commit, HEAD 2574e29 27/10/2026; design/{.claude-plugin/plugin.json,.mcp.json,CONNECTORS.md,README.md,skills/*/SKILL.md}) · clone github.com/openai/plugins (HEAD 0722921d; plugins/figma/skills/figma-use-motion/**) · GitHub search API 31/10/2026 (sao, fork, license) · tìm web: skills.sh, tessl.io, figma.com/blog/try-these-10-skills-and-show-off-your-own, uxplanet.org (2 bài Medium về plugin design, chỉ đọc tóm tắt)
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
