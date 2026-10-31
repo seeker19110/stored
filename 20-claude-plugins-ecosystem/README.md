@@ -223,9 +223,9 @@ plugin-name/
 
 | Repo | ★ (12/10) | License | Phát hành / hoạt động gần nhất | Quy mô & điểm chất lượng | Lưu ý |
 |---|---|---|---|---|---|
-| **obra/superpowers** | 298k | MIT | v7.0.0 (10/10/2026) | Lõi nhỏ 15 skill (brainstorm → plan → TDD → review), test bằng `npm test` và harness eval "drill", hỗ trợ 16 harness | 298k★ trên chỉ 684 commit — sao vượt xa lượng code; 142 PR mở |
+| **obra/superpowers** | 298k | MIT | v7.0.0 (10/10/2026) | Lõi nhỏ 15 skill (brainstorm → plan → TDD → review), test bằng `npm test` và harness eval "drill", hỗ trợ 16 harness | 298k★ trên chỉ 684 commit — sao vượt xa lượng code; 142 PR mở. *Đính chính 31/10/2026 (§3o.1): repo không có CI; eval ở repo riêng `prime-radiant-inc/superpowers-evals`* |
 | **affaan-m/ECC** (URL cũ everything-claude-code chuyển hướng về đây) | 277,6k | MIT | v2.2.3 (1/10/2026), commit 12/10 | README: 71 agent, 311 skill, 97 command; có `tests/` và release gate chạy trên Linux/macOS/Windows | Con số 214k★ trong ADR xboss là ảnh chụp 6/2026; số command tự mâu thuẫn (97 và 95); cồng kềnh — cách vendor chọn lọc của xboss là hợp lý |
-| **addyosmani/agent-skills** | 105,3k | MIT | commit 10/10/2026 | 25 skill, 4 persona, 9 command, 7 checklist; 25 ca routing-eval và CI kiểm hợp lệ | Tăng 5–7k★/tuần trong 7/2026; không có release; có eval nhưng không có unit test |
+| **addyosmani/agent-skills** | 105,3k | MIT | commit 10/10/2026 | 25 skill, 4 persona, 9 command, 7 checklist; 25 ca routing-eval và CI kiểm hợp lệ | Tăng 5–7k★/tuần trong 7/2026; không có release; có eval nhưng không có unit test. *Cập nhật 31/10/2026 (§3o.2): nay có 16 tag (v0.6.14) và unit test cho lint/eval trong CI* |
 | **wshobson/agents** | 40,5k | MIT | commit 4/10/2026 | Marketplace plugin đa harness: 94 plugin, 202 agent, 184 skill, 105 command; `make validate STRICT=1` và eval | Phần lớn là file prompt; không nêu test suite; không có release |
 | **davila7/claude-code-templates** | 32,6k | MIT | commit 12/10/2026 | Một CLI cài hơn 100 agent, command, hook, setting, MCP; ghi nguồn upstream | Commit gần đây chủ yếu do bot cập nhật dữ liệu; 277 PR mở; không thấy test |
 | **VoltAgent/awesome-claude-code-subagents** | 25,7k | MIT | commit 11/10/2026 | 161+ subagent trong 10 nhóm, thêm qua PR theo chính sách kiểm duyệt | Chỉ là prompt, không test; phần About ghi "100+" lệch với README "161+" |
@@ -826,6 +826,63 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 **Dùng thế nào:** lấy chọn lọc `react-best-practices` (72 rule có validate, giá trị nhất) và `composition-patterns` cho dự án React/Next.js. Không cần cả bộ nếu không dùng Vercel. Vì không có file LICENSE, vendor theo lock (mục 23) sẽ bị từ chối; dùng `npx skills add vercel-labs/agent-skills --skill react-best-practices` và ghim commit, hoặc chỉ tham khảo. Với hai skill tải từ xa, chép nội dung vào repo và ghim.
 
 **Nguồn §3n:** clone github.com/pbakaus/impeccable 31/10/2026 (blob:none, 2.600 commit, HEAD df3a4abe 30/10/2026; README.md (Three ways to run the detector, Hooks run outside model approval, Telemetry), docs/{RUNTIME-ENV.md, BUNDLE-SIGNING.md, CLI-CONTRACT.md}, crates/*, scripts/engine-checksums.txt, .github/workflows/*; git log --since=2026-10-14, git tag) · clone github.com/vercel-labs/agent-skills 31/10/2026 (blob:none, 280 commit, HEAD 1a2c79d 27/10/2026; README.md, package.json, skills/*/SKILL.md (đặc biệt web-design-guidelines, writing-guidelines, deploy-to-vercel "No-Auth Fallback"), packages/*, .github/workflows/*; đếm rule/kích thước bằng script) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026) · impeccable.style (docs, privacy — chưa đọc) · vercel.com/docs/deployments/deploy-without-logging-in
+
+## 3o. Hồ sơ đầy đủ `obra/superpowers` và `addyosmani/agent-skills` (yêu cầu người dùng, clone 2026-10-31)
+
+> Trước đây hai repo chỉ có một dòng trong bảng §3d (12/10/2026). Mục này clone đủ lịch sử (blob:none), đọc README, RELEASE-NOTES, docs/testing, hook, skill, eval và workflow CI. **Không cài, không chạy hook hay eval.**
+
+### 3o.1 `obra/superpowers` — quy trình kỹ thuật cho agent, lõi nhỏ
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/obra/superpowers · **310k★, 28k fork** (shields) · **MIT** · v7.0.1 (21/10/2026) · **195 issue + 180 PR mở** (12/10: 142 PR) |
+| Lịch sử | **686 commit** từ 9/10/2025, 44 tác giả; Jesse Vincent (`obra`) ~541 commit (2 tên), Drew Ritter 86; 183 dòng trailer Claude; **chỉ 2 commit từ 12/10** (bản v7.0.1 + mẫu issue/PR) — phát hành theo đợt lớn, mỗi 2–4 tuần |
+| Tác giả | Jesse Vincent (blog.fsck.com, tác giả Request Tracker/K-9 Mail) và công ty **Prime Radiant** (primeradiant.com) |
+| 15 skill | `brainstorming` → `using-git-worktrees` → `writing-plans` → `executing-plans` / `subagent-driven-development` → `test-driven-development` → `requesting-code-review` / `receiving-code-review` → `verification-before-completion` → `finishing-a-development-branch`; cùng `systematic-debugging`, `dispatching-parallel-agents`, `writing-skills`, `diagnosing-superpowers`, `using-superpowers`. SKILL.md từ 3 KB (`requesting-code-review`) đến 19,5 KB (`subagent-driven-development`) |
+| Hook | **Một hook duy nhất**: SessionStart (`startup\|clear\|compact`) chèn toàn văn `using-superpowers/SKILL.md` vào ngữ cảnh mỗi phiên — skill này dạy agent tự tìm và dùng skill khác. Hook đọc file cục bộ, không gọi mạng |
+| Đa host | Thư mục plugin cho Claude Code, Codex, Cursor, OpenCode, Gemini, Antigravity, Devin, Hermes, Kimi, Muse, Pi (`docs/porting-to-a-new-harness.md`) |
+
+**Đọc cổng thật:**
+
+- **Không có CI** — repo không có `.github/workflows` (31/10/2026). §3d ghi "test bằng `npm test` và harness eval drill" là chưa chính xác: `tests/` (node/bash cho brainstorm-server, OpenCode, Codex sync, vài bài bash dùng `claude -p`) chạy tay; có `.pre-commit-config.yaml`.
+- **Eval hành vi ở repo riêng:** `docs/testing.md` trỏ tới `evals/` = `prime-radiant-inc/superpowers-evals` (eval lab "Quorum", tên cũ "Drill"; 142★, **không khai license**, commit cuối 9/2026) chạy phiên Claude Code/Codex/Gemini thật trong tmux với LLM actor + verifier. Thư mục `evals/` **không có trong repo chính** (submodule không được commit); chính docs cảnh báo kịch bản chạy 3–30 phút, ở **chế độ quyền rộng**.
+- **TDD cứng rắn:** skill TDD yêu cầu **xóa code viết trước test** ("Delete means delete… Don't keep it as reference") — hợp kỷ luật nhưng phải biết trước khi giao cho agent sửa repo có code chưa commit.
+
+**Dữ liệu rời máy:** tính năng tùy chọn "visual companion" của brainstorming (server cục bộ mở trình duyệt) **tải logo Prime Radiant từ website kèm số phiên bản Superpowers** để đếm người dùng — README gọi là "telemetry", nói không gửi chi tiết dự án/prompt. Tắt: `SUPERPOWERS_DISABLE_TELEMETRY=1`. Ngoài ra không thấy gọi mạng trong hook.
+
+**Đánh giá:** quy trình được thiết kế kỹ (brainstorm có cổng duyệt thiết kế, plan "đủ rõ cho kỹ sư junior thiếu ngữ cảnh", subagent-driven development có review hai lớp, xác minh trước khi báo xong) và lõi nhỏ dễ đọc. Điểm yếu: **sao cao nhất kho nhưng không có CI**, tồn đọng 375 issue/PR, eval tách sang repo không license. Hợp dự án muốn **quy trình** hơn là thư viện kiến thức; không cài chồng với ECC (§3l) hay addyosmani (dưới) vì cùng phủ plan/TDD/review.
+
+### 3o.2 `addyosmani/agent-skills` — 25 skill vòng đời kỹ thuật, có eval routing trong CI
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/addyosmani/agent-skills · **112k★, 12k fork** (shields) · **MIT** · v0.6.14 (28/10/2026; 16 tag, 0.6.0 ngày 27/4) · 60 issue + 85 PR mở |
+| Lịch sử | **772 commit** từ 15/2/2026, **103 tác giả**; Addy Osmani (Google Chrome) 386 commit, Federico Bartoli 47, Joan Leon 42; 52 trailer Claude; **81 commit từ 12/10** — bảo trì đều |
+| Nội dung | **25 skill** (~345 KB SKILL.md tổng, lớn nhất ~21 KB): spec-driven, planning-and-task-breakdown, incremental-implementation, test-driven-development, code-review-and-quality, code-simplification, debugging-and-error-recovery, security-and-hardening, performance-optimization, observability, ci-cd, shipping-and-launch, deprecation-and-migration, documentation-and-adrs, context-engineering, **doubt-driven-development**, **source-driven-development** (đối chiếu docs chính thức trước quyết định theo framework), constraint-driven-development, interview-me, idea-refine, browser-testing-with-devtools… · **4 agent** (code-reviewer, security-auditor, test-engineer, web-performance-auditor) · **9 command** (`/spec`, `/planning`, `/build`, `/test`, `/review`, `/code-simplify`, `/ship`, `/webperf`, `/constraints`) · **7 checklist** tham chiếu (a11y, definition-of-done, observability, performance, security, testing, orchestration) |
+| Hook | **Tùy chọn, phải tự thêm vào `.claude/settings.json`** (plugin không tự đăng ký): `session-start`, `simplify-ignore`, `sdd-cache` (cache WebFetch của source-driven-development, **luôn xác thực lại với server bằng `If-None-Match`/`If-Modified-Since`**, chỉ dùng cache khi 304) — mỗi hook có script test kèm |
+| Đa host | Claude Code (plugin), Codex, Gemini, OpenCode, Copilot (Agent Plugins 1.0.0 schema), Cursor, Antigravity |
+
+**Đọc cổng thật:**
+
+- **CI có thật** (1 workflow `test-plugin-install.yml`, action ghim tag): `validate-skills.js` (frontmatter, mục bắt buộc, ngân sách dòng, link tham chiếu), kiểm phiên bản manifest, unit test lint/eval, và **eval routing `run-evals.js --min-rank1 95`** — 25 ca, đo xem prompt mẫu có xếp skill đúng ở hạng 1 không (TF-IDF trên description, tất định, không tốn token).
+- **Ba tầng eval** (`evals/README.md`): cấu trúc (CI) → trigger/routing (CI) → hành vi (`--behavioral`, chạy `claude` headless, tốn token, chạy tay). README tự nói tầng 2 chỉ là xấp xỉ từ vựng, không hiểu ngữ nghĩa. Có sổ `evals/skill-impact.md` ghi **các thay đổi skill bị từ chối vì eval** — thực hành đáng học.
+- Commit gần đây chủ yếu sửa độ đúng chi tiết trong skill (trích dẫn đúng câu trong bài React 19, gọi đúng CLI Lighthouse/axe, quét secret cả working tree) — dấu hiệu nội dung được kiểm thật.
+
+**Dữ liệu rời máy:** không telemetry. Skill `source-driven-development` gọi WebFetch tới docs chính thức (theo thiết kế); hook `sdd-cache` dùng `curl` HEAD tới cùng URL.
+
+**Đánh giá:** bộ skill "vòng đời kỹ thuật" có quản trị tốt nhất trong nhóm pack lớn: eval routing trong CI, ledger thay đổi bị từ chối, hook tùy chọn có test, bảo trì đều. Rộng hơn superpowers (thêm security, performance, observability, launch) nhưng ít "ép quy trình" hơn. Hợp để chọn lọc vài skill (doubt-driven, source-driven, incremental-implementation — Hermes-Agents đã vendor, mục 23).
+
+### 3o.3 So sánh nhanh các pack quy trình (shields 31/10/2026, trừ ghi chú)
+
+| Repo | ★ | CI / eval | Hook mặc định | Dữ liệu rời máy |
+|---|---|---|---|---|
+| `obra/superpowers` | 310k | Không CI; eval ở repo riêng không license | 1 (SessionStart chèn skill) | Logo tùy chọn kèm phiên bản |
+| `mattpocock/skills` (§3c) | 307k | xem §3c | – | – |
+| `affaan-m/ECC` (§3l) | 293k | 483 file test, action ghim SHA | 27 hook | Không thấy |
+| `addyosmani/agent-skills` | 112k | CI: lint + eval routing ≥ 95% hạng 1 | 0 (hook tùy chọn) | Không |
+| `DietrichGebert/ponytail` (§3g.3) | 181k | Benchmark tự đo | Có | Không thấy |
+
+**Nguồn §3o:** clone github.com/obra/superpowers 31/10/2026 (blob:none, 686 commit, HEAD 2ce8aa1 21/10/2026; README.md (What's Inside, Visual companion telemetry), RELEASE-NOTES.md, docs/testing.md, docs/porting-to-a-new-harness.md, hooks/{hooks.json, session-start, run-hook.cmd}, skills/*/SKILL.md (kích thước bằng script), tests/*; kiểm không có .github/workflows và evals/) · github.com/prime-radiant-inc/superpowers-evals (shields 142★, license not specified, `git ls-remote`) · clone github.com/addyosmani/agent-skills 31/10/2026 (blob:none, 772 commit, HEAD eb07f19 28/10/2026; README.md, plugin.json, .claude-plugin/, skills/, agents/, commands/, references/, hooks/{SDD-CACHE.md, *.sh}, evals/{README.md, skill-impact.md, cases}, .github/workflows/test-plugin-install.yml; git log --since=2026-10-12) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
 
 ## 4. Nguồn
 
