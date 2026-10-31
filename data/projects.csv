@@ -1,5 +1,5 @@
 name,repo,url,category,license,stars_est,open_source,section,notes
-OpenCode,sst/opencode,,coding-agent,MIT,224000,True,01,CLI/TUI agent đa model; #1 nhóm mở 9/2026; ★ 31/10/2026: 224.000 (shields)
+OpenCode,anomalyco/opencode,,coding-agent,MIT,224000,True,01,CLI/TUI agent đa model; #1 nhóm mở 9/2026; ★ 31/10/2026: 224.000 (shields); repo chuyển sang anomalyco/opencode (31/10/2026)
 DeepSeek Harness,deepseek-ai/deepseek-harness,,coding-agent,MIT,267428,True,01,Ra mắt 13/8/2026; mọi thứ là plugin; developer preview; ★ 31/10/2026: 267.428 (GitHub API)
 Claude Code,anthropics/claude-code,,coding-tool-commercial,proprietary,154088,False,01,"CLI/IDE/web; hooks, skills, subagents, ralph-loop plugin; ★ 31/10/2026: 154.088 (GitHub API)"
 OpenAI Codex CLI,openai/codex,,coding-agent,Apache-2.0,132487,True,01,Rust; sandbox; multi-agent; ★ 31/10/2026: 132.487 (GitHub API)
@@ -10,7 +10,7 @@ Aider,Aider-AI/aider,,coding-agent,Apache-2.0,49856,True,01,Commit cuối 5/2026
 SWE-agent,SWE-agent/SWE-agent,,coding-agent,MIT,20697,True,01,Princeton; ★ 31/10/2026: 20.697 (GitHub API)
 mini-SWE-agent,SWE-agent/mini-swe-agent,,coding-agent,MIT,8995,True,01,100 dòng; >74% SWE-bench Verified; harness chuẩn của Vals; ★ 31/10/2026: 8.995 (GitHub API)
 Goose,block/goose,,coding-agent,Apache-2.0,,True,01,MCP-first
-Roo Code,RooCodeInc/Roo-Code,,coding-agent,Apache-2.0,,True,01,Fork Cline
+Roo Code,RooCodeInc/Roo-Code,,coding-agent,Apache-2.0,,True,01,"Fork Cline; ARCHIVE, push cuối 15/5/2026; Kilo-Org/kilocode là nhánh còn sống (mục 01) (31/10/2026)"
 Cursor,,https://cursor.com,coding-tool-commercial,proprietary,,False,01,$20/$60/$200; cloud agents; SKILL.md từ 2.4
 Windsurf / Devin Desktop,,https://windsurf.com,coding-tool-commercial,proprietary,,False,01,Cognition
 Devin,,https://devin.ai,coding-tool-commercial,proprietary,,False,01,
@@ -42,7 +42,7 @@ awesome-agent-skills,VoltAgent/awesome-agent-skills,,awesome-list,,,True,04,1000
 n8n,n8n-io/n8n,,low-code,Sustainable Use,209211,False,05,fair-code; ★ 31/10/2026: 209.211 (GitHub API)
 Dify,langgenius/dify,,low-code,Apache-2.0 (modified),160106,True,05,; ★ 31/10/2026: 160.106 (GitHub API)
 Langflow,langflow-ai/langflow,,low-code,MIT,156203,True,05,; ★ 31/10/2026: 156.203 (GitHub API)
-Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55538,True,05,Trạng thái chưa rõ (archive 8/2026?); ★ 31/10/2026: 55.538 (GitHub API)
+Flowise,FlowiseAI/Flowise,,low-code,Apache-2.0,55538,True,05,"Trạng thái chưa rõ (archive 8/2026?); ★ 31/10/2026: 55.538 (GitHub API); ARCHIVE 13/8/2026, EOL 31/8/2026, không có bản kế tục chính thức (mục 05) (31/10/2026)"
 shadcn/ui,shadcn-ui/ui,,ui-library,MIT,127057,True,06,"Base UI mặc định từ 7/2026; 27 layout block (1 dashboard, 16 sidebar, 5 login, 5 signup) + ~70 chart, đếm 18/10/2026 (mục 06 §7h); ★ 19/10/2026 (shields); ★ 31/10/2026: 127.054 (GitHub API)"
 MUI,mui/material-ui,,ui-library,MIT,99289,True,06,★ 19/10/2026 (shields); ★ 31/10/2026: 99.287 (GitHub API)
 Radix UI,radix-ui/primitives,,ui-library,MIT,19457,True,06,shields đọc thẳng GitHub ra 19k (trước ghi nguồn lệch 19k–35k); ★ 19/10/2026 (shields); ★ 31/10/2026: 19.457 (GitHub API)
@@ -71,7 +71,7 @@ Vercel AI SDK,vercel/ai,,agentic-ui,Apache-2.0,27655,True,06,+ AI Elements; ★ 
 Langfuse,langfuse/langfuse,,eval-observability,MIT (core),,True,07,
 Promptfoo,promptfoo/promptfoo,,eval-observability,MIT,,True,07,red-team
 DeepEval,confident-ai/deepeval,,eval-observability,Apache-2.0,,True,07,
-Ragas,explodinggradients/ragas,,eval-observability,Apache-2.0,,True,07,
+Ragas,vibrantlabsai/ragas,,eval-observability,Apache-2.0,,True,07,"; repo chuyển sang vibrantlabsai/ragas, không commit từ 23/2/2026 (31/10/2026)"
 Arize Phoenix,Arize-ai/phoenix,,eval-observability,ELv2,,False,07,source-available
 build-your-own-x,codecrafters-io/build-your-own-x,,learning,CC0,557898,True,08,#1 GitHub; ★ 31/10/2026: 557.898 (GitHub API)
 freeCodeCamp,freeCodeCamp/freeCodeCamp,,learning,BSD-3,458325,True,08,; ★ 31/10/2026: 458.325 (GitHub API)
@@ -170,7 +170,7 @@ Fooocus,lllyasviel/Fooocus,,image-gen,GPL-3.0,53776,True,14,LTS; ★ 31/10/2026:
 DuckDB,duckdb/duckdb,,data,MIT,42724,True,15,8/2026; ★ 31/10/2026: 42.724 (GitHub API)
 Polars,pola-rs/polars,,data,MIT,,True,15,
 PandasAI,sinaptik-ai/pandas-ai,,data,MIT (trừ ee/),23924,True,15,; ★ 31/10/2026: 23.924 (GitHub API)
-Vanna,vanna-ai/vanna,,data,MIT,23802,True,15,text-to-SQL; ★ 31/10/2026: 23.802 (GitHub API)
+Vanna,vanna-ai/vanna,,data,MIT,23802,True,15,text-to-SQL; ★ 31/10/2026: 23.802 (GitHub API); ARCHIVE (rà 31/10/2026) (31/10/2026)
 marimo,marimo-team/marimo,,data,Apache-2.0,23385,True,15,; ★ 31/10/2026: 23.385 (GitHub API)
 Jupyter AI,jupyterlab/jupyter-ai,,data,BSD-3,,True,15,
 Ibis,ibis-project/ibis,,data,Apache-2.0,6688,True,15,; ★ 31/10/2026: 6.688 (GitHub API)
@@ -225,7 +225,7 @@ Windmill,windmill-labs/windmill,,workflow-automation,AGPL-3.0,18341,True,21,"Cod
 Huginn,huginn/huginn,,workflow-automation,MIT,50242,True,21,"Agent tự host Ruby, tiền LLM, chuẩn lâu năm; ★ 31/10/2026: 50.242 (GitHub API)"
 AutoGPT,Significant-Gravitas/AutoGPT,,autonomous-agent-history,MIT + Polyform,187848,True,21,3/2023 Toran Bruce Richards; nay là nền tảng builder agent; ★ 31/10/2026: 187.848 (GitHub API)
 BabyAGI,yoheinakajima/babyagi,,autonomous-agent-history,MIT,,True,21,Loop tạo/ưu tiên/thực thi task (4/2023); bản gốc archive 9/2024
-AgentGPT,reworkd/AgentGPT,,autonomous-agent-history,GPL-3.0,36283,True,21,Agent trên trình duyệt; dừng phát triển 11/2023; ★ 31/10/2026: 36.283 (GitHub API)
+AgentGPT,reworkd/AgentGPT,,autonomous-agent-history,GPL-3.0,36283,True,21,Agent trên trình duyệt; dừng phát triển 11/2023; ★ 31/10/2026: 36.283 (GitHub API); ARCHIVE (rà 31/10/2026) (31/10/2026)
 HyperFrames,heygen-com/hyperframes,,video-engine,Apache-2.0,76551,True,22,HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0; ★ 31/10/2026: 76.551 (GitHub API)
 remotion-dev/skills,remotion-dev/skills,,motion-design,,5978,True,22,12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo; ★ 31/10/2026: 5.978 (GitHub API)
 gsap-skills,greensock/gsap-skills,,motion-design,MIT,17642,True,22,8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow); ★ 31/10/2026: 17.642 (GitHub API)
@@ -354,7 +354,7 @@ MCP Apps (ext-apps),modelcontextprotocol/ext-apps,,protocol,Apache-2.0,3031,True
 Agent Client Protocol,agentclientprotocol/agent-client-protocol,,protocol,Apache-2.0,4556,True,04,ACP của Zed: editor ↔ coding agent; ★ đọc 12/10/2026; ★ 31/10/2026: 4.556 (GitHub API)
 AGENTS.md,agentsmd/agents.md,,protocol,MIT,25246,True,04,"Định dạng mở, Agentic AI Foundation; 60k+ dự án; ★ đọc 12/10/2026; ★ 31/10/2026: 25.246 (GitHub API)"
 Open WebUI,open-webui/open-webui,,low-code,Open WebUI License (BSD-3 + branding),157402,False,05,Chat UI tự host lớn nhất; không gỡ thương hiệu khi >50 user/30 ngày; ★ đọc 12/10/2026; ★ 31/10/2026: 157.402 (GitHub API)
-LibreChat,danny-avila/LibreChat,,low-code,MIT,47000,True,05,"Chat đa provider, agent, MCP, OAuth2/LDAP; ★ đọc 12/10/2026; ★ 31/10/2026: 47.000 (shields)"
+LibreChat,LibreChat-AI/LibreChat,,low-code,MIT,47000,True,05,"Chat đa provider, agent, MCP, OAuth2/LDAP; ★ đọc 12/10/2026; ★ 31/10/2026: 47.000 (shields); repo chuyển sang LibreChat-AI/LibreChat (31/10/2026)"
 LobeHub,lobehub/lobehub,,low-code,LobeHub Community License,83645,False,05,Trước là lobe-chat; phái sinh cần license thương mại; ★ đọc 12/10/2026; ★ 31/10/2026: 83.645 (GitHub API)
 AnythingLLM,Mintplex-Labs/anything-llm,,low-code,MIT,67796,True,05,RAG + agent local-first; telemetry bật mặc định; ★ đọc 12/10/2026; ★ 31/10/2026: 67.796 (GitHub API)
 Cherry Studio,CherryHQ/cherry-studio,,low-code,AGPL-3.0,53128,True,05,Client desktop đa LLM; Enterprise đóng; ★ đọc 12/10/2026; ★ 31/10/2026: 53.128 (GitHub API)
@@ -678,3 +678,20 @@ Lemo-Opuscar,lemomo-ai/lemo-opuscar,,motion-design,MIT,10106,True,22,"66 phong c
 html-video,nexu-io/html-video,,video-engine,Apache-2.0,4788,True,22,"Studio + CLI HTML → MP4 của nhóm Open Design, 23 template, adapter HyperFrames/Remotion, 14 agent; ưu tiên runtime AMR trả phí; không CI, đứng yên từ 22/6/2026; ★ 31/10/2026 (GitHub API), mục 22 §9e"
 OpenFilm,openfilm/openfilm,,video-engine,MIT,3912,True,22,"film.html + frame(t) cho coding agent, Studio sửa tay mọi lớp, xuất Premiere/Resolve; Studio chỉ nghe 127.0.0.1 + key; CI render; skill luôn chạy openfilm@latest; tạo 4/10/2026; ★ 31/10/2026 (GitHub API), mục 22 §9e"
 EffectCraft,storytold/effectcraft,,motion-design,MIT OR Apache-2.0,8276,True,22,"Compositor kiểu After Effects bằng Rust (ArtCraft), 308 effect tự chấm đủ, CLI/MCP cho agent; 4.052 commit trong 31 ngày, 37% trailer Claude; .mcp.json chạy cargo run; ★ 31/10/2026 (GitHub API), mục 22 §9e"
+MCP Specification,modelcontextprotocol/modelcontextprotocol,,protocol,MIT → Apache-2.0 (đang chuyển; docs CC-BY-4.0),9573,True,04,"Repo spec + schema TS/JSON của MCP, 6 bản tới 2026-07-28 (stateless, bỏ Mcp-Session-Id, MRTR, server/discover), 48 SEP, AI_POLICY bắt khai báo trợ giúp AI; README vẫn ghi MIT; ★ 31/10/2026 (GitHub API), mục 04 §4b"
+Agent Skills Specification,agentskills/agentskills,,protocol,Apache-2.0 (docs CC-BY-4.0),26835,True,04,"Spec SKILL.md + thư viện kiểm skills-ref (name ≤64, description ≤1024, 6 trường frontmatter); không CI, commit cuối 9/8/2026; ★ 31/10/2026 (GitHub API), mục 04 §4b"
+A2UI,a2ui-project/a2ui,,protocol,Apache-2.0,16914,True,04,"Chuẩn agent→UI dạng JSON khai báo + renderer đa nền tảng + bộ conformance YAML; production 0.9.1, v1.0 RC; catalog MCP cho UI gọi tool (host phải lọc); trước là google/A2UI; ★ 31/10/2026 (GitHub API), mục 04 §4b"
+GitHub MCP Server,github/github-mcp-server,,protocol,MIT,34126,True,04,"MCP server chính chủ GitHub (Go), hosted api.githubcopilot.com/mcp; --toolsets/--read-only/--exclude-tools, lockdown mode chỉ là lọc nội dung, không phải ranh giới quyền; v2.0.3; ★ 31/10/2026 (GitHub API), mục 04 §4b"
+mcp-use,mcp-use/mcp-use,,protocol,MIT,10835,True,04,"SDK Python/TS dựng MCP server, MCP Apps, agent client; telemetry bật mặc định gửi PostHog EU + Scarf kèm nguyên văn query/response (tắt MCP_USE_ANONYMIZED_TELEMETRY=false); ★ 31/10/2026 (GitHub API), mục 04 §4b"
+agentgateway,agentgateway/agentgateway,,protocol,Apache-2.0,5831,True,04,"Proxy Rust cho MCP/A2A/LLM (LF Projects, Solo.io dẫn): RBAC CEL, JWT/OAuth, guardrail, OTel, controller Gateway API; v1.7.0; ★ 31/10/2026 (GitHub API), mục 04 §4b"
+n8n-MCP,czlonkowski/n8n-mcp,,low-code,MIT,23183,True,05,"MCP server cho coding agent tra node, kiểm và sửa workflow n8n (7 tool tra cứu + 21 tool quản lý, DISABLED_TOOLS); 60% commit có trailer Claude; telemetry mặc định thu workflow đã làm sạch + intent để làm dataset ML (tắt N8N_MCP_TELEMETRY_DISABLED=true); ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026"
+ToolJet,ToolJet/ToolJet,,low-code,AGPL-3.0 (EE submodule riêng tư),41156,True,05,"Nền tảng internal tool dựng bằng prompt/MCP (beta); quickstart Docker dùng image EE; telemetry + check update bật mặc định (DISABLE_TOOLJET_TELEMETRY=true); ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026"
+Budibase,Budibase/budibase,,low-code,GPL-3.0 / MPL-2.0 / BSL (packages/pro),28374,True,05,"App nội bộ + automation + agent AI, tool agent lọc theo quyền người dùng (authorization.ts); analytics bật trong docker-compose, token PostHog mặc định ở image đơn; ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026"
+Astron Agent,iflytek/astron-agent,,low-code,Apache-2.0,8951,True,05,"Nền tảng agentic workflow + RPA + MCP của iFlytek, Casdoor; .env.example mật khẩu mặc định yếu, endpoint bot mặc định Spark của iFlytek; v1.1.2; ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026"
+FlowGram,bytedance/flowgram.ai,,low-code,MIT,8544,True,05,"Framework canvas workflow (canvas/node/variable engine, runtime, materials) của ByteDance, nền của Coze Studio; Desktop preview chưa ký số; ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026"
+Evidently,evidentlyai/evidently,,eval-observability,Apache-2.0,8027,True,07,"Metric/test/dashboard cho ML và LLM (100+ metric theo README); telemetry mặc định qua HTTP tới IP 35.232.253.5 (tắt DO_NOT_TRACK), README không nhắc; chỉ 8 commit từ 5/2026; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
+Giskard (v3),Giskard-AI/giskard-oss,,eval-observability,Apache-2.0,5938,True,07,"Thư viện test + quét lỗ hổng agent nhiều lượt, v3 viết lại thành 5 gói, v2 ngừng bảo trì; telemetry PostHog (tắt DO_NOT_TRACK=1 hoặc GISKARD_TELEMETRY_DISABLED=1); ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
+LangWatch,langwatch/langwatch,,eval-observability,Apache-2.0 (enterprise/ license riêng; SDK MIT),5002,True,07,"Trace, simulation test agent, AI gateway virtual key, theo dõi coding agent; tự host npx @langwatch/server (Node 24); 2.648 commit từ 5/2026; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
+Pydantic Logfire (SDK),pydantic/logfire,,eval-observability,MIT (SDK; backend đóng),4528,True,07,"SDK Python bọc OpenTelemetry, che secret mặc định (scrubbing.py: password, secret, auth, api key, session, cookie); server đóng mã, cần dịch vụ Pydantic; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
+Coze Loop,coze-dev/coze-loop,,eval-observability,Apache-2.0,5798,True,07,"Bản mở Coze Loop (ByteDance): playground prompt, bộ eval, trace; model mặc định Volcengine Ark; workflow AI CR bắt buộc đã bị tắt bằng đổi nhánh kích hoạt; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"
+FailproofAI,FailproofAI/failproofai,,eval-observability,MIT + Commons Clause,7103,False,07,"Hook 12 harness (Claude Code, Codex, Copilot CLI, OpenClaw…), 40 policy chặn tool call + trace phiên; tạo 4/2026; telemetry PostHog mặc định (tắt FAILPROOFAI_TELEMETRY_DISABLED=1), README không nhắc; không phải OSI; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026"

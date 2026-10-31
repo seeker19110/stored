@@ -69,12 +69,12 @@
   "projects": [
     {
       "name": "OpenCode",
-      "repo": "sst/opencode",
+      "repo": "anomalyco/opencode",
       "category": "coding-agent",
       "license": "MIT",
       "stars": 224000,
       "open_source": true,
-      "notes": "CLI/TUI agent đa model; #1 nhóm mở 9/2026; ★ 31/10/2026: 224.000 (shields)",
+      "notes": "CLI/TUI agent đa model; #1 nhóm mở 9/2026; ★ 31/10/2026: 224.000 (shields); repo chuyển sang anomalyco/opencode (31/10/2026)",
       "section": "01"
     },
     {
@@ -184,7 +184,7 @@
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "Fork Cline",
+      "notes": "Fork Cline; ARCHIVE, push cuối 15/5/2026; Kilo-Org/kilocode là nhánh còn sống (mục 01) (31/10/2026)",
       "section": "01"
     },
     {
@@ -511,7 +511,7 @@
       "license": "Apache-2.0",
       "stars": 55538,
       "open_source": true,
-      "notes": "Trạng thái chưa rõ (archive 8/2026?); ★ 31/10/2026: 55.538 (GitHub API)",
+      "notes": "Trạng thái chưa rõ (archive 8/2026?); ★ 31/10/2026: 55.538 (GitHub API); ARCHIVE 13/8/2026, EOL 31/8/2026, không có bản kế tục chính thức (mục 05) (31/10/2026)",
       "section": "05"
     },
     {
@@ -799,12 +799,12 @@
     },
     {
       "name": "Ragas",
-      "repo": "explodinggradients/ragas",
+      "repo": "vibrantlabsai/ragas",
       "category": "eval-observability",
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "",
+      "notes": "; repo chuyển sang vibrantlabsai/ragas, không commit từ 23/2/2026 (31/10/2026)",
       "section": "07"
     },
     {
@@ -1797,7 +1797,7 @@
       "license": "MIT",
       "stars": 23802,
       "open_source": true,
-      "notes": "text-to-SQL; ★ 31/10/2026: 23.802 (GitHub API)",
+      "notes": "text-to-SQL; ★ 31/10/2026: 23.802 (GitHub API); ARCHIVE (rà 31/10/2026) (31/10/2026)",
       "section": "15"
     },
     {
@@ -2350,7 +2350,7 @@
       "license": "GPL-3.0",
       "stars": 36283,
       "open_source": true,
-      "notes": "Agent trên trình duyệt; dừng phát triển 11/2023; ★ 31/10/2026: 36.283 (GitHub API)",
+      "notes": "Agent trên trình duyệt; dừng phát triển 11/2023; ★ 31/10/2026: 36.283 (GitHub API); ARCHIVE (rà 31/10/2026) (31/10/2026)",
       "section": "21"
     },
     {
@@ -3635,12 +3635,12 @@
     },
     {
       "name": "LibreChat",
-      "repo": "danny-avila/LibreChat",
+      "repo": "LibreChat-AI/LibreChat",
       "category": "low-code",
       "license": "MIT",
       "stars": 47000,
       "open_source": true,
-      "notes": "Chat đa provider, agent, MCP, OAuth2/LDAP; ★ đọc 12/10/2026; ★ 31/10/2026: 47.000 (shields)",
+      "notes": "Chat đa provider, agent, MCP, OAuth2/LDAP; ★ đọc 12/10/2026; ★ 31/10/2026: 47.000 (shields); repo chuyển sang LibreChat-AI/LibreChat (31/10/2026)",
       "section": "05"
     },
     {
@@ -6875,6 +6875,176 @@
       "open_source": true,
       "notes": "Compositor kiểu After Effects bằng Rust (ArtCraft), 308 effect tự chấm đủ, CLI/MCP cho agent; 4.052 commit trong 31 ngày, 37% trailer Claude; .mcp.json chạy cargo run; ★ 31/10/2026 (GitHub API), mục 22 §9e",
       "section": "22"
+    },
+    {
+      "name": "MCP Specification",
+      "repo": "modelcontextprotocol/modelcontextprotocol",
+      "category": "protocol",
+      "license": "MIT → Apache-2.0 (đang chuyển; docs CC-BY-4.0)",
+      "stars": 9573,
+      "open_source": true,
+      "notes": "Repo spec + schema TS/JSON của MCP, 6 bản tới 2026-07-28 (stateless, bỏ Mcp-Session-Id, MRTR, server/discover), 48 SEP, AI_POLICY bắt khai báo trợ giúp AI; README vẫn ghi MIT; ★ 31/10/2026 (GitHub API), mục 04 §4b",
+      "section": "04"
+    },
+    {
+      "name": "Agent Skills Specification",
+      "repo": "agentskills/agentskills",
+      "category": "protocol",
+      "license": "Apache-2.0 (docs CC-BY-4.0)",
+      "stars": 26835,
+      "open_source": true,
+      "notes": "Spec SKILL.md + thư viện kiểm skills-ref (name ≤64, description ≤1024, 6 trường frontmatter); không CI, commit cuối 9/8/2026; ★ 31/10/2026 (GitHub API), mục 04 §4b",
+      "section": "04"
+    },
+    {
+      "name": "A2UI",
+      "repo": "a2ui-project/a2ui",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 16914,
+      "open_source": true,
+      "notes": "Chuẩn agent→UI dạng JSON khai báo + renderer đa nền tảng + bộ conformance YAML; production 0.9.1, v1.0 RC; catalog MCP cho UI gọi tool (host phải lọc); trước là google/A2UI; ★ 31/10/2026 (GitHub API), mục 04 §4b",
+      "section": "04"
+    },
+    {
+      "name": "GitHub MCP Server",
+      "repo": "github/github-mcp-server",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 34126,
+      "open_source": true,
+      "notes": "MCP server chính chủ GitHub (Go), hosted api.githubcopilot.com/mcp; --toolsets/--read-only/--exclude-tools, lockdown mode chỉ là lọc nội dung, không phải ranh giới quyền; v2.0.3; ★ 31/10/2026 (GitHub API), mục 04 §4b",
+      "section": "04"
+    },
+    {
+      "name": "mcp-use",
+      "repo": "mcp-use/mcp-use",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 10835,
+      "open_source": true,
+      "notes": "SDK Python/TS dựng MCP server, MCP Apps, agent client; telemetry bật mặc định gửi PostHog EU + Scarf kèm nguyên văn query/response (tắt MCP_USE_ANONYMIZED_TELEMETRY=false); ★ 31/10/2026 (GitHub API), mục 04 §4b",
+      "section": "04"
+    },
+    {
+      "name": "agentgateway",
+      "repo": "agentgateway/agentgateway",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 5831,
+      "open_source": true,
+      "notes": "Proxy Rust cho MCP/A2A/LLM (LF Projects, Solo.io dẫn): RBAC CEL, JWT/OAuth, guardrail, OTel, controller Gateway API; v1.7.0; ★ 31/10/2026 (GitHub API), mục 04 §4b",
+      "section": "04"
+    },
+    {
+      "name": "n8n-MCP",
+      "repo": "czlonkowski/n8n-mcp",
+      "category": "low-code",
+      "license": "MIT",
+      "stars": 23183,
+      "open_source": true,
+      "notes": "MCP server cho coding agent tra node, kiểm và sửa workflow n8n (7 tool tra cứu + 21 tool quản lý, DISABLED_TOOLS); 60% commit có trailer Claude; telemetry mặc định thu workflow đã làm sạch + intent để làm dataset ML (tắt N8N_MCP_TELEMETRY_DISABLED=true); ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "ToolJet",
+      "repo": "ToolJet/ToolJet",
+      "category": "low-code",
+      "license": "AGPL-3.0 (EE submodule riêng tư)",
+      "stars": 41156,
+      "open_source": true,
+      "notes": "Nền tảng internal tool dựng bằng prompt/MCP (beta); quickstart Docker dùng image EE; telemetry + check update bật mặc định (DISABLE_TOOLJET_TELEMETRY=true); ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Budibase",
+      "repo": "Budibase/budibase",
+      "category": "low-code",
+      "license": "GPL-3.0 / MPL-2.0 / BSL (packages/pro)",
+      "stars": 28374,
+      "open_source": true,
+      "notes": "App nội bộ + automation + agent AI, tool agent lọc theo quyền người dùng (authorization.ts); analytics bật trong docker-compose, token PostHog mặc định ở image đơn; ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Astron Agent",
+      "repo": "iflytek/astron-agent",
+      "category": "low-code",
+      "license": "Apache-2.0",
+      "stars": 8951,
+      "open_source": true,
+      "notes": "Nền tảng agentic workflow + RPA + MCP của iFlytek, Casdoor; .env.example mật khẩu mặc định yếu, endpoint bot mặc định Spark của iFlytek; v1.1.2; ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "FlowGram",
+      "repo": "bytedance/flowgram.ai",
+      "category": "low-code",
+      "license": "MIT",
+      "stars": 8544,
+      "open_source": true,
+      "notes": "Framework canvas workflow (canvas/node/variable engine, runtime, materials) của ByteDance, nền của Coze Studio; Desktop preview chưa ký số; ★ 31/10/2026 (GitHub API), mục 05 §Nâng cấp 31/10/2026",
+      "section": "05"
+    },
+    {
+      "name": "Evidently",
+      "repo": "evidentlyai/evidently",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 8027,
+      "open_source": true,
+      "notes": "Metric/test/dashboard cho ML và LLM (100+ metric theo README); telemetry mặc định qua HTTP tới IP 35.232.253.5 (tắt DO_NOT_TRACK), README không nhắc; chỉ 8 commit từ 5/2026; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Giskard (v3)",
+      "repo": "Giskard-AI/giskard-oss",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 5938,
+      "open_source": true,
+      "notes": "Thư viện test + quét lỗ hổng agent nhiều lượt, v3 viết lại thành 5 gói, v2 ngừng bảo trì; telemetry PostHog (tắt DO_NOT_TRACK=1 hoặc GISKARD_TELEMETRY_DISABLED=1); ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "LangWatch",
+      "repo": "langwatch/langwatch",
+      "category": "eval-observability",
+      "license": "Apache-2.0 (enterprise/ license riêng; SDK MIT)",
+      "stars": 5002,
+      "open_source": true,
+      "notes": "Trace, simulation test agent, AI gateway virtual key, theo dõi coding agent; tự host npx @langwatch/server (Node 24); 2.648 commit từ 5/2026; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Pydantic Logfire (SDK)",
+      "repo": "pydantic/logfire",
+      "category": "eval-observability",
+      "license": "MIT (SDK; backend đóng)",
+      "stars": 4528,
+      "open_source": true,
+      "notes": "SDK Python bọc OpenTelemetry, che secret mặc định (scrubbing.py: password, secret, auth, api key, session, cookie); server đóng mã, cần dịch vụ Pydantic; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "Coze Loop",
+      "repo": "coze-dev/coze-loop",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 5798,
+      "open_source": true,
+      "notes": "Bản mở Coze Loop (ByteDance): playground prompt, bộ eval, trace; model mặc định Volcengine Ark; workflow AI CR bắt buộc đã bị tắt bằng đổi nhánh kích hoạt; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
+      "section": "07"
+    },
+    {
+      "name": "FailproofAI",
+      "repo": "FailproofAI/failproofai",
+      "category": "eval-observability",
+      "license": "MIT + Commons Clause",
+      "stars": 7103,
+      "open_source": false,
+      "notes": "Hook 12 harness (Claude Code, Codex, Copilot CLI, OpenClaw…), 40 policy chặn tool call + trace phiên; tạo 4/2026; telemetry PostHog mặc định (tắt FAILPROOFAI_TELEMETRY_DISABLED=1), README không nhắc; không phải OSI; ★ 31/10/2026 (GitHub API), mục 07 §Nâng cấp 31/10/2026",
+      "section": "07"
     }
   ]
 }
