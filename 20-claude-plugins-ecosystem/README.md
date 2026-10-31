@@ -702,6 +702,59 @@ Mục 23 §4.3 và §5 (đọc từ docs nội bộ xboss/projects-template, 12/
 
 **Nguồn §3l:** clone github.com/affaan-m/ECC 30/10/2026 (blob:none, 4.321 commit, HEAD b38be6a 29/10/2026; README.md, CHANGELOG.md, SECURITY.md, VERSION, package.json (scripts test/lint), .claude-plugin/plugin.json, hooks/{README.md, hooks.json, hooks.metadata.json}, scripts/hooks/{skill-run-tracker.js, plan-canvas-pending.js}, skills/continuous-learning-v2/{SKILL.md, hooks/observe.sh}, ecc2/README.md, .github/workflows/*; đếm agent/skill/command/hook và độ dài description bằng script; git shortlog, git tag) · img.shields.io/github/{stars,forks,license,last-commit,v/release}/… cho affaan-m/ECC, affaan-m/everything-claude-code, affaan-m/agentshield (30/10/2026) · `git ls-remote` HEAD hai URL ECC · ecc.tools · ecc.tools/pricing · github.com/apps/ecc-tools · npm `ecc-universal`, `ecc-agentshield` · mục 23 §4.3 (xboss ADR-0013, lock v2.2.2)
 
+## 3m. Kiểm ảnh: `unclebob/ub-mode` — "biến kỷ luật code thành kỹ năng cho AI coding agent" (ảnh người dùng gửi, clone 2026-10-31)
+
+> Ảnh là bài viết tiếng Việt: "ub-mode (5.2k+★) là agent skill do Robert C. Martin (Uncle Bob) tạo… ba giai đoạn… dựa trên quy tắc của poteto (poteto-mode/pstack, Lauren Tan cho Cursor)… công cụ crapper, dryer, mutator… hỗ trợ Clojure, Java, Go, TypeScript, Rust, Python". Đã clone `unclebob/ub-mode` và 4 repo công cụ đi kèm (crapper, dryer, mutator, uml-viewer), đọc hết SKILL.md/README, script chạy; clone mirror `backnotprop/pstack` để đối chiếu nguồn gốc. **Không chạy công cụ.**
+
+### 3m.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/unclebob/ub-mode · **5,4k★, 300 fork**, 5 issue/3 PR mở (shields) · **không có file LICENSE** (shields "not specified") |
+| Lịch sử | **4 commit, tất cả ngày 25/10/2026**, đều của Robert C. Martin (tài khoản `unclebob`, tác giả *Clean Code*); 0 trailer Claude |
+| Nội dung thật | **2 file, 6,1 KB**: `README.md` và `SKILL.md` (~150 dòng gạch đầu dòng). Cài bằng tay: chép `SKILL.md` vào `~/.claude/skills/ub-mode/` (hoặc `.grok`, `.cursor`), gọi `/ub-mode`. Không plugin, không script, không hook |
+| Cấu trúc | **1. First Make it Work** (Laziness Protocol, Foundational Thinking, TDD, Redesign From First Principles, Attack the Premise, Subtract Before You Add, Outcome-Oriented Execution, Build the Lever, Architecture: Model the Domain, Boundary/Type System Discipline, Idempotent, Separate Before Serializing Shared State) → **2. Then Make it Right** (Fix Root Causes, Sequence verifiable units, Test Behavior, **Crapper** CRAP < 10, **Dryer** trùng lặp < 0,8, **Mutator**, Refactoring) → **3. Practice** (Keep a Log, Guard the Context Window, Worktree Cleanup, Commit and Push) |
+
+### 3m.2 Bốn công cụ đi kèm (phần có giá trị thật)
+
+| Repo | ★ · license | Tuổi | Làm gì |
+|---|---|---|---|
+| `unclebob/crapper` | 156 · **0BSD** | 9 commit, 30/9 → 21/10/2026 | Tính **CRAP** (Change Risk Anti-Patterns = độ phức tạp vòng × độ thiếu coverage) cho từng hàm; ghi `.metrics/crap.edn`; công thức từ crap4clj/crap4java/crap4go |
+| `unclebob/dryer` | 73 · 0BSD | 5 commit, 30/9 → 3/10/2026 | Tìm cặp hàm trùng **cấu trúc** (chuẩn hóa form, bỏ tên biến cục bộ), điểm ≥ 0,8 là trùng |
+| `unclebob/mutator` | 92 · 0BSD | 11 commit, 30/9 → 21/10/2026 | Mutation testing; **cần `crapper` clone cạnh nó** (`../crapper`) để lấy tên hàm |
+| `unclebob/uml-viewer` | 476 · không có license | 58 commit, từ 13/9/2026 | Hiển thị component, coverage, CRAP, mutation, hướng phụ thuộc; cần Clojure CLI + Java 21 |
+
+Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clone repo rồi chạy script `./crapper` (lần đầu tự tạo `.venv` và `pip install -e`). Hỗ trợ đúng 6 ngôn ngữ ảnh nêu: Clojure, Java, Go, TypeScript, Rust, Python — đó là **của công cụ**, còn skill thì không phụ thuộc ngôn ngữ.
+
+### 3m.3 Kiểm từng câu trong ảnh
+
+| Câu trong ảnh | Thực tế | Kiểm |
+|---|---|---|
+| "5.2k+★" | 5,4k★ (31/10) | ✅ |
+| "do Robert C. Martin (Uncle Bob) tạo" | 4/4 commit của Robert C. Martin, tài khoản `unclebob` cũng chứa crap4clj, clj-mutate… | ✅ |
+| "ép agent tuân thủ… bộ quy tắc bắt buộc" | Chỉ là văn bản trong SKILL.md, gọi bằng `/ub-mode`; **không có hook hay cổng máy** ép buộc. "Bắt buộc" chỉ khi người dùng tự chạy crapper/dryer/mutator trong CI | ⚠️ |
+| Ba giai đoạn và nội dung từng giai đoạn | Khớp SKILL.md | ✅ |
+| "dựa trên quy tắc của poteto (poteto-mode / pstack)" | README: "loosely based on portions of @poteto's rules… reduced". Tên mục trùng gần nguyên văn các skill `principle-*` của pstack (laziness-protocol, attack-the-premise, build-the-lever, model-the-domain…), rút gọn mỗi mục còn 1–3 câu | ✅ |
+| "pstack… do Lauren Tan tạo cho Cursor" | pstack là bộ skill cá nhân của Lauren (GitHub `poteto`, kỹ sư Cursor), upstream nằm trong `cursor/plugins` (15k★, không khai license), có trang cursor.com/lp-team/lauren "the skills behind 10,000 agent runs". Bản standalone `backnotprop/pstack` (3,2k★, MIT) là **mirror** do bên thứ ba (Plannotator tài trợ) đồng bộ | ✅ |
+| "pstack nhấn mạnh giữ con người ở trung tâm, kiểm soát chặt những gì AI được làm" | Ngược phần nào: pstack có principle **`never-block-on-the-human`** và README "không plan mặc định, spec tốt nhất là code". Đó là bộ nguyên tắc tự chủ có kỷ luật, không phải bộ hạn chế quyền | ⚠️ diễn giải sai |
+| "crapper (rủi ro thay đổi code), dryer (trùng lặp), mutator (kiểm thử đột biến)" | Đúng (CRAP = Change Risk Anti-Patterns) | ✅ |
+| "hỗ trợ Clojure, Java, Go, TypeScript, Rust, Python" | Đúng với 3 công cụ | ✅ |
+
+### 3m.4 Điều ảnh không nói
+
+- **Không có LICENSE** ở ub-mode và uml-viewer → về pháp lý chưa được phép sao chép/sửa; công cụ crapper/dryer/mutator thì 0BSD (gần như public domain), dùng thoải mái.
+- **Sao đến từ tên tuổi, không từ độ chín:** 5,4k★ trong 6 ngày cho 6 KB văn bản; công cụ mới 1 tháng tuổi, chưa đóng gói, sao thấp (73–156).
+- **Mâu thuẫn với workflow nhánh:** mục "Commit and Push" kết thúc bằng "Push to the main line at the end"; với repo dùng PR/nhánh (như kho này) phải sửa dòng đó trước khi dùng. "Keep a Log… report that log" làm câu trả lời dài thêm. "Worktree Cleanup" cho agent tự xóa thứ nó cho là an toàn — nên giữ quyền xác nhận.
+- **Quy tắc cô đọng nhưng thiếu ví dụ:** pstack gốc mỗi principle là một skill riêng có giải thích; ub-mode rút còn câu mệnh lệnh, có câu khó hiểu khi đứng riêng ("count which actors hold the imbalance. Remove the assignment.").
+
+### 3m.5 Dùng thế nào
+
+- **Giá trị chính là cổng định lượng, không phải prompt:** chạy `crapper` (CRAP < 10), `dryer` (< 0,8) và `mutator` trong CI như quality gate thật, cùng nhóm với mutation/eval ở mục 07 và cổng máy ở mục 23. Ghim commit vì công cụ chưa có bản phát hành.
+- **Prompt:** đọc SKILL.md và gộp các ý cần vào `CLAUDE.md`/`AGENTS.md` của dự án (bỏ "push to main line"); trùng nhiều với `karpathy-skills` (§3k.3: Simplicity/Surgical/Goal-driven) và superpowers (TDD). Muốn bản đầy đủ có giải thích thì xem pstack gốc trong `cursor/plugins`.
+- Không cài chồng với ponytail/karpathy-skills: cùng loại chỉ dẫn "ít code, sửa đúng chỗ".
+
+**Nguồn §3m:** ảnh người dùng gửi 31/10/2026 · clone github.com/unclebob/ub-mode 31/10/2026 (4 commit, HEAD 57a8bdd 25/10/2026; README.md, SKILL.md) · clone github.com/unclebob/{crapper, dryer, mutator, uml-viewer} 31/10/2026 (README.md, LICENSE, pyproject.toml, script `crapper`; git log) · img.shields.io/github/{stars,forks,license,last-commit,issues,issues-pr}/… cho ub-mode, 4 công cụ, cursor/plugins, backnotprop/pstack (31/10/2026) · clone github.com/backnotprop/pstack (README "standalone mirror" của cursor/plugins/pstack, MIRROR.md, skills/principle-*) · cursor.com/lp-team/lauren · thecode.media/avtor-chistogo-koda-vypustil-besplatnyj-skill-dlya-ii-agentov · github.com/unclebob/ub-mode/wiki · phân biệt: github.com/robert-hoffmann/uncle-bob là dự án khác (framework Copilot), không liên quan
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

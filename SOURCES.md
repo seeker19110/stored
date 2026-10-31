@@ -641,3 +641,9 @@
 - `JuliusBrussee/caveman`: clone 31/10/2026 (1.886 commit, HEAD 9b68f7e 25/10/2026; tag bin-v4.0.2 22/10/2026); shields 116k★/6,7k fork, 63 issue/68 PR mở. Cập nhật mục 20 §3g.6.
 - `evondev/evondevKit`: bài đăng Facebook tác giả (ảnh người dùng gửi 31/10/2026) · clone đủ lịch sử (259 commit, HEAD 4d02153 22/10/2026) · shields 432★/56 fork, MIT, v0.3.27 · evondev-uiux.vercel.app/ui-ux. Hồ sơ mục 06 §7n; catalog +1 = 569.
 - `Nutlope/hallmark` shields 43k★ (31/10/2026), dùng cho bảng so sánh §7n.4.
+
+## Bổ sung 2026-10-31b (ảnh "UB-MODE — biến kỷ luật code thành kỹ năng cho AI coding agent")
+
+- Ảnh người dùng gửi 31/10/2026. Clone `unclebob/ub-mode` (4 commit, 25/10/2026, không LICENSE; shields 5,4k★/300 fork) và `unclebob/{crapper, dryer, mutator, uml-viewer}` (0BSD ×3, uml-viewer không license; 156/73/92/476★). Hồ sơ mục 20 §3m; catalog +2 = 571.
+- Nguồn gốc pstack: upstream `cursor/plugins/pstack` (15k★, không khai license), mirror `backnotprop/pstack` (3,2k★, MIT, "standalone mirror", Plannotator tài trợ); cursor.com/lp-team/lauren. Ảnh diễn giải pstack là "kiểm soát chặt AI" — ngược với principle `never-block-on-the-human`.
+- Phụ: thecode.media (bài tiếng Nga về ub-mode) · github.com/unclebob/ub-mode/wiki · `robert-hoffmann/uncle-bob` là dự án khác, không liên quan.

@@ -5387,6 +5387,26 @@
       "section": "20"
     },
     {
+      "name": "ub-mode",
+      "repo": "unclebob/ub-mode",
+      "category": "harness-pack",
+      "license": null,
+      "stars": 5400,
+      "open_source": true,
+      "notes": "Skill của Robert C. Martin (Uncle Bob): SKILL.md 6 KB, 3 giai đoạn (Make it Work → Make it Right → Practice), rút gọn từ pstack của poteto (Cursor); không hook/cổng máy; KHÔNG có file LICENSE; 4 commit cùng 25/10/2026; dòng 'Push to the main line' cần sửa với workflow PR; giá trị chính ở công cụ đi kèm crapper/dryer/mutator; 5,4k★ (31/10/2026, shields); mục 20 §3m",
+      "section": "20"
+    },
+    {
+      "name": "crapper / dryer / mutator (Uncle Bob)",
+      "repo": "unclebob/crapper",
+      "category": "quality-gate",
+      "license": "0BSD",
+      "stars": 156,
+      "open_source": true,
+      "notes": "Bộ cổng chất lượng Python của Robert C. Martin cho Clojure/Java/Go/TypeScript/Rust/Python: crapper (CRAP = độ phức tạp × thiếu coverage, ngưỡng <10), unclebob/dryer (trùng cấu trúc ≥0,8; 73★), unclebob/mutator (mutation testing, cần ../crapper; 92★); 0BSD; chưa lên PyPI, chạy script tạo .venv; tuổi ~1 tháng (từ 30/9/2026); uml-viewer (476★, Clojure, không license) hiển thị kết quả; 156★ crapper (31/10/2026, shields); mục 20 §3m.2",
+      "section": "20"
+    },
+    {
       "name": "Caveman",
       "repo": "JuliusBrussee/caveman",
       "category": "context-optimization",
