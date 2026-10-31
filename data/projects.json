@@ -601,7 +601,7 @@
       "license": "Apache-2.0",
       "stars": 105186,
       "open_source": true,
-      "notes": "\"Workspace agent thiết kế\" local-first (Apache-2.0): brief → prototype/slides/ảnh/HyperFrames motion; nối coding agent qua skills/CLI/MCP + runtime adapter; 151 gói design-system (manifest+DESIGN.md+tokens.css, có evidence provenance); telemetry opt-out + safety luôn bật (PRIVACY.md), fork không gửi; tên đổi từ \"Open Claude Design\"; Cloud/Go trả phí; 3.764 commit từ 28/4/2026, nhiều bot/agent; chưa audit mã sâu; ★ 19/10/2026 (trang GitHub ~102k; aggregator 76–91k); hồ sơ mục 06 §7k; ★ 31/10/2026: 105.187 (GitHub API)",
+      "notes": "\"Workspace agent thiết kế\" local-first (Apache-2.0): brief → prototype/slides/ảnh/HyperFrames motion; nối coding agent qua skills/CLI/MCP + runtime adapter; 151 gói design-system (manifest+DESIGN.md+tokens.css, có evidence provenance); telemetry opt-out + safety luôn bật (PRIVACY.md), fork không gửi; tên đổi từ \"Open Claude Design\"; Cloud/Go trả phí; 3.764 commit từ 28/4/2026, nhiều bot/agent; chưa audit mã sâu; ★ 19/10/2026 (trang GitHub ~102k; aggregator 76–91k); hồ sơ mục 06 §7k; ★ 31/10/2026: 105.187 (GitHub API); đọc mã 31/10/2026 (mục 06 §7q.0): telemetry nội dung (prompt/phản hồi) bật mặc định, chẩn đoán tự tải log ~/.claude và ~/.codex, mọi agent chạy cờ bỏ kiểm quyền (claude bypassPermissions…), updater chỉ so hash + gỡ quarantine macOS, prompt gốc tự ghi \"Adapted from claude.ai/design\"",
       "section": "06"
     },
     {
@@ -5943,7 +5943,7 @@
       "license": "MIT (kèm thư viện xác thực đóng)",
       "stars": 6997,
       "open_source": true,
-      "notes": "Trình vẽ vector AI-native bằng Rust (~1,19 triệu dòng, 53 crate, ~15,7k test), MCP, xuất code 8 nền tảng; crates/op-auth-bridge/prebuilt chứa lib tĩnh đóng, bản phát hành cần nó; SSO/relay mặc định zseven.cn/.tech; trùng tên open-pencil/open-pencil (9,5k★); v0.8.5; ★ 31/10/2026 (GitHub API), mục 06 §7p",
+      "notes": "Trình vẽ vector AI-native bằng Rust (~1,19 triệu dòng, 53 crate, ~15,7k test), MCP, xuất code 8 nền tảng; crates/op-auth-bridge/prebuilt chứa lib tĩnh đóng, bản phát hành cần nó; SSO/relay mặc định zseven.cn/.tech; trùng tên open-pencil/open-pencil (9,5k★); v0.8.5; ★ 31/10/2026 (GitHub API), mục 06 §7p; khác hoàn toàn open-pencil/open-pencil (0 commit chung, mục 06 §7q.1)",
       "section": "06"
     },
     {
@@ -6044,6 +6044,496 @@
       "stars": 5664,
       "open_source": false,
       "notes": "Đóng gói lại Artifact types và Claude Design cho agent cục bộ; NOTICE.md tự ghi phần của Anthropic 'not MIT… grants none'; chứa system prompt trích từ bundle client, font Anthropicons, editor dựng lại dạng bundle 6,3 MB, phát lại lên npm; rủi ro sở hữu trí tuệ cao, KHÔNG khuyên dùng; ★ 31/10/2026 (GitHub API), mục 06 §7p",
+      "section": "06"
+    },
+    {
+      "name": "OpenPencil (open-pencil)",
+      "repo": "open-pencil/open-pencil",
+      "category": "design-tool",
+      "license": "MIT + Apache-2.0 (Cloud, REUSE.toml)",
+      "stars": 9510,
+      "open_source": true,
+      "notes": "Trình thiết kế TS/Vue + Tauri, Skia CanvasKit, đọc/ghi .fig gốc (chưa trọn vẹn, tự ghi trong docs), 127 tool AI, MCP 127.0.0.1 + token + eval tắt; chat desktop bật eval mặc định trong webview có quyền ghi/xoá file; ChatGPT login dùng client OAuth của Codex; ping ẩn danh hằng ngày (tắt OPENPENCIL_TELEMETRY=0); không liên quan ZSeven-W/openpencil; ★ 31/10/2026 (GitHub API), mục 06 §7q.1",
+      "section": "06"
+    },
+    {
+      "name": "Ionic Framework",
+      "repo": "ionic-team/ionic-framework",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 52734,
+      "open_source": true,
+      "notes": "Stencil web components + Angular/React/Vue, mode iOS/Material tự chọn; v9.0.10, vá hằng tuần; 7.436 ảnh chuẩn + axe; docs/llms.txt; OutSystems nắm, ngừng bán mới Appflow/Identity Vault/Portals (2/2025); Ionic CLI bật telemetry mặc định; chưa hỗ trợ React Router 7; ★ 31/10/2026 (GitHub API), mục 06 §7q.2",
+      "section": "06"
+    },
+    {
+      "name": "Lucide",
+      "repo": "lucide-icons/lucide",
+      "category": "ui-library",
+      "license": "ISC AND MIT (115 icon gốc Feather)",
+      "stars": 25427,
+      "open_source": true,
+      "notes": "2.015 icon (README ghi 1600+), 14 gói, v1.66.0, ~95 bản/năm; GitHub báo NOASSERTION vì LICENSE gộp ISC + MIT Feather; đã gỡ icon thương hiệu; svgo/ESLint ép thuộc tính SVG; npm provenance, publish --ignore-scripts; llms.txt bỏ trang icon; không MCP chính chủ; ★ 31/10/2026 (GitHub API), mục 06 §7q.3",
+      "section": "06"
+    },
+    {
+      "name": "ai-website-cloner-template",
+      "repo": "JCodesMore/ai-website-cloner-template",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 38282,
+      "open_source": true,
+      "notes": "Starter Next.js + skill /clone-website; skill dặn dùng chữ/font/ảnh thật của site gốc, không kiểm ToS/bản quyền; rủi ro pháp lý cao; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "OpenUI (W&B)",
+      "repo": "wandb/openui",
+      "category": "ai-ui-generator",
+      "license": "Apache-2.0",
+      "stars": 22720,
+      "open_source": true,
+      "notes": "App tự host mô tả → HTML/React/Svelte; gần như ngừng từ 9/2025; Weave tự bật khi có WANDB_API_KEY hoặc mục api.wandb.ai trong ~/.netrc; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "garden-skills",
+      "repo": "ConardLi/garden-skills",
+      "category": "design-skill",
+      "license": "MIT (không ghi chủ sở hữu)",
+      "stars": 13439,
+      "open_source": true,
+      "notes": "6 skill; web-design-engineer ~9k token; phát lại file 73 KB tự nhận là system prompt 'Claude Design' (nguồn gốc không rõ); 'browser acceptance harness' chỉ là văn bản; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "m3e-canvas",
+      "repo": "lnkiai/m3e-canvas",
+      "category": "design-tool",
+      "license": "MIT (+ NOTICE Apache-2.0)",
+      "stars": 9947,
+      "open_source": true,
+      "notes": "Vẽ màn Material 3 Expressive trên trình duyệt, xuất prompt cho agent; tĩnh, không server, có test + CI; API key lưu plaintext trong localStorage; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "ThreeUI Community",
+      "repo": "MengTo/threeui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 6979,
+      "open_source": true,
+      "notes": "Catalog shader/Three.js open-core (gói @designcodeio/threeui); README lệch báo cáo đồng bộ (50 vs 43 component); tài sản tải từ threeui.com/CDN; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "SwiftUI Agent Skill",
+      "repo": "twostraws/SwiftUI-Agent-Skill",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 6424,
+      "open_source": true,
+      "notes": "Skill SwiftUI Pro của Paul Hudson, ~1,5k token + 12 file tham chiếu nạp theo bước; sự thật nền tảng cứng (iOS 27) sẽ cũ; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "logo-design-skill",
+      "repo": "kaankiziltug/logo-design-skill",
+      "category": "design-skill",
+      "license": "MIT (trừ thư viện 1.432 logo thương hiệu)",
+      "stars": 5601,
+      "open_source": true,
+      "notes": "Quy trình thiết kế logo + 9 script Python; kèm 1.432 SVG logo công ty thật (TRADEMARKS.md: MIT không áp dụng); render PNG cần renderer ngoài; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "Morphic",
+      "repo": "miurla/morphic",
+      "category": "agentic-ui",
+      "license": "Apache-2.0",
+      "stars": 9231,
+      "open_source": true,
+      "notes": "Answer engine stream spec JSON thành component (generative UI); 1.889 commit, CI lint/test/build/eval; mọi telemetry chỉ bật qua biến môi trường; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "FigmaToCode",
+      "repo": "bernaferrari/FigmaToCode",
+      "category": "design-tool",
+      "license": "GPL-3.0",
+      "stars": 5260,
+      "open_source": true,
+      "notes": "Plugin Figma chuyển tất định sang HTML/React/Svelte/Tailwind/Flutter/SwiftUI; manifest không xin quyền mạng; GPL khi fork/nhúng; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "Pencil (Evolus)",
+      "repo": "evolus/pencil",
+      "category": "design-tool",
+      "license": "GPL-2.0",
+      "stars": 9891,
+      "open_source": true,
+      "notes": "Wireframe Electron của Evolus (Việt Nam); v4.0.0 (20/10/2026) thêm MCP cổng 1919: listen không truyền host (mọi interface), CORS *, không xác thực, bật mặc định (đọc mã); Electron 16 hết hỗ trợ; 530 issue mở; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "Tkinter-Designer",
+      "repo": "ParthJadhav/Tkinter-Designer",
+      "category": "design-tool",
+      "license": "BSD-3-Clause",
+      "stars": 10252,
+      "open_source": true,
+      "notes": "Figma REST → mã GUI Tkinter; gần như đứng từ 2022, CI cũ; ★ 31/10/2026 (GitHub API), mục 06 §7r.1",
+      "section": "06"
+    },
+    {
+      "name": "React Bootstrap",
+      "repo": "react-bootstrap/react-bootstrap",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 22610,
+      "open_source": true,
+      "notes": "Bootstrap 5 cho React; stable 2.10.10 (5/2025), v3 beta lâu; một người bảo trì; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "Base Web (Uber)",
+      "repo": "uber/baseweb",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 9026,
+      "open_source": true,
+      "notes": "README: 'limiting our engagement'; CI chỉ build, không chạy test; khoá Styletron; tránh cho dự án mới; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "React Suite (rsuite)",
+      "repo": "rsuite/rsuite",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 8696,
+      "open_source": true,
+      "notes": "~120 component cho admin nhiều dữ liệu; v6.2.5; MCP @rsuite/mcp + skill + AGENTS.md; 996 commit/3 tháng, một người chính; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "Grommet",
+      "repo": "grommet/grommet",
+      "category": "ui-library",
+      "license": "Apache-2.0",
+      "stars": 8353,
+      "open_source": true,
+      "notes": "HPE, chú trọng a11y (jest-axe, Chromatic); phụ thuộc styled-components; 494 issue mở; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "PrimeReact",
+      "repo": "primefaces/primereact",
+      "category": "ui-library",
+      "license": "MIT (bản cũ)",
+      "stars": 8310,
+      "open_source": true,
+      "notes": "README: chỉ vá bảo mật, chuyển sang PrimeUI (license bản mới chưa rõ); xoá toàn bộ workflow CI 21/9/2026; tránh cho dự án mới; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "Arco Design (React)",
+      "repo": "arco-design/arco-design",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 5751,
+      "open_source": true,
+      "notes": "ByteDance; ổn định nhưng chậm; Less; React 19 qua adapter, CI chỉ React 18; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "coss ui",
+      "repo": "cosscom/ui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 10777,
+      "open_source": true,
+      "notes": "Design system Cal.com (trước là Origin UI) trên Base UI + Tailwind v4, phân phối qua registry shadcn; AGENTS.md, llms.txt, skill; bắt buộc React 19.2 + Next 16; ít test; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "Elastic UI (EUI)",
+      "repo": "elastic/eui",
+      "category": "ui-library",
+      "license": "SSPL-1.0 OR Elastic-2.0",
+      "stars": 6378,
+      "open_source": false,
+      "notes": "Không phải license OSI (đổi từ Apache-2.0 7/2021); chưa hỗ trợ React 19; a11y tốt nhất nhóm (46 test Cypress + axe); tránh ngoài hệ Elastic; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "React Hook Form",
+      "repo": "react-hook-form/react-hook-form",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 44896,
+      "open_source": true,
+      "notes": "Chuẩn de facto cho form React, 0 phụ thuộc runtime; v7.91.0, v8 beta; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "react-virtualized",
+      "repo": "bvaughn/react-virtualized",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 27067,
+      "open_source": true,
+      "notes": "v10.0.0 viết lại TS (18/10/2026); README tự khuyên dự án mới dùng react-window hoặc TanStack Virtual; ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "Intro.js",
+      "repo": "usablica/intro.js",
+      "category": "frontend",
+      "license": "AGPL-3.0 + license thương mại",
+      "stars": 23455,
+      "open_source": false,
+      "notes": "Tour/onboarding; dự án thương mại phải mua license; thay bằng driver.js hoặc react-joyride (MIT); ★ 31/10/2026 (GitHub API), mục 06 §7r.2",
+      "section": "06"
+    },
+    {
+      "name": "ant-design-vue",
+      "repo": "vueComponent/ant-design-vue",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 21697,
+      "open_source": true,
+      "notes": "Bản 4.2.6 từ 11/2024, 12 commit/12 tháng chủ yếu docs/quảng cáo; workflow bắt mọi PR có trailer AI co-author; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "Naive UI",
+      "repo": "tusen-ai/naive-ui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 18598,
+      "open_source": true,
+      "notes": "Vue 3, 2.45.3, có AGENTS.md; 712 issue mở; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "shadcn-vue",
+      "repo": "unovue/shadcn-vue",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 10759,
+      "open_source": true,
+      "notes": "Vue 3.5 + Tailwind v4 trên Reka UI; llms.txt, MCP trong CLI, bộ skill Claude; CLI 2.9.0; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "Reka UI",
+      "repo": "unovue/reka-ui",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 6918,
+      "open_source": true,
+      "notes": "Headless Vue (trước là Radix Vue), 2.11.0; nền của shadcn-vue và Nuxt UI; CLAUDE.md, llms.txt; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "NG-ZORRO",
+      "repo": "NG-ZORRO/ng-zorro-antd",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 9192,
+      "open_source": true,
+      "notes": "Ant Design cho Angular 22; AGENTS.md, .claude/, 7 skill, cấu hình MCP, llms.txt + llms-full.txt; major phải khớp Angular; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "antd-mobile",
+      "repo": "ant-design/ant-design-mobile",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 12089,
+      "open_source": true,
+      "notes": "React mobile web, 5.43.0; chậm lại, toolchain cũ; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "UI Kitten",
+      "repo": "akveo/react-native-ui-kitten",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 10662,
+      "open_source": true,
+      "notes": "Hồi sinh 2026 (179/193 commit một người), 6.2.1, README nói chạy New Architecture RN 0.81 (chưa xác minh); AGENTS.md, MCP thiết bị; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "react-native-calendars",
+      "repo": "wix/react-native-calendars",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 10328,
+      "open_source": true,
+      "notes": "Chuẩn de facto, gần như đứng (3 commit/12 tháng); tự thử trên New Architecture; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "react-native-web",
+      "repo": "necolas/react-native-web",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 22158,
+      "open_source": true,
+      "notes": "Nghỉ 11 tháng rồi hồi sinh 9/2026 dưới người dẫn mới; 0.21.4, 0.22 có thay đổi phá vỡ; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "vue-pure-admin",
+      "repo": "pure-admin/vue-pure-admin",
+      "category": "layout-template",
+      "license": "MIT",
+      "stars": 20722,
+      "open_source": true,
+      "notes": "Mẫu admin Vue 3.5 + Element Plus + Tailwind v4; 0 test, phụ thuộc nặng; dùng bản pure-admin-thin; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "Taro UI",
+      "repo": "jd-opensource/taro-ui",
+      "category": "mobile",
+      "license": "MIT",
+      "stars": 4732,
+      "open_source": true,
+      "notes": "UI đa nền mini-program cho Taro 3; hồi sinh 2026; Taro 4 thử nghiệm; tài liệu tiếng Trung; ★ 31/10/2026 (GitHub API), mục 06 §7r.3",
+      "section": "06"
+    },
+    {
+      "name": "Stencil",
+      "repo": "stenciljs/core",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 13147,
+      "open_source": true,
+      "notes": "Trình biên dịch web components (nền của Ionic); CLI v4 bật telemetry mặc định gửi api.ionicjs.com (tắt npx stencil telemetry off), v5 beta gỡ telemetry; một người chính; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Mitosis",
+      "repo": "BuilderIO/mitosis",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 14452,
+      "open_source": true,
+      "notes": "Viết một lần biên dịch ra ~20 framework; 0.14.2, nhịp giảm mạnh (17 commit/12 tháng); ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Omi",
+      "repo": "Tencent/omi",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 13277,
+      "open_source": true,
+      "notes": "Framework web components của Tencent; không CI chạy được; tag lệch package.json; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Panda CSS",
+      "repo": "chakra-ui/panda",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 6242,
+      "open_source": true,
+      "notes": "CSS-in-JS không runtime, v2 lõi Rust/Oxc; AGENTS.md, skill, MCP @pandacss/mcp, llms.txt; CI đầy đủ; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Zag",
+      "repo": "chakra-ui/zag",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 5246,
+      "open_source": true,
+      "notes": "51 máy trạng thái component cho 6 framework, nền của Ark UI/Chakra v3/Skeleton v5; AGENTS.md, context7.json, llms-*.txt; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Primer CSS",
+      "repo": "primer/css",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 13047,
+      "open_source": true,
+      "notes": "README: KTLO mode từ 9/2025; dự án mới dùng Primer React hoặc @primer/primitives; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Skeleton",
+      "repo": "skeletonlabs/skeleton",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 6087,
+      "open_source": true,
+      "notes": "Tailwind v4 + Zag, 5.0.1; chậm hẳn sau v5, PR bảo mật Renovate chưa merge; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Oat UI",
+      "repo": "knadh/oat",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 5582,
+      "open_source": true,
+      "notes": "HTML/CSS ngữ nghĩa ~10 KB, 0 phụ thuộc (Kailash Nadh); v1.0.1; không có test; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "Golden Layout",
+      "repo": "golden-layout/golden-layout",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 6721,
+      "open_source": true,
+      "notes": "Docking layout; release cuối v2.6.0 (2022), v3 chưa ra; tránh cho dự án mới; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "DiceBear",
+      "repo": "dicebear/dicebear",
+      "category": "ui-library",
+      "license": "MIT (mã) + license riêng từng style",
+      "stars": 9979,
+      "open_source": true,
+      "notes": "Avatar tất định, lõi 7 ngôn ngữ; style CC BY 4.0 phải ghi công, avataaars/bottts license riêng; nhánh mặc định là RC 11.x; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "neobrutalism-components",
+      "repo": "ekmas/neobrutalism-components",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 5630,
+      "open_source": true,
+      "notes": "Registry shadcn phong cách neobrutalism; từng ghi 'no longer maintained' rồi viết lại trên Base UI 9/2026; không CI; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "awesome-shadcn-ui",
+      "repo": "birobirobiro/awesome-shadcn-ui",
+      "category": "awesome-list",
+      "license": "MIT",
+      "stars": 20738,
+      "open_source": true,
+      "notes": "~548 mục có ngày, CI kiểm link; có quảng cáo trả phí; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
+      "section": "06"
+    },
+    {
+      "name": "awesome-tailwindcss",
+      "repo": "aniftyco/awesome-tailwindcss",
+      "category": "awesome-list",
+      "license": "CC0-1.0",
+      "stars": 15215,
+      "open_source": true,
+      "notes": "~74 link chọn lọc; cấm bài gửi do AI viết và bài trả phí; ★ 31/10/2026 (GitHub API), mục 06 §7r.4",
       "section": "06"
     }
   ]
