@@ -619,7 +619,7 @@
 
 ## Bổ sung 2026-10-30 (ảnh infographic LapTrinhWebAI "Top 10 Claude Code skills — Popular on GitHub")
 
-- Ảnh người dùng gửi 30/10/2026 ("Snapshot Oct 2026"); không tìm được bài gốc bằng web search. Kiểm 10 dòng bằng img.shields.io/github/{stars,forks,license,last-commit} 30/10/2026: 10/10 repo có thật, sao trong ảnh thấp hơn 0,5–2,6%. 9/10 đã có hồ sơ (mục 20 §3c, §3d, §3g; mục 06 §4, §7g.2, §7j; mục 16 §4b; mục 22). Cập nhật số sao 9 dòng catalog; superpowers và addyosmani/agent-skills ghi license MIT (trước "–").
+- Ảnh người dùng gửi 30/10/2026 ("Snapshot Oct 2026"); không tìm được bài gốc bằng web search. Kiểm 10 dòng bằng img.shields.io/github/{stars,forks,license,last-commit} 30/10/2026: 10/10 repo có thật, sao trong ảnh thấp hơn 0,5–2,6%. 9/10 đã có hồ sơ (mục 20 §3c, §3d, §3g; mục 06 §4, §7g.2, §7j; mục 16 §2d; mục 22). Cập nhật số sao 9 dòng catalog; superpowers và addyosmani/agent-skills ghi license MIT (trước "–").
 - Đổi owner (cùng HEAD qua `git ls-remote`, cùng sao): `safishamsi/graphify` = `Graphify-Labs/graphify`; `forrestchang/andrej-karpathy-skills` = `multica-ai/andrej-karpathy-skills`. devtake.pages.dev gọi bản multica-ai là "mirror" và cộng sao hai bên: sai.
 - Mới (mục 20 §3k.3): `multica-ai/andrej-karpathy-skills` — clone đủ lịch sử (28 commit, HEAD 2c60614, 20/4/2026), 227k★/23k fork, không có file LICENSE (plugin.json/SKILL.md ghi MIT); không do Karpathy viết. Phụ: dev.to/max_quimby (5,8k★ thời đầu), weihaoqu.github.io/learnAIDoc, awesome.ecosyste.ms; số sao trong các bài này lệch nhau 5,8k–132k tùy ngày chụp.
 
@@ -634,3 +634,10 @@
 
 - `thedotmack/claude-mem`: clone 30/10/2026 (3.767 commit, HEAD 325afb6, v15.6.0); shields 106k★/9,3k fork, Apache-2.0, 53 issue/73 PR mở. Dữ liệu rời máy theo SECURITY.md (telemetry PostHog bật mặc định; Claude Agent SDK dùng token OAuth; observer cmem.ai trial 30 ngày; Cloud Sync tuỳ chọn), đối chiếu `src/services/telemetry/`, `src/npx-cli/commands/telemetry.ts`. Hồ sơ mục 10 §4e; catalog chuyển section 03 → 10, đính chính "5 hook" → 11 hook/9 sự kiện.
 - `Egonex-AI/Understand-Anything`: clone 30/10/2026 (866 commit, HEAD 4e6d329 26/10/2026); shields 89k★/7,5k fork, MIT, 126 issue/211 PR mở; tag cuối v2.9.0 (10/7/2026), plugin.json 2.9.8. Cập nhật mục 01 §3b.5.
+
+## Bổ sung 2026-10-31 (hồ sơ Graphify, cập nhật caveman, evondevKit)
+
+- `Graphify-Labs/graphify`: clone 31/10/2026 (2.675 commit, HEAD a0946f9 30/10/2026, v0.9.99); shields 140k★/13k fork, Apache-2.0 (relicense từ MIT 22/7/2026), 722 issue/920 PR mở. Hồ sơ mục 16 §2e. Đính chính tham chiếu cũ "mục 16 §4b" (không tồn tại) → §2d/§2e ở mục 01 và 20.
+- `JuliusBrussee/caveman`: clone 31/10/2026 (1.886 commit, HEAD 9b68f7e 25/10/2026; tag bin-v4.0.2 22/10/2026); shields 116k★/6,7k fork, 63 issue/68 PR mở. Cập nhật mục 20 §3g.6.
+- `evondev/evondevKit`: bài đăng Facebook tác giả (ảnh người dùng gửi 31/10/2026) · clone đủ lịch sử (259 commit, HEAD 4d02153 22/10/2026) · shields 432★/56 fork, MIT, v0.3.27 · evondev-uiux.vercel.app/ui-ux. Hồ sơ mục 06 §7n; catalog +1 = 569.
+- `Nutlope/hallmark` shields 43k★ (31/10/2026), dùng cho bảng so sánh §7n.4.

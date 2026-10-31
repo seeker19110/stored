@@ -785,6 +785,52 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7m:** ảnh infographic người dùng gửi 29/10/2026 · API GitHub (đã xác thực) 29/10/2026: `emilkowalski/skills`, `DavidHDev/canvas-ui` · emilkowal.ski/skill · canvasui.dev · flaviocopes.com/canvas-ui.md · awesome.ecosyste.ms/projects/github.com%2Femilkowalski%2Fskills (snapshot cũ ~5,5k★) · map 10 ô còn lại: §2, §4, §7c, §7g.2, §7j, §7l, mục 20, mục 22.
 
+## 7n. `evondev/evondevKit` — skill `ui-ux` "UI dashboard không còn mùi AI" (bài đăng Facebook người dùng gửi, clone 2026-10-31)
+
+> Ảnh là bài đăng Facebook của tác giả: banner "evondevKit / ui-ux — UI dashboard không còn mùi AI · Open-source UI/UX skill cho coding agents. Đọc codebase, tạo brief, 2–3 wireframes, xây dựng bằng component sẵn có", kèm link website `evondev-uiux.vercel.app/ui-ux` và GitHub, lời "thấy hay cho mình xin stars nhé". Đã clone đủ lịch sử, đọc README/README.vi, `SKILL.md`, `.claude-plugin/`, `TESTS.md`, ba script. **Không cài plugin, không chạy `probe.mjs`.**
+
+### 7n.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/evondev/evondevKit · **432★, 56 fork**, 0 issue/PR mở (shields) · **MIT** (© 2026 Tuấn Trần) · plugin `evon` v0.3.27; tạo 20/9/2026, commit cuối 22/10/2026 |
+| Tác giả | **Tuấn Trần (evondev)** — người Việt làm nội dung dạy frontend; một mình viết cả 259 commit, **258/259 có trailer `Co-Authored-By: Claude`**. Nhận ủng hộ qua MoMo |
+| Nội dung thật | **Một skill `ui-ux`**: `SKILL.md` 44,5 KB (tiếng Việt), `references/` ~1,2 MB (37 file component như table/kanban/OTP/chart, layout `app.md` 170 KB, `tokens.css`, luật màu/chữ/form/trạng thái, `tailwind-v4-traps.md`, quy trình thiết kế, checklist, ngân sách) + 3 script: `probe.mjs` (~4.700 dòng), `lint-skill.mjs`, `check-update.mjs` |
+| Cài | Claude Code: `/plugin marketplace add evondev/evondevKit` → `/plugin install evon@evondevkit`, gọi `/evon:ui-ux`; Cursor/OpenCode/Codex/Antigravity/ZCode/omp: `npx skills add evondev/evondevKit` |
+| Trạng thái | README tự ghi **Beta**: hợp UI app nền sáng, "test trên 70 prompt trên dự án thật", chủ yếu prompt tiếng Việt; dark mode đang thử *(70 prompt là tự khai, chưa có bộ eval công khai trong repo)* |
+
+### 7n.2 Kiểm từng câu trong bài đăng
+
+| Câu | Thực tế | Kiểm |
+|---|---|---|
+| "Open-source UI/UX skill cho coding agents" | Đúng: MIT, một skill, đa host qua `skills` CLI | ✅ |
+| "Đọc codebase" | Skill buộc đọc component library, màu/brand của dự án trước khi dựng ("dùng component sẵn có") | ✅ |
+| "Tạo brief, 2–3 wireframes" | Luồng mặc định: brief → người dùng duyệt → 2–3 wireframe → chọn → dựng. Có lối tắt "dựng luôn" (bỏ wireframe để tiết kiệm token), "review", "dựng lại giữ brand", "refactor CSS giữ giao diện" | ✅ |
+| "Xây dựng bằng component sẵn có" | Đúng với dự án có thư viện component; còn có nhánh "dựng design system trước" (token + 7 component nền) | ✅ |
+| "Không còn mùi AI" | Khẩu hiệu. Cơ chế cụ thể: luật cứng ("locked-rules", ngân sách, checklist) + **`probe.mjs` đo bằng Playwright** ở nhiều bề rộng (375–1920, quét mỗi 20px): cuộn ngang, chữ tràn/cắt, tương phản, focus/hover, so bản dựng với wireframe đã chọn. Đây là cổng máy thật, không chỉ prompt | ⚠️ tuyên bố thẩm mỹ, chưa có so sánh độc lập |
+
+### 7n.3 Điều bài đăng không nói (đọc mã)
+
+- **Nặng ngữ cảnh:** riêng `SKILL.md` ~44,5 KB (~11k token) nạp mỗi lần gọi, chưa kể file reference mở theo khối cần dựng. Dòng đầu skill: "Chưa đi hết mục 0 thì KHÔNG viết một dòng code nào" — quy trình chặt, chậm hơn khi chỉ cần sửa nhỏ (README: việc nhỏ hơn một màn hình thì skill làm luôn).
+- **Kết nối mạng:** `check-update.mjs` đọc file VERSION trên `raw.githubusercontent.com` tối đa 1 lần/ngày, không gửi gì; tắt bằng `EVONDEVKIT_NO_UPDATE_CHECK=1`. `probe.mjs` chỉ mở URL người dùng đưa (thường localhost); nếu chưa có Playwright thì hướng dẫn cài vào **thư mục tạm**, không cài vào dự án. Không telemetry.
+- **Không có CI hay test tự động** (không có `.github/`); `TESTS.md` là danh sách UI cần làm theo bậc, `lint-skill.mjs` kiểm cấu trúc skill nhưng không chạy trong CI.
+- **Mới và một người:** 6 tuần tuổi, bus factor 1, phiên bản đổi liên tục (v0.3.x); README khuyên bật auto-update — với team nên ghim phiên bản thay vì auto-update.
+- **Tiếng Việt là ngôn ngữ chính** của skill: lợi thế cho đội Việt (mục 18), prompt tiếng Anh "ít test hơn" theo chính README.
+
+### 7n.4 So với các skill UI đã có trong kho
+
+| Skill | ★ | Cách làm | Khác evondevKit |
+|---|---|---|---|
+| `evondev/evondevKit` | 432 | Quy trình designer (brief → wireframe → dựng) + đo Playwright | Tập trung **dashboard/app**, dùng component dự án, tiếng Việt |
+| `Leonxlnx/taste-skill` (§7j) | 106k | Art direction + `draw.mjs`/`inspect.mjs`/`lint.mjs` | Thiên landing/thẩm mỹ chung; có inspector CDP |
+| `nextlevelbuilder/ui-ux-pro-max-skill` (§7g.2) | 143k | Kho tra cứu CSV + BM25 sinh design system | Dữ liệu tra cứu, không có quy trình wireframe hay đo trang |
+| `Nutlope/hallmark` (§7l) | 43k | Ba script lint, chống "AI slop" | Kiểm sau khi dựng; evondevKit thêm bước chốt bố cục trước |
+| `emilkowalski/skills` (§7m.1) | 51k | Animation/vi tương tác | Lớp chi tiết chuyển động, không dựng màn |
+
+**Dùng thế nào:** hợp dự án dashboard/admin có sẵn thư viện component (shadcn, Tailwind v4) và đội quen làm việc bằng tiếng Việt. Đưa link localhost đang chạy để skill đo được. Dùng nhánh "review" trước để xem danh sách lỗi, rồi mới "fix 1, 3". Ghim phiên bản plugin; cân nhắc chi phí token của `SKILL.md` khi dùng cho thay đổi nhỏ. Đây là skill giai đoạn beta của một tác giả; nên thử trên một màn trước khi dùng rộng.
+
+**Nguồn §7n:** bài đăng Facebook tác giả (ảnh người dùng gửi 31/10/2026) · clone đủ lịch sử github.com/evondev/evondevKit 31/10/2026 (259 commit, HEAD 4d02153 22/10/2026; README.md, README.vi.md, LICENSE, TESTS.md, .claude-plugin/{marketplace,plugin}.json, skills/ui-ux/{SKILL.md, VERSION, references/*, scripts/{probe,check-update,lint-skill}.mjs}; đếm trailer bằng git log) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/evondev/evondevKit.json (31/10/2026) · evondev-uiux.vercel.app/ui-ux
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
