@@ -705,3 +705,8 @@
 
 - `browserbase/stagehand`: clone 31/10/2026 (1.663 commit, HEAD b7a4b899); shields 26k★/1,8k fork, MIT, 107 issue/295 PR mở; `packages/cli/src/lib/telemetry.ts` gửi PostHog. Mục 11 §1h.1.
 - `vercel-labs/agent-browser`: clone 31/10/2026 (780 commit, HEAD 5868f7c); shields 45k★/3,1k fork, Apache-2.0, v0.41.0, 275 issue/307 PR mở. Mục 11 §1h.2; catalog sửa license "–" → Apache-2.0.
+
+## Bổ sung 2026-10-31o (Browserbase MCP, Obscura)
+
+- `browserbase/mcp-server-browserbase`: clone 31/10/2026 (200 commit, HEAD 3e6f534 20/7/2026, README "Archived"); shields 3,4k★/372 fork, Apache-2.0, v3.0.0. Mục 11 §1i.1.
+- `h4ckf0r0day/obscura`: clone 31/10/2026 (1.626 commit, HEAD 800b5ba); shields 30k★/2,3k fork, Apache-2.0, v0.2.5, 110 issue/97 PR mở; blog.cloudflare.com/kitesurf (6/8/2026) xác nhận "initial inspiration from obscura". Mục 11 §1i.2; catalog +2 = 577.
