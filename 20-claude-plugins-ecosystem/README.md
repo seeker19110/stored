@@ -99,6 +99,8 @@ plugin-name/
 
 ## 2b. Bên trong `anthropics/claude-plugins-official` (trending, 2026-10-12)
 
+*Cập nhật 31/10/2026 ở §3q.1: 46k★, đọc đủ 315 entry, cổng bump/scan SHA hằng đêm.*
+
 > Nguồn: ảnh trending người dùng gửi (+2.172★/ngày); đọc README, `.claude-plugin/marketplace.json` (100k ký tự đầu / 190k), docs code.claude.com/docs/en/plugins.
 
 ### 2b.1 Hồ sơ nhanh
@@ -933,6 +935,52 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 **Đánh giá cập nhật:** ponytail đang chuyển từ "một prompt" sang **công cụ đo chi phí/hiệu quả phiên** (band + board) — hữu ích để chứng minh lợi ích bằng số của chính mình thay vì tin benchmark tác giả (§3g.2). Đổi lại, cài đủ thì có thêm module UI, codebase map chèn vào mỗi phiên, và file ledger trong `~/.config`. Nếu chỉ cần hành vi "code tối giản", vẫn có thể chép 32 dòng `AGENTS.md` vào dự án mà không cài plugin.
 
 **Nguồn §3p:** clone github.com/mattpocock/skills 31/10/2026 (blob:none, 553 commit, HEAD 4ae2317 31/10/2026; CHANGELOG.md, skills/{engineering,productivity,misc,in-progress,deprecated}, .github/workflows/*; git log --since=2026-10-12, git tag) · clone github.com/DietrichGebert/ponytail 31/10/2026 (blob:none, 369 commit, HEAD 96608e0 29/10/2026; README.md ("New in 5.3: the band", lệnh `/ponytail band`), skills/ponytail/SKILL.md, AGENTS.md, hooks/{claude-codex-hooks.json, claude-band.json, band/register.tsx (webhook), ponytail-map.js}; git log --since=2026-10-14, git tag) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/… cho hai repo (31/10/2026)
+
+## 3q. Cập nhật `anthropics/claude-plugins-official` (§2b) và hồ sơ đầy đủ `wshobson/agents` (yêu cầu người dùng, clone 2026-10-31)
+
+> claude-plugins-official đã có hồ sơ chi tiết ở §2b (12/10/2026, đọc 100k ký tự đầu của `marketplace.json`). Mục này đọc **toàn bộ** `marketplace.json` bằng script và các workflow CI. wshobson/agents trước chỉ có dòng bảng §3d/§3j.4. Clone đủ lịch sử (blob:none) cả hai. **Không cài, không chạy.**
+
+### 3q.1 `anthropics/claude-plugins-official` — số đếm đầy đủ và cổng duyệt
+
+| Mục | 12/10/2026 (§2b) | 31/10/2026 |
+|---|---|---|
+| ★ / fork | 37,7k / 4,2k | **46k / 4,7k** (shields) |
+| Commit | 4.383 | **4.658**, từ 20/11/2025, 57 tác giả; **3.420 commit của `github-actions[bot]`** (bump SHA tự động); người: jordanecker-ant 361, Bryan Thompson 242, Mohamed Hegazy 180 |
+| Issue / PR mở | ~1k / 87 | **1,1k / 192** |
+| Entry trong `marketplace.json` | "31 nội bộ + >135 bên ngoài" (đọc dở) | **315 entry**: 39 plugin nội bộ trong `plugins/` (+ `example-plugin`), 14 trong `external_plugins/`, **262 trỏ ra repo ngoài** (163 `url`, 99 `git-subdir`) — **cả 262 đều ghim `sha`**; 14 entry skill-bundle `strict: false`; map `renames` 10 mục |
+| Theo category | – | development 123, productivity 69, database 39, monitoring 22, security 18, deployment 9, design 8, **14 entry không có category** |
+
+**Plugin nội bộ mới so với §2b.2** (thư mục `plugins/` 31/10/2026): `ralph-loop` (mục 03 §3), `skill-creator`, `plugin-dev`, `mcp-server-dev`, `mcp-tunnels`, `pr-review-toolkit`, `security-guidance`, `session-report`, `project-artifact`, `playground`, `receipts`, `math-proof`, thêm LSP `php`, `pyright`, `ruby`, `rust-analyzer`, `swift`, `typescript`. Bỏ khỏi danh sách nội bộ (nay là entry ngoài hoặc đổi tên): `github`, `gitlab`, `linear`, `asana`, `firebase`, `context7`, `laravel-boost`, `discord`, `imessage`, `fakechat`.
+
+**Cổng duyệt thật (9 workflow, đọc 31/10/2026):**
+
+- **`bump-plugin-shas` (hằng đêm):** với mỗi entry ngoài mà upstream đã đi quá SHA ghim, chạy `claude plugin validate` ở SHA mới rồi mở **một PR riêng cho mỗi plugin** → đây là nguồn 3.420 commit bot. Nghĩa là code plugin ngoài **được cập nhật liên tục** sau khi qua cổng, không đứng yên ở bản đã duyệt lần đầu.
+- **`scan-plugins` — "Claude policy scan"** cho entry ngoài thay đổi, là required check trên `main`; cache kết quả theo cặp (plugin, sha). **`revert-failed-bumps`** tự trả SHA của entry trượt scan về bản cũ để một upstream xấu không chặn cả đợt.
+- **`external-pr-scope-guard` / `close-external-prs`:** PR từ người ngoài chỉ được **thêm** entry vào `marketplace.json` và URL nguồn phải là repo **đã có** plugin trong marketplace; còn lại tự đóng (nộp plugin mới qua form). Dùng `pull_request_target` nhưng checkout **repo gốc** (an toàn).
+- **`validate-licenses`** (plugin nội bộ phải có LICENSE; `claude-security` cố ý là **proprietary**), **`validate-frontmatter`**, **`validate-plugins`**, **`check-mcp-urls`** (chỉ kiểm URL MCP của plugin nằm trong repo, **không** kiểm entry ngoài).
+- Action phần lớn **ghim tag** (`actions/checkout@v4`), chỉ vài chỗ ghim SHA.
+
+**Ý nghĩa:** "chính thức" nghĩa là **qua cổng quét tự động của Anthropic ở từng SHA**, không phải Anthropic viết hay bảo đảm code (README vẫn cảnh báo như §2b.1). Plugin ngoài tự cập nhật theo upstream mỗi đêm → muốn hành vi đứng yên thì ghim phiên bản phía mình hoặc vendor. Nhận định §2b.5 (chi phí ngữ cảnh, chỉ bật plugin đang dùng) giữ nguyên.
+
+### 3q.2 `wshobson/agents` — marketplace 92 plugin của một tác giả
+
+| Mục | Thông tin (đọc 31/10/2026) |
+|---|---|
+| Repo | github.com/wshobson/agents · **42k★, 4,4k fork** (shields) · **MIT** · không có release · chỉ **2 issue + 1 PR mở** |
+| Lịch sử | **629 commit** từ 24/7/2025, 95 tác giả; Seth Hobson 379, dependabot 48, GitHub Copilot 32; 54 trailer Claude; 25 commit từ 12/10 (sửa 22 ví dụ code hỏng, vá cảnh báo Dependabot, **bắt buộc bump version khi plugin đổi** — #799) |
+| Quy mô (đếm bằng script) | **92 plugin, 202 agent, 185 skill, 105 command**; 2 plugin có hook (`protect-mcp`, `review-agent-governance`: PreToolUse `evaluate.sh` + PostToolUse `sign.sh` trên **mọi** tool) |
+| Model trong agent | Frontmatter `model:` — sonnet 70, **opus 54**, inherit 52, haiku 24, fable 2 → cài agent ghim `opus` thì subagent đó luôn chạy Opus dù phiên chính dùng model rẻ hơn |
+| Đa host | Claude Code (`.claude-plugin`), Cursor (`.cursor-plugin`), installer cho Antigravity, Copilot, OpenCode, Pi (`tools/install_*.py`); `tools/generate.py` sinh bản cho từng host, `make validate STRICT=1` kiểm bản sinh |
+| CI | 6 workflow: `validate`, `code-quality`, `eval-report`, `mlops`, **`claude-code-review`** (dùng `CLAUDE_CODE_OAUTH_TOKEN` review PR tự động), `claude`; action **ghim SHA** |
+| Eval | `evals/static-score-snapshot.json`: điểm "static layer" của plugin-eval cho mọi skill, khóa theo sha256 nội dung; `make test` báo lỗi khi điểm đổi mà nội dung không đổi. README tự ghi lớp LLM-judge và Monte Carlo **"experimental, chưa kiểm với nhãn người"**; đang làm eval dựa trên trace theo phương pháp Hamel Husain/Shreya Shankar |
+
+**Đánh giá:**
+
+- **Điểm mạnh:** đóng gói theo plugin nhỏ nên **chỉ nạp cái cần** (khác agency-agents cài 283 agent một lượt, §3j); tồn đọng issue/PR gần bằng 0 — tác giả xử lý nhanh; CI ghim SHA, có snapshot điểm skill, bắt buộc bump version.
+- **Cần biết:** phần lớn vẫn là **file prompt**, eval hiện mới đo tĩnh (cấu trúc/điểm), chưa đo hành vi; 54 agent ghim Opus làm chi phí khó đoán; hai plugin hook chạy trên **mọi** lần gọi tool (đọc `evaluate.sh`/`sign.sh` trước khi bật); 32 commit ký "GitHub Copilot" và bot review bằng Claude — nội dung được agent sửa nhiều.
+- **Dùng thế nào:** duyệt danh sách plugin, chỉ cài vài plugin đúng stack; kiểm `model:` của từng agent và đổi sang `inherit` nếu muốn theo model phiên chính. So với ECC (§3l, một gói lớn) và addyosmani (§3o.2, 25 skill có eval routing): wshobson là **catalog rộng nhất** để chọn lẻ.
+
+**Nguồn §3q:** clone github.com/anthropics/claude-plugins-official 31/10/2026 (blob:none, 4.658 commit, HEAD a7ba5b93 30/10/2026; `.claude-plugin/marketplace.json` đọc toàn bộ bằng script (315 entry, nguồn, sha, category, strict, renames), `plugins/`, `external_plugins/`, `.github/workflows/{bump-plugin-shas, scan-plugins, revert-failed-bumps, external-pr-scope-guard, close-external-prs, validate-licenses, validate-frontmatter, validate-plugins, check-mcp-urls}.yml`; git shortlog) · clone github.com/wshobson/agents 31/10/2026 (blob:none, 629 commit, HEAD 7e2fb55 30/10/2026; README.md, Makefile, evals/README.md, plugins/*/{agents,skills,commands,hooks}, tools/*, .github/workflows/*; đếm bằng script) · img.shields.io/github/{stars,forks,license,last-commit,issues,issues-pr}/… cho hai repo (31/10/2026)
 
 ## 4. Nguồn
 

@@ -2115,9 +2115,9 @@
       "repo": "anthropics/claude-plugins-official",
       "category": "plugin-marketplace",
       "license": null,
-      "stars": 37700,
+      "stars": 46000,
       "open_source": true,
-      "notes": "Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026)",
+      "notes": "Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026); cập nhật 31/10/2026 (mục 20 §3q.1): 46k★, 315 entry (39 nội bộ + 14 external_plugins + 262 repo ngoài đều ghim sha), bot bump SHA hằng đêm sau `claude plugin validate` + Claude policy scan, PR người ngoài chỉ được thêm entry",
       "section": "20"
     },
     {
@@ -4238,9 +4238,9 @@
       "repo": "wshobson/agents",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 40500,
+      "stars": 42000,
       "open_source": true,
-      "notes": "94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026",
+      "notes": "94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026; hồ sơ đầy đủ mục 20 §3q.2 (31/10/2026): 42k★, 629 commit, 92 plugin/202 agent/185 skill/105 command, 54 agent ghim model opus, 2 plugin hook trên mọi tool, CI ghim SHA + snapshot điểm skill, 2 issue/1 PR mở",
       "section": "20"
     },
     {

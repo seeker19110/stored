@@ -202,7 +202,7 @@ HunyuanVideo,Tencent-Hunyuan/HunyuanVideo,,agentic-video,Tencent Community,11900
 CogVideoX,zai-org/CogVideo,,agentic-video,Apache-2.0,12500,True,19,
 knowledge-work-plugins,anthropics/knowledge-work-plugins,,plugin-marketplace,Apache-2.0,29200,True,20,123 plugin (22 local theo vai trò + 101 vendor) cho Cowork/Claude Code; skills markdown + .mcp.json; link từ người dùng 2026-10-12
 claude-plugins-community,anthropics/claude-plugins-community,,plugin-marketplace,Apache-2.0,4600,True,20,Mirror read-only marketplace cộng đồng
-claude-plugins-official,anthropics/claude-plugins-official,,plugin-marketplace,,37700,True,20,"Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026)"
+claude-plugins-official,anthropics/claude-plugins-official,,plugin-marketplace,,46000,True,20,"Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026); cập nhật 31/10/2026 (mục 20 §3q.1): 46k★, 315 entry (39 nội bộ + 14 external_plugins + 262 repo ngoài đều ghim sha), bot bump SHA hằng đêm sau `claude plugin validate` + Claude policy scan, PR người ngoài chỉ được thêm entry"
 Anatomy,wheresryan22/anatomy,,design-skill,MIT,3800,True,06,Skill vẽ minh họa isometric SVG/WebGL tương tác; kit không phụ thuộc + audit hình học + headless Chrome check; v1.0 10/10/2026; link từ người dùng 2026-10-12
 anatomy-figures,wheresryan22/anatomy-figures,,design-skill,MIT,10,True,06,51–52 máy isometric dạng React/custom elements
 ui-skills,ibelick/ui-skills,,design-skill,,9400,True,06,Directory skill UI/visual/motion cho coding agent
@@ -414,7 +414,7 @@ BAML,BoundaryML/baml,,prompt,Apache-2.0,9400,True,17,"DSL prompt function có ki
 Claude Cookbooks,anthropics/claude-cookbooks,,prompt,MIT,53400,True,17,Trước là anthropic-cookbook; ★ đọc 12/10/2026
 OpenAI Cookbook,openai/openai-cookbook,,prompt,MIT,76600,True,17,Ví dụ chính thức OpenAI API; ★ đọc 12/10/2026
 AnyJev,nokia-applied-research/AnyJev,,prompt,Apache-2.0,1300,True,17,"Quyết định có kiểu (choice/yes-no/score) kèm xác suất từ LLM mở, không huấn luyện: L0 = trung bình log-prob qua các phép xoay thứ tự + chia prior nhãn (Zheng 2024, Zhou 2024); model Tacit 1.7B–9B tự chưng cất; 0.3.0 Pre-Alpha (6/10/2026); số README khớp JSON nhưng coverage ≤5% sụp ở tác vụ nhị phân; Decision Index hạng nhóm 5, theo điểm 10/168; ★ 16/10/2026"
-wshobson/agents,wshobson/agents,,harness-pack,MIT,40500,True,20,"94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026"
+wshobson/agents,wshobson/agents,,harness-pack,MIT,42000,True,20,"94 plugin, 202 agent, 184 skill; chủ yếu prompt; ★ đọc 12/10/2026; hồ sơ đầy đủ mục 20 §3q.2 (31/10/2026): 42k★, 629 commit, 92 plugin/202 agent/185 skill/105 command, 54 agent ghim model opus, 2 plugin hook trên mọi tool, CI ghim SHA + snapshot điểm skill, 2 issue/1 PR mở"
 claude-code-templates,davila7/claude-code-templates,,harness-pack,MIT,32600,True,20,CLI cài 100+ thành phần Claude Code; ★ đọc 12/10/2026
 awesome-claude-code-subagents,VoltAgent/awesome-claude-code-subagents,,harness-pack,MIT,25700,True,20,"161+ subagent, 10 nhóm; ★ đọc 12/10/2026"
 SuperClaude Framework,SuperClaude-Org/SuperClaude_Framework,,harness-pack,MIT,23900,True,20,"30 command, 20 agent; không release từ 3/2026; ★ đọc 12/10/2026"
