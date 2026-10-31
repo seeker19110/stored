@@ -3094,6 +3094,16 @@
       "section": "03"
     },
     {
+      "name": "Claude Code Agent Teams",
+      "url": "https://code.claude.com/docs/en/agent-teams",
+      "category": "pattern-loop",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Experimental (CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1): lead + teammate là phiên Claude Code riêng, context riêng, nhắn tin theo tên (mailbox ~/.claude/teams), task list chung có dependency + file locking, model riêng mỗi teammate; bật lên thì subagent có tên thành teammate không hỏi; chỉ phiên tương tác; teammate kế thừa quyền lead (kể cả skip-permissions); hook TeammateIdle/TaskCreated/TaskCompleted; không resume, không team lồng nhau; khuyên 3–5 teammate; docs đọc 31/10/2026; mục 03 §8f",
+      "section": "03"
+    },
+    {
       "name": "Audio8 TTS",
       "repo": "Edge0-AI/Audio8_TTS",
       "category": "speech",

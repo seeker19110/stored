@@ -60,7 +60,7 @@ Khảo sát học thuật: *The Landscape of Emerging AI Agent Architectures* (a
 ## 5. Multi-agent coding song song (thực hành 2026)
 
 - **Git worktrees** cho mỗi agent (`claude --worktree`): tránh ghi đè file, tranh chấp git index, port dev-server. Không bao phủ state chia sẻ (DB, API ngoài) → serialize các bước đó.
-- **Phân cấp primitive (Claude Code):** subagents (trong session) · agent teams (giữa session, thử nghiệm) · background agents · `/batch` cho thay đổi cơ học lớn.
+- **Phân cấp primitive (Claude Code):** subagents (trong session) · agent teams (giữa session, thử nghiệm; kiểm docs 31/10/2026 ở §8f) · background agents · `/batch` cho thay đổi cơ học lớn.
 - **Hợp đồng giao diện:** sinh OpenAPI/spec trước khi chạy song song để tránh drift (mầm của "spec-driven development").
 - **Giới hạn:** thêm agent chỉ khi còn sức review; 4–5 agent → RAM; 10+ → ngân sách context mỗi agent.
 - **Công cụ ADE (agent workspace):** T3 Code, Orca, Vibe Kanban (sunset), Claude Squad, Conductor, Personal Jarvis — bảng mục 01 §1.3. Personal Jarvis đặt **call sign T1/T2…** cho từng pane để giao việc bằng giọng nói và gửi cùng task tới nhiều pane để so sánh (mục 01 §3c).
@@ -321,6 +321,46 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng thiếu ý quan trọng · ❌ sa
 - **Không dùng khi:** task ngắn, hỏi–đáp một lượt, hoặc mọi lượt đều cần model mạnh (đổi `/model` thì hơn). Theo dõi chi phí bằng `/usage`; dùng qua API thì đặt `max_uses` và `max_tokens: 2048`.
 
 **Nguồn §8e:** bài viết tiếng Việt người dùng gửi 31/10/2026 · https://code.claude.com/docs/en/advisor (đọc 31/10/2026: enable, pairing table, cost, prompt caching, requirements, compare) · https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool (đọc 31/10/2026: tool parameters, how it works, response format, model compatibility, usage and billing, caching, limitations, best practices) · https://claude.com/blog/the-advisor-strategy (9/4/2026; số benchmark do Anthropic tự đo) · bên thứ ba (không dùng làm căn cứ): claudelog.com/faqs/what-is-advisor-in-claude-code · docs.litellm.ai/docs/completion/anthropic_advisor_tool (LiteLLM tự dựng vòng lặp cho Bedrock/Vertex, không phải hỗ trợ gốc)
+
+## 8f. Kiểm bài viết "Claude Code Agent Teams: team developer AI thực thụ" (bài người dùng gửi, đối chiếu docs 2026-10-31)
+
+> Bài tiếng Việt người dùng gửi: Agent Teams cho nhiều agent tự nhận việc, làm song song, nhắn tin trực tiếp; ví dụ vai Team Lead / Frontend / Backend / Review; mỗi teammate có context riêng, nhắn tin peer-to-peer, task list chung, model riêng; bật bằng `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude`; khác subagent; cảnh báo xung đột file và chi phí token. Đã đối chiếu với docs chính thức **code.claude.com/docs/en/agent-teams** (đọc 31/10/2026). Chưa chạy thử trong phiên.
+
+### 8f.1 Kiểm từng ý trong bài
+
+| Ý trong bài | Docs nói | Kiểm |
+|---|---|---|
+| Tính năng thử nghiệm, bật bằng `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` | Đúng: "experimental and disabled by default"; đặt qua biến môi trường **hoặc** `"env"` trong `settings.json` | ✅ |
+| Nhiều agent làm song song, trao đổi trực tiếp không qua agent trung tâm | Teammate nhắn nhau theo tên qua `SendMessage`; người dùng cũng nhắn thẳng được bất kỳ teammate nào | ✅ |
+| Vai Team Lead / Frontend / Backend / Review | **Không có vai dựng sẵn.** Chỉ có **lead** (phiên chính, cố định suốt phiên) và **teammate**; vai do prompt người dùng đặt, hoặc dùng lại định nghĩa subagent (`.claude/agents/…`) làm teammate. Docs dùng ví dụ "UX / kiến trúc / devil's advocate", "security / performance / test coverage" | ⚠️ ví dụ, không phải tính năng |
+| Mỗi teammate có context window riêng | Đúng; teammate nạp CLAUDE.md, MCP, skill như phiên thường, **không** nhận lịch sử hội thoại của lead, chỉ nhận prompt giao việc | ✅ |
+| Shared task list: tự nhận việc, theo dõi dependency, cập nhật tiến độ | Đúng: 3 trạng thái pending / in progress / completed, task phụ thuộc hiện "blocked" và tự mở khi task trước xong; tự nhận dùng **file locking** chống tranh chấp | ✅ |
+| Model khác nhau cho từng teammate | Đúng; thứ tự chọn: model nêu trong prompt → `model` của định nghĩa subagent → `CLAUDE_CODE_SUBAGENT_MODEL` → model của lead. Model và fast mode của teammate **cố định khi spawn** | ✅ |
+| Khác subagent: subagent làm xong trả kết quả về agent chính | Bảng so sánh chính thức khớp; thêm: subagent được Claude đặt tên cũng nhắn nhau được | ✅ |
+| Việc phụ thuộc nhau / sửa cùng file dễ xung đột, tốn token | Docs: "two teammates editing the same file leads to overwrites"; token **tăng tuyến tính** theo số teammate; việc tuần tự nên dùng một phiên hoặc subagent | ✅ |
+
+**Tổng:** 7/8 ý đúng; ý về các vai chỉ là ví dụ prompt, không phải tính năng có sẵn.
+
+### 8f.2 Điều bài không nói (cần biết trước khi bật)
+
+- **Bật lên là đổi cả subagent thường:** khi bật, mọi lần Claude gọi Agent tool **có `name`** (không phải fork, không có `isolation`) sẽ tạo **teammate** thay vì subagent, **không hỏi xác nhận** — Claude tự đặt tên subagent nên team có thể hình thành dù không yêu cầu. Muốn quay lại: đặt biến về `0` (có hiệu lực ngay, không cần phiên mới; managed/project settings có thể ghi đè).
+- **Chỉ phiên tương tác:** ở `-p` và Agent SDK không spawn teammate.
+- **Quyền:** teammate **kế thừa chế độ quyền của lead** (trừ `dontAsk`); lead chạy `--dangerously-skip-permissions` thì **mọi teammate cũng vậy**; không đặt quyền riêng lúc spawn được. Prompt xin quyền của teammate hiện ở phiên lead. Plan của teammate (khi lead ở plan mode) **được tự duyệt** ngay, lead không xem, trừ khi người dùng tự chuyển teammate sang plan mode.
+- **An toàn tin nhắn giữa agent:** tin từ agent khác được đánh dấu là từ phiên Claude, không phải người dùng — teammate không thể duyệt quyền thay người dùng hay chuyển việc bị từ chối cho teammate khác; ở auto mode, classifier kiểm từng tin trước khi giao.
+- **Lưu trữ cục bộ:** mailbox `~/.claude/teams/{team}/inboxes/{agent}.json`, config `~/.claude/teams/{team}/config.json` (xóa khi phiên kết thúc), task list `~/.claude/tasks/{team}/` (**giữ lại** theo `cleanupPeriodDays`). Không có cấu hình team cấp dự án.
+- **Hook làm cổng chất lượng:** `TeammateIdle`, `TaskCreated`, `TaskCompleted` — exit 2 để giữ teammate làm tiếp hoặc chặn tạo/hoàn thành task. Đây là chỗ đặt kiểm tra máy (test, lint) thay vì tin teammate tự báo xong.
+- **Giới hạn hiện tại:** `/resume`/`/rewind` **không khôi phục** teammate in-process; trạng thái task có thể trễ (teammate quên đánh dấu xong làm kẹt task phụ thuộc); một team mỗi phiên; **không có team lồng nhau**; lead cố định; teammate in-process không chạy subagent nền; split pane cần tmux hoặc iTerm2 (`it2`), không chạy trong terminal VS Code, Windows Terminal, Ghostty.
+- **Chi phí cache:** request của teammate in-process có cache TTL **5 phút** mặc định (kể cả gói subscription); đặt `subagentPromptCacheTtl: "1h"` để giữ lâu hơn, ghi cache 1 giờ tính giá cao hơn.
+- **Khuyến nghị kích thước:** bắt đầu **3–5 teammate**, khoảng 5–6 task mỗi teammate; mới dùng thì bắt đầu bằng việc **nghiên cứu/review** (không sửa code) trước khi để team cùng viết code. Lead đôi khi tự làm thay thay vì chờ teammate, hoặc dừng sớm — phải nhắc.
+
+### 8f.3 Vị trí trong các pattern của kho
+
+- Đây là **orchestrator–workers + parallelization** (§1) có thêm kênh **peer-to-peer** và **task list có khóa** — gần mô hình "công ty AI" của OpenCompany (mục 02 §4: topology là ranh giới ủy quyền, lead giao việc qua task manager) nhưng Claude Code **không giới hạn ai nhắn ai**.
+- Ví dụ "giả thuyết cạnh tranh" trong docs (5 teammate cố bác bỏ giả thuyết của nhau) là biến thể đa tác tử của **ADHD** (§8, ý tưởng phân kỳ song song) áp vào debug, chống hiện tượng neo vào giả thuyết đầu.
+- So với **Advisor Tool** (§8e): advisor là một model đọc transcript và khuyên, không tool; teammate là phiên Claude Code đầy đủ có tool. So với các bộ quy trình ở mục 20 (superpowers `dispatching-parallel-agents`, gsd-core "mỗi executor context 200k sạch", mattpocock `implement-spec`): các bộ đó dựng song song bằng subagent; Agent Teams đưa cơ chế này vào sản phẩm, có task list và mailbox chung.
+- **Dùng khi:** review nhiều góc nhìn, debug có nhiều giả thuyết, tính năng chia được theo **tập file không giao nhau** (frontend/backend/test). **Không dùng khi:** việc tuần tự, cùng sửa một file, hoặc tác vụ nhỏ — một phiên hoặc subagent rẻ hơn. Luôn thêm hook `TaskCompleted` chạy test trước khi cho đánh dấu xong.
+
+**Nguồn §8f:** bài viết tiếng Việt người dùng gửi 31/10/2026 · https://code.claude.com/docs/en/agent-teams (đọc 31/10/2026: enable, compare with subagents, display modes, specify teammates and models, assign and claim tasks, hooks, how Claude starts agent teams, architecture, permissions, messages between agents, context and communication, token usage, best practices, troubleshooting, limitations)
 
 ## 9. Nguồn (mục 1–7)
 
