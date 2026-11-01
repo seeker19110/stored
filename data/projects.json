@@ -184,7 +184,7 @@
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "Fork Cline; ARCHIVE, push cuối 15/5/2026; Kilo-Org/kilocode là nhánh còn sống (mục 01) (31/10/2026)",
+      "notes": "Fork Cline; ARCHIVE, push cuối 15/5/2026; Kilo-Org/kilocode là nhánh còn sống (mục 01) (31/10/2026); Kilo-Org/kilocode không còn là fork Roo: từ 2/2026 lõi là fork OpenCode, mã Roo-era ở Kilo-Org/kilocode-legacy (Apache-2.0, archive 3/8/2026); Kilo chỉ giữ import phiên/mode từ Roo (mục 01 §3j, 1/11/2026)",
       "section": "01"
     },
     {
@@ -7846,6 +7846,56 @@
       "open_source": true,
       "notes": "Model 8B + agent tự làm pipeline data science (paper arXiv 2510.16872), WebUI v2 có Docker sandbox tuỳ chọn; không CI; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
       "section": "15"
+    },
+    {
+      "name": "X-Company",
+      "repo": "seeker19110/X-Company",
+      "category": "own-repo",
+      "license": "Độc quyền (LICENSE chưa điền chủ sở hữu)",
+      "stars": 0,
+      "open_source": false,
+      "notes": "Website + webapp điều hành nội bộ + PWA (Next.js, PostgreSQL), dự án đích dựng trên X-Templates; P0, GO-NO-GO NO-GO 24–25/10/2026; 174 commit, 75% trailer Claude; CI 10 workflow, 42/42 action ghim SHA; LICENSE còn placeholder chủ sở hữu, settings cho phép Bash theo thiết kế guard của X-Templates (ADR-0017/0018); đọc 1/11/2026, mục 23 §8c",
+      "section": "23"
+    },
+    {
+      "name": "Kilo Code",
+      "repo": "Kilo-Org/kilocode",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 27818,
+      "open_source": true,
+      "notes": "Từ 2026 là fork OpenCode (CLI/VS Code 7.x/JetBrains cùng lõi `kilo serve`), mã thời Roo chuyển sang kilocode-legacy (archive); mặc định đi qua Kilo Gateway khoá anonymous, PostHog bật sẵn gắn email (JetBrains không tắt được), mode Code sửa file/MCP không hỏi; ★ 1/11/2026 (GitHub API), mục 01 §3j",
+      "section": "01"
+    },
+    {
+      "name": "Wan2.2",
+      "repo": "Wan-Video/Wan2.2",
+      "category": "agentic-video",
+      "license": "Apache-2.0",
+      "stars": 18293,
+      "open_source": true,
+      "notes": "Model video mở của Alibaba (T2V/I2V MoE 27B, TI2V-5B chạy 24GB, S2V, Animate thay nhân vật); mã và trọng số HF đều Apache-2.0, không gated; mã .py đứng từ 20/9/2025, không CI; prompt extend mặc định Qwen cục bộ, tuỳ chọn DashScope gửi cả ảnh; --enable_tts tự clone CosyVoice từ main; không watermark/lọc; Wan 2.5/2.6 chỉ API (chưa xác minh); ★ 1/11/2026 (GitHub API), mục 19 §3c",
+      "section": "19"
+    },
+    {
+      "name": "Palmier Pro",
+      "repo": "palmier-io/palmier-pro",
+      "category": "agentic-video",
+      "license": "GPL-3.0 (≤v0.7.6), proprietary sau đó",
+      "stars": 14669,
+      "open_source": false,
+      "notes": "Trình dựng video macOS 26 bằng Swift (~88k dòng), MCP HTTP 127.0.0.1:19789 bật mặc định không token, 54 tool, sinh AI qua backend Palmier đóng; mã GPL đóng băng ở tag last-gpl-source 24/8/2026, bản phát hành sau v0.7.6 độc quyền, Sparkle feed cũ đẩy bản GPL lên bản đóng; telemetry Sentry (email)+PostHog bật mặc định ở bản chính thức; ★ 1/11/2026 (GitHub API), mục 19 §3c",
+      "section": "19"
+    },
+    {
+      "name": "img2threejs",
+      "repo": "img2threejs/img2threejs",
+      "category": "motion-design",
+      "license": "Apache-2.0",
+      "stars": 19948,
+      "open_source": true,
+      "notes": "Agent skill (không phải app) ảnh → hàm TS trả THREE.Group procedural; ~48k dòng Python stdlib, 1.453 test; cổng tất định IoU≥0,85/SSIM/pHash/ΔE00 + agent tự chấm; không gọi LLM trong mã; tuyến GLB nhúng mesh base64, TRELLIS upload ảnh lên HF Space; demo showcase không license; 15/7/2026, ~0 mã mới sau v2.0.0 (6/9); ★ 1/11/2026 (GitHub API), mục 22 §9f",
+      "section": "22"
     }
   ]
 }

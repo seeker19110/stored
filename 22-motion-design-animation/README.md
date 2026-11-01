@@ -408,6 +408,85 @@ Không repo nào của mục 22 bị archive.
 
 **Nguồn §9e:** GitHub search API 31/10/2026 (`repo:` cho 13 repo mới/ứng viên; 11 truy vấn từ khoá/topic) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` 31/10/2026, đọc: 3b1b/manim (HEAD fafa083a; LICENSE.md, README.md, setup.cfg, .github/workflows/, git log trailer) · video-shotcraft (HEAD 1266a3e; LICENSE, README.md, SKILL.md, references/shots/ATTRIBUTION.md, template/package.json, .github/workflows/pr-checks.yml) · brag (HEAD 669ab92; LICENSE, README.md, PRODUCT.md, skills/brag/SKILL.md, skills/brag-slim/SKILL.md, skills/brag/assets/music/README.md, skills/brag/assets/sfx/sfx-analysis.md) · lemo-opuscar (HEAD bebbbe1; LICENSE, README.md, requirements*.txt, plugin/skills/lemo-opuscar/scripts/setup.sh, core/render/readcheck.mjs, .github/workflows/pages.yml) · html-video (HEAD c414ecc; LICENSE, README.md, ATTRIBUTIONS.md, package.json, packages/cli/package.json, packages/runtime/src/defs/amr.ts, templates/) · openfilm (HEAD 9375992; LICENSE, TRADEMARK.md, SECURITY.md, THIRD_PARTY_NOTICES.md, README.md, packages/openfilm/{package.json, studio/server/server.mjs}, skills/openfilm/SKILL.md, .github/workflows/{ci.yml, agents.yml}) · effectcraft (HEAD f4f390b1; LICENSE-MIT, NOTICE, README.md, CLAUDE.md, .mcp.json, docs/effects.md, crates/effects/src/catalog.rs) · github.com/{3b1b/manim, Vincentwei1021/video-shotcraft, latent-spaces/brag, lemomo-ai/lemo-opuscar, nexu-io/html-video, openfilm/openfilm, storytold/effectcraft}
 
+## 9f. Đọc mã kỹ: img2threejs/img2threejs (yêu cầu người dùng, 1/11/2026)
+
+> Repo ảnh → mô hình three.js bằng code, gần 20k★ sau 3,5 tháng. Clone `--filter=blob:none` (HEAD `3e7099e`, 27/10/2026), đọc mã `forge/`, installer, CI, tài liệu nội bộ, lịch sử git; **không cài, không chạy script hay model**. Số sao từ GitHub search API 1/11/2026. Liên quan: mục 23 (repo riêng `design-os-3d-blender` đã vendor skill này bản v1.5.0), §9b (`CloudAI-X/threejs-skills`), mục 06 §7 (Anatomy) và §7b (`diagram-design`).
+
+### 9f.1 Hồ sơ nhanh
+
+| Mục | Thông tin (1/11/2026) |
+|---|---|
+| Repo | **19.948★**, 1.672 fork, 116 issue/PR mở · tạo **15/7/2026** · 111 commit trên `main` · push cuối 28/10/2026 · trang demo img2threejs.io |
+| Là gì | **Agent skill**, không phải app: `SKILL.md` (4.296 từ, ~34 KB) + bộ script Python `forge/` + tài liệu tham chiếu `grimoire/`. Chạy trong Claude Code, Codex, OpenCode, Hermes. Không có UI, server hay API riêng. Gói npm `img2threejs` chỉ là installer 319 dòng |
+| Tác giả | Hai người, múi giờ +07 (Việt Nam): `kokorolx` (Tâm L., 72 commit gộp hai email) và `hoainho` (Hoài Nhớ, 38 commit). Repo chuyển từ `hoainho/img2threejs` sang org `img2threejs` (link star-history và trendshift còn tên cũ). Nơi làm việc **(chưa xác minh)** |
+| Trailer AI | 2/111 commit có `Co-Authored-By: Claude Sonnet 5`. **Không đo được tỉ lệ thật**: PR được squash (ví dụ #98 thêm 30.749 dòng trong một commit), trailer bị mất khi gộp |
+| Nhịp phát hành | v1.0 (20/7) → v1.3 (23/7) → v1.4.0 (25/7) → v1.5.1 (23/8) → v1.5.2 (3/9) → **v2.0.0 (6/9)**; `cli-v0.1.1` (7/10). Tag không ký. Sau 6/9 chỉ còn 9 commit (docs, CI, installer, thêm nhà tài trợ) |
+| Tăng sao | ~7.400★ sau khoảng 2 tuần (theo bài developer.cloud.tencent.cn, **chưa xác minh**); demo "Pikachu 10K Star Celebration" có trước 4/9 (issue #126); 19,9k ngày 1/11. Commit đầu ngày 15/7 đã kèm `docs/PROMOTION.md`: bài mẫu cho Show HN, Reddit, three.js Discourse, X (đã xoá ngày 20/7) |
+| License | `LICENSE` Apache-2.0 (đổi từ MIT ngày 23/7, PR #16); không có NOTICE. Một số trang tổng hợp còn ghi MIT. Plugin `img2`, `plugin-character`, `plugin-img2glb` cũng Apache-2.0; **repo demo `img2threejs-showcase` không có LICENSE** (GitHub không nhận license, trang README tự ghi các hình tham chiếu "not relicensed") |
+| Tài trợ | Huy hiệu MiniMax, Atlas Cloud (gói coding plan LLM), **Tripo, Hyper3D** (dịch vụ sinh mesh 3D bằng AI, tức đúng loại công cụ README nói mình "không phải"); Ko-fi |
+
+### 9f.2 Hoạt động thật (đọc mã)
+
+- **Kiến trúc.** Python ~74,6k dòng (48k mã, ~26,6k test), Markdown ~12,5k dòng, `forge/` ~90 module chia 5 giai đoạn: `stage1_intake` (đọc ảnh, vùng vật liệu, landmark, camera) → `stage2_spec` (sinh và kiểm `ObjectSculptSpec` JSON) → `stage3_build` (`generate_threejs_factory.py`, 4.111 dòng, sinh một hàm TypeScript trả `THREE.Group` cho từng "pass") → `stage4_review` (cổng so hình) → `stage5_rig` (khung xương, skinning). Agent viết spec, script kiểm và sinh code, agent chụp màn hình bằng trình duyệt của host rồi chấm.
+- **Model và nhà cung cấp.** Trong `forge/` **không có lệnh gọi LLM nào**: mọi suy luận do agent chủ (Claude, GPT…) đảm nhận. `vlm_gate.py` nhận hàm gọi VLM được truyền vào, test dùng stub. Model chỉ xuất hiện ở phần tuỳ chọn: `integrations/vision` tải `facebook/sam2.1-hiera-tiny`, `depth-anything/Depth-Anything-V2-Small-hf` từ Hugging Face và model MediaPipe từ storage.googleapis.com (`reference_vision.py:26-33`, cần torch/transformers); `integrations/mesh3d/generate_reference_mesh.py:43` **tải ảnh tham chiếu lên Hugging Face Space `trellis-community/TRELLIS`** để lấy mesh đối chiếu.
+- **"Quality gate" đo gì.** `divine_eye.py` là bộ chấm tất định, viết bằng Python thuần: **cổng cứng** IoU bóng (silhouette) ≥ 0,85 và sai lệch tỉ lệ ≤ 0,08 (`divine_eye.py:59-60`); tín hiệu mềm gồm tỉ lệ khung, đối xứng hai bên, pHash, SSIM độ sáng, trùng cạnh Sobel, vùng cháy sáng, vùng phẳng, histogram độ sáng. Màu dùng CIEDE2000 (`_shared/color_metrics.py`). Không có LPIPS, CLIP hay DINO. Chamfer và OSIM đầy đủ ghi "deferred". Gate VLM chỉ chạy khi cổng cứng đã qua, lấy trung vị nhiều mẫu, có thể "cứu" lỗi mềm sát ngưỡng. Còn có cổng trước khi sinh code (`validate_sculpt_spec.py --strict-quality` chặn spec thiếu chi tiết, factory trả `BLOCKED`), cổng tóc, cổng giao nhau giữa các phần, cổng rig.
+- **Render.** Script Python không render. Ảnh chụp do công cụ trình duyệt của agent (MCP browser, preview) hoặc `scripts/capture_threejs_playwright.py` (cần `pip install playwright`). `CLAUDE.md` đặt "mandatory screenshot gate": phải lưu PNG, đọc lại, so cạnh nhau, chạy `diagnose_render.py` trước khi báo xong.
+- **Điểm duyệt cuối do chính agent tự khai.** `append_review.py --ai-vision-score <0-1> --fidelity <0-1>` (SKILL.md:256): cùng agent viết code, nhìn ảnh rồi tự ghi điểm. Phần tất định chỉ chặn lỗi hình học thô.
+- **Token và chi phí.** `docs/TOKEN_COST.md` tự ghi là **ước lượng, không phải benchmark**: ~80k–180k token cho một vật thể (5–8 vòng review, ~5k–12k token mỗi vòng), ~150k–350k cho nhân vật. Hứa "measured benchmark planned for v1.5"; đến v2.0 vẫn chưa có. Riêng `SKILL.md` đã ~8–9k token mỗi lần nạp; CI giữ trần 4.300 từ (`scripts/ci/skill-budget.json`), hiện ở 4.296.
+
+### 9f.3 Claim của README so với mã
+
+| Claim | Kết quả | Bằng chứng |
+|---|---|---|
+| "Code-only, procedural, không mesh tải về" (lõi) | ✅ | Factory sinh primitive, shader, hình học từ spec; installer và CLAUDE.md cấm tải mesh/art pack |
+| Code-only ở tuyến nhân vật GLB | ⚠️ | `integrations/glb_character_pipeline/README.md:35,88`: giai đoạn 2/3 **mã hoá mesh đo được thành base64 trong file `.ts`**; tài liệu tự nói đây là "hai claim khác nhau". Đúng chữ "không fetch lúc chạy", không còn là procedural |
+| Không dùng ảnh texture | ⚠️ | Factory có nhánh `THREE.TextureLoader().load(url)` khi spec có `maps` (`generate_threejs_factory.py:3176`); tuyến chiếu ảnh (projection) đưa ảnh gốc vào bề mặt |
+| "Pure stdlib, no PIL, no numpy, no Playwright" (README:305) | ✅ cho `forge/`, ⚠️ cho repo | `forge/` đọc PNG/JPEG bằng `struct`/`zlib`, ảnh khác gọi `sips` (chỉ có trên macOS). Tích hợp tuỳ chọn cần torch, transformers, numpy, Pillow, Playwright, esbuild |
+| "Scripts never score visuals; the model judges" (README:304) | ❌ | `divine_eye.py` chấm IoU, SSIM, pHash, ΔE và từ chối cứng; đúng hơn là "script chặn, model chấm phần còn lại" |
+| "Token-efficient" | ⚠️ | Thiết kế hợp lý (chỉ sinh pass đang mở khoá, một ảnh so sánh mỗi vòng), nhưng không có số đo |
+| Ảnh người → giống người thật | ⚠️ | README "Honesty about limits" tự nói nhân vật chỉ là stylized; issue #74 (ảnh người cho kết quả kém), #126 (Claude/Kimi/GPT không tái tạo được chất lượng demo Pikachu, mỗi lần thử tốn nhiều compute) |
+| Test và CI | ✅ | 104 file, 1.453 hàm test `unittest` trong `forge/tests`; CI chạy toàn bộ trên Python 3.10 qua workflow dùng chung ghim SHA, test installer trên Node 18/22, docs-quality (bảng, link, trần từ SKILL). Typecheck TypeScript sinh ra **bị bỏ qua** khi không có checkout showcase (CLAUDE.md tự nói) |
+| Installer an toàn | ✅ | `bin/img2threejs.mjs:13` ghim `v2.0.0`, từ chối nhánh và SHA ngắn, `fetch --depth=1` một tag, không ghi đè thư mục không do nó quản lý. Lệnh mẫu dùng `img2threejs@latest` cho CLI, còn skill vẫn ghim tag |
+
+### 9f.4 Bảo mật, mạng, telemetry
+
+- Không thấy telemetry, analytics hay crash reporting (grep posthog/sentry/telemetry/analytics: 0 kết quả có nghĩa). Không có server lắng nghe; các URL `127.0.0.1:5173/5200` chỉ là dev server Vite của repo showcase.
+- Kết nối mạng trong mã: `git fetch` của installer (github.com), tải model vision (Hugging Face, Google storage), **upload ảnh lên HF Space TRELLIS** (tuỳ chọn, có thể kèm HF token), CI đọc catalog plugin từ raw.githubusercontent.com và gọi GitHub API để phân loại issue.
+- Không truyền cờ bỏ quyền nào cho agent; skill chạy trong quyền mà host đã cấp. Chuỗi plugin `img2` cài thêm repo khác, trong đó plugin `environment` **riêng tư**, cần quyền GitHub.
+- Issue #102 (SSRF trong `fetch_cs2_metadata.py`) vẫn mở, nhưng file đã chuyển sang `plugin-cs2`, không còn trong repo gốc.
+- `LAB-FINDINGS.md` tự ghi lỗi của harness `img2` v0.2.0: `img2 capabilities` trả lệnh không hợp lệ với `status: answered`, trên macOS chạy nhầm `/usr/bin/read` và thoát mã 0. Tài liệu nội bộ thẳng thắn hơn README.
+
+### 9f.5 So sánh với các mục đã có
+
+| | img2threejs | HyperFrames / Remotion (§2) | Manim / ManimGL (§9c, §9e) | Anatomy (06 §7) · diagram-design (06 §7b) |
+|---|---|---|---|---|
+| Đầu ra | Hàm TS trả `THREE.Group` có pivot, socket, collider (tài sản 3D tương tác, chưa phải video) | Video MP4 từ HTML/React | Video toán học | Minh hoạ isometric tương tác · sơ đồ 2D |
+| Ai làm phần "AI" | Agent chủ; repo không gọi model | Agent chủ | Không có (thư viện) | Agent chủ |
+| Kiểm chất lượng | Pixel/hình học tất định + agent tự chấm | `hyperframes check`, lint | Không | Kiểm bằng Chrome |
+| Quy mô mã | ~48k dòng Python + 1.453 test | Engine lớn, đội công ty | Thư viện lâu năm | 1 skill + thư viện vẽ |
+| License | Apache-2.0; demo không license | Apache-2.0 · Remotion License | MIT | (xem mục 06) |
+
+Điểm khác biệt: img2threejs là **skill có công cụ thật** (nhiều cổng máy hơn hẳn các skill §3–§5), nhưng đầu ra là tài sản 3D, không phải video. Ghép với HyperFrames/OpenFilm khi cần quay thành clip, hoặc dùng `CloudAI-X/threejs-skills` (3,9k★, MIT) khi chỉ cần agent viết three.js thông thường.
+
+### 9f.6 Rủi ro
+
+1. **Chất lượng phụ thuộc agent, khó lặp lại**: demo do chính tác giả làm; người dùng báo không đạt (#74, #126). Điểm duyệt cuối là điểm agent tự ghi.
+2. **Tốc độ tăng sao không phản ánh độ chín**: có playbook quảng bá từ ngày đầu; mã lõi gần như dừng sau v2.0.0 (6/9), roadmap v2.1–v3.0 chưa có mã.
+3. **Bản quyền nội dung demo**: gallery dựng lại Pikachu, Groot, vũ khí CS2, Starship; repo showcase không có license và tự ghi hình tham chiếu không được cấp lại quyền. Không dùng demo làm tài sản thương mại.
+4. **Rò dữ liệu ảnh** khi bật tuyến TRELLIS (ảnh lên HF Space công cộng) và tải model từ HF/Google khi bật tích hợp vision.
+5. **Nhà tài trợ là dịch vụ sinh mesh và LLM**: chưa thấy mã ưu tiên dịch vụ của họ, nhưng plugin `img2glb` gọi TRELLIS; theo dõi xem plugin trả phí có xuất hiện không **(chưa xác minh)**.
+6. Bus factor 2; một số tiện ích chỉ chạy trên macOS (`sips`).
+
+### 9f.7 Khuyến nghị
+
+- Dùng cho **vật thể cứng, phong cách low-poly/stylized** cần chuyển động (nắp hộp, bánh xe, cánh quạt), nơi đầu ra code diff được có giá trị. Không dùng cho chân dung người thật hay tài sản cần độ chính xác hình học.
+- Cài ghim phiên bản: `npx --yes img2threejs@0.1.1 install --ref v2.0.0` rồi `npx --yes img2threejs@0.1.1 doctor`; không cài harness `img2` và plugin trừ khi cần.
+- Trước khi tin kết quả, chạy lại cổng tất định (`validate_sculpt_spec.py --strict-quality`, `divine_eye.py`) và **xem tận mắt ảnh so sánh**; không chấp nhận `--ai-vision-score` của agent làm bằng chứng duy nhất. Đặt trần vòng review để giới hạn token.
+- Không bật `integrations/mesh3d` với ảnh riêng tư.
+- Bài học cho repo của mình (mục 23): tách cổng tất định khỏi điểm VLM, VLM chỉ chạy sau cổng cứng; ghim ref trong installer; trần từ cho SKILL.md trong CI.
+
+**Nguồn §9f:** GitHub search API 1/11/2026 (`repo:img2threejs/img2threejs`, `img2threejs-showcase`, `img2`, `plugin-character`, `plugin-img2glb`, `CloudAI-X/threejs-skills`; issue #74, #102, #126) · clone `--filter=blob:none` 1/11/2026, HEAD `3e7099e`, đọc: README.md, SKILL.md, CLAUDE.md, CONTRIBUTING.md, LAB-FINDINGS.md, CHANGELOG.md, ROADMAP.md, LICENSE (và lịch sử: MIT → Apache-2.0 ở `7b1c62c`), package.json, bin/img2threejs.mjs, docs/TOKEN_COST.md, docs/PROMOTION.md (commit `a27272d`), forge/stage4_review/{divine_eye.py, vlm_gate.py, make_comparison_sheet.py}, forge/stage3_build/{generate_threejs_factory.py, bake_projected_texture.py}, forge/stage1_intake/{run_vision_adapter.py, delight_albedo.py}, forge/_shared/color_metrics.py, integrations/{vision/pyproject.toml, vision/reference_vision.py, mesh3d/generate_reference_mesh.py, glb_character_pipeline/README.md}, scripts/{capture_threejs_playwright.py, issue_triage.py, ci/plugin_table.py, ci/skill-budget.json}, .github/workflows/*.yml, git log/shortlog/tags · https://github.com/img2threejs/img2threejs · https://github.com/img2threejs/img2threejs-showcase · https://img2threejs.io · https://developer.cloud.tencent.cn/article/2718114 · https://github.com/hoainho/img2threejs/wiki
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes

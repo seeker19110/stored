@@ -737,3 +737,9 @@
 ## Bổ sung 2026-11-01 (bàn giao X-Templates đợt e3fdcb0..e8b3831)
 
 - Clone `seeker19110/X-Templates` (shallow, HEAD `a0f08cd` 31/10/2026, v3.29.0): grep ID trong `framework/**.md`, đọc `research/2026-10-31-stored-delta-autonomy.md` (phần đã tiêu thụ XT-H-001…018). Nguồn bài học: phần "Nâng cấp 31/10/2026" của 21 mục. Kết quả: [X-TEMPLATES.md](X-TEMPLATES.md) §2, §3 (thêm dòng), §4b, §5b; `data/xt-handoff.json` 18 → 51 mục.
+
+## Bổ sung 2026-11-01b (đọc mã kỹ Kilo Code, Wan2.2, palmier-pro, img2threejs; X-Company)
+
+- `Kilo-Org/kilocode`: clone `--filter=blob:none` 1/11/2026; commit gốc `4b0ea68d7a` (Kujtim Hoxha, "initial", 21/3/2025 — lịch sử OpenCode), các commit "Merge OpenCode v1.x", LICENSE (2026 Kilo Code + 2025 opencode), `packages/kilo-gateway/src/api/constants.ts` (`ai-gateway.kilo.ai`). Mục 01 §3j.
+- `Wan-Video/Wan2.2`, `palmier-io/palmier-pro`: clone 1/11/2026, file đọc ghi ở **Nguồn §3c** mục 19. `img2threejs/img2threejs` (+ `img2threejs-showcase`): **Nguồn §9f** mục 22.
+- `seeker19110/X-Company`: clone 1/11/2026 HEAD `f000d50`; đối chiếu `CLAUDE.md` của X-Templates (ADR-0017/0018 về quyền Bash + guard). Mục 23 §8c. `seeker19110/hotel-manager` chưa đọc (quyền thêm repo bị từ chối).

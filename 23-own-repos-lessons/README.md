@@ -363,6 +363,32 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 
 ---
 
+## 8c. Hồ sơ `seeker19110/X-Company` (đọc mã 1/11/2026)
+
+> Repo của chủ kho chưa có hồ sơ (§8b ghi "thấy trong search"). Clone `--filter=blob:none` HEAD `f000d50` (25/10/2026); không chạy script. `seeker19110/hotel-manager` **chưa đọc** (quyền thêm repo vào phiên bị từ chối); `donghanhcungban/projects-template` đã có trong bảng §8b.
+
+| Mục | Thông tin |
+|---|---|
+| Là gì | Website công ty + webapp điều hành nội bộ (tổ chức, chấm công, công việc, nghiệm thu, báo cáo) + PWA cho nhân viên, nhắm công ty 20–200 người. Next.js + PostgreSQL 16/17, Node ≥ 22.12 |
+| Trạng thái | README: **"đang xây P0"**, chưa phát hành, chưa người dùng thật. `GO-NO-GO.md` (24–25/10): **NO-GO** — 5/9 hàng BLOCKER đỏ, 78 MUST còn mở "chờ người/hạ tầng thật"; không commit từ 26/10/2026 |
+| Quy mô | 174 commit từ 29/6/2026; 916 file, ~47k dòng TS/TSX; 83 file test + 6 file e2e; **130/174 commit (75%) có trailer Claude** |
+| Khung | Dựng trên X-Templates (`xt.yaml`, `.xtemplates/`, `BLUEPRINT.md`, `GO-NO-GO.md` do `xt.py release-check` sinh, ADR trong `docs/adr/`) — là **dự án đích thật** đầu tiên của khung mà kho đọc được |
+
+**Điểm làm tốt (đối chiếu bài học kho):**
+
+- ✅ CI 10 workflow (ci, codeql, dep-audit, osv-scanner, secret-scan, pr-policy, merge-gate…), **42/42 action ghim SHA**, có `dependabot.yml`; GO-NO-GO ghi cả DAST ZAP, drills, Lighthouse, gitleaks.
+- ✅ `npm test` dựng PostgreSQL tạm thật, **không tự bỏ qua** khi thiếu DB; tách `DATABASE_URL` (role không owner) và `MIGRATE_DATABASE_URL` — đúng tinh thần XT-H-019 (`.env.example` chỉ có tên biến).
+- ✅ Có `license-policy.yaml`, `osv-scanner.toml`, `lychee.toml`, `perf-budget.json`, `THIRD_PARTY_NOTICES.md`, `SECURITY.md`, threat model.
+
+**Cần sửa:**
+
+- ❌ **`LICENSE` còn chỗ trống**: dòng đầu là `Copyright (c) 2026 <chủ sở hữu — chủ dự án xác nhận>. All rights reserved.` (thêm 18/10/2026). Giấy phép độc quyền nhưng chưa ghi chủ sở hữu, và repo đang **công khai**; GitHub báo `NOASSERTION`. Nên điền tên pháp nhân, hoặc chuyển repo về private nếu chưa muốn công khai mã.
+- ✅/⚠️ `.claude/settings.json` cho phép `"Bash"` trọn gói (cùng `Read`, `Edit`, `Write`, `WebFetch`, `WebSearch`) và một danh sách deny. Đây là **thiết kế của X-Templates** (ADR-0017/0018): hàng rào chính là hook `guard.py` (PreToolUse) chặn hành động không đảo ngược, không phải danh sách deny; `XT_GUARD_POLICY=strict` trả lại chế độ hỏi. Không phải lỗi — chỉ cần guard của khung được cài đủ. Không thấy `enableAllProjectMcpServers` hay `model` cố định.
+- ⚠️ `.gitignore` không có dòng `.claude/settings.local.json` (XT-H-021).
+- ⚠️ Ba lệnh kiểm LOOP-* trong blueprint chỉ xanh khi chạy ngoài phiên agent (guard chặn `loop` lồng nhau — FB-088): cổng phụ thuộc ngữ cảnh chạy, nên ghi rõ trong `xt.yaml` cách chạy để release-check tái lập được.
+
+**Nguồn §8c:** clone `https://github.com/seeker19110/x-company` 1/11/2026 (HEAD `f000d50`): README.md, LICENSE (`git log --diff-filter=A`), GO-NO-GO.md, .claude/settings.json, .gitignore, xt.yaml, .github/workflows/*.yml (đếm `uses:` ghim SHA), .github/dependabot.yml, `git log -i --grep "co-authored-by: claude"`, `git shortlog -sne` · GitHub search API (`repo:seeker19110/X-Company`, `repo:seeker19110/hotel-manager`, `repo:donghanhcungban/projects-template`) 1/11/2026.
+
 ## 9. Nguồn (đường dẫn trong các clone nông, đọc 2026-10-12)
 
 - projects-template: `README.md`, `.claude/settings.json`, `.claude/hooks/{auto-complete-guard,pre-commit-gate,session-resume,usage-guard,telemetry-record}.sh`, `scripts/{dev-task.sh,check-docs-consistency.sh,test-hooks-loop.sh,model-capability-tiers.json,subagent-dispatch.py,maintain-run.sh}`, `docs/framework/{adopt-from-outside,orchestration-3-tier}.md`, `docs/reports/2026-09-22…2026-10-12-*.md`, `TRAPS.md`, `docs/adr/0003,0005,0006,0007,0009,0010,0011`, `.github/workflows/{ci,pr-policy,maintenance}.yml`, `docs/ops/{supply-chain,threat-model-maintain-cron}.md`
