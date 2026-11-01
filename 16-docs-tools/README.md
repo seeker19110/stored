@@ -193,6 +193,59 @@
 
 **Nguồn §2f:** clone github.com/colbymchenry/codegraph 31/10/2026 (blob:none, 1.802 commit, HEAD 2008e2f 30/10/2026; README.md (MCP Tools, Verified releases, Measured cross-file coverage), TELEMETRY.md, install.sh, telemetry-worker/, codegraph-kernel/, package.json, `__tests__/`, .github/workflows/{release,deploy-site}.yml; git shortlog) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/colbymchenry/codegraph.json (31/10/2026) · getcodegraph.com
 
+## 2g. Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại số sao, license, trạng thái của 17 repo GitHub đã có trong mục 16 (GitHub search API, `meta_all` ngày 31/10/2026); với repo có `pushed_at` đáng ngờ thì clone nông để xem commit thật của nhánh mặc định. (2) Tìm repo lớn còn thiếu: 14 truy vấn GitHub (topic `documentation`, `static-site-generator`, `openapi`; từ khoá "llms.txt", "documentation mcp", "deepwiki", "codebase prompt", "docs coding agents" cho repo tạo sau 1/10/2025). Từ ~40 ứng viên chưa có trong kho, chọn **7 repo**, clone `--filter=blob:none` và đọc mã (LICENSE, manifest, installer, module telemetry, workflow CI). **Không cài, không chạy script nào.** Số sao đọc 31/10/2026.
+
+### 2g.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi (12/10 → 31/10/2026) | Hệ quả |
+|---|---|---|
+| `facebook/docusaurus` | **Chuyển sang org `meta/docusaurus`** (GitHub redirect); 66,6k★, push 30/10 | Catalog đang ghi tên cũ và không có số sao; link cũ vẫn chạy nhờ redirect, nên đổi khi tích hợp |
+| `coderamp-labs/gitingest` | API báo push 28/10, nhưng **nhánh `main` vẫn đứng ở `4e259a0` (16/8/2025)**: push mới là của nhánh Renovate | Nhận định §2b vẫn đúng: hơn 14 tháng không có commit tính năng, ưu tiên repomix |
+| `upstash/context7` | 64k★ (catalog chưa có số) | Vẫn là MCP docs phổ biến nhất mục |
+| `yamadashy/repomix` | 28,8k → 29,1k | Ổn định |
+| `zensical/zensical` | 5,9k → 6,1k | Vẫn 0.0.x |
+| `Graphify-Labs/graphify` · `colbymchenry/codegraph` | 140k · 76,1k (hồ sơ §2e, §2f cùng ngày) | Không đổi |
+| `sphinx-doc/sphinx` | GitHub báo `NOASSERTION` | Không phải đổi license: file là `LICENSE.rst` (BSD-2-Clause), GitHub không nhận dạng được |
+| `squidfunk/mkdocs-material` · `withastro/starlight` · `fuma-nama/fumadocs` · `AnswerDotAI/llms-txt` | 27,6k · 9,5k · 13,5k · 2,7k (catalog chưa có số) | llms-txt push cuối 24/9/2026, nhịp chậm |
+
+Các repo còn lại (vitepress, mdBook, docsify, deepwiki-open, codeflow) dao động dưới 2%, không có repo nào bị archive.
+
+### 2g.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `mermaid-js/mermaid` | Sơ đồ dạng mã | 90,9k · MIT | 31/10/2026 | Sơ đồ từ văn bản, nhúng trong Markdown của GitHub/GitLab/Docusaurus/VitePress | 889 tác giả; mặc định `securityLevel: strict` |
+| `DeusData/codebase-memory-mcp` | Code knowledge graph | 47,9k · MIT | 31/10/2026 | MCP server viết bằng C: đồ thị code + docs + hạ tầng, 17 tool, 162 grammar | ~78% commit một người; tạo 2/2026 |
+| `GitbookIO/gitbook` | Trình render docs | 29,1k · **GPL-3.0** | 30/10/2026 | Mã nguồn phần hiển thị site GitBook: có route `llms.txt`, `llms-full.txt`, Markdown từng trang, MCP | Nội dung vẫn lấy từ API GitBook |
+| `langchain-ai/openwiki` | Wiki cho agent | 17,6k · MIT | 30/10/2026 | CLI + MCP viết wiki Markdown cho repo, mỗi "Claim" trỏ về dòng mã nguồn | **Telemetry bật sẵn**; từ 10/10 chỉ còn bump dependency |
+| `scalar/scalar` | Tài liệu API | 16,4k · MIT | 31/10/2026 | API reference từ OpenAPI + API client offline + `openapi-to-markdown` cho LLM | Nút "Agent" và proxy gọi dịch vụ Scalar |
+| `repowise-dev/repowise` | Code knowledge graph | 8,1k · **AGPL-3.0** | 31/10/2026 | Index code + git + test, dashboard, MCP, sinh docs (LLM tuỳ chọn) | Telemetry opt-out; cài "đọc URL rồi tự cài" |
+| `mufeedvh/code2prompt` | Gói codebase cho LLM | 7,7k · MIT | 7/9/2026 | CLI Rust gói repo thành một prompt có cây thư mục, đếm token | Không quét secret; im từ 7/9 |
+
+### 2g.3 Hồ sơ ngắn
+
+- **mermaid.** Chuẩn de facto cho "sơ đồ là văn bản": 16.645 commit từ 11/2014, 889 tác giả, bản 12.2.0 (13/10/2026), 25 workflow ghim SHA 97/99. Gói `mermaid` có 37 thư mục sơ đồ trong `src/diagrams/`; layout ELK và tidy-tree tách gói riêng. An toàn: `config.schema.yaml` để mặc định `securityLevel: strict` (mã hoá HTML, tắt click); chế độ `loose`/`antiscript` cho phép HTML trong nhãn, chỉ bật khi nguồn sơ đồ tin được. Không telemetry trong thư viện; Plausible chỉ nằm ở site docs. Với agent, mermaid là định dạng sơ đồ rẻ token nhất để đưa vào `AGENTS.md`/ADR. Cài: `npm install mermaid`.
+- **codebase-memory-mcp.** 5.003 commit từ 25/2/2026, 233 tác giả nhưng Martin Vogel 3.902 commit (~78%); 148 trailer Claude. Toàn bộ backend viết bằng C, vendor sqlite3/mimalloc/yyjson; ✅ README ghi 162 ngôn ngữ, đếm được đúng 162 thư mục grammar. Index cả Docker, Kubernetes, Terraform, CI và tài liệu, nên rộng hơn codegraph (§2f). ✅ "Không telemetry": grep `src/` không thấy endpoint thu thập; host mạng duy nhất là GitHub (cập nhật) và Hugging Face (model chat cục bộ của CBM Lens, chỉ khi bật). Chuỗi cung ứng tốt nhất trong đợt: `install.sh` tải `checksums.txt` rồi so `sha256` trước khi giải nén, release có `attest-build-provenance`, SBOM, cosign, quét VirusTotal; 184/206 action ghim SHA. Lưu ý: checksum lấy từ cùng release nên chỉ chống hỏng khi tải; muốn chống release bị giả thì kiểm attestation (`gh attestation verify`). Số đo "Linux kernel 3 phút" là tự công bố trên M3 Pro **(chưa xác minh)**. Cài: `curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash` (tốt hơn: tải release, kiểm attestation, rồi chạy).
+- **GitbookIO/gitbook.** Không phải GitBook tự host: README nói rõ repo chỉ là phần **render** nội dung đã xuất bản (Next.js, Bun), dữ liệu vẫn lấy qua API GitBook. Đáng đọc vì đây là cài đặt thật của docs-for-AI ở §2: route `llms.txt`, `llms-full.txt` (có phân trang), `~gitbook/markdown/[page]` trả Markdown từng trang, `~gitbook/mcp` (có route auth) và component `WebMCP`. License **GPL-3.0**; README yêu cầu fork public hoặc mua license thương mại nếu muốn giữ riêng. 0/45 action ghim SHA.
+- **openwiki (LangChain).** Tạo 22/6/2026, 484 commit, 111 tác giả, v0.7.2. Chạy hai cách: trong coding agent (dùng phiên model của agent, 10 host gồm Claude Code, Codex, Cursor, Kiro, Antigravity) hoặc CLI độc lập với 14 provider. Điểm hay: **Grounded Claims**, mỗi sự kiện trong wiki trỏ về `repo://src/x.ts#L40-L82`; khi mã đổi, chỉ các claim có bằng chứng thay đổi bị đánh dấu cần cập nhật. Vòng MCP `openwiki_begin → submit_plan → next_page → submit_page → finish` để agent không tự tuyên bố xong. Có workflow mẫu cập nhật wiki trong CI. **Telemetry bật mặc định** (PostHog `us.i.posthog.com`, ID cài ngẫu nhiên); tắt bằng `OPENWIKI_TELEMETRY_DISABLED=1` hoặc `DO_NOT_TRACK=1`, xem trước payload bằng `--telemetry-file`. ⚠️ README ghi "không thu IP", nhưng comment trong `client.ts` nói IP bị bỏ nhờ cài đặt phía server PostHog, client không chặn được. CI ghim SHA 28/28. Nhịp phát triển gần như dừng từ 10/10 (6 commit, toàn bump dependency). Cài: `npm install -g openwiki` (Node ≥22.22).
+- **scalar.** Monorepo 7.955 commit, 269 tác giả, 1.224 trailer Claude; 16 integration (FastAPI, Hono, NestJS, .NET, Docusaurus, Starlight…). Liên quan docs-for-AI: gói `@scalar/openapi-to-markdown` sinh Markdown thân thiện LLM từ OpenAPI, component `AgentScalar` và nút "Open MCP" trong API reference. PostHog là **plugin tuỳ chọn**, không nạp thì không theo dõi (test e2e ghi rõ bản standalone không có). Agent chat gọi `scalar.com`/`proxy.scalar.com`; nút "thử request" có thể đi qua proxy của Scalar nếu cấu hình `proxyUrl`, nên với API nội bộ hãy tự host proxy hoặc tắt. Cài: `npm install @scalar/api-reference`.
+- **repowise.** 3.677 commit từ 23/3/2026 (1.107 commit từ 12/10), Raghav Chamadiya ~67%. Index không cần LLM (đồ thị, git, độ phủ test, dead code); LLM chỉ khi sinh văn xuôi, gọi thẳng provider bằng key của người dùng. Telemetry **opt-out** (tên lệnh + môi trường thô), tự tắt khi `DO_NOT_TRACK`, CI hoặc stderr không phải TTY. ⚠️ Cách cài đầu README là bảo agent "đọc `https://docs.repowise.dev/setup.md` rồi tự cài": chỉ dẫn lấy từ URL lúc chạy, không ghim phiên bản. Benchmark "agent mở 3 file thay vì 7" là tự đo **(chưa xác minh)**. License **AGPL-3.0**; có bản hosted và bản thương mại. 0/56 action ghim SHA. Cài: `uv tool install repowise` rồi `repowise init --yes --no-prose`.
+- **code2prompt.** CLI Rust (crate `code2prompt` 4.3.0, tag mới nhất v4.2.0), có SDK Python `code2prompt-rs`, TUI, template Handlebars, đếm token bằng tiktoken. So với repomix (§2b): không có bước quét secret (không thấy module nào trong `crates/`), nên cần `.gitignore`/bộ lọc chặt. Nhịp chậm: 0 commit từ 12/10. Cài: `cargo install code2prompt` hoặc `brew install code2prompt`.
+
+**Đã cân nhắc, không thêm:** `yusufkaraaslan/Skill_Seekers` (15,3k, docs → skill Claude; hợp mục 20 hơn), `opendatalab/MinerU` (82,9k, PDF → Markdown; thuộc mục 15), `Redocly/redoc` (26k) và `swagger-api/swagger-ui` (29,1k) (API docs kinh điển, không có lớp AI), `xerj-org/xerj` (17,9k, search engine cho agent), `AIDotNet/OpenDeepWiki` (3,7k), `MicrosoftDocs/mcp` (2k, MCP docs chính chủ, nhỏ).
+
+### 2g.4 Mẫu chung rút ra
+
+1. **Docs-for-AI đã thành tính năng có sẵn của nền tảng**: GitBook render `llms.txt` + Markdown từng trang + MCP; Scalar có `openapi-to-markdown` + nút MCP. Tự viết llms.txt bằng tay chỉ cần khi framework chưa có.
+2. **Cụm "code knowledge graph cho agent" đông lên**: Graphify, codegraph (§2e–2f), nay thêm codebase-memory-mcp và repowise. Khác biệt đáng chọn không còn là "có graph" mà là **chuỗi cung ứng** (checksum + attestation như codebase-memory-mcp) và **telemetry** (không có / opt-out / bật sẵn).
+3. **Gắn sự kiện với bằng chứng**: Grounded Claims của openwiki (dòng mã cụ thể) cùng hướng với nhãn `EXTRACTED/INFERRED` của Graphify. Docs sinh bởi LLM chỉ đáng tin khi mỗi câu trỏ được về nguồn và biết lúc nào nguồn đổi.
+4. **`pushed_at` của GitHub không phải ngày commit**: gitingest báo push 28/10 nhưng `main` đứng từ 8/2025. Luôn xem commit của nhánh mặc định.
+5. **Telemetry bật sẵn tiếp tục lan** (openwiki, repowise ở mức opt-out); `DO_NOT_TRACK=1` tắt được cả hai.
+
+**Nguồn §2g:** GitHub search API 31/10/2026 (`repo:` cho repo cũ, 14 truy vấn topic/từ khoá) · clone nông `coderamp-labs/gitingest`, `AsyncFuncAI/deepwiki-open`, `sphinx-doc/sphinx` (commit nhánh mặc định) · clone `--filter=blob:none` 7 repo mới, đọc: mermaid (`packages/mermaid/package.json`, `src/schemas/config.schema.yaml`, `src/diagrams/`, workflows), codebase-memory-mcp (LICENSE, README (Security, Performance), `install.sh`, `.github/workflows/{release,_build}.yml`, `vendored/`, grep host trong `src/`), GitbookIO/gitbook (LICENSE, README, `packages/gitbook/src/app/sites/**/{llms.txt,llms-full.txt,~gitbook/markdown,~gitbook/mcp}`), openwiki (README (Telemetry, How it works), `package.json`, `src/telemetry/{config,client,types}.ts`, `.github/workflows/checks.yml`), scalar (LICENSE, README, `packages/api-reference/src/plugins/posthog/README.md`, `test/configuration/telemetry.e2e.ts`, `packages/agent-chat/src/api.ts`, `packages/openapi-to-markdown/README.md`, `packages/types/src/api-reference/api-reference-configuration.ts`), repowise (LICENSE, README (Privacy, Hosted), `packages/cli/src/repowise/cli/platform/telemetry/{consent,flusher}.py`), code2prompt (LICENSE, README, `crates/`, `crates/code2prompt-core/Cargo.toml`) · https://github.com/meta/docusaurus
+
 ## 3. Nguồn
 
 - https://www.mintlify.com/library/best-llms-txt-platforms · https://dupple.com/learn/best-documentation-tools · https://ekline.io/blog/docusaurus-alternatives · https://www.pkgpulse.com/guides/best-documentation-frameworks-2026 · https://docsalot.dev/blog/best-mintlify-alternatives · https://affine.pro/blog/best-technical-documentation-software-tools-for-developers

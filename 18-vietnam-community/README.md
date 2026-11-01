@@ -75,6 +75,55 @@
 
 **Công cụ sáng tạo do người Việt làm (13/10/2026):** `letuandat131/whiteboard-animation-vi` (~56★, mã gốc CC0-1.0) biến ảnh tĩnh thành video vẽ bảng trắng bằng app Gradio chạy cục bộ, tách nền bằng ISNet. Hồ sơ và kiểm ảnh ở [mục 22](../22-motion-design-animation/README.md) §9d. Lưu ý: giao diện tiếng Anh, ảnh bàn tay và tranh demo chưa có giấy phép.
 
+## 4d. Nâng cấp 31/10/2026: rà repo lớn
+
+> Hai việc. (1) Đọc lại số sao, license, trạng thái của 15 repo GitHub đã có trong mục 18 (GitHub search API và `meta_all` ngày 31/10/2026; với underthesea thì clone để đọc lịch sử LICENSE). (2) Tìm repo AI/dev Việt Nam còn thiếu: 16 truy vấn GitHub ("vietnamese llm/tts/asr/ocr/dataset/nlp/rag/whisper/legal/agent", topic `vietnamese`, "tiếng việt", repo tạo sau 1/10/2025). Hệ sinh thái nhỏ: ngoài VieNeu-TTS, không repo AI tiếng Việt mới nào vượt 1k★. Chọn **7 repo**, clone `--filter=blob:none`, đọc LICENSE, manifest, script cài, mã nạp model. **Không chạy script nào.** Số sao đọc 31/10/2026.
+
+### 4d.1 Repo cũ: điều đã đổi
+
+| Repo | Thay đổi | Hệ quả |
+|---|---|---|
+| `undertheseanlp/underthesea` | **Đổi license GPL-3.0 → Apache-2.0** (commit `d9c9ad3`, 7/2/2026); 1,8k★, v9.5.0, commit 29/10/2026 | Catalog đang ghi GPL-3.0 là sai. Nay nhúng được vào sản phẩm đóng mà không phải mở mã |
+| `VinAIResearch/PhoGPT` | 794★; GitHub nhận **BSD-3-Clause** cho mã (catalog ghi "custom"); push cuối **12/11/2024** | Đóng băng gần 2 năm; điều khoản weights cần đọc riêng trên HF |
+| `vncorenlp/VnCoreNLP` | 679★; push cuối **12/2/2023**; GitHub `NOASSERTION` | Đóng băng; dùng underthesea (nay Apache-2.0) thay thế |
+| `vndee/awsome-vietnamese-nlp` | 320★; push cuối 28/10/2025 | Danh sách một năm chưa cập nhật, thiếu các model 2025–2026 |
+| `VinAIResearch/PhoWhisper` · `nguyenthienhy/F5-TTS-Vietnamese` · `thinhlpg/vixtts-demo` · `ZaloAI-Jaist/VMLU` | Không đổi từ 11/2024 · 4/2025 · 4/2025 · 5/2024 | Đã ghi đóng băng ở §4c; nay có thay thế mới ở 4d.2 (ASR, TTS) |
+| `pnnbao97/VieNeu-TTS` | 2,8k → **3,1k**★, 943 fork, commit 30/10/2026 | Vẫn là repo AI tiếng Việt lớn nhất và hoạt động mạnh nhất |
+| `Viet-Mistral/Vistral-7B-Chat` | Không tồn tại trên GitHub (đây là model trên Hugging Face) | Trường `repo` trong catalog trỏ sai nền tảng |
+| `DAMO-NLP-SG/SeaLLMs` | Repo còn (ls-remote có HEAD) nhưng search API không trả kết quả | Chưa đọc được số sao mới |
+
+### 4d.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `thanglequoc/vietnamese-provinces-database` | Dữ liệu cho dev | 1,8k · MIT | 22/9/2026 | 34 tỉnh, 3.321 xã/phường sau sáp nhập; SQL cho 6 CSDL, JSON, Redis, Elasticsearch, GIS, mã bưu chính | Ranh giới GIS lấy từ bản đồ của nhà xuất bản |
+| `th1nhhdk/local_ai_ocr` | OCR cục bộ | 888 · Apache-2.0 | 5/7/2026 | App PySide6 chạy DeepSeek-OCR-2 trên máy: ảnh/PDF → Markdown/Word | `trust_remote_code` với repo model bên thứ ba |
+| `duydo/elasticsearch-analysis-vietnamese` | Tìm kiếm | 565 · Apache-2.0 | 30/10/2026 | Plugin `vi_analyzer` cho Elasticsearch 9.x, dùng bộ tách từ của Cốc Cốc | Cần build thư viện C++ |
+| `tronghieuit/v-tts` | TTS | 385 · **CC-BY-NC-4.0** | 23/7/2026 | TTS 74,8M tham số, 5 giọng, clone giọng zero-shot, app `.exe` | Cấm thương mại; GitHub báo NOASSERTION |
+| `zeroweight-ai/ZeroTTS` | TTS | 308 · MIT (code + weights) | 17/9/2026 | TTS zero-shot 202M tham số, ONNX trên CPU, không cần PyTorch | Benchmark không so với VieNeu-TTS |
+| `VietnamAIHub/Vietnamese_LLMs` | Dữ liệu instruction | 285 · Apache-2.0 | 18/10/2026 | Bộ instruction tiếng Việt dịch máy và LLaMA-2 tinh chỉnh (2023) | Nội dung từ 2023, commit 10/2026 chỉ là CI |
+| `ggroup-ai-lab/gipformer` | ASR | 156 · **không có LICENSE** | 17/9/2026 | Zipformer RNN-T 68M tham số, mạnh ở cuộc gọi tổng đài | README ghi MIT nhưng repo không có file |
+
+### 4d.3 Hồ sơ ngắn
+
+- **vietnamese-provinces-database.** 612 commit từ 11/2021, Thang Le Quoc 605 commit. Theo dõi từng nghị quyết sắp xếp đơn vị hành chính; bản v5.2.0 theo **388/NQ-UBTVQH16, hiệu lực 20/9/2026** (theo bảng trong README, chưa đối chiếu văn bản gốc). Dữ liệu tỉnh/xã sinh từ API của Tổng cục Thống kê bằng script Go có trong repo, nên tái tạo được; thêm bảng vùng, loại đơn vị, tên tiếng Anh, slug. Bản phát hành tải từ CDN riêng `vn-provinces-ds.thanglequoc.xyz`. Có `AGENTS.md` và cấu hình OpenCode để agent bảo trì. ⚠️ Ranh giới GIS "derived from" bản đồ `sapnhap.bando.com.vn` của NXB Tài nguyên Môi trường và Bản đồ; README cấp MIT cho toàn bộ, nhưng quyền phân phối lại dữ liệu bản đồ gốc **(chưa xác minh)**. 0/14 action ghim SHA. Dùng: tải zip đúng phiên bản theo bảng Download, đừng lấy nhánh `master`.
+- **local_ai_ocr.** Một người viết (52 commit, 11/2025–7/2026), giao diện tiếng Việt tự bật khi máy có Cốc Cốc hoặc Zalo. `env_setup_linux.sh` tải Python standalone, PyTorch cu130, wheel flash-attn từ repo cá nhân `mjun0812`, rồi `huggingface-cli download Dogacel/Universal-DeepSeek-OCR-2` (6,67 GB). ⚠️ README ghi "không liên lạc đi đâu", nhưng `transformers_service.py` nạp model bằng ID Hub với **`trust_remote_code=True`**, không ghim `revision`, không đặt `HF_HUB_OFFLINE`: khi có mạng, mỗi lần nạp vẫn hỏi Hub, và mã Python của repo model **bên thứ ba** (không phải `deepseek-ai`) sẽ được chạy. Muốn dùng cho tài liệu nhạy cảm: đặt `HF_HUB_OFFLINE=1` sau khi tải, đọc mã trong thư mục model, hoặc chuyển sang model chính chủ. Không có CI.
+- **elasticsearch-analysis-vietnamese.** Plugin lâu năm (từ 3/2014, 283 commit, v9.3.0), bọc bộ tách từ C++ của Cốc Cốc; trả token như "cộng hòa", "xã hội" thay vì từng âm tiết. Hữu ích cho RAG lai (BM25 + embedding BKAI ở §4c) với tài liệu tiếng Việt. Cần build `coccoc-tokenizer` và đặt từ điển ở `/usr/local/share/tokenizer/dicts`; license của thư viện Cốc Cốc cần kiểm riêng **(chưa xác minh)**. Commit 7/2026 thêm một file "Arcade architecture analysis" do tác giả ẩn danh viết, không ảnh hưởng mã.
+- **v-tts.** 22 commit của một người (12/2025–7/2026). File LICENSE là **CC-BY-NC-4.0** (GitHub không nhận dạng nên báo NOASSERTION): cấm dùng thương mại, giống F5-TTS-Vietnamese và viXTTS ở §4c. Bản `.exe` 394 MB không ký số, lần đầu chạy tải model ~100 MB từ Hugging Face. Trong `dist/` còn con trỏ LFS tên `ValtecTTS.exe`, gợi ý dự án từng mang tên khác; nguồn gốc dữ liệu huấn luyện không ghi **(chưa xác minh)**.
+- **ZeroTTS.** 63 commit (15/8–17/9/2026), bản PyPI `zerotts` 0.1.5. Code và weights **MIT**; `NOTICE` và `LICENSES/` liệt kê đúng phần bên thứ ba (decoder MOSS-Audio-Tokenizer Apache-2.0, quy tắc chuẩn hoá số của `soe-vinorm` MIT). Suy luận chỉ cần `onnxruntime`, không PyTorch; weights ~900 MB tải từ Hub, có tuỳ chọn `--revision` để ghim. ⚠️ Câu "chính xác nhất trong các TTS tiếng Việt mở" dựa trên benchmark ZeroBench-TTS tự làm (WER 1,03%), chỉ so với OmniVoice, XTTS-v2-vietnamese, viXTTS; **không có VieNeu-TTS**, repo phổ biến nhất. Bộ benchmark là CC-BY-NC-4.0. Repo đứng yên từ 17/9.
+- **Vietnamese_LLMs (VietnamAIHub).** Ví dụ "trông mới nhưng cũ": GitHub báo push 18/10/2026, nhưng 7 commit từ 8/2026 chỉ là workflow CI, font và sửa README; model và dữ liệu (LLaMA-2 7B/13B, Alpaca 52k, Dolly dịch bằng GPT) đều từ 2023. Link "checkpoint" trong README còn trỏ tới tìm kiếm `taiwan-llama`. Dữ liệu dịch bằng API OpenAI có thể vướng điều khoản dùng output để huấn luyện model cạnh tranh **(chưa xác minh)**. Chỉ dùng làm tư liệu lịch sử.
+- **gipformer (G-Group).** 12 commit, chỉ có script suy luận (`infer_onnx.py`, `infer_pytorch.py`) và 18 file âm thanh mẫu; model trên HF `g-group-ai-lab/gipformer1.5-68M-rnnt`. Bảng WER so với 13 model (PhoWhisper, Qwen3-ASR, Parakeet…): tốt nhất trên 4 tập tổng đài **riêng tư** và 4 tập miền công khai do chính nhóm phát hành; trên vivos/Common Voice/VLSP thì `hynt/Zipformer-30M-RNNT-6000h` (30M) tốt hơn. ❌ README gắn badge "License: MIT" và link `LICENSE`, nhưng repo **không có file LICENSE**: về mặt pháp lý chưa được cấp quyền. Hợp làm ứng viên ASR nhẹ thay PhoWhisper (đóng băng) sau khi nhóm bổ sung license.
+
+### 4d.4 Mẫu chung rút ra
+
+1. **License tiếng Việt hay "lệch nhãn"**: underthesea đổi sang Apache-2.0 mà catalog chưa biết; v-tts là CC-BY-NC nhưng GitHub báo NOASSERTION; gipformer ghi MIT mà không có file. Đọc file LICENSE và lịch sử của nó.
+2. **TTS tiếng Việt cho thương mại giờ có hai lựa chọn mở**: VieNeu-TTS v3 (Apache-2.0) và ZeroTTS (MIT, ONNX/CPU). F5-TTS-Vietnamese, viXTTS, v-tts đều cấm thương mại.
+3. **App "offline" vẫn có thể chạy mã tải về**: `trust_remote_code=True` với repo model không ghim là đường cho mã lạ chạy trên máy. Ghim `revision` và đặt `HF_HUB_OFFLINE=1`.
+4. **Ngày push không phản ánh nội dung**: Vietnamese_LLMs có push 10/2026 nhưng nội dung từ 2023. Kiểm commit chạm vào mã/dữ liệu, không chỉ ngày.
+5. **Benchmark tự làm bỏ sót đối thủ mạnh** (ZeroTTS không so VieNeu-TTS; gipformer mạnh nhất trên tập riêng tư). Với tiếng Việt, vẫn thiếu một leaderboard ASR/TTS độc lập; VMLU cho LLM đã đóng băng từ 5/2024.
+
+**Nguồn §4d:** GitHub search API 31/10/2026 (`repo:` cho repo cũ, 16 truy vấn) · `git ls-remote` cho `DAMO-NLP-SG/SeaLLMs`, `Viet-Mistral/Vistral-7B-Chat` · clone `undertheseanlp/underthesea` (LICENSE, `git log -- LICENSE`) · clone `--filter=blob:none` 7 repo mới, đọc: vietnamese-provinces-database (LICENSE, README (bảng nghị quyết, Download, GIS, FAQ), AGENTS.md, workflows), local_ai_ocr (LICENSE, README, `env_setup_linux.sh`, `requirements.txt`, `src/{transformers_service,lang_handler,config}.py`), elasticsearch-analysis-vietnamese (README, git log, tags), v-tts (LICENSE, README, `dist/`, `src/`), ZeroTTS (LICENSE, NOTICE, LICENSES/, README (Install, Benchmarks, License), `src/zerotts/{hub,cli}.py`), Vietnamese_LLMs (LICENSE, README, git log), gipformer (README, cây file) · https://huggingface.co/g-group-ai-lab/gipformer1.5-68M-rnnt · https://huggingface.co/zeroweight-ai/ZeroTTS · https://sapnhap.bando.com.vn (link trong README, chưa mở)
+
 ## 5. Gợi ý bổ sung tiếp
 
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.

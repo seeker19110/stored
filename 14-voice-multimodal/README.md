@@ -83,6 +83,58 @@
 - **Agent điều khiển Blender**: `ahujasid/blender-mcp` (~24,6k★ theo docs nội bộ) hoặc headless `blender -b -P`; mẫu sentinel `AGENT_OK/AGENT_FAIL` + verify ladder rẻ→đắt (assert số → preview 0,2s → render) vì exit code của Blender sai cả hai chiều.
 - **Scan tài liệu di động** (X-Scanner, Flutter): OpenCV edge detection + perspective warp, OCR on-device (ML Kit) — `docs/research/2026-10-11-scanner-product-suggestions.md`.
 
+## 5c. Nâng cấp 31/10/2026: rà repo lớn
+
+> Cách làm: đọc lại sao, license, trạng thái của 17 repo GitHub đã có trong mục 14 (GitHub API, 31/10/2026). Tìm repo còn thiếu bằng 12 truy vấn GitHub search (`text to speech`, `tts`, `speech recognition`, `voice agent`, topic `text-to-speech`/`speech-recognition`/`multimodal`, `vision language model`, `image generation`, `ocr`, và `created:>2025-10-01` cho repo mới). Lọc bỏ repo đã có trong `data/projects.json`, chọn **6 repo**, clone `--filter=blob:none` rồi đọc LICENSE, README, manifest, CI, file telemetry và host mạng trong mã. **Không cài, không chạy script của repo.** Số liệu đọc 31/10/2026.
+
+### 5c.1 Trạng thái repo cũ
+
+| Repo | Thay đổi | Hệ quả |
+|---|---|---|
+| `hexgrad/kokoro` | Push cuối **6/8/2025** (9,8k★) | Repo code đứng yên hơn 1 năm; model Kokoro-82M vẫn được dùng qua wrapper như `remsky/Kokoro-FastAPI` (5,6k★, push 31/10/2026) và backend của LocalAI |
+| `QwenLM/Qwen3-VL` | Push cuối **30/1/2026** | Dòng "72B sắp mở" ở §4 không còn cập nhật; theo dõi model card Hugging Face thay vì repo |
+| `AUTOMATIC1111/stable-diffusion-webui` | Push cuối 2/3/2026, 165,2k★ | Đúng như §5 ghi "dừng phát triển" |
+| `lllyasviel/Fooocus` | Push cuối 1/12/2025 | Hết giai đoạn LTS trên thực tế |
+| `black-forest-labs/flux2` | Push cuối 12/3/2026 (2,8k★) | Repo tham chiếu, ít cập nhật |
+| `Comfy-Org/ComfyUI` | **144,4k★** (bảng §5 ghi ~122–136k, repo cũ `comfyanonymous/ComfyUI`) | Đã chuyển sang tổ chức Comfy-Org; cập nhật tên repo |
+| `Edge0-AI/Audio8_TTS` | 1,6k → **2,1k** | Hồ sơ §3b vẫn đúng |
+| `openai/whisper` · `ggml-org/whisper.cpp` · `SYSTRAN/faster-whisper` | 111,7k · 54,8k · 26,4k | Catalog bổ sung sao còn thiếu |
+| `resemble-ai/chatterbox` | 27,5k, push cuối 21/7/2026 | Hơn 3 tháng không push |
+| `TEN-framework/ten-framework` · `fishaudio/fish-speech` | GitHub báo `NOASSERTION` | Không đổi license: TEN có điều khoản bổ sung trên Apache-2.0 **(chưa xác minh)**, Fish dùng Research License (đã ghi §3) |
+| VoxCPM2 (§3) | License "chưa xác minh" | Nay đã đọc: **Apache-2.0 cho cả code và weights** theo README và LICENSE của `OpenBMB/VoxCPM` (xem dưới) |
+
+### 5c.2 Bảng nhanh 6 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `debpalash/VoiceStudio` | App giọng nói | 96,8k · **AGPL-3.0 + CLA** | 1/11/2026 | Clone, thiết kế giọng, lồng tiếng video, đọc chính tả; desktop + mobile | Sao tăng bất thường; bán license thương mại |
+| `jamiepine/voicebox` | App giọng nói | 59,1k · MIT | 7/10/2026 | "ElevenLabs + WisprFlow" chạy local, 8 engine TTS, MCP `voicebox_speak` | Bảo trì bằng agent Capy; không có bản Linux dựng sẵn |
+| `microsoft/VibeVoice` | ASR + TTS | 55,1k · MIT | 8/10/2026 | ASR 60 phút một lượt (ai nói, lúc nào), streaming ASR, TTS realtime 0,5B | Code TTS dài từng bị gỡ vì lạm dụng; không CI |
+| `RVC-Boss/GPT-SoVITS` | Clone giọng | 64,4k · MIT | 31/10/2026 | Huấn luyện TTS từ ~1 phút giọng, WebUI | Tag cuối 6/6/2025; nhịp chậm |
+| `OpenBMB/VoxCPM` | TTS | 40,9k · Apache-2.0 | 8/10/2026 | VoxCPM2 2B, 30 ngôn ngữ **có tiếng Việt**, 48 kHz, thiết kế giọng | Benchmark tự công bố |
+| `cjpais/Handy` | STT desktop | 35,9k · MIT | 27/10/2026 | Giữ phím, nói, chữ dán vào app đang mở; Whisper/Parakeet offline | Tải model từ `blob.handy.computer` |
+
+### 5c.3 Hồ sơ ngắn
+
+- **VoiceStudio.** Repo tạo 10/4/2026; trong ~7 tháng có 6.378 commit, 155 tác giả, **40% commit có trailer Claude**, 96,8k★: tốc độ tăng sao này cao bất thường so với mọi repo TTS khác trong đợt **(chưa xác minh nguồn sao)**. Biến môi trường còn tên cũ `OMNIVOICE_*`, submodule `omnivoice-gallery`. `LICENSE-NOTICE.md`: AGPL-3.0, người đóng góp ký CLA trao quyền cho Yupcha Softwares Private Limited, công ty bán license thương mại và bản Pro. Telemetry PostHog có trong mã (`backend/core/analytics.py`), **tắt mặc định**, chỉ gửi trường trong allowlist, không gửi traceback ✅; tắt cứng bằng `OMNIVOICE_ANALYTICS_DISABLED=1`. Có workflow `scam-guard` tự xoá các bình luận dụ dán lệnh `irm … | iex` trong issue. Cài theo README là `curl -fsSL https://voicestudio.sh/install | sh` (chạy script từ xa).
+- **Voicebox.** Tauri + Python backend, 813 commit từ 25/1/2026, tag cuối v0.5.0 (25/4/2026). README ghi dự án được "Capy Captain" (agent của capy.ai, nhà tài trợ) điều phối hằng ngày: một repo lớn bảo trì chủ yếu bằng agent. 8 engine TTS (Qwen3-TTS, LuxTTS, Chatterbox, HumeAI TADA, Kokoro…), Whisper cho đọc chính tả, MCP server cho agent nói bằng giọng đã clone. Có `RESPONSIBLE_USE.md` nhưng không có watermark trong mã **(chưa xác minh hết engine)**. Cài: tải DMG/MSI hoặc `docker compose up`.
+- **VibeVoice (Microsoft).** 161 commit, không có workflow CI. Ghi chú 5/9/2025 trong README: code TTS dài (1,5B) bị **gỡ vì bị dùng sai mục đích**, Playground để "Disabled". Từ 2026 dự án chuyển sang ASR: VibeVoice-ASR 7B (60 phút một lượt, hơn 50 ngôn ngữ, hotword), bản streaming (9/2026), bản BitNet chạy CPU qua `microsoft/VibeASR.cpp`. Commit 7/10/2026 "Remove remote audio URL fetching from streaming ASR" bỏ khả năng tải URL từ xa. Cài: `pip install -e .` từ clone hoặc qua Transformers (`microsoft/VibeVoice-ASR-HF`).
+- **GPT-SoVITS.** 1.066 commit, MIT, chủ yếu một tác giả (621 commit). Bản mới nhất v2Pro (6/6/2025); chỉ 20 commit từ 1/7/2026. `install.sh` tải model từ Hugging Face hoặc ModelScope; README hỗ trợ zh/en/ja/ko/yue, **không có tiếng Việt**. Không có CI kiểm thử, chỉ build Windows và Docker. Cài: `bash install.sh --device CU128 --source HF`.
+- **VoxCPM (OpenBMB).** 182 commit, Apache-2.0; README nói rõ **weights và code đều Apache-2.0, dùng thương mại được** ✅ (khác Fish S2 Pro, F5-TTS weights ở §3). VoxCPM2: 2B, 30 ngôn ngữ trong đó có tiếng Việt, 48 kHz, voice design. Bảng benchmark là tự đo. Phục vụ nhanh qua `nano-vllm-voxcpm`. Đây là ứng viên TTS clone giọng tiếng Việt có license thoáng nhất trong kho, nên đánh giá cùng mục 18 (VieNeu-TTS). Cài: `pip install voxcpm`.
+- **Handy.** Tauri (Rust + React), 902 commit, 178 tác giả, 9 workflow (có Playwright). STT hoàn toàn offline sau khi tải model (Whisper, Parakeet V3), VAD Silero. Mạng: model tải từ `blob.handy.computer`, cập nhật từ GitHub Releases; xử lý hậu kỳ bằng LLM là tuỳ chọn và gọi OpenAI/OpenRouter. Không thấy telemetry. Cài: `brew install --cask handy` (cask cộng đồng) hoặc tải từ Releases.
+
+Đã cân nhắc nhưng chưa thêm: `k2-fsa/OmniVoice` (16,1k, TTS 600+ ngôn ngữ, tạo 3/2026), `index-tts/index-tts` (24,8k, `NOASSERTION`), `m-bain/whisperX` (25,0k), `modelscope/FunASR` (20,9k), `k2-fsa/sherpa-onnx` (15,6k), `KittenML/KittenTTS` (16,7k), `kyutai-labs/pocket-tts` (10,2k), `QwenLM/Qwen3-TTS` (14,1k, push cuối 17/3/2026), `livekit/livekit` (22,0k), `supertone-oss-archive/supertonic` (13,8k, **đã archive**).
+
+### 5c.4 Mẫu chung rút ra
+
+1. **Weights mới là chỗ quyết định license.** VoxCPM ghi rõ weights Apache-2.0; ngược lại F5-TTS, Fish, Audio8 0.1B (§3, §3b) tách license weights. Luôn kiểm model card từng checkpoint.
+2. **Clone giọng kéo theo trách nhiệm**: Microsoft gỡ hẳn code TTS; Voicebox, VoiceStudio chỉ có văn bản "responsible use". Sản phẩm dùng clone giọng nên tự thêm watermark hoặc nhật ký nguồn.
+3. **App voice local vẫn có đường mạng**: tải model từ CDN riêng (Handy), PostHog tuỳ chọn (VoiceStudio), LLM cloud cho hậu kỳ (Handy, Voicebox). Telemetry tắt mặc định kèm allowlist trường như VoiceStudio là mẫu tốt.
+4. **Repo lớn được bảo trì bằng agent** đã thành phổ biến (VoiceStudio 40% commit có Claude, Voicebox do Capy điều phối). Số commit cao không còn là thước đo công sức con người.
+5. **Cài bằng `curl … | sh`** vẫn là đường chính ở app desktop (VoiceStudio); scam-guard của VoiceStudio cho thấy lệnh dán vào shell cũng là kênh phát tán malware.
+
+**Nguồn §5c:** GitHub search API 31/10/2026 (12 truy vấn + `repo:` cho 17 repo cũ và 6 repo mới) · clone `--filter=blob:none`, đọc: VoiceStudio (LICENSE, LICENSE-NOTICE.md, README.md, backend/core/analytics.py, .gitmodules, .github/workflows/scam-guard.yml), voicebox (LICENSE, README.md, RESPONSIBLE_USE.md, backend/, app/src/), VibeVoice (LICENSE, README.md, lịch sử commit), GPT-SoVITS (LICENSE, README.md, install.sh), VoxCPM (LICENSE, README.md, pyproject.toml), Handy (LICENSE, README.md, src-tauri/src/, src-tauri/tauri.conf.json) · https://github.com/debpalash/VoiceStudio · https://github.com/jamiepine/voicebox · https://github.com/microsoft/VibeVoice · https://github.com/RVC-Boss/GPT-SoVITS · https://github.com/OpenBMB/VoxCPM · https://github.com/cjpais/Handy · https://huggingface.co/openbmb/VoxCPM2
+
 ## 6. Nguồn
 
 - https://micdrop.dev/blog/open-source-voice-agent-frameworks · https://livekit.com/blog/best-open-source-voice-and-video-ai-agent-frameworks · https://www.forasoft.com/blog/article/pipecat-vs-livekit-agents · https://github.com/pipecat-ai/pipecat · https://techsy.io/en/blog/best-open-source-voice-agent-frameworks · https://grokipedia.com/page/List_of_open-source_voice_AI_frameworks

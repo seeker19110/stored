@@ -7,12 +7,12 @@
 | Framework | Repo | ★ | Ghi chú |
 |---|---|---|---|
 | React | facebook/react | ~251k (11/10/2026) | React 19; nền của Next.js, shadcn/ui |
-| Vue | vuejs/core | ~208k | Vue 3.5; Nuxt |
+| Vue | vuejs/core | ~54,9k (31/10/2026; số ~208k cũ là lỗi dữ liệu, §6g.1) | Vue 3.5; Nuxt |
 | Next.js | vercel/next.js | ~125–138k | App Router, Server Actions; 59% dev dùng (State of JS 2025) |
 | Angular | angular/angular | ~95k | Angular 18+ |
 | Svelte | sveltejs/svelte | ~78k | Svelte 5 runes; SvelteKit |
 | Nuxt | nuxt/nuxt | ~54k | |
-| Astro | withastro/astro | ~45.5k | Islands, content-first |
+| Astro | withastro/astro | ~63,6k (31/10/2026) | Islands, content-first |
 | SolidJS | solidjs/solid | ~32k | |
 | Vite | vitejs/vite | ~83k (13/10/2026) | Build tool mặc định của hệ sinh thái; Rolldown; v8.3 |
 | TanStack (Query/Router/Start) | TanStack/* | Query ~50k (13/10/2026) | Full-stack TS mới nổi; Query có adapter React/Vue/Solid/Svelte/Angular/Preact |
@@ -113,7 +113,7 @@
 |---|---|---|---|
 | **CodeRabbit** | $24 / $48 dev/tháng; free public repo | All-rounder ít nhiễu; hỗ trợ 4 Git host | |
 | **Greptile** | – | Bắt lỗi cross-file tốt (82% một benchmark) | Nhiều false positive; GitHub-first; benchmark Macroscope cho thấp hơn |
-| **Qodo** (CodiumAI) | Qodo Merge mở, self-host | F1 cao nhất trong 8 tool (2/2026); sinh test | |
+| **Qodo** (CodiumAI) | Qodo Merge mở, self-host (bản mã mở nay là `The-PR-Agent/pr-agent`, MIT, cộng đồng giữ, §6g.1) | F1 cao nhất trong 8 tool (2/2026); sinh test | |
 | **GitHub Copilot Code Review** | Theo Copilot; usage-based private repo từ 6/2026 | Ít ma sát | Nông hơn |
 | **Claude Code Review / `/code-review`** | Theo gói Claude | Chạy trong CLI/CI, GitHub Action | |
 | Bito, Macroscope | – | | |
@@ -284,6 +284,52 @@ sremote thêm nhiều thứ ttyd không có (phiên bền, desktop, file, app ph
 - **Trưởng thành:** repo 2★, 3 tuần tuổi, một phần do agent viết, chưa có LICENSE (dùng lại/nhúng chưa có cơ sở pháp lý rõ). Xem là công cụ cá nhân đang phát triển, không phải sản phẩm đã kiểm.
 
 **Nguồn §6f:** https://github.com/thsangyk-oss/sremote (clone đầy đủ, 53 commit, HEAD `ce9e17c` 19/10/2026, tag v1.14.1; đọc README.md, AGENTS.md, package.json, server.js (`isAllowedRemote`, các route `/api/*`, `listen`), install.ps1, elevate.ps1, agent/screen-pro/ScreenPro.cs, public/app.js; không có file LICENSE) · https://github.com/thsangyk-oss (16 repo) · ttyd: github.com/tsl0922/ttyd (MIT) · besthub.dev/articles/three-open-source-web-terminal-tools · selfhostyourself.com/tags/ssh-client-web
+
+## 6g. Nâng cấp 31/10/2026: rà repo lớn
+
+> Cách làm: 7 truy vấn GitHub search (repo >40k★ theo TypeScript/Go/Rust push sau 1/9/2026, `code review ai`, `spec-driven development`, `devops agent kubernetes`, topic `developer-tools` tạo sau 1/10/2025), lọc bỏ repo đã có trong `data/projects.json`, chọn 7 repo. Repo lớn (Bun, Supabase, Tauri, act, PocketBase) clone `--filter=tree:0` và chỉ đọc file đích; repo nhỏ clone `--filter=blob:none`. **Không cài, không chạy gì.** Số sao từ GitHub search API ngày 31/10/2026.
+
+### 6g.1 Trạng thái repo cũ của mục
+
+| Repo | Thay đổi | Hệ quả |
+|---|---|---|
+| `vuejs/core` | Catalog từng ghi **~208k★ là lỗi dữ liệu**; số thật **54,9k** (GitHub API 31/10/2026) | Đã sửa bảng §1. Vue vẫn là framework lớn, nhưng không lớn hơn React |
+| `withastro/astro` | 45,5k → **63,6k★**; GitHub báo license NOASSERTION (file vẫn MIT theo lần đọc trước, chưa đọc lại) | Sửa bảng §1 |
+| `qodo-ai/pr-agent` | Repo nay ở **`The-PR-Agent/pr-agent`** (13,8k★, commit 31/10/2026). README: Qodo đã **tặng dự án cho cộng đồng**, "not the Qodo offering"; file LICENSE hiện là **MIT** (©2026 The PR Agent), catalog đang ghi AGPL-3.0 | Sửa link; catalog cần đổi license thành MIT. Qodo Merge thương mại nay là "Qodo 2.0" |
+| `vercel/next.js`, `angular/angular`, `sveltejs/svelte`, `nuxt/nuxt` | Bảng §1 ghi số cũ; nay 143k · 101k · 88,5k · 61k★ | Thứ tự không đổi |
+| `hashicorp/terraform`, `bmad-code-org/BMAD-METHOD`, `JetBrains/kotlin` | GitHub báo NOASSERTION/không nhận license | Giữ license đã đọc trong file (Terraform BUSL-1.1) |
+
+### 6g.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `supabase/supabase` | Backend (BaaS) | 114,4k · Apache-2.0 | 31/10/2026 | Postgres + Auth + Storage + Realtime + Studio, tự host bằng Docker | `.env.example` chứa secret mẫu |
+| `tauri-apps/tauri` | Desktop/mobile | 112,4k · MIT/Apache-2.0 | 31/10/2026 | App desktop/mobile nhỏ nhẹ với frontend web + lõi Rust | v3 đang alpha |
+| `oven-sh/bun` | Runtime JS | 96,5k · MIT + LGPL tĩnh (GitHub: NOASSERTION) | 31/10/2026 | Runtime, bundler, test runner, package manager | **Đã viết lại bằng Rust (5/2026)**, thuộc Anthropic |
+| `nektos/act` | DevOps/CI | 72,5k · MIT | 31/10/2026 | Chạy GitHub Actions cục bộ trong Docker | **5 lỗ Critical thoát container**, vá trong v0.2.94 |
+| `pocketbase/pocketbase` | Backend 1 file | 61,6k · MIT | 26/10/2026 | Backend Go: SQLite, auth, file, realtime, admin UI | **Archive, rời GitHub** |
+| `tirth8205/code-review-graph` | AI code review | 32,5k · MIT | 15/10/2026 | Đồ thị mã Tree-sitter trong SQLite, cấp "blast radius" qua MCP | Cài ghi cấu hình vào ~20 công cụ |
+| `buildermethods/agent-os` | Spec-driven | 5,6k · MIT | 7/10/2026 | Lệnh/prompt để rút chuẩn mã từ codebase và viết spec | 22 file, docs ở web riêng |
+
+### 6g.3 Hồ sơ từng repo
+
+- **Bun.** Anthropic mua Bun 2/12/2025 (theo tin báo chí). Git log có commit **"Rewrite Bun in Rust (#30412)" của Jarred Sumner ngày 14/5/2026**; báo chí nói phần lớn do Claude viết trong ~11 ngày, nhà sáng lập Zig chê là "unreviewed" (các con số dòng mã, chi phí **chưa xác minh**). Tag `bun-v1.4.0` ngày 19/8/2026, mới nhất `bun-v1.4.4` (22/10). `CLAUDE.md` nay ghi "written primarily in Rust with C++"; 729 commit (3,9%) có trailer Claude, bot `robobun` 3.091 commit. `LICENSE.md`: Bun là MIT nhưng **link tĩnh JavaScriptCore/WebKit (LGPL-2)** và tinycc (LGPL-2.1), nên GitHub báo NOASSERTION; phân phối binary Bun phải tôn trọng điều khoản relink của LGPL. Crate `src/analytics` tôn trọng `DO_NOT_TRACK`. Cài: `npm install -g bun` hoặc `curl -fsSL https://bun.com/install | bash`. Với dự án dùng Bun làm runtime production: theo dõi độ ổn định sau đợt viết lại.
+- **act.** `SECURITY_AUDIT.md` (10/2026) công khai kết quả audit: **5 lỗi Critical** (GHSA-7x4h, -v5hg, -hf9j, -3m58, -45wq) cho phép workflow qua `container.options`/`volumes:` bỏ CapDrop/seccomp, mount thư mục host, đọc file host, dùng PID/IPC host; thêm path traversal ở `uses:` và `.actrc` của project ghi đè hardening. Bản vá thêm chính sách `--container-options-policy` và allowlist `.actrc` (cờ có trong `cmd/root.go` ở HEAD = tag v0.2.94, 31/10/2026). Hệ quả: **chạy `act` trên repo lạ trước v0.2.94 tương đương chạy mã không tin cậy trên host**. Đáng chú ý: 61 commit từ 8/2026 có tác giả "Cursor Agent". Cài: `brew install act`; checksum ở `checksums.txt` của release.
+- **PocketBase.** Commit cuối 26/10/2026 thêm dòng "The repo has moved to https://ganigeorgiev.com/pocketbase/pocketbase", repo đã archive. CHANGELOG v0.40.6: lệnh `update` từ nay tải bản mới từ `ganigeorgiev.com` "(there is nothing there yet)". 2.514/2.570 commit của một người. ⚠️ Kênh cập nhật chuyển từ GitHub Releases sang domain cá nhân: ghim phiên bản, kiểm checksum, đừng bật tự cập nhật. `go.mod` vẫn là `github.com/pocketbase/pocketbase`, đường import tương lai **chưa xác minh**.
+- **Supabase.** 39.562 commit, 2.156 tác giả. Self-host qua `docker/` với tag riêng `self-hosted/v*` (mới nhất v0.8.3, 16/10/2026) và nhiều biến thể compose (Kong, Envoy, Caddy, Nginx, PG15/17). ✅ `docker/setup.sh` **tự sinh secret và khoá API bất đối xứng**. ⚠️ `docker/.env.example` vẫn chứa `JWT_SECRET`, `DASHBOARD_PASSWORD=this_password_is_insecure…`, `SECRET_KEY_BASE` mẫu: nếu copy thẳng file này thì instance dùng secret công khai. `.mcp.json` ở gốc trỏ tới MCP hosted `mcp.supabase.com`. Có `AGENTS.md`/`CLAUDE.md`, zizmor cho workflow.
+- **Tauri.** 6.391 commit, 634 tác giả, dual license MIT/Apache-2.0 (có `LICENSE.spdx`). Bản ổn định v2.12.5 (21/10/2026); **v3 đang alpha** (alpha đầu 12/9, alpha.5 ngày 14/10). `SECURITY.md` yêu cầu báo lỗi qua private advisory. Gần như không có commit AI (2 trailer). Là lựa chọn nhẹ hơn Electron khi agent cần dựng app desktop (BrewUI §6d, CleanMyLinux §6e đã dùng).
+- **code-review-graph.** Python, 1.270 commit từ 26/2/2026, 885 của một người, **35% có trailer Claude**. Tree-sitter → đồ thị node/edge trong SQLite, trả "blast radius" và tập file tối thiểu cần review qua MCP; có GitHub Action và extension VS Code. ⚠️ "65× ít token hơn" so token của cả codebase với token của một câu trả lời đồ thị, không đo chất lượng review. ⚠️ `code-review-graph install` tự dò và **ghi MCP entry, hook, skill vào file rules của tới ~20 công cụ** (Claude Code, Cursor, Codex…); có `uninstall --dry-run`. Cài: `pipx install code-review-graph`, rồi `install --platform claude-code` để chỉ đụng một công cụ.
+- **Agent OS.** Chỉ 22 file: lệnh trong `commands/agent-os`, `profiles/`, 3 script bash cài vào project. Bốn bước: rút chuẩn từ codebase, tiêm chuẩn theo việc, shape spec, đánh chỉ mục. Tài liệu và cách cài nằm ở buildermethods.com (kèm gói Pro trả phí). 110/132 commit của một người, v3.0.0 (20/1/2026). Nhẹ hơn spec-kit/OpenSpec (§5), hợp khi chỉ cần "standards file" cho agent.
+
+### 6g.4 Mẫu chung rút ra
+
+1. **Hạ tầng dev cốt lõi đang được viết bởi agent**: Bun viết lại bằng Rust phần lớn nhờ Claude, act nhận vá bảo mật từ "Cursor Agent", code-review-graph 35% commit có trailer Claude. Khi chọn dependency, xem thêm tỉ lệ commit agent và mức review.
+2. **Audit công khai trong repo** (act `SECURITY_AUDIT.md`: công cụ quét, GHSA, commit vá, mặc định an toàn và cách tắt) là mẫu đáng chép cho template.
+3. **Kênh phân phối có thể đổi chủ**: PocketBase rời GitHub sang domain cá nhân, PR-Agent đổi org và license, Daytona (mục 11 §3c.1) đóng mã. Ghim phiên bản và nguồn tải.
+4. **File mẫu chứa secret** (Supabase `.env.example`) vẫn phổ biến; script sinh secret phải là đường mặc định.
+5. **Số catalog phải đọc từ API, không chép bài tổng hợp**: lỗi Vue ~208k đã nằm cả trong README §1 lẫn catalog.
+
+**Nguồn §6g:** GitHub search API 31/10/2026 (7 truy vấn; `pr-agent in:name`) · `../meta_all.json`, `status_all.json` (GitHub API 31/10) · clone `--filter=tree:0`: bun (LICENSE.md, README.md, CLAUDE.md, src/analytics/lib.rs, git log #30412, tag bun-v1.4.0), act (README.md, SECURITY_AUDIT.md, VERIFICATION, cmd/root.go, tag v0.2.94), pocketbase (README.md, CHANGELOG.md, go.mod, LICENSE.md, commit 7f2773e), supabase (LICENSE, .mcp.json, docker/{.env.example, setup.sh}), tauri (SECURITY.md, LICENSE.spdx, tag tauri-v2.12.5/v3.0.0-alpha.5) · clone `--filter=blob:none`: code-review-graph (LICENSE, README.md, docs/, code_review_graph/), agent-os (LICENSE, README.md, scripts/, commands/), The-PR-Agent/pr-agent (LICENSE, README.md) · Web: simonwillison.net/2026/jul/8/rewriting-bun-in-rust, devclass.com/devops/2026/07/15/zig-creator-calls-buns-claude-rust-rewrite-unreviewed-slop, i-programmer.info (Bun 1.4) — báo chí/blog · https://github.com/oven-sh/bun · https://github.com/nektos/act · https://github.com/pocketbase/pocketbase · https://github.com/supabase/supabase · https://github.com/tauri-apps/tauri · https://github.com/tirth8205/code-review-graph · https://github.com/buildermethods/agent-os · https://github.com/The-PR-Agent/pr-agent
 
 ## 7. Nguồn
 

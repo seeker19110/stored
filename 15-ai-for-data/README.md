@@ -36,6 +36,62 @@
 - Commit của sqlglot nay gắn nhãn `[CLAUDE]` và có Claude là đồng tác giả — ví dụ một dự án hạ tầng lớn dùng coding agent công khai.
 - Đã cân nhắc nhưng không thêm: pygwalker (16,0k★, commit cuối 5/9/2026), evidence (7,0k★), redash (28,8k★), dataease (24,6k★, FIT2CLOUD), airbyte (22,2k★, MIT + ELv2), great_expectations (11,9k★).
 
+## Nâng cấp 31/10/2026: rà repo lớn
+
+> Cách làm: đọc lại sao, license, trạng thái của 19 repo GitHub đã có trong mục 15 (GitHub API, 31/10/2026); clone và đọc lại mã của Vanna và PandasAI vì hai repo này đã dừng. Tìm repo còn thiếu bằng 18 truy vấn GitHub search (`text-to-sql`, `nl2sql`, `chatbi`, `semantic layer`, `data analysis agent`, `data science agent`, `mcp database sql`, `duckdb`, `dataframe`, topic `data-analysis`/`data-engineering`, và `created:>2025-10-01`). Chọn **5 repo**, clone `--filter=blob:none`, đọc LICENSE, README, manifest, CI, file telemetry và đường thực thi SQL/code. **Không cài, không chạy script của repo.** Số liệu đọc 31/10/2026.
+
+### Trạng thái repo cũ
+
+| Repo | Thay đổi | Hệ quả |
+|---|---|---|
+| `vanna-ai/vanna` | **Đã archive** (GitHub API 31/10/2026); commit cuối **2/2/2026** (v2.0.2). Trang tổng hợp ghi ngày archive 29/3/2026 **(chưa xác minh)**. README không có thông báo ngừng | Không chọn cho dự án mới. Fork vẫn chạy được nhưng không có bản vá bảo mật |
+| `sinaptik-ai/pandas-ai` | Commit cuối **28/10/2025** (v3.0.0 ngày 7/10/2025), tròn 1 năm đứng yên; 23,9k★ | Coi như ngừng phát triển; bảng đầu mục ghi "Cập nhật cuối 10/2025" vẫn đúng |
+| `duckdb/duckdb` · `pola-rs/polars` | 42,7k · 40,2k | Polars nay ngang DuckDB; catalog bổ sung sao Polars |
+| `marimo-team/marimo` · `microsoft/data-formulator` · `jupyterlab/jupyter-ai` | 23,4k · 17,6k · 4,4k | Catalog bổ sung sao còn thiếu |
+| `Canner/WrenAI` · `OtterMind/Chat2DB` · `dataease/SQLBot` · `metabase/metabase` | GitHub báo `NOASSERTION` | Không đổi license: đều là license nhiều phần hoặc tuỳ chỉnh đã ghi ở bảng "Bổ sung" |
+| `mindsdb/mindsdb` · `openinterpreter/open-interpreter` | Không có trong kết quả API đợt này | Chưa kiểm lại được; giữ nguyên |
+
+**Vanna 2.0 khi đọc mã (thông tin cho ai còn dùng bản fork):**
+
+- ⚠️ README quảng cáo "row-level security", nhưng `ToolRegistry.transform_args` trong `src/vanna/core/registry.py` mặc định **không làm gì** (NoOp); RLS là chỗ để người dùng tự viết.
+- ❌ `src/vanna/tools/run_sql.py` chạy cả câu không phải `SELECT` (INSERT/UPDATE/DELETE) và chỉ báo số dòng bị ảnh hưởng. An toàn phụ thuộc hoàn toàn vào quyền của connection.
+- Web component mặc định tải `https://img.vanna.ai/vanna-components.js`; mã legacy 0.x gọi `ask.vanna.ai`. Khi dịch vụ của công ty ngừng, cả hai sẽ hỏng; nên tự host file JS.
+
+**PandasAI 3.0 khi đọc mã:**
+
+- ⚠️ Telemetry chạy **ngay khi import**: `pandasai/helpers/logger.py` gọi `scarf_analytics()` gửi `GET https://package.pandabi.ai/pandasai-telemetry?version=…&platform=…`. Chỉ tắt khi `SCARF_NO_ANALYTICS` hoặc `DO_NOT_TRACK` **bằng đúng chuỗi `"true"`**; giá trị `DO_NOT_TRACK=1` (quy ước phổ biến) **không** tắt được.
+- ⚠️ Code Python do LLM sinh chạy **ngay trong tiến trình** (`CodeExecutor.execute_and_return_result`) trừ khi truyền `sandbox=`. Thư mục `ee/` theo license Enterprise, cần ký điều khoản trước khi dùng production.
+
+### Bảng nhanh 5 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `cube-js/cube` | Semantic layer | 21,1k · Apache-2.0 (+ MIT một số gói) | 31/10/2026 | Định nghĩa metric/dimension một lần, xuất SQL/REST/GraphQL cho BI và agent | **Telemetry bật mặc định**; MCP chỉ ở Cube Cloud |
+| `K-Dense-AI/scientific-agent-skills` | Skill phân tích dữ liệu khoa học | 55,5k · MIT | 26/10/2026 | 177 skill theo chuẩn Agent Skills (polars, statsmodels, EDA, tra cứu 100+ CSDL khoa học) | Nạp nhiều skill vào ngữ cảnh |
+| `bytebase/dbhub` | MCP cho CSDL | 3,8k · MIT | 26/10/2026 | MCP gọn (2 tool), phân loại câu SQL + giao dịch READ ONLY làm lớp chặn | **Read-only không bật mặc định** |
+| `t8y2/dbx` | Client CSDL có AI | 28,4k · Apache-2.0 | 1/11/2026 | Client 25 MB cho 100+ CSDL, trợ lý AI, MCP 3 mức quyền | 6 tháng tuổi, nhịp commit cực cao |
+| `ruc-datalab/DeepAnalyze` | Model + agent data science | 4,8k · MIT (code) | 13/10/2026 | Model 8B tự làm pipeline phân tích dữ liệu, có WebUI | Không CI; sandbox Docker tuỳ chọn |
+
+### Hồ sơ ngắn
+
+- **Cube Core.** 11.796 commit từ 2018, 419 tác giả, 12% commit có trailer Claude, có workflow `claude-code-review.yml`. LICENSE gốc: mặc định Apache-2.0, một số gói MIT. ⚠️ `packages/cubejs-backend-shared/src/env.ts`: `CUBEJS_TELEMETRY` mặc định `true`; `track.ts` gửi sự kiện kèm `machineIdSync()` tới `https://track.cube.dev/track` (chỉ bỏ qua khi biến `CI` được đặt). Tắt bằng `CUBEJS_TELEMETRY=false`. Tài liệu MCP và "analytics chat" là dịch vụ hosted của Cube Cloud (MCP connectors chỉ ở gói Premium/Enterprise). Giá trị cho kho: semantic layer giữa LLM và kho dữ liệu, cùng ý với MDL của WrenAI. Cài: `docker run -p 4000:4000 -p 15432:15432 -v ${PWD}:/cube/conf -e CUBEJS_DEV_MODE=true -e CUBEJS_TELEMETRY=false cubejs/cube`.
+- **Scientific Agent Skills (K-Dense).** 762 commit, đổi tên từ "Claude Scientific Skills"; 177 thư mục skill. Đã **gỡ 4 skill docx/pdf/pptx/xlsx chép từ `anthropics/skills`** vì license của Anthropic không cho phân phối lại, một ví dụ dọn license đúng. `scan_skills.py` quét bảo mật từng skill bằng LLM, có cache theo hash nội dung; CI chạy `security-scan`, `skill-spec-validation`, `skill-tests` ✅. Rủi ro: cài cả bộ đưa 177 mô tả skill vào ngữ cảnh; README kêu gọi star. Cài: `npx skills add K-Dense-AI/scientific-agent-skills` (chọn skill cần thay vì cài hết).
+- **DBHub (Bytebase).** TypeScript, 655 commit, **68% commit có trailer Claude**. Điểm đáng học là `src/utils/sql-access-policy.ts`: phân loại từng câu thành read/dml/ddl/admin/unknown (bắt cả `xp_cmdshell`, `pg_read_file`, `LOAD_FILE`), câu không phân loại được bị coi nguy hiểm như mức cao nhất; thêm **giao dịch READ ONLY ở tầng engine** làm lớp chặn thứ hai (`readonly-transaction.ts` tự ghi rõ DDL vẫn thoát được qua implicit commit). ⚠️ Cờ `--readonly` đã bị bỏ; muốn read-only phải khai báo `readonly = true` trong `dbhub.toml`, mặc định `execute_sql` được ghi. "Ít token hơn 13–14×" là so sánh tự đo. Cài: `npx @bytebase/dbhub@latest --transport stdio --dsn "<dsn>"` kèm file `dbhub.toml` bật read-only.
+- **DBX.** Rust + TS, repo tạo 29/4/2026, 9.292 commit (6.524 từ 1/7/2026), 446 tác giả, 28,4k★. Client CSDL đa nền tảng, plugin ký số, trợ lý AI tích hợp, MCP server phát hành riêng (`@dbx-app/mcp-server`) với 3 mức `read_only`/`safe_write`/`high_risk_write` và allowlist kết nối chỉnh trong Settings. Mức mặc định của MCP **chưa xác minh**. README có quảng cáo nhà tài trợ. Cài MCP: `npx -y @dbx-app/mcp-server`.
+- **DeepAnalyze (RUC DataLab).** Paper arXiv 2510.16872, model DeepAnalyze-8B và dữ liệu huấn luyện trên Hugging Face, 309 commit, không có workflow CI. Model sinh và chạy code phân tích; từ 3/2026 WebUI v2 có **thực thi trong Docker sandbox** nhưng là tuỳ chọn. Hợp để nghiên cứu "data agent" chạy local bằng vLLM; license weights trên Hugging Face **chưa xác minh**. Cài: tải model rồi `vllm serve DeepAnalyze-8B`.
+
+Đã cân nhắc nhưng chưa thêm: `tencentmusic/supersonic` (5,2k, ChatBI; Apache-2.0 **kèm điều kiện** cấm phân phối bản phái sinh khi chưa mua license, tag cuối 3/3/2025, chỉ 15 commit từ 7/2026), `sqlchat/sqlchat` (5,9k), `clidey/whodb` (5,0k), `streamlit/streamlit` (46,2k, đã nhắc ở bảng đầu), `apache/datafusion` (9,6k), `Eventual-Inc/Daft` (5,8k), `evidence-dev/evidence` (7,1k), `rilldata/rill` (3,0k).
+
+### Mẫu chung rút ra
+
+1. **Text-to-SQL "an toàn" phải đo bằng mã, không bằng README.** Vanna quảng cáo RLS nhưng mặc định NoOp và vẫn chạy DML; DBHub có bộ phân loại + giao dịch READ ONLY nhưng không bật mặc định. Mẫu đúng: read-only bật mặc định, hai lớp (parser như sqlglot/DBHub + quyền DB), và test các câu thoát như `SELECT 1--1;DROP TABLE t`.
+2. **Opt-out telemetry phải chấp nhận nhiều dạng giá trị.** PandasAI chỉ nhận `"true"`, nên `DO_NOT_TRACK=1` không có tác dụng; Cube bật mặc định với machine id. Template nên đặt cả `DO_NOT_TRACK=1`, `DO_NOT_TRACK=true` và biến riêng của từng công cụ.
+3. **Code do LLM sinh chạy trong tiến trình là mặc định nguy hiểm** (PandasAI, DeepAnalyze trước 3/2026). Ghép với sandbox ở mục 11.
+4. **Dự án text-to-SQL độc lập đang tàn**: Vanna archive, PandasAI dừng 1 năm; phần AI dồn về semantic layer (Cube, WrenAI), BI lớn (Superset MCP, Metabase Metabot) và MCP cho CSDL (DBHub, DBX).
+5. **Dọn license khi gom skill**: K-Dense gỡ skill chép từ Anthropic. Kho skill nào vendored nội dung bên thứ ba cần ghi nguồn và license từng skill.
+
+**Nguồn (31/10/2026):** GitHub search API (18 truy vấn + `repo:` cho 19 repo cũ và 5 repo mới) · clone `--filter=blob:none`, đọc: vanna (LICENSE, README.md, pyproject.toml, src/vanna/core/registry.py, src/vanna/tools/run_sql.py, src/vanna/servers/base/templates.py, src/vanna/legacy/), pandas-ai (LICENSE, ee/LICENSE, pyproject.toml, pandasai/helpers/telemetry.py, pandasai/helpers/logger.py, pandasai/agent/base.py), cube (LICENSE, README.md, packages/cubejs-backend-shared/src/{env.ts, track.ts}, docs-mintlify/docs/integrations/mcp-server.mdx, docs-mintlify/admin/ai/mcp-connectors.mdx), scientific-agent-skills (LICENSE.md, README.md, scan_skills.py, .github/workflows/), dbhub (LICENSE, README.md, dbhub.toml.example, src/utils/{sql-access-policy.ts, readonly-transaction.ts}, src/config/env.ts), dbx (LICENSE, NOTICE, README.md), DeepAnalyze (LICENSE, README.md), supersonic (LICENSE) · https://github.com/vanna-ai/vanna · https://landscape.jimmysong.io/projects/vanna/ · https://github.com/sinaptik-ai/pandas-ai · https://github.com/cube-js/cube · https://github.com/K-Dense-AI/scientific-agent-skills · https://github.com/bytebase/dbhub · https://github.com/t8y2/dbx · https://github.com/ruc-datalab/DeepAnalyze · https://arxiv.org/abs/2510.16872 · https://github.com/tencentmusic/supersonic
+
 ## Nguồn
 
 - https://duckdb.org/2026/08/05/github-40k-stars · https://en.wikipedia.org/wiki/Polars_(software) · https://github.com/sinaptik-ai/pandas-ai · https://github.com/topics/sql?l=python · https://aitools.flocci.in/alternatives/pandasai · https://jupysql.readthedocs.io/en/latest/tutorials/duckdb-github.html

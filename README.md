@@ -216,6 +216,15 @@
 
 ---
 
+### 31. Đợt nâng cấp tổng thể 31/10/2026: rà toàn catalog, quét repo lớn từng mục, đọc mã trước khi ghi
+
+- **Rà số liệu cả kho:** 570 repo qua GitHub search API (+ shields cho repo không tìm được), cập nhật sao cho ~390 dự án; catalog từ **578 → 776 dự án** (+198 repo đọc mã, mỗi mục 5–8 repo lớn còn thiếu; riêng mục 06 thêm 67).
+- **Đã đóng hoặc archive** (catalog ghi chú): Flowise (EOL 31/8/2026, mục 05), Polaris React (06), Roo Code (01), Vanna (15), AgentGPT (21), Daytona (11), LLM Guard (12), Browserbase MCP (11), PocketBase rời GitHub (13). Công ty rút lui công khai dù còn nhiều sao: Base Web (Uber), PrimeReact (chỉ vá bảo mật, xoá CI), Primer CSS (KTLO), Tambo Cloud đóng đúng 31/10.
+- **Đổi org/tên:** OpenCode → `anomalyco/`, Ragas → `vibrantlabsai/`, LibreChat → `LibreChat-AI/`, Docusaurus → `meta/`, NeMo Guardrails → `NVIDIA-NeMo/`, PR-Agent → `The-PR-Agent/` (nay MIT), ComfyUI → `Comfy-Org/`, developer-roadmap → `nilbuild/`, awesome-chatgpt-prompts → `f/prompts.chat`, gh-aw → `github/`. Repo của chủ kho: `xboss-manager` → `X-Templates`; `ai-gateway` → `x-shop` (mã cũ bị xoá 24/10, mục 23 §8b).
+- **Sửa số sai trước đây:** `vuejs/core` 208k → 54,9k (nhầm với repo Vue 2); bảng aggregator mục 19 thổi sao 10–90× (thực ~5,9k so với ~306k ghi).
+- **Mẫu lặp lại ở nhiều mục:** (1) công cụ cho agent **bật cờ bỏ kiểm quyền** hoặc chạy mã model viết không cô lập (OpenDesign gắn cứng `bypassPermissions` cho mọi agent, open-pencil `eval` trong webview, ralph, claude-code-best-practice `Bash(*)`); (2) **telemetry bật sẵn và không nghe `DO_NOT_TRACK`** (OpenDesign gửi cả nội dung prompt và log `~/.claude`, Framelink, OpenUI lúc cài, Qwen Code, pandas-ai, Trigger.dev MCP, Vercel eve, Ionic/Stencil CLI); (3) **máy chủ cục bộ nghe mọi interface, không xác thực** (Pencil MCP, HexStrike, LocalAI, A.I.G); (4) **license thật khác nhãn GitHub** (EUI SSPL/ELv2, intro.js AGPL + thương mại, OpenViking sang AGPL, prompt-optimizer sang AGPL, underthesea sang Apache-2.0, Lucide ISC + MIT); (5) **prompt hệ thống của sản phẩm đóng bị phát lại** (baoyu-design, garden-skills, OpenDesign "Adapted from claude.ai/design", open-interpreter nhúng prompt Claude Code).
+- Chi tiết theo mục: 01 §3i · 02 §4c · 03 §8g · 04 §4b · 05 (Flowise) · 06 §7p–§7r · 07 · 08 §2j · 09 §3b · 10 §6b · 11 §3c · 12 §4b · 13 §6g · 14 §5c · 15 · 16 §2g · 17 §4b · 18 §4d · 19 §3b · 20 §3t · 21 §10d · 22 §9e · 23 §8b.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

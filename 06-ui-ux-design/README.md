@@ -26,7 +26,7 @@
 | **Penpot** | penpot/penpot | MPL-2.0 | ~62k | 30/10/2026 | **Thay thế Figma** mã mở, xuất CSS/HTML thật, Docker self-host |
 | **tldraw** | tldraw/tldraw | tldraw license (riêng, cần license thương mại tùy trường hợp) | ~51k | 30/10/2026 | Infinite canvas SDK, gần Figma nhất về cảm giác |
 | **Onlook** | onlook-dev/onlook | Apache-2.0 | ~27k | **21/7/2026** | Visual editor cho React/Tailwind, "Cursor cho designer"; hơn 3 tháng không commit trên nhánh chính (commit cuối là bản vá IDOR tRPC), dù vẫn có push ở nhánh khác |
-| **OpenDesign** | nexu-io/open-design (open-design.ai) | Apache-2.0 | ~105k | 30/10/2026 | "Collaborative AI design agent workspace", local-first; có dịch vụ trả phí OpenDesign Cloud/Go. Hồ sơ: §7k |
+| **OpenDesign** | nexu-io/open-design (open-design.ai) | Apache-2.0 | ~105k | 30/10/2026 | "Collaborative AI design agent workspace"; có dịch vụ trả phí. Hồ sơ §7k, **đọc mã §7q.0: telemetry nội dung bật mặc định, agent chạy bỏ kiểm quyền** |
 | **FigCraft** | storytold/figcraft | MIT OR Apache-2.0 | ~4k | 31/10/2026 | Dựng lại Figma bằng Rust nhờ agent, alpha, điều khiển được qua CLI/MCP (§7e) |
 
 ## 3. AI sinh giao diện (design-to-code / prompt-to-UI)
@@ -641,6 +641,8 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 ## 7k. Hồ sơ: nexu-io/open-design (OpenDesign) — "workspace agent thiết kế" local-first, Apache-2.0 (bổ sung hồ sơ, clone 2026-10-19)
 
+> **Đính chính 31/10/2026:** đọc mã sâu ở §7q.0 cho thấy telemetry **nội dung** (prompt, phản hồi) bật mặc định, chẩn đoán tự động tải log `~/.claude`/`~/.codex`, và mọi agent chạy với cờ bỏ kiểm quyền. Nhận định "local-first thật, PRIVACY rõ" bên dưới cần đọc kèm §7q.0.
+>
 > §2 liệt kê OpenDesign (~102k★) nhưng chưa đọc mã. Mục này clone đầy đủ (blob:none), đọc README, `package.json`, `PRIVACY.md`, `CHANGELOG.md`, catalog design-system và lịch sử commit.
 
 ### 7k.1 Hồ sơ nhanh
@@ -966,6 +968,199 @@ Nhận định: "chuẩn mở" của OpenUI do một công ty kiểm soát; bả
 5. **Sao tăng nhanh không phải tín hiệu chất lượng**: 4 repo trong đợt có dưới 6 tuần tuổi hoặc một người viết gần hết.
 
 **Nguồn §7p:** GitHub search API 31/10/2026 (`repo:` cho 72 repo cũ và 18 repo mới; 18 truy vấn topic/từ khoá) · shields.io cho `stackblitz-labs/bolt.diy` · clone nông nhánh mặc định 20 repo của §1–§6 (ngày commit) · clone `--filter=blob:none` 18 repo mới, đọc: astryx (LICENSE, README, AGENTS.md, packages/cli/{scripts/postinstall.mjs, foundation/agent-docs/agent-docs.mjs}, apps/docsite/src/app/mcp/route.ts), shadcn-ui/lint (packages/lint/src/rules/*, docs/evals.md, SETUP.md), tweakcn (lib/posthog.ts, mcp-dialog.tsx, lib/ai/providers.ts, lib/constants.ts), semi-design (LICENSE, ecosystem/semi-mcp/src/tools/index.ts, ecosystem/semi-ui-skills/SKILL.md, DESIGN.md), Figma-Context-MCP (src/telemetry/client.ts, server.json, CHANGELOG.md), agentation (LICENSE, mcp/src/server/http.ts, skills/*), huashu-design (LICENSE và lịch sử license, SECURITY.md, scripts/{design_lint.py, html2pptx.js, render-video.js}), baoyu-design (LICENSE, NOTICE.md, references/upstream-sync/provenance.json — chỉ đọc đầu file), stitch-skills (react-components/scripts/validate.js, workflows), unslop (SKILL.md, scripts/*), designer-skills (CHANGELOG.md, .claude-plugin/marketplace.json, lint.yml), transitions.dev (LICENSE, agent/lib/rules.mjs, refine/bin/cli.mjs), openui (packages/lang-core/{package.json, src/telemetry/install.ts}, spec/*), tambo (README.md, SELF-HOSTING.md, packages/client/src/tambo-client.ts, các LICENSE/NOTICE), OpenIntelligentUI (apps/agent/src/visualization_router.py, docs/telemetry.md), design-extract (src/formatters/design-md.js, src/classifiers/smart.js), dembrandt (lib/robots.ts, lib/formatters/markdown.ts, smoke.yml), openpencil (crates/op-auth-bridge/{NOTICE, prebuilt/}, op-codegen/src/codegen_targets.rs) · Web: infoq.com/news/2026/10/shopify-web-components, community.shopify.dev/t/is-polaris-shopify-com-going-to-be-shut-down/26216, github.com/Shopify/polaris-react-archive (release notes), releases.sh (Headless UI), infoq.com/news/2026/09/meta-astryx-design-system, opensourceforu.com/2026/06/meta-open-sources-astryx, tambo.co/blog/posts/tambo-is-shutting-down (link trong README, chưa mở)
+
+## 7q. Đọc mã kỹ: open-design, open-pencil, Ionic, Lucide (yêu cầu người dùng, 31/10/2026)
+
+> OpenDesign đã có hồ sơ mức README ở §7k (19/10); open-pencil, Ionic, Lucide là repo lớn còn thiếu sau §7p. Mỗi repo clone đủ lịch sử (blob:none), đọc mã, CI, tài liệu nội bộ; **không cài, không chạy script**. Số sao từ GitHub search API 31/10/2026.
+
+### 7q.0 `nexu-io/open-design`: đọc mã sâu (bổ sung §7k)
+
+| Mục | Thông tin (HEAD `12d970eac`, 30/10/2026) |
+|---|---|
+| Repo | **105.186★**, 11.992 fork, 572 issue + **759 PR mở** · 3.831 commit trên `main` từ 28/4/2026 · tag mới nhất `open-design-v0.26.1` (22/10) **không nằm trên `main`** (vẫn ghi 0.25.1); tag không ký; CHANGELOG dừng ở 0.9.0 (5/2026); 2.819 nhánh remote |
+| Ai viết | 485 tên tác giả; bot `open-design-crew[bot]` 224, `open-design-bot` ~205, `Cursor Agent` 116; 124 commit có trailer Claude, 78 Cursor |
+| Kiến trúc | pnpm monorepo: daemon Express 5 + SQLite, web Next.js 16, desktop **Electron 41** (không có Rust/Tauri). ~1,85 triệu dòng TS/TSX (~931k là test); riêng `server.ts` 18.961 dòng. 169 skill, 115 design template, 501 manifest plugin, **152 gói design system** (README ghi 151) |
+| Luồng chạy | Web gọi `POST /api/runs` → ghép system prompt (prompt gốc + DESIGN.md + skill + memory) → **spawn CLI agent ngoài** (`shell:false`, cwd là thư mục project) → stream SSE → agent ghi file → xem trong iframe. Có đường BYOK không cần CLI (Anthropic, OpenAI, Azure, Google, Ollama) |
+
+**Phát hiện nặng (đã tự kiểm lại các dòng in đậm trong mã):**
+
+- ❌ **Mọi agent đều chạy với kiểm quyền tắt, gắn cứng trong mã**: Claude Code `--permission-mode bypassPermissions` (`runtimes/defs/claude.ts:116`), Codex `workspace-write` + mạng, và **`danger-full-access` tự động trên Windows/WSL**; Cursor `--force --trust`; Copilot `--allow-all-tools`; Amp `--dangerously-allow-all`; Qwen/Qoder/Trae `--yolo`; Antigravity `--dangerously-skip-permissions`… Brief, file nhập hay skill độc có thể chạy mọi thứ với quyền người dùng.
+- ❌ **Telemetry và chia sẻ nội dung mặc định bật**: `applyTelemetryDefaults` đặt `{metrics: true, content: true}` khi chưa có cấu hình (`app-config.ts:732-738`) → prompt, phản hồi, input/output tool gửi về Langfuse qua relay `telemetry.open-design.ai`. Kênh "safety/reliability" gửi PostHog **không kiểm consent và không có công tắc** (khớp PRIVACY.md); README:239 lại nói "consent-gated".
+- ❌ **Chẩn đoán tự động tải lên file `*.log` trong `~/.claude`, `~/.codex/log` và thư mục log OpenCode** (`packages/diagnostics/src/agent-logs.ts:120-175`, có bước che bớt), bật mặc định ở bản cài mới; PRIVACY.md không nói rõ việc tải log của CLI bên thứ ba. Mã nguồn relay nằm ở repo riêng.
+- ⚠️ **Updater tự viết chỉ so hash lấy từ cùng feed**, không kiểm chữ ký riêng; gói "launcher payload" sau khi giải nén bị **`xattr -dr com.apple.quarantine`** (`updater/payload.ts:159`), tức bỏ qua Gatekeeper cho mã tải về. Bộ cài thì có ký và notarize.
+- ⚠️ **API key lưu JSON plaintext** (`app-config.json`, `.od/media-config.json`, file sau không đặt quyền `0o600`); không dùng keychain hay `safeStorage`.
+- ⚠️ Daemon bind `127.0.0.1:7456`, từ chối bind ra ngoài khi thiếu `OD_API_TOKEN` (tốt), nhưng **request từ loopback bỏ qua token**, request **không có header Origin được cho qua**, không có allowlist Host chung → có khả năng bị DNS rebinding với route GET **(chưa xác minh khai thác được)**. Docker image đặt `0.0.0.0`.
+- ⚠️ **Prompt gốc tự ghi nguồn**: `packages/contracts/src/prompts/official-system.ts` dòng 4: *"Adapted from claude.ai/design's 'expert designer' prompt — same identity, workflow, and content philosophy"*; mặc định màu `#D97757`. Không tìm thấy URL tài sản hay bundle trích từ Anthropic (khác baoyu-design §7p.5), nhưng vẫn là rủi ro điều khoản/sở hữu trí tuệ. Có chế độ "Website Clone" dặn model chép "assets, fonts, and copy faithfully".
+- ⚠️ Gói design system mang tên thương hiệu (Stripe, Linear…): `evidence.md` chỉ nói "derived from the curated OpenDesign bundled fixture" (vòng tròn), không có tuyên bố nhãn hiệu; không kèm file font thương mại.
+- ⚠️ Dịch vụ model trả phí **AMR là lựa chọn "Officially recommended" mặc định khi onboarding**, trong khi README nói "We don't ship an agent". Bản build từ mã nguồn không có key thì PostHog/relay không gửi, trừ luồng analytics AMR gắn cứng `amr-api.open-design.ai` **(chưa xác minh có gửi ở bản build nguồn)**.
+- ✅ Iframe xem trước mặc định không có `allow-same-origin`; cửa sổ Electron `contextIsolation`, `sandbox`, chặn `window.open`; không `eval` trong daemon; CI 55 workflow, ~3.000 file test, Playwright `@critical` và visual.
+
+**Kết luận:** đánh giá §7k ("local-first thật, PRIVACY rõ") cần sửa: lõi chạy cục bộ nhưng **mặc định gửi cả nội dung prompt và log agent ra ngoài**, và mọi agent chạy không kiểm quyền. Nếu dùng: tắt cả hai lớp telemetry trong Settings ngay lần đầu (lớp safety vẫn gửi), chạy trong máy ảo/container riêng không có thư mục `~/.claude`, `~/.codex` thật, không mở brief/skill từ nguồn lạ, ưu tiên đường BYOK; không dùng bản Docker trên mạng chung khi chưa đặt token.
+
+### 7q.1 `open-pencil/open-pencil` (OpenPencil, TypeScript): khác hẳn `ZSeven-W/openpencil` ở §7p.4
+
+| Mục | Thông tin |
+|---|---|
+| Repo | 9.510★, 1.000 fork, 167 issue/PR mở · tạo 27/2/2026 · **3.404 commit**, HEAD 31/10/2026 · tag mới nhất v0.16.0 (14/10/2026) · openpencil.dev |
+| Tác giả | Danila Poyarkov (`dannote`) viết **~89%** commit; 70 tên tổng cộng. Chỉ 19 commit (0,56%) có trailer Claude, nhưng đó là **do quy định**: CONTRIBUTING cấm ghi AI là đồng tác giả, CI chặn, `.claude/settings.json` tắt attribution; việc dùng AI khai trong mẫu PR |
+| License | `LICENSE` MIT, nhưng `REUSE.toml` đặt **phần Cloud (`packages/cloud/**`, `src/cloud/**`…) theo Apache-2.0**; có NOTICE cho Kiwi (evanw), luật lint lấy từ `dmmulroy/anti-slop`. **Không có blob nhị phân đóng** (khác ZSeven) |
+| Không liên quan ZSeven | 0 commit chung, không trùng tác giả, không nhắc tên nhau; cùng đọc file `.pen` của Pencil.dev nên trùng hướng, không phải fork |
+
+**Kiến trúc.** TypeScript ~587k dòng (trong đó ~259k là test), Vue ~61k, vỏ desktop **Tauri v2** (Rust ~5k dòng). Vẽ bằng **Skia qua `canvaskit-wasm`** trên WebGL, layout bằng Yoga WASM. Định dạng gốc là chính **`.fig` của Figma** (Kiwi + Zstd + ZIP), cũng mở `.pen`, `.jam`, draw.io, Mermaid; xuất SVG, PDF, PPTX, HTML, ảnh, JSX/Tailwind, Storybook. Cộng tác P2P bằng **Yjs qua WebRTC (Trystero)**, báo hiệu qua MQTT công cộng và TURN công cộng `openrelay.metered.ca`.
+
+**Tài liệu nội bộ trung thực hơn README** (như FigCraft §7e): `fig-reader.md` ghi độ trung thực trên toàn bộ corpus "chưa xong"; `export.md` liệt kê lỗ hổng (tên, liên kết style, override); `validation.md` nói chưa có quy trình so hình tự động với Figma; ma trận roadmap ghi prototyping, smart animate, version history "Not modeled".
+
+**AI.** BYOK qua Vercel AI SDK (Anthropic, OpenAI, Google, DeepSeek, OpenRouter, endpoint tương thích); **127 tool** `defineTool`; MCP stdio và HTTP. MCP HTTP làm đúng: bind `127.0.0.1:7600`, **bearer token ngẫu nhiên mặc định**, `eval` tắt trừ khi `OPENPENCIL_MCP_EVAL=1`, giới hạn thư mục bằng `OPENPENCIL_MCP_ROOT` (riêng stdio không áp các giới hạn này, SECURITY.md tự ghi). Gọi Claude Code/Codex/Gemini qua ACP, **không truyền cờ bỏ quyền**; yêu cầu quyền hết giờ thì tự từ chối.
+
+**Rủi ro đọc mã thấy:**
+
+- ❌ **Chat AI trong app desktop bật tool `eval` mặc định**: chạy JavaScript do model viết bằng `new AsyncFunction` ngay trong webview chính, không duyệt, không cô lập; webview đó có quyền Tauri ghi/xoá file `**`, spawn một số tiến trình, `csp: null`. Prompt injection trong file thiết kế hay nội dung web có thể dẫn tới xoá/ghi file **(suy ra từ đọc mã, chưa thử khi chạy)**. Tắt `eval` trong Settings → AI tools khi mở file lạ.
+- ⚠️ Đăng nhập ChatGPT **dùng lại client ID OAuth của Codex CLI** và gọi `chatgpt.com/backend-api/codex`: vùng xám điều khoản, có thể hỏng bất kỳ lúc nào.
+- ⚠️ Bản build chính thức **gửi ping ẩn danh hằng ngày mặc định** (phiên bản, OS, arch, không ID); thống kê dùng là opt-in. Tắt bằng Settings → Privacy, `OPENPENCIL_TELEMETRY=0` hoặc `DO_NOT_TRACK`. Khớp CHANGELOG.
+- ⚠️ CI rất dày (commitlint, oxlint, typecheck, jscpd ngưỡng 0, test 9 nhóm, Cloud e2e 3 backend) nhưng **548 file e2e Playwright của editor không chạy trong workflow nào** tìm được.
+- ✅ Cập nhật tự động ký minisign, `requireSignedVersion: true`; bản macOS ký Developer ID và notarize; artifact có attestation. Bản Windows có vẻ chưa ký Authenticode **(chưa xác minh)**.
+- Bus factor ~1; 881 commit từ 1/9/2026.
+
+**So sánh nhanh:**
+
+| | open-pencil | ZSeven-W/openpencil (§7p.4) | FigCraft (§7e) | Penpot |
+|---|---|---|---|---|
+| Ngôn ngữ | TS/Vue + Tauri | Rust | Rust | Clojure(Script) |
+| License | MIT + Apache-2.0 (Cloud), sạch | MIT + thư viện xác thực đóng | MIT/Apache-2.0 | MPL-2.0 |
+| File Figma | Đọc/ghi `.fig` gốc, chưa trọn vẹn (tự ghi) | Không kiểm | "Best effort" | Qua plugin |
+| AI | BYOK, 127 tool, MCP, ACP; **eval bật sẵn** | MCP, ACP | CLI/MCP | Không gốc AI |
+
+**Dùng thế nào:** hợp để đọc/chuyển `.fig`/`.pen` không giao diện qua CLI hoặc MCP (giữ token, eval tắt, đặt `OPENPENCIL_MCP_ROOT` hẹp). Dùng bản web PWA nếu không muốn cấp quyền file của desktop. Luôn giữ file `.fig` gốc. Chưa thay được Figma cho prototype hay lịch sử phiên bản.
+
+### 7q.2 `ionic-team/ionic-framework` (Ionic 9): khỏe, MIT, nhưng do OutSystems nắm
+
+| Mục | Thông tin |
+|---|---|
+| Repo | **52.734★**, 13.295 fork, 439 issue + 76 PR mở · từ 2013 · 14.820 commit, HEAD 30/10/2026 · **v9.0.10** (v9.0.0 ra 19/8/2026), phát hành vá **mỗi tuần** |
+| Ai làm | 12 tháng qua 508 commit: bot ~35% (renovate, release bot), **nhân viên Ionic/OutSystems ~59%** (4–6 người), cộng đồng ~6% |
+| License | MIT sạch ("Drifty Co."), không CLA |
+| Kinh doanh | Blog Ionic 11/2/2025: **ngừng bán mới mọi sản phẩm thương mại** (Appflow, Identity Vault, Portals…); Appflow chạy tới 31/12/2027; Framework và Capacitor "vẫn miễn phí và mở", là lõi mobile của OutSystems |
+
+**Kiến trúc.** Lõi web components viết bằng **Stencil** (`@stencil/core` ^4.44), bọc cho Angular, React, Vue (kèm router riêng) và SSR Angular; 97 thư mục component (~60–70 component dùng được: datetime, modal, sheet, segment, refresher, item-sliding…). Hai "mode" giao diện **iOS và Material** chọn tự động theo nền tảng (64 file SCSS mỗi mode). Capacitor chỉ là phụ thuộc phát triển, phát hiện lúc chạy. v9 cần Angular 18+, React 18/19, Vue 3.5+, iOS 16+, Capacitor 7+; **`@ionic/react-router` chưa hỗ trợ React Router 7**.
+
+**Cổng chất lượng mạnh:** 424 spec Playwright e2e/screenshot, 213 unit test, **7.436 ảnh chuẩn** so hình, **axe-core** trong 37 file e2e, chạy trên Mobile Chrome/Safari/Firefox; CI chia 20 shard screenshot, bắt buộc check tổng; CodeQL; chạy thử hằng đêm với bản Stencil mới.
+
+**Sẵn cho agent ở mức vừa:** có **`ionicframework.com/docs/llms.txt`** (~46 KB, mỗi trang có bản `.md`) và `core/api.txt` (API công khai, 2.109 dòng); repo **không có** `AGENTS.md`/`CLAUDE.md`, **không có MCP chính chủ** (chỉ bản cộng đồng).
+
+**Telemetry:** framework không gửi gì. **Ionic CLI bật telemetry mặc định**: Google Analytics (mã UA cũ) + POST `api.ionicjs.com/events/metrics` kèm lệnh, đối số, UUID máy, `ionic info`, token nếu đăng nhập; tắt `ionic config set -g telemetry false` (tự bỏ khi CI hoặc không TTY). CLI gần như ngủ (commit cuối 3/2025); dùng Vite/Angular CLI + Capacitor trực tiếp cũng được.
+
+**Đang chuẩn bị:** nhánh `next` (hơn 590 commit) thêm theme "ionic" (58 file SCSS) và phụ thuộc **`outsystems-design-tokens`**; blog v9 hẹn "Modular Ionic" quý 2/2027, tức sắp đổi lớn theo design system của OutSystems.
+
+**Dùng thế nào:** hợp đội web (nhất là Angular) cần một mã cho iOS/Android/PWA qua Capacitor, app nội bộ nhiều form và danh sách. Ghim v9, tắt hoặc bỏ CLI, không dựa vào Appflow/Identity Vault/Portals (thay bằng Capawesome, Capgo, Codemagic). Cho agent đọc `docs/llms.txt` và `core/api.txt`. Không hợp app cần cảm giác native thật hay nhiều animation; so với React Native Reusables, Tamagui, Flutter ở §7h.
+
+### 7q.3 `lucide-icons/lucide`: bộ icon mặc định của shadcn, license thật là ISC + MIT
+
+| Mục | Thông tin |
+|---|---|
+| Repo | **25.427★**, 1.666 fork, 392 issue/PR mở · fork từ Feather (commit đầu 8/6/2020 "fork") · 3.120 commit, HEAD 30/10/2026 · **v1.66.0** (v1.0.0 ngày 23/3/2026) |
+| Nhịp | 779 commit/12 tháng, tăng dần (160 trong 10/2026); **95 bản phát hành/năm**: cron hằng ngày tự tăng minor khi có icon mới (qua bước duyệt) |
+| Người phát hành | Chỉ 3 người (`ericfennis`, `karsa-mistmere`, `jguddas`) được chạy release (khoá trong workflow) |
+| Nội dung | **2.015 icon** (README còn ghi "1600+"), mỗi icon có JSON tags/categories (43 category); 277 alias tên cũ (274 đánh dấu deprecated, chưa có ngày gỡ); 14 gói (React, Vue, Svelte, Angular, Solid, RN, static, Astro, lab…) |
+
+**License (lý do GitHub báo `NOASSERTION`).** File `LICENSE` gồm **ISC** cho Lucide **cộng toàn văn MIT của Feather (Cole Bemis) áp cho 115 icon gốc Feather**, liệt kê theo tên cũ (vẫn tồn tại qua tên mới hoặc alias). README và badge chỉ ghi "ISC". Dùng gói npm là đủ điều kiện (gói chép `LICENSE` vào); chép SVG thô thì phải kèm `LICENSE`. Ghi trong hồ sơ tuân thủ là **`ISC AND MIT`**. Đã **gỡ toàn bộ icon thương hiệu** (27/11/2025); workflow tự đóng issue xin logo; cần logo thì dùng Simple Icons (CC0).
+
+**Cổng chất lượng.** Prettier + svgo ép thuộc tính gốc (24×24, `stroke-width` 2, đầu nét tròn), ESLint kiểm SVG (chỉ `currentColor`/`none`, không style inline), lint tên file, schema JSON, cspell; cả 2.015 SVG đúng viewBox và nét. Quy tắc hình học (khoảng cách, bo góc, lưới) **chỉ người duyệt**, có comment xem trước tự động; không có so hình pixel. Chuỗi cung ứng tốt: **npm provenance qua OIDC**, publish `--ignore-scripts`, action ghim SHA, `permissions: {}` mặc định. Không gói nào có postinstall, không telemetry (trang docs dùng OpenPanel, dữ liệu ở EU).
+
+**Cho agent.** Có `llms.txt` (vitepress-plugin-llms) nhưng **trang icon bị loại** ("Not working, need investigation"); endpoint công khai `lucide.dev/api/tags`, `/api/icons/[name]`; **không có MCP chính chủ** (bản cộng đồng nhỏ, < 60★). Agent chọn icon tốt nhất qua tags trong `icons/*.json`.
+
+**Điểm cần sửa ở README:** "1600+" (thực 2.015); "ISC" (thực ISC + MIT); ghi chú v1 "giảm 32,3% (11,4 MB → 1 MB)" tự mâu thuẫn (11,4 → 1 là ~91%).
+
+**Tránh "giao diện Lucide mặc định"** (dấu hiệu "AI slop" mà Hallmark §7l, anti-slop §7i nhắc): Phosphor (6 độ đậm, duotone), Material Symbols (trục biến thiên, Apache-2.0), Iconoir (nét 1,5px, MIT), Heroicons solid/mini, Radix Icons (15px). Tabler gần như giống Lucide nên không giúp. Iconify cho phép đổi bộ sau một API (mỗi bộ giữ license riêng; Remix Icon dùng license riêng, cần đọc trước). Nếu giữ Lucide: đổi `strokeWidth` (1,5) và cỡ qua `LucideProvider` của v1.
+
+**Dùng thế nào:** mặc định an toàn về pháp lý, bảo trì tốt; import từng icon, tránh `DynamicIcon` (kéo toàn bộ icon vào bundle); **ghim phiên bản** (phát hành gần như mỗi ngày) và không dùng URL CDN `@latest` như docs gợi ý. Khớp X-Templates `UX-VISUAL-010` (một bộ icon duy nhất).
+
+**Nguồn §7q:** open-design (HEAD 12d970eac; README.md, PRIVACY.md, apps/daemon/DIAGNOSTICS.md, apps/daemon/src/{server.ts, app-config.ts, analytics.ts, daemon-startup.ts, origin-validation.ts, media/config.ts, langfuse-trace.ts, integrations/{telemetry-relay,vela}.ts, runtimes/{registry,agent-process}.ts, runtimes/defs/{claude,codex,cursor-agent,amr}.ts}, packages/contracts/src/prompts/official-system.ts, packages/diagnostics/src/agent-logs.ts, apps/web/src/{analytics/client.ts, analytics/error-tracking.ts, components/FileViewer.tsx}, apps/desktop/src/main/{runtime.ts, updater.ts, updater/payload.ts}, design-systems/{stripe,agentic,linear-app}/*, .github/workflows/{ci,release-stable}.yml, deploy/Dockerfile) · clone `--filter=blob:none` 31/10/2026: open-pencil (HEAD 9da768cf; README.md, LICENSE, REUSE.toml, SECURITY.md, CONTRIBUTING.md, CHANGELOG.md, .claude/settings.json, desktop/{tauri.conf.json, capabilities/default.json, src/credentials.rs, src/system/env.rs}, .github/workflows/{ci,build,app,heavy-tests}.yml, packages/mcp/src/{server.ts, server/lifecycle.ts, transport/origins.ts}, packages/core/src/tools/{analyze/eval/wrap.ts, registry/core.ts}, src/app/ai/{tools/catalog.ts, agents/acp/permission.ts, providers/chatgpt/oauth.ts}, src/app/telemetry/{config,state}.ts, src/app/collab/transport/trystero.ts, packages/docs/development/{roadmap,fig-reader}.md, packages/fig/docs/{export,validation}.md; so sánh lịch sử với ZSeven-W/openpencil) · ionic-framework (HEAD b01d379; LICENSE, README.md, BREAKING.md, lerna.json, core/{package.json, stencil.config.ts, playwright.config.ts, api.txt}, core/src/global/ionic-global.ts, .github/workflows/build.yml, nhánh `next` core/package.json) + ionic-cli (packages/@ionic/cli/src/lib/{telemetry,config,command}.ts) · lucide (HEAD a630cec; LICENSE, README.md, BRAND_LOGOS_STATEMENT.md, icon.schema.json, eslint.config.js, prettier-plugin-lucide-svg.mjs, .github/workflows/{ci,release,linting-icons,lint-code,close-issue-with-banned-phrases}.yml, docs/guide/version-1.md, docs/privacy.md, docs/.vitepress/config.ts) · ionic.io/blog/important-announcement-the-future-of-ionics-commercial-products · ionic.io/blog/announcing-ionic-framework-9 · ionicframework.com/docs/llms.txt (200) · GitHub search API 31/10/2026
+
+## 7r. Quét các repo lớn còn lại liên quan UI/UX (yêu cầu người dùng, 31/10/2026)
+
+> Sau §7p–§7q còn ~100 ứng viên từ các truy vấn GitHub. Bỏ repo lạc chủ đề (Cal.com, Nextcloud, Plausible, DocuSeal, supermemory…), giữ **46 repo** liên quan UI/UX từ ~5k★, chia 4 nhóm. Mỗi repo clone `--filter=blob:none` (đủ lịch sử nhánh mặc định), đọc LICENSE, manifest, CI, grep telemetry, kiểm 2–3 lời README; phiên bản npm đối chiếu `registry.npmjs.org/<gói>/latest`. **Không cài, không chạy script.** Số sao GitHub search API 31/10/2026; "12t/3t" = số commit trong 12 tháng / 3 tháng qua.
+
+### 7r.1 Công cụ và skill thiết kế dùng AI
+
+| Repo | ★ · license | Commit cuối | Là gì | Đánh giá |
+|---|---|---|---|---|
+| `JCodesMore/ai-website-cloner-template` | 38,3k · MIT | 5/10/2026 | Starter Next.js + một skill `/clone-website` (61 dòng) cho agent dựng lại bất kỳ URL nào | ⚠️ Skill **dặn dùng chữ, font, ảnh, SVG thật của site gốc**; README có mục "Not Intended For" nhưng skill không có bước kiểm ToS/bản quyền/nhãn hiệu. Rủi ro pháp lý dồn cho người dùng |
+| `wandb/openui` | 22,7k · Apache-2.0 | 30/6/2026 | App tự host "kiểu v0": mô tả → HTML → React/Svelte/Web Components (FastAPI + LiteLLM/Ollama) | ⚠️ Gần như ngừng (commit chức năng cuối 15/9/2025, 2026 chỉ có Renovate). **Weave tự bật khi có `WANDB_API_KEY` hoặc chỉ cần có mục `api.wandb.ai` trong `~/.netrc`** → prompt có thể bị trace lên W&B không hỏi (`server.py` dòng 584–603) |
+| `ConardLi/garden-skills` | 13,4k · MIT (không ghi chủ sở hữu) | 25/10/2026 | 6 skill; `web-design-engineer` 492 dòng (~9k token) + 29 "style recipe" | ⚠️ "Executable browser acceptance harness" thực ra là văn bản; **phát lại dưới MIT một file 73 KB tự nhận là system prompt "Claude Design"** (`dist/prompts/…`), nguồn gốc không rõ (cùng loại rủi ro với baoyu-design §7p.5) |
+| `lnkiai/m3e-canvas` | 9,9k · MIT (+ NOTICE Apache-2.0) | 22/10/2026 | Vẽ màn Material 3 Expressive trên trình duyệt, nối thành luồng, xuất prompt cho coding agent | ✅ Tĩnh, không server, link chia sẻ nằm ở fragment URL, có vitest + CI. ⚠️ **API key lưu plaintext trong localStorage**; 7 tuần tuổi, 27% commit trailer Claude |
+| `MengTo/threeui` | 7k · MIT | 1/9/2026 | Phần Community của catalog shader/Three.js thương mại ThreeUI, gói `@designcodeio/threeui` | ⚠️ Open-core (nút "Get Pro"), README ghi 50 component nhưng báo cáo đồng bộ ghi 43; demo tải từ threeui.com, CDN, Supabase |
+| `twostraws/SwiftUI-Agent-Skill` | 6,4k · MIT | 26/10/2026 | Skill "SwiftUI Pro" của Paul Hudson: viết/duyệt SwiftUI theo API mới, HIG, accessibility | ✅ Gọn (~1,5k token, 12 file tham chiếu nạp theo bước). ⚠️ "Sự thật nền tảng" cứng (iOS 27, Xcode 27.1) sẽ cũ nhanh |
+| `kaankiziltug/logo-design-skill` | 5,6k · MIT (trừ thư viện logo) | 20/10/2026 | Quy trình brief → concept → SVG → kiểm → bộ giao; 9 script Python | ⚠️ **Kèm 1.432 SVG logo của công ty thật** (TRADEMARKS.md: MIT không áp dụng, "chỉ để tham khảo"); `render_png.py` cần renderer ngoài dù README nói "không phụ thuộc" |
+| `miurla/morphic` | 9,2k · Apache-2.0 | 28/10/2026 | Answer engine kiểu Perplexity, câu trả lời stream một spec JSON thành component (generative UI) | ✅ Trưởng thành (1.889 commit, CI lint/test/build/eval), **mọi telemetry (PostHog, Vercel, Langfuse) chỉ bật qua biến môi trường**. Mẫu tham khảo generative UI tốt hơn các repo §7p.6 |
+| `bernaferrari/FigmaToCode` | 5,3k · **GPL-3.0** | 5/8/2026 | Plugin Figma chuyển tất định (không AI) sang HTML/React/Svelte/Tailwind/Flutter/SwiftUI | ✅ `manifest.json` không xin quyền, `networkAccess: none`. ⚠️ GPL nếu fork/nhúng (mã sinh ra thường không bị GPL ràng, **chưa xác minh pháp lý**) |
+| `evolus/pencil` | 9,9k · **GPL-2.0** | 22/10/2026 | Công cụ wireframe Electron lâu đời **của Evolus (Việt Nam)**; v4.0.0 (20/10/2026) thêm **MCP server** cho AI vẽ lên canvas | ❌ README nói MCP "chỉ trên loopback 127.0.0.1" nhưng `app/tools/api-server.js` gọi `server.listen(port)` **không truyền host** (nghe mọi interface), `cors origin '*'`, **không xác thực, bật mặc định cổng 1919** **(đọc mã, chưa thử khi chạy)**; Electron 16 (2021, hết hỗ trợ); 530 issue mở; CI chỉ còn AppVeyor Node 6 |
+| `ParthJadhav/Tkinter-Designer` | 10,3k · BSD-3-Clause | 16/10/2026 | Đọc Figma qua REST API, sinh mã GUI Tkinter | ⚠️ Gần như đứng từ 2022 (tag cuối v1.0.7 1/2023), CI dùng installer Poetry đã bị gỡ |
+
+**Đáng chú ý cho mục 18:** Pencil là một trong số ít công cụ thiết kế mã mở do đội Việt Nam làm còn được cập nhật; nên báo lỗi MCP cho Evolus, và khi dùng thì tắt MCP (`pencil.mcp.enabled`) hoặc chặn cổng 1919.
+
+### 7r.2 Thư viện React và tiện ích UI
+
+| Repo | ★ · license | 12t / 3t | Bản mới nhất | React 19 | Tài sản cho AI | Đánh giá |
+|---|---|---|---|---|---|---|
+| `react-bootstrap/react-bootstrap` | 22,6k · MIT | 31 / 19 | 2.10.10 (5/2025); v3 vẫn beta | ✅ | – | ⚠️ Chỉ khi đã dùng Bootstrap; phát hành chậm, một người bảo trì |
+| `uber/baseweb` | 9k · MIT | 49 / 9 | 18.2.0 (tag dừng ở v13, 2023) | dải peer mở, chưa kiểm | – | ❌ README: **"limiting our engagement with this repository"**; CI chỉ build, **không chạy test** (dù có 823 file test); khoá vào Styletron |
+| `rsuite/rsuite` | 8,7k · MIT | 1.081 / 996 | 6.2.5 | ✅ (CI 18/19) | **MCP `@rsuite/mcp`, skill, `AGENTS.md`** | ✅ Hợp admin nhiều dữ liệu (~120 component); ghim minor vì vừa ra v6, một người chính |
+| `grommet/grommet` | 8,4k · Apache-2.0 | 169 / 102 | 2.58.0 | ✅ | `copilot-instructions.md` (cho người đóng góp) | ⚠️ HPE đứng sau, chú trọng a11y (jest-axe, Chromatic), nhưng phụ thuộc styled-components; 494 issue mở |
+| `primefaces/primereact` | 8,3k · MIT (các bản cũ) | 63 / 8 | 10.9.9 | ✅ | – | ❌ README: **"no longer under active development… security fixes only"**, chuyển sang PrimeUI (license bản mới chưa rõ); **xoá toàn bộ workflow CI ngày 21/9/2026** |
+| `arco-design/arco-design` | 5,8k · MIT | 87 / 10 | 2.66.18 | qua adapter, CI chỉ React 18 | – | ⚠️ Ổn định nhưng chậm, Less, tài liệu Trung trước |
+| `cosscom/ui` (coss ui, trước là Origin UI) | 10,8k · MIT (2 dòng copyright nên GitHub báo NOASSERTION) | 279 / 59 | không version (qua registry shadcn) | **bắt buộc** 19.2 + Next 16 | **`AGENTS.md`, `llms.txt`, skill** | ✅ Design system của Cal.com trên **Base UI + Tailwind v4**; chỉ 6 file test |
+| `elastic/eui` | 6,4k · **SSPL-1.0 / Elastic License 2.0** | 566 / 196 | 123.3.0 | ❌ (chỉ 17/18) | `AGENTS.md`, `CLAUDE.md` | ❌ Ngoài hệ Elastic: **không phải license OSI** (đổi từ Apache-2.0 ngày 8/7/2021); dù vậy a11y tốt nhất nhóm (46 test Cypress + axe) |
+| `react-hook-form/react-hook-form` | 44,9k · MIT | 493 / 240 | 7.91.0 (v8 beta) | ✅ | – | ✅ Chuẩn de facto cho form, 0 phụ thuộc runtime |
+| `bvaughn/react-virtualized` | 27,1k · MIT | 11 / 11 | 10.0.0 (18/10/2026, viết lại TS) | chỉ v10 | – | ⚠️ README tự khuyên dự án mới dùng `react-window` (cùng tác giả) hoặc TanStack Virtual |
+| `usablica/intro.js` | 23,5k · **AGPL-3.0 + license thương mại** | 104 / 41 | 8.6.0 | không áp dụng | – | ⚠️ Dự án thương mại **phải mua license**; thay bằng driver.js hoặc react-joyride (MIT) |
+
+**Ghi nhận:** hai thư viện của công ty lớn đã rút lui công khai (Base Web của Uber, PrimeReact của PrimeTek) nhưng vẫn còn hàng nghìn sao; sao không nói gì về tình trạng bảo trì. Hai bẫy license: EUI (SSPL/ELv2) và intro.js (AGPL + bản thương mại). Không gói nào trong nhóm có postinstall hay telemetry.
+
+### 7r.3 Vue, Angular và mobile
+
+| Repo | Nền | ★ · license | 12t / 3t | Bản mới nhất | Tài sản cho AI | Đánh giá |
+|---|---|---|---|---|---|---|
+| `vueComponent/ant-design-vue` | Vue | 21,7k · MIT (3 khối MIT gộp nên GitHub báo NOASSERTION) | 12 / 0 | 4.2.6 (**11/2024**) | – | ❌ Thực tế không bảo trì: 10/12 commit gần nhất là docs/quảng cáo; nhánh `feat/vapor` chưa phát hành. **Workflow bắt mọi PR phải có trailer Co-Authored-By của Claude/Copilot/Cursor/Codex** |
+| `tusen-ai/naive-ui` | Vue 3 | 18,6k · MIT | 184 / 52 | 2.45.3 (8/2026) | `AGENTS.md` | ✅ Hợp admin/dashboard Vue; 712 issue mở, phụ thuộc một người chính |
+| `unovue/shadcn-vue` | Vue 3.5 + Tailwind v4 | 10,8k · MIT | 284 / 43 | CLI 2.9.0 (28/10/2026) | **`llms.txt`, MCP trong CLI, bộ skill Claude** | ✅ Mặc định cho Vue + Tailwind; sẵn cho agent nhất nhóm |
+| `unovue/reka-ui` (trước là Radix Vue) | Vue (headless) | 6,9k · MIT | 455 / 150 | 2.11.0 (5/10/2026) | `CLAUDE.md`, `llms.txt` | ✅ Lớp nền của shadcn-vue và Nuxt UI; nhánh v3 sẽ có thay đổi phá vỡ |
+| `NG-ZORRO/ng-zorro-antd` | Angular 22 | 9,2k · MIT | 288 / 60 | 22.1.2 (10/2026) | **`AGENTS.md`, `.claude/`, 7 skill, cấu hình MCP (Angular CLI, ESLint), `llms.txt` + `llms-full.txt`** | ✅ Lựa chọn cho Angular; major phải khớp major Angular |
+| `ant-design/ant-design-mobile` | React (mobile web) | 12,1k · MIT | 51 / 9 | 5.43.0 (9/2026) | – | ⚠️ Ổn định cho H5 nhưng chậm lại, toolchain cũ |
+| `akveo/react-native-ui-kitten` | React Native | 10,7k · MIT | 193 / 145 | 6.2.1 (10/2026) | `AGENTS.md`, `CLAUDE.md`, MCP thiết bị | ⚠️ **Hồi sinh 2026** (179/193 commit một người), README nói chạy New Architecture RN 0.81 **(chưa xác minh)** |
+| `wix/react-native-calendars` | React Native | 10,3k · MIT | 3 / 0 | 1.1314.0 (1/2026) | – | ⚠️ Chuẩn de facto nhưng gần như đứng; tự thử trên New Architecture |
+| `necolas/react-native-web` | RN → web | 22,2k · MIT | 77 / 77 | 0.21.4 (10/2026) | – | ⚠️ Nghỉ 11 tháng rồi hồi sinh 25/9/2026 dưới người dẫn mới; **0.22 có thay đổi phá vỡ** — ghim 0.21.x |
+| `pure-admin/vue-pure-admin` | Mẫu admin Vue | 20,7k · MIT | 72 / 3 | v7.0.0 (4/2026) | – | ⚠️ 0 test, phụ thuộc rất nặng; dùng bản `pure-admin-thin` |
+| `jd-opensource/taro-ui` | Taro (mini-program) | 4,7k · MIT | 108 / 4 | 3.4.2 (9/2026) | `SKILL.md` tiếng Trung | ⚠️ Chỉ khi đã dùng Taro 3; Taro 4 còn thử nghiệm, tài liệu chỉ tiếng Trung |
+
+**Ghi nhận:** ba repo từng bị coi là bỏ (UI Kitten, react-native-web, taro-ui) đã hồi sinh năm 2026 nhưng đều dựa vào một người; ant-design-vue và react-native-calendars thì ngược lại, sao cao nhưng thực tế chỉ còn bảo trì tối thiểu. Các thư viện Vue/Angular đang **cạnh tranh bằng tài sản cho agent** (llms.txt, MCP, skill), giống xu hướng §7p.7.
+
+### 7r.4 Hạ tầng design system, web components, tiện ích và danh sách
+
+| Repo | ★ · license | 12t / 3t | Bản mới nhất | Tài sản cho AI | Đánh giá |
+|---|---|---|---|---|---|
+| `stenciljs/core` | 13,1k · MIT (đoạn NOTICE thêm vào nên GitHub báo NOASSERTION) | 257 / 77 (nhánh `v5` thêm 451 commit) | 4.45.2; v5.0.0-beta.27 | `CLAUDE.md` (v5) | ⚠️ Trình biên dịch web components dưới Ionic (§7q.2). **CLI v4 bật telemetry mặc định** gửi `api.ionicjs.com` (tắt `npx stencil telemetry off`; bỏ qua khi CI); **v5 gỡ hẳn telemetry**. Một người chính |
+| `BuilderIO/mitosis` | 14,5k · MIT | 17 / 4 | 0.14.2 | – | ⚠️ Viết một lần, biên dịch ra ~20 framework; vẫn 0.x, nhịp giảm mạnh (143 → 17 commit/năm), CLI phụ thuộc `gluegun: "latest"` |
+| `Tencent/omi` | 13,3k · MIT (bọc trong notice kiểu Tencent) | 15 / 6 | 7.7.14 (tag dừng ở 7.7.0, 2024) | – | ⚠️ Không có CI chạy được; chỉ đáng dùng cùng TDesign; dự án mới chọn Lit hoặc Stencil |
+| `chakra-ui/panda` | 6,2k · MIT | 1.094 / 436 | 2.4.0 (lõi v2 viết lại bằng Rust/Oxc) | **`AGENTS.md`, skill, MCP `@pandacss/mcp`, `llms.txt`** | ✅ CSS-in-JS không runtime, CI đầy đủ (cả cargo-deny, clippy); phụ thuộc một người (Segun Adebayo) |
+| `chakra-ui/zag` | 5,2k · MIT | 884 / 230 | 1.47.0 | `AGENTS.md`, `CLAUDE.md`, `context7.json`, `llms-*.txt` | ✅ 51 "máy trạng thái" component (dialog, combobox, date-picker…) cho 6 framework; lớp logic của Ark UI, Chakra v3, Skeleton v5; 69 e2e Playwright |
+| `primer/css` | 13k · MIT | 179 / 70 (152 là dependabot) | 22.3.3 | – | ⚠️ README: **"This project is in KTLO mode"** (chỉ giữ chạy) từ 25/9/2025; dự án mới dùng Primer React hoặc `@primer/primitives` (vẫn sống) |
+| `skeletonlabs/skeleton` | 6,1k · MIT | 313 / 11 | 5.0.1 (8/2026) | `.claude/skills` (cho người đóng góp), llms | ⚠️ Tailwind v4 + Zag; chậm hẳn sau v5.0, PR bảo mật của Renovate chưa merge từ cuối 8/2026 |
+| `knadh/oat` | 5,6k · MIT | 273 / 26 | 1.0.1 (31/10/2026) | – | ✅ cho công cụ nhỏ: HTML/CSS ngữ nghĩa ~10 KB, 0 phụ thuộc (Kailash Nadh, CTO Zerodha); **không có test** |
+| `golden-layout/golden-layout` | 6,7k · MIT | 9 / 0 | v2.6.0 (**2022**) | – | ❌ cho dự án mới: 4 năm không release, v3 chưa ra |
+| `dicebear/dicebear` | 10k · MIT (mã) | 665 (nhánh 11.x) | 10.7.0; 11.0.0-rc.2 | llms | ✅ Avatar tất định, lõi cho 7 ngôn ngữ. ⚠️ **Mỗi style có license riêng**: CC BY 4.0 (adventurer, big-smile, micah, personas… phải ghi công), CC0 (lorelei, notionists, pixel-art…), avataaars/bottts license riêng "free for commercial use" (không phải mã mở). Nhánh mặc định là RC |
+| `ekmas/neobrutalism-components` | 5,6k · MIT | 55 / 53 | (registry shadcn) | – | ⚠️ README ghi "no longer maintained" từ 7/2025 tới 11/9/2026 rồi viết lại trên Base UI; không CI, không test |
+| `birobirobiro/awesome-shadcn-ui` | 20,7k · MIT | 502 / 208 | – | – | ✅ ~548 mục có cột ngày, CI kiểm link (lychee); 10 link thử: 0 chết, 2 trỏ repo đã archive, 1 đổi tên; có chỗ quảng cáo trả phí |
+| `aniftyco/awesome-tailwindcss` | 15,2k · CC0-1.0 | 21 / 4 | – | – | ✅ ~74 link chọn lọc, đã gỡ thư viện không miễn phí; CONTRIBUTING **cấm bài gửi do AI viết và bài trả phí**; 1/10 link chết (`tailwindcss.com/discord`) |
+
+### 7r.5 Mẫu chung rút ra từ 46 repo
+
+1. **Sao không phản ánh bảo trì.** Sáu repo trên 9k★ đang ở chế độ duy trì hoặc rút lui công khai (Base Web, PrimeReact, Primer CSS "KTLO", ant-design-vue, golden-layout, react-native-calendars). Dấu hiệu đọc được ngay: banner trong README, bảng hỗ trợ trong `SECURITY.md`, CI có chạy test hay không, tag có khớp `package.json` hay không.
+2. **Bẫy license ẩn sau nhãn GitHub.** `NOASSERTION` thường chỉ là MIT kèm notice (Stencil, Omi, coss ui, ant-design-vue), nhưng cũng có thể là SSPL/ELv2 (EUI) hay AGPL + thương mại (intro.js); và license theo **từng tài sản** (style DiceBear, logo trong logo-design-skill, thư viện Pencil GPL). Luôn đọc file.
+3. **Tài sản cho agent thành tiêu chí chọn thư viện**: shadcn-vue, ng-zorro, rsuite, Panda, Zag, coss ui có `llms.txt`/MCP/skill; thư viện cũ hơn thì không. Hợp với X-Templates `UX-DS-019`.
+4. **Máy chủ MCP cục bộ của app desktop là bề mặt tấn công mới**: Pencil (nghe mọi interface, CORS `*`, không xác thực, bật mặc định) đối lập với open-pencil (127.0.0.1, token ngẫu nhiên, eval tắt) §7q.1.
+5. **Telemetry trong CLI dựng sẵn** (Stencil v4, Ionic CLI) và **trace ngầm** (wandb/openui qua `~/.netrc`) tiếp tục là thứ phải tắt chủ động; bổ sung bảng §2 của [X-TEMPLATES.md](../X-TEMPLATES.md).
+
+**Nguồn §7r:** clone `--filter=blob:none` 46 repo ngày 31/10/2026, đọc qua `git show HEAD:<file>`: LICENSE/NOTICE, `package.json`/`pyproject.toml`, README, workflow CI, các file nêu trong bảng (ví dụ `evolus/pencil` app/tools/api-server.js; `wandb/openui` backend/openui/server.py dòng 584–603; `primefaces/primereact` README.md, SECURITY.md; `uber/baseweb` README.md, .github/workflows/pr-check.yml; `elastic/eui` LICENSE.txt; `usablica/intro.js` license.md; `stenciljs/core` src/cli/telemetry/telemetry.ts, nhánh v5 V5_PLANNING.md; `dicebear/dicebear` nhánh 9.x packages/@dicebear/*/LICENSE; `ConardLi/garden-skills` dist/prompts/; `kaankiziltug/logo-design-skill` TRADEMARKS.md) · `registry.npmjs.org/<gói>/latest` · GitHub search API 31/10/2026.
 
 ## 8. Nguồn (mục 1–6)
 

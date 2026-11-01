@@ -321,6 +321,48 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 
 ---
 
+## 8b. Nâng cấp 31/10/2026: rà lại trạng thái 19 repo
+
+> Chỉ làm mới trạng thái, không tìm repo mới. Clone `--filter=blob:none` lại 18/19 repo (case-study-ft41 là private, clone không được; trạng thái lấy từ GitHub search), đo lại các cột của ma trận §8.1 trên HEAD nhánh mặc định bằng lệnh (đếm `uses:` ghim SHA, `permissions:` cấp đầu, `dependabot.yml`, LICENSE/SECURITY, `"model": "opusplan"`, `auto-complete-guard.sh`), so tên repo bằng `git ls-remote` (HEAD trùng nhau nghĩa là đổi tên). Ngày đọc 31/10/2026.
+
+### 8b.1 Hai repo đã đổi tên và đổi hẳn nội dung
+
+| Repo trong §1 | Nay là | Chuyện gì đã xảy ra | Hệ quả cho kho |
+|---|---|---|---|
+| `seeker19110/xboss-manager` | **`seeker19110/X-Templates`** (cùng HEAD `a0f08cd`) | 13/10 commit `ae3a508` "xây lại khung X-stored — xoá khung cũ"; `docs/specs/AI-HARNESS-AND-COMPANY-SPEC.md` bị xoá ở commit này. Nay là thư viện yêu cầu có ID (MUST/SHOULD/MAY + cách kiểm), 18 mảng, 14 hồ sơ loại phần mềm, 8 gói ngành; v3.29.0, **357 commit từ 12/10**, MIT, 32/32 action ghim SHA | Dòng "xboss-manager / AI-HARNESS-AND-COMPANY-SPEC" ở §1 và §2.6 chỉ còn đúng với lịch sử trước 13/10. Đây chính là repo mà [X-TEMPLATES.md](../X-TEMPLATES.md) gọi là X-Templates |
+| `seeker19110/ai-gateway` | **`seeker19110/x-shop`** (cùng HEAD `2993b09`) | Commit gateway cuối là `fc0b601` (13/10, vá `proxy-addr`); 24/10 commit `9311a21` "xoá trống dự án"; từ đó là webshop thời trang (Medusa v2 + Next.js, COD/VNPAY/GHN), 226 commit từ 12/10, 220 commit tác giả "Claude". README ghi "Chưa chọn giấy phép", file LICENSE MIT cũ không còn | **Kho không còn dự án LLM gateway nào của chủ kho.** Catalog đang xếp repo này `llm-gateway`, MIT: cả hai sai với HEAD hiện tại. Phát hiện "fail-open trên `0.0.0.0`" ở §8.1 chỉ còn là lịch sử |
+
+### 8b.2 Ma trận vệ sinh: so với §8.1
+
+| Repo | HEAD (31/10) | Commit từ 12/10 | Ghim SHA (12/10 → 31/10) | Thay đổi khác |
+|---|---|---|---|---|
+| X-Agents | 27/10 `da755ba` | 101 | **0/42 → 42/42** | PR #460 (13/10): ghim SHA, `permissions:` cấp đầu cho mọi workflow, ghim digest image, Dependabot thêm docker. Lỗ hổng lớn nhất §8.1 đã đóng |
+| dhcb | 29/10 `7e23118` | 74 | **5/21 → 23/23** | PR #1396 (13/10) thêm `permissions.deny`; **vẫn `"model": "opusplan"`** (lỗi §8 còn) |
+| X-Scanner | 24/10 `a1959b4` | 29 | 2/2 → 9/9 | Dependabot pub + actions + gradle (PR #47, trước đó không có); vẫn thiếu `auto-complete-guard.sh` và LICENSE |
+| X-Studio | 14/10 `93a290a` | 4 | 3/3 | **Có LICENSE và Dependabot uv + actions** (trước đó không có) |
+| xboss | 31/10 `4cf49fd` | 61 | 39/39 | Vẫn không có LICENSE |
+| Hermes-Agents | 19/10 `b2e4ab8` | 5 | **0/11** (không đổi) | Thêm skill `stored-knowledge-base` (#28) để tra cứu chính kho này trước khi chọn tool ngoài; vẫn chưa có SECURITY.md, Dependabot |
+| Xgold | 13/10 `4019368` | 2 | **0/19** (không đổi) | Vẫn `opusplan`; 3 workflow thiếu `permissions:` cấp đầu |
+| projects-template | 13/10 `bac75d3` | 8 | 25/25 | PR #305 "đóng lượt hoàn thiện khung"; im từ 13/10, vai trò khung chuyển sang X-Templates |
+| qlkh · Dhcb-Tools · Plugin-4-Hermes · design-os-3d-blender · system-design-notes | 13/10 | 1–2 | Không đổi (29/29 · 28/28 · không CI · không CI · không CI) | Chỉ có commit "gợi ý nâng cấp 13/10"; qlkh vẫn thiếu LICENSE/SECURITY/Dependabot |
+| Sales-Hunter | 13/10 `35c69c6` (nhánh mặc định `bootstrap/base`) | 1 | 23/23 | Push 16/10 là nhánh Dependabot |
+| reveser | 20/7 (nhánh mặc định vẫn là nhánh tính năng) | 0 | 0/38 | Không đổi; upstream `morluto/rea` có push 31/10/2026. GitHub search trả 415k★ cho upstream, con số bất thường **(chưa xác minh)** |
+| Claude-Red | 13/10 `852d412` | 1 | 2/12 | Upstream `SnailSploit/Claude-Red` 10,1k★ (push 12/10); lỗi `skill-optimize-apply.yml` kế thừa từ upstream vẫn còn |
+| case-study-ft41 | push 23/10 (search) | – | không đọc được | Repo private; clone qua proxy bị từ chối lần này |
+
+**Repo mới của chủ kho thấy trong search, chưa có ở §1 (không hồ sơ trong đợt này):** `seeker19110/X-Company` (push 26/10), `seeker19110/hotel-manager` (31/10), `donghanhcungban/projects-template` (14/9), cùng hai repo đổi tên ở 8b.1.
+
+### 8b.3 Mẫu chung rút ra
+
+1. **Đề xuất ngày 13/10 có tác dụng ở repo còn hoạt động**: ba repo có nhiều commit sau đó (X-Agents, dhcb, X-Scanner) đã ghim SHA đủ trong ngày 13/10. Repo đóng băng (Xgold, Hermes-Agents, qlkh) chỉ nhận file gợi ý, không sửa.
+2. **Tên repo không bền**: hai repo giữ URL cũ (redirect) nhưng nội dung đổi hẳn. Catalog cần lưu HEAD SHA hoặc kiểm `ls-remote` mỗi đợt, không chỉ tên.
+3. **"Xoá trống rồi dùng lại repo"** làm mất license và nhầm lẫn lịch sử: x-shop kế thừa 2 tháng commit gateway, sao/issue cũ, nhưng không còn LICENSE. Tạo repo mới sẽ sạch hơn.
+4. **Lỗi cấu hình mô hình (`opusplan`) sống lâu nhất**: còn ở dhcb và Xgold sau 19 ngày, vì không có cổng máy nào kiểm giá trị `model` trong `.claude/settings.json`.
+
+**Nguồn §8b:** clone `--filter=blob:none` 18 repo ngày 31/10/2026 (đo bằng `git show HEAD:.github/workflows/*`, `.github/dependabot.yml`, `.claude/settings.json`, `git ls-tree`, `git log --since=2026-10-12`); X-Templates (`README.md`, `VERSION`, `LICENSE`, `git log --diff-filter=D -- docs/specs/AI-HARNESS-AND-COMPANY-SPEC.md`); x-shop (`README.md`, `git log` quanh 24/10); Hermes-Agents (`skills/stored-knowledge-base/SKILL.md`) · `git ls-remote` cho `seeker19110/{X-Templates,x-shop,X-Company,hotel-manager}` · GitHub search API (`user:seeker19110`, `user:donghanhcungban`, `repo:SnailSploit/claude-red`, `repo:morluto/rea`) 31/10/2026
+
+---
+
 ## 9. Nguồn (đường dẫn trong các clone nông, đọc 2026-10-12)
 
 - projects-template: `README.md`, `.claude/settings.json`, `.claude/hooks/{auto-complete-guard,pre-commit-gate,session-resume,usage-guard,telemetry-record}.sh`, `scripts/{dev-task.sh,check-docs-consistency.sh,test-hooks-loop.sh,model-capability-tiers.json,subagent-dispatch.py,maintain-run.sh}`, `docs/framework/{adopt-from-outside,orchestration-3-tier}.md`, `docs/reports/2026-09-22…2026-10-12-*.md`, `TRAPS.md`, `docs/adr/0003,0005,0006,0007,0009,0010,0011`, `.github/workflows/{ci,pr-policy,maintenance}.yml`, `docs/ops/{supply-chain,threat-model-maintain-cron}.md`
