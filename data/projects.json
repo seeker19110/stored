@@ -7846,6 +7846,16 @@
       "open_source": true,
       "notes": "Model 8B + agent tự làm pipeline data science (paper arXiv 2510.16872), WebUI v2 có Docker sandbox tuỳ chọn; không CI; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
       "section": "15"
+    },
+    {
+      "name": "X-Company",
+      "repo": "seeker19110/X-Company",
+      "category": "own-repo",
+      "license": "Độc quyền (LICENSE chưa điền chủ sở hữu)",
+      "stars": 0,
+      "open_source": false,
+      "notes": "Website + webapp điều hành nội bộ + PWA (Next.js, PostgreSQL), dự án đích dựng trên X-Templates; P0, GO-NO-GO NO-GO 24–25/10/2026; 174 commit, 75% trailer Claude; CI 10 workflow, 42/42 action ghim SHA; LICENSE còn placeholder chủ sở hữu, settings cho phép Bash trọn gói; đọc 1/11/2026, mục 23 §8c",
+      "section": "23"
     }
   ]
 }
