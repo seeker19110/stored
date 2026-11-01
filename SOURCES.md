@@ -727,3 +727,9 @@
 - Rà 72 repo mục 06 bằng GitHub search API (31/10/2026) + clone nông 20 repo §1–§6 lấy ngày commit nhánh chính; shields cho `stackblitz-labs/bolt.diy`. `Shopify/polaris` → `Shopify/polaris-react-archive` (archive 11/8/2026): infoq.com/news/2026/10/shopify-web-components, community.shopify.dev/t/is-polaris-shopify-com-going-to-be-shut-down/26216.
 - 18 repo mới (clone `--filter=blob:none` 31/10/2026): meta/astryx, shadcn-ui/lint, DouyinFE/semi-design, jnsahaj/tweakcn, GLips/Figma-Context-MCP, Manavarya09/design-extract, dembrandt/dembrandt, ZSeven-W/openpencil, benjitaylor/agentation, alchaincyf/huashu-design, google-labs-code/stitch-skills, heydamir/unslop, Owl-Listener/designer-skills, Jakubantalik/transitions.dev, thesysdev/openui, tambo-ai/tambo, CopilotKit/OpenIntelligentUI, JimLiu/baoyu-design. File đã đọc ghi ở cuối mục 06 §7p. Catalog +18 = 596.
 - Web: infoq.com/news/2026/09/meta-astryx-design-system, opensourceforu.com/2026/06/meta-open-sources-astryx, betterstack.com/community/guides/ai/astryx-meta-design-system, releases.sh/tailwind-css/headless-ui-releases.md, toolradar.com/compare/openui-vs-figma-for-agents.
+
+## Bổ sung 2026-10-31s (nâng cấp tổng thể: rà toàn catalog + repo lớn từng mục)
+
+- Rà toàn catalog: GitHub search API 31/10/2026 (`repo:` theo lô 20, 570 repo; 544 trả kết quả) + img.shields.io cho 26 repo không tìm được (fork, đổi tên). Catalog 578 → 776.
+- Mục 06: §7q (open-design, open-pencil, Ionic + ionic-cli, Lucide) và §7r (46 repo) — file đọc ghi trong các dòng **Nguồn §7q/§7r**; web: ionic.io/blog (future-of-commercial-products, announcing-ionic-framework-9), ionicframework.com/docs/llms.txt.
+- Mục 01–05, 07–23: mỗi mục có dòng **Nguồn** trong phần "Nâng cấp 31/10/2026" liệt kê clone (`--filter=blob:none`, đọc `git show HEAD:<file>`), file đã đọc và URL web (ví dụ flowiseai.com/sunset + discussion #6727; simonwillison.net/2026/jul/8/rewriting-bun-in-rust; landscape.jimmysong.io/projects/vanna).
