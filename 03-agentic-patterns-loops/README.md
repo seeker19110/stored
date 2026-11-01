@@ -409,6 +409,37 @@ Ký hiệu: ✅ đúng · ⚠️ đúng nhưng thiếu ý quan trọng · ❌ sa
 
 **Nguồn §8g:** GitHub search API 31/10/2026 (4 truy vấn mục 03 + truy vấn chung mục 01/02) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` và `--depth 1` 7 repo, đọc: learn-claude-code (README.md, LICENSE, requirements.txt, `s01_agent_loop/code.py`, `s17_goal_loop/code.py`, `tests/`, `.github/workflows/`) · headroom (README.md, LICENSE, `headroom/telemetry/beacon.py`, cấu trúc `crates/`, `plugins/`) · oh-my-claudecode (README.md, LICENSE, package.json, `scripts/postinstall-contained-fs.mjs`, `src/hooks/ralph/loop.ts`, `src/team/model-contract.ts`, `agents/`, `skills/`) · planning-with-files (README.md, LICENSE, `hooks/hooks.json`, `scripts/{gate-stop,check-complete}.sh`, `docs/evals.md`, `skills/planning-with-files/`) · snarktank/ralph (README.md, LICENSE, ralph.sh, prompt.md, prd.json.example) · Agent-Skills-for-Context-Engineering (README.md, LICENSE, `skills/*/SKILL.md`) · loop-engineering (README.md, LICENSE, gate.yaml, loop-budget.md, `scripts/`, `patterns/`)
 
+## 8h. Kiểm bài đăng "Claude Code: 10,69 triệu token nhưng chỉ tốn $9,93 — bí mật là prompt caching" (bài người dùng gửi, đối chiếu docs 1/11/2026)
+
+> Bài đăng mạng xã hội tiếng Việt, không ghi nguồn case study gốc **(chưa xác minh nguồn)**. Đối chiếu bảng giá và tài liệu prompt caching chính thức qua skill tham chiếu Claude API (bản lưu 6/10/2026; trang nguồn: platform.claude.com/docs/en/about-claude/pricing và …/build-with-claude/prompt-caching).
+
+### 8h.1 Kiểm từng câu
+
+| Câu trong bài | Thực tế | Kiểm |
+|---|---|---|
+| Giá Claude Opus 5.5: input $4, cache read $0,20, output $20 / 1M token | Khớp bảng giá. Bài **không nhắc giá ghi cache**: 1,25× input ($5/1M) với TTL 5 phút, 2× ($8/1M) với TTL 1 giờ | ✅ (thiếu một dòng) |
+| Cache read rẻ hơn 20 lần input | Đúng **riêng cho Opus 5.5** (0,05×). Đa số model khác là ~0,1× (10 lần); Fable 5.1 là 0,025× | ✅ có điều kiện |
+| 10,69M token, 9,45M là cache read (~88%), chi phí $9,93 thay vì $45,84 | **Khớp nội bộ**: 9,45M × $0,20 = $1,89; tính 9,45M theo giá input thì thêm 9,45 × ($4 − $0,20) = $35,91, và $9,93 + $35,91 = $45,84. Phần còn lại 1,24M token tốn $8,04 — khớp với khoảng 0,12–0,19M token output cộng ~1,05–1,1M input/ghi cache | ✅ số học; nguồn gốc số liệu chưa xác minh |
+| "Bí mật" là tận dụng prompt caching | Trong vòng lặp agent, mỗi lượt gửi lại toàn bộ lịch sử; Claude Code **tự đặt cache** nên 80–90% cache read là bình thường, không phải mẹo riêng. Con số "10,69M token" chủ yếu là **cùng một ngữ cảnh được đọc lại nhiều lần**, không phải 10,69M token nội dung mới | ⚠️ cách trình bày phóng đại |
+| "$45,84 nếu không cache" | Phép so sánh vẫn giữ phần phụ phí ghi cache (1,25×) trong cả hai vế; không cache thì phần đó tính giá input thường, nên con số "không cache" thật thấp hơn một chút | ⚠️ gần đúng |
+| Cache phụ thuộc prefix nhất quán, thời hạn và model; đổi model giữa phiên làm mất cache | Đúng: khớp **theo tiền tố từng byte** (thứ tự `tools` → `system` → `messages`); TTL mặc định 5 phút, mỗi lần đọc làm mới; **cache gắn với model**, đổi model là ghi lại từ đầu. Đổi tool, đổi system prompt, bật/tắt thinking, đổi `effort` ở cấp request cũng làm mất cache | ✅ |
+| Phiên quá dài có thể giảm chất lượng | Hợp lý (ngữ cảnh nhiễu). Cân đối: compaction/context editing giữ phiên, nhưng mỗi lần nén là ghi cache mới | ✅ nhận định chung |
+
+### 8h.2 Điều bài không nói
+
+- **Gói thuê bao (Pro/Max) không tính tiền theo token**: con số đô la kiểu này thường là "giá API tương đương" do công cụ như `ccusage` tính từ log của Claude Code **(chưa xác minh bài dùng công cụ nào)**. Chỉ người dùng API key mới thật sự trả số tiền đó.
+- **Tiền tố quá ngắn không được cache**: tối thiểu 512 token trên các model thế hệ mới (Opus 5.5…), 4.096 trên Opus 4.6 và Haiku 4.5; ngắn hơn thì không lỗi, chỉ không cache.
+- **Kẻ phá cache âm thầm**: ngày giờ trong system prompt, JSON không sắp thứ tự, tập tool thay đổi, xoá rồi chèn lại "nhắc nhở" giữa hội thoại. Cách kiểm: `usage.cache_read_input_tokens` phải tăng đều qua các lượt; nếu luôn ~0 là có thứ làm hỏng tiền tố.
+- **Chọn TTL**: các request cách nhau dưới 5 phút thì giữ TTL 5 phút (rẻ nhất, tự làm mới); khoảng 5–60 phút mới đáng trả 2× cho TTL 1 giờ.
+- **Mô hình đa model làm mất cache**: router chuyển Opus ↔ Sonnet giữa phiên đánh đổi giá token lấy việc ghi cache lại. Cách đúng là giữ vòng chính trên một model và giao việc rẻ cho subagent.
+- **Đo chi phí theo việc hoàn thành**, không theo request: rẻ mỗi lượt mà cần nhiều lượt hơn thì không rẻ.
+
+### 8h.3 Liên hệ trong kho
+
+Advisor Tool (§8e) và Agent Teams (§8f) đều ảnh hưởng cache (model khác, phiên khác); `DISABLE_TELEMETRY` tắt luôn Advisor (§8e). X-Templates đã có luật chọn model theo tầng (`LOOP-ORCH-019`) và ngân sách ngữ cảnh (`context-and-token-budget.md`); bài học "đổi model giữa phiên làm mất cache, đo `cache_read_input_tokens`" là đầu vào cho đợt trích kế tiếp.
+
+**Nguồn §8h:** bài đăng tiếng Việt người dùng gửi 1/11/2026 · skill tham chiếu Claude API (bảng model và giá lưu 6/10/2026; `shared/prompt-caching.md`: kinh tế cache, TTL, tối thiểu theo model, bảng làm mất cache) · trang nguồn ghi trong skill: platform.claude.com/docs/en/about-claude/pricing.md, platform.claude.com/docs/en/build-with-claude/prompt-caching.md (không tải lại trong phiên này).
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)

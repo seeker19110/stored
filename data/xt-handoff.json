@@ -917,6 +917,24 @@
       ],
       "column": "not_adding",
       "note": "Tiêu chí mềm, không kiểm được bằng máy; phía xuất bản đã có `XC-DOCAI-010`/`PRF-LIB-020`; nếu cần thì ghi vào bảng chọn stack của ADR, không thành ID"
+    },
+    {
+      "id": "XT-H-052",
+      "date": "2026-11-01",
+      "stored_ref": [
+        "03 §8h"
+      ],
+      "lesson": "Prompt cache gắn với **model** và khớp theo tiền tố từng byte (`tools` → `system` → `messages`): đổi model, đổi tập tool, sửa system prompt, bật/tắt thinking hay đổi `effort` ở cấp request giữa phiên đều ghi lại cache từ đầu. Bài đăng \"10,69M token chỉ $9,93\" khớp số học: 88% là cache read ($0,20/1M trên Opus 5.5, 0,05× input) (03 §8h)",
+      "xt_ids": [
+        "AI-APP-011",
+        "LOOP-ORCH-019",
+        "LOOP-ORCH-023"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bổ sung cho vòng autopilot (`11-autonomous-loop/orchestration-and-subagents.md`, cạnh `LOOP-ORCH-019`): phiên chính giữ một model suốt vòng; việc rẻ giao subagent thay vì đổi model phiên chính; thay đổi chỉ dẫn giữa phiên dùng system message giữa hội thoại thay vì sửa system prompt; không thêm/bớt tool giữa phiên. `AI-APP-011` đã phủ phía ứng dụng. Kiểm: trong log usage của một lượt autopilot dài, `cache_read_input_tokens` tăng đều qua các lượt; lượt có `cache_creation_input_tokens` gần bằng cả hội thoại được ghi lý do (đổi model/tool)."
+      }
     }
   ]
 }
