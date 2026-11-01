@@ -306,6 +306,58 @@ Tài liệu storage ghi rõ **"Hindsight does not abstract storage behind a gene
 
 **Mẫu đáng nhớ:** (1) **taxonomy lỗi → cooldown**: chỉ 401/403/429/quota mới failover tài khoản; `unsupported model` ≠ cooldown; stream và non-stream cùng logic (Hermes `provider-proxy-engineering`); (2) **CLI thuê bao làm LLM endpoint**: `claude -p --tools "" --no-session-persistence` và `codex exec --sandbox read-only --output-schema` trả text/tool-request, host là executor duy nhất — dùng gói thuê bao thay API key, nhưng phụ thuộc điều khoản của nhà cung cấp; (3) **pool `fill_first`** dùng hết 1 tài khoản rồi mới xoay để giữ cache; (4) **stack 0đ**: Groq free tier + Ollama + OpenCode Zen (`config/hermes-free-tier.example.yaml`); cho model local chỉ lộ ≤8 tool và dùng structured outputs (`format` = JSON Schema) (Dhcb-Tools `docs/ai-offline.md`).
 
+## 6b. Nâng cấp 31/10/2026: rà repo lớn
+
+> Cách làm: đọc lại sao, license, trạng thái của 30 repo GitHub đã có trong mục 10 (GitHub API, 31/10/2026). Tìm repo còn thiếu bằng 14 truy vấn GitHub search (`local llm inference`, `rag`, `vector database`, `agent memory`, `llm gateway`, topic `rag`/`local-llm`, và `created:>2025-10-01` cho repo mới). Lọc bỏ repo đã có ở bất kỳ mục nào trong `data/projects.json`, chọn **7 repo**, clone `--filter=blob:none` rồi đọc LICENSE, manifest, cấu trúc thư mục, CI, và grep host mạng/telemetry. **Không cài dependency, không chạy script của repo.** Số liệu đọc ngày 31/10/2026.
+
+### 6b.1 Trạng thái repo cũ
+
+| Repo | Thay đổi | Hệ quả |
+|---|---|---|
+| `ggml-org/llama.cpp` | ~100k → **133,0k** | Bảng §1 ghi "~85–130k" đã cũ |
+| `sgl-project/sglang` | ~25k → **38,3k** | Vẫn xếp sau vLLM (96,0k) nhưng khoảng cách hẹp lại |
+| `ollama/ollama` · `vllm-project/vllm` · `infiniflow/ragflow` | 185,5k · 96,0k · 93,3k | RAGFlow lớn gần bằng vLLM; bảng §3 chưa có số |
+| Vector DB §2 | Milvus 46,5k · Qdrant 35,4k · Chroma 29,6k · pgvector 23,5k · Weaviate 16,9k · LanceDB 11,8k | Các số "~15–25k" và "nguồn cũ" trong §2 đều thấp hơn thực tế; catalog bổ sung sao còn thiếu |
+| `HKUDS/LightRAG` · `microsoft/graphrag` | 40,5k · 36,5k | LightRAG đã vượt GraphRAG |
+| `songquanpeng/one-api` | Push cuối **9/1/2026** | Gần 10 tháng đứng yên. Bản fork tiếp nối là `QuantumNous/new-api` (51,1k, AGPL), xem dưới |
+| `Portkey-AI/gateway` | Push cuối **25/5/2026** | Hơn 5 tháng không push; kiểm tra lại trước khi chọn |
+| `BerriAI/litellm` · `pgvector` · `weaviate` | GitHub báo `NOASSERTION` | Không phải đổi license: LiteLLM có thư mục `enterprise/` license riêng **(chưa xác minh)**, pgvector dùng PostgreSQL License, Weaviate BSD-3 mà GitHub không nhận diện |
+| `thedotmack/claude-mem` · `vectorize-io/hindsight` | 107,8k · 57,0k | Hồ sơ §4d, §4e vẫn đúng |
+
+### 6b.2 Bảng nhanh 7 repo mới
+
+| Repo | Nhóm | ★ · license | Commit cuối | Một dòng | Cờ |
+|---|---|---|---|---|---|
+| `MemPalace/mempalace` | Agent memory | 60,2k · MIT | 31/10/2026 | Lưu nguyên văn hội thoại, tìm ngữ nghĩa (Chroma), MCP + hook cho coding agent | 7 tháng tuổi; từng rút lại số benchmark |
+| `VectifyAI/PageIndex` | RAG không vector | 39,9k · MIT | 30/10/2026 | Dựng cây mục lục cho tài liệu dài, LLM "đọc" cây để lấy trang | Chế độ local vẫn gọi LLM API; nhiều tính năng ở cloud |
+| `volcengine/OpenViking` | Context DB cho agent | 41,2k · **AGPL-3.0** | 31/10/2026 | Hệ file ảo `viking://` gộp tài liệu, memory, skill; tóm tắt L0/L1/L2 | Đổi Apache-2.0 → AGPL ngày 30/3/2026 |
+| `mudler/LocalAI` | Inference runtime | 50,1k · MIT | 31/10/2026 | API kiểu OpenAI/Anthropic/ElevenLabs, backend tách thành image kéo khi cần | Mặc định nghe mọi interface, không API key |
+| `exo-explore/exo` | Inference phân tán | 48,1k · Apache-2.0 | 28/10/2026 | Ghép nhiều máy Mac thành cụm, tensor parallel qua RDMA Thunderbolt 5 | Chỉ macOS Apple Silicon; tag cuối 23/4/2026 |
+| `docling-project/docling` | Parse tài liệu cho RAG | 69,9k · MIT | 31/10/2026 | PDF/DOCX/PPTX/… → Markdown/JSON, có OCR, VLM, MCP | License weights model riêng (chưa xác minh) |
+| `QuantumNous/new-api` | LLM gateway | 51,1k · **AGPL-3.0 + điều khoản §7** | 31/10/2026 | Kế thừa one-api: quản lý key, quota, nhiều kênh, API OpenAI/Claude/Gemini | Bắt giữ ghi công trên UI |
+
+### 6b.3 Hồ sơ ngắn
+
+- **MemPalace.** Python (lõi Rust đang tách ra `crates/`), 2.532 commit từ 4/4/2026, 191 tác giả, 205 commit (8%) có trailer Claude; `pyproject` ghi tác giả "milla-jovovich", người viết nhiều nhất là Igor Lins e Silva (1.439 commit). Cấu trúc wing/room/drawer chỉ là metadata filter trên Chroma (có backend Milvus). `docs/HISTORY.md` ghi rõ các lần sửa sai: 14/4/2026 bỏ bảng so sánh trộn **R@5 retrieval** của mình với **QA accuracy** của Mem0/Zep, rút "+34% palace boost" và "100% với Haiku rerank" (được tinh chỉnh bằng cách nhìn 3 câu sai). Số còn giữ: 96,6% R@5 LongMemEval chế độ raw, file kết quả có trong `benchmarks/` ✅. "Không gì rời máy trừ khi bật" ✅ phần lớn: tự tắt telemetry của Chroma, model embedding 300 MB tải lười từ Hugging Face. Có cảnh báo **site giả phát tán malware** (11/4/2026). Cài: `uv tool install mempalace && mempalace init <dir>`.
+- **PageIndex.** Ý tưởng: thay vector index bằng cây mục lục, LLM duyệt cây để chọn trang. Mã nguồn có module `flash/` dựng cây bằng heuristic (không cần LLM) cho PDF có text. "Local mode" vẫn cần API key LLM (README ví dụ OpenAI) và tải bảng giá model của LiteLLM từ `raw.githubusercontent.com` lúc chạy; `client.py` trỏ `api.pageindex.ai` cho chế độ cloud. Page Search API và File System (hàng triệu tài liệu) là dịch vụ trả phí. `pyproject` ghim `litellm <1.106` kèm ghi chú "1.107.0 was malware", một ví dụ ghim phiên bản vì sự cố chuỗi cung ứng. CI có CodeQL và dependency-review. Cài: `pip install -U pageindex`.
+- **OpenViking (ByteDance/Volcengine).** 3.058 commit từ 29/1/2026, 334 tác giả, 18% commit có trailer Claude; 36 workflow. Bố cục ngữ cảnh 3 tầng (L0 một câu, L1 tổng quan, L2 nguyên bản) giúp agent đọc tóm tắt trước khi mở file. Benchmark trong README (LoCoMo 24% → 82% với OpenClaw…) chạy bằng model Doubao của Volcengine; **tự đo, chưa xác minh**. License: commit "lisence: change the main lisence to AGPL-3.0" ngày 30/3/2026 đổi từ Apache-2.0; CLI Rust và `examples/` vẫn Apache-2.0. Cài khuyến nghị là `curl -fsSL https://openviking.ai/install | bash` (chạy script từ xa); có `pip install openviking`.
+- **LocalAI.** Go, 8.832 commit (khoảng 40% từ bot cập nhật và dependabot), 290 tác giả, tag v4.12.1 (23/10/2026). Hơn 40 backend Python (vllm, whisperx, voxcpm, vibevoice, kokoro…) dựng thành image riêng, chỉ kéo khi model cần ✅. ⚠️ `core/cli/run.go`: địa chỉ mặc định `:8080` (mọi interface) và `LOCALAI_API_KEY` để trống thì **không xác thực**: lệnh `docker run -p 8080:8080` trong README mở API ra mạng. Bản DMG macOS không ký. Cài: `docker run -ti --name local-ai -p 127.0.0.1:8080:8080 localai/localai:latest`.
+- **exo.** Python + Rust, dùng MLX và MLX distributed. `PLATFORMS.md`: Tier 1 chỉ có Mac (M3 Ultra, M4 Pro, M4/M5); Linux CUDA/CPU còn "planned" ⚠️. Số tăng tốc "1,8× trên 2 máy, 3,2× trên 4 máy" là của tác giả, chưa xác minh. Nhịp chậm lại: 109 commit từ 1/7/2026, tag cuối v1.0.71 ngày 23/4/2026. Không thấy telemetry; app tự kiểm tra bản cập nhật. Cài: `brew install --cask exo`.
+- **Docling (LF AI & Data, gốc IBM).** 1.830 commit, 418 tác giả, phát hành rất dày (v2.145.0 ngày 29/10/2026). Đọc PDF (layout, bảng, công thức), Office, HTML, EPUB, email, audio/video (qua ASR); xuất Markdown/JSON/DocTags; có MCP server và `docling-serve`. Code MIT; model layout/OCR/VLM (GraniteDocling…) tải từ Hugging Face với license riêng **(chưa xác minh từng model)**. Chạy được offline sau khi tải model. Cài: `pip install docling`.
+- **new-api.** Go + React, 6.656 commit, bản fork của one-api (MIT) chuyển sang AGPL-3.0. `NOTICE` thêm điều khoản theo AGPL §7: bản sửa đổi có giao diện phải giữ dòng "Frontend design and development by New API contributors." và link về repo. README có lệnh Docker bind `127.0.0.1:3000` ✅ (an toàn hơn LocalAI). Có relay cho Claude/Codex/Gemini; dùng để chia sẻ gói thuê bao thì rơi vào **vùng xám ToS** như §6. Cài: `docker run --name new-api -d -p 127.0.0.1:3000:3000 -v "$(pwd)/data:/data" calciumion/new-api:latest`.
+
+Đã cân nhắc nhưng chưa thêm: `opendatalab/MinerU` (82,9k, parse PDF, GitHub báo `NOASSERTION`), `unslothai/unsloth` (78,9k, fine-tune), `datalab-to/marker` (40,7k, license weights cần đọc riêng), `janhq/jan` (45,2k), `supermemoryai/supermemory` (31,5k), `Tencent/WeKnora` (36,1k), `mozilla-ai/llamafile` (26,5k, đã nhắc ở §1), `alibaba/zvec` (16,2k).
+
+### 6b.4 Mẫu chung rút ra
+
+1. **Số benchmark memory/RAG phải đọc kèm tên metric.** MemPalace tự rút bảng trộn R@5 với QA accuracy; OpenViking đo bằng model của chính hãng. Trước khi so sánh, kiểm repo có file kết quả và lệnh tái lập hay không.
+2. **"Local" không có nghĩa là không gọi mạng.** PageIndex local vẫn gọi API LLM và GitHub, MemPalace và Docling tải model từ Hugging Face, exo tự kiểm cập nhật. Muốn chạy air-gapped phải tải trước model và chặn egress.
+3. **Bind mặc định quyết định độ an toàn của server inference.** LocalAI nghe `:8080` không xác thực; new-api hướng dẫn bind `127.0.0.1`. Trong template, ép bind loopback và bắt buộc API key khi lộ ra mạng.
+4. **License dịch chuyển sang copyleft** ở hạ tầng agent: OpenViking (Apache → AGPL), new-api (one-api MIT → AGPL + điều khoản ghi công). Nhúng vào dịch vụ SaaS thì phải công bố mã sửa đổi.
+5. **Ghim dependency theo sự cố cụ thể** (PageIndex ghim LiteLLM `<1.106` vì 1.107.0 bị cài malware) là thói quen nên chép.
+
+**Nguồn §6b:** GitHub search API 31/10/2026 (14 truy vấn + `repo:` cho 30 repo cũ và 7 repo mới) · clone `--filter=blob:none`, đọc: mempalace (LICENSE, README.md, pyproject.toml, docs/HISTORY.md, benchmarks/, `mempalace/__init__.py`, hooks/, .github/workflows/), PageIndex (LICENSE, README.md, pyproject.toml, pageindex/client.py, pageindex/utils.py, pageindex/flash/), OpenViking (LICENSE, README.md, pyproject.toml, commit đổi license, .github/workflows/), LocalAI (LICENSE, README.md, core/cli/run.go, backend/), exo (LICENSE, README.md, PLATFORMS.md, src/, rust/), docling (LICENSE, README.md, pyproject.toml, packages/), new-api (LICENSE, NOTICE, README.en.md) · https://github.com/MemPalace/mempalace · https://github.com/VectifyAI/PageIndex · https://github.com/volcengine/OpenViking · https://github.com/mudler/LocalAI · https://github.com/exo-explore/exo · https://github.com/docling-project/docling · https://github.com/QuantumNous/new-api
+
 ## 7. Nguồn
 
 - https://dev.to/sreeraj-sreenivasan/the-complete-guide-to-local-llm-inference-tools-in-july-2026-llamacpp-ollama-vllm-sglang-and-4mh1 · https://blog.starmorph.com/blog/local-llm-inference-tools-guide · https://openalternative.co/blog/best-local-llm-tools · https://www.storagereview.com/best/local-llm-tools · https://deepresearch.ninja/2026/06/Open-Source-LLM-Inference-Projects-A-Comprehensive-Comparative-Analysis/ · https://www.digitalapplied.com/blog/run-local-llms-ollama-vs-lm-studio-vs-vllm-2026-guide
