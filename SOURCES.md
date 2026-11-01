@@ -733,3 +733,7 @@
 - Rà toàn catalog: GitHub search API 31/10/2026 (`repo:` theo lô 20, 570 repo; 544 trả kết quả) + img.shields.io cho 26 repo không tìm được (fork, đổi tên). Catalog 578 → 776.
 - Mục 06: §7q (open-design, open-pencil, Ionic + ionic-cli, Lucide) và §7r (46 repo) — file đọc ghi trong các dòng **Nguồn §7q/§7r**; web: ionic.io/blog (future-of-commercial-products, announcing-ionic-framework-9), ionicframework.com/docs/llms.txt.
 - Mục 01–05, 07–23: mỗi mục có dòng **Nguồn** trong phần "Nâng cấp 31/10/2026" liệt kê clone (`--filter=blob:none`, đọc `git show HEAD:<file>`), file đã đọc và URL web (ví dụ flowiseai.com/sunset + discussion #6727; simonwillison.net/2026/jul/8/rewriting-bun-in-rust; landscape.jimmysong.io/projects/vanna).
+
+## Bổ sung 2026-11-01 (bàn giao X-Templates đợt e3fdcb0..e8b3831)
+
+- Clone `seeker19110/X-Templates` (shallow, HEAD `a0f08cd` 31/10/2026, v3.29.0): grep ID trong `framework/**.md`, đọc `research/2026-10-31-stored-delta-autonomy.md` (phần đã tiêu thụ XT-H-001…018). Nguồn bài học: phần "Nâng cấp 31/10/2026" của 21 mục. Kết quả: [X-TEMPLATES.md](X-TEMPLATES.md) §2, §3 (thêm dòng), §4b, §5b; `data/xt-handoff.json` 18 → 51 mục.
