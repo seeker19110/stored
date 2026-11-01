@@ -18,7 +18,7 @@
 | **SWE-agent** | github.com/SWE-agent/SWE-agent | MIT | ~20.5k | Princeton; agent-computer interface, giải GitHub issue tự động | Nghiên cứu, bảo trì đều (10/2026) |
 | **mini-SWE-agent** | github.com/SWE-agent/mini-swe-agent | MIT | ~8.4k | **100 dòng code**, >74% SWE-bench Verified; là harness chuẩn của Vals leaderboard | Minh chứng "harness đơn giản vẫn mạnh" |
 | **Goose** | github.com/block/goose | Apache-2.0 | – | Agent desktop/CLI của Block, MCP-first | |
-| **Roo Code / Kilo Code** | github.com/RooCodeInc/Roo-Code | Apache-2.0 | – | Fork Cline, nhiều mode | |
+| **Roo Code / Kilo Code** | github.com/RooCodeInc/Roo-Code | Apache-2.0 | – | Fork Cline, nhiều mode | Roo Code **đã archive** (5/2026). Kilo Code 7.x **không còn là fork Roo**: lõi là fork OpenCode (MIT), xem §3j |
 
 ### 1.2 Thương mại / mã đóng
 
@@ -437,7 +437,7 @@ Memory "kiểu OpenClaw":
 | Repo | Thay đổi (README cũ → 31/10/2026) | Hệ quả |
 |---|---|---|
 | `sst/opencode` | **Đổi chủ thành `anomalyco/opencode`**; ~210k → 223,6k★ | Bảng 1.1 và catalog nên dùng URL mới (URL cũ chuyển hướng) |
-| `RooCodeInc/Roo-Code` | **Đã archive**, push cuối 15/5/2026; 24,3k★ | Không chọn cho dự án mới. Nhánh còn sống là `Kilo-Org/kilocode` (27,8k★, MIT, push 31/10) |
+| `RooCodeInc/Roo-Code` | **Đã archive**, push cuối 15/5/2026; 24,3k★ | Không chọn cho dự án mới. Kilo Code (`Kilo-Org/kilocode`, 27,8k★, MIT) thay thế được về sản phẩm, nhưng mã 7.x là fork **OpenCode**; nhánh Cline/Roo cũ nằm ở `Kilo-Org/kilocode-legacy` (đã archive) — §3j |
 | `block/goose` | Search API trả về **`aaif-goose/goose`** 56k★, Apache-2.0, push 31/10 | Dự án đã chuyển tổ chức; cập nhật URL **(chưa mở được trang chuyển hướng để xác minh)** |
 | `deepseek-ai/deepseek-harness` | ~200k → **267,4k★** | Vẫn lớn nhất bảng 1.1 |
 | `stablyai/orca` | "chưa rõ (10k–43k)" → **111,7k★** | Hết "chưa xác minh" về số sao; số mới gấp ~2,6 lần mức cao nhất từng ghi |
@@ -479,6 +479,86 @@ Memory "kiểu OpenClaw":
 5. **Biên lai hành động** (`/receipts` của Codewhale) là mẫu nên chép cho mọi agent chạy lâu: liệt kê file, lệnh, lời gọi mạng của phiên.
 
 **Nguồn §3i:** GitHub search API 31/10/2026 (6 truy vấn + `repo:` cho `anomalyco/opencode`, `RooCodeInc/Roo-Code`, `Kilo-Org/kilocode`, `aaif-goose/goose`) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` và `--depth 1` 7 repo, đọc: openinterpreter (README.md, FORK_BRANDING.md, NOTICE, `codex-rs/core/src/harness/*`, `codex-rs/otel/src/config.rs`, `codex-rs/config/src/types.rs`, `codex-rs/core/src/otel_init.rs`, `codex-rs/tui/src/startup_orchestration.rs`) · warp (README.md, FAQ.md, LICENSE-AGPL, LICENSE-MIT, `app/src/settings/privacy.rs`, `app/src/server/telemetry/*`, `.claude/settings.json`, `specs/`) · Codewhale (README.md, LICENSE, CHANGELOG.md, docs/TELEMETRY.md, `telemetry-ingest/`) · oh-my-pi (README.md, LICENSE, `packages/coding-agent/src/tools/settings.ts`, `cli/grievances-cli.ts`) · qwen-code (README.md, package.json, `packages/core/src/telemetry/qwen-logger/qwen-logger.ts`, `packages/cli/src/config/settingsSchema.ts`) · grok-build (README.md, CONTRIBUTING.md, SOURCE_REV, LICENSE, `crates/codegen/xai-grok-telemetry/src/{config,client}.rs`, `prod/mc/cli-chat-proxy-types/src/metadata_types.rs`) · claw-code (README.md, LICENSE, PHILOSOPHY.md, concept.md, `rust/`, `src/`, `.github/workflows/`) · https://github.com/anomalyco/opencode · https://github.com/Kilo-Org/kilocode · https://github.com/aaif-goose/goose
+
+## 3j. Đọc mã kỹ: Kilo-Org/kilocode (yêu cầu người dùng, 1/11/2026)
+
+> §3i ghi `Kilo-Org/kilocode` là "nhánh còn sống" của Roo Code. Đợt này clone `--filter=blob:none` (HEAD `dd35e09`, 31/10/2026), đọc mã CLI, extension VS Code, plugin JetBrains, gói telemetry, gateway, marketplace, CI. **Không cài, không chạy script.** Số sao từ GitHub search API 1/11/2026.
+
+### 3j.1 Danh tính và dòng dõi: Kilo hôm nay là fork của OpenCode, không còn là fork Roo Code
+
+| Mục | Thông tin (HEAD `dd35e09`, 31/10/2026) |
+|---|---|
+| Repo | **27.818★**, 3.319 fork, 828 issue mở · tạo 10/3/2025 · push 31/10/2026 · GitHub nhận MIT |
+| Lịch sử `main` | 33.984 commit; commit gốc là **"initial" của Kujtim Hoxha, 21/3/2025** (lịch sử OpenCode), không phải lịch sử Roo/Cline. 1.278 tên tác giả |
+| Ai viết | Nhân sự Kilo (`marius-kilocode` 2.506 + `Marius` 1.830, `kirillk` 2.144, Mark IJbema 1.718, Catriel Müller 1.007…) đan xen tác giả upstream OpenCode (Dax Raad 1.973, Adam 1.442, `opencode-agent[bot]` 1.392, Kit Langton 1.085, Aiden Cline ~1.450, Frank `@anoma.ly` 468). Bot Kilo: `kiloconnect[bot]` 740, `kilo-maintainer[bot]` 661 |
+| Trailer AI | 83 dòng `Co-Authored-By: Claude` (~0,2% commit); 587 dòng trailer Cursor/Copilot/Codex/Kilo |
+| Phát hành | 292 tag; `v7.8.25` ngày 28/10/2026, 5 bản trong ngày 28/10; JetBrains có tag riêng (`jetbrains/v7.2.1-rc.1`). Tag không ký **(chưa xác minh chữ ký release asset)** |
+| LICENSE | MIT, hai chủ bản quyền: "2026 Kilo Code" và **"2025 opencode"**. Không có NOTICE. Repo cũ thời Roo (`Kilo-Org/kilocode-legacy`) là **Apache-2.0** |
+
+**Dòng dõi thật (đối chiếu mã + CHANGELOG):**
+
+1. **Cline → Roo Code → Kilo Code 4.x/5.x**: đúng cho giai đoạn 2025. `packages/kilo-vscode/CHANGELOG.md` còn các mục "Include changes from Roo Code v3.28…v3.41.2" và cherry-pick PR Roo (dòng ~4056–5527). Mã đó nay nằm ở **`Kilo-Org/kilocode-legacy`** (44★, Apache-2.0, **đã archive**, push cuối 3/8/2026); mục 5.12.0 trong CHANGELOG trỏ PR về repo legacy.
+2. **Kilo CLI = fork OpenCode**: repo `Kilo-Org/kilo` (203★, MIT, đã archive 24/2/2026) được gộp vào; commit "Merge OpenCode v1.1.42 (#67)" 2/2/2026, "merge opencode v1.1.46" 4/2/2026. `AGENTS.md`: "Kilo CLI `packages/opencode/` … Fork of upstream OpenCode".
+3. **Extension 7.x viết lại trên server OpenCode**: CHANGELOG nhảy từ 5.12.0 sang 7.0.x; mọi client (VS Code, JetBrains, Cloud) chỉ là vỏ gọi `kilo serve` qua HTTP + SSE (`AGENTS.md` mục Products). Blog Kilo ghi ngày ra mắt bản rebuild là 2/4/2026 **(theo nguồn của Kilo)**. Vẫn theo upstream sát: workflow `watch-opencode-releases.yml`, merge `upstream/main` ngày 27/10/2026, mọi sửa trong file chung phải đánh dấu `kilocode_change` (CI `check-opencode-annotations.yml`).
+4. **Roo Code ngừng**: Roo archive 15/5/2026 (24.254★); Kilo giữ nút "Import Sessions from Roo Code" (PR #11303) và trang hướng dẫn chuyển từ Roo.
+
+→ Hệ quả cho kho: bảng 1.1 (dòng "Roo Code / Kilo Code … Fork Cline") và §3i đã lỗi thời. Kilo hiện là **anh em của OpenCode (`anomalyco/opencode`, 223,6k★)**, chỉ còn chung với Roo ở tên mode, file `.roomodes`/`.kilocodeignore` (có `modes-migrator.ts`, `rules-migrator.ts`, `ignore-migrator.ts` trong `packages/opencode/src/kilocode/`).
+
+### 3j.2 Kiến trúc và phần Kilo thêm vào OpenCode
+
+- Monorepo Bun 1.4 + Turbo, 35 gói trong `packages/`: lõi `opencode` (CLI/TUI/server, Effect 4 beta, SQLite qua Drizzle), `kilo-vscode` (extension, có Agent Manager chạy nhiều phiên trên git worktree), `kilo-jetbrains` (Kotlin, cần Java 21), `kilo-gateway`, `kilo-telemetry`, `kilo-indexing`, `kilo-memory`, `kilo-sandbox`, `kilo-docs`… **(chưa đếm LOC)**.
+- Phần riêng của Kilo gom trong `packages/opencode/src/kilocode/` (agent-manager, board, cloud, session-hosting, auto-routing, indexing, marketplace, sandbox, daemon, migrator từ Roo/Kilo cũ, tích hợp Anaconda Desktop).
+- **Kilo Gateway**: provider `kilo` trỏ `https://ai-gateway.kilo.ai/api/v1` và API `https://api.kilo.ai` (`kilo-gateway/src/api/constants.ts:10,19`); có router `kilo-auto/*`, trang số dư `app.kilo.ai/usage`, tự làm mới số dư (`balance-refresh.ts`). README nói "provider pricing, zero markup", không kiểm được từ mã **(chưa xác minh)**.
+- Sản phẩm đám mây đóng hoặc ở repo khác: Cloud Agent (`app.kilo.ai/cloud`), Code Reviews, `Kilo-Org/cloud` (21★, license NOASSERTION).
+
+### 3j.3 Phát hiện an ninh, quyền và mạng (đọc mã)
+
+- ❌ **Mặc định không có key thì prompt đi qua máy chủ Kilo**: thiếu key thì gateway dùng `apiKey: "anonymous"` và model mặc định `kilo-auto/free` (`constants.ts:72-90`, `loader.ts:21,34`). README "No API keys required to start" đúng, nhưng nghĩa là mã nguồn và prompt gửi tới `ai-gateway.kilo.ai` rồi tới model miễn phí do Kilo chọn. Danh mục marketplace cũng lấy từ `https://api.kilo.ai/api/marketplace` (`marketplace/api.ts:12`, đổi được bằng `KILO_MARKETPLACE_BASE_URL`).
+- ❌ **Telemetry PostHog bật sẵn, khoá ghi cứng**: `kilo-telemetry/src/client.ts:8-9` (`phc_GK2P…`, `https://us.i.posthog.com`). Sự kiện là metadata (CLI start/exit, session, LLM completion, tool/agent/command dùng, MCP server connect/error, indexing, auth), **không thấy nội dung prompt** trong `events.ts`. Nhưng khi đăng nhập, `machineId` bị `alias` sang **email tài khoản Kilo** (`telemetry.ts:160-163`, email lấy từ profile và cache ở `identity.ts`). Nếu máy có `~/.conda/aau_token`, CLI chạy `conda info --json` để lấy client token ẩn danh của Anaconda làm khoá nối (`conda.ts:9-41`, gắn vào thuộc tính `aauClientToken`).
+- ⚠️ **Công tắc tắt khác nhau theo client, và docs chỉ nói một cách**: docs (`kilo-docs/pages/getting-started/settings/index.md:301`) ghi "Telemetry is enabled by default", tắt bằng `experimental.openTelemetry: false` trong `kilo.jsonc`. Mã: biến `KILO_TELEMETRY_LEVEL` **thắng cấu hình** (`telemetry.ts:125-127`).
+  - CLI đơn: tắt bằng `experimental.openTelemetry: false` hoặc `KILO_TELEMETRY_LEVEL=off`. **Không có mã nguồn nào của Kilo đọc `DO_NOT_TRACK`** (grep chỉ thấy một test đặt `DO_NOT_TRACK: "1"` trong `packages/opencode/test/kilocode/startup-speed.test.ts`).
+  - VS Code: extension đặt `KILO_TELEMETRY_LEVEL` theo `vscode.env.isTelemetryEnabled` (`server-manager.ts:157`) và đồng bộ khi đổi (`telemetry-proxy.ts:71-83`). Muốn tắt phải tắt telemetry của **cả VS Code** (`telemetry.telemetryLevel: off`); tắt trong `kilo.jsonc` bị env ghi đè.
+  - ❌ **JetBrains: luôn `"all"`** trừ chế độ dev (`KiloBackendCliManager.kt:615`, ghi đè cả env người dùng vì `put` sau `putAll(base)`), và gọi `setTelemetry(true)` sau khi kết nối (`KiloBackendAppService.kt:470`). Không tìm thấy công tắc hay kiểm cài đặt IDE nào **(đọc mã, chưa chạy để bắt gói)**.
+  - `PRIVACY.md` (cập nhật 7/3/2025) không nhắc PostHog hay telemetry.
+- ⚠️ **Quyền mặc định thoáng ở mode Code**: lớp mặc định `"*": "allow"` (`opencode/src/agent/agent.ts:136-158`), tức **sửa/ghi file, `webfetch` và tool MCP không hỏi** ở CLI và VS Code; chỉ JetBrains đặt `edit: "ask"` (`kilocode/agent/index.ts:389`). Bash `"*": "ask"` nhưng cho sẵn một allowlist gồm `cp`, `mv`, `tar`, `unzip`, `tsc` và **`printenv *`** (`kilocode/agent/index.ts:25-68`), nên model đọc được biến môi trường (thường chứa key) mà không hỏi. Luật `"<mcp>_*": "ask"` từ `getMcpRules` chỉ áp cho mode Plan/Ask (`index.ts:532,643`), mode Code không có. `.env` đọc phải hỏi; thư mục ngoài dự án phải hỏi. Mode Ask/Plan dùng `readOnlyBash` (deny `|`, `;`, `&`, `>`, `$(`…); chú thích trong mã tự nhận "defense-in-depth, not a sandbox".
+- ⚠️ **YOLO**: `kilo run --auto` tự duyệt mọi thứ trừ luật deny; còn `--yolo` / `--dangerously-skip-permissions` (`cli/cmd/run.ts:256-298`). README chỉ cảnh báo `--auto` "trusted environments".
+- ✅ **Sandbox có nhưng tắt sẵn**: `sandbox.enabled` mặc định `false`, mạng trong sandbox mặc định deny khi bật (`kilocode/sandbox/config.ts:21-43`), dựa trên `@anthropic-ai/sandbox-runtime` 0.0.63. Bật bằng `/sandbox` hoặc config.
+- ⚠️ **Marketplace MCP không có kiểm toàn vẹn**: mục MCP từ catalog được chép thẳng thành `{type: "local", command: [...]}` hoặc `remote` vào config (`marketplace/mcp-entry.ts:23-35`); không có hash/chữ ký; skill tải dạng tarball. Kết hợp với "tool MCP không hỏi" ở mode Code, một mục marketplace độc chạy được ngay.
+- ⚠️ **API key lưu plaintext JSON**: `~/.local/share/kilo/auth.json`, quyền `0o600` (`opencode/src/auth/index.ts:11,81`). Extension VS Code **không dùng `SecretStorage`** (grep `context.secrets` không có); key nằm trong file của CLI.
+- ✅ Server cục bộ: VS Code và JetBrains sinh `kilo serve --port 0` với `KILO_SERVER_PASSWORD` ngẫu nhiên (Basic auth); `kilo serve` chạy tay mà thiếu mật khẩu chỉ in cảnh báo "server is unsecured" (`cli/cmd/serve.ts:15-16`). Biến này bị xoá khỏi env của tiến trình con (`kilocode/process/env.ts:7`).
+- ⚠️ Cài đặt: `curl -fsSL https://kilo.ai/cli/install | bash`; script `install` tải binary từ GitHub Releases **không kiểm checksum** (`install:196-207`). CLI tự cập nhật trừ khi `KILO_DISABLE_AUTOUPDATE=1`. Kilo cũng đọc skill và `CLAUDE.md` của Claude Code mặc định (tắt bằng `KILO_DISABLE_CLAUDE_CODE=1`).
+
+### 3j.4 Cổng chất lượng
+
+- 39 workflow: `test.yml` (unit đa OS, chia shard, HttpApi exerciser, JetBrains), `typecheck.yml`, `test-vscode.yml`, `test-jetbrains.yml`, `visual-regression.yml`, `smoke-test.yml`, `codeql.yml` + `codeql-kotlin.yml`, `check-forbidden-strings.yml`, `check-opencode-annotations.yml` (kèm allowlist workflow để workflow upstream không tự chạy), `nix-hashes.yml`. Có `dependabot-auto-merge.yml`. Số file test chưa đếm **(chưa xác minh)**; gói telemetry có test cho việc tắt (`identity-delivery.test.ts:67-68`), test JetBrains khẳng định `KILO_TELEMETRY_LEVEL == "all"` (`KiloBackendCliManagerEnvTest.kt:42`), tức hành vi "luôn bật" là chủ đích.
+- `AGENTS.md` dặn agent "execute requested actions without confirmation", "never run root `bun test`"; repo có `.claude`-style skill nội bộ cho JetBrains.
+
+### 3j.5 README nói gì, mã làm gì
+
+| Tuyên bố | Kết quả | Bằng chứng |
+|---|---|---|
+| "Open source coding agent", MIT | ✅ | LICENSE MIT (kèm bản quyền opencode); cloud/gateway là dịch vụ riêng |
+| VS Code, JetBrains, CLI cùng một lõi | ✅ | Mọi client gọi `kilo serve` (`AGENTS.md`, `server-manager.ts`, `KiloBackendCliManager.kt`) |
+| "No API keys required to start" | ⚠️ | Đúng, vì mặc định đi qua `ai-gateway.kilo.ai` với khoá `anonymous` |
+| "Pay the model provider's rate with zero markup" | ⚠️ | Không kiểm được từ mã client **(chưa xác minh)** |
+| `--auto` "only in trusted environments" | ✅/⚠️ | Đúng, nhưng còn `--yolo`/`--dangerously-skip-permissions` không nêu trong README; mode Code mặc định đã cho sửa file không hỏi |
+| PRIVACY: dữ liệu chỉ tới nhà cung cấp model đã chọn | ❌ | Không nói PostHog, alias email, token Anaconda; mặc định gateway là của Kilo |
+| Docs: tắt telemetry bằng `experimental.openTelemetry: false` | ⚠️ | Đúng với CLI đơn; bị env ghi đè trong VS Code; JetBrains không tắt được |
+| "Kilo Marketplace" cài agent/skill/MCP | ✅/⚠️ | Có, catalog từ `api.kilo.ai`, không kiểm toàn vẹn |
+
+### 3j.6 Rủi ro và cách dùng
+
+**Rủi ro:** (1) đổi nền từ Roo sang OpenCode, nên đánh giá cũ về Roo không áp dụng; cấu hình, đường dẫn dữ liệu và hành vi khác hẳn; (2) phụ thuộc dịch vụ Kilo theo mặc định (gateway, marketplace, profile, model miễn phí); (3) telemetry gắn email, JetBrains không tắt được; (4) mode Code sửa file, chạy tool MCP và `printenv` không hỏi; (5) key plaintext; (6) nhịp phát hành rất nhanh (5 bản/ngày) với lõi Effect 4 beta, merge upstream liên tục; (7) một lượng lớn commit do bot.
+
+**Khuyến nghị:** dùng được cho cá nhân thay Roo Code, nhưng coi như OpenCode có thêm lớp dịch vụ Kilo. Cấu hình tối thiểu:
+
+- Cài: `npm install -g @kilocode/cli` (thay vì `curl | bash`), hoặc extension `kilocode.Kilo-Code` từ Marketplace.
+- Chọn provider của mình (BYOK hoặc model cục bộ) trước prompt đầu tiên để không đi qua `kilo-auto/free`.
+- Tắt telemetry: `kilo.jsonc` → `"experimental": {"openTelemetry": false}` **và** `export KILO_TELEMETRY_LEVEL=off`; trong VS Code tắt `telemetry.telemetryLevel`. Với JetBrains, chặn `us.i.posthog.com` ở firewall hoặc không dùng.
+- Siết quyền: `"permission": {"edit": "ask", "webfetch": "ask", "bash": {"printenv *": "deny"}}` và thêm `"<tên-mcp>_*": "ask"` cho từng MCP; bật `"sandbox": {"enabled": true}` trên macOS/Linux.
+- Không dùng `--auto`/`--yolo` ngoài container CI dùng một lần; không cài mục marketplace chưa đọc lệnh.
+
+**Nguồn §3j:** clone `Kilo-Org/kilocode` (`--filter=blob:none`, HEAD `dd35e09`, 31/10/2026), đọc: README.md, LICENSE, PRIVACY.md, AGENTS.md, CONTEXT.md, package.json, `install`, `.github/workflows/` (39 file, `test.yml`), `packages/kilo-vscode/CHANGELOG.md`, `packages/kilo-vscode/README.md`, `packages/kilo-telemetry/src/{client,telemetry,events,identity,conda}.ts`, `packages/kilo-vscode/src/services/telemetry/telemetry-proxy.ts`, `packages/kilo-vscode/src/services/cli-backend/server-manager.ts`, `packages/kilo-vscode/src/services/marketplace/actions.ts`, `packages/kilo-jetbrains/backend/.../cli/KiloBackendCliManager.kt`, `.../telemetry/KiloBackendTelemetry.kt`, `.../app/KiloBackendAppService.kt`, `packages/opencode/src/kilocode/cli/setup.ts`, `packages/opencode/src/agent/agent.ts`, `packages/opencode/src/kilocode/agent/index.ts`, `packages/opencode/src/cli/cmd/{run,serve}.ts`, `packages/opencode/src/auth/index.ts`, `packages/opencode/src/kilocode/marketplace/{api,mcp-entry}.ts`, `packages/opencode/src/kilocode/sandbox/config.ts`, `packages/kilo-gateway/src/{loader.ts,api/constants.ts}`, `packages/kilo-docs/pages/getting-started/settings/index.md` · GitHub search API 1/11/2026 (`Kilo-Org/kilocode`, `Kilo-Org/kilocode-legacy`, `Kilo-Org/kilo`, `Kilo-Org/cloud`, `RooCodeInc/Roo-Code`, `cline/cline`, `anomalyco/opencode`) · https://blog.kilo.ai/thank-you-roo · https://kilo.ai/landing/roo-code · https://www.producthunt.com/p/kilocode/kilo-code-v7-for-vs-code · https://www.morphllm.com/comparisons/kilo-code-vs-opencode (blog bên thứ ba)
 
 ## 4. Nguồn
 

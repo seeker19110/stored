@@ -540,6 +540,92 @@ Không repo nào của mục 19 bị archive. `MoneyPrinterTurbo` được nhắ
 
 **Nguồn §3b:** GitHub search API 31/10/2026 (`repo:` cho 13 repo mới/ứng viên và 12 repo bảng §2; 10 truy vấn từ khoá/topic) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` ngày 31/10/2026, đọc: MoneyPrinterTurbo (HEAD 1cebc65; LICENSE, README-en.md, pyproject.toml, Dockerfile.claude, app/services/{llm.py, chatgpt_auth.py, kimi_code_oauth.py, version_checker.py, upload_post.py}, docs/skill/SKILL.md, .github/workflows/{ci.yml, security.yml}) · video-use (HEAD 43cfc56; LICENSE, README.md, SKILL.md, pyproject.toml, helpers/{render.py, transcribe.py}, skills/manim-video/scripts/setup.sh) · Pixelle-Video (HEAD 848b054; LICENSE, NOTICE, README_EN.md, workflows/, .github/workflows/docs.yml) · hypit (HEAD 0762c6be; LICENSE, README.md, package.json, skills/hypit/{SKILL.md, references/creation/reference-video.md}, .github/workflows/repository-analysis.yml) · claude-video (HEAD 03ceb42; LICENSE, README.md, hooks/{hooks.json, scripts/check-setup.sh}, skills/watch/scripts/{gemini.py, whisper.py, setup.py}) · ViMax (HEAD fd4b72e; LICENSE, readme.md, agents/, tools/, agent_runtime/tool_executor.py, tests/) · github.com/{harry0703/MoneyPrinterTurbo, browser-use/video-use, ATH-MaaS/Pixelle-Video, hypit-ai/hypit, bradautomates/claude-video, HKUDS/ViMax} · arxiv.org/abs/2606.07649 (link trong README ViMax, chưa mở)
 
+## 3c. Đọc mã kỹ: Wan-Video/Wan2.2 và palmier-io/palmier-pro (yêu cầu người dùng, 1/11/2026)
+
+> Hai repo lớn còn thiếu sau §3b: Wan2.2 là model video mở mà §3, §3b và mục 23 đều nhắc nhưng chưa có hồ sơ; Palmier Pro là trình dựng video macOS mở MCP cho agent. Clone `--filter=blob:none` ngày 1/11/2026, đọc mã, lịch sử git, model card Hugging Face; **không cài, không chạy script hay model nào**. Số sao từ GitHub search API 1/11/2026.
+
+### 3c.1 `Wan-Video/Wan2.2`: model mở tốt, mã suy luận đã đứng yên
+
+| Mục | Thông tin (HEAD `1ea34ff`, 21/9/2026) |
+|---|---|
+| Repo | **18.293★**, 2.396 fork, 328 issue/PR mở · tạo 28/7/2025 · **53 commit**, không tag, không release |
+| Hoạt động thật | Commit cuối chạm mã `.py` là **20/9/2025** (`2677bea`, sửa tương thích SAM-2). 9 commit sau đó (11/2025 đến 21/9/2026) chỉ sửa README, thêm mục "Community Works". "Push 21/9/2026" là README, không phải mã |
+| Ai viết | Nhóm Wan của Alibaba: `WanX-Video` (`wanx.ai@alibabacloud.com`) 14, Shiwei Zhang 12, kelseyee 6, các email `@alibaba-inc.com`. **0 commit có trailer Claude** |
+| License mã | `LICENSE.txt` Apache-2.0 thuần, không NOTICE, `pyproject.toml` trỏ cùng file |
+| License trọng số | Model card Hugging Face của T2V-A14B, TI2V-5B, S2V-14B, Animate-14B đều ghi `apache-2.0`, **không gated** (HF API 1/11/2026). README §License thêm một đoạn cấm dùng gây hại, tung tin sai, nhắm nhóm dễ tổn thương; Apache-2.0 không có điều khoản hạn chế mục đích, nên đoạn này là lời dặn, không phải điều kiện license |
+| Lượt tải 30 ngày (HF) | Animate-14B 214k · S2V-14B 44k · TI2V-5B 19,5k · T2V-A14B 3,6k. Phần lớn người dùng đi qua bản Diffusers/ComfyUI đóng gói lại, không qua repo này |
+
+**Kiến trúc.** Python ~19,1k dòng, 87 file mã. Một lối vào `generate.py` với 5 task: `t2v-A14B`, `i2v-A14B`, `ti2v-5B`, `s2v-14B` (giọng nói → video), `animate-14B` (diễn hoạt và **thay nhân vật** trong video). Dòng A14B là **MoE hai chuyên gia ~14B** (tổng 27B, 14B hoạt động mỗi bước): chuyên gia nhiễu cao dựng bố cục, chuyên gia nhiễu thấp làm chi tiết, đổi tại ngưỡng `boundary = 0.875` (`wan/configs/wan_t2v_A14B.py:36`); khi offload, chuyên gia không dùng bị đẩy về CPU (`wan/text2video.py:169-196`). TI2V-5B là model dày dùng VAE mới nén 4×16×16 (`wan/modules/vae2_2.py`); A14B vẫn dùng VAE của Wan2.1 (`vae2_1.py`). Chạy nhiều GPU bằng FSDP + Ulysses (`wan/distributed/`).
+
+**Phần cứng: README so với mã.**
+
+| README nói | Mã thật |
+|---|---|
+| A14B một GPU "cần ít nhất 80GB VRAM", kèm `--offload_model True --convert_model_dtype` | Khớp. `offload_model` tự bật khi chạy 1 GPU (`generate.py:322-323`). Repo **không có lượng tử hoá, FP8 hay offload theo lớp**; README tự chỉ sang DiffSynth-Studio, LightX2V cho máy nhỏ |
+| TI2V-5B chạy trên GPU 24GB (RTX 4090) với `--t5_cpu`, "720P 5 giây dưới 9 phút" | Khớp về cờ; con số thời gian là bảng ảnh `assets/comp_effic.png`, không có script đo kèm theo **(chưa xác minh)** |
+| (không nói rõ) | `flash_attn` là phụ thuộc bắt buộc trong `requirements.txt` và `pyproject.toml`, tức cần CUDA và build được FlashAttention; FA3 dùng nếu có (`wan/modules/attention.py:5-11`). Không có đường Mac/CPU chính thức |
+
+**Mở rộng prompt (prompt extend).** Tắt mặc định (`--use_prompt_extend` `store_true`, `generate.py:170-173`); phương pháp mặc định là **`local_qwen`**, tải `Qwen/Qwen2.5-14B-Instruct` hoặc `Qwen2.5-VL-7B-Instruct` từ Hugging Face (`wan/utils/prompt_extend.py:263-294`). Chọn `dashscope` thì gọi **DashScope của Alibaba Cloud** với `qwen-plus` (văn bản) hoặc `qwen-vl-max` (kèm ảnh), key lấy từ `DASH_API_KEY`, endpoint mặc định **`dashscope.aliyuncs.com` (vùng Trung Quốc)** trừ khi đặt `DASH_API_URL` (`prompt_extend.py:137-151`). Ở task I2V, **ảnh đầu vào được gửi lên DashScope** cùng prompt (`prompt_extend.py:215-240`). Gói `dashscope` luôn được cài dù không dùng.
+
+**Phát hiện khi đọc mã:**
+
+- ❌ **`--enable_tts` (S2V) tự `git clone` CosyVoice từ nhánh `main` có submodule, không ghim commit, vào thư mục hiện tại**, tải model `CosyVoice2-0.5B` từ ModelScope, rồi thêm vào `sys.path` và import (`wan/speech2video.py:697-707`, `wan/utils/utils.py:228-238`). Đây là mã bên thứ ba chạy lúc runtime mà người dùng không thấy bước cài. Ngược lại, `requirements_animate.txt` ghim SAM-2 theo commit (tốt).
+- ⚠️ `torch.load` không có `weights_only` ở 5 chỗ (`t5.py:496`, `vae2_1.py:614`, `vae2_2.py:883`, `animate/clip.py:519`, `animate.py:188` cho LoRA) trong khi `torch>=2.4` được chấp nhận: với torch < 2.6, file `.pth` lạ có thể chạy mã pickle. Chỉ nạp checkpoint từ `Wan-AI` chính chủ.
+- ⚠️ **Không có watermark, bộ lọc NSFW hay C2PA trong mã** (grep `watermark|nsfw|safety` rỗng). Animate-14B thay được người trong video bằng nhân vật từ một ảnh; README không nói gì về đồng ý của người bị thay. Trách nhiệm dồn hết cho người dùng.
+- ⚠️ **Không CI, không unit test**: không có `.github/`; `tests/test.sh` (91 dòng) chỉ là lệnh chạy thử cần đủ trọng số và nhiều GPU; `Makefile` chỉ có `format`.
+- ✅ Prompt extend cục bộ là mặc định; không có telemetry; script chỉ ghi file ra thư mục hiện tại.
+
+**Wan2.1 và các bản sau.** `Wan-Video/Wan2.1` 17.349★, push cuối 5/3/2026, cùng Apache-2.0; Wan2.2 dùng lại VAE và T5 của 2.1. **Wan 2.5 và 2.6 chỉ có qua API Alibaba Cloud (wan.video, Model Studio), không phát hành trọng số**; các nguồn bên thứ ba nhắc thêm 2.7 cũng đóng, và issue hỏi "2.5 có mở không" từ 9/2025 không được trả lời **(theo nguồn bên thứ ba, chưa xác minh từ Alibaba)**. Tức Wan2.2 nhiều khả năng là bản mở cuối của dòng Wan.
+
+**Dùng thế nào:** model mở Apache-2.0 sạch nhất trong nhóm (so với HunyuanVideo license cộng đồng, Open-Sora và CogVideo đã đứng yên ở §3b). Nhưng repo này là **bản phát hành tham chiếu đã đóng băng**; dùng qua Diffusers (`Wan-AI/Wan2.2-*-Diffusers`), ComfyUI, DiffSynth-Studio hay LightX2V để có lượng tử hoá và bảo trì. Nếu chạy trực tiếp: `git clone https://github.com/Wan-Video/Wan2.2.git && cd Wan2.2 && pip install -r requirements.txt` rồi `huggingface-cli download Wan-AI/Wan2.2-TI2V-5B --local-dir ./Wan2.2-TI2V-5B`; dùng torch ≥ 2.6, không bật `--enable_tts` (tự cài CosyVoice ghim commit nếu cần), không dùng `dashscope` với ảnh nhạy cảm, tự gắn watermark/nhãn "AI-generated" ở khâu hậu kỳ.
+
+### 3c.2 `palmier-io/palmier-pro`: GPL trên GitHub, nhưng phần mềm đang phát hành đã đóng
+
+| Mục | Thông tin (HEAD `5b806b3`, 29/10/2026) |
+|---|---|
+| Repo | **14.669★**, 1.152 fork, 100 issue/PR mở · tạo 7/4/2026 · **1.095 commit** · 91 tag, mới nhất v0.12.0 (appcast 29/10/2026) · Palmier, Inc. (YC S24) |
+| Ai viết | Harrison Tin `@palmier.io` **1.007 commit (92%)**, Marcos Rico Peng 52, người ngoài ~36. Trailer: **Cursor 144**, Claude 37 (~3,4%) |
+| License | `LICENSE` GPL-3.0 (GitHub hiển thị GPL-3.0), **nhưng README dòng 1-2: bản phát hành đến v0.7.6 và mã đến tag `last-gpl-source` (24/8/2026) là GPLv3; các bản sau là độc quyền, không công bố mã**. `BINARY_LICENSE.md` cấm sao chép, sửa, phân phối lại, dịch ngược |
+| Trạng thái mã | `main` = `last-gpl-source` + commit `eba39db` "Retire public source development" (28/8/2026: xoá `ci.yml`, CONTRIBUTING, FAQ, `release.sh`) + 6 commit chỉ cập nhật `appcast.xml`. **Không nhận đóng góp nữa** |
+
+**Kiến trúc (bản GPL cuối).** Swift 6.2, SwiftUI + AppKit, AVFoundation, kernel Metal CoreImage; 540 file nguồn, **~88,4k dòng Swift**; chỉ macOS 26 trên Apple Silicon. `AGENTS.md:3` tự ghi "Non-sandboxed Developer ID app" (entitlements không có App Sandbox). Phụ thuộc: MCP `swift-sdk` 0.12.0, Sparkle, Clerk (đăng nhập), Convex (backend), Sentry và PostHog (chỉ khi bật trait `ProductionTelemetry`), MLX + speech-swift (trait `BundledSpeech`, phiên âm và khử ồn cục bộ). Model tìm kiếm SigLIP2 CoreML tải từ `huggingface.co/palmier-io` (`Search/SearchIndexConfig.swift:6`).
+
+**AI và agent.**
+
+- **Agent trong app**: hai đường, qua tài khoản Palmier (`PalmierClient`, trừ credit) hoặc **BYOK Anthropic/OpenAI** gọi thẳng `api.anthropic.com`/`api.openai.com`, key lưu **macOS Keychain** (`Utilities/KeychainStore.swift`, `Settings/AgentPane.swift:20`).
+- **Sinh ảnh/video** (Seedance, Kling, Nano Banana…) đi qua **backend Convex đóng của Palmier**, cần đăng nhập Clerk và credit; file tham chiếu được tải lên backend (`Generation/GenerationBackend.swift`, `uploadReference`). Bản tự build từ mã không có URL backend (khoá Clerk/Convex chỉ tiêm lúc đóng gói), nên chỉ còn trình dựng + agent BYOK.
+- **54 tool** (`Agent/Tools/ToolDefinitions.swift`): timeline, clip, phụ đề, màu, multicam, cắt theo transcript (`remove_words`, `remove_silence`), `generate_video/image/audio`, `import_media`, `export_project`. **Không có tool shell hay chạy mã**, không spawn CLI agent (khác OpenDesign §06 7q.0). Mô tả tool rất kỹ (frame nửa mở, ripple, chỉ số từ ổn định), đáng học khi thiết kế MCP cho NLE.
+- ⚠️ `generate_video` tự ghi "Costs real money and is not undoable" nhưng **không có bước xác nhận**, chỉ chặn khi hết credit. `send_feedback` gửi báo cáo về Palmier **"there is no user confirmation step"** (`ToolDefinitions.swift:1155-1156`), chỉ dặn model diễn đạt lại, không chép nội dung người dùng.
+
+**MCP cục bộ.** HTTP `127.0.0.1:19789/mcp`, **bật mặc định** (`Agent/MCP/MCPService.swift:9-20`), bind loopback (`MCPHTTPServer.swift:45-46`), có `OriginValidator.localhost` + kiểm Content-Type và phiên bản giao thức (`MCPHTTPServer.swift:204`) nên trang web lạ khó gọi; **nhưng không có token**: mọi tiến trình cục bộ đều gọi được toàn bộ tool, kể cả sinh video tốn tiền, nhập file từ đường dẫn bất kỳ và xuất đè ra đường dẫn tuyệt đối bất kỳ có đuôi media (`ToolExecutor+Export.swift:241-260`). Có `.mcpb` cho Claude Desktop (shim Node stdio → HTTP, `mcpb/server/index.js`).
+
+**Telemetry (chỉ bản chính thức).** Sentry và PostHog chỉ biên dịch khi bật `ProductionTelemetry`, DSN/token tiêm lúc đóng gói (`scripts/bundle.sh:101-112`); bản tự build không gửi gì. Ở bản chính thức, **cả hai mặc định bật**, tắt trong Settings (`Telemetry/Telemetry.swift:19-23`, `Analytics.swift:84-88`); không đọc `DO_NOT_TRACK`. Sentry nhận **email và họ tên** tài khoản (`Account/AccountService.swift:213-217`), trace 10%, bật log. PostHog có allowlist thuộc tính (tốt), nhưng sự kiện xuất video gửi **`timeline_snapshot`** (cấu trúc track/clip, tỉ lệ clip AI) kèm **tên file media và tên file xuất** (chỉ basename, `Export/ExportTimelineAnalyticsSnapshot.swift:98-200`).
+
+**Cập nhật.** Sparkle 2 có **chữ ký EdDSA** (`SUPublicEDKey`), tự kiểm (`SUEnableAutomaticChecks`), feed `raw.githubusercontent.com/palmier-io/palmier-pro/main/appcast.xml` (`Resources/Info.plist:55-60`); bản DMG ký Developer ID và notarize (`release.sh` cũ). Hệ quả với GPL: **bản v0.7.6 hay bản tự build từ `last-gpl-source` vẫn trỏ cùng feed và cùng khoá, nên Sparkle sẽ đề nghị cập nhật lên bản độc quyền v0.12.0**. Muốn giữ bản GPL phải xoá `SUFeedURL` hoặc tắt kiểm tự động trước khi build.
+
+**Kiểm README so với mã:**
+
+| README nói | Kết quả |
+|---|---|
+| "Built from scratch with Swift" | ✅ Swift thuần, không Electron |
+| MCP server cho Claude/Codex/Cursor tại `127.0.0.1:19789` | ✅ Có, loopback; ⚠️ không token, bật mặc định |
+| "Built-in Generative AI" (Seedance, Kling, Nano Banana Pro) | ⚠️ Qua backend Palmier đóng, cần tài khoản và credit; bản build từ mã không có |
+| GPLv3 / "source code remains available" | ⚠️ Đúng với bản ≤ v0.7.6; bản đang tải từ nút Download là độc quyền; badge GitHub vẫn ghi GPL-3.0 |
+| (FAQ cũ) mở mã "to improve the product with the community" | ❌ Đóng nguồn 4,5 tháng sau khi mở; người ngoài đóng góp ~36 commit theo GPLv3 **không có CLA** (`CONTRIBUTING.md:37` bản cũ); việc dùng lại mã đó trong bản độc quyền cần viết lại hoặc xin phép **(chưa xác minh họ xử lý thế nào)** |
+
+**Cổng chất lượng.** 198 file test, ~1.640 hàm test/`@Test` (Agent, Timeline, Export, Rendering…); CI cũ chạy `swift test` trên `macos-26` và kiểm bản dịch, **đã xoá ngày 28/8/2026**, nên hiện không còn cổng nào trên mã công khai.
+
+**Dùng thế nào:** coi Palmier Pro là **freeware độc quyền có MCP**, không phải dự án mã mở đang sống. Dùng bản DMG nếu cần trình dựng macOS cho agent: tắt telemetry và analytics trong Settings, tắt MCP khi không dùng, chỉ cho agent tin cậy kết nối, đặt hạn mức credit. Muốn học hoặc fork: `git clone https://github.com/palmier-io/palmier-pro.git && git checkout last-gpl-source`, bỏ `SUFeedURL`, `swift build` (macOS 26, Apple Silicon); phần sinh AI phải tự thay backend. So với lựa chọn mở thật: video-use, OpenMontage (§1, AGPL), Remotion (mục 22).
+
+### 3c.3 Rút ra
+
+1. **"Push gần đây" không phải "mã còn sống"**: Wan2.2 push 21/9/2026 nhưng mã đứng từ 9/2025; Palmier push 29/10/2026 nhưng chỉ là appcast cho bản đóng. Đo bằng commit cuối chạm mã nguồn.
+2. **Badge license trên GitHub có thể nói sai về thứ người dùng thật sự tải**: Palmier ghi GPL-3.0 trong khi nút Download phát bản độc quyền, và updater đưa người dùng bản GPL sang bản đóng.
+3. **Model mở không kèm biện pháp an toàn**: Wan2.2 không watermark, không lọc, có model thay người; khâu gắn nhãn AI phải nằm ở pipeline của mình.
+4. **Tự tải mã lúc chạy** (CosyVoice từ `main`) là cùng loại rủi ro chuỗi cung ứng đã thấy ở §3b mẫu 2.
+
+**Nguồn §3c:** GitHub search API 1/11/2026 (`repo:Wan-Video/Wan2.2`, `repo:Wan-Video/Wan2.1`, `repo:palmier-io/palmier-pro`) · Hugging Face API `api/models/Wan-AI/{Wan2.2-T2V-A14B, Wan2.2-TI2V-5B, Wan2.2-S2V-14B, Wan2.2-Animate-14B}` (1/11/2026) · clone `--filter=blob:none` 1/11/2026, đọc Wan2.2 (HEAD 1ea34ff; LICENSE.txt, README.md, pyproject.toml, requirements*.txt, Makefile, generate.py, tests/{README.md, test.sh}, wan/utils/{prompt_extend.py, utils.py}, wan/speech2video.py, wan/text2video.py, wan/configs/wan_t2v_A14B.py, wan/modules/{attention.py, t5.py, vae2_1.py, vae2_2.py}, wan/animate.py) · palmier-pro (HEAD 5b806b3; LICENSE, BINARY_LICENSE.md, README.md, AGENTS.md, Package.swift, Package.resolved, appcast.xml, scripts/{bundle.sh, PalmierPro.entitlements}, `git show last-gpl-source:{.github/workflows/ci.yml, scripts/release.sh, CONTRIBUTING.md, FAQ.md}`, Sources/PalmierPro/{Agent/MCP/*, Agent/Clients/BYOKClient.swift, Agent/Tools/{ToolDefinitions.swift, ToolExecutor+Export.swift, ToolExecutor+Import.swift, ToolExecutor+Generate.swift}, Generation/GenerationBackend.swift, Backend/BackendConfig.swift, Telemetry/{Telemetry.swift, Analytics.swift}, Account/AccountService.swift, Export/ExportTimelineAnalyticsSnapshot.swift, Resources/Info.plist}, mcpb/) · https://github.com/Wan-Video/Wan2.2 · https://huggingface.co/Wan-AI · https://github.com/palmier-io/palmier-pro · https://howaiworks.ai/models/wan · https://vivideo.ai/ai-models/wan-video (Wan 2.5/2.6 đóng, nguồn bên thứ ba)
+
 ## 4. Nguồn
 
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video

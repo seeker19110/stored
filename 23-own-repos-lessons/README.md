@@ -383,7 +383,7 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 **Cần sửa:**
 
 - ❌ **`LICENSE` còn chỗ trống**: dòng đầu là `Copyright (c) 2026 <chủ sở hữu — chủ dự án xác nhận>. All rights reserved.` (thêm 18/10/2026). Giấy phép độc quyền nhưng chưa ghi chủ sở hữu, và repo đang **công khai**; GitHub báo `NOASSERTION`. Nên điền tên pháp nhân, hoặc chuyển repo về private nếu chưa muốn công khai mã.
-- ⚠️ `.claude/settings.json` cho phép **`"Bash"` trọn gói** (cùng `Read`, `Edit`, `Write`, `WebFetch`, `WebSearch`), chỉ chặn bằng danh sách deny (sudo, `rm -rf`, push force, đọc `.env`…). Deny theo mẫu chuỗi dễ lách (ví dụ `rm -r -f`, `bash -c "…"`); đây đúng loại cấu hình XT-H-021 đề xuất `doctor` cảnh báo. Không thấy `enableAllProjectMcpServers` hay `model` cố định.
+- ✅/⚠️ `.claude/settings.json` cho phép `"Bash"` trọn gói (cùng `Read`, `Edit`, `Write`, `WebFetch`, `WebSearch`) và một danh sách deny. Đây là **thiết kế của X-Templates** (ADR-0017/0018): hàng rào chính là hook `guard.py` (PreToolUse) chặn hành động không đảo ngược, không phải danh sách deny; `XT_GUARD_POLICY=strict` trả lại chế độ hỏi. Không phải lỗi — chỉ cần guard của khung được cài đủ. Không thấy `enableAllProjectMcpServers` hay `model` cố định.
 - ⚠️ `.gitignore` không có dòng `.claude/settings.local.json` (XT-H-021).
 - ⚠️ Ba lệnh kiểm LOOP-* trong blueprint chỉ xanh khi chạy ngoài phiên agent (guard chặn `loop` lồng nhau — FB-088): cổng phụ thuộc ngữ cảnh chạy, nên ghi rõ trong `xt.yaml` cách chạy để release-check tái lập được.
 
