@@ -743,3 +743,7 @@
 - `Kilo-Org/kilocode`: clone `--filter=blob:none` 1/11/2026; commit gốc `4b0ea68d7a` (Kujtim Hoxha, "initial", 21/3/2025 — lịch sử OpenCode), các commit "Merge OpenCode v1.x", LICENSE (2026 Kilo Code + 2025 opencode), `packages/kilo-gateway/src/api/constants.ts` (`ai-gateway.kilo.ai`). Mục 01 §3j.
 - `Wan-Video/Wan2.2`, `palmier-io/palmier-pro`: clone 1/11/2026, file đọc ghi ở **Nguồn §3c** mục 19. `img2threejs/img2threejs` (+ `img2threejs-showcase`): **Nguồn §9f** mục 22.
 - `seeker19110/X-Company`: clone 1/11/2026 HEAD `f000d50`; đối chiếu `CLAUDE.md` của X-Templates (ADR-0017/0018 về quyền Bash + guard). Mục 23 §8c. `seeker19110/hotel-manager` chưa đọc (quyền thêm repo bị từ chối).
+
+## Bổ sung 2026-11-01c (bài đăng prompt caching Claude Code)
+
+- Bài đăng tiếng Việt "Claude Code: 10,69 triệu token nhưng chỉ tốn $9,93" (người dùng gửi 1/11/2026, không ghi nguồn gốc case study); đối chiếu skill tham chiếu Claude API (bảng giá lưu 6/10/2026, `shared/prompt-caching.md`). Mục 03 §8h; bàn giao XT-H-052.
