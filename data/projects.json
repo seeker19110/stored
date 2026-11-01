@@ -1787,7 +1787,7 @@
       "license": "MIT (trừ ee/)",
       "stars": 23924,
       "open_source": true,
-      "notes": "; ★ 31/10/2026: 23.924 (GitHub API)",
+      "notes": "; ★ 31/10/2026: 23.924 (GitHub API); không commit từ 28/10/2025; telemetry chạy khi import, DO_NOT_TRACK=1 không tắt được (mục 15)",
       "section": "15"
     },
     {
@@ -7666,6 +7666,186 @@
       "open_source": true,
       "notes": "Task TypeScript dài không timeout, retry, queue, waitpoint người duyệt, cron, module chat/skills cho agent; tự host Docker/K8s; MCP CLI gửi PostHog, không đọc DO_NOT_TRACK; ★ 31/10/2026 (GitHub API), mục 21 §10d",
       "section": "21"
+    },
+    {
+      "name": "MemPalace",
+      "repo": "MemPalace/mempalace",
+      "category": "agent-memory",
+      "license": "MIT",
+      "stars": 60193,
+      "open_source": true,
+      "notes": "Bộ nhớ local lưu nguyên văn hội thoại, tìm ngữ nghĩa trên Chroma (có Milvus), MCP + hook cho coding agent; 14/4/2026 tự rút bảng benchmark trộn R@5 với QA accuracy, giữ 96,6% R@5 LongMemEval raw; có site giả phát tán malware; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "PageIndex",
+      "repo": "VectifyAI/PageIndex",
+      "category": "rag",
+      "license": "MIT",
+      "stars": 39931,
+      "open_source": true,
+      "notes": "RAG không vector: dựng cây mục lục tài liệu dài, LLM duyệt cây để chọn trang; local mode vẫn cần API key LLM và tải bảng giá LiteLLM từ GitHub; ghim litellm <1.106 vì 1.107.0 bị malware; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "OpenViking",
+      "repo": "volcengine/OpenViking",
+      "category": "agent-memory",
+      "license": "AGPL-3.0 (CLI, examples Apache-2.0)",
+      "stars": 41248,
+      "open_source": true,
+      "notes": "Context DB cho agent (ByteDance/Volcengine): hệ file ảo viking:// gộp tài liệu, memory, skill với tóm tắt L0/L1/L2; đổi Apache-2.0 sang AGPL ngày 30/3/2026; benchmark tự đo bằng model Doubao; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "LocalAI",
+      "repo": "mudler/LocalAI",
+      "category": "inference",
+      "license": "MIT",
+      "stars": 50101,
+      "open_source": true,
+      "notes": "Runtime local API kiểu OpenAI/Anthropic/ElevenLabs, 40+ backend tách thành image kéo khi cần; mặc định bind :8080 không API key, nên bind 127.0.0.1 và đặt LOCALAI_API_KEY; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "exo",
+      "repo": "exo-explore/exo",
+      "category": "inference",
+      "license": "Apache-2.0",
+      "stars": 48134,
+      "open_source": true,
+      "notes": "Ghép nhiều máy Mac thành cụm chạy model lớn (MLX distributed, RDMA Thunderbolt 5); Tier 1 chỉ macOS Apple Silicon, Linux còn planned; tag cuối v1.0.71 ngày 23/4/2026; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "Docling",
+      "repo": "docling-project/docling",
+      "category": "rag",
+      "license": "MIT",
+      "stars": 69929,
+      "open_source": true,
+      "notes": "Parse PDF/Office/HTML/EPUB/email/audio sang Markdown/JSON cho RAG, có OCR, VLM, MCP, docling-serve; phát hành dày (v2.145.0 29/10/2026); license weights model tải từ HF chưa xác minh; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "new-api",
+      "repo": "QuantumNous/new-api",
+      "category": "llm-gateway",
+      "license": "AGPL-3.0 + điều khoản ghi công §7",
+      "stars": 51102,
+      "open_source": true,
+      "notes": "Gateway LLM tự host kế thừa one-api (MIT): key, quota, nhiều kênh, API OpenAI/Claude/Gemini; NOTICE buộc giữ dòng ghi công và link trên UI bản sửa đổi; Docker mẫu bind 127.0.0.1; ★ 31/10/2026 (GitHub API), mục 10 §6b",
+      "section": "10"
+    },
+    {
+      "name": "VoiceStudio",
+      "repo": "debpalash/VoiceStudio",
+      "category": "voice",
+      "license": "AGPL-3.0 + CLA (bán license thương mại)",
+      "stars": 96815,
+      "open_source": true,
+      "notes": "App giọng nói local (clone, thiết kế giọng, lồng tiếng, đọc chính tả), tạo 10/4/2026, 6.378 commit, 40% có trailer Claude; sao tăng bất thường chưa xác minh; PostHog tắt mặc định với allowlist trường; cài qua curl | sh; ★ 31/10/2026 (GitHub API), mục 14 §5c",
+      "section": "14"
+    },
+    {
+      "name": "Voicebox",
+      "repo": "jamiepine/voicebox",
+      "category": "voice",
+      "license": "MIT",
+      "stars": 59148,
+      "open_source": true,
+      "notes": "Voice studio local thay ElevenLabs + WisprFlow: 8 engine TTS, Whisper đọc chính tả, MCP voicebox_speak; bảo trì do agent Capy điều phối; tag cuối v0.5.0 25/4/2026, chưa có bản Linux dựng sẵn; ★ 31/10/2026 (GitHub API), mục 14 §5c",
+      "section": "14"
+    },
+    {
+      "name": "VibeVoice",
+      "repo": "microsoft/VibeVoice",
+      "category": "speech",
+      "license": "MIT",
+      "stars": 55077,
+      "open_source": true,
+      "notes": "Microsoft: ASR 7B 60 phút một lượt (ai nói, lúc nào, hotword), streaming ASR, bản BitNet CPU, TTS realtime 0,5B; code TTS dài bị gỡ 9/2025 vì lạm dụng; không có CI; ★ 31/10/2026 (GitHub API), mục 14 §5c",
+      "section": "14"
+    },
+    {
+      "name": "GPT-SoVITS",
+      "repo": "RVC-Boss/GPT-SoVITS",
+      "category": "speech",
+      "license": "MIT",
+      "stars": 64420,
+      "open_source": true,
+      "notes": "Clone giọng/huấn luyện TTS từ ~1 phút audio, WebUI; zh/en/ja/ko/yue, không tiếng Việt; bản cuối v2Pro 6/6/2025, 20 commit từ 7/2026; ★ 31/10/2026 (GitHub API), mục 14 §5c",
+      "section": "14"
+    },
+    {
+      "name": "VoxCPM",
+      "repo": "OpenBMB/VoxCPM",
+      "category": "speech",
+      "license": "Apache-2.0 (code và weights)",
+      "stars": 40916,
+      "open_source": true,
+      "notes": "VoxCPM2 2B, 30 ngôn ngữ có tiếng Việt, 48 kHz, thiết kế và clone giọng; README ghi weights Apache-2.0 dùng thương mại được; benchmark tự công bố; ★ 31/10/2026 (GitHub API), mục 14 §5c",
+      "section": "14"
+    },
+    {
+      "name": "Handy",
+      "repo": "cjpais/Handy",
+      "category": "speech",
+      "license": "MIT",
+      "stars": 35896,
+      "open_source": true,
+      "notes": "App STT desktop offline (Tauri): giữ phím, nói, dán chữ; Whisper/Parakeet V3 + VAD Silero; model tải từ blob.handy.computer, hậu kỳ LLM tuỳ chọn qua OpenAI/OpenRouter; ★ 31/10/2026 (GitHub API), mục 14 §5c",
+      "section": "14"
+    },
+    {
+      "name": "Cube Core",
+      "repo": "cube-js/cube",
+      "category": "data",
+      "license": "Apache-2.0 (+ MIT một số gói)",
+      "stars": 21138,
+      "open_source": true,
+      "notes": "Semantic layer mã mở: metric/dimension định nghĩa một lần, xuất SQL/REST/GraphQL cho BI và agent; telemetry bật mặc định gửi machine id tới track.cube.dev (tắt CUBEJS_TELEMETRY=false); MCP chỉ ở Cube Cloud; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "Scientific Agent Skills",
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "category": "data",
+      "license": "MIT",
+      "stars": 55542,
+      "open_source": true,
+      "notes": "177 skill Agent Skills cho khoa học và phân tích dữ liệu (polars, statsmodels, EDA, 100+ CSDL khoa học); quét bảo mật skill bằng LLM trong CI; đã gỡ skill chép từ anthropics/skills vì license; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "DBHub",
+      "repo": "bytebase/dbhub",
+      "category": "data",
+      "license": "MIT",
+      "stars": 3762,
+      "open_source": true,
+      "notes": "MCP CSDL gọn (2 tool) với bộ phân loại SQL read/dml/ddl/admin + giao dịch READ ONLY làm lớp chặn; read-only chỉ bật qua dbhub.toml, mặc định cho ghi; 68% commit có trailer Claude; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "DBX",
+      "repo": "t8y2/dbx",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 28370,
+      "open_source": true,
+      "notes": "Client CSDL 25 MB cho 100+ CSDL, trợ lý AI, MCP server riêng với 3 mức quyền và allowlist kết nối; repo tạo 29/4/2026, 9.292 commit; mức MCP mặc định chưa xác minh; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
+      "section": "15"
+    },
+    {
+      "name": "DeepAnalyze",
+      "repo": "ruc-datalab/DeepAnalyze",
+      "category": "data",
+      "license": "MIT (code); weights chưa xác minh",
+      "stars": 4763,
+      "open_source": true,
+      "notes": "Model 8B + agent tự làm pipeline data science (paper arXiv 2510.16872), WebUI v2 có Docker sandbox tuỳ chọn; không CI; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
+      "section": "15"
     }
   ]
 }
