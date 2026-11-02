@@ -18,7 +18,8 @@
         "XT-H-094",
         "XT-H-105"
       ],
-      "status": "proposed-in-stored"
+      "status": "proposal-pr-open",
+      "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/410"
     }
   },
   "items": [
