@@ -48,14 +48,14 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
 
 ## Nâng trần định kỳ (2 tuần/lần)
 
-Quy ước do người dùng đặt ra (2026-11-02): **cứ 2 tuần nâng trần toàn bộ 23 mục một lần, tìm bằng mọi cách trên internet và GitHub.** Một tác vụ định kỳ mở phiên mới vào ngày 1 và 15 hằng tháng và chạy đúng prompt dưới đây. Muốn đổi cách chạy thì sửa prompt ở đây, rồi cập nhật cả tác vụ định kỳ.
+Quy ước do người dùng đặt ra (2026-11-02): **cứ 2 tuần nâng trần toàn bộ 23 mục một lần, tìm bằng mọi cách trên internet và GitHub.** Một tác vụ định kỳ mở phiên mới (model Opus, chế độ ultracode, effort high) vào ngày 1 và 15 hằng tháng và chạy đúng prompt dưới đây. Muốn đổi cách chạy thì sửa prompt ở đây, rồi cập nhật cả tác vụ định kỳ.
 
 "Nâng trần" nghĩa là nâng mức chất lượng cao nhất mà dự án đạt được khi dùng một mục. Ba lớp hay thiếu nhất là: **chuẩn/đặc tả gốc**, **cổng kiểm bằng máy** (benchmark, conformance, eval, lint, scanner, CI) và **công cụ đầu bảng** chưa có trong catalog. Đợt đầu là 2/11/2026 (PR #102).
 
 ### Prompt chạy tự động
 
 ```text
-Bạn đang chạy đợt "nâng trần" định kỳ 2 tuần/lần cho kho seeker19110/stored (kho tri thức tiếng Việt, chỉ lưu hồ sơ + đánh giá repo). Người dùng đã yêu cầu dùng workflow nhiều agent cho việc này. Tìm bằng mọi cách trên internet và GitHub.
+Bạn đang chạy đợt "nâng trần" định kỳ 2 tuần/lần cho kho seeker19110/stored (kho tri thức tiếng Việt, chỉ lưu hồ sơ + đánh giá repo). Chạy ở chế độ ultracode trên model Opus: dùng workflow nhiều agent cho mọi bước nặng; mọi agent() trong workflow đặt `effort: "high"` (bước kiểm đối kháng có thể dùng cao hơn). Tìm bằng mọi cách trên internet và GitHub.
 
 0. Chuẩn bị
 - Đọc WORKFLOW.md (phạm vi kho, quy trình, tiêu chuẩn chất lượng, mục này), TEMPLATE.md và X-TEMPLATES.md.
