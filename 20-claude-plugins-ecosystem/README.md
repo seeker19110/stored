@@ -1177,6 +1177,37 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Nguồn §3u:** ảnh README người dùng gửi 2/11/2026 · clone https://github.com/google/elephant-goldfish-model (HEAD `403d888`; README.md, AI_POLICY.md, TESTING.md, docs/harnesses.md, skills/egm-review/SKILL.md, skills/egm-review-loop/SKILL.md, agents/structural.md, agents/design_critic.md, .claude-plugin/agents/structural.md, .github/workflows/tests.yml, scripts/pack_plugin.py; `git log`, `git shortlog`) · GitHub search API 2/11/2026.
 
+## 3v. Nâng trần 2/11/2026: validator chính thức, linter cấu hình agent và eval kích hoạt skill (yêu cầu người dùng)
+
+> Tìm repo/chuẩn **chưa có trong catalog** ở ba lớp: chuẩn, cổng máy, đầu bảng. GitHub search API 2/11/2026 (truy vấn "SKILL.md lint", "claude plugin validate", "agent skills eval", "skill eval trigger"); docs Claude Code (plugins-reference, plugin-evals); clone `--filter=blob:none` đủ lịch sử, đọc LICENSE, README, manifest, module telemetry. **Không cài, không chạy.**
+
+**Trần hiện tại:**
+
+- Mục có hồ sơ rất dày về **pack và marketplace** (§1–§3u) và vài cổng rời: CI audit/eval của `alirezarezvani/claude-skills` (§3t.3), eval routing của `addyosmani/agent-skills` (§3o.2), lockfile băm của `npx skills` (§3t.4), `skill-creator` (§3s.4), scanner SkillSpector/agent-scan (mục 12).
+- Chưa ghi **cổng chính thức** của Claude Code: `claude plugin validate --strict` và `claude plugin eval`; chưa có linter đa harness cho CLAUDE.md/SKILL.md/hooks; chưa có công cụ đo **skill có được kích hoạt không** và **skill có làm kết quả tốt hơn không** (so với baseline không skill).
+
+| Repo / chuẩn | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| **Claude Code `claude plugin validate` + `claude plugin eval`** (docs code.claude.com) | Chuẩn + cổng máy chính thức | – · tài liệu sản phẩm | docs đọc 2/11/2026 | `validate` là "authoritative check": kiểu dữ liệu, path phải bắt đầu `./`, không thoát plugin root, `--strict` biến cảnh báo thành lỗi, kiểm `.mcp.json` (URL `http://` ra ngoài, header giống credential), tên giả danh Anthropic; `mcpServers` nhận cả bundle `.mcpb` (mục 04 §4c). `eval` (từ v2.1.269): case = prompt + grader (`regex`, `tool_used`, `tool_order`, `file_exists` miễn phí; `llm`, `baseline` tốn judge), mặc định 3 lần chạy, so với nhánh **không plugin**, `--threshold`, `--max-cost-usd`, mã thoát 0/1/2 cho CI | Eval tốn hạn mức/API; định dạng case khác `evals/evals.json` của skill-creator, hai bên không đọc lẫn nhau |
+| `agent-sh/agnix` | Cổng máy (linter) | 465 · MIT hoặc Apache-2.0 | 2/11/2026 | 757 luật (đếm `knowledge-base/rules.json` khớp README ✅) cho CLAUDE.md, SKILL.md, hooks, `.mcp.json`, plugin, marketplace của Claude Code, Codex, Cursor, Copilot, Gemini, Kiro…; auto-fix, LSP, GitHub Action, playground | 1.438 commit trong 9 tháng, một người dẫn; telemetry chỉ khi build với feature `telemetry` (mặc định tắt) và tôn trọng `DO_NOT_TRACK`/CI ✅ |
+| `NVIDIA/SkillEvaluator` | Cổng máy (eval skill 3 tầng) | 622 · Apache-2.0 | 2/11/2026 | Tầng 1 kiểm chất lượng + SkillSpector/Semgrep/Gitleaks (chạy không cần LLM), tầng 2 phát hiện trùng lặp giữa skill, tầng 3 chạy agent thật **có và không có skill**; mẫu CI GitHub/GitLab; là một phần pipeline NVIDIA Verified Skills; paper arXiv 2608.20614 | Python 3.12+, tầng 3 cần sandbox Docker và tốn tiền model; repo mới (từ 26/7/2026) |
+| `mgechev/skillgrade` | Cổng máy (unit test skill) | 734 · MIT | 11/10/2026 | `eval.yaml` khai task, chạy Gemini CLI/Claude Code/Codex/OpenCode/ACP trong Docker; grader tất định, LLM rubric hoặc người; preset 5/15/30 lần chạy, `--ci --threshold`, `--validate` kiểm grader bằng lời giải mẫu; xuất JUnit | Tác giả Minko Gechev (Google) **(chưa xác minh vai trò)**; 79 commit |
+| `UiPath/coder_eval` | Cổng máy (kích hoạt skill) | 156 · Apache-2.0 | 30/10/2026 | "Playwright cho coding agent": task YAML, sandbox thật, tiêu chí trọng số 0–1, kiểm **`skill_triggered`** theo từng harness (Claude Code, Codex, Antigravity, OpenCode, Pi), A/B harness hoặc model; có GitHub Action và plugin Claude Code | Ít sao; Python 3.13+; không thấy telemetry gửi ra ngoài (grep `src/`) |
+| `darkrishabh/agent-skills-eval` | Cổng máy (with/without skill) | 809 · MIT | 29/9/2026 | Chạy cùng prompt `with_skill` và `without_skill`, judge chấm, `--strict`, xuất báo cáo HTML tĩnh; SDK TypeScript | 4 tác giả; gọi API trực tiếp, không đo trong harness thật |
+
+**Đã cân nhắc, không thêm:** `skillmds/skillmd` (192★) và các linter SKILL.md dưới 50★ (doodle, pulser, skillcheck, nori-lint) vì agnix bao phủ rộng hơn; `pv-udpv/claude-plugin-schemas` (0★); `mgechev/skills-best-practices` (2,3k★, không có LICENSE).
+
+**Stack nâng trần** (lợi ích/công sức giảm dần):
+
+1. Mọi plugin/marketplace tự viết hoặc vendor về: `claude plugin validate --strict` trong CI. Bắt sớm đúng các bẫy §2b.4 (tên, `strict`, path) mà không cần cài thêm gì.
+2. `npx agnix .` trên repo có CLAUDE.md/AGENTS.md/skills: bắt frontmatter sai làm skill "vô hình", hook lỗi, cấu hình đa harness lệch nhau (mục 04 §4).
+3. Eval kích hoạt rẻ: `claude plugin eval` chỉ với grader `tool_used`/`regex` và `--ablation none` cho mỗi PR; với pack đa harness dùng `coder_eval` (`skill_triggered`).
+4. Eval giá trị (nightly hoặc trước release): `claude plugin eval` có baseline, hoặc SkillEvaluator tầng 3 / skillgrade `--reliable`; luôn đặt trần chi phí.
+5. Pack lớn (§3t, §3d): SkillEvaluator tầng 1–2 để lọc skill kém và trùng lặp trước khi đưa vào marketplace; kết hợp lockfile băm (§3t.4) và scanner mục 12.
+6. Khi tối ưu mô tả skill dựa trên kết quả eval, dùng cổng held-out như SkillOpt (mục 17 §4c).
+
+**Nguồn §3v:** https://code.claude.com/docs/en/plugins-reference (mục Validate the manifest, name, Path rules) · https://code.claude.com/docs/en/plugin-evals.md (Requirements, graders, baseline, Run evals in CI) · GitHub search API 2/11/2026 · clone `--filter=blob:none` 2/11/2026: agent-sh/agnix (HEAD `0bdcbc19`; LICENSE-MIT, LICENSE-APACHE, README.md, `knowledge-base/rules.json`, `crates/agnix-cli/Cargo.toml`, `crates/agnix-cli/src/telemetry/`), NVIDIA/SkillEvaluator (HEAD `3633954`; LICENSE, README.md, `src/skillevaluator/reporting/dashboard.py`), mgechev/skillgrade (HEAD `ab2afd7`; LICENSE, README.md), UiPath/coder_eval (HEAD `484c3d5`; LICENSE, README.md, `src/coder_eval/agents/`), darkrishabh/agent-skills-eval (HEAD `f10ae2b`; LICENSE, README.md) · https://github.com/agent-sh/agnix · https://github.com/NVIDIA/SkillEvaluator · https://github.com/mgechev/skillgrade · https://github.com/UiPath/coder_eval · https://github.com/darkrishabh/agent-skills-eval
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

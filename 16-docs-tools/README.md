@@ -246,6 +246,37 @@ Các repo còn lại (vitepress, mdBook, docsify, deepwiki-open, codeflow) dao �
 
 **Nguồn §2g:** GitHub search API 31/10/2026 (`repo:` cho repo cũ, 14 truy vấn topic/từ khoá) · clone nông `coderamp-labs/gitingest`, `AsyncFuncAI/deepwiki-open`, `sphinx-doc/sphinx` (commit nhánh mặc định) · clone `--filter=blob:none` 7 repo mới, đọc: mermaid (`packages/mermaid/package.json`, `src/schemas/config.schema.yaml`, `src/diagrams/`, workflows), codebase-memory-mcp (LICENSE, README (Security, Performance), `install.sh`, `.github/workflows/{release,_build}.yml`, `vendored/`, grep host trong `src/`), GitbookIO/gitbook (LICENSE, README, `packages/gitbook/src/app/sites/**/{llms.txt,llms-full.txt,~gitbook/markdown,~gitbook/mcp}`), openwiki (README (Telemetry, How it works), `package.json`, `src/telemetry/{config,client,types}.ts`, `.github/workflows/checks.yml`), scalar (LICENSE, README, `packages/api-reference/src/plugins/posthog/README.md`, `test/configuration/telemetry.e2e.ts`, `packages/agent-chat/src/api.ts`, `packages/openapi-to-markdown/README.md`, `packages/types/src/api-reference/api-reference-configuration.ts`), repowise (LICENSE, README (Privacy, Hosted), `packages/cli/src/repowise/cli/platform/telemetry/{consent,flusher}.py`), code2prompt (LICENSE, README, `crates/`, `crates/code2prompt-core/Cargo.toml`) · https://github.com/meta/docusaurus
 
+## 2h. Nâng trần 2/11/2026: cổng lint văn xuôi, chính tả, link và khung Diátaxis (yêu cầu người dùng)
+
+> Tìm repo **chưa có trong catalog** ở ba lớp: chuẩn, cổng máy, đầu bảng. GitHub search API 2/11/2026; clone `--depth 1 --filter=blob:none`, đọc LICENSE, README, cấu trúc, file luật. **Không cài, không chạy.**
+
+**Trần hiện tại:**
+
+- Mục mạnh ở lớp **dựng và phân phối** docs: SSG (§1, §2b), docs-for-AI (llms.txt, Context7, GitBook, Scalar ở §2, §2g), code knowledge graph (§2c–§2f).
+- Chưa có lớp nào **kiểm chất lượng nội dung**: không lint văn phong, không kiểm chính tả, không kiểm link hỏng, không có khung phân loại tài liệu. Docs cho agent (llms.txt, AGENTS.md) càng cần các cổng này vì agent làm theo từng chữ và từng link.
+- Kho này chạy `markdownlint-cli2` trong CI nhưng engine `markdownlint` chưa có hồ sơ.
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `evildmp/diataxis-documentation-framework` | Chuẩn (nguyên lý gốc) | 1,3k · **CC-BY-SA-4.0** (GitHub báo `NOASSERTION` vì file là `LICENSE.rst`) | 6/8/2026 | Khung Diátaxis của Daniele Procida: tách docs thành tutorial, how-to, reference, explanation theo nhu cầu người đọc; nguồn Sphinx của diataxis.fr, dịch 10 ngôn ngữ | Là hướng dẫn, không có công cụ kiểm; trích nội dung phải giữ CC-BY-SA |
+| `vale-cli/vale` | Cổng máy (văn phong) | 6,3k · MIT | 31/10/2026 | Linter văn xuôi hiểu markup; luật là YAML; nạp sẵn style Microsoft, Google, Red Hat qua `Packages`; AWS, NVIDIA, GitLab dùng (theo README) | Repo đã chuyển từ `errata-ai/vale`; `vale sync` tải style qua mạng; chưa có style tiếng Việt **(chưa xác minh)** |
+| `DavidAnson/markdownlint` | Cổng máy (cấu trúc Markdown) | 6,4k · MIT | 20/10/2026 | Engine của `markdownlint-cli2` mà kho này đang dùng; 53 trang luật trong `doc/`, hỗ trợ custom rule | Chỉ kiểm cú pháp, không kiểm nội dung |
+| `lycheeverse/lychee` | Cổng máy (link) | 4,1k · MIT hoặc Apache-2.0 | 26/10/2026 | Kiểm link bất đồng bộ (Rust) cho Markdown, HTML, file văn bản; `--cache`, `--include-fragments` (kiểm cả `#anchor`), `GITHUB_TOKEN` tránh rate limit; có `lychee-action` | Link ngoài gây flaky: cần cache, `--cache-exclude-status '429'` và danh sách bỏ qua |
+| `streetsidesoftware/cspell` | Cổng máy (chính tả) | 1,7k · MIT | 28/10/2026 | Spell check cho code và docs, từ điển theo ngôn ngữ/stack; repo `cspell-dicts` **có thư mục `vi_VN`** (kiểm `ls-tree` 2/11/2026) | Nhiều false positive với tên riêng; cần từ điển dự án |
+| `crate-ci/typos` | Cổng máy (lỗi gõ) | 4,2k · MIT hoặc Apache-2.0 | 1/11/2026 | Bắt lỗi gõ sai phổ biến với mục tiêu "low false positives so you can run on PRs"; nhanh, có Action và pre-commit | Chỉ bắt lỗi gõ đã biết, không phải từ điển đầy đủ; chủ yếu tiếng Anh |
+
+**Đã cân nhắc, không thêm:** `langchain-ai/mcpdoc` (1k★, đưa llms.txt vào IDE qua MCP) đã **archive**; `get-alex/alex` (5,1k★) push cuối 27/11/2024; `textlint/textlint` (3,2k★) trùng vai với Vale, hợp hơn khi cần luật tiếng Nhật/Trung.
+
+**Stack nâng trần** (lợi ích/công sức giảm dần):
+
+1. Giữ `markdownlint-cli2` (đã có) và thêm `lychee --cache --include-fragments` cho mọi file `.md` và `llms.txt`: link hỏng là lỗi docs-for-AI rẻ nhất để bắt.
+2. Thêm `typos` vào PR (gần như không false positive); `cspell` với từ điển dự án và `vi_VN` khi docs có tiếng Việt.
+3. Áp Diátaxis khi sắp lại docs của SSG ở §1/§2b: mỗi trang thuộc đúng một loại; `llms.txt` (§2) liệt kê theo đúng bốn nhóm đó để agent biết trang nào là reference.
+4. Vale với style Microsoft hoặc Google ở mức `warning` cho docs tiếng Anh; tự viết luật YAML cho thuật ngữ nội bộ và từ cấm.
+5. Docs sinh bởi LLM (openwiki, repowise §2g): chạy cùng bộ cổng trên đầu ra trước khi merge, cùng với yêu cầu trỏ về nguồn ở §2g.4.
+
+**Nguồn §2h:** GitHub search API 2/11/2026 (`repo:` từng repo; truy vấn "diataxis in:name", "llms.txt in:name,description") · clone `--depth 1 --filter=blob:none` 2/11/2026: vale-cli/vale (LICENSE, README.md, `cmd/vale/`), lycheeverse/lychee (LICENSE-MIT, LICENSE-APACHE, README.md mục CLI và GitHub token), streetsidesoftware/cspell (LICENSE, README.md, `packages/`), streetsidesoftware/cspell-dicts (`git ls-tree dictionaries/`), crate-ci/typos (LICENSE-*, README.md), DavidAnson/markdownlint (LICENSE, README.md, `doc/`), evildmp/diataxis-documentation-framework (LICENSE.rst, `source/`, `translation/`) · `.markdownlint-cli2.yaml` của kho · https://diataxis.fr · https://vale.sh · https://lychee.cli.rs · https://cspell.org · https://github.com/langchain-ai/mcpdoc
+
 ## 3. Nguồn
 
 - https://www.mintlify.com/library/best-llms-txt-platforms · https://dupple.com/learn/best-documentation-tools · https://ekline.io/blog/docusaurus-alternatives · https://www.pkgpulse.com/guides/best-documentation-frameworks-2026 · https://docsalot.dev/blog/best-mintlify-alternatives · https://affine.pro/blog/best-technical-documentation-software-tools-for-developers

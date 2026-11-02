@@ -127,6 +127,36 @@
 
 **Nguồn §4b (31/10/2026):** GitHub search API (`repo:` cho repo cũ, 8 truy vấn topic/từ khoá) · clone `--filter=blob:none`: modelcontextprotocol/modelcontextprotocol (README.md, LICENSE, AI_POLICY.md, GOVERNANCE.md, `docs/specification/2026-07-28/changelog.mdx`, `schema/*`, `seps/`, `.github/workflows/`), agentskills/agentskills (README.md, `docs/specification.mdx`, `skills-ref/src/skills_ref/validator.py`, `skills-ref/README.md`, `.claude/hooks/session-start.sh`), a2ui-project/a2ui (README.md, `specification/`, `conformance/core/catalog.yaml`, `catalogs/mcp/README.md`, workflows), github/github-mcp-server (README.md mục Toolsets và Lockdown Mode, `cmd/github-mcp-server/main.go`, tag v2.0.3), mcp-use/mcp-use (`libraries/python/mcp_use/telemetry/{telemetry,events}.py`, `libraries/typescript/packages/client/src/telemetry/telemetry.ts`, `docs/python/development/telemetry.mdx`, `libraries/python/mcp_use/agents/mcpagent.py`), agentgateway/agentgateway (README.md, CHARTER.md, `crates/`, `controller/pkg/cli/standalone/analytics.go`) · https://modelcontextprotocol.io/specification · https://github.com/a2ui-project/a2ui · https://agentgateway.dev
 
+## 4c. Nâng trần 2/11/2026: bộ conformance, inspector có eval, chuẩn đóng gói và scanner cho MCP/A2A (yêu cầu người dùng)
+
+> Tìm repo **chưa có trong catalog** ở ba lớp: chuẩn, cổng máy, đầu bảng. GitHub search API 2/11/2026 (`repo:` cho từng repo, 6 truy vấn từ khoá). Clone `--depth 1 --filter=blob:none`, đọc LICENSE, README, manifest, CI, file chính. **Không cài, không chạy.**
+
+**Trần hiện tại:**
+
+- Mục đã có spec (§4b `modelcontextprotocol/modelcontextprotocol`, `agentskills/agentskills`, A2UI), SDK, inspector chính thức, registry (§2b) và một validator nhẹ (`skills-ref`, §4b.3). Tức là đủ để **viết** server, chưa đủ để **chứng minh** server/client đúng spec.
+- Chưa có bộ test conformance nào cho MCP hay A2A, nên "hỗ trợ spec 2026-07-28" (§4b.3, agentgateway) vẫn là lời tự nhận.
+- Chưa có lớp đóng gói chuẩn (`.mcpb` chỉ được nhắc qua repo của chủ kho, §2) và chưa có scanner bảo mật cho MCP trong mục này (scanner nằm ở mục 12).
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `modelcontextprotocol/conformance` | Cổng máy (chính thức) | 140 · MIT → Apache-2.0 đang chuyển (`NOASSERTION`; `package.json` vẫn ghi MIT) | HEAD `c37eec8` 1/10/2026 (nhánh khác push 2/11) | Bộ test chính thức cho **cả client và server**: 81 file scenario, kiểm từng message JSON-RPC trên dây với JSON Schema của spec (`wire-schema-valid`); `--requirements 2026-07-28` chạy đúng tập bắt buộc của một bản spec, đóng băng lúc phát hành; `tier-check` chấm SDK theo SEP-1730; có GitHub Action (`action.yml`) và file baseline lỗi đã biết | Bản `0.2.0-alpha.12`, ít sao; scenario tăng nhanh nên chỉ tin `--requirements`, không tin "chạy tất cả" |
+| `a2aproject/a2a-tck` | Cổng máy (chính thức) | 57 · Apache-2.0 | 22/10/2026 | TCK cho A2A trên 3 transport (gRPC, JSON-RPC, HTTP+JSON); MUST là lỗi cứng, SHOULD là `xfail`; sinh SUT từ kịch bản Gherkin cho a2a-java/python/jakarta | Rất ít sao; README còn trỏ link spec cũ `google.github.io/A2A` |
+| `a2aproject/a2a-inspector` | Cổng máy (thủ công) | 506 · Apache-2.0 | 29/10/2026 | Một binary Go có UI: kiểm agent card v1.0/v0.3 theo spec, ghi và validate từng request/response | Không phải test tự động cho CI; Docker mẫu đã bind `127.0.0.1` ✅ |
+| `MCPJam/inspector` | Đầu bảng | 2,3k · Apache-2.0 **trừ phần eval** (`NOASSERTION`) | 2/11/2026 | Inspector + eval chéo 16 cấu hình client (ChatGPT, Claude, Cursor…), OAuth debugger, CLI chạy conformance/e2e/eval trong CI | `server/evals` dùng **MCPJam EE License**: chạy production cần subscription, dev/test thì được. Telemetry PostHog/Axiom có chính sách "chặt nhất thắng", tắt bằng `DO_NOT_TRACK=1` |
+| `modelcontextprotocol/mcpb` | Chuẩn đóng gói | 2,2k · MIT → Apache-2.0 đang chuyển | HEAD 22/4/2026 | Spec + JSON Schema manifest (v0.1 → v0.4) và CLI `mcpb init/validate/pack/sign/verify`; tên cũ DXT; Claude Code nhận `.mcpb` trong `mcpServers` của plugin (docs plugins-reference, mục 20 §3v) | Hơn 6 tháng không commit trên `main`; chữ ký tự ký chỉ cảnh báo, không chặn |
+| `cisco-ai-defense/mcp-scanner` | Cổng máy (bảo mật) | 1,1k · Apache-2.0 | 28/10/2026 | Quét tool MCP bằng YARA (offline), LLM judge, API Cisco AI Defense; thêm "readiness" tĩnh (timeout, retry), quét gói PyPI/npm trong Docker; có CodeQL, plugin Claude Code | `--stdio-command` **khởi chạy server** để quét; analyzer API gửi mô tả tool lên Cisco; LLM analyzer cần key |
+
+**Stack nâng trần** (lợi ích/công sức giảm dần):
+
+1. Server MCP tự viết: thêm job CI `npx @modelcontextprotocol/conformance server --url … --requirements 2026-07-28 --expected-failures conformance-baseline.yml` (hoặc dùng `action.yml`). Đây là cổng duy nhất biến lộ trình stateless ở §4b.3 thành đo được.
+2. Trước khi cài server ngoài (§2c): `mcp-scanner --analyzers yara` (không cần key, không gửi dữ liệu) trên server đã sandbox; kết hợp checklist 3 điểm của §2c và OWASP MCP Top 10 (mục 12).
+3. Kiểm tay bằng inspector chính thức (§2b); khi cần đo tool trên nhiều client thì dùng MCPJam, nhưng giữ phần eval trong phạm vi dev/test vì license EE.
+4. Phát hành server local: đóng gói `.mcpb` và chạy `mcpb validate` trong CI; ký bằng chứng chỉ thật, đừng dừng ở `--self-signed`.
+5. Agent A2A: `a2a-tck` mức MUST trong CI, `a2a-inspector` để soi agent card.
+6. Skill: tiếp tục `skills-ref validate` (§4b.3); lint và eval skill chi tiết hơn xem mục 20 §3v.
+
+**Nguồn §4c:** GitHub search API 2/11/2026 (`repo:` từng repo; truy vấn "mcp conformance", "skill validator agent skills", "claude plugin validate") · clone `--depth 1 --filter=blob:none` 2/11/2026: modelcontextprotocol/conformance (LICENSE, README.md, SDK_INTEGRATION.md, package.json, action.yml, `requirements/`, `src/scenarios/`), MCPJam/inspector (LICENSE, `mcpjam-inspector/server/evals/LICENSE`, README.md, `mcpjam-inspector/shared/telemetry-privacy.ts`, `server/utils/__tests__/analytics.test.ts`, workflows), modelcontextprotocol/mcpb (LICENSE, README.md, CLI.md, `schemas/`, package.json), cisco-ai-defense/mcp-scanner (LICENSE, README.md, workflows, `claude-code-plugin/`), a2aproject/a2a-tck (LICENSE, README.md), a2aproject/a2a-inspector (README.md) · https://github.com/modelcontextprotocol/conformance · https://github.com/a2aproject/a2a-tck · https://github.com/a2aproject/a2a-inspector · https://github.com/MCPJam/inspector · https://github.com/modelcontextprotocol/mcpb · https://github.com/cisco-ai-defense/mcp-scanner
+
 ## 5. Nguồn
 
 - https://en.wikipedia.org/wiki/Model_Context_Protocol · https://github.com/wong2/awesome-mcp-servers · https://github.com/sadekxD/Awesome-MCP · https://uibakery.io/blog/best-mcp-servers
