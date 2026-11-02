@@ -58,6 +58,7 @@ Quy ước do người dùng đặt ra (2026-11-02): **cứ 2 tuần nâng trầ
 Bạn đang chạy đợt "nâng trần" định kỳ 2 tuần/lần cho kho seeker19110/stored (kho tri thức tiếng Việt, chỉ lưu hồ sơ + đánh giá repo). Chạy ở chế độ ultracode trên model Opus: dùng workflow nhiều agent cho mọi bước nặng; mọi agent() trong workflow đặt `effort: "high"` (bước kiểm đối kháng có thể dùng cao hơn). Tìm bằng mọi cách trên internet và GitHub.
 
 0. Chuẩn bị
+- Nếu phiên chưa có checkout của kho: gọi add_repo (owner `seeker19110`, repo `stored`, access `push`), clone theo hướng dẫn trả về và làm việc trong thư mục đó. Nếu công cụ GitHub MCP (tạo PR, bật auto-merge) không có trong phiên thì vẫn làm hết, push nhánh, và ở báo cáo cuối đưa link tạo PR để người dùng bấm.
 - Đọc WORKFLOW.md (phạm vi kho, quy trình, tiêu chuẩn chất lượng, mục này), TEMPLATE.md và X-TEMPLATES.md.
 - Tìm đợt nâng trần gần nhất: `git log --oneline --grep "nâng trần" -i | head` và các heading "Nâng trần <ngày>" trong `NN-*/README.md`. Mốc thời gian của đợt này = từ ngày đợt trước đến hôm nay.
 - Làm trên nhánh phiên được chỉ định; nếu PR cũ của nhánh đã merge thì tạo lại nhánh từ `main`.
