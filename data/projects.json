@@ -72,7 +72,7 @@
       "product-research",
       "feature-management"
     ],
-    "count": 978,
+    "count": 979,
     "schema_version": 2
   },
   "projects": [
@@ -5957,21 +5957,33 @@
       "repo": "charlie947/social-media-skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 4486,
+      "stars": 4518,
       "open_source": true,
-      "notes": "17 skill viết nội dung mạng xã hội (LinkedIn là chính), voice-builder làm nền, plugin Claude Code + Codex; validator 87/0; chỉ soạn nháp, hỏi trước khi chạy Apify trả phí; ★ 31/10/2026: 4.486 (GitHub API)",
+      "notes": "17 skill viết nội dung mạng xã hội (LinkedIn là chính), voice-builder làm nền, plugin Claude Code + Codex v1.1.0; validator 87/0 (13/10); test kiểm hợp đồng chuỗi + cài đặt bảo toàn; chỉ soạn nháp, hỏi trước khi chạy Apify trả phí; đọc lại 2/11/2026: HEAD 10ca79c (18/10) cây giống 8cefb5b, PR #23/#24 thêm rồi gỡ claude-reel-editor trong 3 phút; banner giữ '350k followers' (chưa xác minh); ★ 2/11/2026: 4.518 (GitHub search API)",
       "section": "20",
       "id": "social-media-skills-charlie-hills",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/charlie947/social-media-skills/blob/10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b/LICENSE",
+        "https://github.com/charlie947/social-media-skills/blob/10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b/README.md",
+        "https://github.com/charlie947/social-media-skills/blob/10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b/tests/test-codex-portability.py",
+        "https://github.com/charlie947/social-media-skills/blob/10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b/validate-skills.sh",
+        "https://github.com/charlie947/social-media-skills/blob/10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b/assets/banner.svg",
+        "https://github.com/charlie947/social-media-skills/pull/24"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3f5-đọc-lại-2112026-ảnh-readme-mới-bốn-commit-thêm-rồi-gỡ-claude-reel-editor-banner-giữ-số-cũ-ảnh-người-dùng-gửi"
     },
     {
       "name": "social-media-skills/skills (WoopSocial)",
       "repo": "social-media-skills/skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 225,
+      "stars": 236,
       "open_source": true,
-      "notes": "106 skill có evals; 102/106 skill nhắc WoopSocial (phễu thương mại); ★ 31/10/2026: 225 (GitHub API)",
+      "notes": "106 skill có evals; 102/106 skill nhắc WoopSocial (phễu thương mại); ★ 2/11/2026: 236 (GitHub search API)",
       "section": "20",
       "id": "social-media-skills-skills-woopsocial",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
@@ -5981,12 +5993,34 @@
       "repo": "blacktwist/social-media-skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 612,
+      "stars": 619,
       "open_source": true,
-      "notes": "14 skill cài bằng npx skills add; dẫn về app BlackTwist; không commit từ 5/2026; ★ 31/10/2026: 612 (GitHub API)",
+      "notes": "14 skill cài bằng npx skills add; dẫn về app BlackTwist; không commit từ 5/2026; ★ 2/11/2026: 619 (GitHub search API)",
       "section": "20",
       "id": "social-media-skills-blacktwist",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
+    },
+    {
+      "name": "OpenClaudia skills",
+      "repo": "OpenClaudia/openclaudia-skills",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 724,
+      "open_source": true,
+      "notes": "78 SKILL.md marketing cho coding agent (SEO, content, email, ads, social); CI validate_skills.py kiểm frontmatter + bảng README; cài npx openclaudia install (git clone --depth 1 nhánh mặc định, không ghim tag/SHA); social-content đăng trực tiếp qua API, 35/78 skill có publish/post/send, nhiều token bên thứ ba (Telegram, Semrush, Slack, HubSpot); 6 skill nhắc openclaudia.com; mô tả GitHub ghi 77; ★ 2/11/2026: 724 (GitHub search API)",
+      "section": "20",
+      "id": "openclaudia-skills",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3f5-đọc-lại-2112026-ảnh-readme-mới-bốn-commit-thêm-rồi-gỡ-claude-reel-editor-banner-giữ-số-cũ-ảnh-người-dùng-gửi",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "37bdd29e44495a5cb3c402382d83ed2aeda1b7cf",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/OpenClaudia/openclaudia-skills/blob/37bdd29e44495a5cb3c402382d83ed2aeda1b7cf/LICENSE",
+        "https://github.com/OpenClaudia/openclaudia-skills/blob/37bdd29e44495a5cb3c402382d83ed2aeda1b7cf/cli/index.mjs",
+        "https://github.com/OpenClaudia/openclaudia-skills/blob/37bdd29e44495a5cb3c402382d83ed2aeda1b7cf/.github/workflows/validate-skills.yml",
+        "https://github.com/OpenClaudia/openclaudia-skills/blob/37bdd29e44495a5cb3c402382d83ed2aeda1b7cf/skills/social-content/SKILL.md"
+      ]
     },
     {
       "name": "agentmemory",
