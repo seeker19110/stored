@@ -7935,7 +7935,7 @@
       "license": "MIT",
       "stars": 557,
       "open_source": true,
-      "notes": "V2 642 task định dạng Harbor, HARD-51, locked protocol (agent không mạng, chấm ở sandbox mới), GATE.md oracle 642/642 + nop 0 pass; ★ 2/11/2026 (GitHub search API), mục 01 §3k",
+      "notes": "V2 642 task định dạng Harbor, HARD-51, locked protocol (agent không mạng trừ endpoint model, verifier chấm `model.patch` ở image sạch (vẫn có mạng)), GATE.md oracle 642/642 + nop 0 pass; ★ 2/11/2026 (GitHub search API), mục 01 §3k",
       "section": "01"
     },
     {
@@ -8015,7 +8015,7 @@
       "license": "MIT",
       "stars": 866,
       "open_source": true,
-      "notes": "ICML 2024: MCTS + reflection + UCT, phản hồi từ test thực thi; clone qua lapisrocks/… (chuyển hướng); không bảo trì từ 7/2024; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
+      "notes": "ICML 2024: MCTS + reflection + UCT, phản hồi từ test thực thi; lapisrocks/… là tên cũ chuyển hướng về andyz245; không bảo trì từ 7/2024; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
       "section": "03"
     },
     {
@@ -8106,7 +8106,7 @@
       "license": "Apache-2.0 (phần eval: MCPJam EE License)",
       "stars": 2298,
       "open_source": true,
-      "notes": "Inspector + eval chéo 16 cấu hình client, OAuth debugger, CLI cho CI; server/evals cần subscription khi chạy production; telemetry tắt bằng DO_NOT_TRACK=1; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "notes": "Inspector + eval chéo 16 cấu hình client, OAuth debugger, CLI cho CI; phần eval (server/services) theo MCPJam EE License, cần subscription khi chạy production; DO_NOT_TRACK=1 chỉ tắt telemetry phía server, bản browser trên npm vẫn gửi usage event; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
       "section": "04"
     },
     {
@@ -8844,7 +8844,7 @@
       "license": "MIT",
       "stars": 3131,
       "open_source": true,
-      "notes": "Bài tập LM from scratch (BPE, Transformer, AdamW) chấm bằng 48 test pytest + 15 snapshot .npz; AGENTS.md buộc agent làm trợ giảng, không viết lời giải; README ghi 'Spring 2025' lệch CHANGELOG 26.0.x; ★ 2/11/2026 (GitHub search API), mục 08 §4",
+      "notes": "Bài tập LM from scratch (BPE, Transformer, AdamW) chấm bằng 48 test pytest + 15 snapshot (14 .npz + 1 .pkl); AGENTS.md buộc agent làm trợ giảng, không viết lời giải; README ghi 'Spring 2025' lệch CHANGELOG 26.0.x; ★ 2/11/2026 (GitHub search API), mục 08 §4",
       "section": "08"
     },
     {
@@ -9005,7 +9005,7 @@
       "license": "MIT",
       "stars": 1191,
       "open_source": true,
-      "notes": "Benchmark bộ nhớ dài hạn ICLR 2025: 500 câu, 5 năng lực, bản S/M/oracle, bản cleaned 9/2025; chấm QA bằng LLM judge gpt-4o, có answer_session_ids để đo recall theo phiên; V2 cho agent (201★); ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "notes": "Benchmark bộ nhớ dài hạn ICLR 2025: 500 câu, 5 năng lực, bản S/M/oracle, bản cleaned 9/2025; chấm QA bằng LLM judge chọn qua tham số (gpt-4o mặc định, gpt-4o-mini, llama-3.1), có answer_session_ids để đo recall theo phiên; V2 cho agent (201★); ★ 2/11/2026 (GitHub search API), mục 10 §6c",
       "section": "10"
     },
     {

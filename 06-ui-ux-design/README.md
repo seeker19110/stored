@@ -1272,7 +1272,7 @@ Stageshow khác các skill thiết kế khác ở chỗ: (1) chọn "ví dụ go
 - `raunofreiberg/interfaces` (2,0k★): **không có LICENSE**, commit cuối 6/2023. Dùng bản Vercel ở trên, có MIT.
 - `lost-pixel/lost-pixel` (1,7k★): **đã archive**.
 - `garris/BackstopJS` (7,2k★, MIT, v6.3.25, kéo theo cả Puppeteer lẫn Playwright) và `reg-viz/reg-suit` (1,3k★, MIT, commit cuối 16/3/2026): phương án so ảnh tự host thay Argos.
-- `Myndex/apca-w3` (216★, GitHub báo `NOASSERTION`): LICENSE.md ghi "All Rights Reserved", "Patent(s) pending" và "Limited W3 License". Chỉ được dùng cho nội dung web theo thỏa thuận với W3C; ngoài phạm vi đó thì theo AGPL v3 (văn bản viết nhầm thành "AGPU"); cài đặt sai thuật toán bị coi là vi phạm bản quyền. APCA chưa thuộc WCAG 2.x. **Không nhúng mã APCA vào sản phẩm.** Khi cần cổng hợp chuẩn, đo bằng tỉ lệ tương phản WCAG 2.
+- `Myndex/apca-w3` (216★, GitHub báo `NOASSERTION`): LICENSE.md ghi "All Rights Reserved", "Patent(s) pending" và "W3 License for Compliant Code Only" (cấp cho W3 "on a limited basis", chỉ cho nội dung web theo thỏa thuận hợp tác với W3C; ngoài phạm vi đó áp dụng "AGPU v3" — nguyên văn, có lẽ là lỗi gõ của AGPL v3), "Patent(s) pending" và "Limited W3 License". Chỉ được dùng cho nội dung web theo thỏa thuận với W3C; ngoài phạm vi đó thì theo AGPL v3 (văn bản viết nhầm thành "AGPU"); cài đặt sai thuật toán bị coi là vi phạm bản quyền. APCA chưa thuộc WCAG 2.x. **Không nhúng mã APCA vào sản phẩm.** Khi cần cổng hợp chuẩn, đo bằng tỉ lệ tương phản WCAG 2.
 - `argyleink/open-props` (5,6k★, MIT) và `fontsource/fontsource` (6,3k★, MIT): hữu ích, nhưng không thêm lớp đo nào mới.
 - `GoogleChrome/lighthouse-ci`: đã có ở mục 13 và đứng yên từ 6/2025. `web-quality-skills` thay bằng Lighthouse qua DevTools MCP.
 
