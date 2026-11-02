@@ -786,7 +786,7 @@
 - `rhysd/actionlint`: clone 2/11/2026 (HEAD 011a6d1 19/4/2026); đọc LICENSE.txt, README, CHANGELOG; mục 21 §10e
 - Web: https://opentelemetry.io/docs/specs/semconv/gen-ai/ · https://gorilla.cs.berkeley.edu/leaderboard.html · https://temporal.io/blog/announcing-openai-agents-sdk-integration · https://lucumr.pocoo.org/2025/11/3/absurd-workflows/ · https://docs.zizmor.sh/audits/ · arXiv 2210.03629, 2303.11366, 2305.10601, 2310.04406, 2505.23419, 2504.02605 (link, chưa đọc lại paper)
 - `modelcontextprotocol/conformance`: clone 2/11/2026 (HEAD c37eec8 1/10/2026); đọc LICENSE, README.md, SDK_INTEGRATION.md, package.json, action.yml, requirements/, src/scenarios/; mục 04 §4c
-- `MCPJam/inspector`: clone 2/11/2026 (HEAD 3ac40bd 2/11/2026); đọc LICENSE, mcpjam-inspector/server/evals/LICENSE, README.md, shared/telemetry-privacy.ts, server/utils/__tests__/analytics.test.ts; mục 04 §4c
+- `MCPJam/inspector`: clone 2/11/2026 (HEAD 3ac40bd 2/11/2026); đọc LICENSE, mcpjam-inspector/server/evals/LICENSE, README.md, shared/telemetry-privacy.ts, `server/utils/__tests__/analytics.test.ts`; mục 04 §4c
 - `modelcontextprotocol/mcpb`: clone 2/11/2026 (HEAD 70fe3b3 22/4/2026); đọc LICENSE, README.md, CLI.md, schemas/, package.json; mục 04 §4c
 - `cisco-ai-defense/mcp-scanner`: clone 2/11/2026 (HEAD 21a87b4 28/10/2026); đọc LICENSE, README.md, workflows, claude-code-plugin/; mục 04 §4c
 - `a2aproject/a2a-tck`: clone 2/11/2026 (HEAD d4d6fae 22/10/2026); đọc LICENSE, README.md; mục 04 §4c
@@ -819,12 +819,12 @@
 - `open-telemetry/semantic-conventions-genai`: clone 2/11/2026 (HEAD 16f3130 2/11/2026); đọc README.md, CHANGELOG.md, versions.env, docs/gen-ai/*.md, reference/README.md, reference/scenarios/; mục 07 §Nâng trần 2/11
 - `open-telemetry/weaver`: clone 2/11/2026 (HEAD 8ed44ad 1/11/2026); đọc README.md, docs/usage.md; mục 07 §Nâng trần 2/11
 - `Arize-ai/openinference`: clone 2/11/2026 (HEAD 5c68f3a 1/11/2026); đọc LICENSE, README.md, spec/configuration.md, python/instrumentation/, js/packages/openinference-genai/README.md; mục 07 §Nâng trần 2/11
-- `openlit/openlit`: clone 2/11/2026 (HEAD 1ed8bb7 22/10/2026); đọc LICENSE, README.md, docker-compose.yml, sdk/python/src/openlit/__init__.py, grep posthog; mục 07 §Nâng trần 2/11
+- `openlit/openlit`: clone 2/11/2026 (HEAD 1ed8bb7 22/10/2026); đọc LICENSE, README.md, docker-compose.yml, `sdk/python/src/openlit/__init__.py`, grep posthog; mục 07 §Nâng trần 2/11
 - `UKGovernmentBEIS/inspect_evals`: clone 2/11/2026 (HEAD ca99b73 2/11/2026); đọc LICENSE, README.md, EVALUATION_CHECKLIST.md, TASK_VERSIONING.md, .github/workflows/; mục 07 §Nâng trần 2/11
 - `allenai/reward-bench`: clone 2/11/2026 (HEAD 59f6ff7 14/10/2026); đọc LICENSE, README.md, scripts/; mục 07 §Nâng trần 2/11
 - `prometheus-eval/prometheus-eval` (HEAD dcfb442 24/4/2025) và `ScalerLab/JudgeBench` (search API): loại vì dừng; mục 07 §Nâng trần 2/11
 - `mitre-atlas/atlas-data`: clone 2/11/2026 (HEAD f56c146 28/10/2026); đọc LICENSE, README.md, CHANGELOG.md, dist/manifest.yaml, dist/ATLAS-latest.yaml; mục 12 §4c
-- `sigstore/model-transparency`: clone 2/11/2026 (HEAD 5b8efd5 26/10/2026); đọc LICENSE, README.md, pyproject.toml, src/model_signing/__init__.py; mục 12 §4c
+- `sigstore/model-transparency`: clone 2/11/2026 (HEAD 5b8efd5 26/10/2026); đọc LICENSE, README.md, pyproject.toml, `src/model_signing/__init__.py`; mục 12 §4c
 - `trailofbits/fickling`: clone 2/11/2026 (HEAD 79ae401 31/10/2026); đọc LICENSE, README.md; mục 12 §4c
 - `protectai/modelscan`: clone 2/11/2026 (HEAD 61fcec9 18/2/2026); đọc LICENSE, README.md, pyproject.toml; mục 12 §4c
 - `slsa-framework/slsa`: clone 2/11/2026 (HEAD 4d3f9d4 28/10/2026); đọc LICENSE.md, spec/whats-new.md, spec/, www/_data/versions.yml, www/_posts/; mục 13 §6h
