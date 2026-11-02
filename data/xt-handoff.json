@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); fb7b62c (XT-H-094)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); a1413e6.. (XT-H-094)",
     "columns": [
       "deeper",
       "shallower",
@@ -1670,6 +1670,21 @@
       ],
       "column": "not_adding",
       "note": "Không thêm, trùng XT-H-025 (nhãn license trên GitHub/README khác văn bản LICENSE, NOASSERTION, đề xuất cổng đọc văn bản LICENSE và so với SPDX). Phần còn lại khung đã có. CMP-LIC-004 (MUST) xếp ELv2 vào nhóm source-available phải có ADR và cấm NOASSERTION trong SBOM. Bẫy ở licensing-and-ip.md:77 bắt đọc file LICENSE thật khi GitHub báo NOASSERTION. Trường hợp Soda Core (README ghi 'open source' nhưng license là ELv2) chỉ là một ví dụ thêm. Có thể ghi Soda Core làm nguồn bổ sung cho XT-H-025."
+    },
+    {
+      "id": "XT-H-094",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "12 §4d"
+      ],
+      "lesson": "Bản đồ '5 vị trí guardrail' (đầu vào, truy xuất, gọi tool, đầu ra, duyệt của người) của infographic phổ biến khớp SEC-AI-001/013/002-003/004-015/005 nhưng đặt ví dụ sai (Llama Guard cho injection, Docker sandbox là kiểm trước khi gọi) và thiếu trần vòng lặp/ngân sách, kill switch, ghi memory, audit; Presidio đổi chủ sang data-privacy-stack, Guardrails AI bỏ hub/remote inference 25/8/2026.",
+      "xt_ids": [
+        "SEC-AI-025",
+        "SEC-AI-009",
+        "SEC-AI-005"
+      ],
+      "column": "deeper",
+      "note": "Khung đã sâu hơn ảnh: SEC-AI-001 (nội dung ngoài gồm output tool), 002/003 (allowlist + schema enforce bằng code), 004/015 (output qua schema + policy, chặn exfiltration), 005 (HITL hiện payload thật), 006 (sandbox là mục riêng), 009 (4 con số cứng của vòng lặp), 010 (kill switch), 013 (RAG lọc trước), 014 (adversarial test có negative control); SEC-AI-025 đã phân biệt Prompt Guard/Llama Guard và ghi 'không thay cho quyền tool'. Chỉ có hai dữ kiện trạng thái có thể bổ sung làm nguồn cho SEC-AI-025 và CMP-PRIV-010: Presidio nay ở data-privacy-stack/presidio (image ghcr.io/data-privacy-stack), Guardrails AI validator thành gói PyPI guardrails-ai-<tên> (issue #1560)."
     }
   ]
 }

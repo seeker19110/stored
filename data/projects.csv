@@ -17,7 +17,7 @@ Devin,,https://devin.ai,coding-tool-commercial,proprietary,,False,01,
 GitHub Copilot,,https://github.com/features/copilot,coding-tool-commercial,proprietary,,False,01,$10/$19/$39
 Google Jules,,https://jules.google,coding-tool-commercial,proprietary,,False,01,Async cloud agent
 LangChain,langchain-ai/langchain,,agent-framework,MIT,148779,True,02,; ★ 31/10/2026: 148.779 (GitHub API)
-LangGraph,langchain-ai/langgraph,,agent-framework,MIT,44234,True,02,34.5M tải/tháng; dẫn đầu adoption; ★ 31/10/2026: 44.234 (GitHub API)
+LangGraph,langchain-ai/langgraph,,agent-framework,MIT,44328,True,02,34.5M tải/tháng; dẫn đầu adoption; interrupt() + HumanInTheLoopMiddleware là cơ chế HITL khuyến nghị (mục 12 §4d); ★ 2/11/2026: 44.328 (GitHub API)
 AutoGen,microsoft/autogen,,agent-framework,MIT,61656,True,02,Maintenance; kế nhiệm = Microsoft Agent Framework (GA 4/2026); ★ 31/10/2026: 61.656 (GitHub API)
 Microsoft Agent Framework,microsoft/agent-framework,,agent-framework,MIT,,True,02,AutoGen + Semantic Kernel
 CrewAI,crewAIInc/crewAI,,agent-framework,MIT,60353,True,02,Role-based crews; ★ 31/10/2026: 60.353 (GitHub API)
@@ -120,9 +120,9 @@ browser-use-pi,browser-use/browser-use-pi,,browser-agent,MIT,461,True,11,"Runtim
 E2B,e2b-dev/E2B,,sandbox,Apache-2.0,,True,11,Firecracker microVM
 Modal,modal-labs/modal-client,,sandbox,Apache-2.0 (SDK),,True,11,gVisor; GPU
 Daytona,daytonaio/daytona,,sandbox,,,False,11,"Trạng thái mở chưa rõ từ 6/2026; ARCHIVE theo GitHub API (31/10/2026, mục 11 §3c)"
-NeMo Guardrails,NVIDIA-NeMo/Guardrails,,security,Apache-2.0,,True,12,Colang rails; repo chuyển sang NVIDIA-NeMo/Guardrails (31/10/2026)
+NeMo Guardrails,NVIDIA-NeMo/Guardrails,,security,Apache-2.0,7413,True,12,"Colang rails; 5 loại rail, catalog có Presidio/Llama Guard/jailbreak/tool-calling rails; v0.24.1, develop 0.25.0-rc1 lõi Rust; có telemetry (chưa đọc mặc định); repo chuyển sang NVIDIA-NeMo/Guardrails (31/10/2026); ★ 2/11/2026: 7.413 (GitHub API), mục 12 §2, §4d"
 LLM Guard,protectai/llm-guard,,security,MIT,,True,12,"~35 scanner; ARCHIVE (31/10/2026, mục 12 §4b)"
-Guardrails AI,guardrails-ai/guardrails,,security,Apache-2.0,,True,12,
+Guardrails AI,guardrails-ai/guardrails,,security,Apache-2.0,7579,True,12,"Validator output; bỏ Guardrails Hub và remote inference từ 25/8/2026 (issue #1560), validator thành gói PyPI guardrails-ai-<tên>; v0.11.0 (8/2026); ★ 2/11/2026: 7.579 (GitHub API), mục 12 §2, §4d"
 OWASP MCP Top 10,OWASP/www-project-mcp-top-10,,security,CC,,True,12,
 gitleaks,gitleaks/gitleaks,,security,MIT,,True,12,secret scan
 trufflehog,trufflesecurity/trufflehog,,security,AGPL-3.0,,True,12,secret scan
@@ -285,7 +285,7 @@ knip,webpro-nl/knip,,quality-gate,ISC,12560,True,13,Tìm file/export/dependency 
 jscpd,kucherenko/jscpd,,quality-gate,MIT,6472,True,13,Phát hiện code trùng lặp; ★ 31/10/2026: 6.472 (GitHub API)
 uv,astral-sh/uv,,quality-gate,Apache-2.0/MIT,91402,True,13,Package manager Python nhanh (Astral); ★ 31/10/2026: 91.402 (GitHub API)
 ruff,astral-sh/ruff,,quality-gate,MIT,50369,True,13,Linter/formatter Python (Astral); ★ 31/10/2026: 50.369 (GitHub API)
-OPA / conftest,open-policy-agent/conftest,,policy-as-code,Apache-2.0,,True,12,Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng
+OPA / conftest,open-policy-agent/conftest,,policy-as-code,Apache-2.0,,True,12,"Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng. Lõi open-policy-agent/opa 12,4k★ v1.22.0 Apache-2.0 (2/11/2026) là policy engine chung, dùng làm tool gateway cho agent phải tự tích hợp (mục 12 §4d)"
 syft,anchore/syft,,policy-as-code,Apache-2.0,,True,12,Sinh SBOM (CycloneDX/SPDX)
 REA – Reverse Engineer Anything,morluto/rea,,reverse-engineering,MIT,,True,11,"CLI + MCP server 95 tool cho agent dịch ngược (Hopper/Ghidra, CDP, JS replay sandbox); Evidence v2, authority fail-closed; npm rea-agents 2.1.0"
 blender-mcp,ahujasid/blender-mcp,,protocol,MIT,,True,14,"MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh); repo nay redirect về ahujasid/mcp-for-blender (30,5k★, 12/10/2026)"
@@ -382,7 +382,7 @@ Firecracker,firecracker-microvm/firecracker,,sandbox,Apache-2.0,37750,True,11,mi
 sandbox-runtime,anthropics/sandbox-runtime,,sandbox,Apache-2.0,6898,True,11,"Sandbox OS cho Claude Code: Seatbelt/bubblewrap, mạng chặn mặc định; ★ đọc 12/10/2026; ★ 31/10/2026: 6.898 (GitHub API)"
 garak,NVIDIA/garak,,security,Apache-2.0,9814,True,12,Máy quét lỗ hổng LLM của NVIDIA; ★ đọc 12/10/2026; ★ 31/10/2026: 9.814 (GitHub API)
 PyRIT,microsoft/PyRIT,,security,MIT,4718,True,12,Red-team AI tạo sinh; Azure/PyRIT archive 27/3/2026; ★ đọc 12/10/2026; ★ 31/10/2026: 4.718 (GitHub API)
-PurpleLlama,meta-llama/PurpleLlama,,security,MIT (code); Llama licenses (weights),4454,True,12,"Llama Guard, Prompt Guard, CodeShield, CyberSecEval; ★ đọc 12/10/2026; ★ 31/10/2026: 4.454 (GitHub API)"
+PurpleLlama,meta-llama/PurpleLlama,,security,MIT (code); Llama licenses (weights),4457,True,12,"Llama Guard (4, 12B, phân loại 14 nhóm MLCommons), Prompt Guard 2 (injection/jailbreak), LlamaFirewall, CodeShield, CyberSecEval; weights Llama 4 Community License (gated); ★ đọc 12/10/2026; ★ 2/11/2026: 4.457 (GitHub API), mục 12 §3d, §4d"
 Semgrep,semgrep/semgrep,,security,LGPL-2.1 (engine),17385,True,12,SAST; rule theo Semgrep Rules License (không OSI); ★ đọc 12/10/2026; ★ 31/10/2026: 17.385 (GitHub API)
 OSV-Scanner,google/osv-scanner,,security,Apache-2.0,11342,True,12,Quét dependency/container theo OSV.dev; ★ đọc 12/10/2026; ★ 31/10/2026: 11.342 (GitHub API)
 Trivy,aquasecurity/trivy,,security,Apache-2.0,38881,True,12,Bị xâm nhập 3/2026 (CVE-2026-33634): ghim Action theo SHA; ★ đọc 12/10/2026; ★ 31/10/2026: 38.881 (GitHub API)
@@ -907,3 +907,5 @@ Soda Core,sodadata/soda-core,,quality-gate,Elastic-2.0 (ELv2; GitHub báo NOASSE
 "dbt (v2, Rust)",dbt-labs/dbt,,data,Apache-2.0,14110,True,15,"Repo trước là dbt-core; main là dbt v2.0 viết lại bằng Rust (2.0.8), v1 ở nhánh 1.latest; data test + unit test; telemetry mặc định bật, tắt bằng DBT_SEND_ANONYMOUS_USAGE_STATS=false, DO_NOT_TRACK chỉ áp cho docs và chỉ nhận '1'; ★ 2/11/2026 (GitHub search API), mục 15 §4"
 OpenLineage,OpenLineage/OpenLineage,,data,Apache-2.0,2736,True,15,"Chuẩn mở lineage (LF AI & Data Graduate): run/job/dataset + facet, spec OpenAPI/JSON Schema, client Python/Java/Go, tích hợp Spark/Airflow/dbt/Flink; backend tham chiếu Marquez; ★ 2/11/2026 (GitHub search API), mục 15 §4"
 SQLFluff,sqlfluff/sqlfluff,,quality-gate,MIT,10011,True,15,"Linter + auto-fix SQL, 28 file dialect, templater Jinja/dbt, lõi Rust sqlfluffrs; v4.5.0; workflow AgentScan phân loại PR do agent tạo theo mẫu pull_request_target không checkout mã PR; ★ 2/11/2026 (GitHub search API), mục 15 §4"
+Presidio,data-privacy-stack/presidio,,security,MIT,11631,True,12,"Phát hiện và che PII (text, ảnh, dữ liệu có cấu trúc; NER + regex + checksum); chuyển từ microsoft/presidio sang tổ chức cộng đồng data-privacy-stack (2026, cùng HEAD fbe0ef4), image mới ở ghcr.io/data-privacy-stack; README ghi không bảo đảm tìm hết PII; v2.2.366; ★ 2/11/2026: 11.631 (GitHub API), mục 12 §2, §4d"
+Docker Sandboxes,,https://docs.docker.com/ai/sandboxes/,sandbox,,,False,11,"Sản phẩm Docker (CLI sbx): microVM mỗi sandbox có daemon riêng, credential proxy giữ khoá API ngoài VM, egress qua proxy host có policy, MCP gateway; chạy Claude Code, Codex, Copilot, Cursor, Devin, Droid, Gemini, Kiro, OpenCode, Docker Agent; mã sbx mở hay đóng chưa xác minh (đọc docs 2/11/2026), mục 12 §4d"

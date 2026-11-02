@@ -257,9 +257,9 @@
       "repo": "langchain-ai/langgraph",
       "category": "agent-framework",
       "license": "MIT",
-      "stars": 44234,
+      "stars": 44328,
       "open_source": true,
-      "notes": "34.5M tải/tháng; dẫn đầu adoption; ★ 31/10/2026: 44.234 (GitHub API)",
+      "notes": "34.5M tải/tháng; dẫn đầu adoption; interrupt() + HumanInTheLoopMiddleware là cơ chế HITL khuyến nghị (mục 12 §4d); ★ 2/11/2026: 44.328 (GitHub API)",
       "section": "02"
     },
     {
@@ -1292,9 +1292,9 @@
       "repo": "NVIDIA-NeMo/Guardrails",
       "category": "security",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 7413,
       "open_source": true,
-      "notes": "Colang rails; repo chuyển sang NVIDIA-NeMo/Guardrails (31/10/2026)",
+      "notes": "Colang rails; 5 loại rail, catalog có Presidio/Llama Guard/jailbreak/tool-calling rails; v0.24.1, develop 0.25.0-rc1 lõi Rust; có telemetry (chưa đọc mặc định); repo chuyển sang NVIDIA-NeMo/Guardrails (31/10/2026); ★ 2/11/2026: 7.413 (GitHub API), mục 12 §2, §4d",
       "section": "12"
     },
     {
@@ -1312,9 +1312,9 @@
       "repo": "guardrails-ai/guardrails",
       "category": "security",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 7579,
       "open_source": true,
-      "notes": "",
+      "notes": "Validator output; bỏ Guardrails Hub và remote inference từ 25/8/2026 (issue #1560), validator thành gói PyPI guardrails-ai-<tên>; v0.11.0 (8/2026); ★ 2/11/2026: 7.579 (GitHub API), mục 12 §2, §4d",
       "section": "12"
     },
     {
@@ -2951,7 +2951,7 @@
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng",
+      "notes": "Policy-as-code (Rego) chặn PR vi phạm trong CI; qlkh dùng. Lõi open-policy-agent/opa 12,4k★ v1.22.0 Apache-2.0 (2/11/2026) là policy engine chung, dùng làm tool gateway cho agent phải tự tích hợp (mục 12 §4d)",
       "section": "12"
     },
     {
@@ -3919,9 +3919,9 @@
       "repo": "meta-llama/PurpleLlama",
       "category": "security",
       "license": "MIT (code); Llama licenses (weights)",
-      "stars": 4454,
+      "stars": 4457,
       "open_source": true,
-      "notes": "Llama Guard, Prompt Guard, CodeShield, CyberSecEval; ★ đọc 12/10/2026; ★ 31/10/2026: 4.454 (GitHub API)",
+      "notes": "Llama Guard (4, 12B, phân loại 14 nhóm MLCommons), Prompt Guard 2 (injection/jailbreak), LlamaFirewall, CodeShield, CyberSecEval; weights Llama 4 Community License (gated); ★ đọc 12/10/2026; ★ 2/11/2026: 4.457 (GitHub API), mục 12 §3d, §4d",
       "section": "12"
     },
     {
@@ -9177,6 +9177,26 @@
       "open_source": true,
       "notes": "Linter + auto-fix SQL, 28 file dialect, templater Jinja/dbt, lõi Rust sqlfluffrs; v4.5.0; workflow AgentScan phân loại PR do agent tạo theo mẫu pull_request_target không checkout mã PR; ★ 2/11/2026 (GitHub search API), mục 15 §4",
       "section": "15"
+    },
+    {
+      "name": "Presidio",
+      "repo": "data-privacy-stack/presidio",
+      "category": "security",
+      "license": "MIT",
+      "stars": 11631,
+      "open_source": true,
+      "notes": "Phát hiện và che PII (text, ảnh, dữ liệu có cấu trúc; NER + regex + checksum); chuyển từ microsoft/presidio sang tổ chức cộng đồng data-privacy-stack (2026, cùng HEAD fbe0ef4), image mới ở ghcr.io/data-privacy-stack; README ghi không bảo đảm tìm hết PII; v2.2.366; ★ 2/11/2026: 11.631 (GitHub API), mục 12 §2, §4d",
+      "section": "12"
+    },
+    {
+      "name": "Docker Sandboxes",
+      "url": "https://docs.docker.com/ai/sandboxes/",
+      "category": "sandbox",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Sản phẩm Docker (CLI sbx): microVM mỗi sandbox có daemon riêng, credential proxy giữ khoá API ngoài VM, egress qua proxy host có policy, MCP gateway; chạy Claude Code, Codex, Copilot, Cursor, Devin, Droid, Gemini, Kiro, OpenCode, Docker Agent; mã sbx mở hay đóng chưa xác minh (đọc docs 2/11/2026), mục 12 §4d",
+      "section": "11"
     }
   ]
 }
