@@ -162,6 +162,41 @@
 
 **Nguồn §5b:** GitHub search API 2/11/2026 (6 truy vấn chủ đề; `repo:` cho 6 repo) · clone `--filter=blob:none`: embeddings-benchmark/mteb (HEAD `da9f201` 2/11/2026: LICENSE, `mteb/benchmarks/benchmarks/benchmarks.py` khối `VN_MTEB`, `mteb/models/model_implementations/vi_vn_models.py`), aisingapore/SEA-HELM (`9be3986` 5/8/2026: LICENSE, README.md, pyproject.toml, `seahelm_tasks/**` khoá `vi:`), Xdao85/VNHSGE (`04c845d` 30/10/2026: README.md, `Dataset/NOTES.md`, cây file), jangtrinh/design-os-vietnamese (`63dc654` 1/11/2026: LICENSE, README.md, `shared/scripts/validate_copy.py`, `evals/*/pairs.jsonl`, `.github/workflows/ci.yml`), EleutherAI/lm-evaluation-harness (`d6de816` 14/9/2026: cây `lm_eval/tasks`), stanford-crfm/helm (`63754d0` 5/6/2026: `run_entries_melt.conf`, `melt_*` scenario, `docs/vhelm.md`) · https://aclanthology.org/2026.findings-eacl.86/ · https://arxiv.org/abs/2305.12199 · https://leaderboard.sea-lion.ai/
 
+## 5c. Vietnamese domain evaluation
+
+> Mở rộng ngày 2/11/2026. §5b đã có VMLU/VN-MTEB/SEA-HELM và linter tiếng Việt; mục tiêu tiếp theo là **đúng domain, bền trước biến thể ngôn ngữ, hiển thị đúng trong sản phẩm**. Không coi một điểm leaderboard là đủ để chọn model cho mọi ứng dụng tiếng Việt.
+
+### 5c.1 Retrieval theo domain và phương ngữ
+
+| Nguồn | Cơ chế / giá trị | Trạng thái kiểm và giới hạn |
+|---|---|---|
+| [ViRE — longstnguyen/ViRE](https://github.com/longstnguyen/ViRE/tree/60ea7155134eaa426ab1d0a82d2bbbf327d1b470) | Benchmark retrieval đa domain; [paper EACL 2026](https://aclanthology.org/2026.findings-eacl.110/) mô tả sáu domain, mười dataset và so lexical/dense/sparse/late-interaction/hybrid cùng giao thức | 7★ · code MIT · HEAD `60ea715` (2026-10-17), đọc 2/11/2026. Đọc README, LICENSE và mã eval; quyền dữ liệu nguồn phải kiểm từng dataset, không suy ra từ code MIT; chưa tái lập điểm |
+| [VialectBench](https://vialectbench.github.io/) + [paper](https://arxiv.org/abs/2608.10414) | So cặp câu chuẩn/phương ngữ giữ nguyên ý và nhãn; đo giảm điểm và đổi từ đúng sang sai | Đã đọc trang/paper metadata 2/11/2026; link “Code” trên trang dẫn tới tổ chức chỉ thấy website công khai, chưa xác minh có harness và tập dữ liệu đầy đủ. Chỉ dùng thiết kế phép đo và ví dụ công khai; không gọi là bộ eval đã chạy được |
+| VMLU / SEA-HELM / VN-MTEB (§5b) | Năng lực tổng quát, văn hóa/an toàn và embedding retrieval | Dùng làm baseline; [paper VMLU](https://aclanthology.org/2025.acl-long.563/) cho thấy thiết kế prompt ảnh hưởng kết quả, nên luôn ghi template/chat format và revision |
+
+**ViRE (Long S. T. Nguyen, Tho T. Quan):** khác bảng xếp hạng model đơn lẻ ở chỗ giữ giao thức so retrieval xuyên domain. Nên lấy tập giống dữ liệu sản phẩm và so BM25, embedding, hybrid rồi reranker trong cùng corpus/chunking; không chuyển kết quả trên bộ giáo dục thành lời khuyên chắc chắn cho pháp lý/y tế. Liên kết cổng nDCG/Recall và chunking ở mục 10, kiểm dữ liệu ở mục 15, chống nhiễm tập test ở mục 24. Đọc [`cli.py`](https://github.com/longstnguyen/ViRE/blob/60ea7155134eaa426ab1d0a82d2bbbf327d1b470/src/vi_retrieval_eval/cli.py) và [`metrics.py`](https://github.com/longstnguyen/ViRE/blob/60ea7155134eaa426ab1d0a82d2bbbf327d1b470/src/vi_retrieval_eval/metrics.py): quickstart lấy mẫu cả query và candidate corpus; metric loại gold index ngoài miền và có heuristic đổi chỉ số 1-based. Vì vậy phải báo kích thước candidate pool, kiểm coverage/qrels và chuẩn hóa ID tường minh trước khi so hệ thống; điểm trên corpus lấy mẫu không đại diện chỉ mục production đầy đủ.
+
+### 5c.2 Chuẩn Unicode và bản địa hóa
+
+| Lớp | Quy tắc tham khảo | Cổng nên có |
+|---|---|---|
+| Nội dung lưu/truy vấn | [UAX #15 — Unicode Normalization Forms](https://www.unicode.org/reports/tr15/) | Kiểm cặp NFC/NFD tiếng Việt cho tìm kiếm, khóa và so khớp; lưu bản gốc khi cần audit. NFKC là compatibility normalization, không tự thay NFC hay bỏ dấu |
+| Ngày, số, tiền, plural | [UTS #35 / CLDR](https://www.unicode.org/reports/tr35/) | Test `vi-VN`, `en-US` và timezone do người dùng chọn; không ghép chuỗi số/ngày bằng tay. Việc tiếng Việt ít biến thể plural không cho phép bỏ placeholder ở locale khác |
+| Catalog dịch và UI | i18next/Lingui/Weblate ở [mục 06 §7u](../06-ui-ux-design/README.md#i18n-lifecycle-2026-11-02) | Kiểm key thiếu/thừa, placeholder, glossary; pseudo-localization, font dấu Việt và overflow; người có chuyên môn duyệt thuật ngữ |
+| Giọng nói | WER/CER + task outcome ở [mục 14 §5e](../14-voice-multimodal/README.md#5e-voice-reliability) | Cùng câu chuẩn/phương ngữ, số tiền, tên riêng, địa chỉ; báo từng nhóm giọng/điều kiện ồn, không chỉ điểm gộp |
+
+UAX #15 được đọc ở bản revision 58 (12/8/2026); CLDR và runtime được ghim phiên bản khi dự án đích chạy. Cổng NFC không sửa được câu sai nghĩa; cổng linter tiếng Việt (§5b) không thay người chấm nội dung chuyên ngành.
+
+### 5c.3 Thang đánh giá cho sản phẩm tiếng Việt
+
+1. Chọn use case và hậu quả sai: gia sư, tìm tài liệu, OCR biểu mẫu hay điều khiển công cụ; gán owner/rubric riêng, giữ tập test ngoài dữ liệu tune.
+2. Báo baseline công khai và tập giữ riêng theo domain; chia kết quả theo vùng/ngôn ngữ trộn, độ dài, dấu và trường quan trọng; dùng confidence interval hoặc số lượng mẫu thay vì chỉ một tỷ lệ.
+3. Lưu model revision, prompt, retrieval corpus/chunking, normalizer, rubric và người chấm. Nhận định pháp lý ở §4b/§7 của mục 23 vẫn là dữ liệu từ docs nội bộ **(chưa xác minh)** cho đến khi đối chiếu văn bản gốc.
+4. Dùng replay để CI phát hiện thay đổi giao thức và ca đã biết; lấy mẫu chạy live định kỳ để phát hiện provider/model drift. Replay không chứng minh chất lượng trả lời của model hiện tại.
+5. Chỉ phát hành khi task outcome, an toàn và bản địa hóa đều qua cổng; liên kết kết quả với commit sản phẩm để không tái dùng báo cáo cũ sau khi đổi model/prompt.
+
+**Nguồn §5c:** GitHub metadata/clone ViRE ngày 2/11/2026 (LICENSE, README, mã eval) và permalink trên; paper EACL 2026, VMLU ACL 2025, VialectBench (trang công bố; harness đầy đủ chưa xác minh), Unicode UAX #15 và UTS #35. Không tải dữ liệu người dùng và không chạy benchmark.
+
 ## 6. Nguồn
 
 - https://www.emergentmind.com/topics/phogpt · https://arxiv.org/html/2509.26189v2 · https://arxiv.org/html/2608.25478 · https://ai.stanford.edu/blog/crossing-linguistic-horizon/ · https://aisean.org/resources/ · https://huggingface.co/Vi-VLM/Vistral-V-7B · https://github.com/vndee/awsome-vietnamese-nlp

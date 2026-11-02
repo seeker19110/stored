@@ -201,6 +201,45 @@
 
 **Nguồn §4d:** GitHub search API 2/11/2026 (`repo:` cho 4 repo trên và `open-telemetry/semantic-conventions`; `tau2-bench`, `inspect_ai`, `openllmetry`, `phoenix` đã có ở mục 07) · clone 2/11/2026, đọc: semantic-conventions-genai (README.md, LICENSE, CHANGELOG.md, `docs/gen-ai/{README,gen-ai-agent-spans,mcp,a2a}.md`, `reference/README.md`) · `open-telemetry/semantic-conventions` (`docs/gen-ai/README.md`, trang "Moved") · openinference (LICENSE, `spec/{semantic_conventions,annotations}.md`, cây `python/instrumentation/`, `js/packages/`) · gorilla (`berkeley-function-call-leaderboard/{README.md,CHANGELOG.md,pyproject.toml}`, LICENSE) · AgentBench (README.md, LICENSE, cây thư mục) · https://github.com/open-telemetry/semantic-conventions-genai · https://opentelemetry.io/docs/specs/semconv/gen-ai/ · https://github.com/Arize-ai/openinference · https://gorilla.cs.berkeley.edu/leaderboard.html · https://github.com/THUDM/AgentBench
 
+<a id="core-framework-semantics"></a>
+
+## 4e. Nâng trần 2/11/2026: checkpoint, retry và giới hạn có ngữ nghĩa rõ (mở rộng cùng ngày)
+
+> Mở rộng chiều sâu trong cùng đợt 2/11/2026, không phải công bố các repo vừa ra mắt. Hai repo dưới đã có trong catalog: đọc lại LICENSE, CI và nhánh mặc định bằng clone chỉ đọc; SHA đối chiếu GitHub API. Mức bằng chứng **code-read**; không chạy/build repo ngoài, hiệu năng và hành vi thực tế **(chưa xác minh)**. Số sao/trạng thái đọc 2026-11-02; ngày commit tính theo UTC, tách khỏi `pushed_at`.
+
+| Repo đã có | ★ · license (2026-11-02) | HEAD nhánh mặc định | Vai trò đọc sâu |
+|---|---|---|---|
+| `langchain-ai/langgraph` | 44.327 · MIT | 2026-11-02 · `ee3c043b` | Checkpoint/HITL và điểm có thể thực thi lại |
+| `pydantic/pydantic-ai` | 20.996 · MIT | 2026-11-02 · `129c94ef` | Hợp đồng output/tool và các loại ngân sách |
+
+**Trần còn thiếu:** §4d đã chuẩn hoá trace và benchmark tool; §2 vẫn chủ yếu chọn framework theo kiểu đồ thị/type safety. Với hệ chạy thật, cần biết **bước nào bị chạy lại, điều gì đã được lưu và giới hạn đếm cái gì**.
+
+### LangGraph: durable phụ thuộc checkpointer và ranh giới node
+
+- [`InMemorySaver`](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/checkpoint/langgraph/checkpoint/memory/__init__.py#L34) tự ghi chỉ hợp debugging/testing và khuyên PostgresSaver cho production. State trong RAM không sống qua việc mất tiến trình; chọn framework “có checkpoint” chưa đủ.
+- [`Pregel.stream`](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/langgraph/langgraph/pregel/main.py#L2794) có `sync` (lưu trước bước tiếp), `async` (lưu song song, mặc định), `exit` (lưu khi thoát); mã cảnh báo **`durability` không có tác dụng nếu thiếu checkpointer**. Trade-off là độ trễ lưu và cửa sổ mất tiến trình, cần đo với backend thật.
+- [`interrupt()`](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/langgraph/langgraph/types.py#L918) resume bằng **chạy lại node từ đầu**; nhiều interrupt khớp theo thứ tự. Side effect trước interrupt phải idempotent hoặc tách riêng vào task/node có ranh giới ghi nhận. Không thể suy ra “đúng một lần” cho thanh toán/email chỉ từ checkpoint.
+
+### PydanticAI: output có kiểu và budget là hai hợp đồng riêng
+
+- [`UsageLimits`](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/pydantic_ai_slim/pydantic_ai/usage.py#L536) mặc định `request_limit=50`, nhưng đếm **response được commit vào history**, không phải tất cả HTTP/provider retry hoặc các attempt fallback. `tool_calls_limit` đếm tool thành công; cần giới hạn cả lượt model và timeout để chặn vòng lỗi.
+- Token usage lấy từ provider và thường kiểm **sau response**; `count_tokens_before_request=True` có thể kiểm trước với provider hỗ trợ nhưng thêm overhead. `cost_limit` không thay request/token cap khi bảng giá hoặc usage thiếu; muốn trần chi phí cứng còn cần cổng quota/billing bên ngoài.
+- Output validation/`ModelRetry` trong [`_agent_graph.py`](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/pydantic_ai_slim/pydantic_ai/_agent_graph.py#L847) có ngân sách retry riêng. Output đúng schema chưa chứng minh nội dung đúng; vẫn ghép eval §4d và mục 07. [CI](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/.github/workflows/ci.yml) là bằng chứng kiểm thư viện, chưa phải kiểm yêu cầu của ứng dụng tích hợp.
+
+**Ma trận chọn theo failure semantics**
+
+| Điều kiện | Lựa chọn phù hợp | Phần người tích hợp phải chứng minh |
+|---|---|---|
+| Có nhiều trạng thái, cần dừng chờ người | LangGraph + persistent checkpointer | Restart/resume không mất state; `thread_id` cách ly đúng tenant |
+| Tool/output cần kiểu và DI rõ | PydanticAI | Validation thất bại có trần; test sai schema, tool lỗi và usage thiếu |
+| Luồng dài có side effect bên ngoài | Framework + runtime mục 21 | Idempotency key/outbox; kill–resume không gửi/trừ tiền lặp |
+| Nhiều agent/subagent dùng chung budget | Usage chia sẻ có chủ ý | Child không tự nới cap; đối soát provider usage với số đếm framework |
+| Mục tiêu đổi backend quan sát | OTel/OpenInference §4d | Weaver kiểm trace; không bật ghi prompt nhạy cảm theo mặc định |
+
+**Cách ghép:** bắt đầu một framework và một backend checkpoint; thiết kế schema state/output; đặt request/token/tool/time cap; ghép adapter durable khi thật sự cần, giữ side effect có receipt; kiểm fault injection ở các điểm trước/sau checkpoint và interrupt. Chạy cùng tập task §4d và trace chung; chọn theo kết quả + ngữ nghĩa khôi phục, không theo bảng sao. Những ca fault injection này là **tiêu chí đánh giá đề xuất**, chưa được chạy trong đợt đọc kho.
+
+**Nguồn phần mở rộng:** [1](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/LICENSE) · [2](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/langgraph/langgraph/pregel/main.py) · [3](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/langgraph/langgraph/types.py) · [4](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/checkpoint/langgraph/checkpoint/memory/__init__.py) · [5](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/.github/workflows/_test_langgraph.yml) · [6](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/LICENSE) · [7](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/pydantic_ai_slim/pydantic_ai/usage.py) · [8](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/pydantic_ai_slim/pydantic_ai/_agent_graph.py) · [9](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/.github/workflows/ci.yml) · [10](https://docs.langchain.com/oss/python/langgraph/interrupts) · [11](https://pydantic.dev/docs/ai/api/pydantic-ai/usage/)
+
 ## 5. Nguồn
 
 - https://www.firecrawl.dev/blog/best-open-source-agent-frameworks

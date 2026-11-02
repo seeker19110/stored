@@ -16,7 +16,7 @@
 | Thành phần | Nội dung | Trạng thái 2026 |
 |---|---|---|
 | **llms.txt** (Jeremy Howard, Answer.AI, 9/2024) | File markdown tại root tóm tắt site cho LLM; v2 8/2026 **(chưa xác minh)** | Vẫn là đề xuất, chưa phải chuẩn web; adoption 2–10% tùy khảo sát; Google Search & OpenAI không dùng; **giá trị thật nằm ở coding agent** (Cursor, Claude Code, Copilot, Cline). Anthropic, Stripe, Mintlify đều xuất bản |
-| **Context7** (Upstash) | MCP server `resolve-library-id` + `query-docs` trả docs phiên bản mới nhất cho LLM; server MIT, backend parse đóng; v4.x 9/2026; giảm ~65% token (theo Upstash) | Trong top MCP server phổ biến nhất (mục 04) |
+| **Context7** (Upstash) | MCP `resolve-library-id` + `query-docs`, CLI/SDK lấy docs theo thư viện/version; **phải kiểm phiên bản thực được trả**, vì version chưa index có thể fallback (§2i). Mã client/MCP MIT, mặc định gọi API Context7 | Truy vấn được gửi tới API; chạy MCP local không đồng nghĩa có toàn bộ index local (§2i) |
 | **DeepWiki / GitHub Copilot docs** | Wiki tự sinh từ repo | |
 | AGENTS.md / CLAUDE.md / SKILL.md | Tài liệu "cho agent" ngay trong repo | Mục 04 |
 
@@ -276,6 +276,58 @@ Các repo còn lại (vitepress, mdBook, docsify, deepwiki-open, codeflow) dao �
 5. Docs sinh bởi LLM (openwiki, repowise §2g): chạy cùng bộ cổng trên đầu ra trước khi merge, cùng với yêu cầu trỏ về nguồn ở §2g.4.
 
 **Nguồn §2h:** GitHub search API 2/11/2026 (`repo:` từng repo; truy vấn "diataxis in:name", "llms.txt in:name,description") · clone `--depth 1 --filter=blob:none` 2/11/2026: vale-cli/vale (LICENSE, README.md, `cmd/vale/`), lycheeverse/lychee (LICENSE-MIT, LICENSE-APACHE, README.md mục CLI và GitHub token), streetsidesoftware/cspell (LICENSE, README.md, `packages/`), streetsidesoftware/cspell-dicts (`git ls-tree dictionaries/`), crate-ci/typos (LICENSE-*, README.md), DavidAnson/markdownlint (LICENSE, README.md, `doc/`), evildmp/diataxis-documentation-framework (LICENSE.rst, `source/`, `translation/`) · `.markdownlint-cli2.yaml` của kho · https://diataxis.fr · https://vale.sh · https://lychee.cli.rs · https://cspell.org · https://github.com/langchain-ai/mcpdoc
+
+<a id="docs-version-trust-2026-11-02"></a>
+
+## 2i. Nâng trần 2/11/2026: đúng phiên bản, nguồn có chủ sở hữu và độ mới của tri thức (rà soát toàn diện)
+
+> Mở sâu sau §2h trong cùng ngày; không phải tin hai dự án vừa ra mắt. Đã đọc LICENSE, metadata GitHub, CI và file chính ở hai HEAD dưới đây. Mức bằng chứng **đọc mã/cấu hình**; chưa gọi API Context7, build Backstage hay kiểm một hệ docs production. Số sao đọc 2/11/2026; ngày commit là HEAD nhánh mặc định, khác `pushed_at` của cả repo.
+
+### 2i.1 Khoảng trống sau lint và tài liệu cho agent
+
+§2h xử lý câu chữ, chính tả và link; §2g đã yêu cầu docs sinh từ code trỏ nguồn. Còn ba câu hỏi cần trả lời trước khi agent dùng tài liệu để sửa code: **nguồn nào chịu trách nhiệm**, **docs áp cho dependency/version nào**, và **được build/index/review lần nào**. Link sống, timestamp mới và điểm tìm kiếm cao không tự chứng minh API trong đoạn trích đúng với lockfile của ứng dụng.
+
+| Repo | Hồ sơ | ★ · license (2/11/2026) | HEAD · ngày commit | Giá trị / giới hạn |
+|---|---|---|---|---|
+| `upstash/context7` | Đọc sâu dự án đã có §2 | 64.069 · MIT cho mã trong repo | `18d6f5d632d4cf53c464f36c79d2e4caa19a8e56` · 2/11/2026 | MCP/CLI/SDK lấy snippet tài liệu public; có library ID/version. API guide cho phép **fallback thành công** khi version số chưa được index; cần kiểm served version |
+| `backstage/backstage` — TechDocs + Software Catalog | Hồ sơ mới | 34.765 · Apache-2.0 | `24deeed9605d2afa54c2e7456912317fa8a1dcee` · 31/10/2026 | Docs-as-code gắn entity/owner của catalog, build/publish/cache và reader; ETag/build timestamp giúp đồng bộ. Là nền tảng portal nhiều thành phần, không cần thiết cho một site tài liệu nhỏ |
+
+### 2i.2 Context7: ID có version chưa đủ để tái lập
+
+**Cơ chế đọc được.** `packages/mcp/src/lib/api.ts` dựng request `/v2/context` với `query`, `libraryId` và tùy chọn ngôn ngữ; base URL mặc định là API tại `context7.com`, có biến cấu hình để đổi endpoint. Mô tả tool cũng nói rõ query gửi tới API và yêu cầu không đưa secrets, thông tin cá nhân hay code riêng tư vào câu hỏi. MIT của MCP/client không chứng minh backend index có thể tự host chỉ bằng checkout này. [API client](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/packages/mcp/src/lib/api.ts), [endpoint mặc định](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/packages/mcp/src/lib/constants.ts), [tool schema và mô tả dữ liệu gửi](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/packages/mcp/src/index.ts).
+
+**Điều kiện version thật.** API guide ở HEAD này ghi: version số chưa index vẫn có thể trả thành công bằng tag khớp số, release mới hơn cùng dòng hoặc docs hiện tại; JSON có đối tượng `version` mô tả bản đã phục vụ, còn text bắt đầu bằng note nếu fallback. Branch/channel không index vẫn có thể trả `404 version_not_found`, nên không suy rộng rằng mọi chuỗi version đều fallback. Client MCP đọc nội dung text rồi trả về tool; chưa thấy cổng tự đối chiếu phiên bản với lockfile của repo người dùng trong đường gọi đã đọc. Vì vậy, ứng dụng đích nên giữ cả **requested version** lẫn **served version**, và khi yêu cầu đúng bản mà không có thì chuyển sang docs/tag nguồn gốc. [Đặc tả hành vi fallback trong repo](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/docs/api-guide.mdx#L235), [kiểu response MCP](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/packages/mcp/src/lib/types.ts).
+
+**Cổng và giới hạn.** Workflow chạy lint, format, build, typecheck, test và SDK integration có điều kiện theo nguồn PR/secret. Những cổng này kiểm implementation, không chứng minh mọi snippet trả về chạy được trên mọi version thư viện. README quảng bá giảm API ảo/lỗi thời là định vị sản phẩm; chưa có phép đo độc lập trong đợt này chứng minh loại bỏ hallucination. Phương án thay thế: docs chính thức theo version/tag, bản docs snapshot của dự án, hoặc code/source đã ghim; Context7 hợp cho truy vấn tiện dụng khi có thể kiểm lại nguồn và version. [CI](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/.github/workflows/test.yml), [LICENSE](https://github.com/upstash/context7/blob/18d6f5d632d4cf53c464f36c79d2e4caa19a8e56/LICENSE).
+
+### 2i.3 Backstage TechDocs: độ mới kỹ thuật và chủ sở hữu nội dung
+
+**Kiến trúc.** Backstage khởi nguồn từ Spotify, hiện nằm trong CNCF theo README đã đọc. Software Catalog lưu entity và `spec.owner`; annotation `backstage.io/techdocs-ref` nối entity đến nguồn docs. TechDocs tách prepare → generate → publish → reader. Với production, tài liệu chính thức khuyến nghị build ở CI của repo nguồn, publish site sang storage bên ngoài, backend đọc và reader hiển thị; không bắt backend dựng lại mọi site khi có người đọc. Có thể dùng SSG độc lập ở §1 thay vì triển khai cả Backstage nếu chỉ cần một bộ docs. [Kiến trúc chính thức](https://backstage.io/docs/features/techdocs/architecture/), [catalog descriptor](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/docs/features/software-catalog/descriptor-format.md), [ví dụ gắn docs với entity](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/plugins/techdocs-backend/examples/documented-component/catalog-info.yaml).
+
+**Độ mới có thể quan sát.** Builder đọc `etag` trong `techdocs_metadata.json` rồi hỏi preparer; khi không thay đổi thì bỏ generate. `DocsSynchronizer` so `build_timestamp` giữa storage và cache để invalidate các object. Đây là freshness của artifact/cache, **không phải ngày người có trách nhiệm đã xác minh nội dung**; một docs page sai có thể được build lại hôm nay. `spec.owner` giúp tìm người chịu trách nhiệm, không tự chứng minh họ đã review từng trang. [Builder](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/plugins/techdocs-backend/src/DocsBuilder/builder.ts), [đồng bộ timestamp/cache](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/plugins/techdocs-backend/src/service/DocsSynchronizer.ts).
+
+**Trust và vận hành.** Reader có HTML transformer dùng DOMPurify và hook cho link/iframe/meta/attribute; có test sanitizer và workflow kiểm docs/E2E. Sanitization HTML giải quyết một lớp nguy cơ render, **không lọc mọi chỉ dẫn gây nhiễu khi văn bản được đưa vào LLM**. Mô hình quyền đọc tài liệu/storage vẫn phải cấu hình theo portal đích; tài liệu kiến trúc khuyến nghị tách credential publish của CI và credential đọc của backend. Không gửi docs nội bộ qua API hosted chỉ vì công cụ retrieval có client mã mở. [Sanitizer](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/plugins/techdocs/src/reader/transformers/html/transformer.ts), [test](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/plugins/techdocs/src/reader/transformers/html/transformer.sanitizer.test.tsx), [LICENSE](https://github.com/backstage/backstage/blob/24deeed9605d2afa54c2e7456912317fa8a1dcee/LICENSE).
+
+### 2i.4 Ma trận chọn và tiêu chí tin cậy
+
+| Nhu cầu | Cách chọn | Bằng chứng giữ lại | Cổng đề xuất ở dự án tích hợp |
+|---|---|---|---|
+| Hỏi nhanh SDK/thư viện public | Context7; đối chiếu docs nguồn theo release | Package/version từ lockfile, library ID, requested/served version, URL nguồn và thời điểm lấy | Bản phục vụ khớp yêu cầu; nếu không khớp thì báo mismatch và lấy nguồn ghim; chạy ví dụ tối thiểu trên dependency thật |
+| Docs nội bộ có nhiều dịch vụ/nhóm | Backstage Catalog + TechDocs nếu đã có portal hoặc cần ownership tập trung | Entity/owner, commit nguồn, timestamp build, người/ngày review nội dung | Owner còn hợp lệ; link sang source hoạt động; ví dụ/runbook được kiểm trong CI riêng của dịch vụ |
+| Di trú version hay quyết định quan trọng | Docs/tag/source gốc ghim commit, có thể dùng Context7 để tìm trước | API signature/changelog của đúng release, kết quả test migration | Không chấp nhận HTTP 200 hay build mới như bằng chứng tương thích |
+| Một repo/site nhỏ | SSG ở §1 + metadata trang + pipeline ở §2h | Nguồn, version áp dụng, reviewer và ngày kiểm | Không thêm portal chỉ để có timestamp; duy trì cùng bộ bằng chứng nhẹ hơn |
+
+### 2i.5 Ghép nguồn → bản docs → truy xuất → kiểm code
+
+1. **Nguồn có định danh:** giữ URL chính thức, package/service, version/tag/commit và owner của trang. Ngày index, ngày build và ngày review là ba trường khác nhau; metadata review/owner ở cấp trang là đề xuất của kho, không phải tính năng tự có của mọi công cụ.
+2. **Build/publish có dấu vết:** với TechDocs dùng pipeline repo nguồn và storage; kèm commit nguồn, artifact và kết quả kiểm. Giữ lint/link/Diátaxis §2h, không xem chúng là bằng chứng ngữ nghĩa API.
+3. **Truy xuất có ranh giới:** câu hỏi gửi Context7 không chứa nội dung nhạy cảm; lưu nguồn/phiên bản thực của kết quả. Docs truy xuất là dữ liệu tham khảo, không có quyền thay đổi chỉ dẫn của người dùng hay quyền tool của agent (mục 12).
+4. **Kiểm tương thích bằng việc nhỏ:** ví dụ code phải compile/typecheck/test với lockfile của ứng dụng; runbook phải được diễn tập phù hợp (mục 09), câu trả lời retrieval phải qua eval (mục 07). Freshness chỉ là một tín hiệu chọn tài liệu.
+5. **Tái kiểm theo thay đổi có ý nghĩa:** dependency đổi major, source page bị sửa/redirect, owner rời nhóm hoặc test ví dụ hỏng thì mở lại đánh giá. Thời hạn review do dự án đặt theo rủi ro; không có ngưỡng số ngày phổ quát được chứng minh trong đợt này.
+
+**Đã đổi sau §2h:** sửa dòng Context7 ở §2 để không đồng nhất tài liệu “mới nhất” với tài liệu “đúng phiên bản”; thêm hai lớp owner/provenance và freshness có bằng chứng bên cạnh cổng văn xuôi. Không đánh dấu index mới hay ETag trùng là kết luận nội dung kỹ thuật đúng.
+
+**Nguồn §2i:** metadata GitHub API 2/11/2026; các permalink §2i.2–§2i.3; nguồn chính thức ngoài repo [Context7 API Guide](https://context7.com/docs/api-guide), [TechDocs architecture](https://backstage.io/docs/features/techdocs/architecture/), [TechDocs how-to](https://backstage.io/docs/features/techdocs/how-to-guides/). Đã đọc Context7 `LICENSE`, `docs/api-guide.mdx`, `packages/mcp/src/{index.ts,lib/api.ts,lib/constants.ts,lib/types.ts}`, `.github/workflows/test.yml`; Backstage `LICENSE`, catalog descriptor/example, builder/synchronizer/HTML transformer và sanitizer test, `.github/workflows/{verify_docs-quality,verify_e2e-linux}.yml`. **Chưa gọi API hay tái lập build, test và portal của các nguồn.**
 
 ## 3. Nguồn
 

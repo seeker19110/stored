@@ -504,6 +504,48 @@
 
 **Nguồn §3d:** GitHub search API 2/11/2026 (`repo:` cho 6 repo trên, `ServiceNow/webarena-verified`, `ServiceNow/AgentLab`; ứng viên loại: `MinorJerry/WebVoyager` 1,1k★ push cuối 4/3/2024, `OSU-NLP-Group/Mind2Web` 1,0k★ push cuối 5/11/2025) · clone `--depth 1 --filter=blob:none`, đọc: OSWorld (HEAD 7aa0559 2/11/2026; LICENSE, README.md, evaluation_examples/test_all.json, desktop_env/providers/), webarena (dce0468 26/11/2025; LICENSE, README.md, config_files/test.raw.json, .github/workflows/), BrowserGym (27a90ce 28/10/2026; LICENSE, README.md, .github/workflows/), agentdojo (089ed468 2/6/2026; LICENSE, README.md, pyproject.toml, src/agentdojo/default_suites/, src/agentdojo/attacks/), nsjail (d8415bc 28/10/2026; LICENSE, README.md, configs/), kata-containers (ea74fd9 2/11/2026; LICENSE, README.md, VERSION, versions.yaml, .github/workflows/) · https://github.com/xlang-ai/OSWorld · https://github.com/web-arena-x/webarena · https://github.com/ServiceNow/BrowserGym · https://github.com/ServiceNow/webarena-verified · https://github.com/ethz-spylab/agentdojo · https://arxiv.org/abs/2406.13352 · https://github.com/google/nsjail · https://github.com/kata-containers/kata-containers
 
+## 3e. Nâng trần toàn diện 2/11/2026: kiểm hậu điều kiện và trạng thái tài khoản của browser agent
+
+> Đọc LICENSE, README, CI và implementation của hai repo ở commit bên dưới; metadata GitHub lấy ngày 2/11/2026, cả hai chưa archive. **Chỉ đọc mã; chưa cài browser, chưa chạy test/benchmark, chưa dùng tài khoản thật.** Playwright MCP/CLI (§1f–§1g) và BrowserGym (§3d) đã có; bổ sung runner gốc và lớp quản lý thí nghiệm, không thêm lại chúng dưới tên khác.
+
+| Dự án | ★ · license (đọc 2/11/2026) | HEAD / ngày commit | Lớp và điều kiện dùng |
+|---|---|---|---|
+| [Playwright](https://github.com/microsoft/playwright) | 99,090 · Apache-2.0 | `820620c98b35` · 2026-11-01 | Runner/library gốc; assertion hậu điều kiện và tách auth state; khác repo MCP/CLI |
+| [AgentLab](https://github.com/ServiceNow/AgentLab) | 661 · Apache-2.0 (notice) | `8488c564eea0` · 2026-10-05 | Thí nghiệm BrowserGym; strict_reproducibility mặc định false, relaunch_errors có thể chạy lại lỗi |
+
+### Playwright
+
+Runner/library gốc của Microsoft cho Chromium, Firefox, WebKit. [Actionability](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/docs/src/actionability.md) kiểm điều kiện trước thao tác; `click()` thành công không chứng minh đơn hàng đã tạo đúng. Ghép assertion hậu điều kiện (`toHaveURL`, trạng thái DOM) với truy vấn backend đọc lại entity vừa ghi khi ứng dụng có API test. [Matcher URL](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/packages/playwright/src/matchers/toHaveURL.ts) cho thấy assertion retry theo điều kiện, không cần dùng một khoảng `sleep` đoán trước. Framework không tự hiểu đúng nghiệp vụ; expected outcome phải do test/task xác định độc lập với agent.
+
+[Hướng dẫn auth](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/docs/src/auth.md) và [BrowserContext](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/packages/playwright-core/src/server/browserContext.ts) cho thấy context mới có thể nạp lại storage state. IndexedDB phải bật khi snapshot nếu ứng dụng dùng nó; cookie/localStorage/credential vẫn là bí mật. Một context riêng không xoá dữ liệu trên server. Với test sửa trạng thái chung, dùng tài khoản/dataset riêng cho từng worker và tenant; state hết hạn phải cấp lại. CI [tests_primary](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/.github/workflows/tests_primary.yml) có matrix ba browser, nhưng kho này chưa chạy matrix đó. So với MCP/CLI, runner phù hợp làm người chấm tất định và regression gate cho hành động agent tạo ra.
+
+### AgentLab
+
+Framework nghiên cứu của ServiceNow trên BrowserGym, quản lý study, song song, kết quả và thông tin tái lập. [Reproducibility util](https://github.com/ServiceNow/AgentLab/blob/8488c564eea0525aaff5dea189bb03a9b529546e/src/agentlab/experiments/reproducibility_util.py) ghi phiên bản benchmark/package/git; [Study](https://github.com/ServiceNow/AgentLab/blob/8488c564eea0525aaff5dea189bb03a9b529546e/src/agentlab/experiments/study.py) có `strict_reproducibility=False`, `n_relaunch=3`, `relaunch_errors=True` ở API chạy study. Muốn cổng so sánh nghiêm cần bật chế độ strict và giữ báo cáo mọi lượt, tránh chỉ nhìn kết quả sau retry. LICENSE là notice dẫn Apache-2.0, GitHub trả NOASSERTION; không suy ra MIT từ đường link badge trong README. CI [unit_tests](https://github.com/ServiceNow/AgentLab/blob/8488c564eea0525aaff5dea189bb03a9b529546e/.github/workflows/unit_tests.yml) chạy MiniWoB và bỏ nhóm `pricy`, nên CI xanh cũng không có nghĩa toàn benchmark/model trả phí đã được kiểm. Cần môi trường site/task từ BrowserGym, không phải sản phẩm automation cho người dùng cuối.
+
+**Bảng lựa chọn:**
+
+| Nhu cầu | Lớp thích hợp | Điều phải tự bổ sung |
+|---|---|---|
+| Agent thao tác trang web thay đổi thường xuyên | Browser Use/Stagehand/MCP/CLI (§1c–§1h) | Giới hạn quyền + nhiệm vụ + người chấm độc lập |
+| Kiểm thao tác đã đạt nghiệp vụ | Playwright assertions + API đọc lại | Expected state, fixture và kiểm tác dụng phụ |
+| So agent/model trên cùng tập task | BrowserGym (§3d) + AgentLab | Site/version/seed/model giống nhau, tách lỗi môi trường |
+| Dùng browser đã đăng nhập của người thật | Các bridge §1d–§1h | Chính sách account/session, phê duyệt hành động, audit; snapshot không chứng minh đủ quyền |
+
+**Chuỗi kiểm hành động:** chụp tiền trạng thái → xác định account/tenant/resource → agent đề xuất hành động → cổng quyền (mục 12 §4d) → thực thi → người chấm đọc hậu trạng thái → lưu receipt/outcome. Tác vụ tạo/xoá/gửi phải có kiểm dữ kiện nghiệp vụ; ảnh và dòng “success” chỉ là một phần bằng chứng. Đây là kiến trúc đề xuất, không phải tính năng được tự động bảo đảm bởi hai repo.
+
+| Ca hồi quy đề xuất | Kết quả mong đợi |
+|---|---|
+| Submit trả HTTP lỗi nhưng UI đóng dialog | Fail; không ghi thành công chỉ vì đã click |
+| Hai worker đổi cùng profile | Dữ liệu được cô lập, hoặc test khai rõ kiểm cạnh tranh |
+| Session hết hạn/đổi role/nhảy tenant | Dừng, xác thực và kiểm quyền lại; không âm thầm dùng cookie tài khoản khác |
+| Task lỗi môi trường được relaunch | Giữ cả lần lỗi và retry; báo riêng số task không chạy được, cùng mẫu số gốc |
+| Prompt injection trên trang | Chấm cả utility và ASR bằng AgentDojo (§3d), không chỉ tỷ lệ hoàn thành |
+
+**Giới hạn:** context browser không phải sandbox OS; bảo vệ trace/storage state vì có thể chứa token/nội dung riêng. Hậu điều kiện DOM có thể bị UI đánh lừa; API/dữ liệu cuối đáng tin hơn khi có quyền kiểm. Benchmark tự host không đại diện hoàn toàn cho CAPTCHA, OAuth và dịch vụ thật. Không có số tỷ lệ thành công mới nào do kho này đo.
+
+**Nguồn §3e:** [Playwright LICENSE](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/LICENSE); [AgentLab LICENSE](https://github.com/ServiceNow/AgentLab/blob/8488c564eea0525aaff5dea189bb03a9b529546e/LICENSE); [Playwright auth](https://playwright.dev/docs/auth), [BrowserGym ecosystem paper](https://arxiv.org/abs/2412.05467). Nguồn implementation và CI được ghim ngay trong hồ sơ.
+
 ## 4. Nguồn
 
 - https://gist.github.com/kevinmichaelchen/9d77b8a681238cc45297dff969686175 · https://www.firecrawl.dev/blog/best-browser-agents · https://scrapfly.io/blog/posts/stagehand-vs-browser-use · https://agentscamp.com/guides/comparisons/browser-agents-compared-2026 · https://bug0.com/blog/expect-vs-agent-browser-vs-stagehand-vs-passmark · https://github.com/browserbase/stagehand · https://kanopylabs.com/blog/stagehand-vs-browserbase-vs-steel-browser-ai

@@ -443,6 +443,43 @@ Cách đo: Scorecard = có `ossf/scorecard-action`; Provenance = có `attest-bui
 
 **Nguồn §8d:** clone `--filter=blob:none --no-checkout` ngày 2/11/2026: seeker19110/{projects-template `bac75d3`, X-Templates `1abbde2`, X-Agents `da755ba`, X-Studio `93a290a`, dhcb `7e23118`, Xgold `4019368`, X-Scanner `a1959b4`, xboss `7945699`, Dhcb-Tools `ebc363a`, Sales-Hunter `35c69c6`, X-Company `f000d50`}, donghanhcungban/{qlkh `9c66ac3`, Hermes-Agents `b2e4ab8`}; đo bằng `git ls-tree -r`, `git show HEAD:.github/workflows/*.yml`, `git show HEAD:<ADR đầu tiên>`, `git show HEAD:README.md`; Dhcb-Tools `.github/workflows/release.yml`; X-Templates: checkout `framework/`, đếm file bằng `grep -rliE`, đọc `framework/12-security/supply-chain.md` (SEC-SUPPLY-014..018) · ID OSPS đọc từ `ossf/security-baseline` `baseline/OSPS-*.yaml` (HEAD `c62696c`).
 
+## 8e. Evidence and transfer boundaries
+
+> Rà sâu ngày 2/11/2026, giữ nguyên phạm vi hồ sơ: không sửa repo đích và không biến gợi ý thành danh sách việc được giao. Ba case dưới được clone/đọc LICENSE, mã thực thi và test tại SHA ghim. **Không chạy test, không mở Revit/AutoCAD/Blender và không gọi model.** Sự tồn tại của test chứng minh có ca kiểm được định nghĩa, chưa chứng minh ca ấy đang pass hoặc sản phẩm được nghiệm thu.
+
+### 8e.1 Ba cơ chế có bằng chứng ở mã
+
+| Case study | Mã/kiểm tra đã đọc | Bài học có thể chuyển | Giới hạn của bằng chứng |
+|---|---|---|---|
+| Dhcb-Tools — `ebc363a` | [BridgeCommitGuard](https://github.com/seeker19110/Dhcb-Tools/blob/ebc363a3d9679f5ad56e105544305ad9bbbe516c/src/DhcbTools.Shared.Hosting/BridgeCommitGuard.cs), [test guard](https://github.com/seeker19110/Dhcb-Tools/blob/ebc363a3d9679f5ad56e105544305ad9bbbe516c/tests/DhcbTools.Shared.Logic.Tests/BridgeCommitGuardTests.cs) | Fingerprint ghép app/lệnh/document/config; preview hết hạn hoặc model/input đổi bị từ chối; claim/replay xử lý lần ghi đã nhận | Không suy ra exactly-once trên mọi API CAD/side effect. Sau timeout cần kiểm document/claim/result, không cấp token mới rồi gửi lại mù |
+| design-os-3d-blender — `0a75a30` | [production-gate](https://github.com/seeker19110/design-os-3d-blender/blob/0a75a30c7fd696899e8c1d00c3299fd6ca44397e/scripts/production-gate.py), [report](https://github.com/seeker19110/design-os-3d-blender/blob/0a75a30c7fd696899e8c1d00c3299fd6ca44397e/scripts/production_gate/report.py), [test contract](https://github.com/seeker19110/design-os-3d-blender/blob/0a75a30c7fd696899e8c1d00c3299fd6ca44397e/tests/production-gate/test_gate_contract.py) | Report buộc hash scene/spec, ghi unchecked/exclusions; đổi scene/spec làm bằng chứng cũ mất đối tượng áp dụng | Hash đúng chỉ buộc báo cáo với input; không chứng minh metric đủ, vật in chế tạo được hay người dùng chấp nhận |
+| X-Agents — `da755ba` | [eval core](https://github.com/seeker19110/X-Agents/blob/da755ba418bb2ab0e1c737f9b7e7f0bf1b1b68c9/platform/xagents-core/src/xagents_core/evals.py), [thresholds](https://github.com/seeker19110/X-Agents/blob/da755ba418bb2ab0e1c737f9b7e7f0bf1b1b68c9/companies/software-company/evals/thresholds.yaml) | `selftest_case` yêu cầu negative control `bad` bị scorer bác bỏ; replay/recording phân biệt lỗi bản ghi, lỗi ca và điểm chất lượng | Replay chứng minh hành vi với bản ghi đã có; không chứng minh model/provider hiện tại hay các ca chưa lấy mẫu. Ngưỡng được khai chưa đồng nghĩa workflow đang chặn theo ngưỡng ấy |
+
+Các SHA trên không mới hơn bản khảo sát §8d ở mọi repo; phần nâng ở đây là **đi từ mô tả sang cơ chế và điều kiện bác bỏ**, không tuyên bố upstream vừa phát hành tính năng mới. Các con số test/check cũ ở §4/§6 giữ nguyên mốc nguồn, không được diễn đạt thành kết quả chạy ngày 2/11.
+
+### 8e.2 Thang bằng chứng dùng khi học hệ sinh thái
+
+| Mức | Có thể kết luận | Còn phải kiểm |
+|---|---|---|
+| Tuyên bố README/docs nội bộ | Tác giả mô tả cơ chế hoặc kết quả | Mã có tồn tại/được gọi, nguồn ngoài và điều kiện chạy |
+| Đọc mã tại commit | Nhánh logic và ranh giới guard có trong snapshot | Cấu hình triển khai, code path thực, bypass, side effect và kết quả test |
+| Chạy test/lab có artifact | Bộ ca/môi trường đó đạt ở commit/input cụ thể | Độ phủ, negative controls, dữ liệu thật, giới hạn mô phỏng |
+| Nghiệm thu/vận hành có quan sát | Hành vi được quan sát trong phạm vi ghi rõ | Khả năng khái quát, drift sau đổi model/code/dữ liệu và độ tươi bằng chứng |
+
+Đọc mã, test, artifact và nghiệm thu là các loại bằng chứng bổ sung cho nhau. Không dùng tổng số test, ảnh screenshot hay số workflow để xếp hạng mọi repo bằng một điểm chung.
+
+### 8e.3 Ma trận chuyển bài học sang domain khác
+
+| Cơ chế nguồn | Chuyển được | Domain đích phải thiết kế lại |
+|---|---|---|
+| Preview fingerprint/claim của CAD | Ràng hành động với trạng thái vừa duyệt, chống gửi lại mù sau timeout | Snapshot/rollback của DB, dịch vụ thanh toán hay browser khác CAD; thao tác bất khả đảo phải có postcondition riêng |
+| Scene/spec hash + unchecked của Blender | Báo cáo gắn đúng input, giới hạn phạm vi đo minh bạch | Media cần asset/timeline/hash (mục 19 §3e); OCR cần page/bounding box/corpus (mục 26); model cần checkpoint/prompt/dataset |
+| Negative control + replay của X-Agents | Scorer phải bác được mẫu sai biết trước, ghi rõ chính sách CI | Eval tiếng Việt/domain và chạy live khi provider drift (mục 18 §5c); không đồng nhất replay pass với chất lượng production |
+
+**Cổng cho hồ sơ tham khảo:** ghi repo SHA + file/symbol → cơ chế → điều kiện tiền/hậu → test phản ví dụ → phạm vi chưa kiểm → mốc phải kiểm lại. Khi ghép bài học từ hai repo, so chính sách cổng trước khi tái dùng cơ chế; tên hàm giống nhau không bảo đảm mức nghiêm ngặt giống nhau. Các nhận định pháp lý/benchmark chỉ lấy từ research nội bộ ở §6/§7 vẫn giữ nhãn **(chưa xác minh)**, không được nâng mức chỉ vì đã đọc repository chứa lời nhắc đó.
+
+**Nguồn §8e:** GitHub metadata/HEAD và clone chỉ đọc ngày 2/11/2026 cho Dhcb-Tools (`ebc363a3d9679f5ad56e105544305ad9bbbe516c`), design-os-3d-blender (`0a75a30c7fd696899e8c1d00c3299fd6ca44397e`), X-Agents (`da755ba418bb2ab0e1c737f9b7e7f0bf1b1b68c9`); LICENSE/README, các file mã/test permalink trên. Đây là evidence review của snapshot, không có kết quả thực thi mới.
+
 ## 9. Nguồn (đường dẫn trong các clone nông, đọc 2026-10-12)
 
 - projects-template: `README.md`, `.claude/settings.json`, `.claude/hooks/{auto-complete-guard,pre-commit-gate,session-resume,usage-guard,telemetry-record}.sh`, `scripts/{dev-task.sh,check-docs-consistency.sh,test-hooks-loop.sh,model-capability-tiers.json,subagent-dispatch.py,maintain-run.sh}`, `docs/framework/{adopt-from-outside,orchestration-3-tier}.md`, `docs/reports/2026-09-22…2026-10-12-*.md`, `TRAPS.md`, `docs/adr/0003,0005,0006,0007,0009,0010,0011`, `.github/workflows/{ci,pr-policy,maintenance}.yml`, `docs/ops/{supply-chain,threat-model-maintain-cron}.md`

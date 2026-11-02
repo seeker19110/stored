@@ -658,6 +658,41 @@ Không repo nào của mục 19 bị archive. `MoneyPrinterTurbo` được nhắ
 
 **Nguồn §3d:** GitHub search API 2/11/2026 (`repo:` cho 6 repo; truy vấn `c2pa`, `vmaf`, `video generation benchmark`, `watermark audio video`) · clone `--depth 1 --filter=blob:none` 2/11/2026: c2pa-org/specifications (HEAD 66ee450, 28/10/2026; README.md, LICENSE, softbinding-alg-list/softbinding-algorithm-list.json), contentauth/c2pa-rs (35866a0, 2/11/2026; README.md, LICENSE-APACHE, LICENSE-MIT, sdk/Cargo.toml), facebookresearch/videoseal (870ca7f, 2/7/2026; README.md, LICENSE), Netflix/vmaf (4611e47, 30/10/2026; README.md, LICENSE, resource/doc/models_v1.md), slhck/ffmpeg-quality-metrics (e4aafcb, 25/10/2026; README.md, LICENSE.md, pyproject.toml), Vchitect/VBench (fd18b3d, 21/8/2026; README.md, LICENSE) · Web 2/11/2026: https://spec.c2pa.org/specifications/specifications/2.3/specs/_attachments/C2PA_Specification.pdf · https://softwareseni.com/c2pa-adoption-in-2026-hardware-platforms-and-verification-reality (bài tổng hợp) · https://en.wikipedia.org/wiki/EBU_R_128 · https://ibc.org/trends/ebu-tackles-loudness-in-streaming-with-r128-update/6830.article
 
+## 3e. Reproducible media pipelines
+
+> Mở rộng ngày 2/11/2026. §3d đã có C2PA/VMAF/loudness; phần này nối **kế hoạch dựng → timeline → asset → bản xuất** để kiểm sai thời gian, thiếu nguồn và khả năng dựng lại. Chỉ đọc LICENSE/CI/mã tại commit ghim, chưa render hay đo A/V sync.
+
+| Repo | ★ · license (2/11/2026) | Commit đọc | Cơ chế đáng học | Giới hạn / điều kiện |
+|---|---|---|---|---|
+| [AcademySoftwareFoundation/OpenTimelineIO](https://github.com/AcademySoftwareFoundation/OpenTimelineIO/tree/80c5ff30938e4adffe9c94f419b1055856cee9f5) | 2,052 · Apache-2.0 | 2026-10-30 · `80c5ff3` | OTIO: clip/track/gap/transition, RationalTime và media reference | Mô hình trao đổi timeline; không nhúng media và không phải renderer; effects/adapter có thể mất thông tin |
+| [Breakthrough/PySceneDetect](https://github.com/Breakthrough/PySceneDetect/tree/c5ce29c73751e77139e838bd9ce9ab66a8e71a23) | 5,315 · BSD-3-Clause | 2026-11-02 · `c5ce29c` | Dò cut/transition, ContentDetector và AdaptiveDetector; xuất scene list | Đo biến đổi khung hình, không hiểu câu chuyện; cần tự kiểm false cut do pan/flash và miss cut |
+
+### 3e.1 Hồ sơ và điều kiện trao đổi
+
+**OpenTimelineIO (Academy Software Foundation):** [RationalTime](https://github.com/AcademySoftwareFoundation/OpenTimelineIO/blob/80c5ff30938e4adffe9c94f419b1055856cee9f5/src/opentime/rationalTime.h) lưu giá trị và rate, còn [ExternalReference](https://github.com/AcademySoftwareFoundation/OpenTimelineIO/blob/80c5ff30938e4adffe9c94f419b1055856cee9f5/src/opentimelineio/externalReference.h) trỏ `target_url` và `available_range`. [Tài liệu timeline](https://opentimelineio.readthedocs.io/en/latest/tutorials/otio-timeline-structure.html) ghi rõ OTIO cho phép `source_range` vượt `available_range` và không tự xác minh; effects là hành vi phụ thuộc ứng dụng. Vì vậy “file OTIO đọc được” chưa chứng minh render đúng hay đủ footage. Khi đổi editor, test round-trip duration/source range/track và effect được hỗ trợ; các effect mất nghĩa phải bake hoặc báo mất mát rõ.
+
+**PySceneDetect (Brandon Castellano và cộng đồng):** [AdaptiveDetector](https://github.com/Breakthrough/PySceneDetect/blob/c5ce29c73751e77139e838bd9ce9ab66a8e71a23/scenedetect/detectors/adaptive_detector.py) lấy content score rồi so rolling average, giúp giảm một số false positive khi camera chuyển động; [docs chính thức](https://www.scenedetect.com/docs/head/api/detectors.html) mô tả threshold. So với ffmpeg scene filter và cut viết tay trong Remotion/HyperFrames, công cụ này tạo candidate scene list từ footage có sẵn; cần đối chiếu shot list hoặc nhãn người, không dùng số cut làm điểm “video hay”.
+
+### 3e.2 Chọn theo đầu vào
+
+| Trường hợp | Cách tiếp cận | Cổng quyết định |
+|---|---|---|
+| Video-as-code cần dựng lại từng frame | Remotion/HyperFrames + manifest asset + bản renderer ghim | Thời gian/frame rate, font, asset hash, renderer/config, seed nếu có; seed một mình không bảo đảm GPU sinh ảnh/video tất định |
+| Footage dài cần cắt/phân đoạn | PySceneDetect + người duyệt shot list | Miss/false cuts trên mẫu có nhãn; không cắt phụ âm đầu/cuối hoặc cắt sai điểm nhấn |
+| Chuyển timeline giữa editor | OTIO + adapter đã kiểm | Asset relink, `source_range`/handles, timebase, transitions/effects và audio ownership |
+| Video dùng thương mại | Cổng quyền asset trước render | Nguồn, license code/weights/ảnh/font/nhạc, attribution và quyền giọng; C2PA không tự cấp quyền sử dụng |
+
+### 3e.3 Stack kiểm bản xuất
+
+1. **Asset manifest:** mỗi ảnh/footage/font/nhạc/giọng có URL gốc, hash, license, ngày tải và biến đổi; tài sản không rõ quyền vào trạng thái chưa duyệt, không trộn vào thư mục “free”.
+2. **Timeline có hợp đồng:** ghim fps/timebase, resolution, color space, audio sample rate và duration; nội dung thoại/caption/shot tham chiếu cùng ID. Chọn rational time để tránh cộng số giây làm tròn qua nhiều cảnh.
+3. **Preflight:** asset tồn tại, source range đủ cả handles, font tải xong, audio stream đúng, caption nằm trong duration/safe area; lỗi thiếu asset phải đỏ trước render tốn tiền.
+4. **Render và A/V sync:** lưu phiên bản engine/encoder, lệnh và log; kiểm timestamp đầu/cuối, duration, audio/caption tại các mốc và đoạn chuyển cảnh. Không đo đồng bộ môi chỉ bằng duration container.
+5. **Hai cổng độc lập:** dùng VMAF/loudness (§3d) cho chất lượng kỹ thuật của bản encode so master; dùng reviewer người/chuỗi frame và script có nguồn cho nội dung, sự thật và tính nhất quán. VMAF cao không chứng minh nội dung AI đúng.
+6. **Publish bundle:** lưu manifest, timeline, bản master, bản phát hành và kết quả kiểm liên kết bằng hash; ký C2PA khi có đường phát hành hỗ trợ, ghi rõ trust policy. C2PA chứng minh chuỗi khai báo/provenance theo chính sách kiểm, không chứng minh mọi mệnh đề trong video là thật.
+
+**Nguồn §3e:** GitHub metadata/HEAD, LICENSE/README/CI và các file mã permalink trên (2/11/2026); tài liệu OTIO, PySceneDetect; chuẩn và cổng đo ở §3d. Chưa kiểm round-trip adapter hay chạy renderer tại đây.
+
 ## 4. Nguồn
 
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video

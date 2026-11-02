@@ -1208,6 +1208,48 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Nguồn §3v:** https://code.claude.com/docs/en/plugins-reference (mục Validate the manifest, name, Path rules) · https://code.claude.com/docs/en/plugin-evals.md (Requirements, graders, baseline, Run evals in CI) · GitHub search API 2/11/2026 · clone `--filter=blob:none` 2/11/2026: agent-sh/agnix (HEAD `0bdcbc19`; LICENSE-MIT, LICENSE-APACHE, README.md, `knowledge-base/rules.json`, `crates/agnix-cli/Cargo.toml`, `crates/agnix-cli/src/telemetry/`), NVIDIA/SkillEvaluator (HEAD `3633954`; LICENSE, README.md, `src/skillevaluator/reporting/dashboard.py`), mgechev/skillgrade (HEAD `ab2afd7`; LICENSE, README.md), UiPath/coder_eval (HEAD `484c3d5`; LICENSE, README.md, `src/coder_eval/agents/`), darkrishabh/agent-skills-eval (HEAD `f10ae2b`; LICENSE, README.md) · https://github.com/agent-sh/agnix · https://github.com/NVIDIA/SkillEvaluator · https://github.com/mgechev/skillgrade · https://github.com/UiPath/coder_eval · https://github.com/darkrishabh/agent-skills-eval
 
+## 3w. Nâng trần 2/11/2026: vòng đời skill/plugin từ nguồn ghim đến cập nhật và thu hồi (mở rộng cùng ngày)
+
+<a id="skill-lifecycle-2026-11-02"></a>
+
+> §3v đã có validator/linter/eval; phần này nối chúng với **artifact thực sự được cài** và thay đổi sau cập nhật. Đọc lại ba repo đã có trong kho, không thêm một pack lớn để tăng số lượng. Metadata GitHub API ngày 2/11/2026; clone/read code, LICENSE, test và CI; **không cài skill, không chạy CLI hoặc model eval**.
+
+### 3w.1 Trần hiện tại và ba hồ sơ đọc sâu
+
+Một skill hợp lệ có thể gọi script, tải dependency, gửi dữ liệu hoặc thay hành vi sau khi upstream đổi. Cổng schema trả lời “có đọc được không”; cổng triển khai còn phải trả lời **đã đọc đúng phiên bản nào, quyền gì, nội dung trên đĩa còn đúng và gỡ được không**.
+
+| Repo · vai trò | ★ · license (2/11/2026) | HEAD đọc · commit cuối | Cơ chế đã đọc | Điều cơ chế không chứng minh |
+|---|---|---|---|---|
+| **vercel-labs/skills** · CLI đa harness của Vercel | 37.721 · MIT | `92a9a34ac3bf88e695e468b90c7bf32f163d32c8` · 29/10 | `skills-lock.json` có source/sourceUrl/ref/skillPath và `computedHash` SHA-256 nội dung thư mục; `git.ts` có đường fetch commit SHA đầy đủ; lệnh check/update/remove, test cho lock và xóa skill | Hash nhận diện nội dung, không chứng minh nguồn tốt. Branch/tag vẫn có thể thay đổi; không suy có lock là mọi lần chạy đều bị runtime chặn khi hash lệch |
+| **midudev/autoskills** · installer + registry đã review theo stack | 6.982 · **CC-BY-NC-4.0**, không OSI; skill vendor có thể có license riêng | `2dbab03b41988327e5c714d3fb233ebbce915e8c` · 20/10 | `installer.ts` kiểm SHA-256 từng file nằm trong manifest, tải từ registry theo version gói rồi có fallback `main`, giữ source/commit và bundle hash; CI lint/test, compat trên Linux/Windows/macOS | Manifest và file cùng được phân phối từ registry: hash không phải chữ ký của upstream. Review bằng model không bảo đảm nội dung kỹ thuật đúng hoặc mọi hành vi an toàn; không gán license root cho mọi skill vendor |
+| **agentskills/agentskills** · spec + `skills-ref` chính chủ | 26.869 · Apache-2.0 | `69ef37e9424c0a7ea9dd2293b559e43ec8176379` · 9/8 | Validator kiểm frontmatter/name/description/compatibility; spec có `license`, `metadata`, `allowed-tools` tùy chọn; bộ đọc dùng cùng định dạng giúp trao đổi giữa harness | `allowed-tools` vẫn **experimental**, hỗ trợ tùy host; validator không thi hành sandbox/quyền. Validate pass không chứng minh có quyền dùng thương mại hoặc skill không chạy lệnh nguy hiểm |
+
+**Hai chi tiết dễ bỏ sót.** `vercel-labs/skills/src/telemetry.ts` dùng cùng công tắc `DO_NOT_TRACK`/`DISABLE_TELEMETRY` cho thống kê **và request lấy security audit**; README cũng công bố điều này. Audit API lỗi/timeout trả `null` và không chặn cài. Vì vậy môi trường tắt telemetry cần một cổng quét/review riêng (mục 12), không giả định CLI đã lấy điểm audit. Đây là lựa chọn thiết kế được công bố, không phải bằng chứng CLI gửi nội dung skill lên lúc chạy.
+
+Trong spec Agent Skills, phần `name` viết theo quy tắc chữ thường/số/gạch nối, nhưng validator chuẩn hóa NFKC và dùng `isalnum()`, cho phép một số ký tự Unicode. Một bộ kiểm của host có thể hẹp hơn. Hồ sơ skill nên ghi **validator/harness/version thực tế**, không chỉ ghi “theo chuẩn”; đợt này chưa chạy ma trận tương thích nên giới hạn liên thông **(chưa xác minh)**.
+
+### 3w.2 Ma trận quyết định theo vòng đời
+
+| Giai đoạn | Bằng chứng nên yêu cầu | Cổng tương ứng và giới hạn |
+|---|---|---|
+| Chọn và đọc nguồn | Repo/commit, license từng skill/script, dependency và đường mạng; vì sao cần hơn prompt ngắn | Đọc file rồi so với 2–4 lựa chọn; số sao/điểm audit không thay review |
+| Cài thử có giới hạn | Bản CLI đã ghim + source/ref + hash cây nội dung; danh sách quyền/tool và host hỗ trợ | Spec validator/linter ở §3v + sandbox mục 11; metadata `allowed-tools` cần host thực thi |
+| Kiểm kích hoạt và hiệu quả | Ca **nên kích hoạt, không nên kích hoạt**, baseline không skill, kết quả nhiệm vụ, số tool call, latency/phí | Eval ở §3v; giữ model/effort/tool tương đương và không dùng cùng bộ ca để chỉnh prompt rồi kết luận |
+| Cập nhật | Diff toàn bộ artifact gồm script/reference, permission/network/dependency và license; lock mới đi qua review | `skills check/update` là phương tiện; update không tự chứng minh bản mới tốt hơn |
+| Thu hồi/khôi phục | Kiểm mọi vị trí cài, symlink và phụ thuộc dùng chung; khôi phục artifact cũ có hash | `remove` xóa skill không thu hồi credential hay hoàn tác side effect; các phần đó cần đánh giá riêng |
+
+### 3w.3 Kiến trúc ghép và tiêu chí chấp nhận
+
+Mẫu tích hợp từ các repo đã đọc là **danh mục nguồn được phép → bản artifact có ref/hash → review code và license → validate → eval kích hoạt/tác vụ → cấp quyền ở host → theo dõi phiên bản → cập nhật có diff hoặc thu hồi**. Không đặt toàn bộ trách nhiệm lên một installer. Kho tri thức như stored giữ nguồn và nhận định; dự án dùng skill mới giữ lock, cấu hình host và báo cáo chạy thực tế.
+
+Một đơn vị có thể chọn CLI skills cho quản lý nhiều harness; chọn autoskills khi muốn suy stack và registry đã review, **sau khi giải quyết điều kiện phi thương mại**; hoặc vendor thủ công một phần nhỏ nếu cần kiểm soát chính xác. So sánh với marketplace chính thức ở §2/§3q và pack workflow ở §3o: marketplace là kênh phân phối, pack là nội dung, installer là cơ chế đặt nội dung vào host — cả ba đều cần cùng hồ sơ vòng đời.
+
+Các số đo hữu ích gồm tỷ lệ kích hoạt sai trên bộ ca âm, chất lượng tác vụ so baseline, tổng phí, số tool ngoài dự kiến và tỷ lệ artifact khôi phục đúng hash. Cần ghi phạm vi và ngưỡng theo sản phẩm; đợt đọc mã này **chưa có kết quả đo**. Với task định kỳ không người trực (mục 21), cập nhật skill nên đi qua một lượt review/eval độc lập trước khi bản mới được cấp quyền ghi.
+
+**Đã đổi từ hồ sơ trước:** §3h đã ghi đúng CC BY-NC; lần này xác nhận lại license ở root và manifest npm, không coi là phát hiện đổi license. Phần mới của §3w là nối hash/ref/audit với cập nhật và thu hồi; không lặp bảng số lượng skill hay khẳng định pack nhiều prompt hơn sẽ mạnh hơn.
+
+**Nguồn §3w:** [skills local lock](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/src/local-lock.ts), [fetch SHA](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/src/git.ts), [telemetry/audit](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/src/telemetry.ts), [README](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/README.md), [autoskills installer](https://github.com/midudev/autoskills/blob/2dbab03b41988327e5c714d3fb233ebbce915e8c/packages/autoskills/installer.ts), [npm manifest](https://github.com/midudev/autoskills/blob/2dbab03b41988327e5c714d3fb233ebbce915e8c/packages/autoskills/package.json), [license](https://github.com/midudev/autoskills/blob/2dbab03b41988327e5c714d3fb233ebbce915e8c/LICENSE), [Agent Skills spec](https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/specification.mdx), [validator](https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/skills-ref/src/skills_ref/validator.py), [skills.sh CLI docs](https://www.skills.sh/docs/cli). Nguồn web đọc 2/11/2026; permalink ghim commit.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

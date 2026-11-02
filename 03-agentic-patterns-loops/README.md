@@ -469,6 +469,45 @@ Advisor Tool (§8e) và Agent Teams (§8f) đều ảnh hưởng cache (model kh
 
 **Nguồn §8i:** GitHub search API 2/11/2026 (`repo:` cho 5 repo trên; tìm `LanguageAgentTreeSearch in:name`) · clone 2/11/2026, đọc: ReAct (README.md, LICENSE, `FEVER.ipynb`, `WebShop.ipynb`, cây `prompts/`) · reflexion (README.md, LICENSE, `programming_runs/reflexion.py`, cây `programming_runs/`) · tree-of-thought-llm (README.md, LICENSE, `run.py`, `src/tot/methods/bfs.py`) · LanguageAgentTreeSearch (README.md, LICENSE, `programming/mcts.py`) · agentevals (README.md, LICENSE, `python/pyproject.toml`, `js/package.json`, `python/agentevals/trajectory/match.py`) · https://arxiv.org/abs/2210.03629 · https://arxiv.org/abs/2303.11366 · https://arxiv.org/abs/2305.10601 · https://arxiv.org/abs/2310.04406 · https://github.com/langchain-ai/agentevals
 
+<a id="core-context-contracts"></a>
+
+## 8j. Nâng trần 2/11/2026: hợp đồng ngữ cảnh, subagent và tiến triển (mở rộng cùng ngày)
+
+> Mở rộng chiều sâu trong cùng đợt 2/11/2026, không phải công bố các repo vừa ra mắt. Hai repo dưới đã có trong catalog: đọc lại LICENSE, CI và nhánh mặc định bằng clone chỉ đọc; SHA đối chiếu GitHub API. Mức bằng chứng **code-read**; không chạy/build repo ngoài, hiệu năng và hành vi thực tế **(chưa xác minh)**. Số sao/trạng thái đọc 2026-11-02; ngày commit tính theo UTC, tách khỏi `pushed_at`.
+
+| Repo đã có | ★ · license (2026-11-02) | HEAD nhánh mặc định | Vai trò đọc sâu |
+|---|---|---|---|
+| `langchain-ai/deepagents` | 30.894 · MIT | 2026-11-02 · `311ed7fb` | Isolated/fork context. filesystem và trần vòng |
+| `OthmanAdi/planning-with-files` | 27.823 · MIT | 2026-10-30 · `b6580cd2` | Plan/ledger có cổng dừng và khôi phục có phạm vi |
+
+**Trần còn thiếu:** §8i kiểm trajectory; §8g đã có Stop gate. Nhưng “cho subagent”, “lưu vào file” và “đã có memory” còn thiếu hợp đồng về **nội dung truyền đi, nguồn tin, quyền truy cập và dấu hiệu tiến triển**.
+
+### Deep Agents: tách context không tự tách quyền
+
+- [`SubAgentMiddleware`](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/middleware/subagents.py#L219) phân biệt `isolated` (mặc định, chỉ nhận nhiệm vụ uỷ quyền) và `fork` (kế thừa hội thoại/state). Parent chỉ nhận báo cáo cuối theo giao diện task; nếu cần bằng chứng, phải quy định artifact/source/exit reason trong hợp đồng đầu ra, tránh mất kết quả tool khi tóm tắt.
+- [`FilesystemBackend`](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/backends/filesystem.py#L132) tự nói `virtual_mode=True` cung cấp ngữ nghĩa đường dẫn và chặn traversal nhưng **không có process isolation/sandbox**. Mount file chung vẫn là kênh chia sẻ dữ liệu giữa agent; cần backend container/sandbox và quyền tool riêng nếu chạy mã không tin cậy.
+- [`graph.py`](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/graph.py#L1023) vẫn đặt `recursion_limit=9_999`; đây không phải ngân sách hợp lý cho mọi ứng dụng. [Workflow eval](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/.github/workflows/evals.yml) khởi chạy thủ công `workflow_dispatch`, cần nhiều provider key; có file eval không có nghĩa PR nào cũng đã qua benchmark model.
+
+### planning-with-files: cổng liveness khác cổng đúng/sai
+
+- [`check-complete.sh`](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/check-complete.sh#L191) chặn Stop khi có mode gate, phase `in_progress`, không ở vòng stop-hook, chưa hết `PWF_GATE_CAP` (20) và ledger tăng. Ledger không đổi hoặc chạm cap thì **cho dừng để tránh vòng vô hạn**; “được dừng” không có nghĩa việc đã hoàn thành.
+- [`attest-plan.sh`](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/attest-plan.sh) băm nội dung plan để phát hiện khác bản đã attest. Vì plan và attestation cùng nằm ở vùng file mà host có thể ghi, đây là **kiểm toàn vẹn so với mốc lưu**, không phải chữ ký tác giả hay bảo vệ khỏi một tác nhân có thể sửa cả hai. Quyền ghi và log thay đổi vẫn phải do host kiểm soát.
+- [`session-catchup.py`](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/session-catchup.py#L241) lọc transcript theo project/canonical cwd, quarantine nguồn thiếu định danh; chế độ mặc định không phát lại toàn lịch sử. Đây là mẫu có ích cho recovery: chỉ nạp phần cần thiết, gắn nguồn cũ là dữ liệu không tin cậy. [CI đa OS](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/.github/workflows/tests.yml) còn ép có shell để tránh test hook bị skip âm thầm.
+
+**Ma trận hợp đồng ngữ cảnh**
+
+| Kênh | Hợp dùng | Điều kiện/chỉ số nên kiểm |
+|---|---|---|
+| Subagent isolated | Điều tra độc lập hoặc review | Task đủ dữ kiện; kết quả có source/artefact, không chỉ verdict |
+| Subagent fork | Tiếp tục công việc cần lịch sử đầy đủ | Chi phí context, bí mật/state được kế thừa, quyền tool không tăng |
+| File plan/ledger | Vượt compaction, chia ca dài | Task/run ID, nguồn/chủ ghi; tiến triển đo bằng artifact/test, không đếm dòng đơn thuần |
+| Tóm tắt/đẩy output ra đĩa | Giảm token log/tool lớn | Con trỏ artifact còn tra lại được; tỷ lệ mất evidence và token/task |
+| Stop gate có trần | Hạn chế dừng sớm và thoát vòng kẹt | Phân loại `complete`, `stalled`, `budget_exhausted`, `blocked` riêng |
+
+**Cách ghép:** dùng Deep Agents để điều phối khi cần tool/backend rõ; dùng planning-with-files cho plan xuyên phiên nếu host đã hỗ trợ hook, tránh đặt hai cổng Stop hoặc hai vòng tự sửa chồng nhau (mục 21). Mỗi task có `run_id`, đầu vào tối thiểu, artifact cần trả và trần tài nguyên; host xác minh artifact/test rồi mới ghi tiến triển. Dùng agentevals §8i đo đường đi, mục 07 đo kết quả; thử compaction/restart để đo mức giữ bằng chứng trước khi kết luận context strategy tốt hơn.
+
+**Nguồn phần mở rộng:** [1](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/LICENSE) · [2](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/middleware/subagents.py) · [3](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/backends/filesystem.py) · [4](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/graph.py) · [5](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/.github/workflows/evals.yml) · [6](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/LICENSE) · [7](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/check-complete.sh) · [8](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/attest-plan.sh) · [9](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/session-catchup.py) · [10](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/.github/workflows/tests.yml) · [11](https://docs.langchain.com/oss/python/deepagents/subagents)
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)

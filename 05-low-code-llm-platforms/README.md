@@ -5,7 +5,7 @@
 | **n8n** | n8n-io/n8n | Sustainable Use (fair-code, không OSI) | ~207k | Automation-first, có AI node/agent | Tăng từ 50k lên 200k+ trong ~2 năm |
 | **Dify** | langgenius/dify | Apache-2.0 (kèm điều khoản) | ~158k | Nền tảng app LLM production: RAG, agent, workflow, prompt IDE | |
 | **Langflow** | langflow-ai/langflow | MIT | ~140–154k | Visual builder trên LangChain/LangGraph, custom Python node | Vượt 100k★ 5/2026 |
-| **Flowise** | FlowiseAI/Flowise | Apache-2.0 | ~55k | Drag-drop LangChain | **Trạng thái chưa rõ**: một nguồn nói archive 13/8/2026, nguồn khác nói được Workday mua – cần kiểm tra repo |
+| **Flowise** | FlowiseAI/Flowise | Apache-2.0 trừ phần enterprise | ~55k | Drag-drop LangChain | **Đã archive**, hết vòng đời 31/8/2026; xem hồ sơ xác minh 31/10 bên dưới |
 | **Activepieces** | activepieces/activepieces | MIT (core) | – | Alternative n8n, MCP-first | |
 | **Open WebUI** | open-webui/open-webui | Open WebUI License (BSD-3 + điều khoản giữ thương hiệu, không OSI) | ~154k (12/10/2026) | Giao diện chat tự host cho LLM local; RBAC, RAG, tool MCP/OpenAPI | v0.12.0 (10/10/2026); không được gỡ thương hiệu "Open WebUI" khi quá 50 người dùng/30 ngày |
 
@@ -208,6 +208,45 @@
 5. **Đường thoát khỏi nền tảng:** flow quan trọng, chạy lâu thì mô tả lại bằng Open Workflow DSL hoặc chuyển sang engine durable ở mục 21 (Temporal, Kestra, Windmill). Phát sự kiện theo CloudEvents để đổi nền tảng không phải sửa nơi phát.
 
 **Nguồn §Nâng trần 2/11/2026:** GitHub search API 2/11/2026 (`repo:` gộp; `open workflow specification in:name`) · `data/projects.json` (grep `repo`) · clone `--depth 1 --filter=blob:none`: serverlessworkflow/specification → open-workflow-specification/specification (HEAD 2108908, 2/11/2026; LICENSE, README.md, `schema/`, `ctk/README.md`, `ctk/features/`, `examples/`), OAI/Arazzo-Specification (HEAD e9ee1c4, 28/10/2026; README.md, `versions/1.1.0.md`), cloudevents/spec (HEAD 1025510, 22/10/2026; `cloudevents/spec.md`), stoplightio/spectral (HEAD 0b4889e, 30/10/2026; README.md, `docs/getting-started/{1-concepts,3-rulesets,6-arazzo}.md`, `packages/cli/package.json`), node-red/node-red (HEAD 22d019c, 26/10/2026; LICENSE, package.json, `packages/node_modules/node-red/settings.js`) · https://github.com/open-workflow-specification/specification · https://github.com/OAI/Arazzo-Specification · https://github.com/cloudevents/spec · https://github.com/stoplightio/spectral · https://github.com/node-red/node-red · https://github.com/node-red/node-red-node-test-helper
+
+## Nâng trần 2/11/2026 (mở rộng): kiểm đường rời nền tảng bằng dữ liệu và kết quả chạy
+
+<a id="platform-portability-2026-11-02"></a>
+
+> Bổ sung chiều sâu trong cùng ngày với phần chuẩn/lint ở trên, không phải đợt phát hành mới. Đọc mã ba repo: Node-RED, FlowGram và Prompt flow; GitHub API cho metadata ngày 2/11/2026. Chỉ clone/read LICENSE, CI, schema và file chính; **không cài, không chạy flow hoặc trình chuyển đổi**.
+
+### Trần hiện tại và ba hồ sơ đối chiếu
+
+Phần chuẩn/lint đã có Open Workflow DSL, Arazzo và Spectral. Nhưng **xuất được JSON không chứng minh chạy tương đương trên runtime khác**: còn phiên bản node, credential, mã Python/JS tùy chỉnh, thứ tự sự kiện và side effect. Cần đánh giá đường rời nền tảng bằng một flow cụ thể cùng bộ dữ liệu và kết quả kỳ vọng.
+
+| Repo · tổ chức | ★ · license (2/11/2026) | HEAD đọc · commit cuối | Cơ chế đọc được | Giới hạn khi chọn |
+|---|---|---|---|---|
+| **Node-RED** · OpenJS Foundation, dự án từ IBM | 23.805 · Apache-2.0 | `22d019c4eccac31d95f3b6167c7334de72ef02a6` · 26/10 | `settings.js` khai `flows.json`, còn Projects quản git; workflow CI gọi `npm run test`. Runtime và định dạng node có cùng hệ sinh thái nên hợp workflow thiết bị/tích hợp đã có node phù hợp | Projects **tắt mặc định**. Flow, gói node và credential không phải một file duy nhất; clone git thiếu secret không khôi phục được toàn dịch vụ |
+| **FlowGram** · ByteDance, canvas của Coze Studio | 8.549 · MIT | `f644642123ba05e0207594c582d4f42337af2a1c` · 2/11 | `WorkflowSchema` có `nodes/edges/groups/globalVariable`; interface node LLM/code nằm riêng. CI build/lint/typecheck/test coverage và E2E Playwright | Đây là SDK để tự làm sản phẩm; type TypeScript của FlowGram **không phải** chuẩn trung lập Open Workflow. Mang canvas sang app khác vẫn cần cùng registry node/runtime hoặc adapter do mình viết |
+| **Prompt flow** · Microsoft | 11.260 · MIT | `33a68c9d3cf349d7fdfad1f41969af27543c0406` · 19/10 | `flow.dag.yaml` tách graph khỏi Python/prompt; repo có hướng dẫn audit → rebuild → parity → vận hành khi chuyển sang Microsoft Agent Framework | README chính thức **không khuyến nghị phát triển mới**; Prompt flow trong Foundry/Azure ML nghỉ ngày **20/4/2027**, runtime image ngừng cập nhật kể cả bảo mật. Repo chưa archive không chứng minh dịch vụ còn được duy trì |
+
+**Đọc sâu đường di chuyển.** Prompt flow là case study cho rủi ro vòng đời, không phải lựa chọn mặc định mới: `migration-guide/PromptFlow-to-MAF/workflow_loader.py` nạp module workflow Python bằng `exec_module`; nó không phải bộ chuyển đổi tự động an toàn cho graph bất kỳ. Phải giữ prompt, schema input/output, connection alias và bộ parity từ ứng dụng cũ. FlowGram có schema rõ để tự dựng adapter; Node-RED có runtime/node ổn định để xuất–nhập trong cùng nền tảng. **Chưa kiểm** chuyển đổi chéo ba hệ thống hoặc khả năng giữ nguyên side effect.
+
+**Đã đổi từ hồ sơ trước:** bảng Flowise ở đầu mục từng ghi “trạng thái chưa rõ”; kết luận xác minh 31/10 bên dưới là **đã archive**, nay sửa hàng đầu cho nhất quán. Với FlowGram, HEAD 2/11 thêm hướng dẫn cài Desktop; điều đó không nâng JSON riêng thành chuẩn chung. Prompt flow được thêm vì lịch nghỉ đã công bố trước ngày khảo sát.
+
+### Ma trận lựa chọn và tiêu chí đo
+
+| Nhu cầu | Hướng phù hợp | Điều phải kiểm trên một flow mẫu |
+|---|---|---|
+| Workflow SaaS hoặc thiết bị có node cộng đồng sẵn | n8n/Node-RED; so license và node cụ thể | Import vào môi trường sạch; tỷ lệ node/credential khôi phục được; lỗi retry có nhân đôi side effect không |
+| Nhúng canvas vào sản phẩm riêng | FlowGram; so với canvas có sẵn của nền tảng app | Graph round-trip giữ ID/schema; node chưa biết phải báo lỗi; version runtime/registry khớp |
+| Thoát Prompt flow đang chạy | Microsoft Agent Framework ở mục 02, theo migration guide chính thức | Output parity trên ca thường/lỗi/timeout; latency, số gọi model/tool, tổng phí và kết quả side effect |
+| Cần trung lập nhà cung cấp | Arazzo cho chuỗi API; Open Workflow DSL cho runtime hỗ trợ | Không suy từ schema pass ra runtime tương thích; kiểm conformance và mapping từng node thực sự dùng |
+
+Không đặt ngưỡng chung “100% portable” cho mọi flow. Một hồ sơ tích hợp đủ bằng chứng nên ghi **số ca parity đạt/tổng**, phần node chưa hỗ trợ, và cách xử lý secret; số sao không đo các thuộc tính này.
+
+### Kiến trúc ghép và điều kiện tích hợp
+
+Một gói flow có thể di chuyển gồm **graph có phiên bản + mã node được ghim dependency + prompt/schema + bộ test + tham chiếu secret**. Flow là lớp điều phối; tích hợp SaaS quan trọng đặt sau hợp đồng API/Arazzo, tác vụ chạy lâu giao engine durable mục 21, hành động do model sinh giữ sandbox/quyền ở mục 11/12. Test output bằng công cụ mục 07 và kiểm trạng thái đích để phát hiện chạy lặp.
+
+Khi đánh giá nền tảng, thử xuất gói, nhập vào một instance sạch cùng phiên bản, rồi mới thử adapter sang runtime khác. Đọc giấy phép của node/plugin bên thứ ba riêng với license core; MIT của FlowGram/Prompt flow và Apache của Node-RED không cấp quyền cho dịch vụ SaaS hoặc model được gọi. Bản đánh giá này chưa chạy bài thử khôi phục nên chưa tuyên bố thời gian di chuyển hay mức tương đương thực tế.
+
+**Nguồn phần mở rộng:** [Node-RED settings](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/node-red/settings.js), [CI](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/.github/workflows/tests.yml), [FlowGram schema](https://github.com/bytedance/flowgram.ai/blob/f644642123ba05e0207594c582d4f42337af2a1c/packages/runtime/interface/src/schema/workflow.ts), [CI](https://github.com/bytedance/flowgram.ai/blob/f644642123ba05e0207594c582d4f42337af2a1c/.github/workflows/ci.yml), [Prompt flow notice](https://github.com/microsoft/promptflow/blob/33a68c9d3cf349d7fdfad1f41969af27543c0406/README.md), [migration loader](https://github.com/microsoft/promptflow/blob/33a68c9d3cf349d7fdfad1f41969af27543c0406/migration-guide/PromptFlow-to-MAF/workflow_loader.py), [Microsoft Learn: audit/rebuild/parity](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-migrate-prompt-flow-to-agent-framework?view=azureml-api-2). Các link code ghim commit; trang Learn là tài liệu chính thức sống, đọc 2/11/2026.
 
 ## Nguồn
 

@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "stored project catalog v2",
+  "description": "Entity IDs are unique across projects; repository paths may repeat for distinct entities. check_catalog.py adds cross-file checks. Evidence level applies only to the cited scope.",
+  "type": "object",
+  "required": [
+    "meta",
+    "projects"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "snapshot_date",
+        "categories",
+        "count"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 2
+        },
+        "snapshot_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "categories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "category",
+          "open_source",
+          "notes",
+          "section"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          },
+          "profile_path": {
+            "type": "string"
+          },
+          "profile_anchor": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]*$"
+          },
+          "repo": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "license": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stars": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "open_source": {
+            "type": "boolean"
+          },
+          "last_verified_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "verified_ref": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "verification_level": {
+            "enum": [
+              "unassessed",
+              "docs-read",
+              "code-read",
+              "checks-run",
+              "reproduced"
+            ]
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "repo"
+            ],
+            "properties": {
+              "repo": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          },
+          {
+            "required": [
+              "url"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        ],
+        "allOf": [
+          {
+            "if": {
+              "required": [
+                "verification_level"
+              ],
+              "properties": {
+                "verification_level": {
+                  "enum": [
+                    "docs-read",
+                    "code-read",
+                    "checks-run",
+                    "reproduced"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "last_verified_at",
+                "sources",
+                "profile_anchor"
+              ],
+              "allOf": [
+                {
+                  "if": {
+                    "required": [
+                      "repo"
+                    ],
+                    "properties": {
+                      "repo": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "verified_ref"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

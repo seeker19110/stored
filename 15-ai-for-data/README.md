@@ -85,7 +85,7 @@
 ### Mẫu chung rút ra
 
 1. **Text-to-SQL "an toàn" phải đo bằng mã, không bằng README.** Vanna quảng cáo RLS nhưng mặc định NoOp và vẫn chạy DML; DBHub có bộ phân loại + giao dịch READ ONLY nhưng không bật mặc định. Mẫu đúng: read-only bật mặc định, hai lớp (parser như sqlglot/DBHub + quyền DB), và test các câu thoát như `SELECT 1--1;DROP TABLE t`.
-2. **Opt-out telemetry phải chấp nhận nhiều dạng giá trị.** PandasAI chỉ nhận `"true"`, nên `DO_NOT_TRACK=1` không có tác dụng; Cube bật mặc định với machine id. Template nên đặt cả `DO_NOT_TRACK=1`, `DO_NOT_TRACK=true` và biến riêng của từng công cụ.
+2. **Opt-out telemetry phải chấp nhận nhiều dạng giá trị.** PandasAI chỉ nhận `"true"`, nên `DO_NOT_TRACK=1` không có tác dụng; Cube bật mặc định với machine id. Khi kiểm thử cần kiểm cả hai dạng `1`/`true`; khi cấu hình chọn giá trị đúng từng công cụ và dùng biến opt-out riêng. Không thể đặt đồng thời hai giá trị cho cùng một biến.
 3. **Code do LLM sinh chạy trong tiến trình là mặc định nguy hiểm** (PandasAI, DeepAnalyze trước 3/2026). Ghép với sandbox ở mục 11.
 4. **Dự án text-to-SQL độc lập đang tàn**: Vanna archive, PandasAI dừng 1 năm; phần AI dồn về semantic layer (Cube, WrenAI), BI lớn (Superset MCP, Metabase Metabot) và MCP cho CSDL (DBHub, DBX).
 5. **Dọn license khi gom skill**: K-Dense gỡ skill chép từ Anthropic. Kho skill nào vendored nội dung bên thứ ba cần ghi nguồn và license từng skill.
@@ -121,6 +121,43 @@
 5. **Lineage cho câu trả lời có nguồn:** phát sự kiện OpenLineage từ dbt/Airflow vào DataHub (đã có) hoặc Marquez; agent trích tên bảng nguồn và lần chạy job khi trả lời.
 
 **Nguồn §4:** GitHub search API 2/11/2026 (`repo:` cho 7 repo trên; `great_expectations in:name`, `dbt in:name org:dbt-labs`; ứng viên loại: `MarquezProject/marquez` 2,3k★ (nhắc trong bước 5), `awslabs/deequ` 3,7k★ (Scala/Spark), `unionai-oss/pandera` 4,5k★, `AlibabaResearch/DAMO-ConvAI` 1,6k★ (monorepo chứa BIRD gốc)) · clone `--depth 1 --filter=blob:none`, đọc: Spider2 (HEAD cafb8673 12/8/2026; LICENSE, README.md), mini_dev (1c49a37 28/10/2026; README.md, evaluation/), great_expectations (99f4d0c 22/10/2026; LICENSE, README.md, `great_expectations/agent_skills/installer.py`, `great_expectations/__main__.py`, `data_context/data_context/abstract_data_context.py`), soda-core (1b71142 29/10/2026; LICENSE, README.md, soda-core/pyproject.toml, .github/workflows/), dbt (1890fb3 2/11/2026; LICENSE, README.md, Cargo.toml, crates/dbt-clap-core/src/lib.rs, crates/dbt-main/src/dbt_lib.rs, crates/dbt-docs-server/src/state.rs), OpenLineage (bad2d7f 29/10/2026; LICENSE, README.md, spec/, client/, integration/), sqlfluff (4339c07 1/11/2026; LICENSE.md, README.md, pyproject.toml, src/sqlfluff/dialects/, .github/workflows/agent-scan.yml) · https://github.com/xlang-ai/Spider2 · https://spider2-sql.github.io · https://github.com/bird-bench/mini_dev · https://bird-bench.github.io · https://github.com/fivetran/great_expectations · https://github.com/sodadata/soda-core · https://github.com/dbt-labs/dbt · https://github.com/OpenLineage/OpenLineage · https://github.com/MarquezProject/marquez · https://github.com/sqlfluff/sqlfluff
+
+## 5. Data ingestion and asset orchestration
+
+> Mở rộng ngày 2/11/2026. §4 đã có dbt, GX/Soda và OpenLineage; phần còn thiếu là **dữ liệu tới từ đâu, cập nhật thế nào, phục hồi có làm trùng hay bỏ mất không**. Các repo dưới đây đã đọc LICENSE/CI/mã chính tại commit ghim, không cài và không chạy. Mục này khác durable workflow ở mục 21: đơn vị quản lý là asset/partition/cursor và độ tươi dữ liệu.
+
+| Repo | ★ · license (2/11/2026) | Commit đọc | Cơ chế đáng học | Giới hạn / điều kiện |
+|---|---|---|---|---|
+| [dagster-io/dagster](https://github.com/dagster-io/dagster/tree/ef5c227a91576661f7c4b8619b855cd95e68ccd5) | 16,361 · Apache-2.0 | 2026-10-30 · `ef5c227` | Asset dependencies, partition/backfill, resource và asset check | Cần storage/daemon/deployment; một số quan sát vận hành thuộc Dagster+; telemetry instance thường bật mặc định |
+| [dlt-hub/dlt](https://github.com/dlt-hub/dlt/tree/f3b6223c82fbaf8e9119497689022e8c211883fb) | 6,049 · Apache-2.0 | 2026-10-31 · `f3b6223` | Python ingestion, cursor có state, schema inference, destination và merge | Incremental cursor không đồng nghĩa dedup toàn bảng; cần khóa/merge phù hợp; telemetry bật mặc định |
+| [debezium/debezium](https://github.com/debezium/debezium/tree/859540ed7983caa6939927c9ed0fc3f83f713e61) | 13,305 · Apache-2.0 | 2026-11-01 · `859540e` | CDC theo log CSDL; snapshot rồi stream thay đổi có offset/schema | Quyền replication và hạ tầng connector; có thể phát lại event sau lỗi; exactly-once phụ thuộc connector và cấu hình toàn tuyến |
+
+### 5.1 Đọc cơ chế trước khi chọn
+
+- **Dagster (Dagster Labs và cộng đồng):** [BackfillPolicy](https://github.com/dagster-io/dagster/blob/ef5c227a91576661f7c4b8619b855cd95e68ccd5/python_modules/dagster/dagster/_core/definitions/backfill_policy.py) tách một run cho nhiều partition với nhiều run có trần partition; [tài liệu backfill chính thức](https://dagster.io/docs/guides/build/partitions-and-backfills/backfilling-data) giải thích khi cần tính lại lịch sử. Asset check phải gắn với điều kiện ngăn downstream phù hợp, không suy ra mọi check tự chặn materialization. [Cấu hình instance](https://github.com/dagster-io/dagster/blob/ef5c227a91576661f7c4b8619b855cd95e68ccd5/python_modules/dagster/dagster/_core/instance/methods/settings_methods.py) đặt telemetry mặc định `True` cho instance thường, `False` cho ephemeral; tắt bằng `telemetry.enabled: false` trong cấu hình instance. Cần kiểm riêng dữ liệu log/metadata và dịch vụ Dagster+ khi tích hợp.
+- **dlt (dltHub):** [Incremental](https://github.com/dlt-hub/dlt/blob/f3b6223c82fbaf8e9119497689022e8c211883fb/dlt/extract/incremental/__init__.py) giữ cursor và xử lý trùng vùng biên; [merge loading](https://dlthub.com/docs/general-usage/merge-loading) mới là nơi upsert/dedup staging theo khóa. Khi nguồn có cập nhật đến muộn, cửa sổ lag và merge phải được thiết kế cùng nhau; đừng coi `max(updated_at)` là bảo đảm không mất bản ghi. [RuntimeConfiguration](https://github.com/dlt-hub/dlt/blob/f3b6223c82fbaf8e9119497689022e8c211883fb/dlt/common/configuration/specs/runtime_configuration.py) đặt `dlthub_telemetry=True`; [hướng dẫn telemetry](https://github.com/dlt-hub/dlt/blob/f3b6223c82fbaf8e9119497689022e8c211883fb/docs/website/docs/reference/telemetry.md) có cấu hình `[runtime] dlthub_telemetry=false`.
+- **Debezium (cộng đồng Debezium):** đọc `README.md`, `LICENSE.txt`, `debezium-core`, connector PostgreSQL và CI connector. [FAQ chính thức](https://debezium.io/documentation/faq/) nêu lỗi xác nhận/khởi động lại có thể tạo event lặp; [tài liệu exactly-once](https://debezium.io/documentation/reference/3.5/configuration/eos.html) mô tả điều kiện Kafka Connect. Tên sản phẩm hoặc trạng thái một connector không chứng minh exactly-once từ nguồn tới bảng đích. So với polling dlt: CDC nhận delete và thứ tự log rõ hơn, đổi lại thêm quyền và gánh vận hành; với batch file nhỏ, polling có thể đủ.
+
+### 5.2 Ma trận lựa chọn
+
+| Bài toán | Khởi đầu phù hợp | Ràng buộc cần chứng minh |
+|---|---|---|
+| API/file theo giờ, số nguồn vừa phải | dlt + lịch ở mục 21 | Cursor, khóa đích, delete/tombstone, retry và state restore |
+| Nhiều asset phụ thuộc, cần tính lại lịch sử | Dagster + dlt/dbt | Partition mapping, backfill đồng thời, giới hạn tải nguồn, chặn asset lỗi |
+| CSDL có thay đổi liên tục, cần delete/latency thấp | Debezium + sink có upsert | Quyền replication, snapshot/offset, replay, schema evolution, khóa nguồn |
+| BI/agent đọc dữ liệu | Bất kỳ luồng trên + GX/Soda/dbt + DataHub/OpenLineage (§4) | Freshness theo domain, quyền từng tenant, lineage và khả năng truy ngược câu trả lời |
+
+### 5.3 Cổng chất lượng cho đường dữ liệu
+
+1. **Hợp đồng nguồn:** ghi owner, timezone/cursor, khóa, schema, dữ liệu nhạy cảm, quyền lưu và SLA cập nhật; tách nó khỏi schema suy ra tự động.
+2. **Replay nhỏ trước:** tập có insert/update/delete, trùng event, đến muộn, đổi schema; so cả tập khóa và giá trị sau khi chạy lại/khôi phục state, không chỉ số dòng.
+3. **Quarantine và publish:** bản không hợp lệ vào vùng cách ly; chỉ xuất partition đạt contract/freshness, không để agent âm thầm đọc lẫn dữ liệu dở dang.
+4. **Backfill có ngân sách:** ghim code/schema, snapshot đầu vào, phạm vi partition và concurrency; không để chạy lịch thường xung đột backfill trên cùng khóa.
+5. **Đo vận hành:** lag nguồn→đích, tỷ lệ bản ghi bị loại, sai lệch khóa, thời gian phục hồi và chi phí mỗi lần đồng bộ. Ghép OpenLineage/DataHub và eval text-to-SQL (§4) để phân biệt SQL sai với dữ liệu cũ.
+
+**Liên quan:** dữ liệu để huấn luyện/gán nhãn thuộc [mục 24](../24-ai-data-engineering/README.md); đây là pipeline dữ liệu vận hành. Lịch/retry tổng quát ở [mục 21](../21-autonomous-workflows/README.md), kiểm quyền ở mục 12.
+
+**Nguồn §5:** GitHub metadata/HEAD 2/11/2026 và permalink trên; LICENSE, README, CI, `BackfillPolicy`, instance settings, `Incremental`, runtime telemetry, Debezium core/PostgreSQL; tài liệu chính thức Dagster/dlt/Debezium. Các cổng trên là tiêu chí để dự án đích áp dụng, chưa có kết quả chạy trong khảo sát này.
 
 ## Nguồn
 
