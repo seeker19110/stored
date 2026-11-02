@@ -9,7 +9,7 @@
       "missing",
       "not_adding"
     ],
-    "updated": "2026-11-01"
+    "updated": "2026-11-02"
   },
   "items": [
     {
@@ -926,6 +926,7 @@
       ],
       "lesson": "Prompt cache gắn với **model** và khớp theo tiền tố từng byte (`tools` → `system` → `messages`): đổi model, đổi tập tool, sửa system prompt, bật/tắt thinking hay đổi `effort` ở cấp request giữa phiên đều ghi lại cache từ đầu. Bài đăng \"10,69M token chỉ $9,93\" khớp số học: 88% là cache read ($0,20/1M trên Opus 5.5, 0,05× input) (03 §8h)",
       "xt_ids": [
+        "LOOP-DESIGN-012",
         "AI-APP-011",
         "LOOP-ORCH-019",
         "LOOP-ORCH-023"
@@ -933,7 +934,25 @@
       "column": "shallower",
       "proposal": {
         "level": "SHOULD",
-        "text": "Bổ sung cho vòng autopilot (`11-autonomous-loop/orchestration-and-subagents.md`, cạnh `LOOP-ORCH-019`): phiên chính giữ một model suốt vòng; việc rẻ giao subagent thay vì đổi model phiên chính; thay đổi chỉ dẫn giữa phiên dùng system message giữa hội thoại thay vì sửa system prompt; không thêm/bớt tool giữa phiên. `AI-APP-011` đã phủ phía ứng dụng. Kiểm: trong log usage của một lượt autopilot dài, `cache_read_input_tokens` tăng đều qua các lượt; lượt có `cache_creation_input_tokens` gần bằng cả hội thoại được ghi lý do (đổi model/tool)."
+        "text": "Bổ sung cho vòng autopilot (`11-autonomous-loop/orchestration-and-subagents.md`, cạnh `LOOP-ORCH-019`): phiên chính giữ một model suốt vòng; việc rẻ giao subagent thay vì đổi model phiên chính; thay đổi chỉ dẫn giữa phiên dùng system message giữa hội thoại thay vì sửa system prompt; không thêm/bớt tool giữa phiên. `AI-APP-011` đã phủ phía ứng dụng; `LOOP-DESIGN-012` đã có \"prefix ổn định, chỉ nối thêm\" nhưng chưa nói đổi model/tool/effort giữa phiên cũng phá cache. Kiểm: trong log usage của một lượt autopilot dài, `cache_read_input_tokens` tăng đều qua các lượt; lượt có `cache_creation_input_tokens` gần bằng cả hội thoại được ghi lý do (đổi model/tool)."
+      }
+    },
+    {
+      "id": "XT-H-053",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "20 §3u"
+      ],
+      "lesson": "EGM (google/elephant-goldfish-model, 9,2k★): review **tài liệu thiết kế trước khi code** bằng subagent ngữ cảnh mới; bản Claude Code khoá persona `tools: [Read, Grep, Glob]`, `omitClaudeMd: true`, từ chối review khi harness không tạo được subagent. Vòng review có luật dừng đo được: hai lượt sạch liên tiếp (không Blocker/Major chưa xử lý; reviewer không chạy được thì lượt không sạch), trần 5 lượt, phát hiện \"churn\" (lỗi mới nằm đúng phạm vi bản sửa vừa áp) rồi hỏi người (20 §3u)",
+      "xt_ids": [
+        "LOOP-DESIGN-013",
+        "LOOP-ORCH-005",
+        "LOOP-DESIGN-011"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bổ sung (`11-autonomous-loop/loop-design.md`, cạnh `LOOP-DESIGN-013`): spec/ADR có quyết định khó đảo ngược được rà bởi subagent ngữ cảnh mới chỉ đọc (khi harness hỗ trợ: tool chỉ đọc + không nạp file luật dự án) **trước** khi lập task code; vòng rà dừng theo luật ghi trong spec: hai lượt sạch liên tiếp, trần lượt, churn → hỏi/ghi nợ. Kiểm: PR có spec mới kèm báo cáo rà (reviewer, lượt, kết luận); `pr next` đỏ khi spec đổi mà chưa có lượt rà sạch."
       }
     }
   ]

@@ -1130,6 +1130,53 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Nguồn §3t:** GitHub search API 31/10/2026 (8 truy vấn, `repo:` cho từng repo) · `meta_all.json`/`status_all.json` của đợt rà · clone `--filter=blob:none` 31/10/2026, đọc: sickn33/agentic-awesome-skills (LICENSE, LICENSE-CONTENT, PRIVACY.md, package.json, skills_index.json, tools/bin/install.js, .github/workflows/skillspector-advisory.yml, README.md) · vercel-labs/skills (LICENSE, src/{telemetry.ts, local-lock.ts, agents.ts}, skills/find-skills/SKILL.md, README.md) · openai/codex-plugin-cc (LICENSE, NOTICE, .claude-plugin/marketplace.json, plugins/codex/{hooks/hooks.json, prompts/stop-review-gate.md, agents/codex-rescue.md, scripts/lib/codex.mjs, scripts/codex-companion.mjs}, README.md) · alirezarezvani/claude-skills (LICENSE, README.md, .mcp.json, .github/workflows/skill-security-audit.yml, đếm SKILL.md/.py bằng script) · jarrodwatts/claude-hud (package.json, src/{extra-cmd.ts, auth.ts, external-usage.ts, stdin.ts}, README.md) · ConardLi/garden-skills (LICENSE, package.json, .claude-plugin/marketplace.json, .github/workflows/validate-skills.yml, dist/prompts/ (chỉ đầu file), skills/*/manifest.json, skills/gpt-image-2/scripts/shared.js, skills/motion-showreel/scripts/package-lock.json) · tw93/Waza (LICENSE, SCOPE.md, .out-of-scope/, Makefile, packaging.allowlist, .github/workflows/test.yml, scripts/check_safe_install_docs.py, skills/read/scripts/fetch.sh) · https://github.com/sickn33/agentic-awesome-skills · https://github.com/vercel-labs/skills · https://github.com/openai/codex-plugin-cc · https://github.com/alirezarezvani/claude-skills · https://github.com/jarrodwatts/claude-hud · https://github.com/ConardLi/garden-skills · https://github.com/tw93/Waza
 
+## 3u. Kiểm ảnh: `google/elephant-goldfish-model` (EGM) — "Design with an elephant. Review with a goldfish." (ảnh README người dùng gửi, clone 2/11/2026)
+
+> Ảnh là đầu README trên GitHub. Clone `--filter=blob:none` HEAD `403d888` (30/10/2026), đọc README, `AGENTS.md`, `AI_POLICY.md`, `TESTING.md`, `docs/harnesses.md`, 7 `skills/*/SKILL.md`, 9 `agents/*.md` (và bản `.claude-plugin/agents/`), workflow CI. **Không cài, không chạy.**
+
+### 3u.1 Hồ sơ nhanh
+
+| Mục | Thông tin (2/11/2026) |
+|---|---|
+| Repo | **9.165★**, 598 fork, 74 issue/PR mở · **Apache-2.0** · README cuối: "This is **not an officially supported Google product**" |
+| Lịch sử | Repo tạo 13/9/2026 nhưng lịch sử công khai bắt đầu **21/10/2026** bằng một commit "initial open-source release" (lịch sử nội bộ không công bố); 119 commit, tag `v0.1.0`. Người viết chính Oliver Newth (`n3wth`, ~77 commit), vài email `@google.com`; 1 commit có trailer Claude |
+| Nội dung | **Toàn prompt**: 7 skill (`egm-brainstorm`, `egm-draft`, `egm-review`, `egm-review-loop`, `egm-resolve`, `egm-bootstrap`, `egm-drift-report`; 1.852 dòng) + 9 persona reviewer (design critic, structural, style, codebase details, implementation readiness, zoom-out, comprehension, synthesizer, bootstrap orchestrator) ≈ 135 KB. Script chỉ để đóng gói/phát hành. Đóng gói cho Antigravity, Claude Code, Codex (`distributions/`) |
+| Ý tưởng | **Elephant** (agent giữ toàn bộ ngữ cảnh dự án) viết spec; **Goldfish** (subagent ngữ cảnh mới, chỉ đọc tài liệu + mã được dẫn) rà để lộ giả định ngầm; **người** chốt đánh đổi và duyệt trước khi code. Gốc từ bài của Dave Rensin trên Medium |
+| Cài | Claude Code: `claude plugin marketplace add google/elephant-goldfish-model` → `claude plugin install egm@egm`; Codex: `codex plugin marketplace add …`; Antigravity: `agy plugin install https://github.com/google/elephant-goldfish-model` |
+
+### 3u.2 Kiểm từng câu trong ảnh
+
+| Câu | Thực tế | Kiểm |
+|---|---|---|
+| "Thousands of Google engineers use EGM" | Không có số liệu hay nguồn nào trong repo; repo tự ghi "không phải sản phẩm Google hỗ trợ chính thức" và lịch sử nội bộ không công khai | ⚠️ **(chưa xác minh)** |
+| "open-source plugin" | Apache-2.0, có `LICENSE`, header bản quyền Google LLC | ✅ |
+| "draft specs with deep-context agents and stress-test them with zero-context subagents" | Đúng cơ chế. Skill review **từ chối chạy khi harness không tạo được subagent**: "a review in the same context is not a Goldfish review". Bản Claude Code ép cô lập bằng cấu hình: persona có `tools: [Read, Grep, Glob]`, **`omitClaudeMd: true`** (không nạp `CLAUDE.md`), `model: inherit` | ✅ |
+| "Goldfish reviewers examine the draft … without the earlier conversation" | Đúng; persona dặn chỉ đọc, không có lịch sử. Lưu ý: bản `agents/*.md` dùng chung cho các host khác **chỉ dặn bằng lời** chỉ đọc — hàng rào cứng chỉ có ở bản `.claude-plugin/` | ✅ / ⚠️ theo host |
+| "You make the architectural trade-offs and approve" | Vòng review dừng chờ người ở mỗi lượt ("turn-taking checkpoint"), không tự lặp | ✅ |
+| "Use it when a feature needs design decisions… For a small, clear bug fix, use your normal workflow" | Lời khuyên phạm vi, hợp lý | ✅ |
+
+### 3u.3 Điều ảnh không nói (đọc mã)
+
+- **Quy tắc hội tụ của vòng review rõ và đo được:** "sạch" = không còn Blocker/Major chưa xử lý (reviewer không chạy được thì lượt đó **không** sạch); **hội tụ = hai lượt sạch liên tiếp** ("một lượt sạch chưa đủ, reviewer mới có thể thấy lỗ hổng khác"); **trần 5 lượt**; phát hiện **"churn"** (lỗi mới nằm đúng phạm vi bản sửa vừa áp, gỡ bản sửa thì hết lỗi). Chạm trần hoặc churn thì liệt kê phát hiện còn mở và hỏi người một câu. Mỗi giai đoạn audit chỉ được **tối đa 1 lần audit lại**.
+- **Ghi kết quả thử theo từng harness kèm phiên bản và giới hạn**: `TESTING.md` có bảng Antigravity CLI 1.4.5, Claude Code 2.1.308, Claude Cowork (ngày 22/10/2026), ghi cả "Partial: stages 5–7" khi hết hạn mức. Đây là cách khai giới hạn trung thực hiếm gặp.
+- **CI chỉ kiểm cấu trúc** (Tier 1, offline): frontmatter, link nội bộ, độ phủ kịch bản, giới hạn tải skill, đóng gói, trace mẫu; chạy Ubuntu + Windows, action ghim SHA. Chất lượng review do model quyết định, không có eval tự động trong CI.
+- **Tốn token**: mỗi lượt review gọi nhiều persona (mỗi cái nạp file persona + tài liệu + mã dẫn chiếu); vòng review tới 5 lượt × nhiều persona. Repo không công bố số token.
+- **Hai bản persona lệch nhau** (`agents/` mô tả dài, `.claude-plugin/agents/` ngắn + khoá tool): sửa một bên dễ quên bên kia.
+- **Không telemetry**: không gọi mạng trong skill/persona; site tĩnh ghi "no analytics, no cookies".
+- **Tự dùng chính mình**: `AI_POLICY.md` yêu cầu thay đổi > 100 dòng hoặc ≥ 3 file lõi phải có tài liệu thiết kế làm bằng EGM và được duyệt trước khi mở PR cài đặt; cấm dán phản hồi LLM chưa kiểm vào review.
+
+### 3u.4 So với các mục đã có
+
+| | EGM | design-critique/handoff (06 §7o) | Reviewer trong X-Templates (mục 23) |
+|---|---|---|---|
+| Đối tượng | Spec/tài liệu thiết kế **trước khi code** | Thiết kế giao diện | Diff/PR **sau khi code** |
+| Cô lập reviewer | Subagent mới, chỉ đọc, `omitClaudeMd` (Claude Code) | Cùng ngữ cảnh | Subagent riêng, năng lực cao hơn người viết (`LOOP-ORCH-005`) |
+| Dừng vòng | 2 lượt sạch liên tiếp, trần 5, phát hiện churn | Không có vòng | Review 2 lần, sửa 1, còn lại ghi nợ (ADR-0059) |
+
+**Dùng thế nào:** hợp tính năng có quyết định kiến trúc (nhiều phương án, khó đảo ngược). Ghim phiên bản plugin (`v0.1.0`), dùng bản Claude Code để có cô lập cứng; với việc nhỏ hoặc bug rõ thì bỏ qua như README khuyên. Câu "hàng nghìn kỹ sư Google" là quảng bá, không phải bằng chứng hiệu quả.
+
+**Nguồn §3u:** ảnh README người dùng gửi 2/11/2026 · clone https://github.com/google/elephant-goldfish-model (HEAD `403d888`; README.md, AI_POLICY.md, TESTING.md, docs/harnesses.md, skills/egm-review/SKILL.md, skills/egm-review-loop/SKILL.md, agents/structural.md, agents/design_critic.md, .claude-plugin/agents/structural.md, .github/workflows/tests.yml, scripts/pack_plugin.py; `git log`, `git shortlog`) · GitHub search API 2/11/2026.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
