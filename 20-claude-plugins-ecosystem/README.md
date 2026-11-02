@@ -1291,6 +1291,46 @@ Các số đo hữu ích gồm tỷ lệ kích hoạt sai trên bộ ca âm, ch�
 
 **Nguồn §3w:** [skills local lock](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/src/local-lock.ts), [fetch SHA](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/src/git.ts), [telemetry/audit](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/src/telemetry.ts), [README](https://github.com/vercel-labs/skills/blob/92a9a34ac3bf88e695e468b90c7bf32f163d32c8/README.md), [autoskills installer](https://github.com/midudev/autoskills/blob/2dbab03b41988327e5c714d3fb233ebbce915e8c/packages/autoskills/installer.ts), [npm manifest](https://github.com/midudev/autoskills/blob/2dbab03b41988327e5c714d3fb233ebbce915e8c/packages/autoskills/package.json), [license](https://github.com/midudev/autoskills/blob/2dbab03b41988327e5c714d3fb233ebbce915e8c/LICENSE), [Agent Skills spec](https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/specification.mdx), [validator](https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/skills-ref/src/skills_ref/validator.py), [skills.sh CLI docs](https://www.skills.sh/docs/cli). Nguồn web đọc 2/11/2026; permalink ghim commit.
 
+## 3x. Kiểm ảnh: `Donchitos/Claude-Code-Game-Studios`, 49 agent + 74 skill + 15 hook làm "xưởng game" trong một phiên Claude Code (ảnh người dùng gửi, clone 2/11/2026)
+
+> Ảnh là trang repo GitHub: "Public template", 33,1k★, 4,5k fork, 46 issue, 34 PR, 10 tag, 43 commit, About ghi "49 AI agents, 72 workflow skills". Clone `--filter=blob:none` đủ lịch sử 2/11/2026 (HEAD `05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418`, v1.2.0 ngày 19/10/2026); đọc LICENSE, README, CHANGELOG, `.claude/settings.json`, `.claude/{agents,skills,hooks,rules,scripts}`, `studio-tests/`, `src/CLAUDE.md`, `.github/`; đếm bằng `git ls-tree`; không chạy hook hay skill.
+
+### 3x.1 Từng ô của ảnh
+
+| Ô | Kết quả | Bằng chứng |
+|---|---|---|
+| 33,1k★ · 4,5k fork · 46 issue · 34 PR | ✅ | Search API 2/11/2026: **33.171★ · 4.488 fork · 80 mở** (46 issue + 34 PR) |
+| "49 AI agents" | ✅ | 49 file `.claude/agents/*.md` (8.675 dòng); **cả 49 khai `name`, `tools`, `model`** (28 có Bash, 9 không Bash, 6 có WebSearch, 3 có Agent; model `inherit` 30 / `sonnet` 16 / `opus` 3) — trái với `agency-agents` §3j nơi 266/283 agent không khai `tools:` |
+| "72 workflow skills" (About) | ⚠️ số cũ | Cây có **74** thư mục `.claude/skills/*/SKILL.md` (20.513 dòng; lớn nhất `skill-test` 614 dòng); README, badge và `studio-tests/catalog.yaml` đều ghi 74. Mô tả About chưa cập nhật sau 1.2.0 |
+| "43 Commits", "1 Branch", "10 Tags" | ✅ | 43 commit, **100% của `Donchitos`** (không có PR ngoài nào được merge: search `is:pr is:merged -author:Donchitos` = 0); 64 trailer `Co-Authored-By: Claude`; tag v1.1.1…v1.2.0 |
+| "Public template" | ✅ | `is_template: true`; `src/` chỉ có `.gitkeep` + `CLAUDE.md` (cảnh báo "training data của LLM cũ hơn engine đã ghim, luôn đọc `docs/engine-reference/`"); README có mục "Does it produce games, or documents?" |
+| "Sponsor" | ✅ | `FUNDING.yml`: GitHub Sponsors + Buy Me a Coffee; không có gói trả phí |
+| MIT, Contributing, Security policy | ✅ | `LICENSE` MIT © 2026 Donchitos; có CODEOWNERS, PR template (loại thay đổi: agent/skill/hook/rule) |
+
+### 3x.2 Cổng máy thật sự có gì (đọc `settings.json` và hook, không đọc văn xuôi)
+
+- **15 hook nối vào 8 sự kiện** (`settings.json`): SessionStart ×2 (`session-start.sh`, `detect-gaps.sh`), PreToolUse ×5 (`validate-commit/push/registry/write/read.sh`), PostToolUse ×2 (`validate-assets.sh`, `validate-skill-change.sh`), Notification, PreCompact, Stop, SubagentStart (`log-agent.sh`), SubagentStop ×2 (log + `validate-agent-artifact.sh`); thêm 3 helper (`yaml-helper.sh`, `update-check.sh`, `statusline.sh`). Tất cả là **bash** (33 script `.sh` + 1 awk + 1 `.gd`), nên Windows cần Git Bash; mọi hook mở đầu bằng khối "work from the project root" chống chạy nhầm cây.
+- **Quyền:** `defaultMode: default`, allow chỉ 3 mẫu (`dir *`, `pytest`), **deny 130 mẫu** liệt kê biến thể `rm -rf`, `git push --force`, `git reset --hard`, `git clean -f`. 1.2.0 ghi "no skill pre-approves every shell command any more": **74/74 skill khai `allowed-tools`** và **0 skill có `Bash(*)`**; ví dụ `/start` chỉ cho `Bash(bash .claude/scripts/project-state.sh*)` và hai script khác.
+- **Read guard (1.2.0):** `validate-read.sh` chặn đọc nguyên file > 40 KB dưới `design/`, `docs/architecture/`, `production/session-state/` và trả về mục lục — một cổng tiết kiệm context hiếm thấy ở pack prompt.
+- **Gọi ra ngoài duy nhất:** `update-check.sh` gọi `api.github.com/repos/…/releases/latest` tối đa 1 lần/ngày, cache ngoài project, tắt khi có biến `CI`, tắt bằng `updates.check=false`; CHANGELOG nói rõ "nothing about your project is sent". Không có telemetry khác (grep hook/scripts).
+- **Kiểm chất lượng của chính pack:** `studio-tests/` có `catalog.yaml` (74 skill + 49 agent, cột `last_static/spec/category`), `quality-rubric.md`, spec hành vi cho từng skill; chạy bằng skill `/skill-test` (4 mode static/audit/spec/category) và `/skill-improve`. Tức là **test do model chạy trong phiên, không có CI**: `.github/` chỉ có FUNDING, CODEOWNERS, issue/PR template, không workflow. `catalog.yaml` trong repo để trống mọi cột kết quả.
+- **Engine ghim phiên bản:** `docs/engine-reference/{godot,unity,unreal}` (46 file), 1.2.0 chuyển Godot 4.7 / Unreal 5.8; issue #143 (19/10) báo tham chiếu Godot vẫn ghi sai một câu về D3D12 — mẫu "tài liệu tham chiếu tay" trôi so với upstream.
+
+### 3x.3 So với cùng nhóm và kết luận
+
+| Pack | ★ (2/11) | Quy mô | Cổng máy | Khác biệt |
+|---|---|---|---|---|
+| **Claude-Code-Game-Studios** | 33.171 | 49 agent · 74 skill · 15 hook · 14 rule | Hook bash ở 8 sự kiện, deny 130 mẫu, allowed-tools hẹp, read guard; test do model chạy, **không CI** | Một tác giả, 43 commit, 34 PR ngoài chưa merge, push cuối 19/10 |
+| `msitarzewski/agency-agents` (§3j) | ~165k | 283 persona, 18 phòng ban | installer 17 đích; không hook | 266 agent không khai tools → thừa hưởng mọi công cụ |
+| `wshobson/agents` (§3d) | 40,5k | 94 plugin, 202 agent, 184 skill | `make validate STRICT=1` + eval trong CI | Đa harness, phần lớn là prompt |
+| `affaan-m/ECC` (§3d, §3l) | 277,6k | 71 agent, 311 skill, 97 command | `tests/`, release | Harness tổng quát, không chuyên game |
+
+- **Đúng về cơ chế, hơn hẳn nhóm persona:** khác §3j, pack này khai tool/model cho từng agent, thu hẹp Bash theo script, và có hook thật ở cả hai đầu (trước commit/push/write, sau asset/skill). Đây là mẫu đáng học cho mục 03 §8f (agent teams) và 12 (least privilege cho subagent).
+- **Giới hạn:** (1) không có CI: "tests" là spec để model tự chấm, kết quả không được commit; (2) một người bảo trì, 0 PR ngoài merge trong khi 34 PR mở (có bản sửa lỗi dual-write `set-stage.sh` #147, cấp Edit cho skill #156) → fork sẽ phân mảnh; (3) chi phí token của 49 agent + 20k dòng skill chưa ai đo (issue không có số); (4) tham chiếu engine viết tay trôi (#143); (5) About "72" lệch README "74".
+- **Dùng thế nào:** "Use this template" rồi **đọc `settings.json` trước** (deny list là thứ bảo vệ bạn, không phải agent); giữ `updates.check=false` nếu không muốn gọi GitHub; chạy `/skill-test static` sau mỗi lần sửa skill; với engine thật, đối chiếu `docs/engine-reference/` với changelog chính thức của Godot/Unreal/Unity vì nó là bản chép tay.
+
+**Nguồn §3x:** ảnh người dùng gửi 2/11/2026 · clone `--filter=blob:none` 2/11/2026 (HEAD `05ad7c8`; `git ls-tree`, `git log`, `git tag`); LICENSE, README.md, CHANGELOG.md (1.2.0), `.claude/settings.json`, `.claude/agents/*.md` (frontmatter), `.claude/skills/*/SKILL.md` (frontmatter `allowed-tools`), `.claude/hooks/*` (`update-check.sh` :132–134, `validate-read.sh`), `.claude/rules/`, `.claude/scripts/`, `studio-tests/{README.md,catalog.yaml}`, `src/CLAUDE.md`, `.github/{FUNDING.yml,PULL_REQUEST_TEMPLATE.md}` · GitHub search API 2/11/2026 (repo, issues `is:issue is:open`, `is:pr is:open`, `is:pr is:merged -author:Donchitos`) · WebSearch 2/11/2026: gameproductionalchemist.substack.com/p/claude-code-game-studios-49-agents · martianlee.github.io/posts/2026-04-18-claude-code-game-studios-architecture (không thấy thảo luận HN/Reddit trực tiếp; các trang gom ghi 11k/19k★ là snapshot cũ)
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

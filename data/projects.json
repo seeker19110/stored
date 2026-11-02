@@ -72,7 +72,7 @@
       "product-research",
       "feature-management"
     ],
-    "count": 983,
+    "count": 990,
     "schema_version": 2
   },
   "projects": [
@@ -7336,7 +7336,7 @@
       "license": "License riêng (cấm phân phối lại; agent/cli MIT)",
       "stars": 5994,
       "open_source": false,
-      "notes": "35 transition CSS + token motion, guard reduced-motion; luật tĩnh agent/lib/rules.mjs; bản Pro và agent trả phí (gửi mã lên api.transitions.dev); refine --llm chạy curl cursor.com/install | bash; 1 tác giả, 73% commit trailer Claude; liên quan mục 22; ★ 31/10/2026 (GitHub API), mục 06 §7p",
+      "notes": "35 transition CSS + token motion, guard reduced-motion; luật tĩnh agent/lib/rules.mjs; bản Pro và agent trả phí (gửi mã lên api.transitions.dev); refine --llm chạy curl cursor.com/install | bash; 1 tác giả, 73% commit trailer Claude; liên quan mục 22; ★ 31/10/2026 (GitHub API), mục 06 §7p; trang transitions.dev 2/11/2026 ghi \"43+ crafted transitions\" (mục 06 §7v)",
       "section": "06",
       "id": "transitions-dev",
       "profile_path": "06-ui-ux-design/README.md"
@@ -12816,6 +12816,161 @@
         "https://github.com/Freedombuiders/AIOS-Lite/blob/750e0fd6ba87333eac9e840e8fddf31b739f00c3/README.md",
         "https://github.com/Freedombuiders/AIOS-Lite/blob/750e0fd6ba87333eac9e840e8fddf31b739f00c3/LICENSE",
         "https://github.com/Freedombuiders/AIOS-Lite/blob/750e0fd6ba87333eac9e840e8fddf31b739f00c3/modules/video/docs/dung-nhanh-architecture.md"
+      ]
+    },
+    {
+      "name": "Javis OS",
+      "repo": "blogminhquy/javis-os",
+      "category": "personal-agent",
+      "license": "MIT",
+      "stars": 537,
+      "open_source": true,
+      "notes": "Trợ lý tự host tiếng Việt 'thuê model, giữ não': FastAPI + dashboard JS, 14 brain (4 CLI thuê bao claude/codex/grok/agy + 10 API), MCP Hub quyền readonly/safe/full enforce trong code + audit jsonl, brain = thư mục markdown Obsidian + git undo, Telegram/Zalo/Slack/WhatsApp/Messenger; 1.531 commit/4 tháng, 4.116 trailer Co-Authored-By Claude, main.py 29,5k dòng, tests 1.017 file, CI pytest 2 shard; bind 127.0.0.1 + TOTP; engine Claude không allowlist → bypassPermissions; plugin Python chạy trong process bật mặc định; cập nhật git pull không tag; README có link Hostinger referral; ★ 2/11/2026: 537 (GitHub search API)",
+      "section": "02",
+      "id": "javis-os",
+      "profile_path": "02-agent-frameworks/README.md",
+      "profile_anchor": "02-agent-frameworks/README.md#4f-hồ-sơ-blogminhquyjavis-os-trợ-lý-tự-host-thuê-model-giữ-não-chạy-trên-cli-thuê-bao-link-người-dùng-gửi-clone-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "94b597415a370064cd33a7013b8eddc8dcbf5a7b",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/LICENSE",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/README.md",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/ARCHITECTURE.md",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/SECURITY.md",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/server/claude_sdk_engine.py",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/server/mcp_hub.py",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/install.sh",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/requirements.txt",
+        "https://github.com/blogminhquy/javis-os/blob/94b597415a370064cd33a7013b8eddc8dcbf5a7b/.github/workflows/ci.yml"
+      ]
+    },
+    {
+      "name": "Claude Code Game Studios",
+      "repo": "Donchitos/Claude-Code-Game-Studios",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 33171,
+      "open_source": true,
+      "notes": "Template Claude Code cho xưởng game: 49 agent (cả 49 khai tools/model), 74 skill (About ghi 72 cũ) đều khai allowed-tools hẹp, 15 hook bash ở 8 sự kiện (validate commit/push/write/read/assets, log subagent), deny 130 mẫu lệnh phá, read guard 40 KB, engine reference Godot 4.7/Unreal 5.8/Unity ghim tay; studio-tests do model chạy, không CI; 1 tác giả, 43 commit, 0 PR ngoài merge, 34 PR mở, push cuối 19/10/2026; update-check gọi GitHub ≤1/ngày tắt được; ★ 2/11/2026: 33.171 (GitHub search API)",
+      "section": "20",
+      "id": "claude-code-game-studios",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3x-kiểm-ảnh-donchitosclaude-code-game-studios-49-agent--74-skill--15-hook-làm-xưởng-game-trong-một-phiên-claude-code-ảnh-người-dùng-gửi-clone-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE",
+        "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/README.md",
+        "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/settings.json",
+        "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/.claude/hooks/update-check.sh",
+        "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/CHANGELOG.md",
+        "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/studio-tests/README.md"
+      ]
+    },
+    {
+      "name": "OpenWorker",
+      "repo": "andrewyng/openworker",
+      "category": "personal-agent",
+      "license": "MIT",
+      "stars": 18866,
+      "open_source": true,
+      "notes": "Đồng nghiệp AI desktop (Tauri 2 + React, server Python trên aisuite): floor human-only trong code, approval mặc định (auto_approve=False), audit provenance, sandbox NVIDIA OpenShell per agent (opt-in, từ chối chạy khi không dựng được), updater ký minisign; 82 contributor, 215 PR ngoài merge, CI pytest cov + tsc; telemetry 1 câu default-on khi đăng nhập cloud tùy chọn; Windows chưa ký, Linux chưa bundle; ★ 2/11/2026: 18.866 (GitHub search API)",
+      "section": "02",
+      "id": "openworker",
+      "profile_path": "02-agent-frameworks/README.md",
+      "profile_anchor": "02-agent-frameworks/README.md#4g-hồ-sơ-andrewyngopenworker-openworker-đồng-nghiệp-ai-desktop-giao-việc-xong-quản-trị-bằng-kiến-trúc-sandbox-nvidia-openshell-ảnh-readme-người-dùng-gửi-clone-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "5e3d7261f203bbd94a91fa10856d29aad0bfaeae",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/LICENSE",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/README.md",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/SECURITY.md",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/coworker/cloud.py",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/coworker/config.py",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/docs/openshell.md",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/surfaces/gui/src-tauri/tauri.conf.json",
+        "https://github.com/andrewyng/openworker/blob/5e3d7261f203bbd94a91fa10856d29aad0bfaeae/.github/workflows/ci.yml"
+      ]
+    },
+    {
+      "name": "posts.design",
+      "repo": null,
+      "url": "https://posts.design/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Gallery bài đăng mạng xã hội thật (launch, carousel, OG image, X header) link về bản gốc; preview 48/2218 reference; có llms.txt, trang .md, API post-search/gallery và MCP posts.design/mcp (OAuth, 100 credit/tháng free, 1.000 Pro); chỉ học kỹ thuật, không tái dùng asset; người vận hành không ghi tên; đọc 2/11/2026",
+      "section": "06",
+      "id": "posts-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7v-năm-trang-cảm-hứng-thiết-kế-postsdesign-saaspo-transitionsdev-icon-museum-font-in-logo-danh-sách-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://posts.design/",
+        "https://posts.design/llms.txt"
+      ]
+    },
+    {
+      "name": "Saaspo",
+      "repo": null,
+      "url": "https://saaspo.com/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Gallery landing page và màn hình SaaS lọc theo section, cộng đồng gửi, newsletter; Product Hunt ghi ra 29/11/2023, free forever (chưa xác minh, trang trả 403 khi fetch); không API; ảnh là tài sản các công ty SaaS; đọc 2/11/2026",
+      "section": "06",
+      "id": "saaspo",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7v-năm-trang-cảm-hứng-thiết-kế-postsdesign-saaspo-transitionsdev-icon-museum-font-in-logo-danh-sách-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.producthunt.com/products/saaspo"
+      ]
+    },
+    {
+      "name": "Icon Museum",
+      "repo": null,
+      "url": "https://icon.museum/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Gallery app icon iOS tuyển chọn, tìm kiếm, email tuần; nguồn gom ghi 131 icon iOS, macOS coming soon, tác giả Christo Todorov (chưa xác minh, trang chỉ trả về title khi fetch); icon là nhãn hiệu từng app; đọc 2/11/2026",
+      "section": "06",
+      "id": "icon-museum",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7v-năm-trang-cảm-hứng-thiết-kế-postsdesign-saaspo-transitionsdev-icon-museum-font-in-logo-danh-sách-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.awwwards.com/sites/icon-museum",
+        "https://www.microsaasexamples.com/p/icon-museum"
+      ]
+    },
+    {
+      "name": "Font in Logo",
+      "repo": null,
+      "url": "https://fontinlogo.com/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Tra font trong logo nổi tiếng với nhãn Verified / The Closest Font / Based On / Community Suggestion (chỉ Verified là đối chiếu nguồn); made by azwedo.com (studio template Webflow), '30,000+ active users' tự nhận; free + trang Pro; nhiều mục Promoted dẫn tới template của chính Azwedo, link ngoài ref=fontinlogo; đọc 2/11/2026",
+      "section": "06",
+      "id": "font-in-logo",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7v-năm-trang-cảm-hứng-thiết-kế-postsdesign-saaspo-transitionsdev-icon-museum-font-in-logo-danh-sách-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://fontinlogo.com/"
       ]
     }
   ]

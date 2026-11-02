@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g)",
     "columns": [
       "deeper",
       "shallower",
@@ -10,7 +10,7 @@
       "not_adding"
     ],
     "updated": "2026-11-02",
-    "count": 108,
+    "count": 110,
     "current_batch": {
       "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
       "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
@@ -2347,6 +2347,82 @@
         "level": "SHOULD",
         "text": "Thêm cạnh CMP-LIC-022 một mục SHOULD cho asset media bundle trong repo, skill, plugin hay template (âm thanh, nhạc, font, ảnh, video mẫu): mỗi file có dòng trong `assets/MANIFEST.json` (hoặc LICENSES.md) ghi nguồn, tác giả, license SPDX/CC, URL gốc, ngày kiểm và biến đổi đã áp; chỉ bundle license cho phép phân phối lại (CC0, CC-BY kèm credit, license của chính dự án); asset royalty-free cấm phân phối lại (Mixkit, Pixabay, Envato…) chỉ tải lúc chạy vào dự án người dùng và được ghi vào CREDITS khi dùng. Kiểm: script CI liệt kê mọi file media trong repo và fail khi thiếu dòng manifest hoặc license không thuộc danh sách cho phép; với video/audio xuất bản, pipeline ghi CREDITS.txt từ manifest."
       }
+    },
+    {
+      "id": "XT-H-109",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "02 §4f",
+        "20 §3x"
+      ],
+      "profile_anchors": [
+        "02-agent-frameworks/README.md#4f-hồ-sơ-blogminhquyjavis-os-trợ-lý-tự-host-thuê-model-giữ-não-chạy-trên-cli-thuê-bao-link-người-dùng-gửi-clone-2112026",
+        "20-claude-plugins-ecosystem/README.md#3x-kiểm-ảnh-donchitosclaude-code-game-studios-49-agent--74-skill--15-hook-làm-xưởng-game-trong-một-phiên-claude-code-ảnh-người-dùng-gửi-clone-2112026"
+      ],
+      "lesson": "Harness quanh Claude Agent SDK/Claude Code: khi allowlist tool TRỐNG, Javis OS rơi vào permission_mode=bypassPermissions và nạp settings máy (claude_sdk_engine.py:885), tức 'thiếu cấu hình' = mở toàn quyền; ngược lại Claude-Code-Game-Studios khai tools/model cho cả 49 agent, allowed-tools hẹp theo script cho 74/74 skill, deny 130 mẫu lệnh phá trong settings.json. 'Không có allowlist' phải fail-closed.",
+      "xt_ids": [
+        "SEC-AI-002",
+        "LOOP-HARNESS-032"
+      ],
+      "column": "deeper",
+      "existing_coverage": "SEC-AI-002 đã yêu cầu allowlist tường minh từng agent/vai/bước và deny-by-default enforce bằng code; LOOP-HARNESS-032 yêu cầu cấu hình harness không tự mở rộng quyền.",
+      "delta": "Không thêm ID; đề xuất ví dụ phản mẫu vào bẫy của SEC-AI-002: nhánh fallback 'allowlist rỗng → bypassPermissions + setting_sources user/project/local' và cách kiểm (test khởi tạo engine với allowlist rỗng phải DENY hoặc từ chối chạy).",
+      "related_handoffs": [
+        "XT-H-024",
+        "XT-H-032"
+      ],
+      "xt_evidence": [
+        {
+          "id": "SEC-AI-002",
+          "file": "framework/12-security/ai-security.md",
+          "line": 54,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/12-security/ai-security.md#L54"
+        },
+        {
+          "id": "LOOP-HARNESS-032",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 292,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/11-autonomous-loop/harness-files.md#L292"
+        }
+      ],
+      "note": "Đã có ID (deny-by-default enforce bằng code; cấu hình harness không tự mở rộng quyền). Gợi ý thêm bẫy, không thêm ID: Thêm vào phần bẫy của SEC-AI-002 một dòng: wrapper gọi Claude Agent SDK/claude -p hoặc CLI agent khác KHÔNG được coi allowlist rỗng là 'cho phép tất cả' (permission_mode=bypassPermissions, --dangerously-skip-permissions, nạp settings máy người dùng); allowlist rỗng → từ chối khởi tạo hoặc chạy ở chế độ chỉ đọc. Kiểm: unit test khởi tạo engine với allowed_tools=[] phải ném lỗi hoặc gate DENY mọi tool; grep CI chặn chuỗi bypassPermissions/dangerously-skip-permissions ngoài file test."
+    },
+    {
+      "id": "XT-H-110",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "02 §4g"
+      ],
+      "profile_anchors": [
+        "02-agent-frameworks/README.md#4g-hồ-sơ-andrewyngopenworker-openworker-đồng-nghiệp-ai-desktop-giao-việc-xong-quản-trị-bằng-kiến-trúc-sandbox-nvidia-openshell-ảnh-readme-người-dùng-gửi-clone-2112026"
+      ],
+      "lesson": "OpenWorker tách 'floor' (thao tác human-only mà không mode nào kể cả auto-approve hạ được) khỏi 'ladder' (duyệt một lần → luật → allowlist cấu hình); sandbox OpenShell per agent 'secrets are absent, not denied' và TỪ CHỐI chạy khi không dựng được sandbox thay vì chạy mở; mức enforcement ghi vào từng tool-call event trong audit.",
+      "xt_ids": [
+        "LOOP-HARNESS-022",
+        "SEC-AI-002"
+      ],
+      "column": "deeper",
+      "existing_coverage": "LOOP-HARNESS-022 đã yêu cầu sandbox mức OS với egress allowlist cho autopilot; SEC-AI-002 deny-by-default enforce bằng code.",
+      "delta": "Không thêm ID; ghi hai ví dụ tốt cho phần bẫy: (a) 'thiếu sandbox → từ chối chạy' thay vì fallback chạy mở; (b) tầng floor không hạ được bởi auto-approve, ghi provenance quyết định (auto/user/denied + lý do reviewer) vào audit.",
+      "related_handoffs": [
+        "XT-H-109",
+        "XT-H-024"
+      ],
+      "xt_evidence": [
+        {
+          "id": "LOOP-HARNESS-022",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 282,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/11-autonomous-loop/harness-files.md#L282"
+        },
+        {
+          "id": "SEC-AI-002",
+          "file": "framework/12-security/ai-security.md",
+          "line": 54,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/12-security/ai-security.md#L54"
+        }
+      ],
+      "note": "Đã có ID. Gợi ý ví dụ cho bẫy LOOP-HARNESS-022: khi sandbox/devcontainer không khởi tạo được, phiên autopilot phải dừng (fail-closed) và ghi mức enforcement vào mỗi tool-call; không chạy tiếp trên host. Gợi ý cho SEC-AI-002: phân biệt floor (bất biến) và ladder (allowlist nới dần, có thu hồi)."
     }
   ]
 }
