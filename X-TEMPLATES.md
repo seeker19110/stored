@@ -285,4 +285,4 @@ Nguồn: 32 bài học từ phần "Nâng trần 2/11/2026" của 23 mục. ID �
 - **Đã gửi đề xuất (2/11/2026):** X-Templates PR [#408](https://github.com/seeker19110/X-Templates/pull/408) (`research/2026-11-02-stored-delta-ceiling.md`, `XT-H-061…093`, ID đối chiếu ở `1abbde2`, chỉ đề xuất). Lần trích kế tiếp lấy từ commit sau merge PR #102 của `stored`.
 - Khi X-Templates đã xử lý một dòng, ghi lại trong research note phía X-Templates; `stored` không sửa trạng thái thay X-Templates (theo phạm vi kho ở `WORKFLOW.md`).
 
-- **Đề xuất đã đối chiếu trong stored (2026-11-02):** XT-H-094…105 ở §4d, từ base `a1413e6`; catalog có 5 chuyên mục mới và 23 mục cũ được mở sâu. Chưa gửi PR sang repo X-Templates trong đợt này.
+- **Đề xuất đã đối chiếu trong stored (2026-11-02):** XT-H-094…105 ở §4d, từ base `a1413e6`; catalog có 5 chuyên mục mới và 23 mục cũ được mở sâu. Đã gửi [PR đề xuất #410](https://github.com/seeker19110/X-Templates/pull/410) (`research/2026-11-02-stored-delta-28-sections.md`); chờ xem xét, không bật auto-merge.
