@@ -760,3 +760,139 @@
 
 - `benjitaylor/skills`: ảnh infographic người dùng gửi 2/11/2026 (@shannholmberg, "The Head of Design at X open-sourced his taste"); clone `--filter=blob:none` (1 commit, HEAD `8020574` 30/10/2026); trang GitHub 2/11/2026: 622★/29 fork; `stageshow/LICENSE` MIT, `NOTICE.md` (icon/logo theo license riêng). Đọc SKILL.md, references/*, kit/{looks.ts, act.ts}, scripts/{film,browser,dev}.mjs, assets/app-icons.ts; chạy `npm ci --ignore-scripts`, `npm run typecheck`, `npm run check:css` (sạch); chưa chạy quay phim. Mục 06 §7s.
 - Web 2/11/2026: benji.org/stageshow (31/10/2026) · theblock.co/post/395222/elon-musk-taps-benji-taylor · pymnts.com/?p=3595047 · kucoin.com/news/flash/x-platform-appoints-benji-taylor-as-head-of-design · không thấy review độc lập; số view/bookmark (732K/16,7K) chỉ có trong ảnh (chưa xác minh).
+
+## Bổ sung 2026-11-02d (nâng trần 23 mục)
+
+- Phương pháp: 6 agent song song, mỗi agent 3–4 mục; số sao/license/ngày push lấy từ GitHub search API 2/11/2026, sau đó điều phối viên chạy lại tra cứu tất định cho cả 119 repo (tên, sao lệch ≤ 5%, không archive: khớp hết); clone `--depth 1 --filter=blob:none`, chỉ đọc file, không chạy mã repo ngoài. Nhận định quan trọng nhất mỗi mục được kiểm đối kháng thêm một lượt (xem từng mục).
+- `SWE-bench/SWE-bench`: clone 2/11/2026 (HEAD 02e7a74 2/9/2026); đọc README, LICENSE, CHANGELOG, swebench/cli, swebench/harness/{run_evaluation,grading,infra_failure}.py; mục 01 §3k
+- `scaleapi/SWE-bench_Pro-os`: clone 2/11/2026 (HEAD 66f9276 22/9/2026); đọc README, LICENSE, v2/README.md, v2/GATE.md; mục 01 §3k
+- `microsoft/SWE-bench-Live`: clone 2/11/2026 (HEAD 62d0293 25/9/2026); đọc README, LICENSE, curation/, evaluation/; mục 01 §3k
+- `multi-swe-bench/multi-swe-bench`: clone 2/11/2026 (HEAD 24f493f 18/12/2025); đọc README, LICENSE; mục 01 §3k
+- `open-telemetry/semantic-conventions-genai`: clone 2/11/2026 (HEAD 16f3130 2/11/2026); đọc README, CHANGELOG, docs/gen-ai/{README,gen-ai-agent-spans,mcp,a2a}.md, reference/README.md; `open-telemetry/semantic-conventions` docs/gen-ai/README.md (trang Moved); mục 02 §4d
+- `Arize-ai/openinference`: clone 2/11/2026 (HEAD 5c68f3a 1/11/2026); đọc LICENSE, spec/{semantic_conventions,annotations}.md, cây python/instrumentation, js/packages; mục 02 §4d
+- `ShishirPatil/gorilla`: clone sparse 2/11/2026 (HEAD 6ea5797 23/3/2026); đọc berkeley-function-call-leaderboard/{README,CHANGELOG,pyproject.toml}; mục 02 §4d
+- `THUDM/AgentBench`: clone 2/11/2026 (HEAD d1e4a10 9/2/2026); đọc README, LICENSE; mục 02 §4d
+- `ysymyth/ReAct`: clone 2/11/2026 (HEAD 6bdb3a1 14/7/2023); đọc README, LICENSE, notebook; mục 03 §8i
+- `noahshinn/reflexion`: clone 2/11/2026 (HEAD 218cf0e 13/1/2025); đọc README, LICENSE, programming_runs/reflexion.py; mục 03 §8i
+- `princeton-nlp/tree-of-thought-llm`: clone 2/11/2026 (HEAD 8050e67 16/1/2025); đọc README, LICENSE, run.py, src/tot/methods/bfs.py; mục 03 §8i
+- `andyz245/LanguageAgentTreeSearch` (clone qua lapisrocks/…): clone 2/11/2026 (HEAD 853d816 30/7/2024); đọc README, LICENSE, programming/mcts.py; mục 03 §8i
+- `langchain-ai/agentevals`: clone 2/11/2026 (HEAD 946ad15 13/7/2026); đọc README, LICENSE, python/pyproject.toml, js/package.json, python/agentevals/trajectory/match.py; mục 03 §8i
+- `temporalio/sdk-python`: clone 2/11/2026 (HEAD c1a79fb 30/10/2026); đọc pyproject.toml, temporalio/contrib/*/README.md (chuyển hướng); mục 21 §10e
+- `temporalio/ai-integrations`: clone 2/11/2026 (HEAD 88745dc 31/10/2026); đọc LICENSE, python/openai_agents/README.md, Release stage các plugin; mục 21 §10e
+- `hatchet-dev/hatchet`: clone 2/11/2026 (HEAD 964f6bc 31/10/2026); đọc LICENSE, README, CHANGELOG, AI_POLICY.md, pkg/config/server/server.go, pkg/config/loader/loader.go; mục 21 §10e
+- `earendil-works/absurd`: clone 2/11/2026 (HEAD 3cfc64f 20/10/2026); đọc LICENSE, README, CHANGELOG, docs/{concepts,storage}.md, docs/patterns/cron.md; mục 21 §10e
+- `cloudevents/spec`: clone 2/11/2026 (HEAD 1025510 22/10/2026); đọc LICENSE, README, cloudevents/spec.md, v2.md, extensions/, bindings/; mục 21 §10e
+- `zizmorcore/zizmor`: clone 2/11/2026 (HEAD fbf8d0c 2/11/2026); đọc LICENSE, README, Cargo.toml, crates/zizmor/src/audit/; mục 21 §10e
+- `rhysd/actionlint`: clone 2/11/2026 (HEAD 011a6d1 19/4/2026); đọc LICENSE.txt, README, CHANGELOG; mục 21 §10e
+- Web: https://opentelemetry.io/docs/specs/semconv/gen-ai/ · https://gorilla.cs.berkeley.edu/leaderboard.html · https://temporal.io/blog/announcing-openai-agents-sdk-integration · https://lucumr.pocoo.org/2025/11/3/absurd-workflows/ · https://docs.zizmor.sh/audits/ · arXiv 2210.03629, 2303.11366, 2305.10601, 2310.04406, 2505.23419, 2504.02605 (link, chưa đọc lại paper)
+- `modelcontextprotocol/conformance`: clone 2/11/2026 (HEAD c37eec8 1/10/2026); đọc LICENSE, README.md, SDK_INTEGRATION.md, package.json, action.yml, requirements/, src/scenarios/; mục 04 §4c
+- `MCPJam/inspector`: clone 2/11/2026 (HEAD 3ac40bd 2/11/2026); đọc LICENSE, mcpjam-inspector/server/evals/LICENSE, README.md, shared/telemetry-privacy.ts, `server/utils/__tests__/analytics.test.ts`; mục 04 §4c
+- `modelcontextprotocol/mcpb`: clone 2/11/2026 (HEAD 70fe3b3 22/4/2026); đọc LICENSE, README.md, CLI.md, schemas/, package.json; mục 04 §4c
+- `cisco-ai-defense/mcp-scanner`: clone 2/11/2026 (HEAD 21a87b4 28/10/2026); đọc LICENSE, README.md, workflows, claude-code-plugin/; mục 04 §4c
+- `a2aproject/a2a-tck`: clone 2/11/2026 (HEAD d4d6fae 22/10/2026); đọc LICENSE, README.md; mục 04 §4c
+- `a2aproject/a2a-inspector`: clone 2/11/2026 (HEAD ab8b9f4 29/10/2026); đọc README.md; mục 04 §4c
+- `vale-cli/vale`: clone 2/11/2026 (HEAD 0d9e802 31/10/2026); đọc LICENSE, README.md, cmd/vale/; mục 16 §2h
+- `lycheeverse/lychee`: clone 2/11/2026 (HEAD d9d97b5 26/10/2026); đọc LICENSE-MIT, LICENSE-APACHE, README.md; mục 16 §2h
+- `streetsidesoftware/cspell`: clone 2/11/2026 (HEAD 3fe60c4 28/10/2026); đọc LICENSE, README.md, packages/; `streetsidesoftware/cspell-dicts` ls-tree dictionaries/ (có vi_VN); mục 16 §2h
+- `crate-ci/typos`: clone 2/11/2026 (HEAD 2131712 1/11/2026); đọc LICENSE-*, README.md; mục 16 §2h
+- `DavidAnson/markdownlint`: clone 2/11/2026 (HEAD 5dd44fe 20/10/2026); đọc LICENSE, README.md, doc/; mục 16 §2h
+- `evildmp/diataxis-documentation-framework`: clone 2/11/2026 (HEAD 957c09c 6/8/2026); đọc LICENSE.rst, source/, translation/; mục 16 §2h
+- `microsoft/prompty`: clone 2/11/2026 (HEAD a4e8dcd 21/10/2026); đọc LICENSE, README.md, spec/, schema/model/conformance/, runtime/; mục 17 §4c
+- `google/dotprompt`: clone 2/11/2026 (HEAD 856196b 5/10/2026); đọc LICENSE, README.md, spec/; mục 17 §4c
+- `ianarawjo/ChainForge`: clone 2/11/2026 (HEAD 22af554 29/10/2026); đọc LICENSE.md, README.md; mục 17 §4c
+- `confident-ai/deepteam`: clone 2/11/2026 (HEAD 6306f0f 23/10/2026); đọc LICENSE.md, README.md, deepteam/telemetry.py; mục 17 §4c
+- `liu00222/Open-Prompt-Injection`: clone 2/11/2026 (HEAD fbed5cc 27/9/2026); đọc LICENSE, README.md; mục 17 §4c
+- `microsoft/SkillOpt`: clone 2/11/2026 (HEAD bc0a392 29/10/2026); đọc LICENSE, README.md, pyproject.toml, docs/sleep/README.md; mục 17 §4c
+- `agent-sh/agnix`: clone 2/11/2026 (HEAD 0bdcbc19 2/11/2026); đọc LICENSE-*, README.md, knowledge-base/rules.json, crates/agnix-cli/{Cargo.toml,src/telemetry/}; mục 20 §3v
+- `NVIDIA/SkillEvaluator`: clone 2/11/2026 (HEAD 3633954 2/11/2026); đọc LICENSE, README.md; mục 20 §3v
+- `mgechev/skillgrade`: clone 2/11/2026 (HEAD ab2afd7 11/10/2026); đọc LICENSE, README.md; mục 20 §3v
+- `UiPath/coder_eval`: clone 2/11/2026 (HEAD 484c3d5 30/10/2026); đọc LICENSE, README.md, src/coder_eval/agents/; mục 20 §3v
+- `darkrishabh/agent-skills-eval`: clone 2/11/2026 (HEAD f10ae2b 29/9/2026); đọc LICENSE, README.md; mục 20 §3v
+- Web: https://code.claude.com/docs/en/plugins-reference · https://code.claude.com/docs/en/plugin-evals.md (đọc 2/11/2026); mục 20 §3v
+- GitHub search API 2/11/2026: `repo:` từng repo + truy vấn "mcp conformance", "diataxis in:name", "llms.txt", "red teaming llm", "prompt testing", "prompt injection benchmark", "SKILL.md lint", "agent skills eval", "skill eval trigger"; mục 04/16/17/20
+- `open-workflow-specification/specification` (clone từ tên cũ serverlessworkflow/specification): clone 2/11/2026 (HEAD 2108908 2/11/2026); đọc LICENSE, README.md, schema/, ctk/README.md, ctk/features/, examples/; mục 05 §Nâng trần 2/11
+- `OAI/Arazzo-Specification`: clone 2/11/2026 (HEAD e9ee1c4 28/10/2026); đọc README.md, versions/1.1.0.md; mục 05 §Nâng trần 2/11
+- `cloudevents/spec`: clone 2/11/2026 (HEAD 1025510 22/10/2026); đọc cloudevents/spec.md; mục 05 §Nâng trần 2/11
+- `stoplightio/spectral`: clone 2/11/2026 (HEAD 0b4889e 30/10/2026); đọc README.md, docs/getting-started/{1-concepts,3-rulesets,6-arazzo}.md, packages/cli/package.json; mục 05 §Nâng trần 2/11
+- `node-red/node-red`: clone 2/11/2026 (HEAD 22d019c 26/10/2026); đọc LICENSE, package.json, packages/node_modules/node-red/settings.js; mục 05 §Nâng trần 2/11
+- `open-telemetry/semantic-conventions`: clone 2/11/2026 (HEAD fb30ca1 1/11/2026); đọc docs/gen-ai/README.md (thông báo đã chuyển); mục 07 §Nâng trần 2/11
+- `open-telemetry/semantic-conventions-genai`: clone 2/11/2026 (HEAD 16f3130 2/11/2026); đọc README.md, CHANGELOG.md, versions.env, docs/gen-ai/*.md, reference/README.md, reference/scenarios/; mục 07 §Nâng trần 2/11
+- `open-telemetry/weaver`: clone 2/11/2026 (HEAD 8ed44ad 1/11/2026); đọc README.md, docs/usage.md; mục 07 §Nâng trần 2/11
+- `Arize-ai/openinference`: clone 2/11/2026 (HEAD 5c68f3a 1/11/2026); đọc LICENSE, README.md, spec/configuration.md, python/instrumentation/, js/packages/openinference-genai/README.md; mục 07 §Nâng trần 2/11
+- `openlit/openlit`: clone 2/11/2026 (HEAD 1ed8bb7 22/10/2026); đọc LICENSE, README.md, docker-compose.yml, `sdk/python/src/openlit/__init__.py`, grep posthog; mục 07 §Nâng trần 2/11
+- `UKGovernmentBEIS/inspect_evals`: clone 2/11/2026 (HEAD ca99b73 2/11/2026); đọc LICENSE, README.md, EVALUATION_CHECKLIST.md, TASK_VERSIONING.md, .github/workflows/; mục 07 §Nâng trần 2/11
+- `allenai/reward-bench`: clone 2/11/2026 (HEAD 59f6ff7 14/10/2026); đọc LICENSE, README.md, scripts/; mục 07 §Nâng trần 2/11
+- `prometheus-eval/prometheus-eval` (HEAD dcfb442 24/4/2025) và `ScalerLab/JudgeBench` (search API): loại vì dừng; mục 07 §Nâng trần 2/11
+- `mitre-atlas/atlas-data`: clone 2/11/2026 (HEAD f56c146 28/10/2026); đọc LICENSE, README.md, CHANGELOG.md, dist/manifest.yaml, dist/ATLAS-latest.yaml; mục 12 §4c
+- `sigstore/model-transparency`: clone 2/11/2026 (HEAD 5b8efd5 26/10/2026); đọc LICENSE, README.md, pyproject.toml, `src/model_signing/__init__.py`; mục 12 §4c
+- `trailofbits/fickling`: clone 2/11/2026 (HEAD 79ae401 31/10/2026); đọc LICENSE, README.md; mục 12 §4c
+- `protectai/modelscan`: clone 2/11/2026 (HEAD 61fcec9 18/2/2026); đọc LICENSE, README.md, pyproject.toml; mục 12 §4c
+- `slsa-framework/slsa`: clone 2/11/2026 (HEAD 4d3f9d4 28/10/2026); đọc LICENSE.md, spec/whats-new.md, spec/, www/_data/versions.yml, www/_posts/; mục 13 §6h
+- `zizmorcore/zizmor`: clone 2/11/2026 (HEAD fbf8d0c 2/11/2026); đọc LICENSE, Cargo.toml, docs/{usage,release-notes}.md, crates/zizmor/src/audit/; mục 13 §6h
+- `rhysd/actionlint`: clone 2/11/2026 (HEAD 011a6d1 19/4/2026); đọc LICENSE.txt, README.md; mục 13 §6h
+- `anchore/grype`: clone 2/11/2026 (HEAD cb4a51d 30/10/2026); đọc LICENSE, README.md; mục 13 §6h
+- `step-security/harden-runner`: clone 2/11/2026 (HEAD 46b06ce 27/10/2026); đọc LICENSE, README.md, action.yml, src/checksum.ts, src/bravo-config.ts; mục 13 §6h
+- Web: https://www.nist.gov/itl/ai-risk-management-framework · https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence · https://doi.org/10.6028/NIST.AI.600-1 · bên thứ ba về trạng thái sửa đổi: https://ai-era.pages.dev/frameworks/nist-ai-600-1 ; mục 12 §4c
+- GitHub search API 2/11/2026 (truy vấn `repo:` gộp nhiều repo; `open workflow specification in:name`), mục 05, 07, 12, 13
+- `vercel-labs/web-interface-guidelines`: clone 2/11/2026 (HEAD 434b7f9 5/10/2026); đọc README.md, command.md, AGENTS.md, install.sh, LICENSE; mục 06 §7t
+- `addyosmani/web-quality-skills`: clone 2/11/2026 (HEAD afa8da9 24/8/2026); đọc README.md, skills/*/SKILL.md, skills/web-quality-audit/scripts/analyze.sh, LICENSE; mục 06 §7t
+- `dequelabs/axe-core`: clone 2/11/2026 (HEAD 6b52b84 21/10/2026); đọc README.md, LICENSE, package.json, lib/rules/, doc/rule-descriptions.md, .github/workflows/; mục 06 §7t
+- `jsx-eslint/eslint-plugin-jsx-a11y`: clone 2/11/2026 (HEAD 8f75961 3/1/2026); đọc package.json, src/rules/; mục 06 §7t
+- `stylelint/stylelint`: clone 2/11/2026 (HEAD 106c1f0 29/10/2026); đọc package.json, lib/rules/; mục 06 §7t
+- `design-tokens/community-group`: clone 2/11/2026 (HEAD 882ebd6 8/9/2026); đọc README.md, LICENSE.md, technical-reports/, schemas/, test-suite/; mục 06 §7t
+- `style-dictionary/style-dictionary`: clone 2/11/2026 (HEAD 3815256 28/10/2026); đọc README.md, package.json, CHANGELOG.md, lib/; mục 06 §7t
+- `radix-ui/colors`: clone 2/11/2026 (HEAD dbdb854 17/12/2025); đọc README.md, package.json; mục 06 §7t
+- `evilmartians/harmony`: clone 2/11/2026 (HEAD 6dae4f3 24/7/2026); đọc README.md, package.json; mục 06 §7t
+- `seek-oss/capsize`: clone 2/11/2026 (HEAD 1fcf40a 15/10/2026); đọc README.md, packages/core/package.json; mục 06 §7t
+- `argos-ci/argos`: clone 2/11/2026 (HEAD 0b85846 30/10/2026); đọc README.md, LICENSE, docker-compose.yml, .env.example, infra/README.md, apps/backend/package.json; mục 06 §7t
+- `mapbox/pixelmatch`: clone 2/11/2026 (HEAD ab76f52 6/10/2026); đọc README.md, LICENSE, index.js, package.json; mục 06 §7t
+- `Myndex/apca-w3` (không thêm): clone 2/11/2026 (HEAD 6c5c066 6/5/2026); đọc LICENSE.md (Limited W3 License, All Rights Reserved, patent pending, ngoài phạm vi W3 là AGPL v3), package.json; mục 06 §7t
+- `garris/BackstopJS` (a11d365), `reg-viz/reg-suit` (5c09c8e), `raunofreiberg/interfaces` (81f523a, không LICENSE), `argyleink/open-props` (f39ab7c), không thêm: clone 2/11/2026, đọc package.json/README; mục 06 §7t
+- `jitsi/jiwer` (HEAD 2227002 16/4/2026), `huggingface/open_asr_leaderboard` (edd6842 30/10/2026; normalizer/normalizer.py), `Picovoice/speech-to-text-benchmark` (aea7914 7/10/2026; engine.py), `sarulab-speech/UTMOSv2` (cc2700d 2/4/2026), `ServiceNow/eva` (236f4ea 29/10/2026; .env.example), `OpenBMB/UltraEval-Audio` (c0be484 28/10/2026), `facebookresearch/audioseal` (98f56cd 2/11/2026): clone 2/11/2026; đọc README, LICENSE, manifest; mục 14 §5d
+- `c2pa-org/specifications` (HEAD 66ee450 28/10/2026; softbinding-alg-list/softbinding-algorithm-list.json), `contentauth/c2pa-rs` (35866a0 2/11/2026; LICENSE-APACHE, LICENSE-MIT, sdk/Cargo.toml), `facebookresearch/videoseal` (870ca7f 2/7/2026), `Netflix/vmaf` (4611e47 30/10/2026; resource/doc/models_v1.md), `slhck/ffmpeg-quality-metrics` (e4aafcb 25/10/2026), `Vchitect/VBench` (fd18b3d 21/8/2026): clone 2/11/2026; đọc README, LICENSE; mục 19 §3d
+- `lottie/lottie-spec` (HEAD 4b55957 29/5/2026; License.md, package.json, schema/, tests/animations/), `GoogleChrome/web-vitals` (e773747 16/10/2026; README.md, package.json): clone 2/11/2026; mục 22 §9g
+- Web 2/11/2026: https://www.w3.org/WAI/news/2025-10-21/wcag22-iso (WCAG 2.2 = ISO/IEC 40500:2025); https://www.designtokens.org/TR/2025.10/; github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/1081 và github.com/peerigon/configs/issues/213 (ESLint 10); mục 06 §7t
+- Web 2/11/2026: https://spec.c2pa.org/specifications/specifications/2.3/specs/_attachments/C2PA_Specification.pdf; https://softwareseni.com/c2pa-adoption-in-2026-hardware-platforms-and-verification-reality (bài tổng hợp); https://en.wikipedia.org/wiki/EBU_R_128; https://ibc.org/trends/ebu-tackles-loudness-in-streaming-with-r128-update/6830.article; mục 19 §3d
+- Web 2/11/2026: https://developer.apple.com/design/human-interface-guidelines/motion (.md, change log 9/9/2025); https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria; https://www.linuxfoundation.org/press/lottie-animation-community-announces-lottie-v1.0-specification; https://www.w3.org/TR/mediaqueries-5/; m3.material.io không đọc được, token theo https://pub.dev/packages/material_expressive (chưa xác minh); mục 22 §9g
+- GitHub search API 2/11/2026: `repo:` cho 39 repo và truy vấn từ khoá (word error rate, MOS prediction, TTS evaluation, ASR benchmark leaderboard, voice agent evaluation, c2pa, vmaf, video generation benchmark, watermark audio video, lottie spec, reduced motion, theatre animation, web-vitals, UTMOS, DNSMOS, open_asr_leaderboard, speech-to-text-benchmark, audioseal OR videoseal); mục 06/14/19/22
+- `stanford-cs336/assignment1-basics`: clone 2/11/2026 (HEAD a158843 7/4/2026); đọc LICENSE, README.md, CHANGELOG.md, AGENTS.md, CLAUDE.md, tests/; mục 08 §4
+- `huggingface/course`: clone 2/11/2026 (HEAD 8b893f0 6/10/2026); đọc LICENSE, README.md, chapters/en/_toctree.yml, cây chapters/vi, .github/workflows/quality.yml; `huggingface/llm-course` (aaee936) chỉ có README; mục 08 §4
+- `stas00/ml-engineering`: clone 2/11/2026 (HEAD dfcd0f8 1/11/2026); đọc LICENSE-CC-BY-SA, README.md, SKILL.md, skills/, script benchmark; mục 08 §4
+- `huggingface/evaluation-guidebook`: clone 2/11/2026 (HEAD e09b159 3/12/2025); đọc LICENSE, README.md, contents/; mục 08 §4
+- `google-research/tuning_playbook`: clone 2/11/2026 (HEAD 7554a51 12/6/2024); đọc LICENSE, README.md; mục 08 §4
+- `anthropics/courses`: clone 2/11/2026 (HEAD f4dbb13 13/11/2025, archived); đọc LICENSE, README.md, đếm model ID trong ipynb; mục 08 §4
+- `ossf/security-baseline`: clone 2/11/2026 (HEAD c62696c 29/10/2026); đọc LICENSE, README.md, baseline/OSPS-*.yaml, baseline/mappings/, .github/workflows/baseline-scanner.yaml; mục 09 §3c, 23 §8d
+- `ossf/best-practices-badge` (clone qua tên cũ coreinfrastructure/): clone 2/11/2026 (HEAD dfb72c1 1/11/2026); đọc LICENSE, README.md, criteria/baseline_criteria.yml; mục 09 §3c
+- `slsa-framework/slsa`: clone 2/11/2026 (HEAD 4d3f9d4 28/10/2026) + tag v1.2 (24/11/2025); đọc LICENSE.md, docs/spec/draft/whats-new.md, cây docs/spec/v1.2; mục 09 §3c
+- `OpenSLO/OpenSLO`: clone 2/11/2026 (HEAD e025975 25/9/2026); đọc LICENSE, README.md, examples/; mục 09 §3c
+- `adr/madr`: clone 2/11/2026 (HEAD ba75bb1 28/8/2026); đọc LICENSE*, CHANGELOG.md, template/; mục 09 §3c
+- `twelve-factor/twelve-factor`: clone 2/11/2026 (HEAD 3ad5a5f 9/7/2025); đọc LICENSE, VISION.md, content/; mục 09 §3c
+- `mercari/production-readiness-checklist`: clone 2/11/2026 (HEAD 5834a23 17/5/2021), xét nhưng không thêm; mục 09 §3c
+- `embeddings-benchmark/mteb`: clone 2/11/2026 (HEAD da9f201 2/11/2026); đọc LICENSE, benchmarks.py khối VN_MTEB, vi_vn_models.py; mục 18 §5b
+- `aisingapore/SEA-HELM`: clone 2/11/2026 (HEAD 9be3986 5/8/2026); đọc LICENSE, README.md, pyproject.toml, seahelm_tasks/**; mục 18 §5b
+- `Xdao85/VNHSGE`: clone 2/11/2026 (HEAD 04c845d 30/10/2026); đọc README.md, Dataset/NOTES.md, cây file; mục 18 §5b
+- `jangtrinh/design-os-vietnamese`: clone 2/11/2026 (HEAD 63dc654 1/11/2026); đọc LICENSE, README.md, shared/scripts/validate_copy.py, evals/*/pairs.jsonl, .github/workflows/ci.yml; mục 18 §5b
+- `EleutherAI/lm-evaluation-harness` (HEAD d6de816 14/9/2026) và `stanford-crfm/helm` (HEAD 63754d0 5/6/2026): clone không checkout, đếm task tiếng Việt và scenario MELT; mục 18 §5b
+- 13 repo của chủ kho (seeker19110/{projects-template,X-Templates,X-Agents,X-Studio,dhcb,Xgold,X-Scanner,xboss,Dhcb-Tools,Sales-Hunter,X-Company}, donghanhcungban/{qlkh,Hermes-Agents}): clone --no-checkout 2/11/2026, đo bằng git ls-tree và workflow; X-Templates checkout framework/; mục 23 §8d
+- Web: https://sre.google/workbook/table-of-contents/ (đọc 2/11/2026) · https://baseline.openssf.org · https://www.bestpractices.dev · https://slsa.dev/spec/v1.2/ · https://openslo.com · https://adr.github.io/madr/ · https://12factor.net · https://aclanthology.org/2026.findings-eacl.86/ · https://arxiv.org/abs/2305.12199 · https://leaderboard.sea-lion.ai/ · https://huggingface.co/spaces/OpenEvals/evaluation-guidebook
+- `embeddings-benchmark/mteb`: clone 2/11/2026 (HEAD da9f201 2/11/2026); đọc LICENSE, README.md, pyproject.toml, .github/workflows/, mteb/benchmarks/; mục 10 §6c
+- `beir-cellar/beir`: clone 2/11/2026 (HEAD ef83d29 16/10/2025); đọc LICENSE, README.md, pyproject.toml; mục 10 §6c
+- `xiaowu0162/LongMemEval`: clone 2/11/2026 (HEAD 9e0b455 11/5/2026); đọc LICENSE, README.md, src/evaluation/evaluate_qa.py; mục 10 §6c
+- `snap-research/locomo`: clone 2/11/2026 (HEAD 3eb6f2c 12/8/2024); đọc LICENSE.txt (CC BY-NC 4.0), README.MD, task_eval/evaluation.py; mục 10 §6c
+- `FlagOpen/FlagEmbedding`: clone 2/11/2026 (HEAD 897baa6 27/10/2026); đọc LICENSE, README.md; mục 10 §6c
+- `feyninc/chonkie`: clone 2/11/2026 (HEAD 664454b 26/8/2026); đọc LICENSE, BENCHMARKS.md, pyproject.toml, src/chonkie/chunker/, .github/workflows/; mục 10 §6c
+- `brandonstarxel/chunking_evaluation`: clone 2/11/2026 (HEAD e708410 13/12/2025); đọc LICENSE, README.md, chunking_evaluation/utils.py, evaluation_framework/base_evaluation.py; mục 10 §6c
+- `xlang-ai/OSWorld`: clone 2/11/2026 (HEAD 7aa0559 2/11/2026); đọc LICENSE, README.md, evaluation_examples/test_all.json, desktop_env/providers/; mục 11 §3d
+- `web-arena-x/webarena`: clone 2/11/2026 (HEAD dce0468 26/11/2025); đọc LICENSE, README.md, config_files/test.raw.json, .github/workflows/; mục 11 §3d
+- `ServiceNow/BrowserGym`: clone 2/11/2026 (HEAD 27a90ce 28/10/2026); đọc LICENSE, README.md, .github/workflows/; mục 11 §3d
+- `ethz-spylab/agentdojo`: clone 2/11/2026 (HEAD 089ed468 2/6/2026); đọc LICENSE, README.md, pyproject.toml, src/agentdojo/default_suites/, src/agentdojo/attacks/; mục 11 §3d
+- `google/nsjail`: clone 2/11/2026 (HEAD d8415bc 28/10/2026); đọc LICENSE, README.md, configs/; mục 11 §3d
+- `kata-containers/kata-containers`: clone 2/11/2026 (HEAD ea74fd9 2/11/2026); đọc LICENSE, README.md, VERSION, versions.yaml, .github/workflows/; mục 11 §3d
+- `xlang-ai/Spider2`: clone 2/11/2026 (HEAD cafb8673 12/8/2026); đọc LICENSE, README.md; mục 15 §4
+- `bird-bench/mini_dev`: clone 2/11/2026 (HEAD 1c49a37 28/10/2026); đọc README.md (không có file LICENSE), evaluation/; mục 15 §4
+- `fivetran/great_expectations`: clone 2/11/2026 (HEAD 99f4d0c 22/10/2026); đọc LICENSE, README.md, great_expectations/agent_skills/installer.py, `great_expectations/__main__.py`, data_context/data_context/abstract_data_context.py; mục 15 §4
+- `sodadata/soda-core`: clone 2/11/2026 (HEAD 1b71142 29/10/2026); đọc LICENSE (ELv2), README.md, soda-core/pyproject.toml, .github/workflows/; mục 15 §4
+- `dbt-labs/dbt`: clone 2/11/2026 (HEAD 1890fb3 2/11/2026); đọc LICENSE, README.md, Cargo.toml, crates/dbt-clap-core/src/lib.rs, crates/dbt-main/src/dbt_lib.rs, crates/dbt-docs-server/src/state.rs; mục 15 §4
+- `OpenLineage/OpenLineage`: clone 2/11/2026 (HEAD bad2d7f 29/10/2026); đọc LICENSE, README.md, spec/, client/, integration/; mục 15 §4
+- `sqlfluff/sqlfluff`: clone 2/11/2026 (HEAD 4339c07 1/11/2026); đọc LICENSE.md, README.md, pyproject.toml, src/sqlfluff/dialects/, .github/workflows/agent-scan.yml; mục 15 §4
+- GitHub search API 2/11/2026: ứng viên loại stanford-futuredata/ARES, amazon-science/RAGChecker, xiaowu0162/LongMemEval-V2, MinorJerry/WebVoyager, OSU-NLP-Group/Mind2Web, ServiceNow/webarena-verified, ServiceNow/AgentLab, MarquezProject/marquez, awslabs/deequ, unionai-oss/pandera, AlibabaResearch/DAMO-ConvAI; mục 10 §6c, 11 §3d, 15 §4

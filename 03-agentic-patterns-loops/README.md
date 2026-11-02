@@ -440,6 +440,35 @@ Advisor Tool (§8e) và Agent Teams (§8f) đều ảnh hưởng cache (model kh
 
 **Nguồn §8h:** bài đăng tiếng Việt người dùng gửi 1/11/2026 · skill tham chiếu Claude API (bảng model và giá lưu 6/10/2026; `shared/prompt-caching.md`: kinh tế cache, TTL, tối thiểu theo model, bảng làm mất cache) · trang nguồn ghi trong skill: platform.claude.com/docs/en/about-claude/pricing.md, platform.claude.com/docs/en/build-with-claude/prompt-caching.md (không tải lại trong phiên này).
 
+## 8i. Nâng trần 2/11/2026: mã gốc của các mẫu vòng lặp và cổng chấm trajectory (yêu cầu người dùng)
+
+> Đọc lại §1–§8h và catalog; grep `repo` trong `data/projects.json` trước khi thêm. Sao/license/ngày bằng GitHub search API 2/11/2026; clone `--depth 1 --filter=blob:none`, chỉ đọc mã vòng lặp. **Không cài, không chạy.**
+
+**Trần hiện tại**
+
+- §2 liệt kê ReAct, Reflexion, LATS/ToT bằng tên paper, không có mã gốc để đối chiếu cơ chế; các bản thực hành (§3, §8g) đều là biến thể cộng đồng.
+- §6 nói "tiêu chí dừng kiểm chứng được bằng máy" và "tách generator/evaluator", nhưng chưa có công cụ **chấm chính trajectory** (thứ tự và đối số tool call) để biết thay đổi prompt/harness có làm hỏng hình dạng vòng lặp không.
+- Các cổng dừng ở §8g (OMC baseline, planning-with-files) kiểm *kết quả*, chưa kiểm *đường đi*.
+
+**Bảng repo mới**
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `ysymyth/ReAct` | Nguyên lý gốc | 4.259 · MIT | 14/7/2023 (`6bdb3a1`) | Prompt và notebook gốc (ICLR 2023) cho HotpotQA, FEVER, ALFWorld, WebShop; `prompts/` cho thấy dạng Thought/Action/Observation nguyên bản trước khi framework bọc lại | Gọi `openai.Completion` với `text-davinci-002` (API đã ngừng); chỉ để đọc, không chạy được nguyên trạng |
+| `noahshinn/reflexion` | Nguyên lý gốc | 3.388 · MIT | 13/1/2025 (`218cf0e`) | Mã + **log đầy đủ** của paper NeurIPS 2023 (`*_runs/root`). `programming_runs/reflexion.py`: vòng lặp tự phê bình có `max_iters`, tín hiệu lặp là **test do model tự sinh** (`internal_tests`), còn kết quả cuối chấm bằng test ẩn (`exe.evaluate`) | Chính mã gốc cho thấy giới hạn: test tự sinh là "lời khai" của model (đúng phê bình §3), chỉ test ẩn mới là cổng thật; API đời cũ |
+| `princeton-nlp/tree-of-thought-llm` | Nguyên lý gốc | 6.087 · MIT | 16/1/2025 (`8050e67`) | Bản chính thức ToT (NeurIPS 2023), gói PyPI `tree-of-thoughts-llm`; `run.py` tách ba trục cấu hình: sinh (`sample`/`propose`), đánh giá (`value`/`vote`), chọn (`sample`/`greedy`) và chỉ có `bfs.py` | Chỉ có BFS; task đồ chơi (Game of 24, crosswords); đứng yên gần 2 năm |
+| `andyz245/LanguageAgentTreeSearch` | Nguyên lý gốc | 866 · MIT | 30/7/2024 (`853d816`) | LATS (ICML 2024): MCTS trên lời giải, node lưu `reflection`, chọn bằng UCT (`programming/mcts.py`), phản hồi từ test thực thi gom ngược lên cây | Clone qua `lapisrocks/LanguageAgentTreeSearch` (`lapisrocks/LanguageAgentTreeSearch` chỉ là tên cũ/bí danh, GitHub chuyển hướng về `andyz245` (search API chỉ thấy `andyz245`; clone thẳng `andyz245` cũng được)); tốn nhiều lời gọi model; không bảo trì |
+| `langchain-ai/agentevals` | Cổng máy | 757 · MIT | 13/7/2026 (`946ad15`) | Bộ chấm **trajectory**: `create_trajectory_match_evaluator` với 4 chế độ `strict`/`unordered`/`subset`/`superset` và `tool_args_match_mode` (`exact`/`ignore`), có bản LLM-as-judge và bản cho graph LangGraph; Python + TS | Phiên bản 0.0.9 (Python) / 0.0.7 (JS), API còn sớm; quickstart mặc định dùng `o3-mini` làm giám khảo; nghiêng hệ LangChain (định dạng message OpenAI) |
+
+**Stack nâng trần**
+
+1. **Đọc mã gốc trước khi chọn mẫu ở §2**: so `reflexion.py` (lặp đến `max_iters` hoặc pass test) với Ralph (§3) và OMC (§8g) để thấy cùng một vấn đề: tín hiệu dừng phải tách khỏi tín hiệu chấm cuối. Ghi rõ trong harness đâu là "test tự sinh" và đâu là "test ẩn".
+2. **Cổng trajectory trong CI**: với mỗi luồng quan trọng, lưu một trajectory tham chiếu và chấm bằng `agentevals` chế độ `superset` (cho phép thêm bước nhưng bắt buộc đủ tool then chốt) hoặc `strict` cho workflow cố định (§1, prompt chaining); bổ sung cho cổng kết quả của planning-with-files/OMC (§8g).
+3. **Tìm kiếm cây chỉ khi có bộ chấm rẻ**: ToT/LATS cần hàm đánh giá mỗi node; chỉ áp dụng khi có test thực thi nhanh (giống LATS dùng test làm phản hồi), không dùng LLM tự chấm làm hàm giá trị duy nhất.
+4. **Trace + trajectory chung một nguồn**: xuất trajectory từ trace OTel/OpenInference (mục 02 §4d) thay vì log riêng, để cùng dữ liệu phục vụ cả quan sát (mục 07) và chấm.
+
+**Nguồn §8i:** GitHub search API 2/11/2026 (`repo:` cho 5 repo trên; tìm `LanguageAgentTreeSearch in:name`) · clone 2/11/2026, đọc: ReAct (README.md, LICENSE, `FEVER.ipynb`, `WebShop.ipynb`, cây `prompts/`) · reflexion (README.md, LICENSE, `programming_runs/reflexion.py`, cây `programming_runs/`) · tree-of-thought-llm (README.md, LICENSE, `run.py`, `src/tot/methods/bfs.py`) · LanguageAgentTreeSearch (README.md, LICENSE, `programming/mcts.py`) · agentevals (README.md, LICENSE, `python/pyproject.toml`, `js/package.json`, `python/agentevals/trajectory/match.py`) · https://arxiv.org/abs/2210.03629 · https://arxiv.org/abs/2303.11366 · https://arxiv.org/abs/2305.10601 · https://arxiv.org/abs/2310.04406 · https://github.com/langchain-ai/agentevals
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)

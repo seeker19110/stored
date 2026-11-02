@@ -7917,6 +7917,1266 @@
       "open_source": true,
       "notes": "Skill dựng faux product UI (ảnh tĩnh, demo con trỏ, bento) bằng kit React: Stage/Window/Phone, Act API, 13 primitive motion, 69 ví dụ (41 dòng gold); film.mjs quay contact sheet + dò nhảy hình học từng frame, --gate với bảng lỗi 'không bao giờ cố ý'; reviewer ngữ cảnh mới chỉ nhận khung hình; 1 commit (30/10/2026), không CI, không harness eval; ảnh ghi '4 looks … minimal' sai (theme thật light/dark/blueprint/glass); typecheck + check:css sạch, chưa chạy quay phim; ★ 2/11/2026 (trang GitHub), mục 06 §7s",
       "section": "06"
+    },
+    {
+      "name": "SWE-bench (harness)",
+      "repo": "SWE-bench/SWE-bench",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 6133,
+      "open_source": true,
+      "notes": "Bộ chấm Docker gốc; CLI swebench eval/report/infer/dataset check; infra_failure tách lỗi hạ tầng khỏi patch sai; v5.0.2; ★ 2/11/2026 (GitHub search API), mục 01 §3k",
+      "section": "01"
+    },
+    {
+      "name": "SWE-bench Pro",
+      "repo": "scaleapi/SWE-bench_Pro-os",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 557,
+      "open_source": true,
+      "notes": "V2 642 task định dạng Harbor, HARD-51, locked protocol (agent không mạng trừ endpoint model, verifier chấm `model.patch` ở image sạch (vẫn có mạng)), GATE.md oracle 642/642 + nop 0 pass; ★ 2/11/2026 (GitHub search API), mục 01 §3k",
+      "section": "01"
+    },
+    {
+      "name": "SWE-bench-Live",
+      "repo": "microsoft/SWE-bench-Live",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 261,
+      "open_source": true,
+      "notes": "Tập tự cập nhật chống nhiễm: Python +50 task/tháng, MultiLang 1.077 task, Windows; mã curation RepoLaunch; ★ 2/11/2026 (GitHub search API), mục 01 §3k",
+      "section": "01"
+    },
+    {
+      "name": "Multi-SWE-bench",
+      "repo": "multi-swe-bench/multi-swe-bench",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 364,
+      "open_source": true,
+      "notes": "ByteDance Seed, issue đa ngôn ngữ (Java/TS/Go/Rust/C++), bản mini/flash; đứng yên từ 18/12/2025; ★ 2/11/2026 (GitHub search API), mục 01 §3k",
+      "section": "01"
+    },
+    {
+      "name": "Berkeley Function Calling Leaderboard (gorilla)",
+      "repo": "ShishirPatil/gorilla",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 13062,
+      "open_source": true,
+      "notes": "BFCL V4: chấm gọi hàm AST + thực thi, multi-turn, agentic (web search, memory, format); gói bfcl_eval; CHANGELOG dừng 10/2025; ★ 2/11/2026 (GitHub search API), mục 02 §4d",
+      "section": "02"
+    },
+    {
+      "name": "AgentBench",
+      "repo": "THUDM/AgentBench",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 3806,
+      "open_source": true,
+      "notes": "AgentBench FC (10/2025) trên AgentRL: 5 môi trường container (alfworld, DB, KG, OS, WebShop); nặng, đứng yên từ 9/2/2026; ★ 2/11/2026 (GitHub search API), mục 02 §4d",
+      "section": "02"
+    },
+    {
+      "name": "ReAct (mã gốc)",
+      "repo": "ysymyth/ReAct",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 4259,
+      "open_source": true,
+      "notes": "Prompt + notebook gốc ICLR 2023; dùng text-davinci-002 (API đã ngừng), chỉ để đọc; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
+      "section": "03"
+    },
+    {
+      "name": "Reflexion (mã gốc)",
+      "repo": "noahshinn/reflexion",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 3388,
+      "open_source": true,
+      "notes": "Mã + log NeurIPS 2023; vòng lặp dùng test do model tự sinh làm tín hiệu, test ẩn làm chấm cuối; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
+      "section": "03"
+    },
+    {
+      "name": "Tree of Thoughts (mã gốc)",
+      "repo": "princeton-nlp/tree-of-thought-llm",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 6087,
+      "open_source": true,
+      "notes": "Bản chính thức ToT NeurIPS 2023, ba trục generate/evaluate/select, chỉ có BFS; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
+      "section": "03"
+    },
+    {
+      "name": "LATS (mã gốc)",
+      "repo": "andyz245/LanguageAgentTreeSearch",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 866,
+      "open_source": true,
+      "notes": "ICML 2024: MCTS + reflection + UCT, phản hồi từ test thực thi; lapisrocks/… là tên cũ chuyển hướng về andyz245; không bảo trì từ 7/2024; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
+      "section": "03"
+    },
+    {
+      "name": "agentevals",
+      "repo": "langchain-ai/agentevals",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 757,
+      "open_source": true,
+      "notes": "Chấm trajectory: match strict/unordered/subset/superset + tool_args exact/ignore, LLM-judge, graph LangGraph; Py 0.0.9/JS 0.0.7; ★ 2/11/2026 (GitHub search API), mục 03 §8i",
+      "section": "03"
+    },
+    {
+      "name": "Temporal AI integrations",
+      "repo": "temporalio/ai-integrations",
+      "category": "durable-execution",
+      "license": "MIT",
+      "stars": 36,
+      "open_source": true,
+      "notes": "Plugin durable cho OpenAI Agents (GA), LangGraph/Strands (preview), deepagents, Google ADK, Claude Agent SDK (pre-release); tách khỏi sdk-python; @function_tool không tự thành activity; ★ 2/11/2026 (GitHub search API), mục 21 §10e",
+      "section": "21"
+    },
+    {
+      "name": "Hatchet",
+      "repo": "hatchet-dev/hatchet",
+      "category": "durable-execution",
+      "license": "MIT",
+      "stars": 8212,
+      "open_source": true,
+      "notes": "Engine Go/Postgres: durable task, DAG, durable sleep/event wait, cron, webhook, rate limit, OTel; SDK Py/TS/Go/Ruby; v0.114.2; PostHog server tắt mặc định; ★ 2/11/2026 (GitHub search API), mục 21 §10e",
+      "section": "21"
+    },
+    {
+      "name": "Absurd",
+      "repo": "earendil-works/absurd",
+      "category": "durable-execution",
+      "license": "Apache-2.0",
+      "stars": 2522,
+      "open_source": true,
+      "notes": "Durable execution chỉ cần Postgres (một file SQL), SDK TS/Py/Go; v0.5.1; 'exactly-once' chỉ đúng cho step đã hoàn tất; ★ 2/11/2026 (GitHub search API), mục 21 §10e",
+      "section": "21"
+    },
+    {
+      "name": "CloudEvents",
+      "repo": "cloudevents/spec",
+      "url": "https://cloudevents.io",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 5947,
+      "open_source": true,
+      "notes": "Chuẩn CNCF graduated, v1.0.2; source+id làm khoá dedupe; extension tracing/expirytime/sequence; binding HTTP/AMQP/Kafka/MQTT/NATS; ★ 2/11/2026 (GitHub search API), mục 21 §10e",
+      "section": "21"
+    },
+    {
+      "name": "MCP Conformance",
+      "repo": "modelcontextprotocol/conformance",
+      "category": "protocol",
+      "license": "MIT → Apache-2.0 (đang chuyển)",
+      "stars": 140,
+      "open_source": true,
+      "notes": "Bộ test conformance chính thức cho client/server MCP: kiểm JSON-RPC trên dây theo schema, --requirements theo bản spec, tier-check SEP-1730, GitHub Action; 0.2.0-alpha; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "section": "04"
+    },
+    {
+      "name": "A2A TCK",
+      "repo": "a2aproject/a2a-tck",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 57,
+      "open_source": true,
+      "notes": "Technology Compatibility Kit cho A2A trên gRPC/JSON-RPC/HTTP+JSON; MUST là lỗi cứng, SHOULD là xfail; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "section": "04"
+    },
+    {
+      "name": "A2A Inspector",
+      "repo": "a2aproject/a2a-inspector",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 506,
+      "open_source": true,
+      "notes": "Binary Go có UI kiểm agent card v1.0/v0.3 và validate từng request; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "section": "04"
+    },
+    {
+      "name": "MCPJam Inspector",
+      "repo": "MCPJam/inspector",
+      "category": "protocol",
+      "license": "Apache-2.0 (phần eval: MCPJam EE License)",
+      "stars": 2298,
+      "open_source": true,
+      "notes": "Inspector + eval chéo 16 cấu hình client, OAuth debugger, CLI cho CI; phần eval (server/services) theo MCPJam EE License, cần subscription khi chạy production; DO_NOT_TRACK=1 chỉ tắt telemetry phía server, bản browser trên npm vẫn gửi usage event; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "section": "04"
+    },
+    {
+      "name": "MCP Bundles (MCPB)",
+      "repo": "modelcontextprotocol/mcpb",
+      "category": "protocol",
+      "license": "MIT → Apache-2.0 (đang chuyển)",
+      "stars": 2164,
+      "open_source": true,
+      "notes": "Spec + JSON Schema manifest .mcpb (trước là DXT) và CLI init/validate/pack/sign/verify; main đứng từ 22/4/2026; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "section": "04"
+    },
+    {
+      "name": "Cisco MCP Scanner",
+      "repo": "cisco-ai-defense/mcp-scanner",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 1106,
+      "open_source": true,
+      "notes": "Quét tool MCP bằng YARA, LLM judge, API Cisco AI Defense, readiness tĩnh; --stdio-command khởi chạy server; ★ 2/11/2026 (GitHub search API), mục 04 §4c",
+      "section": "04"
+    },
+    {
+      "name": "Diátaxis",
+      "repo": "evildmp/diataxis-documentation-framework",
+      "category": "docs",
+      "license": "CC-BY-SA-4.0",
+      "stars": 1267,
+      "open_source": true,
+      "notes": "Khung tài liệu 4 loại (tutorial, how-to, reference, explanation); GitHub báo NOASSERTION vì LICENSE.rst; ★ 2/11/2026 (GitHub search API), mục 16 §2h",
+      "section": "16"
+    },
+    {
+      "name": "Vale",
+      "repo": "vale-cli/vale",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 6313,
+      "open_source": true,
+      "notes": "Linter văn xuôi hiểu markup, style Microsoft/Google/Red Hat qua Packages; repo chuyển từ errata-ai/vale; ★ 2/11/2026 (GitHub search API), mục 16 §2h",
+      "section": "16"
+    },
+    {
+      "name": "markdownlint",
+      "repo": "DavidAnson/markdownlint",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 6410,
+      "open_source": true,
+      "notes": "Engine lint Markdown của markdownlint-cli2 (kho này dùng trong CI); 53 luật, custom rule; ★ 2/11/2026 (GitHub search API), mục 16 §2h",
+      "section": "16"
+    },
+    {
+      "name": "lychee",
+      "repo": "lycheeverse/lychee",
+      "category": "docs",
+      "license": "MIT OR Apache-2.0",
+      "stars": 4078,
+      "open_source": true,
+      "notes": "Kiểm link Rust bất đồng bộ, cache, kiểm anchor, lychee-action; GitHub chỉ báo Apache-2.0; ★ 2/11/2026 (GitHub search API), mục 16 §2h",
+      "section": "16"
+    },
+    {
+      "name": "CSpell",
+      "repo": "streetsidesoftware/cspell",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 1703,
+      "open_source": true,
+      "notes": "Spell check cho code và docs; cspell-dicts có từ điển vi_VN; ★ 2/11/2026 (GitHub search API), mục 16 §2h",
+      "section": "16"
+    },
+    {
+      "name": "typos",
+      "repo": "crate-ci/typos",
+      "category": "docs",
+      "license": "MIT OR Apache-2.0",
+      "stars": 4204,
+      "open_source": true,
+      "notes": "Bắt lỗi gõ ít false positive, chạy được trên PR; Action + pre-commit; ★ 2/11/2026 (GitHub search API), mục 16 §2h",
+      "section": "16"
+    },
+    {
+      "name": "Prompty",
+      "repo": "microsoft/prompty",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 1286,
+      "open_source": true,
+      "notes": "Định dạng file .prompty có spec + conformance vectors cho runtime Python/TS/Rust/C#; extension VS Code; ★ 2/11/2026 (GitHub search API), mục 17 §4c",
+      "section": "17"
+    },
+    {
+      "name": "Dotprompt",
+      "repo": "google/dotprompt",
+      "category": "prompt",
+      "license": "Apache-2.0",
+      "stars": 573,
+      "open_source": true,
+      "notes": "Định dạng prompt thực thi được (Handlebars) của Genkit; spec dạng YAML test chung cho 6 ngôn ngữ; ★ 2/11/2026 (GitHub search API), mục 17 §4c",
+      "section": "17"
+    },
+    {
+      "name": "ChainForge",
+      "repo": "ianarawjo/ChainForge",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 3040,
+      "open_source": true,
+      "notes": "Môi trường luồng so sánh prompt × model, node đánh giá, 188 flow từ OpenAI evals; ★ 2/11/2026 (GitHub search API), mục 17 §4c",
+      "section": "17"
+    },
+    {
+      "name": "DeepTeam",
+      "repo": "confident-ai/deepteam",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 3079,
+      "open_source": true,
+      "notes": "Red-team LLM/agent 50+ lỗ hổng; telemetry bật mặc định gửi IP công khai tới New Relic + PostHog + Sentry, tắt bằng DEEPTEAM_TELEMETRY_OPT_OUT=YES; ★ 2/11/2026 (GitHub search API), mục 17 §4c",
+      "section": "17"
+    },
+    {
+      "name": "Open-Prompt-Injection",
+      "repo": "liu00222/Open-Prompt-Injection",
+      "category": "security",
+      "license": "MIT",
+      "stars": 510,
+      "open_source": true,
+      "notes": "Benchmark tấn công/phòng thủ prompt injection, đo ASV, detector DataSentinel, PromptLocate (checkpoint Google Drive); ★ 2/11/2026 (GitHub search API), mục 17 §4c",
+      "section": "17"
+    },
+    {
+      "name": "SkillOpt",
+      "repo": "microsoft/SkillOpt",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 18813,
+      "open_source": true,
+      "notes": "Tối ưu tài liệu skill/prompt với cổng validation held-out, xuất best_skill.md; số liệu paper tự công bố; SkillOpt-Sleep đọc transcript agent; ★ 2/11/2026 (GitHub search API), mục 17 §4c",
+      "section": "17"
+    },
+    {
+      "name": "Claude Code plugin validate + plugin eval",
+      "repo": null,
+      "url": "https://code.claude.com/docs/en/plugin-evals",
+      "category": "plugin-marketplace",
+      "license": "tài liệu sản phẩm",
+      "stars": null,
+      "open_source": false,
+      "notes": "Cổng chính thức: claude plugin validate --strict (manifest, path, .mcp.json, tên giả danh) và claude plugin eval (grader, baseline không plugin, --threshold, --max-cost-usd, từ v2.1.269); docs đọc 2/11/2026, mục 20 §3v",
+      "section": "20"
+    },
+    {
+      "name": "agnix",
+      "repo": "agent-sh/agnix",
+      "category": "quality-gate",
+      "license": "MIT OR Apache-2.0",
+      "stars": 465,
+      "open_source": true,
+      "notes": "Linter 757 luật cho CLAUDE.md, SKILL.md, hooks, MCP, plugin của nhiều harness; auto-fix, LSP, Action; telemetry chỉ khi build feature; ★ 2/11/2026 (GitHub search API), mục 20 §3v",
+      "section": "20"
+    },
+    {
+      "name": "NVIDIA SkillEvaluator",
+      "repo": "NVIDIA/SkillEvaluator",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 622,
+      "open_source": true,
+      "notes": "Eval skill 3 tầng: chất lượng + scanner, trùng lặp, chạy agent có/không skill; mẫu CI GitHub/GitLab; ★ 2/11/2026 (GitHub search API), mục 20 §3v",
+      "section": "20"
+    },
+    {
+      "name": "skillgrade",
+      "repo": "mgechev/skillgrade",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 734,
+      "open_source": true,
+      "notes": "Unit test cho skill: eval.yaml, chạy nhiều harness trong Docker, grader tất định/LLM/người, --ci --threshold, JUnit; ★ 2/11/2026 (GitHub search API), mục 20 §3v",
+      "section": "20"
+    },
+    {
+      "name": "Coder Eval",
+      "repo": "UiPath/coder_eval",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 156,
+      "open_source": true,
+      "notes": "Eval coding agent trong sandbox, kiểm skill_triggered theo harness, A/B, GitHub Action; ★ 2/11/2026 (GitHub search API), mục 20 §3v",
+      "section": "20"
+    },
+    {
+      "name": "agent-skills-eval",
+      "repo": "darkrishabh/agent-skills-eval",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 809,
+      "open_source": true,
+      "notes": "Test runner skill with_skill vs without_skill có judge, báo cáo HTML; ★ 2/11/2026 (GitHub search API), mục 20 §3v",
+      "section": "20"
+    },
+    {
+      "name": "Open Workflow Specification",
+      "repo": "open-workflow-specification/specification",
+      "category": "workflow-automation",
+      "license": "Apache-2.0",
+      "stars": 947,
+      "open_source": true,
+      "notes": "DSL workflow trung lập (trước là Serverless Workflow, CNCF), schema YAML + CTK Gherkin; đổi tên org, tìm tên cũ không ra; ★ 2/11/2026 (GitHub search API), mục 05 §Nâng trần 2/11",
+      "section": "05"
+    },
+    {
+      "name": "Arazzo Specification",
+      "repo": "OAI/Arazzo-Specification",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 487,
+      "open_source": true,
+      "notes": "Chuẩn OpenAPI Initiative mô tả chuỗi gọi API; bản hiện hành 1.1.0 (thêm AsyncAPI); ★ 2/11/2026 (GitHub search API), mục 05 §Nâng trần 2/11",
+      "section": "05"
+    },
+    {
+      "name": "Spectral",
+      "repo": "stoplightio/spectral",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 3247,
+      "open_source": true,
+      "notes": "Linter JSON/YAML, ruleset sẵn OpenAPI/AsyncAPI/Arazzo v1 (hỗ trợ Arazzo 1.1 chưa xác minh); CLI 6.17.0; ★ 2/11/2026 (GitHub search API), mục 05 §Nâng trần 2/11",
+      "section": "05"
+    },
+    {
+      "name": "Node-RED",
+      "repo": "node-red/node-red",
+      "category": "low-code",
+      "license": "Apache-2.0",
+      "stars": 23805,
+      "open_source": true,
+      "notes": "Low-code OpenJS Foundation v5.0.9; flows.json + Projects git, credential mã hoá (không được đổi credentialSecret đã đặt); kèm node-red-node-test-helper (65★); ★ 2/11/2026 (GitHub search API), mục 05 §Nâng trần 2/11",
+      "section": "05"
+    },
+    {
+      "name": "OpenTelemetry GenAI Semantic Conventions",
+      "repo": "open-telemetry/semantic-conventions-genai",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 506,
+      "open_source": true,
+      "notes": "Chuẩn gen_ai.* đã tách khỏi open-telemetry/semantic-conventions; mọi thuộc tính Development, nội dung Opt-In, Schema URL TODO; 30 kịch bản reference + conformance bằng Weaver; ★ 2/11/2026 (GitHub search API), mục 07 §Nâng trần 2/11",
+      "section": "07"
+    },
+    {
+      "name": "OpenTelemetry Weaver",
+      "repo": "open-telemetry/weaver",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 521,
+      "open_source": true,
+      "notes": "registry check/live-check OTLP so với semconv, GitHub Action fail theo severity; 0.x; ★ 2/11/2026 (GitHub search API), mục 07 §Nâng trần 2/11",
+      "section": "07"
+    },
+    {
+      "name": "OpenInference",
+      "repo": "Arize-ai/openinference",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 1299,
+      "open_source": true,
+      "notes": "Đặc tả + instrument (~38 gói Python) cho Phoenix; HIDE_INPUTS/OUTPUTS mặc định False (ghi nội dung); gói openinference-genai chuyển OTel GenAI best-effort; ★ 2/11/2026 (GitHub search API), mục 07 §Nâng trần 2/11",
+      "section": "07"
+    },
+    {
+      "name": "OpenLIT",
+      "repo": "openlit/openlit",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 2900,
+      "open_source": true,
+      "notes": "Nền tảng OTel-native gen_ai.*: trace, eval, guardrail, GPU; capture_message_content=True mặc định, compose TELEMETRY_ENABLED true, PostHog ở client; ★ 2/11/2026 (GitHub search API), mục 07 §Nâng trần 2/11",
+      "section": "07"
+    },
+    {
+      "name": "Inspect Evals",
+      "repo": "UKGovernmentBEIS/inspect_evals",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 732,
+      "open_source": true,
+      "notes": ">200 task Inspect; TASK_VERSIONING N-X, EVALUATION_CHECKLIST đòi VALIDITY_REPORT; nay Generality Labs bảo trì, PR chỉ từ người duyệt trước; ★ 2/11/2026 (GitHub search API), mục 07 §Nâng trần 2/11",
+      "section": "07"
+    },
+    {
+      "name": "RewardBench",
+      "repo": "allenai/reward-bench",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 748,
+      "open_source": true,
+      "notes": "RewardBench 2 (arXiv 2506.01937) chấm reward model và judge sinh văn bản; dùng chọn model judge; ★ 2/11/2026 (GitHub search API), mục 07 §Nâng trần 2/11",
+      "section": "07"
+    },
+    {
+      "name": "MITRE ATLAS Data",
+      "repo": "mitre-atlas/atlas-data",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 203,
+      "open_source": true,
+      "notes": "Dữ liệu ATLAS YAML phát hành hằng tháng (2026.10: 16 tactic, 129 technique, 77 case study); GitHub báo NOASSERTION nhưng LICENSE là Apache-2.0 © MITRE; ★ 2/11/2026 (GitHub search API), mục 12 §4c",
+      "section": "12"
+    },
+    {
+      "name": "NIST AI RMF 1.0 + AI 600-1 (Generative AI Profile)",
+      "repo": null,
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "category": "checklist",
+      "license": "Công bố chính phủ Mỹ (public domain, chưa xác minh điều khoản)",
+      "stars": null,
+      "open_source": false,
+      "notes": "Khung Govern/Map/Measure/Manage; AI 600-1 (7/2024) 12 nhóm rủi ro GenAI; trạng thái sửa đổi 2026 chưa xác minh; mục 12 §4c",
+      "section": "12"
+    },
+    {
+      "name": "model-signing (Model Transparency)",
+      "repo": "sigstore/model-transparency",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 249,
+      "open_source": true,
+      "notes": "Ký/xác minh thư mục model bằng Sigstore/khoá/PKCS#11, DSSE + in-toto; gói 1.1.1; ★ 2/11/2026 (GitHub search API), mục 12 §4c",
+      "section": "12"
+    },
+    {
+      "name": "fickling",
+      "repo": "trailofbits/fickling",
+      "category": "security",
+      "license": "LGPL-3.0",
+      "stars": 676,
+      "open_source": true,
+      "notes": "Trail of Bits: phân tích pickle, hook allowlist import ML khi load; LGPL-3.0; ★ 2/11/2026 (GitHub search API), mục 12 §4c",
+      "section": "12"
+    },
+    {
+      "name": "ModelScan",
+      "repo": "protectai/modelscan",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 792,
+      "open_source": true,
+      "notes": "Quét file model (pickle, H5, Keras, SavedModel); commit nhánh chính cuối 18/2/2026, nhịp chậm; ★ 2/11/2026 (GitHub search API), mục 12 §4c",
+      "section": "12"
+    },
+    {
+      "name": "SLSA",
+      "repo": "slsa-framework/slsa",
+      "category": "checklist",
+      "license": "Community Specification License 1.0",
+      "stars": 1955,
+      "open_source": true,
+      "notes": "Đặc tả SLSA v1.2 (duyệt 24/11/2025: Build + Source track; nháp Dependency/Build Env); GitHub báo NOASSERTION; ★ 2/11/2026 (GitHub search API), mục 13 §6h",
+      "section": "13"
+    },
+    {
+      "name": "zizmor",
+      "repo": "zizmorcore/zizmor",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 6856,
+      "open_source": true,
+      "notes": "Phân tích tĩnh bảo mật GitHub Actions, 41 audit, SARIF, offline/online; bản 1.31.1; ★ 2/11/2026 (GitHub search API), mục 13 §6h",
+      "section": "13"
+    },
+    {
+      "name": "actionlint",
+      "repo": "rhysd/actionlint",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 4371,
+      "open_source": true,
+      "notes": "Lint workflow GitHub Actions: kiểm kiểu ${{ }}, shellcheck/pyflakes; commit cuối 19/4/2026; ★ 2/11/2026 (GitHub search API), mục 13 §6h",
+      "section": "13"
+    },
+    {
+      "name": "Grype",
+      "repo": "anchore/grype",
+      "category": "security",
+      "license": "Apache-2.0",
+      "stars": 13159,
+      "open_source": true,
+      "notes": "Quét lỗ hổng image/filesystem/SBOM syft, ưu tiên EPSS/KEV, OpenVEX; ★ 2/11/2026 (GitHub search API), mục 13 §6h",
+      "section": "13"
+    },
+    {
+      "name": "Harden-Runner",
+      "repo": "step-security/harden-runner",
+      "category": "devops",
+      "license": "Apache-2.0",
+      "stars": 1295,
+      "open_source": true,
+      "notes": "Giám sát egress/file/process runner GitHub Actions, egress-policy block; free chỉ repo public trên runner GitHub-hosted; telemetry về StepSecurity; ★ 2/11/2026 (GitHub search API), mục 13 §6h",
+      "section": "13"
+    },
+    {
+      "name": "WCAG 2.2",
+      "repo": null,
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "category": "checklist",
+      "license": "W3C Document License",
+      "stars": null,
+      "open_source": true,
+      "notes": "Chuẩn a11y W3C (Rec 10/2023); ISO/IEC 40500:2025 (W3C công bố 21/10/2025, bản ISO là văn bản 10/2023); thước đo cho axe-core, jsx-a11y; mục 06 §7t, mục 22 §9g",
+      "section": "06"
+    },
+    {
+      "name": "Design Tokens Community Group (DTCG)",
+      "repo": "design-tokens/community-group",
+      "category": "protocol",
+      "license": "W3C Software and Document License",
+      "stars": 2160,
+      "open_source": true,
+      "notes": "Spec Format/Color/Resolver Module 2025.10 + JSON Schema (schemas/src/2025.10) + test-suite valid/invalid; báo cáo Community Group, nguồn spec ghi specStatus CG-DRAFT, không phải W3C Rec; commit cuối 8/9/2026; GitHub báo NOASSERTION; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Web Interface Guidelines (Vercel)",
+      "repo": "vercel-labs/web-interface-guidelines",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 1086,
+      "open_source": true,
+      "notes": "130 quy tắc UI (vùng chạm ≥24/44px, focus-visible, không transition: all, URL as state…); command.md bản MUST/SHOULD/NEVER cho agent review; install.sh curl từ main không ghim; tự mâu thuẫn: gợi ý maximum-scale=1 cạnh luật 'Never disable browser zoom'; không CI, 60 commit; commit cuối 5/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Web Quality Skills",
+      "repo": "addyosmani/web-quality-skills",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 3025,
+      "open_source": true,
+      "notes": "6 Agent Skills đo-trước (audit, performance, Core Web Vitals, a11y WCAG 2.2, SEO, best practices); tách CrUX/RUM khỏi trace lab, Lighthouse qua Chrome DevTools MCP; analyze.sh chỉ đọc, grep HTML, xuất JSON; tự ghi unofficial; 34 commit, không CI; commit cuối 24/8/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "axe-core",
+      "repo": "dequelabs/axe-core",
+      "category": "quality-gate",
+      "license": "MPL-2.0",
+      "stars": 7738,
+      "open_source": true,
+      "notes": "Engine a11y runtime: 105 luật WCAG 2.0/2.1/2.2 A–AAA + best practice, v4.14.0; README: bắt trung bình 57% lỗi WCAG, phần không chắc trả 'incomplete'; MPL-2.0 copyleft theo file; CI test + nightly + perf; commit cuối 21/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "eslint-plugin-jsx-a11y",
+      "repo": "jsx-eslint/eslint-plugin-jsx-a11y",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 3633,
+      "open_source": true,
+      "notes": "39 luật a11y tĩnh cho JSX; v6.10.2, peerDeps chỉ tới ESLint ^9 (PR ESLint 10 chưa merge tới 4/2026, có fork jsx-a11y-x, chưa xác minh); commit cuối 3/1/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Stylelint",
+      "repo": "stylelint/stylelint",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 11542,
+      "open_source": true,
+      "notes": "154 luật lint CSS (color-no-hex, declaration-property-value-allowed-list, no-unknown-custom-properties) để cấm giá trị ngoài token; main đang 18.0.0-next.0, ghim bản stable; commit cuối 29/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Style Dictionary",
+      "repo": "style-dictionary/style-dictionary",
+      "category": "design-tool",
+      "license": "Apache-2.0",
+      "stars": 4875,
+      "open_source": true,
+      "notes": "Build token → CSS/iOS/Android/JS; v5.7 hỗ trợ DTCG (usesDtcg, duration 2025.10), 5.7.1 vá prototype pollution; hỗ trợ Resolver Module chưa xác minh; Node ≥22; commit cuối 28/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Radix Colors",
+      "repo": "radix-ui/colors",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 1729,
+      "open_source": true,
+      "notes": "Thang màu 12 bước có vai trò định sẵn, sáng/tối + alpha, v3.0.0; đứng yên từ 17/12/2025; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Harmony (Evil Martians)",
+      "repo": "evilmartians/harmony",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 249,
+      "open_source": true,
+      "notes": "Bảng màu OKLCH tương phản đều theo mức sáng, có P3, thay thế bảng Tailwind; tính theo APCA (APCA có license hạn chế, xem mục 06 §7t); v1.4.0; commit cuối 24/7/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Capsize",
+      "repo": "seek-oss/capsize",
+      "category": "frontend",
+      "license": "MIT",
+      "stars": 1735,
+      "open_source": true,
+      "notes": "Căn chữ theo cap height bằng metric font, cắt khoảng trống trên/dưới để spacing đo được; @capsizecss/core 4.1.3; commit cuối 15/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "Argos",
+      "repo": "argos-ci/argos",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 656,
+      "open_source": true,
+      "notes": "Nền tảng visual testing review ảnh chụp trong PR (Playwright/Storybook/Cypress), so ảnh bằng odiff-bin; tự host cần Postgres, RabbitMQ, Redis, DynamoDB, S3, GitHub App, không thấy tài liệu tự host (chưa xác minh); Node 26; commit cuối 30/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "pixelmatch",
+      "repo": "mapbox/pixelmatch",
+      "category": "quality-gate",
+      "license": "ISC",
+      "stars": 7007,
+      "open_source": true,
+      "notes": "So ảnh pixel ~600 dòng, không phụ thuộc, OKLab + HyAB, dò khử răng cưa; v8.0.0; nền cho cổng visual regression tự host; commit cuối 6/10/2026; ★ 2/11/2026 (GitHub search API), mục 06 §7t",
+      "section": "06"
+    },
+    {
+      "name": "JiWER",
+      "repo": "jitsi/jiwer",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 942,
+      "open_source": true,
+      "notes": "Tính WER/MER/WIL/WIP/CER cho STT bằng RapidFuzz, v4.0.0; kết quả phụ thuộc chuẩn hoá văn bản (tiếng Việt phải tự định nghĩa); commit cuối 16/4/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "Open ASR Leaderboard",
+      "repo": "huggingface/open_asr_leaderboard",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 278,
+      "open_source": true,
+      "notes": "Mã leaderboard ASR của Hugging Face: short/long-form, multilingual (FLEURS/MCV/MLS), chạy HF Jobs cùng phần cứng, có tập riêng tư; normalizer chủ yếu tiếng Anh; commit cuối 30/10/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "Picovoice Speech-to-Text Benchmark",
+      "repo": "Picovoice/speech-to-text-benchmark",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 698,
+      "open_source": true,
+      "notes": "Khung đo WER + độ trễ trên LibriSpeech, TED-LIUM, Common Voice, MLS, VoxPopuli, FLEURS…; engine Whisper/whisper.cpp/Moonshine/Vosk/Nemotron + cloud; benchmark của nhà bán (có Cheetah/Leopard), dùng khung không dùng bảng; commit cuối 7/10/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "UTMOSv2",
+      "repo": "sarulab-speech/UTMOSv2",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 377,
+      "open_source": true,
+      "notes": "Dự đoán MOS độ tự nhiên giọng tổng hợp; hạng 1 ở 7/16 chỉ số VoiceMOS Challenge 2024 Track 1 (SLT 2024); với tiếng Việt chỉ so tương đối (chưa xác minh); commit cuối 2/4/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "EVA (ServiceNow)",
+      "repo": "ServiceNow/eva",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 235,
+      "open_source": true,
+      "notes": "Eval voice agent nhiều lượt bot-to-bot: EVA-A (đúng việc) + EVA-X (trải nghiệm); 213 kịch bản, bộ nhiễu (ồn, giọng, mạng), kết quả 12 hệ thống; cần key ElevenLabs/OpenAI/Google/AWS; commit cuối 29/10/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "UltraEval-Audio",
+      "repo": "OpenBMB/UltraEval-Audio",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 328,
+      "open_source": true,
+      "notes": "Khung eval audio foundation model: 34 benchmark, 10 ngôn ngữ, hiểu + sinh giọng, lệnh tái lập kết quả (ACL 2026 demo); commit cuối 28/10/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "AudioSeal",
+      "repo": "facebookresearch/audioseal",
+      "category": "security",
+      "license": "MIT",
+      "stars": 802,
+      "open_source": true,
+      "notes": "Watermark âm thanh định vị theo đoạn, streaming từ v0.2; MIT cả weights (từ 4/2024); có trong danh sách soft-binding C2PA (com.aiwatermark.audioseal.1); commit cuối 2/11/2026; ★ 2/11/2026 (GitHub search API), mục 14 §5d",
+      "section": "14"
+    },
+    {
+      "name": "C2PA Specifications",
+      "repo": "c2pa-org/specifications",
+      "url": "https://spec.c2pa.org/specifications/",
+      "category": "protocol",
+      "license": "CC-BY-4.0",
+      "stars": 213,
+      "open_source": true,
+      "notes": "Chuẩn Content Credentials, bản 2.3 (PDF đề 5/1/2026); repo dựng site tài liệu + softbinding-alg-list 32 thuật toán (có VideoSeal/PixelSeal/AudioSeal); commit cuối 28/10/2026; ★ 2/11/2026 (GitHub search API), mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "c2pa-rs (CAI Rust SDK)",
+      "repo": "contentauth/c2pa-rs",
+      "category": "protocol",
+      "license": "MIT OR Apache-2.0",
+      "stars": 438,
+      "open_source": true,
+      "notes": "SDK chính thức đọc/ký/kiểm manifest C2PA, C FFI, CAWG identity; c2patool nay ở repo riêng; 0.x; ký thật cần chứng thư trong trust list; GitHub báo NOASSERTION; commit cuối 2/11/2026; ★ 2/11/2026 (GitHub search API), mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "VideoSeal",
+      "repo": "facebookresearch/videoseal",
+      "category": "security",
+      "license": "MIT",
+      "stars": 817,
+      "open_source": true,
+      "notes": "Watermark ẩn ảnh/video (VideoSeal, PixelSeal, ChunkySeal) + WmForger thử tấn công; MIT cả model; id soft-binding C2PA; commit cuối 2/7/2026; ★ 2/11/2026 (GitHub search API), mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "VMAF",
+      "repo": "Netflix/vmaf",
+      "category": "quality-gate",
+      "license": "BSD-2-Clause-Patent",
+      "stars": 5578,
+      "open_source": true,
+      "notes": "Chỉ số chất lượng video cảm nhận + PSNR/SSIM/MS-SSIM/CIEDE2000/CAMBI; model VMAF v1 (6/2026: 1080p, Phone, 4K) và HDR (26/10/2026); full-reference nên đo bản xuất so master, không đo video AI tự sinh; GitHub báo NOASSERTION; commit cuối 30/10/2026; ★ 2/11/2026 (GitHub search API), mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "ffmpeg-quality-metrics",
+      "repo": "slhck/ffmpeg-quality-metrics",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 561,
+      "open_source": true,
+      "notes": "CLI/Python bọc ffmpeg tính PSNR/SSIM/VIF/MSAD/VMAF từng frame + thống kê + GUI; v3.13.0; cần ffmpeg có libvmaf; commit cuối 25/10/2026; ★ 2/11/2026 (GitHub search API), mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "VBench",
+      "repo": "Vchitect/VBench",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 1836,
+      "open_source": true,
+      "notes": "Benchmark model sinh video: VBench 16 chiều T2V, VBench-2.0 18 chiều (vật lý, chuyển động người, thường thức), I2V, video dài; chấm video tự sinh từ 5/2025; nặng; commit cuối 21/8/2026; ★ 2/11/2026 (GitHub search API), mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "EBU R 128 / ITU-R BS.1770",
+      "repo": null,
+      "url": "https://tech.ebu.ch/publications/r128",
+      "category": "checklist",
+      "license": "EBU Recommendation",
+      "stars": null,
+      "open_source": false,
+      "notes": "Loudness: −23 LUFS ±1 LU, true peak −1 dBTP; ffmpeg loudnorm mặc định theo R128; streaming dùng mục tiêu khác (Spotify −11/−14/−19); mục 19 §3d",
+      "section": "19"
+    },
+    {
+      "name": "WCAG motion + prefers-reduced-motion",
+      "repo": null,
+      "url": "https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion",
+      "category": "checklist",
+      "license": "W3C Document License",
+      "stars": null,
+      "open_source": true,
+      "notes": "WCAG 2.2 2.2.2 Pause Stop Hide (A), 2.3.1 Three Flashes (A), 2.3.3 Animation from Interactions (AAA); media query prefers-reduced-motion (Media Queries Level 5); mục 22 §9g",
+      "section": "22"
+    },
+    {
+      "name": "Apple HIG: Motion",
+      "repo": null,
+      "url": "https://developer.apple.com/design/human-interface-guidelines/motion",
+      "category": "checklist",
+      "license": "Apple (tài liệu độc quyền)",
+      "stars": null,
+      "open_source": false,
+      "notes": "Nguyên lý motion: purposeful, optional, cancelable, tránh motion cho tương tác lặp lại; visionOS tránh dao động ~0,2 Hz; tiêu chí App Store Reduced Motion; cập nhật 9/9/2025; mục 22 §9g",
+      "section": "22"
+    },
+    {
+      "name": "Material 3 Motion",
+      "repo": null,
+      "url": "https://m3.material.io/styles/motion/overview",
+      "category": "checklist",
+      "license": "Google (tài liệu)",
+      "stars": null,
+      "open_source": false,
+      "notes": "Motion scheme standard/expressive, spring spatial/effects × fast/default/slow; tên token và giá trị chỉ đọc từ gói bên thứ ba (chưa xác minh từ m3.material.io); mục 22 §9g",
+      "section": "22"
+    },
+    {
+      "name": "Lottie Specification",
+      "repo": "lottie/lottie-spec",
+      "category": "protocol",
+      "license": "Community Specification License 1.0 (mã ví dụ MIT)",
+      "stars": 118,
+      "open_source": true,
+      "notes": "Spec Lottie v1.0 (Lottie Animation Community, JDF/Linux Foundation, 17/9/2024): JSON Schema + tests valid/invalid; chưa gồm text layer, 1.1 ở lộ trình; GitHub báo NOASSERTION; commit cuối 29/5/2026; ★ 2/11/2026 (GitHub search API), mục 22 §9g",
+      "section": "22"
+    },
+    {
+      "name": "web-vitals",
+      "repo": "GoogleChrome/web-vitals",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 8669,
+      "open_source": true,
+      "notes": "Thư viện chính thức đo LCP/INP/CLS ở người dùng thật, build attribution chỉ ra nguyên nhân; v6.2.3; dùng đo tác động của animation; commit cuối 16/10/2026; ★ 2/11/2026 (GitHub search API), mục 22 §9g",
+      "section": "22"
+    },
+    {
+      "name": "CS336 Assignment 1 (Basics)",
+      "repo": "stanford-cs336/assignment1-basics",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 3131,
+      "open_source": true,
+      "notes": "Bài tập LM from scratch (BPE, Transformer, AdamW) chấm bằng 48 test pytest + 15 snapshot (14 .npz + 1 .pkl); AGENTS.md buộc agent làm trợ giảng, không viết lời giải; README ghi 'Spring 2025' lệch CHANGELOG 26.0.x; ★ 2/11/2026 (GitHub search API), mục 08 §4",
+      "section": "08"
+    },
+    {
+      "name": "Hugging Face Course",
+      "repo": "huggingface/course",
+      "category": "learning",
+      "license": "Apache-2.0",
+      "stars": 4342,
+      "open_source": true,
+      "notes": "Khoá chính chủ HF 13 chương (tới fine-tune LLM, reasoning model); chapters/vi 78 file (chương 0–9, thiếu 10–12); CI chỉ chạy black; repo huggingface/llm-course chỉ là README rỗng; ★ 2/11/2026 (GitHub search API), mục 08 §4",
+      "section": "08"
+    },
+    {
+      "name": "Machine Learning Engineering Open Book",
+      "repo": "stas00/ml-engineering",
+      "category": "learning",
+      "license": "CC-BY-SA-4.0",
+      "stars": 19649,
+      "open_source": true,
+      "notes": "Sách mở vận hành training/inference LLM (Stas Bekman, BLOOM-176B); script benchmark network/storage; skill ml-engineering + evaluate-cluster; ★ 2/11/2026 (GitHub search API), mục 08 §4",
+      "section": "08"
+    },
+    {
+      "name": "LLM Evaluation Guidebook",
+      "repo": "huggingface/evaluation-guidebook",
+      "category": "learning",
+      "license": "CC BY-NC-SA 4.0",
+      "stars": 2163,
+      "open_source": false,
+      "notes": "Nền tảng đánh giá LLM (benchmark tự động, LLM-as-judge, người chấm, troubleshooting); README: NO LONGER MAINTAINED, bản mới ở HF Space OpenEvals/evaluation-guidebook; phi thương mại, GitHub báo NOASSERTION; ★ 2/11/2026 (GitHub search API), mục 08 §4",
+      "section": "08"
+    },
+    {
+      "name": "Deep Learning Tuning Playbook",
+      "repo": "google-research/tuning_playbook",
+      "category": "learning",
+      "license": "CC BY 4.0",
+      "stars": 30417,
+      "open_source": true,
+      "notes": "Quy trình tune siêu tham số có hệ thống (Google Research/Harvard); đứng yên từ 6/2024; GitHub báo NOASSERTION, file là CC BY 4.0; ★ 2/11/2026 (GitHub search API), mục 08 §4",
+      "section": "08"
+    },
+    {
+      "name": "OpenSSF OSPS Baseline",
+      "repo": "ossf/security-baseline",
+      "category": "checklist",
+      "license": "Apache-2.0",
+      "stars": 171,
+      "open_source": true,
+      "notes": "Chuẩn bảo mật cấp dự án dạng YAML (schema Gemara): 8 nhóm, 41 control, 67 yêu cầu ID OSPS-XX-NN.NN (2 retired), 3 mức; 14 mapping (SSDF, SLSA, Scorecard, SAMM, CRA…); workflow osps-baseline-action xuất SARIF; ★ 2/11/2026 (GitHub search API), mục 09 §3c",
+      "section": "09"
+    },
+    {
+      "name": "OpenSSF Best Practices Badge",
+      "repo": "ossf/best-practices-badge",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 1372,
+      "open_source": true,
+      "notes": "App bestpractices.dev: tiêu chí Baseline 1–3 (64 control sinh từ OSPS 2026-08-28) + Metal passing/silver/gold; phần lớn tự khai; đã chuyển từ coreinfrastructure/; ★ 2/11/2026 (GitHub search API), mục 09 §3c",
+      "section": "09"
+    },
+    {
+      "name": "OpenSLO",
+      "repo": "OpenSLO/OpenSLO",
+      "category": "checklist",
+      "license": "Apache-2.0",
+      "stars": 1539,
+      "open_source": true,
+      "notes": "Đặc tả YAML openslo/v1 cho SLO/SLI/AlertPolicy, không phụ thuộc nhà cung cấp; CLI oslo ở repo riêng (chưa đọc); ★ 2/11/2026 (GitHub search API), mục 09 §3c",
+      "section": "09"
+    },
+    {
+      "name": "MADR (Markdown ADR)",
+      "repo": "adr/madr",
+      "category": "checklist",
+      "license": "MIT OR CC0-1.0",
+      "stars": 2609,
+      "open_source": true,
+      "notes": "Mẫu ADR v4.0.0 (17/9/2024), 4 biến thể, có mục Confirmation; GitHub báo NOASSERTION; ★ 2/11/2026 (GitHub search API), mục 09 §3c",
+      "section": "09"
+    },
+    {
+      "name": "The Twelve-Factor App",
+      "repo": "twelve-factor/twelve-factor",
+      "category": "checklist",
+      "license": "CC-BY-4.0",
+      "stars": 2836,
+      "open_source": true,
+      "notes": "Nội dung 12factor.net mở mã nguồn, có VISION/GOVERNANCE để hiện đại hoá; HEAD 9/7/2025; ★ 2/11/2026 (GitHub search API), mục 09 §3c",
+      "section": "09"
+    },
+    {
+      "name": "SEA-HELM",
+      "repo": "aisingapore/SEA-HELM",
+      "category": "vietnam",
+      "license": "MIT",
+      "stars": 42,
+      "open_source": true,
+      "notes": "Bộ đánh giá LLM Đông Nam Á v1.3.0 (AI Singapore, leaderboard SEA-LION), ~20 nhóm task có cấu hình vi, 8 lượt chạy + khoảng tin cậy; LICENSE MIT nhưng pyproject ghi Apache-2.0; ★ 2/11/2026 (GitHub search API), mục 18 §5b",
+      "section": "18"
+    },
+    {
+      "name": "VNHSGE",
+      "repo": "Xdao85/VNHSGE",
+      "category": "vietnam",
+      "license": null,
+      "stars": 31,
+      "open_source": false,
+      "notes": "Đề thi tốt nghiệp THPT 9 môn, 19.000 câu trắc nghiệm + 300 tự luận, song ngữ (arXiv 2305.12199); train/test thêm 30/10/2026; không có LICENSE, một phần từ sách đề có bản quyền, rủi ro nhiễm dữ liệu; ★ 2/11/2026 (GitHub search API), mục 18 §5b",
+      "section": "18"
+    },
+    {
+      "name": "DESIGN:OS Vietnamese",
+      "repo": "jangtrinh/design-os-vietnamese",
+      "category": "vietnam",
+      "license": "PolyForm-Shield-1.0.0",
+      "stars": 10,
+      "open_source": false,
+      "notes": "Linter văn bản tiếng Việt offline (NFC, kiểu dấu, câu dịch máy, luật theo ngành) + kiểm parity i18n + 16 skill agent; README ghi 489 cặp eval nhưng đếm được 575; license source-available cấm sản phẩm cạnh tranh; ★ 2/11/2026 (GitHub search API), mục 18 §5b",
+      "section": "18"
+    },
+    {
+      "name": "Google SRE Workbook",
+      "repo": null,
+      "url": "https://sre.google/workbook/table-of-contents/",
+      "category": "checklist",
+      "license": "CC BY-NC-ND 4.0",
+      "stars": null,
+      "open_source": false,
+      "notes": "Sách SRE (2018): chương SLO, phụ lục A mẫu tài liệu SLO, phụ lục B chính sách error budget mẫu; đọc mục lục 2/11/2026, mục 09 §3c",
+      "section": "09"
+    },
+    {
+      "name": "MTEB",
+      "repo": "embeddings-benchmark/mteb",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 3488,
+      "open_source": true,
+      "notes": "Cổng máy chọn embedding/reranker: CLI `mteb run`, leaderboard HF, task retrieval tự định nghĩa; v2.26.31, 16 workflow CI; leaderboard nhiều kết quả do tác giả model tự nộp; có VN-MTEB (50 task tiếng Việt, phần lớn dịch từ tập tiếng Anh, mục 18 §5b); ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "BEIR",
+      "repo": "beir-cellar/beir",
+      "category": "eval-observability",
+      "license": "Apache-2.0",
+      "stars": 2327,
+      "open_source": true,
+      "notes": "Chuẩn định dạng corpus/queries/qrels + nDCG@10/Recall@k cho retrieval zero-shot (NeurIPS 2021), 17 bộ dữ liệu tiền xử lý; commit cuối 16/10/2025, dùng làm định dạng, chạy qua MTEB; ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "LongMemEval",
+      "repo": "xiaowu0162/LongMemEval",
+      "category": "agent-memory",
+      "license": "MIT",
+      "stars": 1191,
+      "open_source": true,
+      "notes": "Benchmark bộ nhớ dài hạn ICLR 2025: 500 câu, 5 năng lực, bản S/M/oracle, bản cleaned 9/2025; chấm QA bằng LLM judge chọn qua tham số (gpt-4o mặc định, gpt-4o-mini, llama-3.1), có answer_session_ids để đo recall theo phiên; V2 cho agent (201★); ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "LoCoMo",
+      "repo": "snap-research/locomo",
+      "category": "agent-memory",
+      "license": "CC-BY-NC-4.0 (LICENSE.txt; GitHub báo NOASSERTION)",
+      "stars": 1259,
+      "open_source": true,
+      "notes": "Benchmark hội thoại rất dài ACL 2024: 10 hội thoại, QA + event summary, chấm F1/EM/ROUGE; phi thương mại, 10 mẫu nên phương sai lớn, commit cuối 12/8/2024; ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "FlagEmbedding (BGE)",
+      "repo": "FlagOpen/FlagEmbedding",
+      "category": "rag",
+      "license": "MIT (code; license từng model HF chưa xác minh)",
+      "stars": 12292,
+      "open_source": true,
+      "notes": "BGE-M3 (100+ ngôn ngữ, 8192 token, dense+sparse+multi-vector) và bge-reranker, suy luận + finetune tự host; commit 27/10/2026; ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "Chonkie",
+      "repo": "feyninc/chonkie",
+      "category": "rag",
+      "license": "MIT",
+      "stars": 4818,
+      "open_source": true,
+      "notes": "Thư viện chunking: token/sentence/recursive/semantic/late/neural/code/table; CI có trufflehog, pyodide; BENCHMARKS.md chỉ đo tốc độ, không đo chất lượng retrieval; v1.7.0, HEAD nhánh mặc định 26/8/2026; ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "chunking_evaluation (Chroma)",
+      "repo": "brandonstarxel/chunking_evaluation",
+      "category": "eval-observability",
+      "license": "MIT",
+      "stars": 515,
+      "open_source": true,
+      "notes": "Đo chunking mức token: precision/recall/IoU so với đoạn trích chuẩn (báo cáo kỹ thuật Chroma), sinh câu hỏi tổng hợp; mặc định OpenAI text-embedding-3-large nếu không truyền embedding; commit cuối 13/12/2025; ★ 2/11/2026 (GitHub search API), mục 10 §6c",
+      "section": "10"
+    },
+    {
+      "name": "OSWorld",
+      "repo": "xlang-ai/OSWorld",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 3248,
+      "open_source": true,
+      "notes": "Benchmark computer use trên VM: 368 task trong test_all.json, chấm bằng hàm kiểm trạng thái; OSWorld-Verified 28/7/2025; provider docker/VMware/VirtualBox/AWS/Azure/GCP/Modal/Daytona; task Google/proxy thiếu cấu hình sẽ fail; ★ 2/11/2026 (GitHub search API), mục 11 §3d",
+      "section": "11"
+    },
+    {
+      "name": "WebArena",
+      "repo": "web-arena-x/webarena",
+      "category": "browser-agent",
+      "license": "Apache-2.0",
+      "stars": 1640,
+      "open_source": true,
+      "notes": "Benchmark web agent: 812 task trên site tự host (Docker/AMI), chấm URL/DOM/chuỗi; v0.2.0 sửa nhãn 10/2023; commit cuối 26/11/2025; bản sửa nhãn WebArenaVerified của ServiceNow; ★ 2/11/2026 (GitHub search API), mục 11 §3d",
+      "section": "11"
+    },
+    {
+      "name": "BrowserGym",
+      "repo": "ServiceNow/BrowserGym",
+      "category": "browser-agent",
+      "license": "Apache-2.0 (LICENSE có tiêu đề ServiceNow; GitHub báo NOASSERTION)",
+      "stars": 1425,
+      "open_source": true,
+      "notes": "API kiểu Gym chung cho MiniWoB, WebArena, WebArenaVerified, VisualWebArena, WorkArena, AssistantBench, WebLINX; gói cài từng phần; AgentLab chạy thí nghiệm; ★ 2/11/2026 (GitHub search API), mục 11 §3d",
+      "section": "11"
+    },
+    {
+      "name": "AgentDojo",
+      "repo": "ethz-spylab/agentdojo",
+      "category": "security",
+      "license": "MIT",
+      "stars": 978,
+      "open_source": true,
+      "notes": "Đo utility + tỷ lệ tấn công prompt injection thành công trên 4 suite (workspace, slack, travel, banking), registry tấn công và phòng thủ (tool_filter, detector); v0.1.35, API còn đổi, commit cuối 2/6/2026; ★ 2/11/2026 (GitHub search API), mục 11 §3d",
+      "section": "11"
+    },
+    {
+      "name": "nsjail",
+      "repo": "google/nsjail",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 4181,
+      "open_source": true,
+      "notes": "Jail tiến trình Linux: namespace, cgroup v1/v2, rlimit, seccomp-bpf (Kafel), config protobuf, mẫu chromium/firefox; 'not an official Google product'; chia sẻ kernel host; ★ 2/11/2026 (GitHub search API), mục 11 §3d",
+      "section": "11"
+    },
+    {
+      "name": "Kata Containers",
+      "repo": "kata-containers/kata-containers",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 9060,
+      "open_source": true,
+      "notes": "Container trong microVM (QEMU/Cloud Hypervisor/Firecracker/Dragonball) qua RuntimeClass; tầng cách ly dưới agent-sandbox; CI có Scorecard, zizmor, osv-scanner, cargo-deny; v4.3.1; cần KVM; ★ 2/11/2026 (GitHub search API), mục 11 §3d",
+      "section": "11"
+    },
+    {
+      "name": "Spider 2.0",
+      "repo": "xlang-ai/Spider2",
+      "category": "data",
+      "license": "MIT",
+      "stars": 886,
+      "open_source": true,
+      "notes": "Benchmark text-to-SQL doanh nghiệp: Snow 547, Lite 547 (BigQuery 214/Snowflake 198/SQLite 135), DBT 68 task, baseline Spider-Agent; bản Snow phụ thuộc tài khoản Snowflake của nhóm (bị tạm ngưng theo News 12/8/2026); ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
+    },
+    {
+      "name": "BIRD Mini-Dev",
+      "repo": "bird-bench/mini_dev",
+      "category": "data",
+      "license": "CC-BY-SA-4.0 (badge README; repo không có file LICENSE)",
+      "stars": 192,
+      "open_source": true,
+      "notes": "500 câu SELECT trên SQLite/MySQL/PostgreSQL, metric EX + R-VES + Soft F1; cập nhật 2026 sửa nhãn (28/10/2026); LiveSQLBench; leaderboard bird-bench.github.io; ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
+    },
+    {
+      "name": "Great Expectations (GX Core)",
+      "repo": "fivetran/great_expectations",
+      "category": "quality-gate",
+      "license": "Apache-2.0",
+      "stars": 11913,
+      "open_source": true,
+      "notes": "Unit test cho dữ liệu (Expectation + Checkpoint), v1.24.1; repo chuyển từ great-expectations/ sang fivetran/ (chưa xác minh thời điểm); đóng gói agent skill với installer có manifest sở hữu + hash + ghi nguyên tử; GX_ANALYTICS_ENABLED mặc định chưa xác minh; ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
+    },
+    {
+      "name": "Soda Core",
+      "repo": "sodadata/soda-core",
+      "category": "quality-gate",
+      "license": "Elastic-2.0 (ELv2; GitHub báo NOASSERTION)",
+      "stars": 2463,
+      "open_source": false,
+      "notes": "Data contract YAML, 50+ check, CLI/Python trên Postgres/Snowflake/BigQuery/DuckDB…; README gọi 'open source' nhưng LICENSE là ELv2 (cấm dịch vụ hosted, không OSI); v4.29.1rc0; ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
+    },
+    {
+      "name": "dbt (v2, Rust)",
+      "repo": "dbt-labs/dbt",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 14110,
+      "open_source": true,
+      "notes": "Repo trước là dbt-core; main là dbt v2.0 viết lại bằng Rust (2.0.8), v1 ở nhánh 1.latest; data test + unit test; telemetry mặc định bật, tắt bằng DBT_SEND_ANONYMOUS_USAGE_STATS=false, DO_NOT_TRACK chỉ áp cho docs và chỉ nhận '1'; ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
+    },
+    {
+      "name": "OpenLineage",
+      "repo": "OpenLineage/OpenLineage",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 2736,
+      "open_source": true,
+      "notes": "Chuẩn mở lineage (LF AI & Data Graduate): run/job/dataset + facet, spec OpenAPI/JSON Schema, client Python/Java/Go, tích hợp Spark/Airflow/dbt/Flink; backend tham chiếu Marquez; ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
+    },
+    {
+      "name": "SQLFluff",
+      "repo": "sqlfluff/sqlfluff",
+      "category": "quality-gate",
+      "license": "MIT",
+      "stars": 10011,
+      "open_source": true,
+      "notes": "Linter + auto-fix SQL, 28 file dialect, templater Jinja/dbt, lõi Rust sqlfluffrs; v4.5.0; workflow AgentScan phân loại PR do agent tạo theo mẫu pull_request_target không checkout mã PR; ★ 2/11/2026 (GitHub search API), mục 15 §4",
+      "section": "15"
     }
   ]
 }

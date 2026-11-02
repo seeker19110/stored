@@ -72,7 +72,7 @@ if os.path.exists(HANDOFF_PATH):
             if ref[:2] not in sections:
                 errors.append(f"xt-handoff {hid}: stored_ref '{ref}' trỏ tới mục không có thư mục")
         for xid in item.get("xt_ids", []):
-            if not re.fullmatch(r"[A-Z]+-[A-Z]+-\d{3}", xid):
+            if not re.fullmatch(r"[A-Z]+-[A-Z0-9]+-\d{3}", xid):
                 errors.append(f"xt-handoff {hid}: xt_id '{xid}' sai dạng")
         needs_proposal = item.get("column") in ("shallower", "missing")
         if needs_proposal != ("proposal" in item):

@@ -135,6 +135,40 @@
 
 **Nguồn §5c:** GitHub search API 31/10/2026 (12 truy vấn + `repo:` cho 17 repo cũ và 6 repo mới) · clone `--filter=blob:none`, đọc: VoiceStudio (LICENSE, LICENSE-NOTICE.md, README.md, backend/core/analytics.py, .gitmodules, .github/workflows/scam-guard.yml), voicebox (LICENSE, README.md, RESPONSIBLE_USE.md, backend/, app/src/), VibeVoice (LICENSE, README.md, lịch sử commit), GPT-SoVITS (LICENSE, README.md, install.sh), VoxCPM (LICENSE, README.md, pyproject.toml), Handy (LICENSE, README.md, src-tauri/src/, src-tauri/tauri.conf.json) · https://github.com/debpalash/VoiceStudio · https://github.com/jamiepine/voicebox · https://github.com/microsoft/VibeVoice · https://github.com/RVC-Boss/GPT-SoVITS · https://github.com/OpenBMB/VoxCPM · https://github.com/cjpais/Handy · https://huggingface.co/openbmb/VoxCPM2
 
+## 5d. Nâng trần 2/11/2026: đo chất lượng giọng nói (WER, MOS, eval voice agent) và watermark (yêu cầu người dùng)
+
+> Mục 14 đã có framework, model STT/TTS và app giọng nói, nhưng chưa có công cụ nào để **đo** chúng. Đợt này thêm lớp đo và lớp gắn nhãn đầu ra. Số liệu đọc bằng GitHub search API ngày 2/11/2026. Clone `--depth 1 --filter=blob:none` 7 repo, đọc LICENSE, README, `pyproject.toml`, `.env.example` và file chính. **Không cài, không chạy.**
+
+### 5d.1 Trần hiện tại
+
+- Chọn model theo **benchmark tự công bố**: Elo của Kokoro/Chatterbox (§3), bảng của Audio8 (§3b), VoxCPM (§5c). Kho chưa có công cụ nào để dự án tự đo lại trên dữ liệu của mình, nhất là tiếng Việt.
+- STT chưa có cổng **WER/CER**, TTS chưa có điểm **MOS** tự động, voice agent (Pipecat, LiveKit §1) chưa có eval hội thoại nhiều lượt.
+- §5c.4 khuyên "tự thêm watermark" cho clone giọng nhưng chưa chỉ công cụ nào. Chỉ Chatterbox có watermark sẵn (§3).
+
+### 5d.2 Bảng repo mới
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `jitsi/jiwer` | Cổng máy (STT) | 942 · Apache-2.0 | 16/4/2026 | Thư viện Python chuẩn để tính WER, MER, WIL, WIP, CER bằng RapidFuzz; v4.0.0. Đủ nhỏ để chạy trong CI trên bộ audio mẫu của dự án | Kết quả phụ thuộc bước chuẩn hoá văn bản (dấu, số, viết hoa). Với tiếng Việt phải tự định nghĩa và ghi rõ chuẩn hoá thanh điệu và số |
+| `huggingface/open_asr_leaderboard` | Chuẩn đo (ASR) | 278 · Apache-2.0 | 30/10/2026 | Mã của Open ASR Leaderboard: bộ test công khai (short-form, long-form, multilingual FLEURS/MCV/MLS), chạy trên Hugging Face Jobs cùng phần cứng để tái lập, có cả tập riêng tư. Là thước đo trung lập để so Whisper, Parakeet, VibeVoice-ASR | Normalizer chủ yếu cho tiếng Anh (`EnglishTextNormalizer`); với nhánh multilingual dùng `BasicMultilingualTextNormalizer`. Kết quả tiếng Việt **(chưa xác minh có công bố)** |
+| `Picovoice/speech-to-text-benchmark` | Cổng máy (STT) | 698 · Apache-2.0 | 7/10/2026 | Khung nhỏ đo WER và độ trễ trên LibriSpeech, TED-LIUM, Common Voice, MLS, VoxPopuli, FLEURS…; có engine Whisper, whisper.cpp streaming, Moonshine, Vosk, Nemotron cùng các API cloud | **Benchmark của nhà bán**: có engine Cheetah/Leopard của chính Picovoice. Dùng khung đo, đừng dùng bảng kết quả |
+| `sarulab-speech/UTMOSv2` | Cổng máy (TTS) | 377 · MIT | 2/4/2026 | Dự đoán MOS độ tự nhiên, hạng 1 ở 7/16 chỉ số của VoiceMOS Challenge 2024 Track 1 (SLT 2024). Dùng để chặn hồi quy chất lượng TTS khi đổi model hay voicepack | Huấn luyện cho giọng tổng hợp chất lượng cao, phần lớn tiếng Anh/Nhật. Với tiếng Việt chỉ nên so tương đối giữa hai phiên bản, không coi là điểm tuyệt đối **(chưa xác minh)** |
+| `ServiceNow/eva` | Cổng máy (voice agent) | 235 · MIT | 29/10/2026 | Eval hội thoại nói nhiều lượt theo kiểu bot đối thoại với bot: **EVA-A** (làm đúng việc) và **EVA-X** (tự nhiên, ngắn, hợp hội thoại nói). 213 kịch bản doanh nghiệp, bộ nhiễu (tiếng ồn, giọng vùng miền, mạng chập chờn), kết quả cho 12 hệ thống | Cần key ElevenLabs/OpenAI/Google/AWS cho người dùng giả và giám khảo LLM, nên tốn phí. Kịch bản tiếng Anh |
+| `OpenBMB/UltraEval-Audio` | Cổng máy (tổng hợp) | 328 · Apache-2.0 | 28/10/2026 | Gom 34 benchmark (giọng nói, âm thanh, y tế, âm nhạc; 10 ngôn ngữ) cho cả hiểu và sinh giọng, kèm lệnh tái lập kết quả của các model phổ biến (ACL 2026 demo) | Khung lớn, tự cài phụ thuộc riêng cho từng model. README đủ tiếng Anh, có bản tiếng Trung |
+| `facebookresearch/audioseal` | Đầu bảng (watermark) | 802 · MIT (cả weights từ 4/2024) | 2/11/2026 | Watermark âm thanh theo từng đoạn: dò được vị trí đoạn bị chèn, chạy streaming từ v0.2. Đã nằm trong **danh sách soft-binding của C2PA** (`com.aiwatermark.audioseal.1`, xem mục 19 §3d) | Watermark có thể bị tấn công gỡ. Chỉ là một lớp, phải đi kèm manifest C2PA |
+
+**Đã xem nhưng không thêm:** `SpeechColab/Leaderboard` (558★, không có LICENSE, push cuối 3/2025) · `tarepan/SpeechMOS` (368★, MIT, đứng yên từ 10/2023) · `boson-ai/EmergentTTS-Eval-public` (237★, Apache-2.0, push cuối 12/2025).
+
+### 5d.3 Stack nâng trần
+
+1. **Cổng WER/CER cho STT (nửa ngày).** Chuẩn bị 50–200 câu audio tiếng Việt thật của sản phẩm kèm transcript chuẩn. Tính bằng `jiwer` sau một bước chuẩn hoá cố định, chặn PR khi WER tăng quá ngưỡng. Áp cho Whisper, faster-whisper (§2), PhoWhisper (mục 18) và VibeVoice-ASR (§5c).
+2. **So model bằng khung trung lập (1 ngày).** Dùng harness của Open ASR Leaderboard hoặc Picovoice với dữ liệu của mình. Không tin bảng số của nhà bán, kể cả bảng của Picovoice.
+3. **MOS tự động cho TTS (1 ngày).** Chấm UTMOSv2 trên bộ câu cố định mỗi khi đổi model hay giọng (Kokoro, VoxCPM2, VieNeu…). Chỉ so tương đối, và định kỳ cho người nghe thật duyệt lại.
+4. **Eval voice agent (2–3 ngày).** Chạy EVA (EVA-A/EVA-X và bộ nhiễu) cho agent dựng bằng Pipecat hoặc LiveKit (§1) trước khi lên production. Tự viết kịch bản tiếng Việt theo cùng khung.
+5. **Gắn nhãn giọng clone.** Chèn AudioSeal vào đầu ra TTS clone giọng (VoxCPM, GPT-SoVITS, Voicebox ở §5c), ký manifest C2PA (mục 19 §3d), lưu nhật ký người đồng ý cho giọng.
+
+**Nguồn §5d:** GitHub search API 2/11/2026 (`repo:` cho 7 repo; 6 truy vấn `word error rate`, `MOS prediction`, `TTS evaluation`, `ASR benchmark leaderboard`, `voice agent evaluation`, `audioseal OR videoseal`) · clone `--depth 1 --filter=blob:none` 2/11/2026: jitsi/jiwer (HEAD 2227002, 16/4/2026; README.md, LICENSE, pyproject.toml), huggingface/open_asr_leaderboard (edd6842, 30/10/2026; README.md, LICENSE, normalizer/normalizer.py), Picovoice/speech-to-text-benchmark (aea7914, 7/10/2026; README.md, LICENSE, engine.py), sarulab-speech/UTMOSv2 (cc2700d, 2/4/2026; README.md, LICENSE), ServiceNow/eva (236f4ea, 29/10/2026; README.md, LICENSE, .env.example), OpenBMB/UltraEval-Audio (c0be484, 28/10/2026; README.md, LICENSE), facebookresearch/audioseal (98f56cd, 2/11/2026; README.md, LICENSE) · danh sách soft-binding C2PA: github.com/c2pa-org/specifications `softbinding-alg-list/softbinding-algorithm-list.json` (HEAD 66ee450)
+
 ## 6. Nguồn
 
 - https://micdrop.dev/blog/open-source-voice-agent-frameworks · https://livekit.com/blog/best-open-source-voice-and-video-ai-agent-frameworks · https://www.forasoft.com/blog/article/pipecat-vs-livekit-agents · https://github.com/pipecat-ai/pipecat · https://techsy.io/en/blog/best-open-source-voice-agent-frameworks · https://grokipedia.com/page/List_of_open-source_voice_AI_frameworks

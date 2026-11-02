@@ -173,6 +173,35 @@
 
 **Nguồn §4b:** GitHub search API 31/10/2026 (`repo:` cho 13 repo cũ và 7 repo mới; 6 truy vấn chủ đề) · `meta_all.json`/`status_all.json` đợt rà 31/10 · clone `--filter=blob:none` 8 repo, đọc: f/prompts.chat (LICENSE, cây gốc, prompts.csv), anthropics/prompt-eng-interactive-tutorial (README.md, cây `Anthropic 1P/`, `AmazonBedrock/`, nhánh), linshenkx/prompt-optimizer (LICENSE và lịch sử, README.md, docker/{docker-compose.yml, nginx.conf, generate-config.sh, generate-auth.sh}, middleware.js, packages/mcp-server/{README.md, src/config/environment.ts}, .github/workflows/test.yml), gepa-ai/gepa (LICENSE, pyproject.toml, README.md, .github/workflows/, tests/), danielmiessler/Fabric (LICENSE và lịch sử, README.md, go.mod, internal/plugins/ai/, data/patterns/*/system.md, .github/workflows/patterns.yaml), asgeirtj/system_prompts_leaks (LICENSE, README.md, cây thư mục), elder-plinius/CL4R1T4S (LICENSE, README.md), Piebald-AI/claude-code-system-prompts (LICENSE, README.md, tools/updatePrompts.js, cây system-prompts/) · https://arxiv.org/abs/2507.19457
 
+## 4c. Nâng trần 2/11/2026: định dạng prompt có spec, công cụ so sánh, red-team và tối ưu có cổng validation (yêu cầu người dùng)
+
+> Tìm repo **chưa có trong catalog** ở ba lớp: chuẩn, cổng máy, đầu bảng. GitHub search API 2/11/2026 (`repo:` và truy vấn "red teaming llm", "prompt testing", "prompt injection benchmark"); clone `--depth 1 --filter=blob:none`, đọc LICENSE, README, `pyproject`/`package.json`, module telemetry. **Không cài, không chạy.**
+
+**Trần hiện tại:**
+
+- Mục có hướng dẫn (§1), optimizer (DSPy, GEPA ở §2, §4b), structured output (§2b) và kho system prompt (§3, §4b). Nguyên tắc §4 mục 2 "prompt là code, test bằng eval" có, nhưng công cụ eval/red-team nằm ở mục 07 và 12 (promptfoo, garak, PyRIT), mục này chưa có.
+- Prompt chưa có **định dạng file chuẩn**: mỗi dự án tự đặt chuỗi trong code, nên không lint, không diff, không chạy lại được giữa các runtime.
+- Chưa có benchmark prompt injection để đo phòng thủ của prompt, và optimizer ở §4b chưa nói gì về **cổng validation giữ lại** (held-out) khi chấp nhận thay đổi.
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `microsoft/prompty` | Chuẩn (định dạng file) | 1,3k · MIT | 21/10/2026 | `.prompty` = Markdown + frontmatter (model, connection, template); v2 có spec (`spec/spec.md`, TypeSpec trong `schema/`) và **conformance vectors** dùng chung cho runtime Python, TypeScript, Rust, C#; extension VS Code chạy bằng F5; có OpenTelemetry | Đổi lớn từ v1 lên v2; runtime Go/Java/Swift còn dở **(chưa xác minh)** |
+| `google/dotprompt` | Chuẩn (định dạng file) | 573 · Apache-2.0 | 5/10/2026 | Định dạng prompt thực thi được dựa trên Handlebars, dùng trong Firebase Genkit; spec viết thành YAML test (`spec/*.yaml`) chạy chung cho JS, Python, Go, Rust, Java, Dart; có OpenSSF Scorecard | Ít sao; gắn với hệ Genkit |
+| `ianarawjo/ChainForge` | Đầu bảng (so sánh prompt) | 3,0k · MIT | 29/10/2026 | Môi trường dạng luồng để so prompt × model × tham số, node đánh giá (Python, so ground truth), vẽ kết quả; kèm 188 flow chuyển từ OpenAI evals | Hợp khám phá hơn CI; bản web giới hạn tính năng |
+| `confident-ai/deepteam` | Cổng máy (red-team) | 3,1k · Apache-2.0 | 23/10/2026 | 50+ lỗ hổng (PII, prompt leakage, BOLA, SSRF, tool metadata poisoning…) và nhiều kiểu tấn công, chấm bằng LLM judge chạy cục bộ; có guardrails | ❌ **Telemetry bật mặc định**: `deepteam/telemetry.py` lấy IP công khai qua `api.ipify.org` rồi gửi kèm span tới New Relic, cùng PostHog và Sentry (key viết cứng). Tắt bằng `DEEPTEAM_TELEMETRY_OPT_OUT=YES`; không đọc `DO_NOT_TRACK` |
+| `liu00222/Open-Prompt-Injection` | Cổng máy (benchmark) | 510 · MIT | 27/9/2026 | Bộ công cụ học thuật (slide của tác giả đặt ở duke.edu) chuẩn hoá tấn công/phòng thủ prompt injection, đo ASV; có detector DataSentinel và PromptLocate | Checkpoint tải từ Google Drive, không ghim băm; ví dụ dùng PaLM2 cũ |
+| `microsoft/SkillOpt` | Đầu bảng (optimizer) | 18,8k · MIT | 29/10/2026 | Coi tài liệu skill/prompt là tham số để huấn luyện: sửa add/delete/replace có giới hạn, **chỉ nhận sửa khi điểm validation held-out tăng**; sản phẩm là `best_skill.md` 300–2.000 token, không thêm lượt gọi lúc chạy | Số "tốt nhất 52/52 ô" là tự công bố (paper arXiv 2605.23904) **(chưa xác minh)**; `SkillOpt-Sleep` đọc transcript Claude Code/Codex/Cursor của người dùng |
+
+**Stack nâng trần** (lợi ích/công sức giảm dần):
+
+1. Đưa prompt ra file có spec: `.prompty` (đa runtime, hệ Microsoft) hoặc `.prompt` của dotprompt (hệ Genkit). File riêng thì diff, review và chạy eval được như code (§4 mục 2).
+2. Eval hồi quy bằng promptfoo (mục 07) trên chính các file đó; ChainForge để khám phá nhanh trước khi chốt test case.
+3. Red-team trước khi phát hành: deepteam hoặc garak/PyRIT (mục 12), luôn đặt `DEEPTEAM_TELEMETRY_OPT_OUT=YES`; đo phòng thủ injection bằng Open-Prompt-Injection.
+4. Tối ưu: DSPy/GEPA (§2, §4b) cho pipeline, SkillOpt cho prompt/skill dạng tài liệu. Với mọi optimizer, giữ quy tắc của SkillOpt: **tách tập validation, chỉ nhận thay đổi làm điểm tăng**.
+5. Quản lý phiên bản prompt (Langfuse, LangSmith ở §2) lưu cùng điểm eval, không chỉ lưu văn bản.
+
+**Nguồn §4c:** GitHub search API 2/11/2026 · clone `--depth 1 --filter=blob:none` 2/11/2026: microsoft/prompty (LICENSE, README.md, `spec/`, `schema/model/conformance/`, `runtime/`), google/dotprompt (LICENSE, README.md, `spec/`), ianarawjo/ChainForge (LICENSE.md, README.md), confident-ai/deepteam (LICENSE.md, README.md, `deepteam/telemetry.py`), liu00222/Open-Prompt-Injection (LICENSE, README.md), microsoft/SkillOpt (LICENSE, README.md, pyproject.toml, `docs/sleep/README.md`, grep telemetry) · https://github.com/microsoft/prompty · https://github.com/google/dotprompt · https://chainforge.ai · https://www.trydeepteam.com · https://github.com/liu00222/Open-Prompt-Injection · https://arxiv.org/abs/2605.23904
+
 ## 5. Nguồn
 
 - https://github.com/dair-ai/Prompt-Engineering-Guide · https://www.star-history.com/dair-ai/prompt-engineering-guide/ · https://dev.to/web_dev-usman/10-github-repos-every-serious-prompt-writer-should-be-using-21jk

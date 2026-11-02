@@ -129,6 +129,39 @@
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.
 - Theo dõi: Hugging Face `vinai`, `VietAI`, `Vi-VLM`, `GreenNode`; GitHub topic `vietnamese-nlp`.
 
+## 5b. Nâng trần 2/11/2026: benchmark tiếng Việt chạy được và cổng kiểm văn bản tiếng Việt (yêu cầu người dùng)
+
+> Tìm cổng đo cho model và văn bản tiếng Việt. Gồm 6 truy vấn GitHub ("vietnamese benchmark llm", "vietnamese llm evaluation", "VNHSGE", "vietnamese mteb", "SEA-HELM", "vietnamese eval") và đọc mã của ba bộ đánh giá lớn (MTEB, lm-evaluation-harness, HELM) để đếm task tiếng Việt. Số sao lấy từ GitHub search API ngày 2/11/2026. **Không chạy mã nào của các repo.** Hệ sinh thái nhỏ: phần lớn benchmark tiếng Việt riêng lẻ trên GitHub có dưới 5★ (VLegal-Bench, V-MTEB của haisonle001, ViLegalREB…), nên không thêm.
+
+**Trần hiện tại**
+
+- Benchmark LLM duy nhất là VMLU (§4c), đóng băng từ 5/2024. Embedding tiếng Việt (§4c) chỉ có điểm **tự báo cáo** trên một tập pháp luật.
+- §4d.4 ý 5 đã ghi: thiếu leaderboard độc lập. TTS và ASR chỉ có benchmark tự làm.
+- Chưa có **cổng máy cho văn bản tiếng Việt** do agent sinh (Unicode NFC, kiểu đặt dấu, câu dịch máy), dù các repo của chủ kho viết toàn bằng tiếng Việt (§4b).
+
+**Bảng repo mới**
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `embeddings-benchmark/mteb` (benchmark **VN-MTEB**) | Cổng máy | 3,5k · Apache-2.0 | 2/11/2026 | Benchmark `VN-MTEB (vie, v1)` gồm **50 task**: 24 retrieval, 12 classification, 5 clustering, 3 pair-classification, 3 reranking, 3 STS. Tham chiếu EACL 2026 Findings. Đã khai báo sẵn model tiếng Việt trong `vi_vn_models.py`: bi-encoder BKAI, AITeamVN/Vietnamese_Embedding (§4c), 4 model GreenNode, halong_embedding, sup-SimCSE PhoBERT | Tên task (`MSMARCO-VN`, `FiQA2018-VN`, `Banking77VNClassification`…) cho thấy phần lớn được dịch từ tập tiếng Anh, có thể lệch tiếng Việt tự nhiên. Cách dịch **(chưa xác minh)** |
+| `aisingapore/SEA-HELM` | Cổng máy | 42 · LICENSE là MIT, `pyproject.toml` ghi Apache-2.0 | 5/8/2026 | Bộ đánh giá LLM Đông Nam Á của AI Singapore (v1.3.0), làm nền cho leaderboard SEA-LION. Khoảng **20 nhóm task có cấu hình `vi`**: NLU, NLG, NLR, an toàn (toxicity, nội dung văn hoá), IFEval, MT-Bench, long-context, vision. Điểm tính trên 8 lượt chạy, có khoảng tin cậy | ❌ License trong file và trong manifest mâu thuẫn. Python ghim 3.12, phụ thuộc flashinfer bản cu129 (cần GPU NVIDIA). Ít sao |
+| `Xdao85/VNHSGE` | Dữ liệu benchmark | 31 · **không có LICENSE** | 30/10/2026 | Đề thi tốt nghiệp THPT: 9 môn, 19.000 câu trắc nghiệm + 300 câu tự luận Văn, có ảnh, song ngữ (arXiv 2305.12199). Ngày 30/10/2026 thêm bộ train/test cho 5 môn; `Dataset/NOTES.md` ghi lại mọi chỗ sửa tay | Không có LICENSE nên chưa được cấp quyền dùng. Một phần lấy từ sách đề thi thử có bản quyền (theo NOTES). Đề công khai 2019–2023 nhiều khả năng đã nằm trong dữ liệu huấn luyện của model (nhiễm dữ liệu) |
+| `jangtrinh/design-os-vietnamese` | Cổng máy (lint văn bản) | 10 · **PolyForm Shield 1.0.0** (không phải license OSI) | 1/11/2026 | Linter offline `shared/scripts/validate_copy.py` (1.745 dòng): chuẩn hoá NFC, kiểu dấu cũ/mới (`hoà`/`hòa`), câu dịch máy, luật theo ngành. `check_i18n_parity.py` kiểm khớp khoá và plural ICU giữa en/vi. Có 16 skill cho Claude Code/Codex/Gemini, CI chạy unittest | PolyForm Shield cấm dùng trong sản phẩm cạnh tranh với tác giả. ⚠️ README ghi "489 golden evaluation pairs" nhưng đếm được **575 dòng** trong `evals/*/pairs.jsonl`. Luật pháp lý trong rule chưa đối chiếu văn bản gốc. Tác giả cũng là upstream của `design-os-3d-blender` (mục 23 §6.1) |
+
+**Cổng có sẵn trong công cụ kho đã có (không thêm vào catalog):**
+
+- `EleutherAI/lm-evaluation-harness` (mục 07) có task tiếng Việt chạy ngay. Đếm file theo nhóm: `global_mmlu` vi (64), `mmlu_prox` (33), `include` (18), `mlqa` (13), `global_piqa` (4), `okapi` (5), cùng `belebele` `vie_Latn`, `xcopa`, `xnli`, `xquad`.
+- `stanford-crfm/helm` (mục 07 đã loại vì vào chế độ bảo trì từ 1/6/2026) chứa bộ **MELT** cho tiếng Việt, 21 scenario: ViMMRC, Zalo QA, VSEC (sửa chính tả), VLSP/VSFC (cảm xúc), ViHSD/ViCTSD (độc hại), PhoMT, VietNews, kèm metric thiên kiến và độc hại. ⚠️ "VHELM" trong HELM là đánh giá **vision-language**, không phải tiếng Việt.
+
+**Stack nâng trần**
+
+1. **RAG tiếng Việt**: chạy phần retrieval của VN-MTEB cho bi-encoder BKAI và Vietnamese_Embedding (§4c) trên cùng cấu hình, thay cho MRR tự báo cáo. Ghép BM25 qua `elasticsearch-analysis-vietnamese` (§4d), rồi đo lại.
+2. **Chọn LLM**: dùng task `vi` của lm-evaluation-harness (global_mmlu vi, belebele) làm cổng nhanh trong CI. VMLU (§4c) và VNHSGE đo kiến thức phổ thông. SEA-HELM dùng khi cần đánh giá rộng, có an toàn và văn hoá.
+3. **Văn bản agent sinh**: chuẩn hoá NFC, thống nhất một kiểu đặt dấu và kiểm khớp khoá i18n en/vi trước khi merge nội dung UI. Lấy ý tưởng từ design-os-vietnamese; nếu sản phẩm có thể cạnh tranh với tác giả thì tự viết lại, đừng nhúng mã.
+4. **Chống nhiễm dữ liệu**: giữ một tập test riêng gồm đề hoặc văn bản ra đời **sau** mốc dữ liệu của model, và công bố phương pháp (bài học từ gipformer, §4d).
+
+**Nguồn §5b:** GitHub search API 2/11/2026 (6 truy vấn chủ đề; `repo:` cho 6 repo) · clone `--filter=blob:none`: embeddings-benchmark/mteb (HEAD `da9f201` 2/11/2026: LICENSE, `mteb/benchmarks/benchmarks/benchmarks.py` khối `VN_MTEB`, `mteb/models/model_implementations/vi_vn_models.py`), aisingapore/SEA-HELM (`9be3986` 5/8/2026: LICENSE, README.md, pyproject.toml, `seahelm_tasks/**` khoá `vi:`), Xdao85/VNHSGE (`04c845d` 30/10/2026: README.md, `Dataset/NOTES.md`, cây file), jangtrinh/design-os-vietnamese (`63dc654` 1/11/2026: LICENSE, README.md, `shared/scripts/validate_copy.py`, `evals/*/pairs.jsonl`, `.github/workflows/ci.yml`), EleutherAI/lm-evaluation-harness (`d6de816` 14/9/2026: cây `lm_eval/tasks`), stanford-crfm/helm (`63754d0` 5/6/2026: `run_entries_melt.conf`, `melt_*` scenario, `docs/vhelm.md`) · https://aclanthology.org/2026.findings-eacl.86/ · https://arxiv.org/abs/2305.12199 · https://leaderboard.sea-lion.ai/
+
 ## 6. Nguồn
 
 - https://www.emergentmind.com/topics/phogpt · https://arxiv.org/html/2509.26189v2 · https://arxiv.org/html/2608.25478 · https://ai.stanford.edu/blog/crossing-linguistic-horizon/ · https://aisean.org/resources/ · https://huggingface.co/Vi-VLM/Vistral-V-7B · https://github.com/vndee/awsome-vietnamese-nlp

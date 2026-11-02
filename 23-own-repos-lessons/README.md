@@ -389,6 +389,60 @@ Video factory: MoneyPrinterTurbo, ShortGPT, short-video-maker, NarratoAI, ClipsA
 
 **Nguồn §8c:** clone `https://github.com/seeker19110/x-company` 1/11/2026 (HEAD `f000d50`): README.md, LICENSE (`git log --diff-filter=A`), GO-NO-GO.md, .claude/settings.json, .gitignore, xt.yaml, .github/workflows/*.yml (đếm `uses:` ghim SHA), .github/dependabot.yml, `git log -i --grep "co-authored-by: claude"`, `git shortlog -sne` · GitHub search API (`repo:seeker19110/X-Company`, `repo:seeker19110/hotel-manager`, `repo:donghanhcungban/projects-template`) 1/11/2026.
 
+## 8d. Nâng trần 2/11/2026: đối chiếu 13 repo với chuẩn và cổng máy ở các mục khác (yêu cầu người dùng)
+
+> Mục này là hồ sơ repo của chủ kho, nên **không thêm repo ngoài**. Thay vào đó, đo 13 repo công khai còn hoạt động theo các chuẩn và cổng máy tốt nhất đã ghi ở mục khác: OSPS Baseline, SLSA, OpenSLO, MADR (mục 09 §3c); OpenSSF Scorecard (mục 12/13); eval tiếng Việt (mục 18 §5b). Clone `--filter=blob:none --no-checkout` ngày 2/11/2026, đo trên HEAD nhánh mặc định bằng `git ls-tree` và nội dung `.github/workflows/*.yml`. **Không chạy mã nào.** Không đo case-study-ft41 (private), reveser, Claude-Red (mirror/fork, xem §6) và các repo không có CI.
+
+**Trần hiện tại**
+
+- §8.1 và §8b đo lớp **vệ sinh CI**: ghim SHA, `permissions:`, Dependabot, LICENSE/SECURITY. Đây là "sàn", và phần lớn repo đã đạt sau ngày 13/10.
+- Chưa đối chiếu với chuẩn cấp dự án có ID (OSPS Baseline), chuẩn phát hành (SLSA provenance), chuẩn vận hành (SLO dạng file), hay eval cho sản phẩm AI tiếng Việt.
+- Khung X-Templates đã nêu nhiều chuẩn trong yêu cầu, nhưng repo đích chưa làm theo hết (dưới).
+
+**Ma trận đo (HEAD 13/10–2/11/2026)**
+
+| Repo | LICENSE | SECURITY | CODEOWNERS | Scorecard | Provenance | SBOM | ADR (số file · kiểu MADR) | Eval trong CI | SLO dạng file |
+|---|---|---|---|---|---|---|---|---|---|
+| projects-template | có | có | có | **có** | – | – | 13 · có | – | – |
+| X-Templates | có | có | – | – | – | – | 64 · có | – | – |
+| xboss | **không** | có | có | **có** | – | – | 16 · có | – | – |
+| X-Agents | có | có | có | – | – | – | 114 · không | **có** (replay) | – |
+| X-Studio | có | có | – | – | – | – | 24 · không | **có** | – |
+| qlkh | **không** | **không** | – | – | – | **có** | 1 · không | – | **có** (`infra/QLKH/slo`) |
+| dhcb | **không** | có | – | – | – | – | 17 · có | – | – |
+| Xgold | có | có | có | – | – | – | 16 · có | – | – |
+| X-Scanner | **không** | có | có | – | – | **có** | 7 · có | – | – |
+| X-Company | chưa điền chủ (§8c) | có | có | – | – | **có** | 4 · có | – | – |
+| Dhcb-Tools | có | có | – | – | – (có ký bản phát hành) | – | 0 | – | – |
+| Sales-Hunter | có | có | – | – | – | – | 11 · không | – | – |
+| Hermes-Agents | có | **không** | – | – | – | – | 0 | – | – |
+
+Cách đo: Scorecard = có `ossf/scorecard-action`; Provenance = có `attest-build-provenance`, `slsa-github-generator` hoặc `attestations: write`; SBOM = có syft/CycloneDX/`anchore/sbom`; "kiểu MADR" = file ADR đầu tiên có mục *Considered Options*/*Decision Outcome* hoặc mục tiếng Việt tương đương (heuristic, chỉ đọc một file); Eval = workflow nhắc promptfoo/inspect/lm_eval/deepeval/ragas/`evals/`.
+
+**Khoảng trống so với chuẩn**
+
+| Chuẩn (nơi ghi) | Repo đạt | Khoảng trống cụ thể |
+|---|---|---|
+| OSPS Baseline L1: `OSPS-LE-03.01` (license trong file LICENSE), `OSPS-VM-02.01` (có liên hệ bảo mật) — mục 09 §3c | 8/13 có LICENSE; 11/13 có SECURITY | **Thiếu LICENSE**: xboss, qlkh, dhcb, X-Scanner; X-Company có file nhưng chưa ghi chủ sở hữu (§8c). **Thiếu SECURITY**: qlkh, Hermes-Agents |
+| OpenSSF Scorecard — mục 12/13; ánh xạ sẵn trong `osps-to-scorecard.yaml` | 2/13 (projects-template, xboss) | X-Agents có agent keeper "đọc Scorecard" (§3.1) nhưng **không có workflow Scorecard**. Các repo khác cũng không chạy |
+| SLSA provenance — mục 09 §3c; X-Templates `SEC-SUPPLY-014` (**MUST@L**: Build L2) | **0/13** | Ưu tiên là **Dhcb-Tools**: repo duy nhất phân phối bản cài (add-in Revit/AutoCAD, `.mcpb`). `release.yml` đã ký (`scripts/sign-release.ps1`) nhưng chưa sinh attestation. `OSPS-BR-06.01` (L2) yêu cầu bản phát hành được ký hoặc có manifest ký chứa hash: Dhcb-Tools gần đạt |
+| SBOM — `OSPS-QA-02.02` (L3) | 3/13 | Chỉ cần với repo có bản phát hành biên dịch: Dhcb-Tools trước tiên |
+| SLO dạng file (OpenSLO, SRE Workbook phụ lục B) — mục 09 §3c | 1/13 (qlkh) | X-Company đang NO-GO (§8c) và chưa có SLO hay chính sách error budget. X-Templates nhắc OpenSLO ở **1 file** (`15-operations/slo-and-alerting.md`) |
+| ADR có mục kiểm (MADR *Confirmation*) — mục 09 §3c | 9/13 có ADR | Dhcb-Tools và Hermes-Agents không có ADR. X-Agents (114 file) và X-Studio không theo cấu trúc *Considered Options*, nên khó so phương án đã loại |
+| Eval cho sản phẩm AI tiếng Việt — mục 18 §5b | 0 repo có eval tiếng Việt | **dhcb** (gia sư AI Việt⇄Anh) chỉ có snapshot prompt (`src/prompts/golden.test.ts`) và test SRS; **chưa có eval chất lượng câu trả lời tiếng Việt** trong CI. X-Agents có hạ tầng replay (§3.1) nhưng bộ eval không nhắm tiếng Việt |
+| Khung X-Templates (grep `framework/`, 2/11/2026) | ASVS 31 file, Scorecard 11, SLSA 10, MADR 7, 12-factor 14, NFC 12, bestpractices 6 | **OSPS Baseline: 0 file**; **VMLU/VN-MTEB/SEA-HELM/MELT: 0 file**; OpenSLO: 1 file |
+
+**Stack nâng trần (theo lợi ích/công sức)**
+
+1. **Thêm LICENSE và SECURITY.md** cho các repo thiếu (một commit mỗi repo; đạt OSPS L1 phần LE/VM). Với X-Company: điền chủ sở hữu hoặc chuyển về private.
+2. **Dhcb-Tools: thêm `actions/attest-build-provenance` vào `release.yml` sau bước ký** (và SBOM cho bản cài). Đây là bước gần nhất tới `SEC-SUPPLY-014` của chính khung chủ kho. Việc đạt đủ SLSA Build L2 cần kiểm lại sau khi chạy **(chưa xác minh)**.
+3. **Chép workflow Scorecard của projects-template** sang X-Templates, X-Agents, dhcb, rồi bật `osps-baseline-action` (mục 09 §3c) để ra báo cáo SARIF theo ID.
+4. **X-Templates: gắn yêu cầu với ID OSPS** bằng file mapping sẵn có của OSPS. Đây là đề xuất cho khung, không sửa trực tiếp repo.
+5. **dhcb: thêm eval tiếng Việt** vào CI (tập câu hỏi giữ riêng + rubric). Dùng hạ tầng record/replay của X-Agents để CI không tốn tiền gọi model; tham khảo task `vi` của lm-evaluation-harness và kiểm NFC (mục 18 §5b).
+6. **X-Company: viết SLO bằng OpenSLO và chính sách error budget** trước khi đổi GO-NO-GO sang GO.
+
+**Nguồn §8d:** clone `--filter=blob:none --no-checkout` ngày 2/11/2026: seeker19110/{projects-template `bac75d3`, X-Templates `1abbde2`, X-Agents `da755ba`, X-Studio `93a290a`, dhcb `7e23118`, Xgold `4019368`, X-Scanner `a1959b4`, xboss `7945699`, Dhcb-Tools `ebc363a`, Sales-Hunter `35c69c6`, X-Company `f000d50`}, donghanhcungban/{qlkh `9c66ac3`, Hermes-Agents `b2e4ab8`}; đo bằng `git ls-tree -r`, `git show HEAD:.github/workflows/*.yml`, `git show HEAD:<ADR đầu tiên>`, `git show HEAD:README.md`; Dhcb-Tools `.github/workflows/release.yml`; X-Templates: checkout `framework/`, đếm file bằng `grep -rliE`, đọc `framework/12-security/supply-chain.md` (SEC-SUPPLY-014..018) · ID OSPS đọc từ `ossf/security-baseline` `baseline/OSPS-*.yaml` (HEAD `c62696c`).
+
 ## 9. Nguồn (đường dẫn trong các clone nông, đọc 2026-10-12)
 
 - projects-template: `README.md`, `.claude/settings.json`, `.claude/hooks/{auto-complete-guard,pre-commit-gate,session-resume,usage-guard,telemetry-record}.sh`, `scripts/{dev-task.sh,check-docs-consistency.sh,test-hooks-loop.sh,model-capability-tiers.json,subagent-dispatch.py,maintain-run.sh}`, `docs/framework/{adopt-from-outside,orchestration-3-tier}.md`, `docs/reports/2026-09-22…2026-10-12-*.md`, `TRAPS.md`, `docs/adr/0003,0005,0006,0007,0009,0010,0011`, `.github/workflows/{ci,pr-policy,maintenance}.yml`, `docs/ops/{supply-chain,threat-model-maintain-cron}.md`
