@@ -7896,6 +7896,16 @@
       "open_source": true,
       "notes": "Agent skill (không phải app) ảnh → hàm TS trả THREE.Group procedural; ~48k dòng Python stdlib, 1.453 test; cổng tất định IoU≥0,85/SSIM/pHash/ΔE00 + agent tự chấm; không gọi LLM trong mã; tuyến GLB nhúng mesh base64, TRELLIS upload ảnh lên HF Space; demo showcase không license; 15/7/2026, ~0 mã mới sau v2.0.0 (6/9); ★ 1/11/2026 (GitHub API), mục 22 §9f",
       "section": "22"
+    },
+    {
+      "name": "Elephant-Goldfish Model (EGM)",
+      "repo": "google/elephant-goldfish-model",
+      "category": "plugin-marketplace",
+      "license": "Apache-2.0",
+      "stars": 9165,
+      "open_source": true,
+      "notes": "Plugin toàn prompt (7 skill, 9 persona reviewer) cho Claude Code/Codex/Antigravity: viết spec với agent đủ ngữ cảnh, rà bằng subagent ngữ cảnh mới (bản Claude Code: tools chỉ đọc + omitClaudeMd), vòng rà hội tụ khi 2 lượt sạch, trần 5, phát hiện churn; 'not an officially supported Google product', lịch sử công khai từ 21/10/2026; 'thousands of Google engineers' chưa xác minh; ★ 2/11/2026 (GitHub API), mục 20 §3u",
+      "section": "20"
     }
   ]
 }

@@ -747,3 +747,7 @@
 ## Bổ sung 2026-11-01c (bài đăng prompt caching Claude Code)
 
 - Bài đăng tiếng Việt "Claude Code: 10,69 triệu token nhưng chỉ tốn $9,93" (người dùng gửi 1/11/2026, không ghi nguồn gốc case study); đối chiếu skill tham chiếu Claude API (bảng giá lưu 6/10/2026, `shared/prompt-caching.md`). Mục 03 §8h; bàn giao XT-H-052.
+
+## Bổ sung 2026-11-02 (ảnh README google/elephant-goldfish-model)
+
+- `google/elephant-goldfish-model`: ảnh README người dùng gửi 2/11/2026; clone `--filter=blob:none` (119 commit, HEAD `403d888` 30/10/2026); GitHub search API 9.165★/598 fork, Apache-2.0. Mục 20 §3u; bàn giao XT-H-053 (đối chiếu `LOOP-DESIGN-013` trong clone X-Templates `a0f08cd`).
