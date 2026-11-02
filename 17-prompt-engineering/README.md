@@ -202,6 +202,45 @@
 
 **Nguồn §4c:** GitHub search API 2/11/2026 · clone `--depth 1 --filter=blob:none` 2/11/2026: microsoft/prompty (LICENSE, README.md, `spec/`, `schema/model/conformance/`, `runtime/`), google/dotprompt (LICENSE, README.md, `spec/`), ianarawjo/ChainForge (LICENSE.md, README.md), confident-ai/deepteam (LICENSE.md, README.md, `deepteam/telemetry.py`), liu00222/Open-Prompt-Injection (LICENSE, README.md), microsoft/SkillOpt (LICENSE, README.md, pyproject.toml, `docs/sleep/README.md`, grep telemetry) · https://github.com/microsoft/prompty · https://github.com/google/dotprompt · https://chainforge.ai · https://www.trydeepteam.com · https://github.com/liu00222/Open-Prompt-Injection · https://arxiv.org/abs/2605.23904
 
+<a id="core-prompt-optimization"></a>
+
+## 4d. Nâng trần 2/11/2026: optimizer có holdout thật và ngân sách kiểm chứng (mở rộng cùng ngày)
+
+> Mở rộng chiều sâu trong cùng đợt 2/11/2026, không phải công bố các repo vừa ra mắt. Hai repo dưới đã có trong catalog: đọc lại LICENSE, CI và nhánh mặc định bằng clone chỉ đọc; SHA đối chiếu GitHub API. Mức bằng chứng **code-read**; không chạy/build repo ngoài, hiệu năng và hành vi thực tế **(chưa xác minh)**. Số sao/trạng thái đọc 2026-11-02; ngày commit tính theo UTC, tách khỏi `pushed_at`.
+
+| Repo đã có | ★ · license (2026-11-02) | HEAD nhánh mặc định | Vai trò đọc sâu |
+|---|---|---|---|
+| `stanfordnlp/dspy` | 38.885 · MIT | 2026-10-29 · `25162c4f` | Lập trình prompt và adapter GEPA có budget |
+| `gepa-ai/gepa` | 7.245 · MIT | 2026-10-31 · `8c7b697a` | Reflective search. Pareto validation và giới hạn đo |
+
+**Trần còn thiếu:** §4c khuyên “validation held-out”, nhưng thư viện không luôn ép tách tập. Mục này thêm đường đọc từ **API optimizer → tập dùng chọn ứng viên → ngân sách → phép chấm cuối**, để một điểm validation tăng không bị hiểu nhầm thành model tổng quát tốt hơn.
+
+### DSPy: chữ ký có kiểu không thay metric và dữ liệu tách biệt
+
+- [`dspy.GEPA`](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/dspy/teleprompt/gepa/gepa.py#L377) buộc chọn đúng một trong `auto`, `max_full_evals`, `max_metric_calls`; trace/feedback giúp optimizer đề xuất sửa prompt. Chi phí search gồm model đích, model reflection và grader, nên số metric call không tự quy đổi thành một trần USD.
+- Adapter ở SHA đọc này ghi **`max_reflection_cost` chưa hỗ trợ** và từ chối tham số đó vì DSPy LM thiếu giao diện tổng cost GEPA cần. Không chép một cấu hình GEPA standalone sang DSPy rồi tin đã có cùng cap. Đặt trần metric + timeout/quota ngoài và đối soát token/cost thực.
+- [`MIPROv2.compile`](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/dspy/teleprompt/mipro_optimizer_v2.py#L113) nhận train/val, dùng validation để tìm instruction/few-shot; final test phải tách khỏi cả hai. Output có kiểu/khớp Signature chỉ là hợp đồng dữ liệu, chưa là metric chất lượng. [CI upstream](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/.github/workflows/run_tests.yml) có lint/type/test và workflow scan; đây không phải kết quả tối ưu của ứng dụng đang dùng kho.
+
+### GEPA standalone: `valset=None` tái dùng trainset
+
+- [`optimize()`](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/src/gepa/api.py#L153) nói rõ nếu không truyền `valset` thì dùng lại trainset; mã tạo `val_loader=train_loader`. Tên “validation” trong kết quả vì thế **không bảo đảm dữ liệu held-out**. Người tích hợp phải chia tập theo nguồn/episode và truyền valset khác thật.
+- [`GEPAEngine`](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/src/gepa/core/engine.py#L116) dùng namespace cache riêng khi val loader khác train loader; đây là bảo vệ cache index, không phát hiện hai bộ có nội dung trùng/near-duplicate. Tập validation vẫn tham gia chọn ứng viên/Pareto, nên cần một final test chưa dùng chọn prompt.
+- API có metric/stop callback và resume `run_dir`; nếu thay dữ liệu, metric hay model mà tái dùng run state cũ, điểm cũ không tự trở thành thí nghiệm hợp lệ. Paper GEPA cung cấp bằng chứng trong điều kiện tác giả đo; không suy ra sẽ hơn RL/prompt tay trên mọi task. [CI](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/.github/workflows/run_tests.yml) kiểm thư viện, **(chưa xác minh)** benchmark cho miền của người tích hợp.
+
+**Ma trận chọn mức tối ưu**
+
+| Bài toán | Bắt đầu bằng | Cổng nhận thay đổi |
+|---|---|---|
+| Ít dữ liệu, chưa có metric tin cậy | Prompt thủ công + ChainForge/Promptfoo §4c | Assertion và nhãn người trước khi tăng search |
+| Pipeline nhiều module, cần kiểu và few-shot | DSPy/MIPROv2 | Validation tách theo nguồn + final test độc lập |
+| Có trajectory/feedback giàu thông tin | DSPy GEPA hoặc GEPA adapter | Budget toàn search; không chọn bằng chính final test |
+| Chỉ sửa tài liệu skill/prompt | SkillOpt §4c hoặc GEPA adapter phù hợp | Eval trigger/quality và safety regression |
+| Cần cam kết $ cứng | Optimizer + gateway/quota/time cap | Đối soát reflection/grader/model, không chỉ metric-call count |
+
+**Cách ghép:** xác định metric và negative control bằng mục 07; chia train/validation/final test trước search, kiểm dedup; ghi seed/model/prompt version và toàn bộ budget; chọn **một** optimizer để có baseline; đánh giá ứng viên thắng một lần trên final test kèm safety/structured-output regression; lưu prompt tối ưu cùng cấu hình và điểm đo (Prompty/Dotprompt §4c). Khi đổi dữ liệu/metric, tạo run/version mới. Chỉ chuyển sang fine-tuning khi lỗi còn lại có bằng chứng do năng lực model thay vì retrieval/tool/prompt, đối chiếu mục model adaptation khi chọn hướng đó.
+
+**Nguồn phần mở rộng:** [1](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/LICENSE) · [2](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/dspy/teleprompt/gepa/gepa.py) · [3](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/dspy/teleprompt/mipro_optimizer_v2.py) · [4](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/.github/workflows/run_tests.yml) · [5](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/LICENSE) · [6](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/src/gepa/api.py) · [7](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/src/gepa/core/engine.py) · [8](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/.github/workflows/run_tests.yml) · [9](https://arxiv.org/abs/2507.19457) · [10](https://openreview.net/pdf?id=RQm2KQTM5r)
+
 ## 5. Nguồn
 
 - https://github.com/dair-ai/Prompt-Engineering-Guide · https://www.star-history.com/dair-ai/prompt-engineering-guide/ · https://dev.to/web_dev-usman/10-github-repos-every-serious-prompt-writer-should-be-using-21jk

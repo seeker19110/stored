@@ -1,15 +1,25 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục)",
     "columns": [
       "deeper",
       "shallower",
       "missing",
       "not_adding"
     ],
-    "updated": "2026-11-02"
+    "updated": "2026-11-02",
+    "count": 105,
+    "current_batch": {
+      "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
+      "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
+      "ids": [
+        "XT-H-094",
+        "XT-H-105"
+      ],
+      "status": "proposed-in-stored"
+    }
   },
   "items": [
     {
@@ -1670,6 +1680,568 @@
       ],
       "column": "not_adding",
       "note": "Không thêm, trùng XT-H-025 (nhãn license trên GitHub/README khác văn bản LICENSE, NOASSERTION, đề xuất cổng đọc văn bản LICENSE và so với SPDX). Phần còn lại khung đã có. CMP-LIC-004 (MUST) xếp ELv2 vào nhóm source-available phải có ADR và cấm NOASSERTION trong SBOM. Bẫy ở licensing-and-ip.md:77 bắt đọc file LICENSE thật khi GitHub báo NOASSERTION. Trường hợp Soda Core (README ghi 'open source' nhưng license là ELv2) chỉ là một ví dụ thêm. Có thể ghi Soda Core làm nguồn bổ sung cho XT-H-025."
+    },
+    {
+      "id": "XT-H-094",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "06 §7u"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#i18n-lifecycle-2026-11-02"
+      ],
+      "lesson": "Catalog đích phải đo completeness trước khi runtime/compiler áp fallback; compile --strict sau fallback vẫn có thể xanh với câu nguồn.",
+      "xt_ids": [
+        "XC-I18N-009",
+        "XC-I18N-013",
+        "XC-I18N-016"
+      ],
+      "column": "shallower",
+      "existing_coverage": "XC-I18N-009 đã bắt đủ khoá hoặc fallback khai báo và gợi ý lingui compile --strict;013 có review và016 có pseudo-locale.",
+      "delta": "Bổ sung vị trí kiểm trước fallback và tách completeness của locale đích khỏi availability sau fallback;93 bàn giao cũ chưa có trường hợp compileStrict phủ thiếu bằng ngôn ngữ nguồn.",
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "XC-I18N-009",
+          "file": "framework/18-cross-cutting/i18n-and-l10n.md",
+          "line": 49,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/18-cross-cutting/i18n-and-l10n.md#L49"
+        },
+        {
+          "id": "XC-I18N-013",
+          "file": "framework/18-cross-cutting/i18n-and-l10n.md",
+          "line": 53,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/18-cross-cutting/i18n-and-l10n.md#L53"
+        },
+        {
+          "id": "XC-I18N-016",
+          "file": "framework/18-cross-cutting/i18n-and-l10n.md",
+          "line": 56,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/18-cross-cutting/i18n-and-l10n.md#L56"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với sản phẩm phát hành nhiều locale, SHOULD kiểm catalog của từng locale đích trước khi áp fallback: thiếu/fuzzy/chưa review, placeholder và plural; báo riêng fallback được phép theo danh sách ngoại lệ. Giữ cổng compile/runtime fallback và E2E pseudo-locale/locale thật, nhưng không dùng build xanh sau fallback làm bằng chứng đã dịch đủ. Kiểm bằng fixture có một khoá vi rỗng nhưng en đầy đủ: completeness phải phát hiện khoá đó dù compile dùng fallback thành công."
+      }
+    },
+    {
+      "id": "XT-H-095",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "16 §2i"
+      ],
+      "profile_anchors": [
+        "16-docs-tools/README.md#docs-version-trust-2026-11-02"
+      ],
+      "lesson": "Retrieval docs cần giữ requested_version và served_version; HTTP200 có thể là fallback sang docs của phiên bản khác, không chứng minh khớp lockfile.",
+      "xt_ids": [
+        "WF-DOC-011",
+        "XC-DOCAI-012",
+        "XC-DOCAI-013"
+      ],
+      "column": "shallower",
+      "existing_coverage": "WF-DOC-011 đã yêu cầu docs theo release;XC-DOCAI-012 có version/ngày tài liệu và013 bao gói nguồn đưa agent.",
+      "delta": "Thiếu hợp đồng response của retrieval khi server tự fallback; khác việc chỉ ghim link/installversion hoặc lint freshness đã có trong XT-H-071.",
+      "related_handoffs": [
+        "XT-H-071"
+      ],
+      "xt_evidence": [
+        {
+          "id": "WF-DOC-011",
+          "file": "framework/10-workflow/documentation-workflow.md",
+          "line": 55,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/10-workflow/documentation-workflow.md#L55"
+        },
+        {
+          "id": "XC-DOCAI-012",
+          "file": "framework/18-cross-cutting/docs-for-ai-agents.md",
+          "line": 54,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/18-cross-cutting/docs-for-ai-agents.md#L54"
+        },
+        {
+          "id": "XC-DOCAI-013",
+          "file": "framework/18-cross-cutting/docs-for-ai-agents.md",
+          "line": 55,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/18-cross-cutting/docs-for-ai-agents.md#L55"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với công cụ truy xuất tài liệu theo dependency version, SHOULD lấy requested version từ lockfile/config đang dùng, giữ served version hoặc source tag/commit thực của response, URL nguồn và thời điểm lấy. Nếu không khớp hoặc không xác định được thì báo mismatch và tra docs/source đã ghim trước khi dựa vào snippet để đổi API; ví dụ quan trọng phải typecheck/test với dependency thật. Kiểm fixture provider trả200 nhưng served version khác request không được ghi là đã xác minh tương thích."
+      }
+    },
+    {
+      "id": "XT-H-096",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "24 §4",
+        "24 §5"
+      ],
+      "profile_anchors": [
+        "24-ai-data-engineering/README.md#datatrove",
+        "24-ai-data-engineering/README.md#data-juicer",
+        "24-ai-data-engineering/README.md#5-cổng-kiểm-có-thể-đo-và-quy-trình-human-review"
+      ],
+      "lesson": "Split train/validation/test theo source/cluster trước augment hoặc synthetic; propagate group ID và kiểm overlap trên artifact export cuối.",
+      "xt_ids": [
+        "AI-DATA-007",
+        "AI-DATA-010",
+        "QA-DATA-013"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-DATA-007 đã cấm trùng hash/near-duplicate giữa train/validation/holdout/eval;QA-DATA-013 giữ holdout khi tinh chỉnh prompt.",
+      "delta": "Bổ sung chia theo nhóm nguồn trước generation và kiểm lại export cuối, tránh rò ngữ nghĩa dù hash khác. Không lặp đề xuất validation của XT-H-069 hay license dataset của089.",
+      "related_handoffs": [
+        "XT-H-069",
+        "XT-H-089"
+      ],
+      "xt_evidence": [
+        {
+          "id": "AI-DATA-007",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 57,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L57"
+        },
+        {
+          "id": "AI-DATA-010",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 60,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L60"
+        },
+        {
+          "id": "QA-DATA-013",
+          "file": "framework/14-testing-quality/test-data-and-fixtures.md",
+          "line": 48,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/14-testing-quality/test-data-and-fixtures.md#L48"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với dữ liệu có nhiều biến thể cùng tài liệu, người dùng, hội thoại hoặc near-duplicate cluster, SHOULD xác định group/source ID và khoá split trước augmentation/generation; mọi bản dẫn xuất kế thừa group và split. Kiểm hash/near-duplicate lẫn group overlap lại trên artifact thực xuất cho trainer/eval, không chỉ tập thô. Báo số nhóm/mẫu từng split và ca bị loại; fixture hai biến thể cùng nguồn không được nằm ở train và final test."
+      }
+    },
+    {
+      "id": "XT-H-097",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "24 §4",
+        "24 §5"
+      ],
+      "profile_anchors": [
+        "24-ai-data-engineering/README.md#distilabel",
+        "24-ai-data-engineering/README.md#dvc",
+        "24-ai-data-engineering/README.md#4-chuẩn-gốc-data-card-và-hợp-đồng-dữ-liệu"
+      ],
+      "lesson": "Dataset có nội dung synthetic/AI feedback cần manifest generator/judge/prompt/config/source split; cache resume không thay provenance phát hành.",
+      "xt_ids": [
+        "AI-DATA-001",
+        "AI-DATA-002",
+        "AI-DATA-011"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-DATA-001/002 đã bắt hash/version và datasheet nguồn/biến đổi/giấy phép;011 yêu cầu nhãn synthetic và tỷ lệ.",
+      "delta": "Bổ sung lineage theo từng producer/judge/model/prompt và phiên bản human review, vượt metadata datasheet tổng quan; không lặp89 về quyền dataset.",
+      "related_handoffs": [
+        "XT-H-089"
+      ],
+      "xt_evidence": [
+        {
+          "id": "AI-DATA-001",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 51,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L51"
+        },
+        {
+          "id": "AI-DATA-002",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L52"
+        },
+        {
+          "id": "AI-DATA-011",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 61,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L61"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với pipeline sinh hoặc chấm dữ liệu bằng AI, SHOULD phát hành dataset manifest gồm source IDs/license, input/output hash, recipe revision, generator/judge endpoint và model revision, prompt hash, sampling config, validator và human-review revision nếu có; giữ lý do rejected/retained. Manifest chỉ ra dataset snapshot thực của release; cache và experiment log chỉ là nguồn hỗ trợ. Kiểm thiếu generator/judge revision hoặc không truy được nguồn của một mẫu synthetic thì báo incomplete provenance trước khi chấp nhận snapshot."
+      }
+    },
+    {
+      "id": "XT-H-098",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "25 §3.2",
+        "25 §3.5",
+        "25 §5"
+      ],
+      "profile_anchors": [
+        "25-model-adaptation-post-training/README.md#trl",
+        "25-model-adaptation-post-training/README.md#llamafactory",
+        "25-model-adaptation-post-training/README.md#5-cổng-chất-lượng-từ-dữ-liệu-đến-runtime"
+      ],
+      "lesson": "Training gate cần xem sample đã render/tokenize và loss mask; tên assistant_only_loss không bảo đảm template có mask hoặc đáp án không bị truncation.",
+      "xt_ids": [
+        "AI-DATA-006",
+        "AI-DATA-009",
+        "AI-DATA-010"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-DATA-006 yêu cầu eval trước/sau;009 gắn model với config/eval;010 test pipeline dữ liệu.",
+      "delta": "Chưa có cổng kiểm hợp đồng ở ranh giới text→token→labels trước training; không trùng93bàn giao cũ.",
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "AI-DATA-006",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 56,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L56"
+        },
+        {
+          "id": "AI-DATA-009",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 59,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L59"
+        },
+        {
+          "id": "AI-DATA-010",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 60,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L60"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với tác vụ SFT/chat/tool-call, SHOULD trước job dài lưu một bộ sample sau chat template/tokenization gồm token IDs, labels/loss mask và phần truncation; kiểm user/system/assistant/tool span đúng mục tiêu đã khai, có token được học và đáp án không bị cắt ngoài chủ ý. Ghim tokenizer/chat-template cùng config. Fixture thiếu generation mask hoặc nhãn toàn -100 phải bị phát hiện, không chỉ nhìn cờ cấu hình của trainer hay loss giảm."
+      }
+    },
+    {
+      "id": "XT-H-099",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "25 §3.1",
+        "25 §3.4",
+        "25 §5"
+      ],
+      "profile_anchors": [
+        "25-model-adaptation-post-training/README.md#peft",
+        "25-model-adaptation-post-training/README.md#axolotl",
+        "25-model-adaptation-post-training/README.md#5-cổng-chất-lượng-từ-dữ-liệu-đến-runtime"
+      ],
+      "lesson": "Adapter/merge/quantization/export là các artifact có thể đổi hành vi; load được file không đủ để kế thừa điểm eval của checkpoint huấn luyện.",
+      "xt_ids": [
+        "AI-DATA-006",
+        "AI-DATA-009",
+        "AI-EVAL-001"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-DATA-009 đã version model và yêu cầu deploy eval gate;006 có baseline/holdout/regression;AI-EVAL-001 kiểm khi đổi model/pipeline.",
+      "delta": "Làm rõ cổng sau từng chuyển đổi artifact và binding base/tokenizer/runtime, chưa có trong93bài học cũ.",
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "AI-DATA-006",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 56,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L56"
+        },
+        {
+          "id": "AI-DATA-009",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 59,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L59"
+        },
+        {
+          "id": "AI-EVAL-001",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 57,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L57"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với model/adapter được merge, quantize hoặc export sang runtime khác, SHOULD có manifest base revision, tokenizer/chat-template, adapter/config, precision, export tool và artifact hash; nạp trong tiến trình sạch rồi chạy lại bộ held-out/regression trên artifact và runtime đích thực. Giữ baseline trước/sau chuyển đổi, latency/RAM khi là mục tiêu; chỉ triển khai artifact đã qua cổng, không dùng việc load thành công thay số đo chất lượng."
+      }
+    },
+    {
+      "id": "XT-H-100",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "26 §3",
+        "26 §4"
+      ],
+      "profile_anchors": [
+        "26-document-intelligence-ocr/README.md#3-cổng-kiểm-cho-pipeline-tài-liệu",
+        "26-document-intelligence-ocr/README.md#4-bài-học-kiến-trúc"
+      ],
+      "lesson": "Document pipeline cần giữ page outcome và citation theo hash tài liệu/parser/model; fallback, discarded và unmeasured không được gộp vào số trang OCR đạt.",
+      "xt_ids": [
+        "BE-FILE-010",
+        "AI-DATA-002",
+        "AI-EVAL-006"
+      ],
+      "column": "missing",
+      "existing_coverage": "BE-FILE-010 có timeout/sandbox cho OCR;AI-DATA-002 có datasheet;AI-EVAL-006 phân hạng claim. Chưa có hợp đồng provenance/outcome cấp trang.",
+      "delta": "Bổ sung cơ chế chuyên biệt cho document intelligence; áp dụng khi dự án thực sự xử lý tài liệu, không mở thành MUST toàn mọi sản phẩm.",
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "BE-FILE-010",
+          "file": "framework/08-backend/files-and-media.md",
+          "line": 53,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/08-backend/files-and-media.md#L53"
+        },
+        {
+          "id": "AI-DATA-002",
+          "file": "framework/13-ai-engineering/data-and-fine-tuning.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/data-and-fine-tuning.md#L52"
+        },
+        {
+          "id": "AI-EVAL-006",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 62,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L62"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với OCR/document extraction, SHOULD có ledger từng trang/block: document hash, page, parser/model/config revision, outcome success/fallback/discarded/unmeasured và locator/bbox nếu có. Báo đủ mẫu số trang vào/ra/bỏ; trường schema có citation về bằng chứng gốc hoặc null+reason khi không đọc được, không bịa bbox. Kiểm fixture có một trang fallback hoặc bị loại vẫn xuất hiện trong báo cáo outcome và không được tính như OCR thành công; thay tài liệu/parser/model làm mất hiệu lực cache/evidence cũ."
+      }
+    },
+    {
+      "id": "XT-H-101",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "27 §3",
+        "27 §4"
+      ],
+      "profile_anchors": [
+        "27-3d-cad-bim-engineering/README.md#3-cổng-kiểm-theo-biểu-diễn",
+        "27-3d-cad-bim-engineering/README.md#4-kiến-trúc-agent-sửa-model"
+      ],
+      "lesson": "CAD/BIM agent cần kiểm riêng schema, requirements, geometry và host execution; preview/confirm phải gắn đúng hash model/spec trước khi ghi.",
+      "xt_ids": [
+        "QA-INT-020",
+        "AI-AGENT-003",
+        "PRF-AGENTIC-012"
+      ],
+      "column": "missing",
+      "existing_coverage": "QA-INT-020 đã có corpus IDS/BCF chuẩn;AI-AGENT-003 kiểm policy trước hành động;PRF-AGENTIC-012 audit hash input/approval.",
+      "delta": "Thiếu thang kiểm theo biểu diễn kỹ thuật và stale-preview binding cụ thể. Không thay luật kỹ thuật chuyên ngành bằng một cổng chung hay yêu cầu CAD cho dự án ngoài scope.",
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "QA-INT-020",
+          "file": "framework/14-testing-quality/integration-and-contract.md",
+          "line": 55,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/14-testing-quality/integration-and-contract.md#L55"
+        },
+        {
+          "id": "AI-AGENT-003",
+          "file": "framework/13-ai-engineering/agents-and-tools.md",
+          "line": 60,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/agents-and-tools.md#L60"
+        },
+        {
+          "id": "PRF-AGENTIC-012",
+          "file": "framework/02-profiles/agentic-system.md",
+          "line": 81,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/02-profiles/agentic-system.md#L81"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với agent sửa CAD/BIM/3D kỹ thuật, SHOULD khai các cổng riêng theo biểu diễn: schema/đơn vị, yêu cầu bàn giao, geometry validity và kết quả host/export; không suy ảnh render, watertight hoặc IDS pass thành mọi lớp đã đạt. Preview/approval giữ model+spec hash, target IDs và diff; model thay sau preview thì phải tạo lại preview/approval phù hợp trước khi áp. Kiểm fixture stale preview, geometry lỗi dù schema đúng và schema đúng nhưng thiếu requirement phải có outcome riêng; không retry mù khi host trả outcome_unknown."
+      }
+    },
+    {
+      "id": "XT-H-102",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "28 §3"
+      ],
+      "profile_anchors": [
+        "28-product-discovery-experimentation/README.md#3-chuẩn-phương-pháp-và-cổng-quyết-định"
+      ],
+      "lesson": "A/B phải kiểm assignment khác exposure, mẫu số và SRM trước effect size; evaluator incomplete/unknown không được coi là thí nghiệm đạt.",
+      "xt_ids": [
+        "PM-METRIC-002",
+        "PM-METRIC-011",
+        "AI-EVAL-017"
+      ],
+      "column": "shallower",
+      "existing_coverage": "PM-METRIC-002 đã có event schema;011 có hypothesis/metric/guardrail/cỡ mẫu/phương pháp trước A/B;AI-EVAL-017 có online guardrail.",
+      "delta": "Bổ sung validity của assignment/exposure/data-quality trước phép kiểm effect;93bàn giao cũ chưa đề cập SRM hay exposure instrumentation.",
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "PM-METRIC-002",
+          "file": "framework/17-product-project/metrics-and-analytics.md",
+          "line": 42,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/17-product-project/metrics-and-analytics.md#L42"
+        },
+        {
+          "id": "PM-METRIC-011",
+          "file": "framework/17-product-project/metrics-and-analytics.md",
+          "line": 51,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/17-product-project/metrics-and-analytics.md#L51"
+        },
+        {
+          "id": "AI-EVAL-017",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 73,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L73"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với thử nghiệm sản phẩm, SHOULD xác định đơn vị randomization và event exposure thực tế tách assignment; giữ event ID/version, join rule, attribution window và consent. Trước diễn giải effect, kiểm missing/duplicate event, join rate, A/A khi phù hợp và Sample Ratio Mismatch theo phương pháp đã chọn. Nếu exposure mất, mẫu số không khớp hoặc evaluator incomplete/unknown thì báo chưa đủ bằng chứng và điều tra instrumentation; không coi lack of significance là hai phương án tương đương. Kiểm fixture variant assignment có nhưng không gửi exposure phải bị phát hiện."
+      }
+    },
+    {
+      "id": "XT-H-103",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "21 §10f",
+        "02 §4e"
+      ],
+      "profile_anchors": [
+        "21-autonomous-workflows/README.md#10f-nâng-trần-toàn-diện-2112026-phục-hồi-idempotency-và-timeout-có-hợp-đồng-kiểm",
+        "02-agent-frameworks/README.md#core-framework-semantics"
+      ],
+      "lesson": "Durable journal không giao dịch nguyên tử với dịch vụ ngoài; kiểm cửa sổ crash sau external commit trước checkpoint, cùng retry/time/cancel/retention contract.",
+      "xt_ids": [
+        "AI-AGENTIC-002",
+        "AI-AGENT-005",
+        "ARC-INT-016"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-AGENTIC-002 đã đòi kill worker đúng1effect;AI-AGENT-005 có key/outcome_unknown/reconcile;ARC-INT-016 có durable flow.",
+      "delta": "Không lặp XT-H-066 về bọc I/O thành activity. Delta là failure window external commit→journal, cancellation/total retry budget và retention phải được thử rõ; nguồn SDK chỉ ra cửa sổ chạy lại.",
+      "related_handoffs": [
+        "XT-H-066"
+      ],
+      "xt_evidence": [
+        {
+          "id": "AI-AGENTIC-002",
+          "file": "framework/13-ai-engineering/agentic-systems.md",
+          "line": 82,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/agentic-systems.md#L82"
+        },
+        {
+          "id": "AI-AGENT-005",
+          "file": "framework/13-ai-engineering/agents-and-tools.md",
+          "line": 62,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/agents-and-tools.md#L62"
+        },
+        {
+          "id": "ARC-INT-016",
+          "file": "framework/05-architecture/integration-patterns.md",
+          "line": 66,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/05-architecture/integration-patterns.md#L66"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với workflow có external side effect, SHOULD test có chủ đích lỗi sau dịch vụ ngoài đã commit nhưng trước khi activity/step result được persist; dùng business idempotency key/receipt và đọc lại để reconcile trước retry. Khai tổng deadline, retry cap/backoff, heartbeat/cancellation và retention/version của journal. Báo rõ bảo đảm phụ thuộc API đích; checkpoint hay một lần ghi journal không tự bảo đảm external effect đúng một lần. Kiểm lost response ở cửa sổ này và replay/restart không tạo giao dịch thứ hai."
+      }
+    },
+    {
+      "id": "XT-H-104",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "07 §Nâng trần: đơn vị đo, lặp độc lập"
+      ],
+      "profile_anchors": [
+        "07-eval-observability/README.md#core-eval-validity"
+      ],
+      "lesson": "Replay cache và repeated fresh generation có mục đích khác; thống kê phải ghi đơn vị attempt/sample/episode và cluster, không đếm output cache như mẫu độc lập.",
+      "xt_ids": [
+        "AI-EVAL-002",
+        "AI-EVAL-013",
+        "AI-EVAL-018"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-EVAL-002/013 đã có record/replay và refresh;018 có n/runs/CI/paired test. Chưa chỉ rõ cache repeat và correlated rows ảnh hưởng tính độc lập.",
+      "delta": "Bổ sung ngữ nghĩa repeat cache + đơn vị thống kê/cluster, khác XT-H-073 về judge calibration/task version và092 về environment error.",
+      "related_handoffs": [
+        "XT-H-073",
+        "XT-H-092"
+      ],
+      "xt_evidence": [
+        {
+          "id": "AI-EVAL-002",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 58,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L58"
+        },
+        {
+          "id": "AI-EVAL-013",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 69,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L69"
+        },
+        {
+          "id": "AI-EVAL-018",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 74,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L74"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với eval có repeat/epoch hoặc nhiều câu chung tài liệu/hội thoại, SHOULD báo cache policy, fresh/replay mode, unit of analysis và group/cluster ID. Replay dùng để kiểm hồi quy tất định; khi đo biến thiên sinh mới phải bảo đảm response cache không tái dùng cùng output. Tính uncertainty/test cặp theo đơn vị độc lập hoặc cluster phù hợp, giữ errors/unscored và mẫu số. Fixture hai epoch lấy cùng cached response không được báo thành hai lần sinh độc lập; không dùng giao/không giao hai CI như phép kiểm cặp đầy đủ."
+      }
+    },
+    {
+      "id": "XT-H-105",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "14 §5e"
+      ],
+      "profile_anchors": [
+        "14-voice-multimodal/README.md#5e-voice-reliability"
+      ],
+      "lesson": "Voice agent phải đo turn/episode completion và interruption/reconnect; phát lại audio không cho phép thực thi lại tool đã ghi.",
+      "xt_ids": [
+        "BE-RT-013",
+        "BE-RT-006",
+        "AI-EVAL-007"
+      ],
+      "column": "shallower",
+      "existing_coverage": "BE-RT-013 đã truyền huỷ stream tới model/job;006 có reconnect replay event;AI-EVAL-007 kiểm final state/pass^k.",
+      "delta": "Không lặp XT-H-080 về WER/MOS/video benchmark; thêm vòng đời hội thoại và tách replay transport/audio khỏi execution receipt.",
+      "related_handoffs": [
+        "XT-H-080"
+      ],
+      "xt_evidence": [
+        {
+          "id": "BE-RT-013",
+          "file": "framework/08-backend/realtime-and-streaming.md",
+          "line": 56,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/08-backend/realtime-and-streaming.md#L56"
+        },
+        {
+          "id": "BE-RT-006",
+          "file": "framework/08-backend/realtime-and-streaming.md",
+          "line": 49,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/08-backend/realtime-and-streaming.md#L49"
+        },
+        {
+          "id": "AI-EVAL-007",
+          "file": "framework/13-ai-engineering/evaluation.md",
+          "line": 63,
+          "url": "https://github.com/seeker19110/X-Templates/blob/628e36caeb706001cf512787eba56bcfcb44f133/framework/13-ai-engineering/evaluation.md#L63"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với voice agent streaming, SHOULD gắn session/turn ID qua STT→model/tool→TTS/playback và đo completion, interruption/barge-in, reconnect theo cùng turn/episode. Tách playback retry khỏi tool execution; ghi receipt/idempotency cho tác vụ ghi để reconnect hoặc replay audio không kích tool lần nữa. Kiểm fixture ngắt lời giữa TTS và mất mạng sau tool commit: audio dừng/khôi phục theo hợp đồng và chỉ một side effect. Báo latency từng tầng, lỗi và task outcome bên cạnh WER/MOS."
+      }
     }
   ]
 }

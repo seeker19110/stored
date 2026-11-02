@@ -1286,6 +1286,46 @@ Stageshow khác các skill thiết kế khác ở chỗ: (1) chọn "ví dụ go
 
 **Nguồn §7t:** GitHub search API 2/11/2026 (`repo:` cho 20 repo) · clone `--depth 1 --filter=blob:none` 2/11/2026: vercel-labs/web-interface-guidelines (HEAD 434b7f9, 5/10/2026; README.md, command.md, AGENTS.md, install.sh, LICENSE; 60 commit từ 9/9/2025), addyosmani/web-quality-skills (afa8da9, 24/8/2026; README.md, skills/*/SKILL.md, skills/web-quality-audit/scripts/analyze.sh, LICENSE; 34 commit), dequelabs/axe-core (6b52b84, 21/10/2026; README.md, LICENSE, package.json, lib/rules/, doc/rule-descriptions.md, .github/workflows/), jsx-eslint/eslint-plugin-jsx-a11y (8f75961, 3/1/2026; package.json, src/rules/), stylelint/stylelint (106c1f0, 29/10/2026; package.json, lib/rules/), design-tokens/community-group (882ebd6, 8/9/2026; README.md, LICENSE.md, technical-reports/, schemas/, test-suite/), style-dictionary/style-dictionary (3815256, 28/10/2026; README.md, package.json, CHANGELOG.md, lib/), radix-ui/colors (dbdb854, 17/12/2025), evilmartians/harmony (6dae4f3, 24/7/2026), seek-oss/capsize (1fcf40a, 15/10/2026), argos-ci/argos (0b85846, 30/10/2026; LICENSE, docker-compose.yml, .env.example, infra/README.md, apps/backend/package.json), mapbox/pixelmatch (ab76f52, 6/10/2026; LICENSE, README.md, index.js), Myndex/apca-w3 (6c5c066, 6/5/2026; LICENSE.md, package.json), garris/BackstopJS (a11d365), reg-viz/reg-suit (5c09c8e), raunofreiberg/interfaces (81f523a, 6/6/2023), argyleink/open-props (f39ab7c) · https://www.w3.org/WAI/news/2025-10-21/wcag22-iso · https://www.w3.org/TR/WCAG22/ · https://www.designtokens.org/TR/2025.10/ · ESLint 10 và jsx-a11y: github.com/jsx-eslint/eslint-plugin-jsx-a11y/pull/1081, github.com/peerigon/configs/issues/213
 
+## 7u. Nâng trần 2/11/2026: quốc tế hóa và kiểm chứng giao diện đa ngôn ngữ (mở rộng cùng ngày)
+
+<a id="i18n-lifecycle-2026-11-02"></a>
+
+> §7t đã phủ token, a11y và so ảnh; phần này xét giao diện còn dùng được sau khi đổi ngôn ngữ, dữ liệu địa phương và độ dài chữ. Đọc code ba repo, LICENSE và CI tại HEAD ghi dưới; metadata GitHub API ngày 2/11/2026. **Không cài/build/chạy** các dự án ngoài; không coi mô tả chức năng là kết quả benchmark.
+
+### 7u.1 Khoảng trống và hồ sơ ba lớp
+
+Một UI vượt qua axe và pixelmatch bằng tiếng Anh vẫn có thể mất dấu tiếng Việt, cắt nút khi chuỗi dài, sai số tiền hoặc đọc sai plural. Mục 18 §5b đã có NFC, cách đặt dấu và parity en/vi; bổ sung ở đây là vòng **extract → dịch → review → compile → render theo locale**, không thay các cổng nội dung tiếng Việt đó.
+
+| Dự án · tác giả/tổ chức | ★ · license (2/11/2026) | HEAD đọc · commit cuối | Cơ chế đã đọc | Điểm phải kiểm khi tích hợp |
+|---|---|---|---|---|
+| **i18next** · hệ sinh thái i18next/Locize | 8.660 · MIT | `b84e4180d71d271b9ae1f19ebb668224069b435e` · 1/11 | Runtime JS đa framework; `PluralResolver.js` dùng `Intl.PluralRules`; `defaults.js` mặc định `interpolation.escapeValue: true`; CI chạy lint/test/type | Runtime có fallback plural `one/other` khi không tạo được rule. Trang cũ và runtime thiết bị có thể không cùng dữ liệu Intl; fallback dịch làm UI có chữ nhưng không chứng minh đúng locale |
+| **Lingui** · cộng đồng Lingui, repo có bản quyền Tomáš Ehrlich/Crowdin | 5.934 · MIT | `cbf16e9825cea76408ce06da02980ba57c8ea6c0` · 2/11 | Extract/macro biến JS/JSX thành ICU MessageFormat, catalog rồi compile; `pseudoLocale` hỗ trợ kéo dài chữ và RTL. CI build và test Node 22/24 trên Linux/Windows | Macro cần build integration phù hợp. **`compile --strict` kiểm thiếu sau khi áp `fallbackLocales`**: xanh vẫn có thể là câu tiếng Anh thay cho tiếng Việt; phải đo completeness của chính catalog đích |
+| **Weblate** · cộng đồng Weblate, dịch vụ hosted riêng | 6.149 · **GPL-3.0-or-later** theo README/SPDX, license các phần khác xem `LICENSES/` | `9106f6a31fdeae6fc9e57a3bc1ffc3979824213d` · 2/11 | Nền tảng dịch đồng bộ VCS, glossary, translation memory, check placeholder và workflow reviewer; `docs/workflows.rst` phân biệt suggestion/translated/approved | Review cần bật và cấp quyền đúng theo ngôn ngữ; mặc định bảng workflow không bật review. Dịch máy/memory không tương đương duyệt của người. Tự host có chi phí vận hành và phải xét license khi sửa/phân phối Weblate |
+
+**Phạm vi so sánh:** i18next và Lingui là hai cách triển khai runtime/catalog, không cần dùng cả hai cho một UI. Weblate là lớp cộng tác dịch bên trên file catalog; PO/Gettext của Lingui và JSON của i18next cần cấu hình format khác nhau. Các lựa chọn khác để đối chiếu là FormatJS/react-intl, quy trình PR thuần git và các dịch vụ quản lý bản dịch; chưa đọc mã các lựa chọn đó trong đợt này **(chưa xác minh)**, không gắn nhãn thắng/thua.
+
+### 7u.2 Cổng máy nào chứng minh điều gì
+
+| Câu hỏi | Bằng chứng phù hợp | Giới hạn |
+|---|---|---|
+| Mọi thông điệp đã được đưa ra catalog? | Diff extract trong CI; đếm chuỗi còn hard-code ở phạm vi đã khai báo | Extract không tìm được mọi chuỗi tạo động/response server; ghi rõ phần loại trừ |
+| Catalog tiếng Việt có dịch đủ? | Số message thiếu/fuzzy của **vi trước fallback**, placeholder/plural đúng schema | Build xanh và fallback tiếng Anh không chứng minh hoàn thành dịch |
+| UI chịu được ngôn ngữ khác? | Pseudo-locale kéo dài chữ, RTL giả lập; ảnh màn hình thực tế của en/vi và locale mục tiêu | Pseudo-locale không chấm chất lượng dịch; ảnh tĩnh chưa đo đọc màn hình hay hoàn thành tác vụ |
+| Ngày, số tiền, timezone và plural đúng? | Fixture theo locale bằng Intl/CLDR; tách timezone dữ liệu và timezone hiển thị | Không ghép chuỗi như “1 + items”; runtime/CLDR khác phiên bản có thể cho kết quả khác |
+| Thuật ngữ/dấu/cách xưng hô đúng? | Glossary theo sản phẩm + reviewer bản ngữ + luật ở mục 18 §5b | Check placeholder/ICU không hiểu nghĩa nghiệp vụ |
+
+Chuẩn tham chiếu là **ECMA-402** cho API Intl và **Unicode CLDR/UTS #35** cho quy tắc địa phương; trang ECMA-402 hiện là bản nháp sống nên phải ghi phiên bản engine thực tế. Không suy quy tắc plural ngôn ngữ đích từ tiếng Anh. Với HTML do ứng dụng tự chèn, `escapeValue: false` cần được đánh giá theo đường render; không tắt escape toàn cục chỉ để bản dịch có markup.
+
+### 7u.3 Kiến trúc ghép và cách chọn
+
+Với ứng dụng nhiều framework hoặc JSON catalog sẵn, i18next là ứng viên runtime; ứng dụng muốn extract/macro/ICU và biên dịch message có thể chọn Lingui. Giữ **catalog + source locale + glossary + phiên bản công cụ** trong git, đồng bộ sang Weblate nếu cần nhiều người dịch. Quy trình reviewer chỉ được coi là cổng phát hành khi đã cấu hình quyền/trạng thái cho dự án cụ thể.
+
+Luồng tham chiếu: component/route → extract → bản dịch có placeholder và glossary → review → compile/check thiếu **trước fallback** → Playwright theo locale → axe/so ảnh ở §7t → kiểm nội dung Việt ở mục 18. Đặt date/number/currency formatter ở một lớp chung; xác định rõ locale và timezone của từng màn hình. Font phải có glyph tiếng Việt và test input method, dấu tổ hợp, tên dài trên thiết bị thật.
+
+**Đã đổi từ phần trước:** đây là phần còn thiếu sau việc đo màu/a11y/hiệu năng, không bổ sung thêm skill “gu”. Ba dự án mới không thay các skill thiết kế mà cho chúng điều kiện đạt/trượt khi sinh UI đa ngôn ngữ. **Chưa đo** bundle size, thời gian extract/compile, độ chính xác dịch AI hoặc hỗ trợ trên một thiết bị cụ thể; các thuộc tính đó cần báo cáo của dự án tích hợp.
+
+**Nguồn §7u:** [i18next plural resolver](https://github.com/i18next/i18next/blob/b84e4180d71d271b9ae1f19ebb668224069b435e/src/PluralResolver.js), [defaults](https://github.com/i18next/i18next/blob/b84e4180d71d271b9ae1f19ebb668224069b435e/src/defaults.js), [CI](https://github.com/i18next/i18next/blob/b84e4180d71d271b9ae1f19ebb668224069b435e/.github/workflows/CI.yml), [Lingui compileLocale](https://github.com/lingui/js-lingui/blob/cbf16e9825cea76408ce06da02980ba57c8ea6c0/packages/cli/src/api/compile/compileLocale.ts), [config/pseudoLocale](https://github.com/lingui/js-lingui/blob/cbf16e9825cea76408ce06da02980ba57c8ea6c0/packages/conf/src/types.ts), [CI](https://github.com/lingui/js-lingui/blob/cbf16e9825cea76408ce06da02980ba57c8ea6c0/.github/workflows/main-suite.yml), [Weblate workflows](https://github.com/WeblateOrg/weblate/blob/9106f6a31fdeae6fc9e57a3bc1ffc3979824213d/docs/workflows.rst), [placeholder checks](https://github.com/WeblateOrg/weblate/blob/9106f6a31fdeae6fc9e57a3bc1ffc3979824213d/weblate/checks/placeholders.py), [license](https://github.com/WeblateOrg/weblate/blob/9106f6a31fdeae6fc9e57a3bc1ffc3979824213d/README.rst), [ECMA-402](https://tc39.es/ecma402/), [CLDR number/plural rules](https://www.unicode.org/reports/tr35/tr35-79/tr35-numbers.html), [Lingui pseudolocalization](https://lingui.dev/guides/pseudolocalization). Nguồn web chính thức đọc ngày 2/11/2026; permalink code ghim SHA.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

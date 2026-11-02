@@ -359,6 +359,44 @@ sremote thêm nhiều thứ ttyd không có (phiên bền, desktop, file, app ph
 
 **Nguồn §6h:** GitHub search API 2/11/2026 (`repo:` gộp) · `data/projects.json` (grep `repo`) · clone `--depth 1 --filter=blob:none`: slsa-framework/slsa (HEAD 4d3f9d4, 28/10/2026; LICENSE.md, `spec/whats-new.md`, `spec/` danh sách track, `www/_data/versions.yml`, `www/_posts/`), zizmorcore/zizmor (HEAD fbf8d0c, 2/11/2026; LICENSE, Cargo.toml, `docs/{usage,release-notes}.md`, `crates/zizmor/src/audit/`), rhysd/actionlint (HEAD 011a6d1, 19/4/2026; LICENSE.txt, README.md), anchore/grype (HEAD cb4a51d, 30/10/2026; LICENSE, README.md), step-security/harden-runner (HEAD 46b06ce, 27/10/2026; LICENSE, README.md, action.yml, `src/checksum.ts`, `src/bravo-config.ts`) · https://github.com/slsa-framework/slsa · https://slsa.dev/spec/v1.2/ · https://github.com/zizmorcore/zizmor · https://github.com/rhysd/actionlint · https://github.com/anchore/grype · https://github.com/step-security/harden-runner
 
+## 6i. Nâng trần toàn diện 2/11/2026: môi trường dev, build và release tái lập
+
+> Metadata GitHub đọc 2/11/2026, ba repo chưa archive; clone nông và đọc LICENSE, CI, lock/config và implementation. **Chỉ đọc mã, không cài Nix/devenv, không build, không phát hành.** Phân biệt môi trường khai báo, artifact tái lập và provenance có chữ ký: ba loại bằng chứng bổ sung nhau.
+
+**Trần hiện tại:** §4c có quality gates/toolchain, §6g có Dagger, §6h có SLSA/scan/runner hardening. Chưa có hồ sơ đủ sâu về môi trường dev ghim đầu vào và pipeline đưa *đúng artifact đã kiểm* tới người dùng. [Định nghĩa Reproducible Builds](https://reproducible-builds.org/docs/definition/) yêu cầu tạo lại artifact giống từng bit dưới điều kiện đã công bố; có lockfile hoặc provenance chưa tự chứng minh điều đó.
+
+| Dự án | ★ · license (đọc 2/11/2026) | HEAD / ngày commit | Lớp và điều kiện dùng |
+|---|---|---|---|
+| [Nix](https://github.com/NixOS/nix) | 17,960 · LGPL-2.1 | `b64c28c2134f` · 2026-11-02 | Package/build manager Unix; pin inputs và sandbox, vẫn cần build lại so hash để chứng minh tái lập |
+| [devenv](https://github.com/cachix/devenv) | 7,794 · Apache-2.0 | `0d6c556e5f86` · 2026-10-28 | Môi trường dev khai báo trên Nix với lock/packages/services/tests; không tự cách ly tác dụng phụ service |
+| [GoReleaser](https://github.com/goreleaser/goreleaser) | 16,131 · MIT | `3d5c3a2efe15` · 2026-11-01 | Release pipeline đa nền tảng; phân biệt bản OSS và Pro trong chính cấu hình upstream |
+
+### Nix
+
+Package/build manager của cộng đồng Nix, LGPL v2.1 theo [COPYING](https://github.com/NixOS/nix/blob/b64c28c2134f5b6e4900e423ec281a2985e57086/COPYING). Inputs/derivation và store giúp ghim toolchain, chia sẻ cache và build trong môi trường kiểm soát. [Build command](https://github.com/NixOS/nix/blob/b64c28c2134f5b6e4900e423ec281a2985e57086/src/nix/build.cc) có `--rebuild` đi qua `bmCheck`; [Build goal](https://github.com/NixOS/nix/blob/b64c28c2134f5b6e4900e423ec281a2985e57086/src/libstore/build/derivation-building-goal.cc) có đường kiểm output đã tồn tại. Khi cần chứng minh tái lập, buộc build lại và đối chiếu output, không chỉ tải lại cùng binary cache. Cần ghim Nix/nixpkgs/input lock, platform, flags và trạng thái sandbox. Timestamp, đường dẫn, mạng, CPU/tool nondeterminism vẫn có thể làm output khác; Nix không bảo đảm mọi package tái lập. Không cần chuyển cả hệ điều hành sang NixOS để dùng Nix; Linux/macOS có khác biệt sandbox, Windows thường qua WSL.
+
+### devenv
+
+Lớp khai báo môi trường dev trên Nix của Cachix: package/ngôn ngữ, service, task và hook trong cấu hình, dependency pin ở lock. [Test module](https://github.com/cachix/devenv/blob/0d6c556e5f862c14a75a543e2ee4fdb7acc005ad/src/modules/tests.nix) nối `enterTest` với lifecycle/readiness của process; [CI test](https://github.com/cachix/devenv/blob/0d6c556e5f862c14a75a543e2ee4fdb7acc005ad/.github/workflows/test.yml) thực sự gọi `devenv test`. Giá trị là dùng cùng định nghĩa dev/CI, so với Dagger thiên pipeline container. Shell hook và service vẫn chạy mã, DB state/secret vẫn phải quản lý riêng; lock không làm database fixture bất biến. Với nhiều agent/worktree, tách cổng/service data và định danh môi trường trước khi chạy song song. Các tính năng giao diện/cloud không phải điều kiện để dùng bản Apache-2.0 này.
+
+### GoReleaser
+
+Release engineering đa nền tảng, mã trong repo MIT; có bản Pro thương mại. [Cấu hình tự phát hành](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/.goreleaser.yaml) mở bằng `pro: true`, nên sao chép toàn bộ file không bảo đảm chạy với bản OSS. Trong cấu hình có `-trimpath`, timestamp theo commit, checksum/SBOM/signing; [Checksum pipe](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/internal/pipe/checksums/checksums.go) triển khai băm và sắp thứ tự danh sách. [Release verification](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/.github/workflows/release.yml) tải artifact, kiểm checksum, cosign identity/issuer và GitHub attestation: đây là mẫu kiểm ở phía người nhận đáng học. Dùng GoReleaser đóng gói binary đã qua kiểm, ghim edition/version và tách quyền build với publish. Phải tự kiểm artifact đa kiến trúc/installer; chữ ký đúng không chứng minh ứng dụng đúng hay build tái lập.
+
+**Kiến trúc tham khảo:** source commit + input lock → môi trường Nix/devenv hoặc Dagger hiện có → lint/test/eval → build candidate → rebuild độc lập → so artifact → SBOM/provenance/signature → publish chính candidate ấy. Khi signing/notarization tạo byte biến động, công bố rõ artifact được so và lớp ký ngoài thay vì tuyên bố cả gói giống bit. Devcontainer/container có thể là lựa chọn đủ dùng nếu team chỉ cần môi trường đồng nhất; Nix phù hợp khi cần biểu diễn/ghim dependency sâu hơn.
+
+| Cổng tại dự án tích hợp | Đạt khi | Không thay được bởi |
+|---|---|---|
+| Môi trường dev/CI | Checkout mới vào môi trường đã ghim, cùng lệnh kiểm chạy được | README ghi “works on my machine” |
+| Input closure | Toolchain, dependency, image và nguồn tải đều có phiên bản/hash; thay lock được review | Chỉ ghim package manager |
+| Tái lập artifact | Hai build sạch có cùng điều kiện công bố cho cùng hash; khác thì giữ diff/báo cáo | Hai lần tải cùng cache |
+| Nguồn gốc artifact | Verify chữ ký/issuer/identity/source commit ở phía nhận | Chỉ sinh provenance rồi không kiểm |
+| Phát hành | Hash artifact kiểm thử khớp artifact phát hành; rollback/version có kiểm | Rebuild lại lúc publish mà không đối chiếu |
+
+**Đối chiếu ba cột:** đã có và sâu hơn: gate mã/supply chain (§4c/§6h); đã có nhưng mỏng hơn: môi trường dev nhất quán và liên kết build–release; mới: hồ sơ Nix/devenv/GoReleaser với cổng tái lập và xác minh phía nhận. Không khuyến nghị dùng cùng lúc mọi build system; chọn một đường có bằng chứng và chi phí vận hành phù hợp.
+
+**Nguồn §6i:** [CI Nix](https://github.com/NixOS/nix/blob/b64c28c2134f5b6e4900e423ec281a2985e57086/.github/workflows/ci.yml); [devenv LICENSE](https://github.com/cachix/devenv/blob/0d6c556e5f862c14a75a543e2ee4fdb7acc005ad/LICENSE), [devenv lock](https://github.com/cachix/devenv/blob/0d6c556e5f862c14a75a543e2ee4fdb7acc005ad/devenv.lock); [GoReleaser LICENSE](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/LICENSE.md), [GoReleaser build CI](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/.github/workflows/build.yml); [Nix how it works](https://nixos.org/guides/how-nix-works/), [devenv basics](https://devenv.sh/basics/), [GoReleaser Go build](https://goreleaser.com/customization/builds/builders/go/), [định nghĩa tái lập](https://reproducible-builds.org/docs/definition/).
+
 ## 7. Nguồn
 
 - Mục 23 (19 repo của chủ kho, đọc 2026-10-12) · https://github.com/alibaba/open-code-review · https://github.com/googleapis/release-please · https://github.com/oxc-project/oxc · https://github.com/webpro-nl/knip · https://github.com/kucherenko/jscpd · https://github.com/astral-sh/uv · https://github.com/astral-sh/ruff
