@@ -520,6 +520,39 @@ Các repo khác dao động dưới 5%. `ai-engineering-from-scratch` ở §3 m�
 7. Refactoring UI · Laws of UX.
 8. Alex Xu – *System Design Interview* Vol 1&2 (ghi chú 28 chương trong `seeker19110/system-design-notes`, kèm ~25 link paper gốc: Dynamo, Bigtable, Raft, Kafka…; upstream/license chưa rõ) · `ai-engineering-from-scratch` (được dhcb `2026-10-05-ai-engineering-source-inventory.md` liệt kê; chưa xác minh).
 
+## 4. Nâng trần 2/11/2026: khoá học có cổng chấm, sách mở về vận hành và đánh giá (yêu cầu người dùng)
+
+> Tìm tài liệu nền tảng cấp cao còn thiếu (khoá chính chủ, sách mở, bài tập có test). Số sao, license và ngày push lấy từ GitHub search API ngày 2/11/2026; clone `--filter=blob:none`, đọc LICENSE, README, cây thư mục, CI và file chính. **Không chạy mã nào của các repo.**
+
+**Trần hiện tại**
+
+- §2b và §2j toàn là khoá "đọc và làm theo" (Microsoft for-beginners, agents-course, ai-engineering-from-scratch). Cách đánh giá dừng ở số sao, link còn sống và CI kiểm cấu trúc. Chỉ agents-course có bài được chấm (leaderboard).
+- Chưa có bài tập nào **chấm bằng unit test**, tức chưa có cách đo "đã học xong" bằng máy.
+- §3 chỉ liệt kê blog và paper. Thiếu sách mở về **vận hành training/inference** và về **đánh giá LLM**, hai lớp mà mục 07 và mục 10 giả định người đọc đã biết.
+- Bản tiếng Việt chỉ có ở khoá Microsoft (§2b) và `mcp-for-beginners` (§2j).
+
+**Bảng repo mới**
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `stanford-cs336/assignment1-basics` | Cổng máy | 3,1k · MIT | 7/4/2026 | Bài tập "LM from scratch" của CS336 (BPE, Transformer, AdamW, vòng huấn luyện), chấm bằng **48 test pytest + 15 snapshot `.npz`**. `tests/adapters.py` có 21 hàm nối mã người học vào test. `AGENTS.md`/`CLAUDE.md` yêu cầu agent đóng vai trợ giảng: không viết mã lời giải, không chạy lệnh | ⚠️ README vẫn ghi "Spring 2025", trong khi CHANGELOG đã là 26.0.x (4/2026). Phần huấn luyện và leaderboard cần GPU (handout nói B200) |
+| `huggingface/course` | Chuẩn (khoá chính chủ) | 4,3k · Apache-2.0 | 6/10/2026 | Khoá chính thức của HF, 13 chương (0–12), gồm cả *Fine-tune LLMs* và *Build Reasoning Models*. Có **`chapters/vi`** (78 file mdx, chương 0–9) | Bản tiếng Việt **thiếu chương 10–12**. CI chỉ chạy `black` (`make quality`), không chạy notebook. ⚠️ Repo `huggingface/llm-course` chỉ có README 2 dòng, đừng nhầm |
+| `stas00/ml-engineering` | Đầu bảng | 19,6k · CC BY-SA 4.0 | 1/11/2026 | Sách mở về training và inference LLM/VLM, viết từ kinh nghiệm huấn luyện BLOOM-176B: compute, network, storage, debug, testing. Kèm script đo (`network/benchmarks/all_reduce_bench.py`, `torch-dist-bench.py`, `storage/mmap-io-bench.py`…) và skill `skills/ml-engineering/SKILL.md` (164 dòng) + `skills/evaluate-cluster` | CC BY-SA áp cho toàn bộ nội dung. Script đo cần cluster thật (không chạy trong đợt này). Một tác giả chính |
+| `huggingface/evaluation-guidebook` | Chuẩn (nền tảng eval) | 2,2k · CC BY-NC-SA 4.0 (GitHub báo `NOASSERTION`) | 3/12/2025 | 43 file: benchmark tự động, LLM-as-judge, đánh giá bằng người, troubleshooting (tokenization, tái lập kết quả), "yearly dives" 2023–2025 | ❌ README ghi **"NO LONGER MAINTAINED"**: bản mới nằm ở HF Space `OpenEvals/evaluation-guidebook`. License phi thương mại |
+| `google-research/tuning_playbook` | Chuẩn | 30,4k · CC BY 4.0 (GitHub báo `NOASSERTION`) | 18/6/2024 | Quy trình tune siêu tham số có hệ thống (Google Research và Harvard): chọn kiến trúc, optimizer, batch size; thí nghiệm tăng dần; khi nào dừng. README khoảng 2.100 dòng | Đứng yên từ 2024, tự ghi "not an officially supported Google product". Viết cho deep learning nói chung, không bàn post-training LLM |
+
+Ghi chú: `anthropics/courses` (23k★) **đã archive** (xem mục 17). Notebook trong đó gọi model Claude 3 (`claude-3-haiku-20240307` xuất hiện 82 lần), nên chạy lại cần đổi model ID. Phần *Prompt evaluations* (9 bài, 5 bài dùng promptfoo) vẫn nên đọc để học khái niệm.
+
+**Stack nâng trần**
+
+1. **Biến "đọc" thành "chấm được"**: sau `LLMs-from-scratch` hoặc `nanochat` (§2b), làm cs336 assignment1 tới khi `uv run pytest` xanh. Cấu hình agent khi học theo `AGENTS.md` của cs336 (trợ giảng, không viết lời giải). Áp cùng mẫu cho mọi repo học trong kho.
+2. **Lộ trình tiếng Việt**: `huggingface/course` `chapters/vi` (chương 0–9) song song với `generative-ai-for-beginners/translations/vi` (§2b), sau đó đọc bản tiếng Anh chương 10–12.
+3. **Học đánh giá trước khi dùng công cụ eval**: đọc evaluation-guidebook (bản Space), rồi mới tới lm-evaluation-harness, Inspect và promptfoo ở mục 07.
+4. **Vận hành**: đọc ml-engineering khi bắt đầu tự host GPU (vLLM/SGLang ở mục 10); đọc tuning_playbook trước khi fine-tune.
+5. **Tiêu chí chọn khoá mới**: ưu tiên khoá có test hoặc leaderboard (cs336, agents-course) hơn khoá chỉ có notebook không CI (như `mcp-for-beginners` §2j).
+
+**Nguồn §4:** GitHub search API 2/11/2026 (`repo:` cho 7 repo, gồm `anthropics/courses` và `karpathy/nn-zero-to-hero`, cái sau đã xét nhưng không thêm vì đứng yên từ 8/2024) · clone `--filter=blob:none`: stanford-cs336/assignment1-basics (HEAD `a158843` 7/4/2026: LICENSE, README.md, CHANGELOG.md, AGENTS.md, CLAUDE.md, tests/), huggingface/course (`8b893f0` 6/10/2026: LICENSE, README.md, `chapters/en/_toctree.yml`, cây `chapters/vi`, `.github/workflows/quality.yml`), huggingface/llm-course (`aaee936`: chỉ README), stas00/ml-engineering (`dfcd0f8` 1/11/2026: LICENSE-CC-BY-SA, README.md, SKILL.md, skills/, script benchmark), huggingface/evaluation-guidebook (`e09b159` 3/12/2025: LICENSE, README.md, contents/, yearly_dives/), google-research/tuning_playbook (`7554a51` 12/6/2024: LICENSE, README.md), anthropics/courses (`f4dbb13`: LICENSE, README.md, đếm model ID trong `*.ipynb`) · https://huggingface.co/course/vi/chapter1/1 · https://huggingface.co/spaces/OpenEvals/evaluation-guidebook · https://cs336.stanford.edu
+
 ## Nguồn
 
 - https://gitstarclub.com/rankings · https://www.countly.net/most-starred-github-repositories-june-2026 · https://www.stackscan.com/blog/github-statistics · https://github.com/EvanLi/Github-Ranking · https://www.firecrawl.dev/blog/best-github-repos

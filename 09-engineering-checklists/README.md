@@ -235,6 +235,40 @@ Phần: Dependencies & build · Environment & secrets · Rendering/caching/data 
 
 **Nguồn §3b:** GitHub search API 31/10/2026 (`repo:` cho 8 repo cũ, 5 repo mới, `google/eng-practices`, `trimstray/the-book-of-secret-knowledge`; 6 truy vấn chủ đề) · `meta_all.json`/`status_all.json` đợt rà 31/10 · clone `--filter=blob:none`, đọc: goldbergyoni/nodebestpractices (LICENSE, README.md, `git show` commit 15/6/2026, lịch sử `sections/`), shanraisshan/claude-code-best-practice (LICENSE, README.md, .claude/settings.json, .mcp.json, .claude/hooks/scripts/hooks.py, best-practice/claude-settings.md, tác giả commit), shieldfy/API-Security-Checklist (LICENSE, README.md, lịch sử commit), OWASP/ASVS (LICENSE.md, 5.0/en/*.md, 5.0/docs_en/*.csv, 5.0/languages.txt, tag), OWASP/wstg (LICENSE, checklists/checklist.json, document/3-The_OWASP_Testing_Framework/2-Human-AI_Collaborative_Testing.md, .github/workflows/), thedaviddias/Front-End-Performance-Checklist (README.md, nhánh) · https://owasp.org/www-project-application-security-verification-standard/ · https://owasp.org/www-project-web-security-testing-guide/
 
+## 3c. Nâng trần 2/11/2026: chuẩn cấp dự án dạng máy đọc được, SLO và ADR (yêu cầu người dùng)
+
+> Tìm chuẩn và cổng máy còn thiếu cho phần dự án/phát hành/vận hành. Số sao, license và ngày push lấy từ GitHub search API ngày 2/11/2026; clone `--filter=blob:none`, đọc LICENSE, README, file chuẩn (YAML, Markdown), workflow. **Không chạy mã nào của các repo.** Đã xét nhưng **không thêm**: `mercari/production-readiness-checklist` (947★, MIT, HEAD 17/5/2021, đứng yên 5 năm) và `npryce/adr-tools` (5,8k★, push cuối 4/2024).
+
+**Trần hiện tại**
+
+- Mục có checklist cộng đồng (§1, §2), chuẩn bảo mật **ứng dụng** dạng máy đọc được (ASVS 5.0 CSV/JSON, WSTG checklist JSON ở §3b), compliance-as-code tự chấm (GESF §2b) và scanner `prc` (§1.8).
+- Thiếu chuẩn cho **dự án và repo** (quản trị, phát hành, chuỗi cung ứng) có ID ổn định và mức độ, để agent đối chiếu bằng máy.
+- Thiếu lớp **vận hành đo được**: SLO và error budget. GO/NO-GO của `agent.md` (§1.5) vẫn dựa vào checklist, không dựa vào số đo sau khi chạy thật.
+- Thiếu mẫu **ghi quyết định** (ADR). `google/eng-practices` đã archive (§3b).
+
+**Bảng repo mới**
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `ossf/security-baseline` (OSPS Baseline) | Chuẩn máy đọc được | 171 · Apache-2.0 | 29/10/2026 | 8 nhóm, 41 control, **67 yêu cầu có ID** `OSPS-XX-NN.NN` (2 mục đã retired), chia 3 mức: 24 / 19 / 22 yêu cầu còn hiệu lực bắt đầu ở L1 / L2 / L3. YAML theo schema Gemara; **14 file mapping** sang SSDF, SLSA, Scorecard, SAMM, CRA, NIST CSF, PCI DSS, ISO 18974, OpenCRE… Workflow của chính repo chạy `osps-baseline-action` hằng tuần và xuất SARIF | Sao thấp. Chuẩn đổi theo phiên bản ngày (workflow dùng catalog `osps-baseline-2026-02`, trang web 2026-08-28). Action quét là của bên thứ ba (`revanite-io`) |
+| `ossf/best-practices-badge` | Cổng máy (badge) | 1,4k · MIT | 2/11/2026 | App bestpractices.dev, hai chuỗi tiêu chí: **Baseline 1–3** (64 control, sinh tự động từ OSPS bản 2026-08-28, `criteria/baseline_criteria.yml`) và **Metal** passing/silver/gold. Có API (`best_practices.openapi.yaml`), có `AGENTS.md` | Phần lớn tiêu chí do dự án tự khai. Repo đã chuyển từ `coreinfrastructure/` (search API trả 422 với tên cũ). Bản trong app (64) chậm hơn repo chuẩn (67) |
+| `slsa-framework/slsa` | Chuẩn | 2,0k · Community Specification License 1.0 (GitHub báo `NOASSERTION`) | 28/10/2026 | Đặc tả SLSA. Tag **`v1.2` (24/11/2025)** thêm **Source Track** (yêu cầu với hệ quản lý mã) bên cạnh Build Track; định nghĩa provenance, threat model, cách xác minh | Chỉ là đặc tả: muốn có provenance phải dùng `slsa-github-generator` hoặc `actions/attest-build-provenance` (mục 12/13). Nhánh `main` là bản nháp kế tiếp |
+| `OpenSLO/OpenSLO` | Chuẩn máy đọc được | 1,5k · Apache-2.0 | 27/10/2026 (HEAD 25/9) | Đặc tả YAML `apiVersion: openslo/v1` cho SLO, SLI, AlertPolicy, không phụ thuộc nhà cung cấp. SLO thành file trong repo, CI kiểm được | Chỉ là đặc tả. CLI kiểm hợp lệ `oslo` nằm ở repo riêng (chưa đọc). Mức hỗ trợ của các nền tảng giám sát **(chưa xác minh)** |
+| `adr/madr` | Chuẩn (mẫu) | 2,6k · MIT hoặc CC0-1.0 (GitHub báo `NOASSERTION`) | 28/8/2026 | Mẫu Markdown ADR v4.0.0 (17/9/2024), 4 biến thể (đầy đủ, tối giản, bare, bare-minimal). Các mục Context, Considered Options, Decision Outcome và **Confirmation** (cách kiểm quyết định đã được thực hiện) | Chỉ là mẫu. Có bản dịch `de`, chưa có `vi` |
+| `twelve-factor/twelve-factor` | Chuẩn nền | 2,8k · CC BY 4.0 | 21/8/2025 (HEAD 9/7/2025) | Nội dung 12factor.net đã mở mã nguồn, có `VISION.md`, `GOVERNANCE.md`. Kế hoạch thêm "Guidelines" thành yêu cầu cụ thể, kiểm được | Cập nhật chậm. Nội dung 12 factor chưa đổi lớn **(chưa xác minh)** |
+| Google *SRE Workbook* (sre.google/workbook, web) | Chuẩn | Không có repo · CC BY-NC-ND 4.0 | 2018 | Chương 2–5 về SLO và cảnh báo theo SLO, **Phụ lục A mẫu tài liệu SLO**, **Phụ lục B chính sách error budget mẫu**, chương canary và postmortem | Phi thương mại, không cho phái sinh: chỉ trích dẫn và link, không chép vào template |
+
+**Stack nâng trần**
+
+1. **Lấy OSPS Baseline L1 làm sàn cho mọi repo.** Gắn mục của `base.md` (§1.3) và control GESF (§2b) với ID OSPS. Chạy `osps-baseline-action` (SARIF) cạnh OpenSSF Scorecard (mục 12/13); file `osps-to-scorecard.yaml` cho biết check nào trùng.
+2. **Repo công khai đăng ký badge Baseline-1** trên bestpractices.dev, để người ngoài và agent đọc được trạng thái.
+3. **Dùng SLSA v1.2 làm thang cho phần "Build & Release"** của deployment-checklist. Công cụ sinh provenance lấy từ mục 12.
+4. **SLO thành file**: viết SLO bằng OpenSLO, thêm chính sách error budget theo Phụ lục B của SRE Workbook. Verdict GO/NO-GO của `agent.md` (§1.5) đọc trạng thái error budget, không phán đoán cảm tính.
+5. **ADR theo MADR**, mục *Confirmation* trỏ tới cổng CI kiểm quyết định, để ADR không chỉ là văn xuôi.
+6. **Giữ hai trục riêng**: ASVS/WSTG (§3b) cho **ứng dụng**, OSPS/SLSA cho **dự án và phát hành**. Đừng gộp vào một checklist.
+
+**Nguồn §3c:** GitHub search API 2/11/2026 (`repo:` cho 8 repo; `best-practices-badge in:name`) · clone `--filter=blob:none`: ossf/security-baseline (HEAD `c62696c` 29/10/2026: LICENSE, README.md, `baseline/OSPS-*.yaml`, `baseline/mappings/`, `.github/workflows/baseline-scanner.yaml`), coreinfrastructure→ossf/best-practices-badge (`dfb72c1` 1/11/2026: LICENSE, README.md, `criteria/baseline_criteria.yml`), slsa-framework/slsa (`4d3f9d4` 28/10/2026: LICENSE.md, `docs/spec/draft/whats-new.md`, tag `v1.2`), OpenSLO/OpenSLO (`e025975` 25/9/2026: LICENSE, README.md, examples/), adr/madr (`ba75bb1` 28/8/2026: LICENSE*, CHANGELOG.md, template/), twelve-factor/twelve-factor (`3ad5a5f` 9/7/2025: LICENSE, VISION.md, content/), mercari/production-readiness-checklist (`5834a23` 17/5/2021) · https://sre.google/workbook/table-of-contents/ · https://baseline.openssf.org · https://www.bestpractices.dev · https://slsa.dev/spec/v1.2/ · https://openslo.com · https://adr.github.io/madr/ · https://12factor.net
+
 ---
 
 ## 4. Nguồn
