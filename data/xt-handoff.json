@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i)",
     "columns": [
       "deeper",
       "shallower",
@@ -10,7 +10,7 @@
       "not_adding"
     ],
     "updated": "2026-11-02",
-    "count": 107,
+    "count": 108,
     "current_batch": {
       "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
       "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
@@ -2306,6 +2306,46 @@
       "proposal": {
         "level": "SHOULD",
         "text": "Mở rộng BASE-DOC-017: con số xuất hiện trong asset hình của repo (banner SVG/PNG, ảnh og/social card, ảnh trong docs) chịu cùng quy tắc với con số trong văn bản: hoặc được sinh từ cùng nguồn dữ liệu (script dựng banner đọc file kết quả/metadata đã commit) hoặc có test so khớp số trong SVG/alt-text với số trong README. Tuyên bố quy mô không có file kết quả (followers, views, người dùng) SHOULD ghi ngày và nguồn ngay cạnh số, hoặc bỏ khỏi README và asset. Kiểm: grep số trong `assets/*.svg` và alt-text ảnh README khớp giá trị trong file dữ liệu đã commit; CI đỏ khi lệch."
+      }
+    },
+    {
+      "id": "XT-H-108",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "22 §9i"
+      ],
+      "profile_anchors": [
+        "22-motion-design-animation/README.md#9i-kiểm-bài-đăng-điền-form-nhận-4-thứ-agent-team-skill-motion-xưởng-repo-18-công-cụ-skill-sfx-585-âm-bài-người-dùng-gửi-2112026"
+      ],
+      "lesson": "Kho âm/nhạc đi kèm skill hoặc sản phẩm phải tách CC0 (bundle được) khỏi royalty-free (Mixkit/Pixabay: không được phân phối lại trong công cụ/template); bản mở tốt (opus-sound-layer, Barty-Bart sound-effects) tải lúc chạy hoặc không bundle nhạc, mỗi file bundle có manifest nguồn + license + credit; bài đăng 'kho 585 âm không bản quyền' không có manifest nào kiểm được.",
+      "xt_ids": [
+        "CMP-LIC-004",
+        "CMP-LIC-022"
+      ],
+      "column": "shallower",
+      "existing_coverage": "CMP-LIC-004 cấm asset không có license rõ; CMP-LIC-022 yêu cầu LICENSE/NOTICE/SOURCE cho mã UI/template/kit chép vào repo. Chưa nói tới asset media (âm thanh, nhạc, font, ảnh) bundle theo skill/plugin và phân biệt CC0 với royalty-free không được phân phối lại.",
+      "delta": "Mở rộng CMP-LIC-022 sang asset media: manifest từng file (nguồn, tác giả, license, URL gốc, biến đổi đã áp), chỉ bundle license cho phép phân phối lại (CC0, CC-BY có credit); royalty-free kiểu Mixkit tải lúc chạy vào dự án người dùng, không vào repo/skill; CI kiểm mọi file âm/ảnh trong repo có dòng manifest.",
+      "related_handoffs": [
+        "XT-H-047",
+        "XT-H-060"
+      ],
+      "xt_evidence": [
+        {
+          "id": "CMP-LIC-004",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/16-compliance-privacy/licensing-and-ip.md#L52"
+        },
+        {
+          "id": "CMP-LIC-022",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 70,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/16-compliance-privacy/licensing-and-ip.md#L70"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Thêm cạnh CMP-LIC-022 một mục SHOULD cho asset media bundle trong repo, skill, plugin hay template (âm thanh, nhạc, font, ảnh, video mẫu): mỗi file có dòng trong `assets/MANIFEST.json` (hoặc LICENSES.md) ghi nguồn, tác giả, license SPDX/CC, URL gốc, ngày kiểm và biến đổi đã áp; chỉ bundle license cho phép phân phối lại (CC0, CC-BY kèm credit, license của chính dự án); asset royalty-free cấm phân phối lại (Mixkit, Pixabay, Envato…) chỉ tải lúc chạy vào dự án người dùng và được ghi vào CREDITS khi dùng. Kiểm: script CI liệt kê mọi file media trong repo và fail khi thiếu dòng manifest hoặc license không thuộc danh sách cho phép; với video/audio xuất bản, pipeline ghi CREDITS.txt từ manifest."
       }
     }
   ]
