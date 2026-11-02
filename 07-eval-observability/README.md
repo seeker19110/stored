@@ -167,6 +167,45 @@
 
 **Nguồn §Nâng trần 2/11/2026:** GitHub search API 2/11/2026 (`repo:` gộp) · `data/projects.json` (grep `repo`) · clone `--depth 1 --filter=blob:none`: open-telemetry/semantic-conventions (HEAD fb30ca1, 1/11/2026; `docs/gen-ai/README.md`), open-telemetry/semantic-conventions-genai (HEAD 16f3130, 2/11/2026; README.md, CHANGELOG.md, versions.env, `docs/gen-ai/{gen-ai-spans,gen-ai-agent-spans,mcp}.md`, `reference/README.md`, `reference/scenarios/`), open-telemetry/weaver (HEAD 8ed44ad, 1/11/2026; README.md, `docs/usage.md`), Arize-ai/openinference (HEAD 5c68f3a, 1/11/2026; LICENSE, README.md, `spec/configuration.md`, `python/instrumentation/`, `js/packages/openinference-genai/README.md`), openlit/openlit (HEAD 1ed8bb7, 22/10/2026; LICENSE, README.md, docker-compose.yml, `sdk/python/src/openlit/__init__.py`), UKGovernmentBEIS/inspect_evals (HEAD ca99b73, 2/11/2026; LICENSE, README.md, EVALUATION_CHECKLIST.md, TASK_VERSIONING.md, `.github/workflows/`), allenai/reward-bench (HEAD 59f6ff7, 14/10/2026; LICENSE, README.md, `scripts/`), prometheus-eval/prometheus-eval (HEAD dcfb442, 24/4/2025; loại) · https://github.com/open-telemetry/semantic-conventions-genai · https://github.com/open-telemetry/weaver · https://github.com/Arize-ai/openinference · https://github.com/openlit/openlit · https://github.com/UKGovernmentBEIS/inspect_evals · https://github.com/allenai/reward-bench · https://arxiv.org/abs/2506.01937
 
+<a id="core-eval-validity"></a>
+
+## Nâng trần 2/11/2026: đơn vị đo, lặp độc lập và hiệu lực của kết luận (mở rộng cùng ngày)
+
+> Mở rộng chiều sâu trong cùng đợt 2/11/2026, không phải công bố các repo vừa ra mắt. Hai repo dưới đã có trong catalog: đọc lại LICENSE, CI và nhánh mặc định bằng clone chỉ đọc; SHA đối chiếu GitHub API. Mức bằng chứng **code-read**; không chạy/build repo ngoài, hiệu năng và hành vi thực tế **(chưa xác minh)**. Số sao/trạng thái đọc 2026-11-02; ngày commit tính theo UTC, tách khỏi `pushed_at`.
+
+| Repo đã có | ★ · license (2026-11-02) | HEAD nhánh mặc định | Vai trò đọc sâu |
+|---|---|---|---|
+| `UKGovernmentBEIS/inspect_ai` | 3.153 · MIT | 2026-11-01 · `1f1a0039` | Epoch. cache và uncertainty theo đúng đơn vị mẫu |
+| `promptfoo/promptfoo` | 26.736 · MIT | 2026-11-02 · `bfb96e2e` | Cache namespace cho repeat. assertion và hồi quy CI |
+
+**Trần còn thiếu:** phần nâng trần trước đã có task version, judge calibration và trace conformance. Bước tiếp theo là chống kết luận sai từ **điểm trung bình, lần gọi đã cache, nhiều câu cùng hội thoại** hoặc chọn prompt bằng chính tập test.
+
+### Inspect AI: số dòng kết quả không bằng số mẫu độc lập
+
+- [`CachePolicy.per_epoch=True`](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/model/_cache.py#L109) tách cache theo epoch; epoch là thành phần cache key khi policy này bật. Nếu chủ ý bỏ epoch khỏi cache, phải ghi rõ: không được diễn giải việc dùng lại cùng output là nhiều lần sinh độc lập.
+- [`std.py`](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/scorer/_metrics/std.py) có `stderr`, bootstrap, `ci` kiểu t/bootstrap và clustering theo metadata. Khi nhiều câu thuộc một tài liệu/hội thoại/user, cluster theo đơn vị đó thay vì giả định mỗi dòng độc lập. Với quá ít cluster, khoảng ước lượng không đủ để xếp hạng đáng tin; ghi số cluster và kiểm phân phối.
+- Task/epoch reduction thay đổi mẫu mà metric nhận; phải ghi rõ đo theo **attempt, sample hay episode**, cách gộp epoch và cách xử lý unscored/error. CI kiểm framework không kiểm tính đúng đắn khoa học của một scorer tự viết. Mức tăng 1–2 điểm cần khoảng bất định và phân tích lỗi, không tự gán ý nghĩa thống kê.
+
+### Promptfoo: repeat có namespace, nhưng chạy lại vẫn có thể dùng cache
+
+- [`getRepeatCacheNamespace`](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/src/evaluator.ts#L474) tách `repeat:N`; [test repeat cache](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/test/evaluator/repeatCache.test.ts) chứng minh hai repeat được phân biệt nhưng **lần eval tiếp theo vẫn lấy lại output đã cache**. Đây là tính năng tái lập, không phải bug. Khi cần đo biến thiên mới, dùng `--no-cache` và kiểm provider/custom wrapper có thực sự gọi mới.
+- Tách assertion tất định (schema/tool/regex/ground truth) khỏi judge. Giữ cùng input và cấu hình khi so baseline/candidate; lần chạy dùng cache là cổng hồi quy, lần sinh mới là thí nghiệm độ ổn định. Ghi model ID, seed/temperature nếu hỗ trợ, cache policy, repeat, lỗi và giá.
+- [`telemetry.ts`](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/src/telemetry.ts#L22) có đường tắt `PROMPTFOO_DISABLE_TELEMETRY=1`; tắt telemetry không tự tắt provider call/remote grader. [CI](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/.github/workflows/main.yml) gồm ma trận Node/OS và test evaluator; chưa chạy các job đó trong đợt đọc này.
+
+**Ma trận thiết kế phép đo**
+
+| Câu hỏi | Đơn vị và cổng nên dùng | Sai lệch cần kiểm |
+|---|---|---|
+| Prompt mới có làm hỏng ca cũ? | Tập regression cố định + assertion; cache cho replay | Grader/model/version thay mà baseline giữ nguyên |
+| Model có ổn định khi sinh mới? | Repeat/epoch tách cache; báo phân phối | Tính cùng output cache như lần thử độc lập |
+| Tốt hơn trên dữ liệu thật? | Holdout theo user/tài liệu/thời gian; so cặp cùng mẫu | Train–test leakage, nhiều câu cùng episode |
+| Judge có đáng tin? | Nhãn người, negative control, đo đồng thuận | Judge cùng model hoặc thấy tên phương án |
+| Tăng chất lượng có đáng chi phí? | Chất lượng kèm token/$/p95 và lỗi | Chỉ báo điểm của những run thành công |
+
+**Cách ghép:** (1) khoá dataset/task/scorer/model version và đơn vị mẫu; (2) tách development/validation/final test, chia theo nguồn để giảm rò rỉ; (3) chạy baseline/candidate trên cùng mẫu, assertion trước judge; (4) một run replay cho CI và một run sinh mới khi cần đo độ ổn định; (5) báo điểm, uncertainty/cluster, error/unscored, chi phí và nhóm ca thua. Không diễn giải hai CI giao nhau/không giao nhau như một phép kiểm so sánh cặp đầy đủ; muốn kết luận khác biệt cần phương pháp phù hợp và cỡ mẫu đã xác định. Đây là thiết kế đề xuất, chưa có số benchmark mới trong kho.
+
+**Nguồn phần mở rộng:** [1](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/LICENSE) · [2](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/model/_cache.py) · [3](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/scorer/_metrics/std.py) · [4](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/scorer/_metrics/aggregate.py) · [5](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/.github/workflows/pr-gate.yml) · [6](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/LICENSE) · [7](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/src/evaluator.ts) · [8](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/test/evaluator/repeatCache.test.ts) · [9](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/src/telemetry.ts) · [10](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/.github/workflows/main.yml) · [11](https://inspect.aisi.org.uk/metrics.html) · [12](https://inspect.aisi.org.uk/caching.html) · [13](https://www.promptfoo.dev/docs/usage/command-line/)
+
 ## Nguồn
 
 - Mục 23 §3.1, §4.3, §5 (X-Agents, xboss, Hermes-Agents; đọc 2026-10-12)

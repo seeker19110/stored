@@ -157,6 +157,45 @@
 
 **Nguồn §4c:** GitHub search API 2/11/2026 (`repo:` từng repo; truy vấn "mcp conformance", "skill validator agent skills", "claude plugin validate") · clone `--depth 1 --filter=blob:none` 2/11/2026: modelcontextprotocol/conformance (LICENSE, README.md, SDK_INTEGRATION.md, package.json, action.yml, `requirements/`, `src/scenarios/`), MCPJam/inspector (LICENSE, `mcpjam-inspector/server/evals/LICENSE`, README.md, `mcpjam-inspector/shared/telemetry-privacy.ts`, `server/utils/__tests__/analytics.test.ts`, workflows), modelcontextprotocol/mcpb (LICENSE, README.md, CLI.md, `schemas/`, package.json), cisco-ai-defense/mcp-scanner (LICENSE, README.md, workflows, `claude-code-plugin/`), a2aproject/a2a-tck (LICENSE, README.md), a2aproject/a2a-inspector (README.md) · https://github.com/modelcontextprotocol/conformance · https://github.com/a2aproject/a2a-tck · https://github.com/a2aproject/a2a-inspector · https://github.com/MCPJam/inspector · https://github.com/modelcontextprotocol/mcpb · https://github.com/cisco-ai-defense/mcp-scanner
 
+<a id="core-protocol-boundaries"></a>
+
+## 4d. Nâng trần 2/11/2026: phiên bản wire và ranh giới uỷ quyền MCP (mở rộng cùng ngày)
+
+> Mở rộng chiều sâu trong cùng đợt 2/11/2026, không phải công bố các repo vừa ra mắt. Hai repo dưới đã có trong catalog: đọc lại LICENSE, CI và nhánh mặc định bằng clone chỉ đọc; SHA đối chiếu GitHub API. Mức bằng chứng **code-read**; không chạy/build repo ngoài, hiệu năng và hành vi thực tế **(chưa xác minh)**. Số sao/trạng thái đọc 2026-11-02; ngày commit tính theo UTC, tách khỏi `pushed_at`.
+
+| Repo đã có | ★ · license (2026-11-02) | HEAD nhánh mặc định | Vai trò đọc sâu |
+|---|---|---|---|
+| `modelcontextprotocol/python-sdk` | 24.736 · MIT | 2026-10-27 · `d7845c07` | Conformance/version baseline và bảo vệ transport |
+| `agentgateway/agentgateway` | 5.872 · Apache-2.0 | 2026-10-30 · `084992d6` | JWT/CEL theo tool. prompt. resource và đường gọi |
+
+**Trần còn thiếu:** §4c đã có bộ conformance/scanner. Cần tách **đúng giao thức**, **xác thực danh tính** và **được quyền thao tác tài nguyên**: một server pass JSON-RPC/schema vẫn có thể cho người dùng đọc dữ liệu tenant khác.
+
+### MCP Python SDK: ghim spec, harness và baseline cùng nhau
+
+- [CI conformance](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/.github/workflows/conformance.yml) ghim `@modelcontextprotocol/conformance@0.2.0-alpha.11`, chạy wire `2025-11-25`, `2026-07-28` và mặc định; có baseline riêng cho từng wire. Bản baseline 2026-07-28 tại SHA này có `client: []`, `server: []`. Đây là **đọc cấu hình**, chưa xác minh artifact/kết quả CI; khi so SDK phải ghi đúng bộ requirements và baseline, không chỉ badge xanh.
+- [`MCPServer`](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/src/mcp/server/mcpserver/server.py#L1162) tự bật DNS-rebinding protection cho localhost trong đường SSE được đọc; [`TransportSecurityMiddleware`](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/src/mcp/server/transport_security.py#L48) khi không nhận settings lại dùng protection tắt. Không suy từ giá trị mặc định của model settings ra mọi entrypoint; reverse proxy/host khác phải cấu hình Host/Origin allowlist rõ và thử request giả.
+- Auth đòi token verifier khi bật; [bearer middleware](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/src/mcp/server/auth/middleware/bearer_auth.py) và auth settings là phần phải kiểm với issuer/resource URL thực tế. MCP authorization spec cấm kiểu nhận token sai audience rồi chuyển thẳng xuống API. Credential cho upstream là một ranh giới riêng.
+
+### agentgateway: có engine policy chưa có nghĩa đã có policy
+
+- [`McpAuthorizationSet::validate`](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/crates/agentgateway/src/mcp/rbac.rs#L54) trả `true` nếu **không có rule**. Vì vậy cài gateway rồi cấu hình JWT chưa tự giới hạn từng tool. Phải thêm policy cho tool/prompt/resource và kiểm người dùng không được phép cả khi list và khi gọi trực tiếp tên đã biết.
+- [JWT config](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/crates/agentgateway/src/http/jwt.rs#L166) yêu cầu issuer; audience chỉ được ép khi danh sách cấu hình không rỗng. Có mode `Permissive` cho phép request thiếu/sai JWT. Đây là tuỳ chọn chức năng, không phải lỗi tự thân; cấu hình triển khai cần chọn mode và audience đúng với mức tin cậy.
+- [Ví dụ MCP authorization](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/examples/mcp-authorization/config.yaml) minh hoạ CEL theo `jwt.sub` và `mcp.tool.name`, nhưng có CORS `*` và backend token passthrough. Không chép nguyên ví dụ thành cấu hình production: phải kiểm audience/credential flow tới upstream, origin được phép và network không cho bypass gateway. [CI](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/.github/workflows/pull_request.yml) có proxy test/lint đa OS, chưa thay kiểm chính sách nghiệp vụ của người tích hợp.
+
+**Ma trận chọn cổng kiểm**
+
+| Muốn chứng minh | Cổng phù hợp | Chưa chứng minh được |
+|---|---|---|
+| Message/transport đúng một bản spec | Conformance §4c, ghim harness + requirements | User được phép truy cập dữ liệu nào |
+| Token đúng issuer/audience/thời hạn | SDK verifier hoặc gateway JWT với cấu hình thực | Quyền trên tool/resource của tenant |
+| Người A không gọi được tool của B | CEL/tool policy + test deny list/call | Nội dung retrieved không có prompt injection |
+| Không bypass chính sách | Backend chỉ nhận traffic gateway/credential hợp lệ | Model luôn dùng tool theo mục đích mong muốn |
+| Đổi spec/SDK không âm thầm mất tính năng | Ma trận host × transport × spec + baseline diff | Hành vi của host/model chưa nằm trong test |
+
+**Cách ghép:** server nhỏ dùng SDK và auth rõ trước; thêm gateway khi có nhiều upstream, policy/trace tập trung. Khóa đường trực tiếp tới upstream, cấp credential theo audience và phạm vi; chạy conformance cùng negative tests auth, expiry, wrong audience, cross-tenant, gọi tool không có trong list. ghép scanner §4c và guardrail mục 12 cho rủi ro nội dung. Các negative test nêu trên là tiêu chí đánh giá, **(chưa xác minh)** bằng chạy thật trong đợt này.
+
+**Nguồn phần mở rộng:** [1](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/LICENSE) · [2](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/.github/workflows/conformance.yml) · [3](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/.github/actions/conformance/expected-failures.2026-07-28.yml) · [4](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/src/mcp/server/mcpserver/server.py) · [5](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/src/mcp/server/transport_security.py) · [6](https://github.com/modelcontextprotocol/python-sdk/blob/d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14/src/mcp/server/auth/middleware/bearer_auth.py) · [7](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/LICENSE) · [8](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/crates/agentgateway/src/mcp/rbac.rs) · [9](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/crates/agentgateway/src/http/jwt.rs) · [10](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/examples/mcp-authorization/config.yaml) · [11](https://github.com/agentgateway/agentgateway/blob/084992d6091d671cf845e9cd40b16fed41c1511d/.github/workflows/pull_request.yml) · [12](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations)
+
 ## 5. Nguồn
 
 - https://en.wikipedia.org/wiki/Model_Context_Protocol · https://github.com/wong2/awesome-mcp-servers · https://github.com/sadekxD/Awesome-MCP · https://uibakery.io/blog/best-mcp-servers

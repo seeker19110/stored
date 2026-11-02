@@ -394,6 +394,42 @@ Nhận xét độc lập: hai điểm này **khớp với thứ playbook tự gh
 
 ---
 
+## 10f. Nâng trần toàn diện 2/11/2026: phục hồi, idempotency và timeout có hợp đồng kiểm
+
+> Sau §5/§8/§10e, bổ sung ngữ nghĩa SDK thay vì thêm một danh sách workflow engine. Clone nông, đọc LICENSE, CI và implementation; metadata GitHub ngày 2/11/2026, hai repo chưa archive. **Đã đọc mã; chưa chạy SDK/server, replay hay thử crash.** Các cổng phía dưới là tiêu chí tham khảo cho dự án tích hợp.
+
+| Dự án | ★ · license (đọc 2/11/2026) | HEAD / ngày commit | Lớp và điều kiện dùng |
+|---|---|---|---|
+| [Temporal Python SDK](https://github.com/temporalio/sdk-python) | 1,243 · MIT | `c1a79fb659ff` · 2026-10-30 | Workflow replay/activity retries; RetryPolicy maximum_attempts=0 là không giới hạn, heartbeat cần gọi thật |
+| [Restate TypeScript SDK](https://github.com/restatedev/sdk-typescript) | 125 · MIT | `280fbc32e385` · 2026-11-02 | Durable ctx.run + ingress idempotency; side effect bên ngoài vẫn phải idempotent; kiểm SDK/server compatibility |
+
+### Temporal Python SDK
+
+SDK MIT của Temporal, tách workflow tất định và activity thực hiện I/O. [Activity API](https://github.com/temporalio/sdk-python/blob/c1a79fb659ffab144d7949213664a584809089f7/temporalio/workflow/_activities.py) có `start_to_close_timeout`, `schedule_to_close_timeout`, `heartbeat_timeout` và retry policy. [RetryPolicy](https://github.com/temporalio/sdk-python/blob/c1a79fb659ffab144d7949213664a584809089f7/temporalio/common.py) mặc định `maximum_attempts=0`, nghĩa là không đặt trần số lần thử; cần ràng buộc tổng thời gian hoặc số lần theo nghiệp vụ. Retry activity có thể gọi lại dịch vụ ngoài, nên payment/send/publish cần idempotency key tại dịch vụ nhận, không dựa riêng vào workflow ID.
+
+[SDK guide](https://github.com/temporalio/sdk-python/blob/c1a79fb659ffab144d7949213664a584809089f7/README.md) yêu cầu activity thường heartbeat nếu cần nhận cancellation; đặt `heartbeat_timeout` không tự tạo heartbeat. Worker shutdown còn có thể chờ nếu activity không chịu dừng. Hướng dẫn có `Replayer` để kiểm history khi đổi workflow; CI [ci.yml](https://github.com/temporalio/sdk-python/blob/c1a79fb659ffab144d7949213664a584809089f7/.github/workflows/ci.yml) chạy test/time-skipping, không thay crash test của ứng dụng. Workflow sandbox giữ replay tất định, không phải biên bảo mật OS cho code không tin cậy. Tích hợp với `ai-integrations` ở §10e nhưng mọi tool có I/O vẫn phải có activity/timeout rõ.
+
+### Restate TypeScript SDK
+
+SDK MIT dùng `ctx.run` để ghi kết quả thao tác không tất định vào journal. [Context API](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/packages/libs/restate-sdk/src/context.ts) yêu cầu side effect idempotent; crash sau khi API ngoài đã ghi nhưng trước lúc kết quả được lưu vẫn có thể gọi lại callback. Tạo business idempotency key ổn định ngoài callback và đưa tới nhà cung cấp. [Ingress client](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/packages/libs/restate-sdk-clients/src/ingress.ts) có điều kiện retry theo idempotency key; bảo vệ ingress không thay dedupe ở API bên ngoài. [Handler options](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/packages/libs/restate-sdk/src/types/rpc.ts) tách `inactivityTimeout`, `abortTimeout`, retry và thời gian giữ idempotency/journal. Sau retention, đừng giả định key còn chặn trùng vô hạn. Server và SDK phải tương thích; tính năng pause retry ở README cần server/protocol cụ thể. So Temporal, hợp RPC/service durable TypeScript; vẫn cần Restate server và thiết kế vận hành riêng.
+
+**Hợp đồng phục hồi tham khảo:** trigger có ID (CloudEvents §10e) → workflow/invocation ID ổn định → step có key nghiệp vụ → external receipt → journal/checkpoint → trạng thái cuối và đối soát. Không có transaction xuyên mọi API; phần ghi tiền/gửi thư/đăng bài cần thiết kế dedupe, kiểm receipt hoặc compensation cụ thể. Compensation là hành động nghiệp vụ mới, không tự xoá được thư đã gửi.
+
+| Điểm gây lỗi phải thử tại dự án tích hợp | Điều kiện đạt |
+|---|---|
+| Worker chết trước/sau external commit, trước checkpoint | Retry dùng cùng business key; cuối cùng chỉ có một tác dụng phụ hoặc có đối soát phát hiện trùng |
+| Webhook/cron gửi lặp và lệch thứ tự | Dedupe theo nguồn + event ID; không tạo thêm workflow ngoài chủ ý |
+| API chậm, 429/5xx kéo dài | Có timeout từng lần và hạn tổng; backoff và ngân sách không vượt trần |
+| Hết quyền/cancellation khi đang chạy | Ngừng bước tiếp theo, kiểm receipt bước đang dở; không coi cancel là rollback |
+| Deploy code mới khi workflow cũ chưa xong | Replay history/kiểm tương thích pass hoặc có đường version/migration |
+| Operator retry sau thời gian retention | Kiểm trạng thái nghiệp vụ trước khi tạo tác dụng phụ mới |
+
+**Bảng chọn tầng kiểm:** replay phát hiện workflow mất tất định; unit test thử policy retry; integration test dùng dịch vụ giả kiểm số receipt; fault injection cắt worker/mạng kiểm khoảng trống trước checkpoint. So sánh engine bằng cùng hợp đồng trên, không suy ra “exactly-once ngoại hệ” từ chữ durable. Dữ liệu nhạy cảm trong history/journal cần policy lưu giữ và truy cập phù hợp; xem mục 12 §4d cho kiểm quyền khi job phục hồi sau nhiều giờ.
+
+**Đối chiếu ba cột:** đã có và sâu hơn: danh sách engine, chuẩn trigger, circuit breaker (§5/§8/§10e); đã có nhưng mỏng hơn: retry/idempotency mới là khuyến nghị; mới: SDK implementation, cửa sổ external commit–checkpoint, heartbeat và kiểm retention/version. Không thay đổi kết luận về license engine Restate ở §5 bằng license MIT của riêng SDK.
+
+**Nguồn §10f:** [Temporal SDK LICENSE](https://github.com/temporalio/sdk-python/blob/c1a79fb659ffab144d7949213664a584809089f7/LICENSE); [Restate SDK LICENSE](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/LICENSE), [CI SDK](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/.github/workflows/test.yml); [Temporal retries](https://docs.temporal.io/encyclopedia/retry-policies), [Temporal activity failures](https://docs.temporal.io/encyclopedia/detecting-activity-failures), [Restate durable steps](https://docs.restate.dev/develop/ts/durable-steps). Mọi số sao và HEAD thuộc snapshot 2/11/2026, không phải phiên bản package đã chạy.
+
 ## 11. Nguồn
 
 - Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)

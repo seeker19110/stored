@@ -611,6 +611,49 @@ Từ Dhcb-Tools `SECURITY.md` (Revit/AutoCAD HTTP bridge 127.0.0.1): bind IPv4 l
 
 **Nguồn §4c:** GitHub search API 2/11/2026 (`repo:` gộp) · `data/projects.json` (grep `repo`) · clone `--depth 1 --filter=blob:none`: mitre-atlas/atlas-data (HEAD f56c146, 28/10/2026; LICENSE, README.md, CHANGELOG.md, `dist/manifest.yaml`, `dist/ATLAS-latest.yaml`), sigstore/model-transparency (HEAD 5b8efd5, 26/10/2026; LICENSE, README.md, pyproject.toml, `src/model_signing/__init__.py`), trailofbits/fickling (HEAD 79ae401, 31/10/2026; LICENSE, README.md), protectai/modelscan (HEAD 61fcec9, 18/2/2026; LICENSE, README.md, pyproject.toml) · https://github.com/mitre-atlas/atlas-data · https://atlas.mitre.org/ · https://www.nist.gov/itl/ai-risk-management-framework · https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence · https://doi.org/10.6028/NIST.AI.600-1 · bên thứ ba (trạng thái sửa đổi NIST): https://ai-era.pages.dev/frameworks/nist-ai-600-1 · https://risktemplate-site.pages.dev/blog/2026-04-15-nist-ai-600-1-generative-ai-profile-12-risk-categories · https://github.com/sigstore/model-transparency · https://github.com/trailofbits/fickling · https://github.com/protectai/modelscan · https://github.com/mmaitre314/picklescan
 
+## 4d. Nâng trần toàn diện 2/11/2026: danh tính agent, uỷ quyền và ACL theo tenant
+
+> Phương pháp: đọc lại §1–§4c, đối chiếu catalog, lấy metadata GitHub ngày 2/11/2026 và clone nông bốn repo; đọc LICENSE, CI và các file thực thi được dẫn bằng commit bất biến bên dưới. Cả bốn chưa archive tại lúc đọc. **Mức kiểm chứng: đọc mã; không cài, không chạy, chưa đo hiệu năng hay kiểm triển khai thật.**
+
+**Trần hiện tại:** guardrail nội dung, sandbox, red-team và chuỗi cung ứng đã có. Phần còn mỏng là quyết định *agent nào đang thay mặt ai, được thao tác trên tài nguyên nào của tenant nào*. Prompt hệ thống, mTLS và token hợp lệ chỉ giải quyết từng phần; backend phải kiểm quyền ở điểm đọc/ghi dữ liệu, kể cả khi agent gọi tool trực tiếp.
+
+| Dự án | ★ · license (đọc 2/11/2026) | HEAD / ngày commit | Lớp và điều kiện dùng |
+|---|---|---|---|
+| [OpenFGA](https://github.com/openfga/openfga) | 6,077 · Apache-2.0 | `44054f542f64` · 2026-10-28 | ReBAC HTTP/gRPC; model ID và consistency cần ghim; in-memory chỉ cho thử nghiệm |
+| [SpiceDB](https://github.com/authzed/spicedb) | 7,185 · Apache-2.0 | `a87308b06994` · 2026-10-30 | Zanzibar/ReBAC; ZedToken nối ghi quyền với lần kiểm tiếp theo; ứng dụng vẫn phải thực thi quyết định |
+| [Cedar](https://github.com/cedar-policy/cedar) | 1,833 · Apache-2.0 | `d5fb0422e6ed` · 2026-10-30 | Ngôn ngữ/engine authz Rust; default deny, forbid override; policy lỗi bị skip nên phải xử lý diagnostics |
+| [SPIRE](https://github.com/spiffe/spire) | 2,602 · Apache-2.0 | `cc27dbb38796` · 2026-11-02 | Workload identity SPIFFE/SVID; không quyết định quyền ứng dụng; delegated identity đòi trusted delegate |
+
+### OpenFGA
+
+Engine của cộng đồng OpenFGA, mô hình quan hệ lấy cảm hứng từ Zanzibar; API `Check` kiểm user–relation–object. [Server Check](https://github.com/openfga/openfga/blob/44054f542f64e9b9589dd26a595081b3d2cfd942/pkg/server/check.go) phân giải `authorization_model_id`; [CheckQuery](https://github.com/openfga/openfga/blob/44054f542f64e9b9589dd26a595081b3d2cfd942/pkg/server/commands/check_command.go) bỏ lớp cache tương ứng khi yêu cầu `HIGHER_CONSISTENCY`. Ghép vào tool gateway hoặc API ứng dụng, ghim model ID và dùng object ID chứa tenant từ session đã xác thực. Quickstart dùng memory mất dữ liệu khi dừng; cần datastore bền, auth API và test mô hình trước khi production. Đây là đối thủ của SpiceDB; không cần vận hành cả hai cho cùng một bộ quyền.
+
+### SpiceDB
+
+Engine ReBAC của Authzed; điểm đáng học là nối quyết định quyền với phiên bản dữ liệu. [Middleware consistency](https://github.com/authzed/spicedb/blob/a87308b06994d3559458283cc4272d6211580c32/pkg/middleware/consistency/consistency.go) hỗ trợ `at_least_as_fresh` qua ZedToken thay vì chỉ đọc bản cache nhanh. Sau khi thu hồi quyền, lưu token của lần ghi và dùng nó cho lần kiểm tiếp theo cần thấy thay đổi ấy; vẫn phải giải quyết race giữa kiểm quyền và thao tác trong ứng dụng. Caveat thiếu context không được xem như đã cấp quyền. CI [build-test](https://github.com/authzed/spicedb/blob/a87308b06994d3559458283cc4272d6211580c32/.github/workflows/build-test.yaml) là bằng chứng có cơ chế test trong upstream, không phải kết quả do kho này chạy.
+
+### Cedar
+
+Thư viện Rust và ngôn ngữ policy tách khỏi mã nghiệp vụ, có schema validator, CLI và WASM. Ngữ nghĩa mặc định deny, `forbid` đúng sẽ thắng `permit`. Tuy nhiên [Authorizer](https://github.com/cedar-policy/cedar/blob/d5fb0422e6edb8617b595428530224663e122668/cedar-policy-core/src/authorizer.rs) có `ErrorHandling::Skip`: policy gặp lỗi đánh giá bị bỏ qua; một `forbid` bị lỗi không tự biến thành deny toàn request. Vì vậy cần validate schema, đủ entity/context, test tình huống thiếu thuộc tính; với thao tác nhạy cảm, ứng dụng nên dừng khi diagnostics có lỗi. Cedar là engine quyết định, ứng dụng tự tải policy/dữ liệu và thực thi kết quả. So với OpenFGA/SpiceDB, hợp policy theo thuộc tính trong tiến trình hơn là mặc định thay kho quan hệ phân tán.
+
+### SPIRE
+
+SPIFFE Runtime Environment phát SVID sau khi attestation node/workload, phù hợp cấp danh tính ngắn hạn cho worker và tool service. [Delegated Identity service](https://github.com/spiffe/spire/blob/cc27dbb38796388b8c898db78adbd25b8fd8fb94/pkg/agent/api/delegatedidentity/v1/service.go) kiểm caller theo `AuthorizedDelegates`; khi delegate được phép cung cấp selectors, service coi chúng đã được attested. Delegate vì thế là thành phần được tin cậy cao, không cấp quyền đó cho mã agent tự do. [Tài liệu so sánh SPIRE](https://spiffe.io/docs/latest/spire-about/comparisons/) phân biệt rõ authentication với authorization; SPIRE không tự giới hạn worker vào một tenant hay thay quyền người dùng.
+
+**Kiến trúc tham khảo:** người dùng/tenant được xác thực → broker phát credential ngắn hạn → tool gateway gắn user, actor, tenant, resource, action từ dữ kiện tin cậy → một engine OpenFGA/SpiceDB/Cedar quyết định → backend kiểm lại và ghi audit. SPIRE có thể định danh worker ở lớp vận chuyển. Khi cần token thay mặt người dùng, [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693) mô tả token exchange/delegation; [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707) xác định resource đích. Bốn repo trên không tự trở thành OAuth authorization server hay hoàn thiện toàn bộ chuỗi này.
+
+| Cổng kiểm đề xuất cho dự án tích hợp | Bằng chứng cần có |
+|---|---|
+| Chéo tenant và chéo user | Cùng object ID phần cuối nhưng tenant khác phải deny; agent không tự chọn `tenant_id` từ prompt |
+| Uỷ quyền bị thu hẹp | Tool token sai audience/scope, hết hạn hoặc thiếu quyền của user gốc phải bị chặn |
+| Thu hồi quyền và cache | Ghi revoke rồi kiểm lại với consistency đã chọn; đo thời gian quyền cũ còn hiệu lực |
+| Lỗi engine/context | Timeout, mất kết nối, policy lỗi, thiếu caveat/context: hành động nhạy cảm dừng và có audit |
+| RAG và tool dùng chung ACL | Không chỉ lọc câu trả lời: retrieval, download, mutation và background job đều kiểm quyền |
+
+**Đối chiếu ba cột:** đã có và sâu hơn: red-team/sandbox/supply chain (§2–§4c); đã có nhưng mỏng hơn: tenant isolation/credential trong cảnh báo công cụ; mới: engine quyền quan hệ, policy thuộc tính và workload identity có nguồn implementation. Trần mới đo bằng test deny và revoke, không bằng số lớp guardrail. Bảng cổng là đề xuất áp dụng, **chưa chạy** trong khảo sát.
+
+**Nguồn §4d:** [OpenFGA LICENSE](https://github.com/openfga/openfga/blob/44054f542f64e9b9589dd26a595081b3d2cfd942/LICENSE), [CI OpenFGA](https://github.com/openfga/openfga/blob/44054f542f64e9b9589dd26a595081b3d2cfd942/.github/workflows/pull_request.yaml); [SpiceDB LICENSE](https://github.com/authzed/spicedb/blob/a87308b06994d3559458283cc4272d6211580c32/LICENSE); [Cedar LICENSE](https://github.com/cedar-policy/cedar/blob/d5fb0422e6edb8617b595428530224663e122668/LICENSE), [CI Cedar](https://github.com/cedar-policy/cedar/blob/d5fb0422e6edb8617b595428530224663e122668/.github/workflows/ci.yml); [SPIRE LICENSE](https://github.com/spiffe/spire/blob/cc27dbb38796388b8c898db78adbd25b8fd8fb94/LICENSE), [CI SPIRE](https://github.com/spiffe/spire/blob/cc27dbb38796388b8c898db78adbd25b8fd8fb94/.github/workflows/pr_build.yaml); [Zanzibar paper](https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/), [Cedar security semantics](https://docs.cedarpolicy.com/other/security.html), [SPIRE delegated identity](https://spiffe.io/docs/latest/deploying/spire_agent/).
+
 ## 5. Nguồn
 
 - Mục 23 §3.3, §4.3, §4.4, §6.2, §6.4 (qlkh, xboss, Dhcb-Tools, Claude-Red, REA; đọc 2026-10-12) · https://github.com/SnailSploit/claude-red · https://github.com/morluto/rea · https://www.openpolicyagent.org/ · https://github.com/anchore/syft

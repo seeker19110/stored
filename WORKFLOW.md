@@ -6,7 +6,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **kho `stored` chỉ lưu h
 
 - **Có trong kho:** hồ sơ và đánh giá từng repo (README chuyên mục), catalog máy-đọc-được (`data/projects.json`, `data/projects.csv`), nguồn (`SOURCES.md`), cùng quy trình và mẫu giữ những thứ đó nhất quán.
 - **Không đặt trong kho:** code, skill, plugin hay công cụ để dùng (chúng thuộc dự án tích hợp); danh sách việc cần làm cho repo khác; nhật ký sửa kho (đã có lịch sử git). Phát hiện về một repo được ghi thành dữ kiện đánh giá kèm ngày đọc; việc sửa làm ở chính repo đó.
-- **Hạ tầng của kho** chỉ gồm phần giữ dữ liệu đúng: CI `markdownlint` và `scripts/check_catalog.py`.
+- **Hạ tầng của kho** chỉ gồm phần giữ dữ liệu đúng: CI `markdownlint`, `scripts/check_catalog.py`, kiểm integrity của checker và JSON Schema dữ liệu; tài liệu phương pháp/tuyến đọc phục vụ sử dụng kho.
 - **X-Templates dùng kho:** đọc [X-TEMPLATES.md](X-TEMPLATES.md) (hợp đồng, tổng hợp chéo, bàn giao) và `data/xt-handoff.json`; trích phần mới theo khoảng commit ghi ở §6 của file đó.
 - **Dự án khác dùng kho:** đọc README chuyên mục để xem đánh giá; lọc `data/projects.json` theo `category`, `license`, `open_source`, số sao để chọn ứng viên. Trước khi tích hợp, kiểm lại ngày đọc và mọi chỗ ghi **(chưa xác minh)**.
 
@@ -48,7 +48,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
 
 ## Nâng trần định kỳ (2 tuần/lần)
 
-Quy ước do người dùng đặt ra (2026-11-02): **cứ 2 tuần nâng trần toàn bộ 23 mục một lần, tìm bằng mọi cách trên internet và GitHub.** Một tác vụ định kỳ mở phiên mới (model Opus, chế độ ultracode, effort high) vào ngày 1 và 15 hằng tháng và chạy đúng prompt dưới đây. Muốn đổi cách chạy thì sửa prompt ở đây, rồi cập nhật cả tác vụ định kỳ.
+Quy ước do người dùng đặt ra (2026-11-02): **cứ 2 tuần nâng trần toàn bộ các chuyên mục hiện có một lần, tìm bằng mọi cách trên internet và GitHub.** Một tác vụ định kỳ mở phiên mới (model Opus, chế độ ultracode, effort high) vào ngày 1 và 15 hằng tháng và chạy đúng prompt dưới đây. Muốn đổi cách chạy thì sửa prompt ở đây, rồi cập nhật cả tác vụ định kỳ.
 
 "Nâng trần" nghĩa là nâng mức chất lượng cao nhất mà dự án đạt được khi dùng một mục. Ba lớp hay thiếu nhất là: **chuẩn/đặc tả gốc**, **cổng kiểm bằng máy** (benchmark, conformance, eval, lint, scanner, CI) và **công cụ đầu bảng** chưa có trong catalog. Đợt đầu là 2/11/2026 (PR #102).
 
@@ -63,7 +63,7 @@ Bạn đang chạy đợt "nâng trần" định kỳ 2 tuần/lần cho kho see
 - Tìm đợt nâng trần gần nhất: `git log --oneline --grep "nâng trần" -i | head` và các heading "Nâng trần <ngày>" trong `NN-*/README.md`. Mốc thời gian của đợt này = từ ngày đợt trước đến hôm nay.
 - Làm trên nhánh phiên được chỉ định; nếu PR cũ của nhánh đã merge thì tạo lại nhánh từ `main`.
 
-1. Quét (song song, chia 23 mục cho ~6 agent, mỗi agent 3–4 mục)
+1. Quét (song song, chia mọi thư mục NN-*/README.md cho các agent theo dung lượng)
 Mỗi mục tìm repo/chuẩn/công cụ MỚI hoặc VỪA ĐỔI trong mốc thời gian, ưu tiên ba lớp: chuẩn gốc, cổng kiểm bằng máy, công cụ đầu bảng. Dùng mọi kênh:
 - GitHub search API (`gh api -X GET search/repositories -f q="<từ khoá> stars:>300 pushed:>=<ngày đợt trước>" -f sort=stars`, thêm `created:>=` để bắt repo mới; `search/issues`, `search/commits` khi cần). `gh api repos/...` có thể bị chặn với repo ngoài phạm vi, nên dùng search.
 - WebSearch (mode "extended" cho tin mới/ngách) và WebFetch: blog chính thức, changelog/release notes, Hacker News, Reddit, dev.to, arXiv/paper, trang chuẩn (W3C, IETF, OWASP, NIST, OpenSSF, CNCF, OpenTelemetry, MCP/A2A spec), awesome-list, GitHub Trending.
@@ -81,9 +81,9 @@ Không thêm trùng: grep `repo` trong `data/projects.json` trước. Mỗi mụ
 - Điều chưa kiểm được ghi **(chưa xác minh)**.
 
 4. Gộp
-- Gộp projects vào `data/projects.json` (khử trùng theo repo), sinh lại `data/projects.csv` theo TEMPLATE.md. Thêm mục "Bổ sung <ngày> (nâng trần định kỳ)" vào `SOURCES.md`. Thêm một mục tóm tắt mới vào "Bức tranh tổng thể" của `README.md` gốc.
+- Gộp projects vào `data/projects.json` (khử trùng theo thực thể/id; cùng repo có thể chứa sản phẩm/plugin/skill khác nhau), sinh lại `data/projects.csv` theo TEMPLATE.md. Thêm mục "Bổ sung <ngày> (nâng trần định kỳ)" vào `SOURCES.md`. Thêm một mục tóm tắt mới vào "Bức tranh tổng thể" của `README.md` gốc.
 - X-Templates: clone công khai `https://github.com/seeker19110/x-templates`. Mỗi bài học được một agent grep `framework/` để tìm 1–3 ID thật và xếp cột deeper/shallower/missing/not_adding; dòng trùng XT-H cũ ghi duplicate. Thêm XT-H-NNN vào `data/xt-handoff.json` và một bảng §4x mới trong `X-TEMPLATES.md`, ghi commit X-Templates đã đối chiếu.
-- Chạy `python3 scripts/check_catalog.py` và `npx --yes markdownlint-cli2` trên mọi file đã sửa, sửa đến khi sạch.
+- Chạy `python3 scripts/check_catalog.py` , `python3 -I scripts/test_check_catalog.py` và `npx --yes markdownlint-cli2` trên mọi file đã sửa, sửa đến khi sạch.
 
 5. Phát hành
 - Commit theo từng nhóm mục rồi push. Mở PR vào `main` và bật auto-merge NGAY sau khi tạo (theo bước 8 của quy trình). Nếu PR đã "clean" thì merge trực tiếp.
@@ -92,3 +92,9 @@ Không thêm trùng: grep `repo` trong `data/projects.json` trước. Mỗi mụ
 6. Báo cáo cuối (ngắn, tiếng Việt)
 Số mục có phần mới, số dự án thêm (catalog trước → sau), phát hiện quan trọng nhất (license, telemetry, archive, chuẩn mới), kết quả kiểm đối kháng, link các PR, và những gì chưa làm được kèm lý do. Nếu một bước bị chặn quyền thì dừng bước đó, ghi rõ và làm tiếp phần còn lại; không lách quyền.
 ```
+
+## Hợp đồng metadata và mức bằng chứng
+
+Đọc [METHOD.md](METHOD.md) và [data/projects.schema.json](data/projects.schema.json). Mọi hồ sơ có `id` ổn định và `profile_path`; hồ sơ mới/đọc lại có ngày, full SHA, nguồn permalink, mức kiểm và neo cụ thể. Chỉ cập nhật ngày/mức khi thực sự kiểm phạm vi đó. Snapshot catalog và ngày push upstream không thay ngày đọc mã.
+
+Bổ sung chuyên mục mới phải cập nhật mục lục, category registry, tuyến đọc [GUIDES.md](GUIDES.md) và nguồn cùng đợt. Tác vụ rà định kỳ lấy danh sách thư mục `NN-*` hiện tại thay vì dùng số chuyên mục cố định; thay đổi file prompt không tự xác nhận cấu hình tác vụ bên ngoài đã đổi.

@@ -501,7 +501,7 @@ Không repo nào của mục 22 bị archive.
 
 | Repo / chuẩn | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
 |---|---|---|---|---|---|
-| **WCAG 2.2**: 2.2.2 Pause, Stop, Hide (A), 2.3.1 Three Flashes (A), 2.3.3 Animation from Interactions (AAA); media query `prefers-reduced-motion` (Media Queries Level 5) | Chuẩn | – · W3C | WCAG 2.2 = ISO/IEC 40500:2025 | Đây là ranh giới bắt buộc: chuyển động tự chạy quá 5 giây phải dừng được, không nháy quá 3 lần/giây, motion do tương tác gây ra phải tắt được. Đặt thành tiêu chí đạt/trượt cho mọi skill motion | 2.3.3 là mức AAA, nhiều dự án không bắt buộc, nhưng Vercel (mục 06 §7t) và Apple đều coi reduced motion là việc bắt buộc |
+| **WCAG 2.2**: 2.2.2 Pause, Stop, Hide (A), 2.3.1 Three Flashes (A), 2.3.3 Animation from Interactions (AAA); media query `prefers-reduced-motion` (Media Queries Level 5) | Chuẩn | – · W3C | WCAG 2.2 = ISO/IEC 40500:2025 | Đây là ranh giới bắt buộc: chuyển động tự chạy dài hơn 5 giây và song song nội dung khác phải có cách pause/stop/hide (trừ thiết yếu); flash phải dưới ngưỡng tần số hoặc general/red-flash threshold; motion do tương tác phải tắt được trừ khi thiết yếu (AAA). Đặt thành tiêu chí đạt/trượt cho mọi skill motion | 2.3.3 là mức AAA, nhiều dự án không bắt buộc, nhưng Vercel (mục 06 §7t) và Apple đều coi reduced motion là việc bắt buộc |
 | **Apple HIG: Motion** | Chuẩn (nguyên lý) | – | Cập nhật 9/9/2025 (Liquid Glass) | "Add motion purposefully", "make motion optional" (không dùng motion làm kênh duy nhất truyền tin), "let people cancel motion", tránh motion cho tương tác lặp lại nhiều. visionOS: tránh dao động quanh **0,2 Hz** và motion ở rìa tầm nhìn. Tiêu chí App Store về Reduced Motion: tắt hoặc thay hiệu ứng nhiều trục, xoáy, carousel tự chạy | Viết cho app native; khi dùng cho web phải tự quy ra CSS |
 | **Material 3 Motion** (m3.material.io) | Chuẩn (nguyên lý + token) | – | – | Motion dạng token: hai scheme *standard* / *expressive*, spring chia hai loại *spatial* (vị trí, kích thước) và *effects* (màu, opacity), mỗi loại có mức fast, default, slow. Hợp để đưa thành token motion trong DTCG (`duration`, `cubicBezier`, `transition`) | Trang chính thức không đọc được bằng công cụ của phiên này. Tên token và giá trị spring chỉ lấy từ các gói bên thứ ba **(chưa xác minh)** |
 | `lottie/lottie-spec` | Chuẩn (định dạng) | 118 · Community Specification License 1.0 (mã ví dụ MIT; GitHub báo `NOASSERTION`) | 29/5/2026 | Spec Lottie **v1.0** (Lottie Animation Community, dự án Joint Development Foundation thuộc Linux Foundation, công bố 17/9/2024): JSON Schema cho từng phần tử, kèm thư mục `tests/animations/{valid,invalid}`. Dùng để kiểm file Lottie do agent sinh ra (LottieFiles skill §2.5) trước khi phát hành | v1.0 chưa gồm text layer. Bản 1.1 (tương tác, đánh dấu a11y) mới ở lộ trình. Push cuối 6/2026 |
@@ -518,6 +518,45 @@ Không repo nào của mục 22 bị archive.
 5. **Kiểm hợp lệ Lottie và hồi quy hình.** Kiểm file Lottie bằng schema của `lottie-spec`. Video render ra thì so với bản đã duyệt bằng VMAF (mục 19 §3d); khung hình web so bằng pixelmatch (mục 06 §7t).
 
 **Nguồn §9g:** GitHub search API 2/11/2026 (`repo:lottie/lottie-spec`, `repo:GoogleChrome/web-vitals`, `repo:theatre-js/theatre`; truy vấn `lottie spec`, `reduced motion`, `web-vitals`) · clone `--depth 1 --filter=blob:none` 2/11/2026: lottie/lottie-spec (HEAD 4b55957, 29/5/2026; README.md, License.md, package.json, schema/, tests/animations/), GoogleChrome/web-vitals (e773747, 16/10/2026; README.md, LICENSE, package.json) · Web 2/11/2026: https://developer.apple.com/design/human-interface-guidelines/motion (bản `.md`, change log 9/9/2025) · https://developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria · https://www.w3.org/TR/WCAG22/ · https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion · https://www.linuxfoundation.org/press/lottie-animation-community-announces-lottie-v1.0-specification · https://m3.material.io/styles/motion/overview (không đọc được nội dung; mô tả token theo pub.dev/packages/material_expressive, chưa xác minh)
+
+## 9h. Motion runtime verification
+
+> Mở rộng ngày 2/11/2026. §9g đã thêm WCAG, token và web-vitals; phần này kiểm **trạng thái theo thời gian và vòng đời runtime**. Chỉ đọc code/CI, chưa đo FPS, bộ nhớ hay pixel output. Không có ngưỡng “đẹp” phổ quát.
+
+### 9h.1 dotLottie-web: runtime có kiểm soát
+
+| Thuộc tính | Giá trị và bằng chứng |
+|---|---|
+| Repo / tác giả | [LottieFiles/dotlottie-web](https://github.com/LottieFiles/dotlottie-web/tree/65d576c12f3ce8ffefd3a4258f74e19f3d668ff9) — runtime do LottieFiles phát triển, Rust/WASM với wrapper web |
+| License / số liệu | MIT ([LICENSE](https://github.com/LottieFiles/dotlottie-web/blob/65d576c12f3ce8ffefd3a4258f74e19f3d668ff9/LICENSE)); 936★ ngày 2/11/2026; HEAD `65d576c` (2026-10-30), chưa archive |
+| Vì sao đáng tham khảo | [DotLottie](https://github.com/LottieFiles/dotlottie-web/blob/65d576c12f3ce8ffefd3a4258f74e19f3d668ff9/packages/web/src/dotlottie.ts) có `setFrame`, pause/freeze, destroy, event/state machine; phù hợp kiểm một mốc xác định thay vì chụp ngẫu nhiên lúc đang chạy |
+| Đường mạng | Mặc định WASM tải từ jsDelivr, fallback unpkg; [loader](https://github.com/LottieFiles/dotlottie-web/blob/65d576c12f3ce8ffefd3a4258f74e19f3d668ff9/packages/web/src/wasm-loader.ts) cho `setWasmUrl` để tắt CDN fallback khi gọi **trước preload/khởi tạo**. Gọi muộn không hủy request đã bắt đầu; buffered retry có thể còn dùng primary URL CDN đã lưu. Muốn offline/CSP chặt phải tự host đúng binary cùng version; worker/GPU có cấu hình riêng cần kiểm |
+| CI / giới hạn | [CI](https://github.com/LottieFiles/dotlottie-web/blob/65d576c12f3ce8ffefd3a4258f74e19f3d668ff9/.github/workflows/ci.yml) build/lint/test upstream; việc có test không chứng minh mọi file Lottie hiển thị giống mọi engine. Asset/font/ảnh trong animation có quyền riêng |
+| Tích hợp | So với lottie-web (§9e), chọn theo renderer/định dạng/tính tương tác đã thử trên corpus đích. Với Motion/GSAP/CSS (§2/§6), dùng runtime tương ứng; không chuyển mọi animation sang Lottie |
+
+### 9h.2 Chụp một ảnh chưa đủ kiểm motion
+
+[Web Animations Level 1](https://www.w3.org/TR/web-animations-1/) là **Working Draft** (bản TR ngày 5/6/2023), định nghĩa timing model và API; không gọi là W3C Recommendation. `currentTime` đặt được mốc khi pause; `cancel()` bỏ hiệu ứng và có thể làm promise `finished` bị reject, nên test lifecycle cần xử lý cả nhánh cancel.
+
+| Loại lỗi | Phép kiểm phù hợp | Không được suy ra |
+|---|---|---|
+| Sai trạng thái giữa các mốc | Seek/pause tại trước–trong–sau transition và sau reverse; so thuộc tính và khung hình | Hai ảnh đầu/cuối đẹp không chứng minh không nháy/che chữ ở giữa |
+| Race do thao tác người dùng | Hover/focus/click nhanh, đảo chiều, mở–đóng liên tục, unmount khi đang chạy | Một đường autoplay sạch không chứng minh tương tác sạch |
+| Lỗi lifecycle/tài nguyên | Tạo–destroy nhiều lần, offscreen/background, resize/DPR, loadError | Không có console error không chứng minh không leak hoặc không gọi mạng |
+| Jank và layout | Trace trên thiết bị/mạng đích; frame time, long task, INP/CLS (§9g) | Một con số FPS trung bình không cho biết p95 stall hay tác động tới input |
+| Accessibility | Chế độ thường/reduced motion, keyboard/focus, pause control | Tắt animation không được làm mất trạng thái hoặc thông tin cần thiết |
+
+### 9h.3 Stack kiểm chứng
+
+1. Ghim file animation, font/ảnh, runtime và WASM; xác nhận load xong trước khi seek/chụp. Chuẩn bị fallback tĩnh khi load hoặc WASM lỗi.
+2. Chọn mốc theo hành vi (start, midpoint, overshoot, settle, cancel/reverse), không chỉ chia đều video. Lưu expected state và điều có thể bác bỏ trước khi xem output.
+3. So ảnh bằng pixelmatch/Argos (mục 06) với tolerance có lý do cho anti-aliasing; song song kiểm DOM/state để không coi sai pixel là sai hành vi hoặc ngược lại.
+4. Thử reduced-motion và chuỗi input; cleanup listener/worker/player khi unmount, giữ focus sau transition. Khi offscreen player tự freeze, test phải chỉ rõ mong đợi tiếp tục hay pause timeline.
+5. Tách phép đo visual correctness khỏi performance: screenshot tại thời gian cố định phục vụ hồi quy; trace chạy ở tốc độ thật trên thiết bị đích phục vụ latency/jank.
+
+**Đính chính phạm vi WCAG §9g:** SC 2.2.2 áp dụng moving/blinking/scrolling tự khởi chạy, dài hơn 5 giây, trình bày song song nội dung khác, trừ khi chuyển động là thiết yếu; SC 2.3.1 có ngưỡng general/red flash và diện tích, không chỉ phép đếm 3 lần/giây. SC 2.3.3 (AAA) cho tắt animation do tương tác trừ khi thiết yếu. Đây là các điều kiện cần giữ khi biến chuẩn thành lint/test; không tự đặt luật “mọi motion đều cấm”.
+
+**Nguồn §9h:** GitHub metadata/clone dotLottie-web ngày 2/11/2026: LICENSE, README, CI, `dotlottie.ts`, `wasm-loader.ts`; [tài liệu runtime LottieFiles](https://docs.lottiefiles.com/en/runtimes/distributions/react/v0.x/api-reference), W3C Web Animations và [WCAG 2.2](https://www.w3.org/TR/WCAG22/). Chưa chạy browser/render benchmark.
 
 ## 10. Nguồn
 

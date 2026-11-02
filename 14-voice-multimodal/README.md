@@ -169,6 +169,43 @@
 
 **Nguồn §5d:** GitHub search API 2/11/2026 (`repo:` cho 7 repo; 6 truy vấn `word error rate`, `MOS prediction`, `TTS evaluation`, `ASR benchmark leaderboard`, `voice agent evaluation`, `audioseal OR videoseal`) · clone `--depth 1 --filter=blob:none` 2/11/2026: jitsi/jiwer (HEAD 2227002, 16/4/2026; README.md, LICENSE, pyproject.toml), huggingface/open_asr_leaderboard (edd6842, 30/10/2026; README.md, LICENSE, normalizer/normalizer.py), Picovoice/speech-to-text-benchmark (aea7914, 7/10/2026; README.md, LICENSE, engine.py), sarulab-speech/UTMOSv2 (cc2700d, 2/4/2026; README.md, LICENSE), ServiceNow/eva (236f4ea, 29/10/2026; README.md, LICENSE, .env.example), OpenBMB/UltraEval-Audio (c0be484, 28/10/2026; README.md, LICENSE), facebookresearch/audioseal (98f56cd, 2/11/2026; README.md, LICENSE) · danh sách soft-binding C2PA: github.com/c2pa-org/specifications `softbinding-alg-list/softbinding-algorithm-list.json` (HEAD 66ee450)
 
+## 5e. Voice reliability
+
+> Mở rộng khảo sát ngày 2/11/2026. §5d đã đo WER/MOS và tác vụ hội thoại; phần này đánh giá **đường truyền, lượt nói và quyền thu âm**. Đọc LICENSE, CI và mã nguồn tại commit ghim dưới đây; không cài hay chạy mã ngoài. Các ngưỡng vận hành phải lấy từ yêu cầu của sản phẩm, chưa có kết quả chạy tiếng Việt trong khảo sát này.
+
+### 5e.1 Hai thành phần dưới framework
+
+| Repo | ★ · license (2/11/2026) | Commit đọc | Cơ chế đáng học | Giới hạn / điều kiện |
+|---|---|---|---|---|
+| [snakers4/silero-vad](https://github.com/snakers4/silero-vad/tree/066409f3d9db45a30d21dfcbf9147826ffdd7052) | 10,581 · MIT | 2026-10-22 · `066409f` | VAD để tách đoạn tiếng nói trước STT, có ONNX/TorchScript và trạng thái streaming | VAD không xác định người nói, không đo hiểu đúng ý hay sự đồng ý; cần kiểm tiếng ồn/giọng vùng miền trên dữ liệu đích |
+| [aiortc/aiortc](https://github.com/aiortc/aiortc/tree/d6a003fcb6511675318b4494e5b225b78abd2af2) | 5,124 · BSD-3-Clause | 2026-11-01 · `d6a003f` | WebRTC/ORTC Python asyncio, media track, RTP/RTCP và data channel | Là transport thấp tầng; không cung cấp sẵn signaling production, quản lý lượt nói hay chính sách lưu âm thanh |
+
+**Silero VAD (Silero Team).** [Mã wrapper ONNX](https://github.com/snakers4/silero-vad/blob/066409f3d9db45a30d21dfcbf9147826ffdd7052/src/silero_vad/utils_vad.py) quy định khung 512 mẫu ở 16 kHz và 256 mẫu ở 8 kHz, có `reset_states()` khi cấu hình stream đổi. Vì vậy không dùng chung trạng thái model giữa các phiên độc lập nếu wrapper đang giữ state. README có đường cài qua Torch Hub; triển khai cần ghim revision và checksum model. So với WebRTC VAD hoặc VAD sẵn trong Pipecat/LiveKit (§1), Silero là lựa chọn model có thể tách riêng để thử cùng một audio corpus; chưa có phép đo chung trong khảo sát này.
+
+**aiortc (Jeremy Lainé và cộng đồng).** [RTCPeerConnection](https://github.com/aiortc/aiortc/blob/d6a003fcb6511675318b4494e5b225b78abd2af2/src/aiortc/rtcpeerconnection.py) cung cấp trạng thái kết nối và `close()` để dọn sender/receiver/transport. [CI upstream](https://github.com/aiortc/aiortc/blob/d6a003fcb6511675318b4494e5b225b78abd2af2/.github/workflows/tests.yml) có test nhưng khảo sát này không chạy và không suy ra chất lượng mạng production. Chọn aiortc khi cần kiểm soát transport Python; chọn Pipecat khi muốn pipeline processor, LiveKit khi cần room/participant và hạ tầng realtime đã đóng gói. Không tự thay framework hoàn chỉnh bằng một thư viện transport chỉ vì API nhỏ hơn.
+
+### 5e.2 Ma trận lỗi cần đo riêng
+
+| Ranh giới | Tình huống kiểm | Bằng chứng phải lưu |
+|---|---|---|
+| Thu âm → VAD | Im lặng, nhạc/ồn, nói nhỏ, giọng Bắc/Trung/Nam, ngắt giữa câu | False start, bỏ mất tiếng đầu/cuối, thời gian chốt lượt; phiên bản VAD và normalizer |
+| STT → LLM → TTS | Cùng câu hỏi bằng transcript chuẩn và bằng audio | Chênh lệch hoàn thành tác vụ; WER thấp vẫn có thể sai số tiền/tên riêng |
+| Lượt nói | Người dùng chen ngang khi TTS phát và khi tool đang chạy | Thời gian tới lúc ngừng audio, không phát tiếp đoạn TTS cũ; hủy audio không mặc nhiên hủy tác vụ ghi |
+| Transport | Mất mạng, reconnect, gói tới chậm/lặp, đóng tab | Session/turn ID, thứ tự sự kiện, dọn tài nguyên; tool có side effect dùng khóa chống chạy trùng |
+| Quyền và dữ liệu | Từ chối/rút quyền microphone, bật/tắt ghi âm, xoá phiên | Trạng thái UI khớp capture thật; thời hạn lưu, nơi gửi audio, quyền tái dùng giọng tách khỏi quyền microphone |
+
+**Chuẩn gốc:** [Media Capture and Streams của W3C](https://www.w3.org/TR/2025/CRD-mediacapture-streams-20251009/) yêu cầu xin quyền và chỉ báo capture; đây không phải bằng chứng người dùng đã đồng ý lưu lâu dài hay clone giọng. [SEA-HELM Audio](https://arxiv.org/abs/2610.19869) (preprint, 10/2026) minh họa phép đo chênh lệch text→speech, nhưng năm ngôn ngữ trong abstract **không có tiếng Việt**; không chuyển số điểm của paper thành kết quả tiếng Việt.
+
+### 5e.3 Stack và cổng phát hành
+
+1. Chốt policy microphone/recording/clone giọng; đưa lý do và khả năng rút quyền vào giao diện, giữ audio thô tách khỏi trace ứng dụng.
+2. Ghim transport + VAD + STT/TTS/model revision; đo từng đoạn `end_of_user_speech → transcript_final → first_llm_token → first_audio` và toàn tuyến bằng p50/p95, không cộng trung bình để suy ra p95.
+3. Kết hợp WER/CER (§5d) với độ đúng các trường quan trọng, lượt nói và kết quả tool; tách phiên bị lỗi mạng khỏi câu trả lời sai.
+4. Thử interruption/reconnect bằng dữ liệu có đồng ý; tác vụ ghi chỉ xác nhận một lần qua executor (mục 03/21), không replay tool chỉ vì phải phát lại audio.
+5. Gắn metadata nguồn giọng/watermark khi phù hợp (§5d và mục 19); watermark không thay hồ sơ quyền sử dụng giọng.
+
+**Nguồn §5e:** GitHub metadata/HEAD 2/11/2026 và các permalink trên; clone chỉ đọc LICENSE, README, CI, `utils_vad.py`, `rtcpeerconnection.py`; W3C Media Capture and Streams; SEA-HELM Audio (preprint). Không có benchmark chạy mới.
+
 ## 6. Nguồn
 
 - https://micdrop.dev/blog/open-source-voice-agent-frameworks · https://livekit.com/blog/best-open-source-voice-and-video-ai-agent-frameworks · https://www.forasoft.com/blog/article/pipecat-vs-livekit-agents · https://github.com/pipecat-ai/pipecat · https://techsy.io/en/blog/best-open-source-voice-agent-frameworks · https://grokipedia.com/page/List_of_open-source_voice_AI_frameworks

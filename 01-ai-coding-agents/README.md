@@ -15,7 +15,7 @@
 | **OpenHands** (cũ: OpenDevin) | github.com/OpenHands/OpenHands | MIT | ~90k | Nền tảng agent dev đầy đủ (sandbox Docker, web UI, cloud), nhiều SOTA SWE-bench | Đổi tên từ All-Hands-AI |
 | **Cline** | github.com/cline/cline | Apache-2.0 | ~69k | VS Code extension agent, plan/act mode, MCP marketplace | |
 | **Aider** | github.com/Aider-AI/aider | Apache-2.0 | ~49k | Pair-programming terminal, repo map, git-native | Commit cuối 5/2026 → phát triển chậm lại |
-| **SWE-agent** | github.com/SWE-agent/SWE-agent | MIT | ~20.5k | Princeton; agent-computer interface, giải GitHub issue tự động | Nghiên cứu, bảo trì đều (10/2026) |
+| **SWE-agent** | github.com/SWE-agent/SWE-agent | MIT | ~20.5k | Princeton; agent-computer interface, giải GitHub issue tự động | Nghiên cứu; HEAD main 16/7/2026 dù pushed_at 26/10, xem §3l |
 | **mini-SWE-agent** | github.com/SWE-agent/mini-swe-agent | MIT | ~8.4k | **100 dòng code**, >74% SWE-bench Verified; là harness chuẩn của Vals leaderboard | Minh chứng "harness đơn giản vẫn mạnh" |
 | **Goose** | github.com/block/goose | Apache-2.0 | – | Agent desktop/CLI của Block, MCP-first | |
 | **Roo Code / Kilo Code** | github.com/RooCodeInc/Roo-Code | Apache-2.0 | – | Fork Cline, nhiều mode | Roo Code **đã archive** (5/2026). Kilo Code 7.x **không còn là fork Roo**: lõi là fork OpenCode (MIT), xem §3j |
@@ -588,6 +588,45 @@ Memory "kiểu OpenClaw":
 5. **Đa ngôn ngữ**: chỉ khi stack không phải Python, thêm `flash`/`mini` của Multi-SWE-bench hoặc MultiLang của SWE-bench-Live.
 
 **Nguồn §3k:** GitHub search API 2/11/2026 (`repo:` cho 4 repo trên; `repo:agentsmd/agents.md`, `repo:harbor-framework/harbor` đã có trong catalog) · clone 2/11/2026, đọc: SWE-bench (README.md, LICENSE, CHANGELOG.md, `swebench/__init__.py`, `swebench/cli/`, `swebench/harness/{run_evaluation,grading,infra_failure}.py`) · SWE-bench_Pro-os (README.md, LICENSE, `v2/README.md`, `v2/GATE.md`) · SWE-bench-Live (README.md, LICENSE, `curation/`, `evaluation/`) · multi-swe-bench (README.md, LICENSE, cây `multi_swe_bench/`) · https://github.com/SWE-bench/SWE-bench · https://github.com/scaleapi/SWE-bench_Pro-os · https://github.com/microsoft/SWE-bench-Live · https://github.com/multi-swe-bench/multi-swe-bench · https://arxiv.org/abs/2505.23419 · https://arxiv.org/abs/2504.02605
+
+<a id="core-coding-contracts"></a>
+
+## 3l. Nâng trần 2/11/2026: hợp đồng sửa mã và cổng chấp nhận độc lập (mở rộng cùng ngày)
+
+> Mở rộng chiều sâu trong cùng đợt 2/11/2026, không phải công bố các repo vừa ra mắt. Hai repo dưới đã có trong catalog: đọc lại LICENSE, CI và nhánh mặc định bằng clone chỉ đọc; SHA đối chiếu GitHub API. Mức bằng chứng **code-read**; không chạy/build repo ngoài, hiệu năng và hành vi thực tế **(chưa xác minh)**. Số sao/trạng thái đọc 2026-11-02; ngày commit tính theo UTC, tách khỏi `pushed_at`.
+
+| Repo đã có | ★ · license (2026-11-02) | HEAD nhánh mặc định | Vai trò đọc sâu |
+|---|---|---|---|
+| `SWE-agent/SWE-agent` | 20.711 · MIT | 2026-07-16 · `3ea751c0` | Vòng giải issue và phân biệt patch với kết quả chấm |
+| `Aider-AI/aider` | 49.898 · Apache-2.0 | 2026-05-22 · `5dc9490b` | Sửa mã có git. lint/test và checkpoint cho người review |
+
+**Trần còn thiếu:** §3k đã có harness chấm SWE-bench; bảng §1 vẫn dễ khiến người đọc đồng nhất “agent đã commit/submit” với “bản sửa đạt yêu cầu”. Cần so **hợp đồng chỉnh sửa**, trạng thái kết thúc và bằng chứng test của agent trước khi so điểm benchmark.
+
+### SWE-agent: trạng thái kết thúc phải đi cùng trạng thái chấm
+
+- Trong [`attempt_autosubmission_after_error`](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py#L823), lỗi vẫn có thể dẫn tới lấy diff cuối hoặc chạy `git add -A`/xuất patch rồi submit. Đây là cách cứu artifact khi runtime chết; **có patch không chứng minh task đã giải đúng**. Hồ sơ sử dụng cần giữ riêng `exit_status`, patch, lỗi hạ tầng và điểm từ bộ chấm §3k.
+- [CI pytest](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/.github/workflows/pytest.yaml) kiểm **chính SWE-agent**, không tự chứng minh patch sinh cho repo khác đúng. Paper ACI giải thích thiết kế giao diện quan sát/hành động; điểm paper không thay lần chạy trên bộ task và phiên bản model hiện tại.
+- **Đính chính bảo trì:** API `pushed_at` là 26/10/2026 nhưng HEAD `main` là **16/7/2026**. Không dùng riêng ngày push để kết luận “bảo trì đều 10/2026”; nhánh khác hoặc tag có thể tạo push mà main không đổi. Cần kiểm release và task tương thích trước khi dùng làm nền mới.
+
+### Aider: commit có thể xuất hiện trước lint/test
+
+- [`base_coder.py`](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py#L1585) gọi `auto_commit(edited)` ngay sau áp sửa, rồi mới lint và test. Mặc định `auto_lint=True`, **`auto_test=False`**. Nếu cần vòng sửa–test, phải cấu hình `--test-cmd` và bật `--auto-test`; `--test-cmd` đơn lẻ chưa có nghĩa tự chạy sau mọi lần sửa.
+- Git tạo checkpoint dễ review/undo, nhưng một commit của Aider không phải chứng nhận chất lượng. [CI Ubuntu](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/.github/workflows/ubuntu-tests.yml) có ma trận Python 3.10–3.14; đây là bằng chứng cấu hình kiểm upstream, **(chưa xác minh)** kết quả từng run. Nhánh main vẫn ở 22/5/2026; cân nhắc tương thích model/dependency mới.
+- [Analytics](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/analytics.py#L84) chưa khởi tạo client gửi khi chưa có trạng thái opt-in. Đây là đọc đường mã, không phải kết luận đã bắt gói mọi kênh mạng.
+
+**Ma trận chọn và cổng chấp nhận**
+
+| Nhu cầu | Chọn/ghép | Bằng chứng tối thiểu trước khi chấp nhận |
+|---|---|---|
+| Pair programming, người review từng diff | Aider + git worktree | Diff đúng phạm vi; test/lint do môi trường dự án chạy lại |
+| Giải issue có môi trường container | SWE-agent + SWE-bench/Harbor (§3k, mục 07) | Artifact chấm độc lập; phân lỗi hạ tầng khỏi patch sai |
+| Agent chạy tự trị lâu | Agent hiện có + durable runtime mục 21 | Timeout, ngân sách, receipt của side effect; không lấy chuỗi `submitted` làm pass |
+| So hai harness/model | Cùng tập task và giới hạn tài nguyên | Báo solved/attempted, lỗi hạ tầng, chi phí mỗi task giải đúng, p95 thời gian |
+| Thử trên repo đang có thay đổi người dùng | Worktree sạch riêng cho mỗi run | Base SHA, diff người dùng tách riêng; không cho autosubmit gom file ngoài phạm vi |
+
+**Cách ghép:** (1) đóng băng base SHA, tập task, model/config và budget; (2) chạy agent trong môi trường cách ly, lưu trajectory/exit reason; (3) đưa patch sang bộ chấm độc lập §3k, chạy cả test hồi quy; (4) đánh giá chi phí trên **task đạt yêu cầu**, rồi người review diff trước tích hợp. Khi chưa chạy benchmark, chỉ kết luận về cơ chế đọc được; chưa xếp hạng agent.
+
+**Nguồn phần mở rộng:** [1](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/LICENSE) · [2](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py) · [3](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/.github/workflows/pytest.yaml) · [4](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/LICENSE.txt) · [5](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py) · [6](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/analytics.py) · [7](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/.github/workflows/ubuntu-tests.yml) · [8](https://arxiv.org/abs/2405.15793) · [9](https://aider.chat/docs/usage/lint-test.html)
 
 ## 4. Nguồn
 

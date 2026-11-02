@@ -529,7 +529,7 @@ Các repo khác dao động dưới 5%. `ai-engineering-from-scratch` ở §3 m�
 - §2b và §2j toàn là khoá "đọc và làm theo" (Microsoft for-beginners, agents-course, ai-engineering-from-scratch). Cách đánh giá dừng ở số sao, link còn sống và CI kiểm cấu trúc. Chỉ agents-course có bài được chấm (leaderboard).
 - Chưa có bài tập nào **chấm bằng unit test**, tức chưa có cách đo "đã học xong" bằng máy.
 - §3 chỉ liệt kê blog và paper. Thiếu sách mở về **vận hành training/inference** và về **đánh giá LLM**, hai lớp mà mục 07 và mục 10 giả định người đọc đã biết.
-- Bản tiếng Việt chỉ có ở khoá Microsoft (§2b) và `mcp-for-beginners` (§2j).
+- Bản tiếng Việt đã có ở các khóa Microsoft (§2b/§2j); đợt này bổ sung HF course nhưng phải ghi rõ phần chưa dịch.
 
 **Bảng repo mới**
 
@@ -552,6 +552,48 @@ Ghi chú: `anthropics/courses` (23k★) **đã archive** (xem mục 17). Noteboo
 5. **Tiêu chí chọn khoá mới**: ưu tiên khoá có test hoặc leaderboard (cs336, agents-course) hơn khoá chỉ có notebook không CI (như `mcp-for-beginners` §2j).
 
 **Nguồn §4:** GitHub search API 2/11/2026 (`repo:` cho 7 repo, gồm `anthropics/courses` và `karpathy/nn-zero-to-hero`, cái sau đã xét nhưng không thêm vì đứng yên từ 8/2024) · clone `--filter=blob:none`: stanford-cs336/assignment1-basics (HEAD `a158843` 7/4/2026: LICENSE, README.md, CHANGELOG.md, AGENTS.md, CLAUDE.md, tests/), huggingface/course (`8b893f0` 6/10/2026: LICENSE, README.md, `chapters/en/_toctree.yml`, cây `chapters/vi`, `.github/workflows/quality.yml`), huggingface/llm-course (`aaee936`: chỉ README), stas00/ml-engineering (`dfcd0f8` 1/11/2026: LICENSE-CC-BY-SA, README.md, SKILL.md, skills/, script benchmark), huggingface/evaluation-guidebook (`e09b159` 3/12/2025: LICENSE, README.md, contents/, yearly_dives/), google-research/tuning_playbook (`7554a51` 12/6/2024: LICENSE, README.md), anthropics/courses (`f4dbb13`: LICENSE, README.md, đếm model ID trong `*.ipynb`) · https://huggingface.co/course/vi/chapter1/1 · https://huggingface.co/spaces/OpenEvals/evaluation-guidebook · https://cs336.stanford.edu
+
+<a id="learning-prerequisites-evidence"></a>
+
+## 5. Nâng trần 2/11/2026: điều kiện đầu vào, bài chuyển giao và bằng chứng học được (rà soát toàn diện)
+
+> Bổ sung chiều sâu cho đợt §4 trong cùng ngày, không coi đây là một đợt phát hành mới của các dự án. Đọc metadata GitHub, clone nông, LICENSE, nội dung bài học, bài tập và CI của ba repo dưới đây. Mức bằng chứng: **đã đọc mã/cấu hình**, chưa cài hay chạy bài tập; số sao đọc 2/11/2026. Ngày commit là HEAD của nhánh mặc định, không phải ngày `pushed_at` của cả repo.
+
+### 5.1 Khoảng trống sau §4
+
+§4 thêm cổng chấm của CS336 và sách vận hành, nhưng vẫn thiếu cách chọn **điểm bắt đầu**. Người chưa biết shell không nên đi thẳng vào harness; người chưa biết gradient/split dữ liệu dễ chạy notebook mà không hiểu kết quả. Một test xanh khi agent đã viết cả lời giải cũng chưa chứng minh người học tự chuyển kiến thức sang bài mới. Các tiêu chí chuyển cấp dưới đây là **đề xuất biên tập của kho**, không phải điều kiện cấp chứng chỉ của trường hay benchmark đã được kiểm nghiệm.
+
+| Repo | Vai trò | ★ · license (2/11/2026) | HEAD · ngày commit | Giá trị và giới hạn |
+|---|---|---|---|---|
+| `missing-semester/missing-semester` | Nền thao tác cho developer | 6.152 · **CC BY-NC-SA 4.0**, gồm cả source website, bài tập và video | `1d695c94ccafdce3f06d6b9dfe3e6f106097693a` · 8/10/2026 | Bản 2026 có shell, Git, chất lượng code, shipping và agentic coding; bài tập yêu cầu tự cấu hình công cụ. CI build Jekyll và kiểm link, **không phải autograder bài người học** |
+| `d2l-ai/d2l-en` (*Dive into Deep Learning*) | Nền toán + mô hình | 29.986 · docs **CC BY-SA 4.0**, sample code **MIT sửa đổi** theo hai file license riêng | `23d7a5aecceee57d1292c56e90cce307f183bb0a` · 16/3/2024 | Chương Preliminaries nối tensor, đại số tuyến tính, vi tích phân, autograd, xác suất vào code; có CI gửi bài chạy nhiều framework lên AWS Batch. HEAD cũ; cấu hình build ghim Python 3.9/PyTorch 2.0/CUDA 11, không suy ra chạy sạch trên stack 2026 |
+| `DataTalksClub/mlops-zoomcamp` | Đồ án vòng đời ML | 15.516 · **không tìm thấy LICENSE trong checkout** | `1cf2248a803bf8a2685f87941a679eca2712516d` · 16/9/2026 | Khóa của cộng đồng DataTalks.Club, có prerequisites, rubric về tracking/deploy/monitoring/reproducibility và peer review. Đọc miễn phí không đồng nghĩa được phép phân phối lại toàn bộ tài liệu/mã |
+
+### 5.2 Đọc cổng thật và điều kiện tích hợp
+
+- **Missing Semester** do Anish Athalye, Jon Gjengset và Jose Javier Gonzalez, các cựu sinh viên MIT, đồng giảng. Bài `code-quality` yêu cầu cố ý làm hỏng code để kiểm CI phát hiện; bài `agentic-coding` nối test thất bại vào vòng sửa của agent. Hai workflow của website chỉ build/kiểm link. Dùng như lớp học shell/Git/debug trước mục 01/13; có thể tự làm lại bài tập trên một repo riêng. License NC/SA cần được xét trước khi đóng gói nội dung vào khóa thương mại. [Bài học và bài tập ghim commit](https://github.com/missing-semester/missing-semester/blob/1d695c94ccafdce3f06d6b9dfe3e6f106097693a/_2026/code-quality.md), [license](https://github.com/missing-semester/missing-semester/blob/1d695c94ccafdce3f06d6b9dfe3e6f106097693a/license.md), [CI](https://github.com/missing-semester/missing-semester/tree/1d695c94ccafdce3f06d6b9dfe3e6f106097693a/.github/workflows).
+- **D2L** là sách của Aston Zhang, Zachary Lipton, Mu Li và Alex Smola, có bản in Cambridge University Press 2023. `chapter_preliminaries/autograd.md` chứa code đối chiếu nhiều framework, không chỉ hình minh họa. Hợp cho người thiếu nền trước `LLMs-from-scratch`/CS336 (§2b/§4); không phải khóa vận hành agent. `LICENSE-SUMMARY` tách nội dung và sample code; khi lấy một đoạn code phải kiểm đúng phạm vi. CI có bước evaluate framework, nhưng **chưa xác minh kết quả run gần nhất**. [Preliminaries](https://github.com/d2l-ai/d2l-en/blob/23d7a5aecceee57d1292c56e90cce307f183bb0a/chapter_preliminaries/index.md), [license summary](https://github.com/d2l-ai/d2l-en/blob/23d7a5aecceee57d1292c56e90cce307f183bb0a/LICENSE-SUMMARY), [build dependencies](https://github.com/d2l-ai/d2l-en/blob/23d7a5aecceee57d1292c56e90cce307f183bb0a/static/build.yml).
+- **MLOps Zoomcamp** yêu cầu Python, Docker, command line, ML và ít nhất một năm lập trình theo README; do đó không xếp làm khóa nhập môn đầu tiên. Rubric có thể tham khảo để đánh giá đồ án nhưng là **peer review**, không phải chứng nhận mọi đường code đã được kiểm. CI mẫu chỉ nhận PR vào `develop` với thay đổi dưới `06-best-practices/code/**`; đường dẫn integration test ghi `integraton-test` trong khi thư mục thật là `integration-test`. CD mẫu còn dùng `terraform apply -auto-approve` và tự ghi phần lấy model chưa phù hợp production. Nên học cơ chế và tự thiết kế pipeline cho repo đích, không chép nguyên workflow. [Prerequisites](https://github.com/DataTalksClub/mlops-zoomcamp/blob/1cf2248a803bf8a2685f87941a679eca2712516d/README.md), [rubric](https://github.com/DataTalksClub/mlops-zoomcamp/blob/1cf2248a803bf8a2685f87941a679eca2712516d/07-project/README.md), [CI mẫu](https://github.com/DataTalksClub/mlops-zoomcamp/blob/1cf2248a803bf8a2685f87941a679eca2712516d/.github/workflows/ci-tests.yml), [CD mẫu](https://github.com/DataTalksClub/mlops-zoomcamp/blob/1cf2248a803bf8a2685f87941a679eca2712516d/.github/workflows/cd-deploy.yml).
+
+### 5.3 Ma trận chọn và bằng chứng chuyển cấp
+
+| Người học / mục tiêu | Điểm bắt đầu | Bằng chứng đề xuất để chuyển cấp | Không suy rộng từ bằng chứng |
+|---|---|---|---|
+| Biết viết code, chưa tự debug môi trường | Missing Semester | Tạo repo nhỏ có CLI, test, CI; cố ý gây một lỗi rồi tìm và sửa bằng log/Git; giải thích từng quyền/lệnh agent được dùng | Website khóa build xanh không chứng minh bài người học đúng |
+| Muốn hiểu model thay vì chỉ gọi API | D2L → `LLMs-from-scratch` → CS336 §4 | Tự giải thích shape/gradient; kiểm đạo hàm số trên ví dụ nhỏ; làm bài khác dữ liệu mà vẫn qua test | Học toàn bộ toán không phải điều kiện bắt buộc cho mọi ứng dụng LLM |
+| Đã biết ML, cần đưa model vào dịch vụ | MLOps Zoomcamp; sách ml-engineering §4 | Repo đồ án có dependency ghim, dữ liệu mẫu, training/run ID, deployment, test tích hợp và cảnh báo được kích hoạt thử | Peer score không chứng minh chịu tải, phục hồi hay an toàn production |
+| Chỉ cần xây agent ứng dụng | agents-course §2b + nền shell/Git còn thiếu | Một workflow có tool giả lập, timeout/trần chi phí, tập eval giữ riêng và log lý do thất bại | Không cần học training cluster hay CS336 trước mọi dự án agent |
+
+### 5.4 Ghép thành lộ trình có thể kiểm lại
+
+1. **Đánh giá đầu vào bằng việc nhỏ**, không bằng số khóa đã xem: tái lập một lỗi CLI, đọc một tensor shape hoặc viết một test API; chọn nhánh tương ứng trong §5.3.
+2. **Một repo đồ án xuyên suốt**: mỗi bài học thêm một artifact vào repo của người học, từ test/CI (mục 13), eval giữ riêng (mục 07), đến dữ liệu/model có phiên bản (mục 10/15). Kho này chỉ lưu đánh giá, không chứa bài giải hay công cụ đào tạo.
+3. **Tách mức hỗ trợ của agent** trong báo cáo học: tự làm / gợi ý / sinh một phần / sinh toàn bộ; khi kiểm chuyển giao dùng bài mới và yêu cầu người học giải thích, chẩn đoán lỗi. Đây là đề xuất đánh giá của kho, chưa có nghiên cứu trong đợt này chứng minh ngưỡng tối ưu.
+4. **Đồ án kết thúc bằng một lỗi có kiểm soát**: làm hỏng schema, dừng một dependency giả hoặc gây timeout trong môi trường thử, rồi chứng minh test/alert và phục hồi hoạt động. Nối sang thực hành vận hành ở mục 09 §3d.
+
+**Đã đổi sau §4:** không hạ thấp các nguồn đã có chỉ vì không có autograder; thay vào đó phân biệt build tài liệu, test ví dụ, chấm bài và khả năng chuyển giao. Khóa nền tảng cũ vẫn hữu ích nếu ghi rõ phần dependency đã cũ; phần không có LICENSE không được gắn nhãn MIT từ suy đoán.
+
+**Nguồn §5:** metadata GitHub API ngày 2/11/2026 và các permalink ở §5.2; đọc thêm nguồn chính thức ngoài repo: [Missing Semester 2026](https://missing.csail.mit.edu/2026/course-shell/), [D2L Preface](https://d2l.ai/chapter_preface/index.html), [DataTalks.Club MLOps Zoomcamp](https://datatalks.club/blog/mlops-zoomcamp.html), [tài liệu đồ án](https://datatalksclub.github.io/docs/courses/mlops-zoomcamp/project/). Đã đọc `license.md`, `.github/workflows/{build,links}.yml`, `_2026/{course-shell,code-quality,agentic-coding}.md` của Missing Semester; `LICENSE*`, `chapter_preliminaries/{index,autograd}.md`, `.github/workflows/ci.yml`, `static/build.yml` của D2L; `README.md`, `07-project/README.md`, `06-best-practices/code/{model.py,tests/model_test.py}`, hai workflow CI/CD của Zoomcamp. **Chưa chạy bài tập, model, cloud hay workflow của các nguồn.**
 
 ## Nguồn
 

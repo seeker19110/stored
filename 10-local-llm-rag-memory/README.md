@@ -389,6 +389,57 @@ Tài liệu storage ghi rõ **"Hindsight does not abstract storage behind a gene
 
 **Nguồn §6c:** GitHub search API 2/11/2026 (`repo:` cho 7 repo trên và ứng viên loại: `stanford-futuredata/ARES` 740★ push cuối 28/3/2025, `amazon-science/RAGChecker` 1,1k★ push cuối 13/12/2024, `xiaowu0162/LongMemEval-V2` 201★) · clone `--depth 1 --filter=blob:none`, đọc: mteb (HEAD da9f201 2/11/2026; LICENSE, README.md, pyproject.toml, .github/workflows/, mteb/benchmarks/), beir (ef83d29 16/10/2025; LICENSE, README.md, pyproject.toml), LongMemEval (9e0b455 11/5/2026; LICENSE, README.md, src/evaluation/evaluate_qa.py), locomo (3eb6f2c 12/8/2024; LICENSE.txt, README.MD, task_eval/evaluation.py), FlagEmbedding (897baa6 27/10/2026; LICENSE, README.md), chonkie (664454b 26/8/2026; LICENSE, BENCHMARKS.md, pyproject.toml, src/chonkie/chunker/, .github/workflows/), chunking_evaluation (e708410 13/12/2025; LICENSE, README.md, chunking_evaluation/utils.py, evaluation_framework/base_evaluation.py) · https://github.com/embeddings-benchmark/mteb · https://huggingface.co/spaces/mteb/leaderboard · https://github.com/beir-cellar/beir · https://github.com/xiaowu0162/LongMemEval · https://arxiv.org/abs/2410.10813 · https://github.com/snap-research/locomo · https://github.com/FlagOpen/FlagEmbedding · https://github.com/feyninc/chonkie · https://github.com/brandonstarxel/chunking_evaluation · https://research.trychroma.com/evaluating-chunking
 
+## 6d. Nâng trần toàn diện 2/11/2026: production serving và suy luận trên thiết bị
+
+> Đối chiếu §1/§6b/§6c và catalog trước khi chọn năm repo; metadata GitHub đọc 2/11/2026, cả năm chưa archive. Clone nông, đọc LICENSE, CI, CRD/config, metric và runtime theo permalink dưới đây. **Đã đọc mã, chưa build/deploy/chạy benchmark hoặc đo trên thiết bị.** Không đưa ra hệ số tăng tốc mới; license code không suy rộng sang model/trọng số tải thêm.
+
+**Trần hiện tại:** §1 đủ engine local/server, §6 đủ gateway, §6c đo retrieval/memory. Còn thiếu cách vận hành model thành dịch vụ có tải và cách xuất model xuống browser/điện thoại có ràng buộc bộ nhớ. Một gateway định tuyến provider và một scheduler phân phối KV cache xử lý hai tầng khác nhau; không chọn chỉ vì cùng có API tương thích OpenAI.
+
+| Dự án | ★ · license (đọc 2/11/2026) | HEAD / ngày commit | Lớp và điều kiện dùng |
+|---|---|---|---|
+| [KServe](https://github.com/kserve/kserve) | 6,182 · Apache-2.0 | `41defa23f459` · 2026-10-30 | Control plane Kubernetes cho model serving; CRD/runtime/router, không thay kernel inference |
+| [llm-d](https://github.com/llm-d/llm-d) | 5,126 · Apache-2.0 | `fbc542142983` · 2026-11-01 | Orchestration/routing phân tán phía trên vLLM/SGLang; hiệu quả phụ thuộc tải, cache và interconnect |
+| [AIPerf](https://github.com/ai-dynamo/aiperf) | 842 · Apache-2.0 | `6b565f4e4872` · 2026-10-30 | Load generator đo TTFT/ITL/throughput; cần cùng tokenizer, tải và định nghĩa metric |
+| [ExecuTorch](https://github.com/pytorch/executorch) | 5,147 · BSD-3-Clause | `f2564fb486c0` · 2026-11-02 | Export/lowering PyTorch sang runtime edge; backend/operator và model artifact phải tương thích |
+| [WebLLM](https://github.com/mlc-ai/web-llm) | 19,348 · Apache-2.0 | `f1ecbaa916c9` · 2026-11-02 | LLM trong browser qua WebGPU/MLC; lần đầu tải WASM/weights, inference local không bảo đảm app offline |
+
+### KServe
+
+Control plane Kubernetes của cộng đồng KServe cho predictive và generative inference. [LLMInferenceService spec](https://github.com/kserve/kserve/blob/41defa23f4592b1468a68fb023cb931743e9ec06/pkg/apis/serving/v1alpha1/llm_inference_service_types.go) khai báo model, runtime, router và prefill riêng; khi không chỉ định runtime, controller dùng template vLLM mặc định. Ghép engine §1 vào tài nguyên có lifecycle/health/rollout thay vì tự viết Deployment rời rạc. Phải đối chiếu chế độ cài và phiên bản CRD/Gateway/API; không mặc định mọi đường generative đều scale-to-zero như ví dụ predictive. Vận hành Kubernetes, GPU driver, model download và quyền storage vẫn là chi phí thực. CI [E2E](https://github.com/kserve/kserve/blob/41defa23f4592b1468a68fb023cb931743e9ec06/.github/workflows/e2e-test.yml) cho thấy có kiểm tích hợp upstream, chưa phải bằng chứng mọi cấu hình của mình chạy được.
+
+### llm-d
+
+Stack phân tán của cộng đồng llm-d, đặt trên vLLM/SGLang và Kubernetes. [Optimized baseline](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/guides/optimized-baseline/README.md) dùng prefix-cache affinity và tải token để chọn replica; [P/D support matrix](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/guides/pd-disaggregation/guide.yaml) tách ô `validated`, `community`, `unsupported`, không nên gọi mọi accelerator là đã được nightly kiểm. Bắt đầu từ baseline; chỉ tách prefill/decode sau khi đo nhu cầu và chi phí truyền KV. [Hướng dẫn rollout](https://llm-d.ai/docs/operations/disaggregation/safe-rollouts) yêu cầu chú ý tương thích hai pool; nâng cấp image/model/config riêng lẻ có thể phá đường chuyển cache. Không lấy các hệ số throughput trong README làm dự báo cho máy của mình.
+
+### AIPerf
+
+Công cụ đo thuộc tổ chức NVIDIA Dynamo, khác Dynamo serving runtime. [TTFTMetric](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/src/aiperf/metrics/types/ttft_metric.py) lấy timestamp content response đầu trừ thời điểm bắt đầu request; [ITLMetric](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/src/aiperf/metrics/types/inter_token_latency_metric.py) xử lý số token trong chunk đầu và có fallback khi server không cung cấp số đó. Do vậy cần ghi tokenizer, streaming/chunk usage và client/network khi so số. [Request-rate strategy](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/src/aiperf/timing/strategies/request_rate.py) cho tải theo tốc độ và phân phối đến, bổ sung cho chỉ giữ concurrency cố định. Dùng tải đại diện, warm/cold cache riêng, báo lỗi cùng p50/p95/p99; metric tốc độ không đo đúng/sai câu trả lời. CI [Unit tests](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/.github/workflows/run-unit-tests.yml) chưa được kho này thực thi; hướng dẫn gửi telemetry qua các integration phải đọc theo cấu hình đã bật.
+
+### ExecuTorch
+
+Stack PyTorch cho mobile/embedded: export và hạ đồ thị tới backend, rồi runtime C++ nạp chương trình. [Backend lowering](https://github.com/pytorch/executorch/blob/f2564fb486c07844d39e2eb91c7ff39b68e0dc3e/exir/backend/backend_api.py) và [Program loader](https://github.com/pytorch/executorch/blob/f2564fb486c07844d39e2eb91c7ff39b68e0dc3e/runtime/executor/program.cpp) là hai đầu cần ghim tương thích. Loader có kiểm chương trình nhưng có cờ compile để tắt phần verification; không coi artifact `.pte` bất kỳ là đáng tin chỉ vì có loader. License thực là BSD ba điều khoản trong [LICENSE](https://github.com/pytorch/executorch/blob/f2564fb486c07844d39e2eb91c7ff39b68e0dc3e/LICENSE), GitHub API trả NOASSERTION. Lợi ích so llama.cpp ở §1 là đường export/operator/backend cho hệ PyTorch; hạn chế là operator/delegate được hỗ trợ, quantization, RAM và công sức tích hợp SDK thiết bị. Phải đo chất lượng sau chuyển đổi và dùng backend trên đúng phần cứng, không suy ra từ CI CPU.
+
+### WebLLM
+
+Runtime MLC chạy model trong browser qua WebGPU, phù hợp ứng dụng web muốn inference tại máy khách; [paper gốc](https://arxiv.org/abs/2412.15803) mô tả hệ compiler/runtime. [MLCEngine](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/src/engine.ts) tải model library WASM/cache và phát hiện GPU; không có WebGPU phù hợp sẽ báo lỗi. Kiểm integrity model library là nhánh có điều kiện khi model record cung cấp cấu hình. Inference local không có nghĩa lần tải đầu offline hoặc mọi JavaScript của app đều không gửi dữ liệu. Ghép Web Worker để giảm chặn UI, pin asset/model và kiểm đường mạng sau warm cache. So ExecuTorch: phân phối qua web tiện hơn, nhưng bị giới hạn browser, GPU capability, quota/cache và lifecycle của tab. Không dùng câu “fully compatible” của README thay bộ test API/structured output của ứng dụng.
+
+**Bảng quyết định và cổng kiểm tham khảo:**
+
+| Bài toán | Điểm bắt đầu | Chứng cứ để nâng tầng |
+|---|---|---|
+| Một người dùng hoặc một GPU | Ollama/llama.cpp/vLLM/SGLang (§1) | Baseline đúng chức năng, TTFT/ITL, RAM/VRAM và giá mỗi request |
+| Nhiều model trên Kubernetes | KServe + runtime đã chọn | Model load/ready, scale/rollout/rollback có test; cold-start nằm trong SLO |
+| Nhiều replica, cache prefix lặp nhiều | llm-d optimized baseline | AIPerf trên cùng model/GPU/tải chứng minh p95/throughput lợi hơn round-robin |
+| Prefill/decode có nhu cầu scale khác | P/D disaggregation | Đo truyền KV, lỗi khi mất pod, tương thích rollout; hiệu năng bù thêm network/GPU |
+| Mobile/embedded PyTorch | ExecuTorch | Đúng đầu ra sau export/quantize; p95, peak RAM, pin/nhiệt trên máy thật |
+| Browser inference | WebLLM | Kiểm WebGPU thiếu, tải đầu, cache bị xoá, tab sleep, offline warm và output regression |
+
+**Stack nâng trần:** giữ eval chức năng của §6c → baseline engine đơn → ghi workload/tokenizer/context/concurrency/cache → đo bằng AIPerf → thêm control plane/routing khi số đo cho thấy cần → với edge, thêm ma trận thiết bị và kiểm network/model artifact. Tenant ACL (mục 12 §4d) và ngân sách/timeout phục hồi (mục 21 §10f) bao quanh cả đường server và local. Các cổng trên là thiết kế đề xuất, chưa phải benchmark do kho thực hiện.
+
+**Đối chiếu ba cột:** đã có và sâu hơn: engine/gateway và eval retrieval; đã có nhưng mỏng hơn: khuyến nghị edge chỉ trỏ llama.cpp; mới: control plane, scheduler/cache phân tán, load generator có implementation metric và deployment vào browser/mobile. Không thêm gateway thứ hai chỉ để lấp danh mục.
+
+**Nguồn §6d:** [KServe LICENSE](https://github.com/kserve/kserve/blob/41defa23f4592b1468a68fb023cb931743e9ec06/LICENSE); [llm-d LICENSE](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/LICENSE), [llm-d nightly](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/.github/workflows/nightly-e2e-optimized-baseline-gke-acc-gpu-vllm-x.yaml); [AIPerf LICENSE](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/LICENSE); [ExecuTorch CPU CI](https://github.com/pytorch/executorch/blob/f2564fb486c07844d39e2eb91c7ff39b68e0dc3e/.github/workflows/test-backend-cpu.yml); [WebLLM LICENSE](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/LICENSE), [WebLLM CI](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/.github/workflows/tests.yaml); [KServe docs](https://kserve.github.io/website/), [WebLLM docs](https://webllm.mlc.ai/docs/).
+
 ## 7. Nguồn
 
 - https://dev.to/sreeraj-sreenivasan/the-complete-guide-to-local-llm-inference-tools-in-july-2026-llamacpp-ollama-vllm-sglang-and-4mh1 · https://blog.starmorph.com/blog/local-llm-inference-tools-guide · https://openalternative.co/blog/best-local-llm-tools · https://www.storagereview.com/best/local-llm-tools · https://deepresearch.ninja/2026/06/Open-Source-LLM-Inference-Projects-A-Comprehensive-Comparative-Analysis/ · https://www.digitalapplied.com/blog/run-local-llms-ollama-vs-lm-studio-vs-vllm-2026-guide

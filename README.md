@@ -4,9 +4,15 @@
 >
 > **Phạm vi:** kho chỉ lưu hồ sơ repo và đánh giá để các dự án khác tham khảo và tích hợp; không chứa code hay công cụ để dùng (xem [WORKFLOW.md](WORKFLOW.md)).
 >
-> **Ngày khảo sát:** 2026-10-12 · **Phương pháp:** tìm kiếm web + đối chiếu nhiều nguồn (blog so sánh, trang GitHub, tài liệu chính thức, bài báo học thuật). Số sao GitHub là **ước lượng tại thời điểm khảo sát** (Q3–Q4/2026) và sai lệch giữa các nguồn; xem từng mục để biết nguồn.
+> **Khảo sát ban đầu:** 2026-10-12 · **Catalog cập nhật:** 2026-11-02 · **Phương pháp:** tìm kiếm web + đối chiếu nhiều nguồn (blog so sánh, trang GitHub, tài liệu chính thức, bài báo học thuật). Số sao GitHub là **ước lượng tại thời điểm khảo sát** (Q3–Q4/2026) và sai lệch giữa các nguồn; xem từng mục để biết nguồn.
 
 ---
+
+## Bắt đầu theo nhu cầu
+
+Kho hiện có **28 chuyên mục, 976 hồ sơ, 68 category**. Chọn tuyến đọc ở [GUIDES.md](GUIDES.md); xem [METHOD.md](METHOD.md) để hiểu mức bằng chứng và giới hạn kiểm. Catalog [JSON](data/projects.json) / [CSV](data/projects.csv) có [schema](data/projects.schema.json); cách đóng góp ở [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Chuỗi dữ liệu đến sản phẩm: **[dữ liệu AI](24-ai-data-engineering/README.md) → [model adaptation](25-model-adaptation-post-training/README.md) → [inference](10-local-llm-rag-memory/README.md) → [eval](07-eval-observability/README.md) → [hiệu quả sản phẩm](28-product-discovery-experimentation/README.md)**. Nhánh [OCR/tài liệu](26-document-intelligence-ocr/README.md) và [CAD/BIM](27-3d-cad-bim-engineering/README.md) nối trực tiếp các case study đã có ở mục 23.
 
 ## 🗂️ Mục lục
 
@@ -35,6 +41,11 @@
 | 21 | [Autonomous Workflows](21-autonomous-workflows/README.md) | **Harness dài hạn của Anthropic** (11/2025 & 3/2026), Claude Code Routines vs Desktop tasks vs `/loop` (jitter, 7 ngày, loop.md), GitHub Agentic Workflows (gh-aw), durable execution (Temporal, Restate, Inngest, DBOS, LangGraph), Activepieces/Kestra/Windmill/Huginn, lịch sử AutoGPT/BabyAGI, failure modes + circuit breaker, METR; **kiểm ảnh open-instinct** (agent cá nhân qua iMessage trên Pi/Inkbox/Maritime, 877 test pass, quyền chặn bằng mã); **kiểm ảnh "the line / the loop"** của AI-native SDLC playbook (Anthropic, 8/2026: vòng quay bằng artifact commit và cổng người duyệt, `bands.yaml` 1σ/2σ/3σ; "hours, not weeks" chưa có số đo) |
 | 22 | [Motion Design & Animation](22-motion-design-animation/README.md) | **16 repo "video as code"**: HyperFrames (61k★), Remotion (63k★) + skills, GSAP skills, Motion, LottieFiles skill; skill pack launch video / hậu kỳ / hoạt hình (product-launch-motion, motion-graphics-skills, claude-motion-design, hyperframes-student-kit, Barty-Bart, animate, claude-motion, claude-remotion-skill), **motionmaxxing**; kiểm chứng từng claim của bài đăng viral; **kiểm chứng ảnh "28 repo"** của Charlie Hills (số sao đúng, nhưng 19/28 là thư viện chứ không phải skill; 5 license cần đọc kỹ); **case study ManimGX** (API Manim CE trên lõi Rust/wgpu cho agent, `manimgx inspect`; benchmark 90,6× chủ yếu nhờ một cảnh 3D, bỏ cảnh đó còn ~35×); **§8b awesome-opus5-5-videos** (4,6k★ MIT, catalog 853 prompt + data/videos.json, 523 remake; 'video as code' không phải model sinh video; phễu skillry.dev, catalog do agent dựng); **kiểm ảnh whiteboard-animation-vi** (CC0 chỉ phủ mã gốc) |
 | 23 | [Bài học từ repo của chủ kho](23-own-repos-lessons/README.md) | Audit **19 repo** seeker19110/donghanhcungban (2026-10-12): khung drop-in Claude Code (hook lifecycle có test, **ba cổng máy** thay `<promise>`, 3 tầng/2 trục, subagent không lồng), "công ty AI" X-Agents (`verified_by` do code điền), xboss (vendor ECC có lock, fact-forcing gate, `/hoc`, AI Delivery Loop), Dhcb-Tools (Revit/AutoCAD MCP, agent khép vòng), Sales-Hunter (model_tier T0–T4, outbox/lease), Hermes-Agents (112 skill), ai-gateway; danh sách tool ngoài kho còn thiếu + lỗi phát hiện trong các repo; **§8.1 ma trận vệ sinh lần 2** (ghim SHA action, `permissions:`, Dependabot, fail-open, mirror trôi upstream) |
+| 24 | [AI Data Engineering](24-ai-data-engineering/README.md) | DataTrove, Data-Juicer, Label Studio, Argilla/Distilabel, lakeFS, DVC, Cleanlab; dataset cards, dedup/leakage, labeling, synthetic data và quyền dữ liệu |
+| 25 | [Model Adaptation & Post-training](25-model-adaptation-post-training/README.md) | PEFT, TRL, Unsloth, Axolotl, LlamaFactory, verl; prompt/RAG/SFT/LoRA/RL, loss mask, holdout và kiểm lại sau export |
+| 26 | [Document Intelligence & OCR](26-document-intelligence-ocr/README.md) | PaddleOCR, olmOCR, OCRmyPDF, Tesseract, MinerU, Marker, OmniDocBench; native/scan, layout/table/schema, citation trang/bbox và lỗi từng trang |
+| 27 | [3D, CAD/BIM & Engineering Agents](27-3d-cad-bim-engineering/README.md) | IfcOpenShell/IfcTester, FreeCAD, OpenSCAD, Trimesh, IDS/BCF; mesh/B-rep/BIM, unit/tolerance, preview/confirm/readback và kiểm host thật |
+| 28 | [Product Discovery & Experimentation](28-product-discovery-experimentation/README.md) | PostHog, GrowthBook, Formbricks, OpenReplay, Unleash; nghiên cứu người dùng, event/exposure, A/A/SRM, guardrails và đo tác vụ người dùng |
 | — | [data/projects.json](data/projects.json) · [data/projects.csv](data/projects.csv) | Catalog máy-đọc-được (tên, repo, loại, license, sao ước lượng, ghi chú) |
 | — | [X-TEMPLATES.md](X-TEMPLATES.md) · [data/xt-handoff.json](data/xt-handoff.json) | **Thư viện cho X-Templates**: hợp đồng đọc kho, tổng hợp chéo telemetry + cổng CI của công cụ agent, bàn giao bài học → ID yêu cầu (ba cột), đề xuất nâng cấp |
 | — | [SOURCES.md](SOURCES.md) | Toàn bộ URL nguồn đã dùng |
@@ -253,10 +264,22 @@ Mỗi mục được bổ sung một phần "Nâng trần" gồm ba lớp còn t
 - **22** (§9g): Mục 22 nối luật motion về chuẩn: WCAG 2.2.2/2.3.1/2.3.3 + prefers-reduced-motion, Apple HIG Motion, Material 3 Motion; thêm spec Lottie v1.0 và web-vitals làm cổng đo.
 - **23** (§8d): Đo 13 repo của chủ kho theo OSPS/SLSA/Scorecard/OpenSLO/MADR/eval tiếng Việt: provenance 0/13, Scorecard 2/13, SLO dạng file 1/13, 4 repo thiếu LICENSE, dhcb chưa có eval tiếng Việt; khung X-Templates chưa nhắc OSPS Baseline và benchmark tiếng Việt nào.
 
+### 33. Chuỗi bằng chứng từ dữ liệu đến sản phẩm
+
+Mở rộng 2/11/2026: cả 23 mục cũ có thêm ma trận chọn, ngữ nghĩa triển khai và tiêu chí kiểm; 5 mục mới nối dữ liệu/huấn luyện/tài liệu/kỹ thuật/hiệu quả sản phẩm. Catalog **908→976**, thêm 68 hồ sơ và đọc sâu lại 18 hồ sơ đã có. Không tăng catalog bằng cách nhân bản cùng thực thể.
+
+- **Agent và hệ thống:** patch/submission không đồng nghĩa test pass; checkpoint/virtual filesystem không tự chứng minh phục hồi hay sandbox; authn, authz và tenant ACL là các lớp riêng.
+- **Dữ liệu và model:** dedup không tự chọn mẫu tốt nhất; train/validation/test tách theo nguồn/cluster; kiểm loss mask trước training và eval lại artifact sau merge/quantization/export.
+- **Tài liệu và kỹ thuật:** OCR giữ trang fallback/bị bỏ/citation; CAD/BIM phân schema, yêu cầu thông tin, hình học và host execution; shape hợp lệ chưa chứng minh khả năng chế tạo.
+- **Sản phẩm và vận hành:** backup job chưa chứng minh restore; exposure khác assignment; i18n fallback/HTTP200 docs chưa chứng minh đúng locale/version; WASM tự host cần cấu hình trước khởi tạo.
+- **Quyền sử dụng:** lakeFS BUSL khác DVC Apache; Unsloth core/Studio/CLI, công cụ analytics core/enterprise và OCR code/weights có license theo thành phần. Mọi hồ sơ mới ghi nguồn tại commit được đọc; chưa chạy mã/benchmark upstream.
+
+[GUIDES.md](GUIDES.md) giúp chọn theo tác vụ; [METHOD.md](METHOD.md) quy định bằng chứng và tuổi dữ liệu. CI kiểm JSON/CSV từng ô, metadata và neo hồ sơ; CI của kho không xác nhận mọi claim upstream.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
-2. Dùng `data/projects.json` khi cần lọc/tra cứu bằng script.
+2. Dùng `data/projects.json` khi cần lọc/tra cứu bằng script; metadata kiểm chứng và `profile_anchor` dẫn về đúng phạm vi hồ sơ. Hồ sơ cũ chưa có metadata vẫn cần đọc Markdown; ngày snapshot không là ngày kiểm mọi hồ sơ.
 3. Thêm dự án mới theo [TEMPLATE.md](TEMPLATE.md); luôn ghi ngày và nguồn cho số sao.
    Khi gửi link mới, kho được cập nhật theo [WORKFLOW.md](WORKFLOW.md) (đọc nguồn gốc, tác giả, nguồn ngoài, dự án tương tự, phân tích, ghi vào kho).
 4. Mọi nhận định "nổi tiếng/dẫn đầu" đều gắn mốc thời gian 10/2026 – cần cập nhật định kỳ (gợi ý: mỗi quý).

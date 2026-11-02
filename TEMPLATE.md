@@ -10,6 +10,8 @@ Sao chép khối dưới vào README của chuyên mục phù hợp (hoặc tạ
 | Mô tả 1 dòng | … |
 | Loại | coding-agent / agent-framework / protocol / ui-library / design-tool / checklist / … |
 | License | … |
+| Phiên bản đã đọc | Full commit SHA/tag; model/checkpoint/dataset revision nếu liên quan |
+| Kiểm chứng | Ngày ISO; docs-read / code-read / checks-run / reproduced; phạm vi và phần chưa chạy |
 | ★ (ngày) | ~N ★ (YYYY-MM-DD, nguồn: …) |
 | Vì sao đáng tham khảo | 2–4 gạch đầu dòng: điểm khác biệt, bài học kiến trúc, cách áp dụng |
 | Hạn chế / rủi ro | … |
@@ -37,3 +39,11 @@ PY
 - Cột `url` của CSV chỉ điền khi JSON có `url` riêng; dự án chỉ có `repo` để trống (đừng suy ra URL GitHub, sẽ làm đổi mọi dòng cũ).
 - Nhận định chưa kiểm chứng độc lập ghi rõ **(chưa xác minh)**.
 - Ưu tiên nguồn chính thức (repo, docs, paper) hơn blog so sánh.
+
+## Metadata và bằng chứng cho hồ sơ mới hoặc đọc lại
+
+Catalog theo [data/projects.schema.json](data/projects.schema.json), phương pháp theo [METHOD.md](METHOD.md). Giữ `id` ổn định cho mỗi thực thể; cùng `repo` có thể có sản phẩm/plugin/skill khác nhau. `profile_path` trỏ hồ sơ gốc, `profile_anchor` trỏ đúng heading hoặc HTML id của phạm vi đã kiểm; phần đọc lại có thể nằm ở chuyên mục khác với hồ sơ gốc.
+
+Khi đã kiểm hồ sơ, thêm `last_verified_at` (ISO), `verified_ref` (full SHA với GitHub repo), `verification_level`, `sources` (permalink triển khai/LICENSE/CI) và `profile_anchor`. Không backfill các trường kiểm chứng cho hồ sơ cũ chỉ từ metadata API. Mức `code-read` không nói rằng đã chạy test upstream.
+
+JSON có metadata đầy đủ; CSV giữ chín cột cũ để consumer không bị đổi contract. Cổng kiểm so từng ô theo đúng thứ tự JSON và kiểm ngày/nguồn/neo của hồ sơ đã chuẩn hóa.
