@@ -240,6 +240,100 @@
 
 **Nguồn phần mở rộng:** [1](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/LICENSE) · [2](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/langgraph/langgraph/pregel/main.py) · [3](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/langgraph/langgraph/types.py) · [4](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/libs/checkpoint/langgraph/checkpoint/memory/__init__.py) · [5](https://github.com/langchain-ai/langgraph/blob/ee3c043bddcc514012885167dd5916b15d6e4731/.github/workflows/_test_langgraph.yml) · [6](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/LICENSE) · [7](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/pydantic_ai_slim/pydantic_ai/usage.py) · [8](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/pydantic_ai_slim/pydantic_ai/_agent_graph.py) · [9](https://github.com/pydantic/pydantic-ai/blob/129c94ef2940565af3bc9f638196fcc994d1ed4d/.github/workflows/ci.yml) · [10](https://docs.langchain.com/oss/python/langgraph/interrupts) · [11](https://pydantic.dev/docs/ai/api/pydantic-ai/usage/)
 
+## 4f. Hồ sơ `blogminhquy/javis-os`: trợ lý tự host "thuê model, giữ não" chạy trên CLI thuê bao (link người dùng gửi, clone 2/11/2026)
+
+> Người dùng gửi link. Clone `--filter=blob:none` đủ lịch sử ngày 2/11/2026 (HEAD `94b597415a370064cd33a7013b8eddc8dcbf5a7b`, v0.440.0, commit lúc 17:02 +07 cùng ngày); đọc LICENSE, README, ARCHITECTURE.md, SECURITY.md, CLAUDE.md (prompt kernel), `install.sh`, `requirements.txt`, `server/main.py` (các đoạn PROVIDER_DEFS, host, bypass), `server/claude_sdk_engine.py`, `server/mcp_hub.py`, `update.sh`, 4 workflow CI; không chạy mã. Cùng nhóm "trợ lý cá nhân tự host" với OpenClaw/Hermes/nanobot ở §1 và §4c.
+
+### 4f.1 Hồ sơ nhanh
+
+| Mục | Thông tin (2/11/2026) |
+|---|---|
+| Repo | `blogminhquy/javis-os` · **MIT** (© 2026 Nguyễn Minh Quý) · **537★ · 205 fork · 8 issue mở** (GitHub search API) · homepage javisos.com · topics `agent-os`, `harness`, `mcp`, `telegrambot` |
+| Tác giả | Nguyễn Minh Quý (`blogminhquy`, minhquy.vn): người làm kinh doanh online/marketing ở VN, không phải tổ chức; 5 repo khác đều nhỏ (`javis-store` index skill/pack, `javis-zalo` CLI + MCP Zalo, bộ cài Telegram↔Claude Code) |
+| Lịch sử | Tạo **28/6/2026** ("Jarvis OS — AI operating layer"); **1.531 commit trong 4 tháng** (~12/ngày), **936 PR** (tác giả tự mở và merge từng bản, số PR trùng số phiên bản 0.x), 141 PR trong 8 ngày cuối; 59 PR từ người ngoài (nhiều nhất `hwangrin`), 33 issue (chỉ 4 trước 1/10 → cộng đồng mới bùng từ tháng 10) |
+| Ai viết | 1.289 commit ký tên tác giả, **216 commit author "Claude"**, **4.116 trailer `Co-Authored-By: Claude`** trên 1.531 commit: gần như toàn bộ mã do agent viết dưới điều phối của tác giả; CHANGELOG hai thứ tiếng |
+| Quy mô | `server/*.py` **227.024 dòng**, riêng `server/main.py` **29.548 dòng**; dashboard JS thuần 201 file; `tests/` **1.017 file .py**; `docs/` 503 file, README 12 ngôn ngữ; mã và comment tiếng Việt không dấu (có `docs/dev/GLOSSARY.md`) |
+| Phát hành | File `VERSION` 0.440.0 nhưng chỉ **4 tag git** (v0.64.x); cập nhật bằng `update.sh` = `git pull --ff-only` + pip, hoặc trang Updates trong dashboard (`server/updater.py`); image `ghcr.io`; từ 0.439.0 có installer Windows .exe / macOS .dmg, **ký mã tắt mặc định** cho tới khi chủ repo thêm secret |
+| CI | `ci.yml`: pytest chia 2 shard, fetch thêm 8 commit cũ để chạy test "quay về" theo phiên bản; `docker-publish.yml`; `desktop-installers.yml`; `translations.yml` (`tools/check_translations.py`) |
+
+### 4f.2 Nó là gì (đối chiếu mã, không chỉ README)
+
+- **"Thuê model, giữ não."** Một server FastAPI + WebSocket `/ws`; mỗi lượt chat là job phía server (`chat_runtime.ChatRuntime`) nên đóng tab không hủy. Prompt = `CLAUDE.md` gốc (prompt kernel ~ vai "trợ lý business & life") + `memory/MEMORY.md` + skill index + khối kênh. Mọi thứ người dùng tích lũy là **file markdown trong thư mục "brain"** (Obsidian đọc được), hội thoại trong SQLite FTS5, mỗi lượt "học" là một commit git có thể hoàn tác, brain đồng bộ lên repo GitHub riêng.
+- **14 "brain" đúng như README** (đếm `PROVIDER_DEFS`): 4 CLI thuê bao (`claude` qua Claude Agent SDK, `codex`, Grok Build `grok`, Antigravity CLI `agy`) có shell/web/subagent, và 10 engine API (OpenRouter, Anthropic, OpenAI, Gemini, Groq, DeepSeek, Ollama cloud/local, endpoint OpenAI-/Anthropic-compatible) chỉ có tool qua MCP Hub. `ARCHITECTURE.md` vẫn ghi "12 providers" (tài liệu cũ hơn mã). `CLAUDE.md` ghi Gemini CLI bị gỡ ở 0.50.0 vì Google cắt gói cá nhân 18/6/2026 **(chưa xác minh)**.
+- **MCP Hub (`server/mcp_hub.py`) là lớp cứng:** gộp tool từ mọi connection, quyền 3 mức `readonly/safe/full` kiểm trong code (`mcp_catalog.effective_perm`), **audit log** `mcp_audit.jsonl` (xoay ở 5 MB), rate limit; bot khách hàng (Zalo/Messenger) chạy engine trong **thư mục trống, không MCP, không tool ghi** để prompt injection từ khách không có gì để làm.
+- **Việc nền:** Tasks (Kanban + nhắc + thói quen, 0.422–0.428), loops `Javis/loops/*.md`, self-learning `learn.py`, "team" nhiều agent có bước chờ duyệt (`team_gate.py`, PreToolUse hook **fail-closed** từ 0.207.0). Kênh: Telegram, Zalo (bot + cá nhân), Slack, WhatsApp, Messenger (0.434), CLI; 0.440.0 thêm "Javis Gate" cho chat ngoài (ChatGPT) gọi vào qua MCP OAuth (issue #971 đang mở vì ChatGPT từ chối OAuth tùy chỉnh).
+- **Plugin người dùng = Python thật chạy trong process server**, bật mặc định từ 0.161.0; tắt bằng `JAVIS_ENABLE_USER_PLUGINS=false`. SECURITY.md tự khai "AI brain with full rights on the machine it is installed on".
+
+### 4f.3 Đọc cổng thật
+
+| Điểm | Mức | Chi tiết |
+|---|---|---|
+| Bind và đăng nhập | ✅ | `JAVIS_HOST` mặc định `127.0.0.1` (main.py:28790, script start); cổng đăng nhập + TOTP (`totp.py`) + API token theo scope; tự vá PYSEC-2026-161 (Host header bẻ `url.path`) ở 0.59.16 trước khi nâng Starlette |
+| Ghim phụ thuộc có lý do | ✅ | `requirements.txt` ghim `fastapi==0.141.1`, `starlette`, `claude-agent-sdk==0.2.116` và **ghi từng advisory đã soi** (7 PYSEC, cái nào chạm, cái nào không); Dockerfile ghim `node:22.23.4` theo bản vá Brotli RCE 21/10/2026 và có `ANNOUNCEMENTS.json` cảnh báo người dùng |
+| Quyền của engine Claude | ⚠️ | `claude_sdk_engine.py`: có `allowed_tools` → `permission_mode="default"` + `can_use_tool` gate **DENY mọi tool ngoài danh sách**, không nạp settings máy; **không có** `allowed_tools` → `permission_mode="bypassPermissions"` ("parity --dangerously-skip-permissions") và nạp settings user/project/local. Phiên chat chính của chủ máy đi nhánh nào tùy cấu hình "mode" (suggest/auto/full) → đọc kỹ trước khi mở Javis ra Internet |
+| Installer | ⚠️ | `install.sh` tự `apt/dnf install`, cài Node (NodeSource `curl \| bash`), `npm i -g @anthropic-ai/claude-code`, và **`curl -fsSL … \| bash`** cho `agy` (antigravity.google) và `grok` (x.ai) — là installer chính thức của hai hãng nhưng vẫn là mẫu kho cảnh báo (mục 12); `.env` chmod 600 |
+| Cập nhật | ⚠️ | `git pull --ff-only` từ `main`, không tag/ký; "Updates page" tự cập nhật → người dùng chạy đúng HEAD của tác giả, không có bước xem diff. Ghim commit nếu dùng cho việc thật |
+| Dữ liệu rời máy | ✅/⚠️ | Không thấy telemetry hay gọi về javisos.com (chỉ `BRAND_SOURCE` ghi vào metadata PNG sinh ra); request chỉ đi tới provider đã chọn. Nhưng STT/TTS, học nền và loop 24/7 đều gửi nội dung brain tới provider đó; CLI thuê bao chạy nền liên tục có **rủi ro ToS** (blog bên ngoài cũng cảnh báo khoá tài khoản; kho chưa thấy case thật) |
+| Tốc độ thay đổi | ⚠️ | 12 commit/ngày, main.py gần 30k dòng, test 1.017 file nhưng không có coverage công bố; audit độc lập gần như không theo kịp. 34 PR ngoài đang mở (0 merged của người ngoài ở Game Studios là chuyện khác; ở đây 59 PR ngoài có merge) |
+| Minh bạch thương mại | ⚠️ | README có 3 link Hostinger kèm `REFERRALCODE` không ghi là affiliate; phần "Support" là donate. javisos.com không bán gói; blog bên thứ ba (dochidung.com) bán khóa học/tư vấn quanh sản phẩm |
+
+### 4f.4 So với cùng nhóm (sao GitHub search API 2/11/2026)
+
+| Repo | ★ | Khác biệt so với Javis OS |
+|---|---|---|
+| `openclaw/openclaw` (§1) | 393.719 | TypeScript, kênh chat là trung tâm, hệ skill lớn; không có khái niệm "brain = thư mục markdown + git" và Zalo/POS VN |
+| `NousResearch/hermes-agent` (§1, §4c) | 259.719 | Cùng ý "CLI thuê bao làm backend" qua plugin provider (chủ kho có `Plugin-4-Hermes`, mục 23 §5); Hermes là framework cho dev, Javis là sản phẩm đóng gói cho chủ shop |
+| `HKUDS/nanobot` (§4c) | 49.763 | Cũng tự gọi "nhẹ" mà ~188k dòng Python; `restrict_to_workspace` tắt mặc định — cùng bẫy quyền như nhánh bypass của Javis |
+| `nanocoai/nanoclaw` (§4c) | 31.073 | **Mỗi agent một container**, khoá API trong vault OneCLI: mẫu cô lập mà Javis chưa có (plugin Python chạy trong process) |
+| `open-jarvis/OpenJarvis` (mục 01) | 12.949 | Stanford, local-first, đo năng lượng/chi phí; nghiên cứu hơn là sản phẩm |
+| `Dodaios/Dodaios` (mục 01) | 316 | Agent OS desktop nhiều pane, cùng vấn đề `approval_mode=bypass` mặc định |
+
+**Khi nào dùng:** chủ doanh nghiệp nhỏ ở VN đã có gói Claude/ChatGPT, muốn trợ lý tiếng Việt nối Zalo/Pancake/Meta Ads, dữ liệu nằm trên máy mình và đọc được bằng Obsidian. **Điều kiện tối thiểu:** giữ bind `127.0.0.1` sau reverse proxy TLS; bật TOTP; `JAVIS_ENABLE_USER_PLUGINS=false` trừ khi tự viết plugin; cấu hình allowlist tool thay vì nhánh bypass; ghim commit thay vì "Updates page"; chạy trong Docker với volume riêng; đọc điều khoản gói thuê bao trước khi bật loop nền 24/7. **Không nên** coi SECURITY.md "full rights on the machine" là cảnh báo hình thức.
+
+**Nguồn §4f:** clone `--filter=blob:none` 2/11/2026 (HEAD `94b5974`; `git log` thống kê tác giả/trailer, `git tag`, `git rev-list --count`); LICENSE, README.md, ARCHITECTURE.md, SECURITY.md, CLAUDE.md, VERSION, CHANGELOG.md, `install.sh`, `update.sh`, `requirements.txt`, Dockerfile, `ANNOUNCEMENTS.json`, `server/main.py` (PROVIDER_DEFS :1766, host :28790, bypass :2170), `server/claude_sdk_engine.py` (:531, :878–890, :900), `server/mcp_hub.py` (:44, :107, :248, :1399), `server/image_gen.py` (:239), `.github/workflows/{ci,docker-publish,desktop-installers,translations}.yml` · GitHub search API 2/11/2026 (repo, user, issues, PR) · https://javisos.com (đọc 2/11/2026) · https://dochidung.com/javis-os-la-gi-huong-dan-toan-dien/ (blog bên thứ ba, có bán khóa học) · WebSearch 2/11/2026 (javisos.vn, Threads meta.ai, ~207 fork cùng tên)
+
+## 4g. Hồ sơ `andrewyng/openworker` (OpenWorker): "đồng nghiệp AI" desktop giao việc xong, quản trị bằng kiến trúc, sandbox NVIDIA OpenShell (ảnh README người dùng gửi, clone 2/11/2026)
+
+> Ảnh là README trên GitHub: "OpenWorker", huy hiệu Trendshift "#1 Repository Of The Day", "Beta", "Governed by design", "NVIDIA OpenShell sandbox", nút tải macOS "signed & notarized · auto-updates" và Windows "not yet code-signed". Clone `--filter=blob:none` đủ lịch sử 2/11/2026 (HEAD `5e3d7261f203bbd94a91fa10856d29aad0bfaeae`, v0.3.4, commit cùng ngày); đọc LICENSE, README, SECURITY.md, `pyproject.toml`, `docs/openshell.md`, `coworker/cloud.py`, `coworker/config.py`, `coworker/sandbox/providers/openshell_policy.py`, `surfaces/gui/src-tauri/tauri.conf.json`, 3 workflow CI; không chạy mã. Đặt cạnh Javis OS (§4f) vì cùng là "trợ lý tự host, model thay được" nhưng khác hẳn về cách đặt hàng rào.
+
+### 4g.1 Hồ sơ nhanh
+
+| Mục | Thông tin (2/11/2026) |
+|---|---|
+| Repo | `andrewyng/openworker` · **MIT** (© 2024 Andrew Ng) · **18.866★ · 2.678 fork · 375 mở** (GitHub search API; README không nêu tên Andrew Ng, chỉ owner tài khoản) · homepage openworker.com · tạo 20/7/2026, công bố 23/7/2026 (web) |
+| Ai viết | 972 commit, **82 tác giả email**; đứng đầu Rohit C Prasad (367 + 184 commit dưới hai tên), Devika Verma (248); chỉ 26 trailer Co-Authored-By; **215 PR người ngoài đã merge** trên 552 PR; 272 issue (202 còn mở) → dự án nhóm có cộng đồng thật, khác hẳn Javis OS (một người) |
+| Quy mô | Python 498 file (`coworker/` 277: sandbox 42, personas 37, connectors 32, providers 27, teams 15), TypeScript/TSX 336 file (`surfaces/gui`, **Tauri 2** + React), `tests/` 244 file .py; CI `ci.yml` chạy `pytest --cov=coworker` + `tsc --noEmit` + `npm test`; `release.yml` ký và notarize macOS khi có secret `APPLE_*`, Windows chưa ký (đúng như ảnh); `image.yml` |
+| Phát hành | 11 tag (v0.3.2…v0.3.4); Tauri updater với `pubkey` minisign và endpoint `download.openworker.com/latest.json` → tự cập nhật có chữ ký, khác `git pull` của Javis |
+| Model | "Bring your own key": OpenAI, Azure, Anthropic, Gemini, Ark (BytePlus/Volcengine), GLM, DeepSeek, Kimi, Qwen, MiniMax, Mistral, xAI, Upstage, Cohere, Together, Fireworks, OpenRouter, Ollama…; nền `aisuite>=0.2.0` (thư viện của Andrew Ng); không có đường "CLI thuê bao" kiểu Javis/Hermes |
+
+### 4g.2 "Governed by design" đối chiếu mã
+
+| Tuyên bố README | Trong mã | Mức |
+|---|---|---|
+| "Hard floors: human-only, always; no mode lowers them" | `coworker/server/manager.py` giữ `human_only` trên từng pending call (:6496–6519), floor MCP tách khỏi verdict đọc của catalog (:2132–2136); SECURITY.md coi **bypass floor/approval gate qua prompt injection hoặc MCP tool độc** là lỗi mức cao, trong phạm vi báo cáo | ✅ |
+| "Approval-gated by default, auto-approve optional" | `config.py`: `auto_approve: bool = False`, `auto_approve_shadow = False`, `auto_approve_plan_approval = False`; inbox approver cho session/team/plan (`manager.py` :1637–1907); unattended run "never self-approve", chờ trong inbox | ✅ mặc định đóng |
+| "Audit trail với provenance" | `coworker/audit.py`; `docs/openshell.md` ghi mức enforcement vào từng tool-call event | ✅ (chưa đọc schema) |
+| "Sandbox NVIDIA OpenShell" | `coworker/sandbox/` 42 file: `providers/openshell_policy.py` dịch "thư mục của session + user id + allowlist mạng" thành policy OpenShell; **refuse thay vì chạy mở khi OpenShell không dùng được**; profile "open" (mọi host) không viết được vì OpenShell 0.1 từ chối `*`; "secrets are absent, not denied": sandbox không chứa key, API token của chính OpenWorker cũng ở ngoài. Mặc định app chạy lệnh trực tiếp, bật sandbox theo từng máy; Mac cần Docker Desktop, có thêm `docs/macos-sandbox.md` và `windows-sandbox.md` | ✅ nhưng **opt-in** |
+| "Your data leaves your machine only through the model and integrations you choose" | `coworker/cloud.py`: telemetry "một câu: loại coworker và thời điểm", **default-on cho người đã đăng nhập tài khoản cloud tùy chọn**, có opt-out; không gửi prompt/output/đường dẫn; tài khoản cloud chỉ broker OAuth (`api.openworker.com`, `machines.openworker.com`); Slack relay qua websocket. PostHog trong mã là **connector** đọc dữ liệu người dùng, không phải telemetry của app | ⚠️ ghi rõ "default-on khi đăng nhập" |
+| "Security coworkers ship first" | `coworker/personas/` 37 file; README: security review dùng scanner tất định (semgrep) rồi model triage; incident triage; cần tự kiểm chất lượng tìm lỗi (kho chưa chạy) | (chưa xác minh) |
+
+### 4g.3 So với Javis OS (§4f) và nhóm
+
+| Tiêu chí | OpenWorker | Javis OS |
+|---|---|---|
+| Hàng rào | Floor human-only trong code, approval mặc định, sandbox container per agent, cập nhật ký minisign | Allowlist tool → gate DENY, nhưng không allowlist → `bypassPermissions`; plugin Python trong process; `git pull` |
+| Ai làm | 82 contributor, 215 PR ngoài merge | 1 người + agent, 59 PR ngoài |
+| Model | API key (18+ provider) + Ollama | 4 CLI thuê bao + 10 API |
+| "Não" | Conversations + memory trong app; không phải thư mục markdown | Thư mục markdown Obsidian + git undo |
+| Kênh | Slack (@mention mở session trên desktop), automation lịch, remote machines SSH | Telegram/Zalo/Messenger/WhatsApp, Zalo cá nhân, POS VN |
+| Nền tảng | macOS ký+notarize, Windows chưa ký, Linux chưa có bundle (issue #787) | Linux/macOS/Windows script, Docker, .exe/.dmg chưa ký |
+
+- **Đáng học nhất:** (1) tách "floor" (không mode nào hạ được) khỏi "ladder" (duyệt một lần → luật → allowlist cấu hình); (2) sandbox mà **từ chối chạy** khi không dựng được, thay vì âm thầm chạy mở (ngược với nhánh bypass của Javis và `restrict_to_workspace` tắt của nanobot §4c); (3) tuyên bố bảo mật đi kèm SECURITY.md nhận lỗi bypass do prompt injection vào phạm vi.
+- **Rủi ro:** beta 0.3.x, 202 issue mở; sandbox opt-in nên mặc định vẫn chạy lệnh trên máy; telemetry default-on khi đăng nhập; Windows chưa ký; tài khoản cloud tùy chọn là dịch vụ của chính dự án (OAuth broker), cần đọc chính sách khi dùng connector Slack/Gmail.
+- **Dùng thế nào:** bật OpenShell cho máy dùng thật, giữ `auto_approve=false`, tắt telemetry nếu đăng nhập, ghim tag; với Linux chờ bundle chính thức hoặc chạy headless (`docs/headless.md`).
+
+**Nguồn §4g:** ảnh README người dùng gửi 2/11/2026 · clone `--filter=blob:none` 2/11/2026 (HEAD `5e3d726`; `git log` tác giả/trailer, `git tag`); LICENSE, README.md (:5–21, :65–90), SECURITY.md, `pyproject.toml`, `docs/openshell.md`, `docs/approval-guidance.md`, `coworker/cloud.py` (:278–305), `coworker/config.py` (:83–99), `coworker/server/manager.py` (:1637–1907, :2132, :6496–6519), `coworker/sandbox/providers/openshell_policy.py`, `surfaces/gui/src-tauri/tauri.conf.json` (:47–52), `.github/workflows/{ci,release,image}.yml` · GitHub search API 2/11/2026 (repo, issues, PR, `is:pr is:merged -author:andrewyng`) · https://openworker.com (WebFetch 2/11/2026) · WebSearch 2/11/2026: marktechpost.com (23/7/2026) · mer.vin · note.com/ai_driven (đọc mã) · theaiagentindex.com
+
 ## 5. Nguồn
 
 - https://www.firecrawl.dev/blog/best-open-source-agent-frameworks
