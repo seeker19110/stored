@@ -48,6 +48,7 @@
 - **AI cho AEC/BIM**: Dhcb-Tools (Revit/AutoCAD MCP + IDS/BCF), xboss (quản lý tiến độ MEP/ACMV) — nhánh ứng dụng theo ngành ít thấy trong các awesome list.
 - **Pháp lý (theo docs nội bộ của các repo, chưa xác minh văn bản gốc):** NĐ 13/2023 bảo vệ dữ liệu cá nhân + DPIA (dhcb `security-audit-20260927.md`); **NĐ 217/2026** BIM bắt buộc công trình cấp II từ 1/7/2026; **NĐ 207/2026** nhật ký thi công điện tử, dấu hoàn công; TT 09/2024; NĐ 70/2025 hoá đơn điện tử; NĐ 06/2021 → 35/2023 quản lý chất lượng công trình. Thanh toán: **SePay** (webhook chuyển khoản VietQR) dùng trong dhcb.
 - Model VN nên theo dõi thêm: nhóm Hermes/Antigravity dùng Gemini 3.x làm model chính cho tiếng Việt (quan sát trong config, chưa có benchmark).
+- **Repo VN về video-as-code và đội agent (tìm thấy khi kiểm bài đăng "điền form nhận 4 thứ", mục 22 §9i, 2/11/2026):** `HaiTLU/video-studio` (kho sản xuất video của Trung tâm Đào tạo ngắn hạn ĐH Thăng Long: 52 skill tiếng Việt, bảng đối chiếu nguồn/giấy phép từng skill, **không có LICENSE**), `hdduytran/one-studio-skill` (plugin video trọn gói, TTS tiếng Việt ZeroTTS, không LICENSE), `Freedombuiders/AIOS-Lite` (MIT, "hệ điều hành cho đội agent" có 8 bài học tiếng Việt), `lelongc/tools` (kho cá nhân giữ nguyên văn danh sách 20 repo video). Mẫu chung: viết tiếng Việt toàn bộ, vendor skill mở rồi ghi nguồn, nhưng hai trong bốn kho chưa khai license của chính mình.
 
 ## 4c. Repo & model tiếng Việt đã xác minh (2026-10-12)
 

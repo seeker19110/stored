@@ -72,7 +72,7 @@
       "product-research",
       "feature-management"
     ],
-    "count": 979,
+    "count": 983,
     "schema_version": 2
   },
   "projects": [
@@ -12735,6 +12735,87 @@
         "https://docs.docker.com/ai/sandboxes/",
         "https://docs.docker.com/ai/sandboxes/architecture/",
         "https://docs.docker.com/ai/sandboxes/agents/"
+      ]
+    },
+    {
+      "name": "opus-sound-layer",
+      "repo": "Bodila51/opus-sound-layer",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 75,
+      "open_source": true,
+      "notes": "Lớp tiếng động cho video dựng bằng code: sfx.py kit tải lúc chạy 1.139 bản CC0 (Kenney, Freesound) 19 loại, browse xếp hạng theo tag/độ dài/độ sáng kèm waveform+spectrogram, search qua Openverse, mix.py đặt theo timeline, qa.py đo MP4 exit 1 khi lệch; không lưu âm trong repo; HaiTLU/video-studio vendor thành skill sound-layer; ★ 2/11/2026: 75 (GitHub search API)",
+      "section": "22",
+      "id": "opus-sound-layer",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9i-kiểm-bài-đăng-điền-form-nhận-4-thứ-agent-team-skill-motion-xưởng-repo-18-công-cụ-skill-sfx-585-âm-bài-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "52ac266a24b7dfd3cd06a28c34d5af360a8d7586",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Bodila51/opus-sound-layer/blob/52ac266a24b7dfd3cd06a28c34d5af360a8d7586/README.md",
+        "https://github.com/Bodila51/opus-sound-layer/blob/52ac266a24b7dfd3cd06a28c34d5af360a8d7586/LICENSE"
+      ]
+    },
+    {
+      "name": "Mediabunny",
+      "repo": "Vanilagy/mediabunny",
+      "category": "video-engine",
+      "license": "MPL-2.0",
+      "stars": 7420,
+      "open_source": true,
+      "notes": "Toolkit media TypeScript thuần đọc/ghi/chuyển đổi video-audio trong trình duyệt và Node (WebCodecs); v1.65.0; CI build-check/lint/test/release; nằm trong danh sách 20 repo video lưu hành ở repo VN (mục 22 §9i); Remotion đang chuyển sang dùng (theo web, chưa xác minh); ★ 2/11/2026: 7.420 (GitHub search API)",
+      "section": "22",
+      "id": "mediabunny",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9i-kiểm-bài-đăng-điền-form-nhận-4-thứ-agent-team-skill-motion-xưởng-repo-18-công-cụ-skill-sfx-585-âm-bài-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "aa5923124db643ff865c756a1558c2d1d37ae9bd",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Vanilagy/mediabunny/blob/aa5923124db643ff865c756a1558c2d1d37ae9bd/LICENSE",
+        "https://github.com/Vanilagy/mediabunny/blob/aa5923124db643ff865c756a1558c2d1d37ae9bd/README.md",
+        "https://github.com/Vanilagy/mediabunny/blob/aa5923124db643ff865c756a1558c2d1d37ae9bd/package.json"
+      ]
+    },
+    {
+      "name": "one-studio-skill (hdduytran)",
+      "repo": "hdduytran/one-studio-skill",
+      "category": "motion-design",
+      "license": null,
+      "stars": 2,
+      "open_source": false,
+      "notes": "Plugin Claude Code tiếng Việt làm video trọn gói: brief → kịch bản → storyboard → ước tính credit → duyệt keyframe → scene (3d, character, diagram, explainer, lottie-rive, screen, text, data) → TTS ZeroTTS → nhạc/SFX → FFmpeg loudnorm; HyperFrames renderer, Remotion cho 3D physics; style-fetch/analyze đo video mẫu; KHÔNG có file LICENSE; ★ 2/11/2026: 2 (GitHub search API)",
+      "section": "22",
+      "id": "one-studio-skill-hdduytran",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9i-kiểm-bài-đăng-điền-form-nhận-4-thứ-agent-team-skill-motion-xưởng-repo-18-công-cụ-skill-sfx-585-âm-bài-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "a50aefcbf8d2781f8e7a809719c9385f5a20019f",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/hdduytran/one-studio-skill/blob/a50aefcbf8d2781f8e7a809719c9385f5a20019f/README.md"
+      ]
+    },
+    {
+      "name": "AIOS-Lite",
+      "repo": "Freedombuiders/AIOS-Lite",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": 1,
+      "open_source": true,
+      "notes": "Template tiếng Việt 'hệ điều hành cho đội agent': agents/*.yaml, runtime claude/codex/grok/hermes/mock, tầng giao việc Task→Dispatcher→Engine→Run, web Preact, module (care, zalo, gmail, marketing, ads, video…), 8 bài học; module video 'Dựng nhanh' dùng HyperFrames, AI chấm B-roll 1–5; gần nhất với 'Agent Team' trong bài đăng mục 22 §9i; ★ 2/11/2026: 1 (GitHub search API)",
+      "section": "22",
+      "id": "aios-lite",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9i-kiểm-bài-đăng-điền-form-nhận-4-thứ-agent-team-skill-motion-xưởng-repo-18-công-cụ-skill-sfx-585-âm-bài-người-dùng-gửi-2112026",
+      "last_verified_at": "2026-11-02",
+      "verified_ref": "750e0fd6ba87333eac9e840e8fddf31b739f00c3",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Freedombuiders/AIOS-Lite/blob/750e0fd6ba87333eac9e840e8fddf31b739f00c3/README.md",
+        "https://github.com/Freedombuiders/AIOS-Lite/blob/750e0fd6ba87333eac9e840e8fddf31b739f00c3/LICENSE",
+        "https://github.com/Freedombuiders/AIOS-Lite/blob/750e0fd6ba87333eac9e840e8fddf31b739f00c3/modules/video/docs/dung-nhanh-architecture.md"
       ]
     }
   ]
