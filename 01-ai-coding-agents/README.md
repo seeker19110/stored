@@ -560,6 +560,35 @@ Memory "kiểu OpenClaw":
 
 **Nguồn §3j:** clone `Kilo-Org/kilocode` (`--filter=blob:none`, HEAD `dd35e09`, 31/10/2026), đọc: README.md, LICENSE, PRIVACY.md, AGENTS.md, CONTEXT.md, package.json, `install`, `.github/workflows/` (39 file, `test.yml`), `packages/kilo-vscode/CHANGELOG.md`, `packages/kilo-vscode/README.md`, `packages/kilo-telemetry/src/{client,telemetry,events,identity,conda}.ts`, `packages/kilo-vscode/src/services/telemetry/telemetry-proxy.ts`, `packages/kilo-vscode/src/services/cli-backend/server-manager.ts`, `packages/kilo-vscode/src/services/marketplace/actions.ts`, `packages/kilo-jetbrains/backend/.../cli/KiloBackendCliManager.kt`, `.../telemetry/KiloBackendTelemetry.kt`, `.../app/KiloBackendAppService.kt`, `packages/opencode/src/kilocode/cli/setup.ts`, `packages/opencode/src/agent/agent.ts`, `packages/opencode/src/kilocode/agent/index.ts`, `packages/opencode/src/cli/cmd/{run,serve}.ts`, `packages/opencode/src/auth/index.ts`, `packages/opencode/src/kilocode/marketplace/{api,mcp-entry}.ts`, `packages/opencode/src/kilocode/sandbox/config.ts`, `packages/kilo-gateway/src/{loader.ts,api/constants.ts}`, `packages/kilo-docs/pages/getting-started/settings/index.md` · GitHub search API 1/11/2026 (`Kilo-Org/kilocode`, `Kilo-Org/kilocode-legacy`, `Kilo-Org/kilo`, `Kilo-Org/cloud`, `RooCodeInc/Roo-Code`, `cline/cline`, `anomalyco/opencode`) · https://blog.kilo.ai/thank-you-roo · https://kilo.ai/landing/roo-code · https://www.producthunt.com/p/kilocode/kilo-code-v7-for-vs-code · https://www.morphllm.com/comparisons/kilo-code-vs-opencode (blog bên thứ ba)
 
+## 3k. Nâng trần 2/11/2026: benchmark coding agent chạy được tại chỗ, có cổng oracle/nop (yêu cầu người dùng)
+
+> Đọc lại §1–§3j và catalog; grep `repo` trong `data/projects.json` trước khi thêm. Sao/license/ngày lấy bằng GitHub search API 2/11/2026; clone `--depth 1 --filter=blob:none`, chỉ đọc (LICENSE, README, CHANGELOG, harness chính). **Không cài, không chạy.**
+
+**Trần hiện tại**
+
+- §2 chỉ ghi *kết quả* leaderboard (SWE-bench Verified bão hòa, SWE-bench Pro ~65%), không có repo harness nào để dự án **tự chạy** benchmark trên agent/harness của mình.
+- Bảng 1.1 có `mini-SWE-agent` (harness chuẩn của Vals) và mục 07 có Harbor/Terminal-Bench, nhưng thiếu lớp **dữ liệu + bộ chấm** (FAIL_TO_PASS/PASS_TO_PASS, ảnh Docker cố định) và lớp **chống nhiễm dữ liệu** (task mới hằng tháng).
+- Chọn coding agent hiện dựa vào tiêu chí định tính (§2 "Bài học"); chưa có cổng máy để so hai cấu hình harness trên cùng tập task.
+
+**Bảng repo mới**
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `SWE-bench/SWE-bench` | Cổng máy (harness gốc) | 6.133 · MIT | 2/9/2026 (HEAD `02e7a74`) | Bộ chấm Docker gốc: `swebench eval`, `swebench report` chấm lại log không cần container, `swebench infer` chạy mini-SWE-agent, `swebench dataset check` cho task tự tạo; `infra_failure.py` tách "môi trường hỏng" khỏi "patch sai" mà không đổi mẫu số | Verified đã bão hòa (§2); bản *Unreleased* đổi đường dẫn log (`logs/evaluation/<run_id>`); `__version__` 5.0.2 nhưng CHANGELOG mới ghi tới 5.0.1 |
+| `scaleapi/SWE-bench_Pro-os` | Cổng máy (kế nhiệm) | 557 · MIT | 22/9/2026 (`66f9276`) | V2 (22/9/2026): 642 task, 11 repo, đóng gói **định dạng Harbor**; tập HARD-51; **locked protocol**: pha agent không mạng, verifier chạy ở sandbox mới chỉ với `git diff`; `GATE.md` công bố oracle 642/642 pass và patch rỗng 642/642 fail | Bản V1 giữ ở config `v1`; README (18/5) tự ghi leaderboard từng có vấn đề; khuyến nghị Modal, Docker cục bộ còn "Beta"; tập riêng thương mại không công khai |
+| `microsoft/SWE-bench-Live` | Cổng máy (chống nhiễm) | 261 · MIT | 25/9/2026 (`62d0293`) | Tập tự cập nhật: Python +50 task/tháng, MultiLang 1.077 task/8 ngôn ngữ (21/8/2026), có tập **Windows/PowerShell**; kèm mã curation (RepoLaunch) để dựng task + sandbox cho repo riêng | Badge license trong README trỏ nhầm sang repo SWE-bench (LICENSE thật là MIT của Microsoft); thư mục `launch/` rỗng ở bản clone (có thể là submodule) **(chưa xác minh)** |
+| `multi-swe-bench/multi-swe-bench` | Cổng máy (đa ngôn ngữ) | 364 · Apache-2.0 | 18/12/2025 (`24f493f`) | ByteDance Seed, NeurIPS 2025: issue thật cho Java, TS/JS, Go, Rust, C/C++; có bản `mini` (400) và `flash` (300) để chạy rẻ | **Đứng yên ~10,5 tháng**; dữ liệu trên HF; dùng làm tập phụ, không làm cổng chính |
+
+**Stack nâng trần** (lợi ích/công sức giảm dần)
+
+1. **Cổng hồi quy harness**: mỗi lần đổi prompt/tool/model của agent (§1.1, §3j), chạy `swebench eval` trên 20–50 task cố định + `swebench report` để chấm lại; luôn kèm chạy `--gold` (oracle) và patch rỗng trên cùng máy, mượn cách công bố của `GATE.md` SWE-bench Pro, để tách lỗi hạ tầng khỏi lỗi agent.
+2. **Chấm agent đóng gói bằng Harbor** (mục 07): dùng task V2 của SWE-bench Pro với `locked_claude_code`/`locked_codex`/`locked_mini_swe` để so CLI agent (§1.1) trong cùng điều kiện không mạng.
+3. **Chống nhiễm dữ liệu**: lấy lát cắt mới nhất của SWE-bench-Live cho model ra sau ngày cắt dữ liệu của Verified; thêm tập Windows nếu sản phẩm chạy trên Windows.
+4. **Benchmark nội bộ**: dùng mã curation của SWE-bench-Live hoặc `swebench dataset check` để biến PR đã merge của chính dự án thành task FAIL_TO_PASS, chạy định kỳ trên `AGENTS.md` (mục 04) của dự án.
+5. **Đa ngôn ngữ**: chỉ khi stack không phải Python, thêm `flash`/`mini` của Multi-SWE-bench hoặc MultiLang của SWE-bench-Live.
+
+**Nguồn §3k:** GitHub search API 2/11/2026 (`repo:` cho 4 repo trên; `repo:agentsmd/agents.md`, `repo:harbor-framework/harbor` đã có trong catalog) · clone 2/11/2026, đọc: SWE-bench (README.md, LICENSE, CHANGELOG.md, `swebench/__init__.py`, `swebench/cli/`, `swebench/harness/{run_evaluation,grading,infra_failure}.py`) · SWE-bench_Pro-os (README.md, LICENSE, `v2/README.md`, `v2/GATE.md`) · SWE-bench-Live (README.md, LICENSE, `curation/`, `evaluation/`) · multi-swe-bench (README.md, LICENSE, cây `multi_swe_bench/`) · https://github.com/SWE-bench/SWE-bench · https://github.com/scaleapi/SWE-bench_Pro-os · https://github.com/microsoft/SWE-bench-Live · https://github.com/multi-swe-bench/multi-swe-bench · https://arxiv.org/abs/2505.23419 · https://arxiv.org/abs/2504.02605
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/

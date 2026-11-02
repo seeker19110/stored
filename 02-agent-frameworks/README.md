@@ -170,6 +170,37 @@
 
 **Nguồn §4c:** GitHub search API 31/10/2026 (5 truy vấn + `user:HKUDS`) · `meta_all.json`/`status_all.json` (GitHub API 31/10/2026) · clone `--filter=blob:none` và `--depth 1` 7 repo, đọc: deepagents (README.md, LICENSE, `libs/deepagents/pyproject.toml`, `deepagents/graph.py`, `deepagents/middleware/{rubric,summarization,subagents,permissions}.py`, `libs/code/DEVELOPMENT.md`, `deepagents_code/config.py`) · agentscope (README.md, LICENSE, pyproject.toml, `src/agentscope/{_version.py, permission/, sop/, middleware/_tracing/}`) · claude-agent-sdk-python (README.md, LICENSE, pyproject.toml, `src/claude_agent_sdk/_cli_version.py`, `scripts/download_cli.py`) · harness-sdk (README.md, LICENSE.APACHE, NOTICE, `harness-py/src/strands_harness/telemetry.py`, `strands-py/src/strands/models/bedrock.py`) · nanobot (README.md, LICENSE, `nanobot/config/schema.py`, `nanobot/config/loader.py`) · nanoclaw (README.md, README_zh.md, LICENSE, nanoclaw.sh, `setup/lib/diagnostics.sh`, `src/`) · eve (README.md, LICENSE, `packages/eve/package.json`, `packages/eve/src/cli/telemetry/{index,flush,preference}.ts`) · https://github.com/HKUDS/OpenOPC (không tìm thấy qua search API)
 
+## 4d. Nâng trần 2/11/2026: chuẩn trace OTel GenAI và benchmark gọi tool độc lập framework (yêu cầu người dùng)
+
+> Đọc lại §1–§4c và catalog; grep `repo` trong `data/projects.json` trước khi thêm. Sao/license/ngày bằng GitHub search API 2/11/2026; clone `--depth 1 --filter=blob:none` (BFCL clone sparse thư mục `berkeley-function-call-leaderboard/`), chỉ đọc. **Không cài, không chạy.**
+
+**Trần hiện tại**
+
+- §1–§2 so framework bằng mô hình tư duy, số sao, tải/tháng; §4c ghi telemetry từng repo (Strands chỉ bật OTel khi đặt `OTEL_TRACES_EXPORTER`, AgentScope có tracing OTel). Nhưng **chưa có chuẩn chung** để trace của LangGraph, CrewAI, OpenAI Agents SDK, Strands… so được với nhau.
+- Chưa có cổng máy đo **năng lực gọi tool** của tổ hợp model + framework; mục 07 có τ²-bench (tool–agent–user) nhưng thiếu benchmark gọi hàm/đa lượt và benchmark môi trường (OS, DB, web).
+- Hệ quả: đổi framework hay model chỉ dựa vào cảm nhận, không có baseline đo được.
+
+**Bảng repo mới**
+
+| Repo | Lớp | ★ · license (2/11/2026) | Commit cuối | Vì sao nâng trần | Rủi ro |
+|---|---|---|---|---|---|
+| `open-telemetry/semantic-conventions-genai` | Chuẩn | 506 · Apache-2.0 | 2/11/2026 (`16f3130`) | Repo riêng (tạo 5/5/2026) cho GenAI semconv, tách khỏi `semantic-conventions` (trang cũ ghi "Moved"). Định nghĩa span agent: `create_agent`, `invoke_agent`, `invoke_workflow`, `plan`, `execute_tool`, cùng `mcp.md`, `a2a.md`, metric token; `reference/` có kịch bản cho từng thư viện chạy trên mock server và **conformance runner** dùng OTel Weaver để kiểm thuộc tính | Mọi thuộc tính `gen_ai.*` vẫn **Development**; README ghi "Schema URL: TODO", CHANGELOG chưa có bản phát hành; tên thuộc tính có thể đổi |
+| `Arize-ai/openinference` | Chuẩn (thực dụng) + instrumentation | 1.299 · Apache-2.0 | 1/11/2026 (`5c68f3a`) | Spec bổ sung trên OTel với `openinference.span.kind` (AGENT, CHAIN, TOOL, GUARDRAIL, EVALUATOR…) và gói instrumentation sẵn cho ~38 thư viện Python (LangChain, CrewAI, OpenAI Agents, Strands, Google ADK, Agent Framework, Claude Agent SDK, PydanticAI, smolagents, MCP…), JS/Java/Go; có gói `openinference-genai` (JS) và `annotations.md` ánh xạ sang sự kiện `gen_ai.evaluation.result` | Là chuẩn của một vendor (Arize, xem Phoenix ở mục 07), chồng lấn với OTel GenAI; cần chọn một quy ước chính cho pipeline |
+| `ShishirPatil/gorilla` (BFCL) | Cổng máy | 13.062 · Apache-2.0 | push 17/10/2026; HEAD nhánh mặc định 23/3/2026 (`6ea5797`) | Berkeley Function Calling Leaderboard: chấm gọi hàm bằng AST và thực thi, đa lượt, V4 thêm agentic (web search, memory, độ nhạy định dạng); trọng số V4 dồn 40% cho agentic vì single-turn đã bão hòa; gói `bfcl_eval`, cờ `--partial-eval` | CHANGELOG dừng ở 10/2025; hạng mục web search cần SerpAPI; đo model + prompt format, **không** đo framework trực tiếp, phải bọc handler |
+| `THUDM/AgentBench` | Cổng máy (môi trường) | 3.806 · Apache-2.0 | 9/2/2026 (`d1e4a10`) | Bản "AgentBench FC" (10/2025) dùng prompt function-calling, đóng container 5 môi trường: alfworld, DB (MySQL), knowledge graph, OS, WebShop; một lệnh `docker compose` dựng controller AgentRL + worker | Nặng (Freebase cho KG, Redis, nhiều image); đứng yên ~9 tháng; bản cũ ở tag `v0.1`/`v0.2` |
+
+> Cùng đợt 2/11/2026, mục 07 (phần "Nâng trần 2/11/2026: chuẩn trace GenAI…") cũng hồ sơ hoá `semantic-conventions-genai` và `openinference` từ góc quan sát/eval; catalog chỉ giữ một dòng cho mỗi repo, mục này nhìn từ góc chọn framework.
+
+**Stack nâng trần**
+
+1. **Một quy ước trace cho mọi framework**: bật instrumentation OpenInference cho framework đang dùng (§1) và xuất OTLP sang Phoenix/Langfuse (mục 07); đặt mục tiêu chuyển dần sang tên `gen_ai.*` khi semconv ổn định. Mẫu "chỉ bật khi đặt biến OTel" của Strands (§4c) là mặc định nên giữ.
+2. **Cổng thuộc tính trace**: chạy conformance runner của `semantic-conventions-genai` (hoặc test riêng kiểm `invoke_agent`/`execute_tool` có đủ `gen_ai.operation.name`, `gen_ai.provider.name`) trong CI để trace không âm thầm mất trường khi nâng framework.
+3. **Baseline gọi tool trước khi đổi model**: chạy BFCL (`--partial-eval` trên hạng mục multi-turn + agentic) cho model ứng viên; so cùng prompt format framework dùng (V4 đo độ nhạy định dạng).
+4. **Kiểm framework trong môi trường thật**: với agent thao tác OS/DB, dùng các task container của AgentBench FC làm smoke test; với agent hội thoại, dùng τ²-bench (mục 07).
+5. **Ghi kết quả vào hồ sơ framework**: mỗi lựa chọn ở §2 "Tiêu chí chọn" kèm số đo BFCL/AgentBench và trace mẫu theo quy ước ở bước 1.
+
+**Nguồn §4d:** GitHub search API 2/11/2026 (`repo:` cho 4 repo trên và `open-telemetry/semantic-conventions`; `tau2-bench`, `inspect_ai`, `openllmetry`, `phoenix` đã có ở mục 07) · clone 2/11/2026, đọc: semantic-conventions-genai (README.md, LICENSE, CHANGELOG.md, `docs/gen-ai/{README,gen-ai-agent-spans,mcp,a2a}.md`, `reference/README.md`) · `open-telemetry/semantic-conventions` (`docs/gen-ai/README.md`, trang "Moved") · openinference (LICENSE, `spec/{semantic_conventions,annotations}.md`, cây `python/instrumentation/`, `js/packages/`) · gorilla (`berkeley-function-call-leaderboard/{README.md,CHANGELOG.md,pyproject.toml}`, LICENSE) · AgentBench (README.md, LICENSE, cây thư mục) · https://github.com/open-telemetry/semantic-conventions-genai · https://opentelemetry.io/docs/specs/semconv/gen-ai/ · https://github.com/Arize-ai/openinference · https://gorilla.cs.berkeley.edu/leaderboard.html · https://github.com/THUDM/AgentBench
+
 ## 5. Nguồn
 
 - https://www.firecrawl.dev/blog/best-open-source-agent-frameworks
