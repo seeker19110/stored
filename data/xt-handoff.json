@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5)",
     "columns": [
       "deeper",
       "shallower",
@@ -10,7 +10,7 @@
       "not_adding"
     ],
     "updated": "2026-11-02",
-    "count": 106,
+    "count": 107,
     "current_batch": {
       "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
       "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
@@ -2267,6 +2267,46 @@
         "XT-H-041"
       ],
       "note": "ID X-Templates đối chiếu ở clone fb7b62c (2/11/2026)."
+    },
+    {
+      "id": "XT-H-107",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "20 §3f.5"
+      ],
+      "profile_anchors": [
+        "20-claude-plugins-ecosystem/README.md#3f5-đọc-lại-2112026-ảnh-readme-mới-bốn-commit-thêm-rồi-gỡ-claude-reel-editor-banner-giữ-số-cũ-ảnh-người-dùng-gửi"
+      ],
+      "lesson": "Con số trong asset hình (banner SVG/PNG, ảnh og) không đi cùng vòng sửa văn bản: README của charlie947/social-media-skills đổi follower 350k → 415k → 430k rồi bỏ hẳn, banner.svg vẫn in 350k; tuyên bố quy mô (followers/views) không có file kết quả nào để trỏ. Thêm: pushed_at mới nhưng cây file giống commit đã ghim (PR thêm rồi gỡ 87 file trong 3 phút).",
+      "xt_ids": [
+        "BASE-DOC-017",
+        "BASE-DOC-009"
+      ],
+      "column": "shallower",
+      "existing_coverage": "BASE-DOC-017 bắt mọi con số công bố trong README/ghi chú phát hành/trang giới thiệu trỏ file kết quả đã commit; chưa nói tới số nằm trong asset hình và tuyên bố quy mô không có file kết quả.",
+      "delta": "Không lặp XT-H-047 (claim năng lực cần bằng chứng); thêm phạm vi asset hình và quy tắc cho số không có bằng chứng (ghi ngày + nguồn hoặc bỏ).",
+      "related_handoffs": [
+        "XT-H-047",
+        "XT-H-071"
+      ],
+      "xt_evidence": [
+        {
+          "id": "BASE-DOC-017",
+          "file": "framework/01-baseline/documentation-minimum.md",
+          "line": 55,
+          "url": "https://github.com/seeker19110/X-Templates/blob/ccf980d53db81ac4a10710e549ab7ce8da2ff486/framework/01-baseline/documentation-minimum.md#L55"
+        },
+        {
+          "id": "BASE-DOC-009",
+          "file": "framework/01-baseline/documentation-minimum.md",
+          "line": 47,
+          "url": "https://github.com/seeker19110/X-Templates/blob/ccf980d53db81ac4a10710e549ab7ce8da2ff486/framework/01-baseline/documentation-minimum.md#L47"
+        }
+      ],
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Mở rộng BASE-DOC-017: con số xuất hiện trong asset hình của repo (banner SVG/PNG, ảnh og/social card, ảnh trong docs) chịu cùng quy tắc với con số trong văn bản: hoặc được sinh từ cùng nguồn dữ liệu (script dựng banner đọc file kết quả/metadata đã commit) hoặc có test so khớp số trong SVG/alt-text với số trong README. Tuyên bố quy mô không có file kết quả (followers, views, người dùng) SHOULD ghi ngày và nguồn ngay cạnh số, hoặc bỏ khỏi README và asset. Kiểm: grep số trong `assets/*.svg` và alt-text ảnh README khớp giá trị trong file dữ liệu đã commit; CI đỏ khi lệch."
+      }
     }
   ]
 }

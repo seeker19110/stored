@@ -338,6 +338,47 @@ plugin-name/
 - **Cần phủ nhiều nền tảng hoặc có eval cho từng skill:** đọc `social-media-skills/skills`, nhưng gỡ các chỉ dẫn quảng bá WoopSocial trước khi dùng.
 - **Chung cho mọi bộ:** đây là văn bản hướng dẫn agent, không có mã chạy ngầm; rủi ro chính là chi phí API trả phí (Apify, model ảnh) và đăng nhầm. Ghim commit khi cài.
 
+### 3f.5 Đọc lại 2/11/2026: ảnh README mới, bốn commit thêm rồi gỡ `claude-reel-editor`, banner giữ số cũ (ảnh người dùng gửi)
+
+> Người dùng gửi ảnh chụp README hiện tại của `charlie947/social-media-skills` (banner "The 17 skills behind 350k followers and 100M+ views a year", tiêu đề "Social Media Skills for AI Agents", "17 standalone public skills for Codex and Claude", "Contributions welcome"). Hồ sơ §3f.1–§3f.4 đọc ở HEAD `8cefb5b` (15/9/2026); lần này clone lại `--filter=blob:none` rồi `--deepen` đủ 22 commit, đối chiếu từng ô của ảnh với file thật và lịch sử git.
+
+**Hồ sơ cập nhật (đọc 2/11/2026):**
+
+| Mục | Thông tin |
+|---|---|
+| HEAD | `10ca79c0ec0be0f7654d19cd4f0c86b6fa6ed23b` (18/10/2026, merge PR #24) · 22 commit, toàn bộ của Charlie Hills · MIT (`LICENSE` "Copyright (c) 2026 Charlie Hills") · plugin `social-media-skills` v1.1.0 trong `.claude-plugin/marketplace.json` |
+| ★ · fork | **4.518★ · 996 fork** (GitHub search API 2/11/2026; §3f.3 ghi ~4k · 921 ngày 13/10, catalog 31/10 ghi 4.486) · không archive |
+| Cây file | **Giống hệt `8cefb5b`**: `git diff --quiet 8cefb5b HEAD` trả 0. 17 thư mục `skills/*/SKILL.md` (92–268 dòng), 2 `references/`, `validate-skills.sh`, `tests/test-codex-portability.py`, `assets/banner.svg`, `VERSIONS.md` (1.0.0 22/4, 1.1.0 15/9) |
+| 4 commit mới | PR #23 (18/10 18:36) thêm `skills/claude-reel-editor/`: 87 file, 2.702 dòng gồm `SKILL.md` 176 dòng, `package.json` (puppeteer, Node ≥ 18), 4 file engine, 8 component, 14 script Python/Node (cắt theo khoảng lặng, storyboard, render từng frame bằng headless Chrome rồi ghép ffmpeg, `qa.py`), ví dụ 22 file, LICENSE MIT riêng. PR #24 (18:39, **3 phút sau**) gỡ toàn bộ; commit message ghi tác giả quyết định giữ skill dựng Reel ở nội bộ, phần "giveaway" chỉ còn là prompt trên trang Substack |
+
+**Đối chiếu ảnh với file thật:**
+
+| Ô trong ảnh | Kết quả | Bằng chứng |
+|---|---|---|
+| "17 skills" | ✅ đúng | 17 thư mục; `tests/test-codex-portability.py` hard-code `assert len(skills) == 17`, nên thêm/bớt skill phải sửa test (PR #23 có 18 skill mà không sửa test: nếu chạy test ở commit đó sẽ đỏ, **chưa chạy để xác nhận**) |
+| "350k followers and 100M+ views a year" (banner) | ⚠️ số cũ, chỉ là tuyên bố tác giả | `assets/banner.svg` giữ "350k" từ commit `3574e4b` (22/4/2026). README/marketplace.json từng sửa 350k+ → **415k+** (`69d9488`, 12/8) → **430k+** (`dbb5a03`, 30/8), rồi **bỏ hẳn con số** ở v1.1.0 (`8cbf92a`, 14/9). Trang charliehills.substack.com/about (đọc 2/11/2026) lại ghi "350,000+ followers", "100 million views a year". Ba con số trong 5 tháng, không nguồn kiểm được: ghi **(chưa xác minh)** |
+| "for Codex and Claude" | ✅ đúng từ v1.1.0 | README có ba đường cài: `skill-installer` của Codex, copy vào `.agents/skills/<name>` (vòng `cp -R` giữ nguyên thư mục/symlink đã có, tự nhận "không phải updater"), `/plugin marketplace add` cho Claude Code; bảng "Capabilities and completion states" ghi trạng thái "pending" khi thiếu web/Apify/Gemini/renderer |
+| "Contributions welcome" | ✅ có `CONTRIBUTING.md`, chưa thấy đóng góp ngoài | CONTRIBUTING: British English, không em dash/semicolon, cấm 5 từ ("leverage", "deep dive"…), `SKILL.md` < 500 dòng, chạy validator + test trước PR. 22 commit đều của tác giả; số issue/PR mở **(chưa xác minh)** vì API repo bị chặn trong phiên |
+| "not the complete private LinkedIn AI OS" | ✅ nhất quán với §3f.2 | PR #23/#24 cho thấy ranh giới công khai/nội bộ được quyết ở phút chót; `.gitignore` chặn `*.skill`, `.env` |
+
+**Điều mới khi đọc lại test (bổ sung §3f.2):** `tests/test-codex-portability.py` không chỉ kiểm cài đặt. Nó kiểm **hợp đồng chỉ dẫn bằng chuỗi**: mọi SKILL.md phải có mục "Codex and Claude runtime", câu "or ask in chat", "Do not write persistent learnings unless requested"; 7 skill ảnh phải có "**prompt-ready**" + "inspect each export"; 3 skill lấy dữ liệu (`niche-research`, `post-scorer`, `reels-scripting`) phải có "Never scrape comments"; cấm đường dẫn máy (`~/Desktop/`, `/Users/`); `post-scorer` không được chứa "Charlie Hills data" (không dùng số liệu tác giả làm benchmark mặc định). Nó chạy vòng copy trong HOME rỗng, kiểm copy lần hai **giữ nguyên** file đã tùy biến, symlink hỏng và skill lạ, và với `--codex` gọi `codex app-server --stdio` → `skills/list` để chắc 17 skill được phát hiện từ `.agents/skills`. Script tự in "NOT TESTED: provider access, generated content quality, visual acceptance, client activation". Đây là mẫu rẻ để kiểm pack prompt-only: kiểm chuỗi hợp đồng + kiểm cài đặt bảo toàn, không cần gọi model (so với các cổng nặng hơn ở §3v). Lần này **không chạy lại** validator/test (quy ước kho không chạy mã repo ngoài; cây giống `8cefb5b` nên kết quả 87/0 ngày 13/10 vẫn đúng cho HEAD này).
+
+**Bảng cùng loại cập nhật (GitHub search API 2/11/2026):**
+
+| Repo | ★ · fork · license | Push cuối | Khác biệt | Dùng/không |
+|---|---|---|---|---|
+| **charlie947/social-media-skills** | 4.518 · 996 · MIT | 18/10/2026 (cây = 15/9) | 17 skill, giọng cá nhân là nền, **chỉ soạn nháp**, hỏi trước khi tốn tiền | Chọn mặc định cho viết LinkedIn đúng giọng; ghim `10ca79c` |
+| **OpenClaudia/openclaudia-skills** (mới) | 724 · 60 · MIT | 29/10/2026 | **78** `SKILL.md` marketing (README ghi 78, mô tả GitHub ghi 77); CI `validate_skills.py` kiểm frontmatter + bảng README khớp thư mục; cài bằng `npx openclaudia install` (`cli/index.mjs` `git clone --depth 1` nhánh mặc định, **không ghim tag/SHA**); `social-content` khai "Can post directly to Reddit and other platforms via API", 35/78 skill có từ publish/post/send; token hay gặp: Telegram 35, Semrush 34, Slack 22, HubSpot 21 skill; 6 skill nhắc openclaudia.com; CONTRIBUTING có luật riêng cho vendor thêm sản phẩm | Khi cần **thực thi** (đăng, gửi email) và phủ cả marketing; phải tự thêm bước duyệt người trước lệnh đăng (mục 21 §10) và ghim commit vì installer không ghim |
+| coreyhaines31/marketingskills | 57.977 · 8.528 · MIT | 31/10/2026 | Bộ marketing tổng quát (đã có §3f.3) | Rộng hơn; mạng xã hội là một phần |
+| blacktwist/social-media-skills | 619 · 100 · MIT | 1/5/2026 | 14 skill, phễu app BlackTwist (§3f.3) | Đứng từ 5/2026 |
+| social-media-skills/skills (WoopSocial) | 236 · 48 · MIT | 15/10/2026 | 106 skill có `evals`, phễu WoopSocial (§3f.3) | Gỡ chỉ dẫn quảng bá trước khi dùng |
+
+**Đã cân nhắc, không thêm catalog:** `mikiarlo3/awesome-growth-hacking-skills` (691★, **không có LICENSE**, 0 `SKILL.md`: chỉ là danh sách do enso.bot biên tập) · `noahotim/content-growth-machine` (3★, port 17 skill này sang OpenCode) · `UnderleveledBuilder/awesome-social-media-skills` (139★, CC0, danh sách tiếng Trung) · `hdaguerre/charlie-hills_social-media-skills` và `Japis56/Social-Media-Skills-for-AI-Agents` (0★, bản sao) · các trang gom skill (skillsmp.com, mcpmarket.com, everydev.ai) chỉ dựng lại README, một trang vẫn ghi "16 skills" và "415k+" (số cũ).
+
+**Bài học:** (1) `pushed_at` mới không có nghĩa nội dung mới: 4 commit, 2.702 dòng thêm rồi gỡ, cây không đổi; người đã ghim `8cefb5b` không cần cập nhật. (2) Con số trong **asset hình** (SVG/PNG banner, ảnh og) không đi cùng vòng sửa text: README đổi số hai lần rồi bỏ, banner vẫn 350k; khi kiểm ảnh README phải tách "số trong ảnh" khỏi "số trong văn bản" và cả hai khỏi "số có bằng chứng". (3) Pack prompt-only vẫn có thể có cổng máy đáng học: test chuỗi hợp đồng + test cài đặt bảo toàn.
+
+**Nguồn §3f.5:** clone `--filter=blob:none` + `--deepen` 2/11/2026 (HEAD `10ca79c`; `git diff --quiet 8cefb5b HEAD`; `git show f62f41b --stat`, `05de08e`, `69d9488`, `dbb5a03`, `8cbf92a`; README.md, VERSIONS.md, CONTRIBUTING.md, `.claude-plugin/marketplace.json`, `assets/banner.svg`, `validate-skills.sh`, `tests/test-codex-portability.py`, `skills/*/SKILL.md`) · https://charliehills.substack.com/about (2/11/2026) · GitHub search API 2/11/2026 (`repo:` cho 9 repo trong bảng) · clone `--depth 1 --filter=blob:none` OpenClaudia/openclaudia-skills HEAD `37bdd29` (LICENSE, README, CONTRIBUTING, `cli/index.mjs`, `.github/workflows/validate-skills.yml`, `.github/scripts/validate_skills.py`, `skills/social-content/SKILL.md`, grep token/publish) · clone mikiarlo3/awesome-growth-hacking-skills HEAD `a09ef0d` (không LICENSE) · web 2/11/2026: discuss.pytorch.kr/t/social-media-skills-claude/11224 · jc-aiwiki.pages.dev/claude-ai/social-media-skills-charlie-hills · skillsmp.com/creators/charlie947 · everydev.ai/tools/social-media-skills
+
 **Nguồn §3f:** https://github.com/charlie947/social-media-skills (clone đầy đủ, HEAD 8cefb5b 15/9/2026; README, VERSIONS.md, .claude-plugin/, skills/*/SKILL.md, validate-skills.sh, tests/) · https://github.com/social-media-skills/skills (clone; README, skills/*/evals) · https://github.com/blacktwist/social-media-skills (clone; README, SKILL.md) · https://github.com/pavelhov/social-media-skills · https://github.com/inklate/social-skills · https://github.com/IRONICBo/awesome-social-media-skills · https://github.com/coreyhaines31/marketingskills · https://github.com/peterbamuhigire/social-media-skills · https://skillsllm.com/skill/social-media-skills
 
 ## 3g. Kiểm ảnh: bảng "Top Claude Code" 10 plugin xếp theo sao (ảnh người dùng gửi, 2026-10-14)
