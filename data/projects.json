@@ -7906,6 +7906,17 @@
       "open_source": true,
       "notes": "Plugin toàn prompt (7 skill, 9 persona reviewer) cho Claude Code/Codex/Antigravity: viết spec với agent đủ ngữ cảnh, rà bằng subagent ngữ cảnh mới (bản Claude Code: tools chỉ đọc + omitClaudeMd), vòng rà hội tụ khi 2 lượt sạch, trần 5, phát hiện churn; 'not an officially supported Google product', lịch sử công khai từ 21/10/2026; 'thousands of Google engineers' chưa xác minh; ★ 2/11/2026 (GitHub API), mục 20 §3u",
       "section": "20"
+    },
+    {
+      "name": "Stageshow",
+      "repo": "benjitaylor/skills",
+      "url": "https://benji.org/stageshow",
+      "category": "design-skill",
+      "license": "MIT (stageshow/LICENSE; app icon và logo trong kit/brands theo license riêng)",
+      "stars": 622,
+      "open_source": true,
+      "notes": "Skill dựng faux product UI (ảnh tĩnh, demo con trỏ, bento) bằng kit React: Stage/Window/Phone, Act API, 13 primitive motion, 69 ví dụ (41 dòng gold); film.mjs quay contact sheet + dò nhảy hình học từng frame, --gate với bảng lỗi 'không bao giờ cố ý'; reviewer ngữ cảnh mới chỉ nhận khung hình; 1 commit (30/10/2026), không CI, không harness eval; ảnh ghi '4 looks … minimal' sai (theme thật light/dark/blueprint/glass); typecheck + check:css sạch, chưa chạy quay phim; ★ 2/11/2026 (trang GitHub), mục 06 §7s",
+      "section": "06"
     }
   ]
 }

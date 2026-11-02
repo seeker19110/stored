@@ -755,3 +755,8 @@
 ## Bổ sung 2026-11-02b (bàn giao X-Templates e8b3831..5f9e546)
 
 - Clone `seeker19110/X-Templates` HEAD `ff23040` (2/11/2026): grep ID `framework/**.md`, đọc `CHANGELOG.md` (đã áp XT-H-019/020/021/022/024/026), ADR-0062. Bài học nguồn: `01 §3j`, `19 §3c`, `22 §9f`, `03 §8h`, `20 §3u`. Kết quả: `X-TEMPLATES.md` §4b (XT-H-052…060), §6; `data/xt-handoff.json` 53 → 60 mục; X-Templates PR #402.
+
+## Bổ sung 2026-11-02c (kiểm ảnh Stageshow)
+
+- `benjitaylor/skills`: ảnh infographic người dùng gửi 2/11/2026 (@shannholmberg, "The Head of Design at X open-sourced his taste"); clone `--filter=blob:none` (1 commit, HEAD `8020574` 30/10/2026); trang GitHub 2/11/2026: 622★/29 fork; `stageshow/LICENSE` MIT, `NOTICE.md` (icon/logo theo license riêng). Đọc SKILL.md, references/*, kit/{looks.ts, act.ts}, scripts/{film,browser,dev}.mjs, assets/app-icons.ts; chạy `npm ci --ignore-scripts`, `npm run typecheck`, `npm run check:css` (sạch); chưa chạy quay phim. Mục 06 §7s.
+- Web 2/11/2026: benji.org/stageshow (31/10/2026) · theblock.co/post/395222/elon-musk-taps-benji-taylor · pymnts.com/?p=3595047 · kucoin.com/news/flash/x-platform-appoints-benji-taylor-as-head-of-design · không thấy review độc lập; số view/bookmark (732K/16,7K) chỉ có trong ảnh (chưa xác minh).
