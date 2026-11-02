@@ -1073,6 +1073,23 @@
       ],
       "column": "deeper",
       "note": "Đã có: lệnh cài ghim phiên bản (`WF-DOC-019`), SKILL.md nạp theo tầng và giới hạn độ dài (`LOOP-CTX-013`)."
+    },
+    {
+      "id": "XT-H-061",
+      "date": "2026-11-02",
+      "stored_ref": [
+        "06 §7s"
+      ],
+      "lesson": "Kiểm UI có chuyển động bằng **chuỗi khung hình**, không bằng một ảnh chụp: Stageshow `film.mjs` quay contact sheet, ghi hình học từng animation frame để báo `jump:`/`drift:`, `--gate` chỉ qua khi bảng lỗi \"không bao giờ cố ý\" bằng 0, và **cấm làm cổng xanh bằng cách ẩn hay gắn cờ phần tử**; mã thoát 2 khi thu không đủ frame. Reviewer ngữ cảnh mới **chỉ nhận khung hình**, không nhận lý do của người dựng; phát hiện phải trỏ tới một file frame (06 §7s)",
+      "xt_ids": [
+        "LOOP-DESIGN-013",
+        "QA-STATIC-021"
+      ],
+      "column": "shallower",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bổ sung cho `ui-gates/` của autopilot: màn hình có animation hoặc chuyển trạng thái được kiểm bằng chuỗi frame (contact sheet + dò nhảy hình học theo frame); lỗi chỉ được đóng bằng sửa nguyên nhân, không bằng ẩn phần tử hay thêm cờ bỏ qua; reviewer ngữ cảnh mới chỉ nhận frame và checklist (không nhận plan hay ghi chú của builder); báo cáo bàn giao ghi phần chưa kiểm. Kiểm: PR đổi UI động có file frame đính kèm, gate trả `inconclusive` khi thiếu frame. Ghi chú: ID chưa grep lại trong `framework/` (repo X-Templates không gắn vào phiên này)."
+      }
     }
   ]
 }

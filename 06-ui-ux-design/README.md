@@ -1162,6 +1162,82 @@ Nhận định: "chuẩn mở" của OpenUI do một công ty kiểm soát; bả
 
 **Nguồn §7r:** clone `--filter=blob:none` 46 repo ngày 31/10/2026, đọc qua `git show HEAD:<file>`: LICENSE/NOTICE, `package.json`/`pyproject.toml`, README, workflow CI, các file nêu trong bảng (ví dụ `evolus/pencil` app/tools/api-server.js; `wandb/openui` backend/openui/server.py dòng 584–603; `primefaces/primereact` README.md, SECURITY.md; `uber/baseweb` README.md, .github/workflows/pr-check.yml; `elastic/eui` LICENSE.txt; `usablica/intro.js` license.md; `stenciljs/core` src/cli/telemetry/telemetry.ts, nhánh v5 V5_PLANNING.md; `dicebear/dicebear` nhánh 9.x packages/@dicebear/*/LICENSE; `ConardLi/garden-skills` dist/prompts/; `kaankiziltug/logo-design-skill` TRADEMARKS.md) · `registry.npmjs.org/<gói>/latest` · GitHub search API 31/10/2026.
 
+## 7s. Kiểm ảnh: Stageshow (`benjitaylor/skills`), skill dựng faux product UI của Benji Taylor (ảnh infographic người dùng gửi, clone 2026-11-02)
+
+> Ảnh là infographic của @shannholmberg tiêu đề "The Head of Design at X open-sourced his taste", kèm lệnh `npx skills add benjitaylor/skills --skill stageshow`. Mục này clone repo (`--filter=blob:none`, HEAD `8020574`, 30/10/2026), đọc `stageshow/` (SKILL.md, 15 file `references/`, `kit/`, `scripts/`, LICENSE, NOTICE.md, package.json) và bài giới thiệu benji.org/stageshow. Đã chạy `npm ci --ignore-scripts`, `npm run typecheck` (sạch) và `npm run check:css` (sạch: 81 file CSS, không trùng namespace class). **Chưa chạy dev server và script quay phim**, vì phiên này không cho chạy server từ mã bên ngoài. Vì vậy các kết luận về chất lượng hình ảnh và về bộ dò "jump" là **(chưa xác minh)**.
+
+### 7s.1 Hồ sơ nhanh
+
+| Mục | Thông tin (đọc 2/11/2026) |
+|---|---|
+| Repo | `benjitaylor/skills` · **622★, 29 fork** (trang GitHub 2/11/2026) · repo chỉ chứa một skill là `stageshow/` |
+| License | Không có LICENSE ở gốc repo. `stageshow/LICENSE` là **MIT** (© 2026 Benji Taylor). `NOTICE.md` ghi rõ các phần **không** thuộc MIT: app icon trong `assets/app-icons.ts` là PNG base64 lấy từ app bundle macOS (Mail, Calendar, TestFlight, Slack, Figma, Notion…); logo trong `kit/brands/` theo license riêng (SVGL MIT, payment-icons Apache-2.0, Cryptocurrency Icons CC0, cùng asset chính thức của Linear, Amex, Circle); tên và nhãn hiệu sản phẩm vẫn thuộc chủ sở hữu |
+| Lịch sử | **1 commit** ("Add Stageshow", 30/10/2026, tác giả Benji Taylor). Không tag, không release, không CI, không issue tracker có nội dung. Bài giới thiệu đề ngày 31/10/2026 |
+| Tác giả | Benji Taylor (@benjitaylor). X thuê làm trưởng thiết kế từ 25/3/2026, theo The Block, PYMNTS và KuCoin; các báo gọi chức danh khác nhau ("head of design" / "design lead"). Trước đó anh dẫn thiết kế ở Base (Coinbase), đồng sáng lập ví Family (Aave mua lại). Là tác giả Agentation (§7p.5, 5,2k★, PolyForm Shield) |
+| Kích thước | 363 file, 3,4 MB. SKILL.md 149 dòng (~18,6 KB, ~4,5k token); 15 reference 1.419 dòng (~158 KB, ~40k token nếu đọc hết). `kit/` ~5,5k dòng TS/TSX, `scripts/` ~4k dòng `.mjs`, **69 thư mục ví dụ**, 18 file `teaching/` (9 cặp tsx+css) |
+| Stack | React 18, TypeScript, CSS thuần, `lucide-react` 0.468.0. Playground dùng Vite 6. Script quay phim dùng `playwright-core` ~1.48 và **Chrome có sẵn trên máy** (`channel: 'chrome'`, hoặc chỉ định bằng `CHROME_PATH`). `portless` là phụ thuộc tùy chọn, chỉ để dev server có URL tên `stageshow` |
+| Cài | `npx skills add benjitaylor/skills --skill stageshow` (CLI `skills` của Vercel, chép thư mục skill vào thư mục skill của agent). Muốn quay phim hay xem ví dụ thì phải `npm install` trong thư mục skill (Node ≥ 20.19) |
+
+### 7s.2 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Thực tế (đọc mã) | Kiểm |
+|---|---|---|
+| Câu "It reads as a real product, simplified to what the viewer needs, framed with intent, and every motion has a cause" | Đúng nguyên văn mục "The one idea" của SKILL.md | ✅ |
+| 5 kiểu hỏng: Too much / Too little / Boxed / Flat / Bland | SKILL.md có đủ 5 kiểu, nhưng tên thứ hai là **"Wireframe"** chứ không phải "Too little". Bài giới thiệu dùng "too little" | ✅ (khác tên) |
+| 7 bước: Medium, Look, Story, Examples, Screen, Choreograph, Rehearse | Khớp 7 bước của Workflow. Bước 1 trong mã là "Medium and place", bước 4 là "Start from an example" | ✅ |
+| "One scene, 4 looks: light, dark, blueprint or minimal" | Sai. `kit/looks.ts` có **4 theme: `light` · `dark` · `blueprint` · `glass`**. `minimal` là một mức **fidelity** (`minimal` / `standard` / `realistic`), là trục riêng. Ngoài ra còn trục palette `accent` / `mono` | ❌ |
+| "Your design tokens… read from your design system" | `references/looks.md` hướng dẫn agent **ánh xạ tay** token của sản phẩm sang token của kit. Không có công cụ tự đọc design system | ⚠️ thủ công |
+| "Motion the kit handles: avatar flies… numbers roll only the digits that change" | Kit có `Fly`, `Roll`, `Count` cùng `Collapse`, `Swap`, `Connector`, `Follow`, `States`, `Stream`, `Popover`, `Scroll`, `Camera`, `Expand` | ✅ |
+| "A camera: push in, pull back" | Có `Camera` trong kit | ✅ |
+| Đoạn mã beat 3: `a.click({ at: "share" })`, `a.move({ x: 600, y: 300 })` | Ảnh tự ghi là "his code, shortened". API thật là `click(to?: Target, opts?)` và `set(patch)` trong `kit/act.ts`; mục tiêu đánh dấu bằng `data-target` rồi đo bằng `rect()`, SKILL.md cấm ghi cứng tọa độ. Cú pháp `{ at: … }` trong ảnh là **giả mã**, đừng chép | ⚠️ minh họa |
+| "Dozens of gold examples" | Bảng Gold trong SKILL.md có **41 dòng** (vài dòng gộp nhiều ví dụ), 11 dòng "product study" và 5 dòng specimen; tổng cộng 69 thư mục `examples/` | ✅ |
+| `scripts/`: "Film, catch jumps, check layout" | Có `film.mjs` (contact sheet, `--gate`, `--states`, `--hover`, `--zoom target:`), `jumps.mjs`, `layout.mjs`, `class-clash.mjs`, `motion-watch.mjs`. `film.mjs` ghi lại hình học **mỗi animation frame** và báo `jump:` / `drift:`; mã thoát 2 khi dữ liệu thu được không đủ ("inconclusive"), tức phân biệt "trượt" với "không đo được" | ✅ (chưa chạy) |
+| `playground`: "Bad and good, side by side" | Cặp xấu/tốt nằm ở `teaching/` (đọc kèm `references/teaching.md`); `playground/` là trình xem Vite cho mọi ví dụ, có route `?capture=<tên>` để quay | ⚠️ gộp hai thư mục |
+| "Works in Grok Build, Claude Code, Codex and Gemini" | Repo không có nội dung riêng cho host nào; SKILL.md là frontmatter chuẩn Agent Skills. Bài giới thiệu nêu Claude Code, Codex, Gemini; **"Grok Build" chỉ thấy trong ảnh** | ⚠️ Grok (chưa xác minh) |
+| Vòng "Compare side by side → Write down what looks off → Update the skill → rerun from scratch" | Bài giới thiệu tả đúng như vậy: một agent mới có skill so với cùng prompt không có skill; tác giả ghi lại chỗ sai chứ không tự sửa output, rồi chạy lại từ đầu. **Repo không có harness eval, dữ liệu so sánh hay kết quả nào** | ⚠️ chỉ có lời kể |
+| "732K views, 16.7K bookmarks trong khoảng một ngày" | Số từ bài đăng trên X, không kiểm được từ phiên này | (chưa xác minh) |
+
+### 7s.3 Điều ảnh không nói (đọc mã)
+
+- **Kiểm chứng bằng phim là điểm khác biệt thật.** `references/rehearse.md` định nghĩa một bảng dòng báo "không bao giờ là cố ý" (`framing:`, `cut by the crop:`, `tight stack:`, `tight mark:`, `tight inset:`…). `film.mjs --gate` chỉ in `rehearsal passed` khi tất cả bằng 0. Skill cấm "sửa" một dòng báo bằng cách ẩn phần tử hay gắn `data-crop` / `data-snap`. Ngay sau đó skill tự nói "necessary, not sufficient": qua gate chưa phải là đạt.
+- **Người review ngữ cảnh mới chỉ được nhìn hình.** `references/review.md` quy định reviewer chỉ nhận `verify.md`, thư mục ví dụ, URL và các khung hình; **không** nhận kế hoạch hay lý do của người dựng, và không nhận `REHEARSAL.md`. Mọi phát hiện phải trỏ tới một file khung hình cụ thể, và "đoán trước một lỗi" không được tính là phát hiện. Cuối cùng phải nộp `REHEARSAL.md` ghi ví dụ gold đã chép, những gì đã đổi và **những gì chưa kiểm**.
+- **Chi phí ngữ cảnh cao.** SKILL.md bắt đọc `craft.md` "in full", rồi `framing.md`, `motion.md`, `rehearse.md`, `verify.md`, `teaching.md` và phần `kit.md` của các part dùng tới; thêm cả mã ví dụ gold sẽ chép. Một lượt dựng thực tế dễ tốn hàng chục nghìn token.
+- **Chỉ dành cho React.** Kit là component React kèm CSS riêng. Dự án Vue, Svelte hay HTML tĩnh phải tự chuyển, hoặc dựng trong một đảo React riêng.
+- **Phạm vi hẹp và có chủ đích:** chỉ làm minh họa giao diện giả (hero, feature card, bento, demo con trỏ), không dựng UI thật. Các hàm `a.click()` / `a.set()` chỉ vẽ con trỏ và đổi state, không điều khiển trình duyệt.
+- **Bảo mật:** không `postinstall`, không telemetry, không gọi mạng lúc chạy (NOTICE ghi playground không tải font hay ảnh từ ngoài; grep `scripts/` và `kit/` không thấy `fetch`, chỉ có `xmlns`). `child_process` chỉ dùng để chạy lại chính `film.mjs` khi dev server reload và để khởi động Vite/portless.
+- **Rủi ro nhãn hiệu:** ví dụ mô phỏng Figma, Linear, Slack, Notion, Gmail, Spotify, Office…, kèm app icon thật lấy từ app bundle. Đem lên trang marketing thật thì phải thay bằng sản phẩm của mình. `references/products.md` cũng dặn "borrow the interaction, not another product's identity".
+- **Tuổi đời:** mới 1 commit và chưa có lịch sử bảo trì. `lucide-react` ghim cứng `0.468.0`, `playwright-core` `~1.48.2` (mới nhất đã 1.5x), nên cần kiểm Chrome hệ thống có tương thích không.
+- Tác giả tự nhận trong bài viết: skill "phản ánh gu của tôi, không trung lập"; vòng đầu "thường tiến một bước lớn" nhưng vẫn cần vài vòng góp ý; bộ kiểm "bắt lỗi chứ không bắt ý tưởng nhạt"; skill không vẽ được minh họa hay ảnh chụp.
+
+### 7s.4 So với các mục đã có
+
+| | Stageshow | Hallmark (§7l) | Taste Skill (§7j) | transitions.dev (§7p.5) | Remotion / HyperFrames skill (mục 22 §2) |
+|---|---|---|---|---|---|
+| Sản phẩm đầu ra | Minh họa UI giả (ảnh tĩnh hoặc loop) nhúng vào trang | Trọn một trang marketing | Luật thẩm mỹ cho UI thật | Chuyển cảnh và motion UI | Video MP4 |
+| Kit kèm theo | **Kit React** (Stage, Window, Phone, Act, 13 primitive motion) + 69 ví dụ | 48 theme | Không | Có thư viện luật | Engine chính thức |
+| Cổng máy | Quay phim (contact sheet), dò nhảy hình học từng frame, layout, trùng class; `--gate` | `sloplint` + Puppeteer nếu có Chrome | Inspector trên trình duyệt | Rule CLI | Render |
+| Review | Ngữ cảnh mới, **chỉ nhận khung hình** | Ngữ cảnh mới (Claude Code/OpenCode) | Không | Không | Tùy skill |
+| License | MIT (trừ icon/logo) | MIT | MIT | License riêng, cấm phân phối lại thư viện | Remotion: công ty ≥ 4 người phải mua license; HyperFrames Apache-2.0 |
+
+Stageshow khác các skill thiết kế khác ở chỗ: (1) chọn "ví dụ gold gần nhất" rồi **chép và sửa**, không viết lại từ đầu; (2) kiểm motion bằng **chuỗi khung hình**, vì một ảnh chụp bỏ qua chuyển động ở giữa; (3) có luật cấm "sửa lỗi bằng cách giấu lỗi".
+
+### 7s.5 Dùng thế nào
+
+- **Hợp:** hero, feature card và bento minh họa sản phẩm trên trang marketing hay docs của dự án React, khi có người để duyệt từng vòng.
+- **Cài:** đừng cài vào repo dữ liệu như kho này. Cài vào dự án site, ghim theo commit (`benjitaylor/skills@8020574`), vì CLI `skills` lấy nhánh mặc định. Chép `kit/` vào dự án như hướng dẫn, và giữ `NOTICE.md` cùng license riêng của `kit/brands/`.
+- **Trước khi dùng:**
+  - xoá app icon và logo không thuộc mình khỏi bản phát hành;
+  - đặt `CHROME_PATH` (CI Linux thường không có `channel: 'chrome'`);
+  - chạy `npm run typecheck` và `npm run check:css` sau mỗi lần sửa kit.
+- **Dùng lại từng phần, kể cả khi không làm faux UI:**
+  - quy ước "reviewer chỉ nhận hình, không nhận lý do của người dựng";
+  - bảng dòng báo "không bao giờ là cố ý", cùng luật cấm làm cho cổng xanh bằng cách giấu lỗi;
+  - `REHEARSAL.md` ghi rõ phần **chưa kiểm**;
+  - mã thoát 2 cho kết quả "inconclusive" (giống XT-H-029).
+- **Không cần** nếu chỉ cần ảnh chụp sản phẩm thật, hoặc cần video dài: dùng Remotion hay HyperFrames (mục 22).
+
+**Nguồn §7s:** clone github.com/benjitaylor/skills 2/11/2026 (`--filter=blob:none`, 1 commit, HEAD 8020574 30/10/2026; README.md, AGENTS.md, CLAUDE.md, stageshow/{SKILL.md, LICENSE, NOTICE.md, package.json, references/{rehearse,review,looks,…}.md, kit/{looks.ts, act.ts}, scripts/{film,browser,dev}.mjs, assets/app-icons.ts}); chạy `npm ci --ignore-scripts`, `npm run typecheck`, `npm run check:css` (Node 22.23) · github.com/benjitaylor/skills (622★, 29 fork, 2/11/2026) · benji.org/stageshow (31/10/2026) · tác giả: theblock.co/post/395222/elon-musk-taps-benji-taylor, pymnts.com/?p=3595047, kucoin.com/news/flash/x-platform-appoints-benji-taylor-as-head-of-design · tìm web 2/11/2026 không thấy bài review độc lập nào về Stageshow · số view/bookmark trong ảnh lấy từ bài đăng X (chưa xác minh)
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
