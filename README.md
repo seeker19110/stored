@@ -324,6 +324,10 @@ design-os-vietnamese (mục 18 §5d) có cách kiểm luật chặt nhất trong
 
 Kornia (mục 14 §5f, 12k★) là thư viện thị giác máy tính khả vi trên PyTorch. Lộ trình mới nói thẳng rằng lỗi nguy hiểm nhất của mã hình học là sai quy ước: code vẫn chạy nhưng sai về toán, "exactly the error class LLMs reproduce". Vì vậy dự án ưu tiên ghi rõ quy ước, ghim bằng test (đã có 1.413 test `test_convention_*`), và một bộ conformance vector để các bản port cũng như mã do agent viết tự kiểm, thay vì mở rộng API. Đây là mẫu đáng chép cho mọi thư viện mà agent hay dùng sai. Ảnh khớp ở phiên bản và license; con số "1.200+ operator" chưa kiểm được; một tính năng README nêu là của bản 0.9.1, bản này chưa phát hành.
 
+### 46. AI-Money (3/11/2026): thực nghiệm "AI tự kiếm tiền" có webhook làm đúng nhưng tăng trưởng dựa vào bot lách bộ lọc
+
+AI-Money (mục 21 §10g) giao cho một agent 20 ngày để tự kiếm doanh thu thật nuôi server, bằng Python thuần, SQLite, Gemini và VietQR. Phần tiền làm đúng: webhook SePay/Casso so HMAC an toàn và từ chối khi chưa cấu hình. Phần kéo người dùng là bot điều khiển Chrome đã đăng nhập Facebook, đăng bài nhóm và trả lời bình luận, kèm skill viết rõ cách lách bộ lọc Admin Assist; site thu số điện thoại và ngày sinh mà không thấy chính sách bảo mật; repo không có license. Bài học: "agent tự vận hành" chỉ đáng học ở phần có cổng kiểm (thanh toán), còn phần tăng trưởng tự động hóa tài khoản cá nhân là rủi ro pháp lý và rủi ro nền tảng, không phải mẫu để chép.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

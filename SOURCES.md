@@ -1515,3 +1515,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03g (ảnh README kornia/kornia → mục 14 §5f)
 
 - `kornia/kornia`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (4.748 commit từ 22/8/2018, HEAD `a733fe3b6248652b0a509d002cf452b2167965f0`, tag v0.9.0): README.md, ROADMAP.md, AI_POLICY.md, CONTRIBUTING.md, LICENSE, pyproject.toml, `.github/workflows/*`; đếm `test_convention_*`, `gradcheck`, `__all__`. https://pypi.org/pypi/kornia/json · PyPI integrity API · https://pypistats.org/api/packages/kornia/recent · GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03h (ảnh link duongbirken2510/AI-Money → mục 21 §10g, trỏ chéo 18 §4b)
+
+- `duongbirken2510/AI-Money`: ảnh dòng link người dùng gửi 3/11/2026; clone đủ lịch sử (2 commit, HEAD `31a660d6a26ff92691949c76cdf63bd71fbc9f0a`): README.md, `server.py`, `agent_worker.py`, `fb_poster.py`, `numerology_comment_bot.py`, `.agents/skills/facebook-group-posting/SKILL.md`, `public/*.html` (grep chính sách bảo mật). GitHub search API 3/11/2026. Không cài, không chạy, không truy cập kiemtien.deta.vn.
