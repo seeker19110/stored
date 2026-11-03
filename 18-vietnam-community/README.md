@@ -126,6 +126,66 @@
 
 **Nguồn §4d:** GitHub search API 31/10/2026 (`repo:` cho repo cũ, 16 truy vấn) · `git ls-remote` cho `DAMO-NLP-SG/SeaLLMs`, `Viet-Mistral/Vistral-7B-Chat` · clone `undertheseanlp/underthesea` (LICENSE, `git log -- LICENSE`) · clone `--filter=blob:none` 7 repo mới, đọc: vietnamese-provinces-database (LICENSE, README (bảng nghị quyết, Download, GIS, FAQ), AGENTS.md, workflows), local_ai_ocr (LICENSE, README, `env_setup_linux.sh`, `requirements.txt`, `src/{transformers_service,lang_handler,config}.py`), elasticsearch-analysis-vietnamese (README, git log, tags), v-tts (LICENSE, README, `dist/`, `src/`), ZeroTTS (LICENSE, NOTICE, LICENSES/, README (Install, Benchmarks, License), `src/zerotts/{hub,cli}.py`), Vietnamese_LLMs (LICENSE, README, git log), gipformer (README, cây file) · https://huggingface.co/g-group-ai-lab/gipformer1.5-68M-rnnt · https://huggingface.co/zeroweight-ai/ZeroTTS · https://sapnhap.bando.com.vn (link trong README, chưa mở)
 
+## 4e. Hồ sơ mhfed/vn-law-check: skill audit pháp lý website và mobile app theo luật Việt Nam 2025–2026 (link người dùng gửi, đọc mã 3/11/2026)
+
+> Đọc mã tại `5847e324337faab6886b6aedfd4e9bea4e0f2fea` (v1.3.0, 2/11/2026). Clone đủ lịch sử: 18 commit, toàn bộ trong ngày 2/11/2026, một tác giả. Số sao lấy từ GitHub search API ngày 3/11/2026. **Không chạy, cài hay build mã của repo**; `tests/run.sh` và `scan.sh` chỉ được đọc. Điều khoản luật đối chiếu với tóm tắt của EY và Luật Việt An, **chưa đọc toàn văn** (thuvienphapluat trả 403).
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / URL | https://github.com/mhfed/vn-law-check |
+| Mô tả 1 dòng | Bộ checklist + skill cho coding agent (Claude Code, Cursor, Copilot, Windsurf, Cline, Codex): quét code hoặc URL để phân loại site, rồi audit theo luật dữ liệu cá nhân, TMĐT, an ninh mạng, người tiêu dùng, quảng cáo, giao dịch điện tử và AI của Việt Nam, có dẫn Điều/khoản |
+| Loại | checklist / agent skill + Claude plugin marketplace |
+| License | MIT cho mã và cấu trúc. GitHub hiện `NOASSERTION` vì file `LICENSE` có thêm đoạn ghi chú sau văn bản MIT. Dòng copyright ghi "Contributors to vn-web-compliance-audit", là tên cũ của dự án. Văn bản pháp luật được dẫn là tài liệu công khai, không thuộc phạm vi license |
+| Phiên bản đã đọc | `5847e324337faab6886b6aedfd4e9bea4e0f2fea` (plugin.json `1.3.0`) |
+| Kiểm chứng | 2026-11-03; code-read: README, LICENSE, SKILL.md, AGENTS.md, 10 file `references/`, `sources/legal-references.md`, `scripts/scan.sh`, `scripts/fetch-site.sh`, `install.sh`, `tools/sync.sh`, `tests/run.sh` + 8 fixture `EXPECTED`, `.github/workflows/check.yml`, `.claude-plugin/marketplace.json`, `plugin.json`. Chưa chạy test |
+| ★ (ngày) | 126★, 29 fork (2026-11-03, GitHub search API). Repo tạo 2/11/2026. Topic: `claude-plugin`, `agent-skills`, `cursor-rules`, `legal-tech`, `vietnam` |
+| Tác giả | `mhfed`: dev web/TypeScript cá nhân. Các repo khác đều dưới 10★ (`next-query-sync`, `react-shadcn-shopping-cart`, `gom`…). README tự nhận "Mình là dev, không phải luật sư". Web search 3/11/2026 chưa thấy bài viết hay thảo luận bên ngoài về repo |
+
+**Cấu trúc thật (đối chiếu với README)**
+
+- **Một nguồn, nhiều bản copy.** Nguồn gốc là `AGENTS.md`, `SKILL.md`, `references/`, `sources/`, `examples/`, `scripts/`. `tools/sync.sh` sinh ra `CLAUDE.md`, `.windsurfrules`, `.clinerules`, `.github/copilot-instructions.md`, `.cursor/rules/*.mdc` (thêm frontmatter) và bản trong `plugins/vn-law-check/` (copy file thật, vì thư mục plugin của Claude không nhận symlink). CI chạy `sync.sh --check` và báo lỗi khi bản copy bị lệch so với nguồn.
+- **Triage trước khi audit** (`references/00-triage.md`). `scan.sh` grep 10 nhóm tín hiệu (FORM, TRACKING, COMMERCE, AUTH, MARKETPLACE, AI, PERMISSIONS, SDK_TRACKING, ADS_SDK, FOREIGN_HOST), nhận diện Flutter/React Native/Expo/Android/iOS, rồi in `LEVEL=0..3 AI= FOREIGN_HOST= APP=` kèm bằng chứng `file:dòng:đoạn khớp`. Site mức 0 chỉ nhận 1 dòng kết luận, không phải bảng checklist dài. Regex có mẫu cho JSX đã compile (`jsx("form"`) để bắt form trong bundle React/Next. Script chạy được trên bash 3.2 của macOS vì không dùng `declare -A`.
+- **Quét theo URL** (`fetch-site.sh`): tải trang chủ, tối đa 15 trang cùng gốc có tên gợi ý chính sách/giỏ hàng/đăng nhập và tối đa 20 file JS, rồi quét như code. Header phản hồi được dùng để đoán hosting (Vercel, Cloudflare, CloudFront…).
+- **Test**: 8 fixture (static-blog, landing-form, shop, marketplace, ai-chat, spa-url phục vụ qua `python3 -m http.server`, rn-app, flutter-shop), mỗi fixture có `EXPECTED` dạng `LEVEL=… AI=… APP=…`.
+- **Cách ghi chưa chắc chắn**: điều khoản nào chưa đối chiếu toàn văn thì ghi `CHƯA XÁC MINH` ngay tại chỗ, và SKILL.md cấm agent tự điền số điều hay mức phạt cho các mục đó. Mỗi phát hiện xếp 🔴/🟡/🟢/⚪. Báo cáo phải đóng bằng phần giới hạn và khuyến nghị tham vấn luật sư.
+- **Không có telemetry.** Mạng chỉ dùng trong `fetch-site.sh` (GET tới site đang quét, UA `vn-law-check (+github…)`) và `install.sh` (`git clone` nhánh `main`).
+
+**Vì sao đáng tham khảo**
+
+- Đây là bộ rule compliance theo **luật Việt Nam mới** đầu tiên cho coding agent mà kho tìm được. Các bộ privacy lớn hơn vẫn dẫn luật cũ: `mukul975/Privacy-Data-Protection-Skills` (328★, Apache-2.0, đọc HEAD `9b2ef9e` ngày 16/3/2026) vẫn ghi "Decree 13/2023/ND-CP" trong nhiều skill APAC, trong khi NĐ 13 hết hiệu lực từ 01/01/2026.
+- Mẫu đáng học cho mọi skill "audit theo luật": **triage bằng máy có bằng chứng** → chỉ mở checklist áp dụng được → mỗi dòng có Điều/khoản → chỗ chưa kiểm ghi rõ và cấm agent bịa. Cách này khác GESF (mục 09 §2b), nơi công cụ tự chấm điểm "100%".
+- Thời hạn xử lý quyền chủ thể dữ liệu ghi theo **Điều 5 NĐ 356/2025**: phản hồi 2 ngày làm việc; xem/sửa 10 ngày; rút đồng ý/hạn chế/phản đối 15 ngày; xóa 20 ngày. Hai bản tóm tắt độc lập (EY, Luật Việt An) cho cùng các mốc này, kèm mốc 15/20/30 ngày khi phải phối hợp bên thứ ba. Mốc "72 giờ" chung là của NĐ 13/2023 cũ. Chỗ này lệch với X-Templates (xem dưới).
+- Tách nguồn khỏi bản copy cho từng công cụ và có CI chặn lệch là cách phân phối một bộ rule cho 6 agent mà không phải sửa tay 6 chỗ.
+
+**Hạn chế / rủi ro (tự kiểm 3/11/2026)**
+
+- ⚠️ **README ghi "còn 32 chỗ CHƯA XÁC MINH", nhưng tại HEAD đếm được 43 dòng** trong `references/`. 11 dòng thêm đến từ `09-mobile-app.md`, mới thêm ở v1.3.0 (43 − 11 = 32), nên con số trong README đã cũ sau đợt thêm mobile.
+- ⚠️ Bảng mức trong `00-triage.md` ghi mức 3 = "Toàn bộ `01`–`08`" và "không áp đủ 8 checklist", chưa tính `09-mobile-app`. Bảng mô tả mức 3 là "có tài khoản, **hoặc** xử lý dữ liệu lớn, **hoặc** là nền tảng", nhưng `scan.sh` chỉ xếp mức 3 khi có **cả** AUTH **và** MARKETPLACE. Một SaaS có đăng nhập mà không có từ khóa người bán sẽ bị xếp mức 1 hoặc 2.
+- ⚠️ `fetch-site.sh` lọc link cùng gốc bằng so khớp tiền tố (`[[ "$href" == "$origin"* ]]`), nên `https://shop.vn.example.com/...` vẫn lọt qua khi quét `https://shop.vn`. Thêm vào đó `curl -L` đi theo redirect sang miền khác. Tuyên bố "không gửi request đi đâu khác" vì vậy chỉ đúng với site bình thường **(suy từ mã, chưa chạy thử)**.
+- Grep heuristic: chữ "thanh toán" trong bài blog cũng bị tính là COMMERCE, và tài liệu tự nói phải xem lại bằng chứng. Quét qua URL không thấy được phía server (chatbot gọi AI ở backend, nơi lưu dữ liệu).
+- Tuổi đời một ngày, một tác giả không phải luật sư, chưa có issue hay PR từ bên ngoài. Phần lớn số điều lấy từ tóm tắt của công ty luật và báo chí. Mức phạt NĐ 330/2026 và toàn bộ khung phạt TMĐT, quảng cáo, AI còn `CHƯA XÁC MINH`.
+- Cài bằng `curl … | bash` sẽ clone `main` không ghim tag. `install.sh` chèn khối có marker vào `AGENTS.md`/`CLAUDE.md` của dự án (không ghi đè, chạy lại không chèn trùng) nhưng xóa và tạo lại `.vn-law-check/` mỗi lần chạy.
+
+**So với lựa chọn cùng loại (GitHub search API 3/11/2026)**
+
+| Repo | ★ · license | Phạm vi | Khác biệt |
+|---|---|---|---|
+| **mhfed/vn-law-check** | 126 · MIT (+ghi chú) | Luật VN 2025–2026, web + mobile | Triage bằng `scan.sh` + fixture CI. Đánh dấu `CHƯA XÁC MINH` tại chỗ |
+| `waldo-van-der-code/deutsches-recht-mit-claude` | 44 · MIT (`4c5e72d`, 20/10/2026) | DSGVO/BFSG/Widerruf của Đức | Mẫu gần nhất: 4 skill thuần Markdown, `/legal-audit` quét code hoặc URL. Không có script quét hay test |
+| `mukul975/Privacy-Data-Protection-Skills` | 328 · Apache-2.0 (`9b2ef9e`, 16/3/2026) | 282+ skill GDPR/CCPA/PIPL/DPDP… | Rộng nhưng phần Việt Nam còn dẫn NĐ 13/2023 đã hết hiệu lực |
+| `Sushegaad/Claude-Skills-Governance-Risk-and-Compliance` | 1.031 · MIT | ISO 27001, SOC 2, GDPR… | Hướng dẫn GRC tổng quát, không theo luật VN **(chỉ đọc mô tả)** |
+| `greenarmor/GESF` (mục 09 §2b) | 48 · MIT | GDPR/OWASP/CIS dạng control JSON | CLI tự chấm điểm, không có checklist VN |
+
+**Tích hợp**
+
+- Dùng làm **bước rà soát ban đầu** trước khi phát hành site hoặc app có người dùng Việt Nam. Không dùng làm bằng chứng tuân thủ gửi ra ngoài. Ghim commit hoặc tag khi cài (`git clone` rồi checkout `5847e32`) thay vì `curl | bash` vào `main`.
+- Dự án đã có khung compliance (X-Templates `framework/16-compliance-privacy/vietnam-data-law.md`) nên đối chiếu từng mốc thời hạn và số điều, chưa nên nhúng nguyên bộ. Phần đáng lấy là triage và kỷ luật `CHƯA XÁC MINH`.
+- Khi quét URL của site người khác: chỉ dùng kết quả để báo riêng cho chủ site, đúng như README dặn.
+
+**Liên quan:** mục 09 §2b (GESF), mục 20 (Claude plugin marketplace, SKILL.md), mục 04 (AGENTS.md), §4b (pháp lý số tại VN, nhận định NĐ 13/2023 lấy từ docs nội bộ đã cũ), mục 23.
+
+**Nguồn §4e:** clone đủ lịch sử `mhfed/vn-law-check` HEAD `5847e324337faab6886b6aedfd4e9bea4e0f2fea` (3/11/2026) · GitHub search API 3/11/2026 (`repo:mhfed/vn-law-check`, `user:mhfed`, 3 truy vấn chủ đề compliance/GDPR skill) · clone `--depth 1 --filter=blob:none`: `waldo-van-der-code/deutsches-recht-mit-claude` `4c5e72d`, `mukul975/Privacy-Data-Protection-Skills` `9b2ef9e` (grep "Decree 13/2023") · https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-so-356-2025-nd-cp-quy-dinh-chi-tiet-mot-so-dieu-va-bien-phap-thi-hanh-luat-bao-ve-du-lieu-ca-nhan · https://luatvietan.vn/diem-moi-cua-nghi-dinh-356-2025-so-voi-nghi-dinh-13-2023-ve-huong-dan-bao-ve-du-lieu-ca-nhan.html · https://english.luatvietnam.vn/legal-updates/the-latest-law-on-personal-data-protection-and-the-guiding-documents-892-106778-article.html
+
 ## 5. Gợi ý bổ sung tiếp
 
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.

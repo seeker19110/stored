@@ -72,7 +72,7 @@
       "product-research",
       "feature-management"
     ],
-    "count": 990,
+    "count": 991,
     "schema_version": 2
   },
   "projects": [
@@ -6160,9 +6160,9 @@
       "repo": "miqdadbadjuber/anti-slop",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 7761,
+      "stars": 8025,
       "open_source": true,
-      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i; ★ 31/10/2026: 7.761 (GitHub API)",
+      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i; ★ 31/10/2026: 7.761 (GitHub API); đọc lại 3/11/2026 (§7i.6): v3.2.25, 40 luật R-01…R-40, lõi 53,7 KB, lỗi 18px vẫn còn; ★ 3/11/2026: 8.025 (GitHub search API)",
       "section": "06",
       "id": "antislop",
       "profile_path": "06-ui-ux-design/README.md"
@@ -12971,6 +12971,33 @@
       "verification_level": "docs-read",
       "sources": [
         "https://fontinlogo.com/"
+      ]
+    },
+    {
+      "name": "vn-law-check",
+      "repo": "mhfed/vn-law-check",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 126,
+      "open_source": true,
+      "notes": "Skill/rules audit pháp lý website + mobile app theo luật VN 2025–2026 (BVDLCN 91/2025 + NĐ 356/2025, TMĐT 122/2025, ANM 116/2025, AI 134/2025) cho Claude Code/Cursor/Copilot/Windsurf/Cline/Codex; scan.sh triage LEVEL 0–3 bằng grep có bằng chứng + 8 fixture CI, quét URL qua fetch-site.sh; sync.sh sinh bản copy theo từng tool, CI chặn lệch; đánh dấu CHƯA XÁC MINH tại chỗ (README ghi 32, đếm được 43 dòng sau v1.3.0); mức 3 cần AUTH+MARKETPLACE (lệch bảng triage); lọc cùng gốc bằng tiền tố + curl -L; LICENSE MIT kèm ghi chú (GitHub NOASSERTION); tác giả không phải luật sư, repo 1 ngày tuổi; ★ 3/11/2026: 126 (GitHub search API), mục 18 §4e",
+      "section": "18",
+      "id": "vn-law-check",
+      "profile_path": "18-vietnam-community/README.md",
+      "profile_anchor": "18-vietnam-community/README.md#4e-hồ-sơ-mhfedvn-law-check-skill-audit-pháp-lý-website-và-mobile-app-theo-luật-việt-nam-20252026-link-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "5847e324337faab6886b6aedfd4e9bea4e0f2fea",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/LICENSE",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/README.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/SKILL.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/references/00-triage.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/references/01-personal-data-protection.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/scripts/scan.sh",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/scripts/fetch-site.sh",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/tools/sync.sh",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/.github/workflows/check.yml"
       ]
     }
   ]
