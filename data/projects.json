@@ -72,7 +72,7 @@
       "product-research",
       "feature-management"
     ],
-    "count": 992,
+    "count": 993,
     "schema_version": 2
   },
   "projects": [
@@ -13025,6 +13025,33 @@
         "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/ai/src/cli_agents/adapters.rs",
         "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/ai/src/cli_agents/adapters/antigravity.rs",
         "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/.github/workflows/ci.yml"
+      ]
+    },
+    {
+      "name": "Trail-code (graft)",
+      "repo": "trailhq/Trail-Code",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 11040,
+      "open_source": true,
+      "notes": "Context layer cho coding agent: graft map (tree-sitter, chỉ mục hàm/caller, markdown dưới graft/, auto-sync) + learnings đội trong .trail/ qua git + skills tự học; hook sâu cho Claude Code (prompt/pre-bash/pre-edit/stop, đọc nhánh mở của đồng đội); trail init đọc transcript Claude Code cũ + review 50 PR qua gh; telemetry PostHog bật mặc định, allowlist trong contract.ts, key chỉ có trong gói npm, sự kiện install gửi ngay từ postinstall (cần DO_NOT_TRACK=1 trước khi cài); SWE-bench Verified n=50 tự chạy 27→33 (chưa xác minh); npm @nanonets/graft + @trailhq/trail-code 0.28.1, ~97,7k tải/tháng (3/10–1/11); OpenSSF 7.2; ★ 3/11/2026: 11.040 (GitHub search API), mục 16 §2j",
+      "section": "16",
+      "id": "trail-code",
+      "profile_path": "16-docs-tools/README.md",
+      "profile_anchor": "16-docs-tools/README.md#2j-hồ-sơ-trailhqtrail-code-trail-code-tên-cũ-graft-bản-đồ-code--learnings-cho-coding-agent-telemetry-bật-mặc-định-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "b9c2e23e9b579200dba83d47e8dbdd8a488b6988",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/README.md",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/TELEMETRY.md",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/LICENSE",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/package.json",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/scripts/postinstall.mjs",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/scripts/stamp-telemetry-key.mjs",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/src/claude/pre-bash.ts",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/.github/workflows/ci.yml",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/.github/scripts/npm-downloads-badge.mjs"
       ]
     }
   ]
