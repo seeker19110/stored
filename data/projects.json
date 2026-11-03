@@ -70,9 +70,10 @@
       "cad-bim",
       "product-analytics",
       "product-research",
-      "feature-management"
+      "feature-management",
+      "computer-vision"
     ],
-    "count": 993,
+    "count": 994,
     "schema_version": 2
   },
   "projects": [
@@ -13078,6 +13079,31 @@
         "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/src/claude/pre-bash.ts",
         "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/.github/workflows/ci.yml",
         "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/.github/scripts/npm-downloads-badge.mjs"
+      ]
+    },
+    {
+      "name": "Kornia",
+      "repo": "kornia/kornia",
+      "category": "computer-vision",
+      "license": "Apache-2.0",
+      "stars": 12188,
+      "open_source": true,
+      "notes": "Thư viện thị giác máy tính khả vi trên PyTorch (epipolar, camera, RANSAC/minimal solver theo lô, augmentation); ROADMAP: thành đặc tả thực thi được (1.413 test_convention_*, dự kiến conformance corpus cho port và mã do LLM sinh, Tier A mới là đề xuất); 0.9.0 trên PyPI (Python ≥3.11, torch ≥2.5.1, kornia_rs), trusted publishing nhưng không có provenance; 999/1.456 commit từ 1/8/2026 có trailer Claude, AI_POLICY không phân loại theo mức dùng AI; '1,200+ operators' chưa xác minh (đếm __all__ được 712); 2,18 triệu tải/tháng (pypistats); ★ 3/11/2026: 12.188 (GitHub search API), mục 14 §5f",
+      "section": "14",
+      "id": "kornia",
+      "profile_path": "14-voice-multimodal/README.md",
+      "profile_anchor": "14-voice-multimodal/README.md#5f-hồ-sơ-korniakornia-thư-viện-thị-giác-máy-tính-khả-vi-trên-pytorch-đang-chuyển-sang-làm-đặc-tả-thực-thi-được-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "a733fe3b6248652b0a509d002cf452b2167965f0",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/README.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/ROADMAP.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/AI_POLICY.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/CONTRIBUTING.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/LICENSE",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/pyproject.toml",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/.github/workflows/pypi-release.yml"
       ]
     }
   ]

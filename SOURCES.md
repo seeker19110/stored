@@ -1511,3 +1511,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03f (link jangtrinh/design-os-vietnamese → mục 18 §5d)
 
 - `jangtrinh/design-os-vietnamese`: link người dùng gửi 3/11/2026; clone `--filter=blob:none` (63 commit từ 26/10/2026, HEAD `63dc65459628c72bf44691ded75c195d69f9e1d7`, không đổi từ 2/11): README.md, LICENSE, `shared/references/*.md`, `shared/scripts/*.py`, `knowledge/ecommerce-retail-and-consumer-law.md`, `knowledge/_evidence/vn-design-os-261026/{state,review}.json`, `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md`, `.github/workflows/*`, `evals/*/pairs.jsonl`. GitHub search API 3/11/2026. Không chạy mã.
+
+## Bổ sung 2026-11-03g (ảnh README kornia/kornia → mục 14 §5f)
+
+- `kornia/kornia`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (4.748 commit từ 22/8/2018, HEAD `a733fe3b6248652b0a509d002cf452b2167965f0`, tag v0.9.0): README.md, ROADMAP.md, AI_POLICY.md, CONTRIBUTING.md, LICENSE, pyproject.toml, `.github/workflows/*`; đếm `test_convention_*`, `gradcheck`, `__all__`. https://pypi.org/pypi/kornia/json · PyPI integrity API · https://pypistats.org/api/packages/kornia/recent · GitHub search API 3/11/2026. Không cài, không chạy.
