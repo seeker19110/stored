@@ -1499,3 +1499,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03c (ảnh README storytold/craft-anything → mục 01 §3m)
 
 - `storytold/craft-anything`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (211 commit 31/10–3/11/2026, HEAD `8638d6b72be3e99dcc73b06f92a8c113932c75f7`, tag v0.3.0): README.md, LICENSE-MIT/APACHE, NOTICE, `docs/brand/LICENSE-brand.txt`, `crates/engine/src/{clean_room,lib,settings}.rs`, `crates/ai/src/cli_agents/adapters.rs` + `adapters/antigravity.rs`, `.github/workflows/*`; grep `telemetry|posthog|sentry|analytics`, `drm|anti-cheat`. GitHub search API 3/11/2026 (`user:storytold`, `repo:storytold/craft-anything`, `repo:morluto/rea`). Không cài, không build.
+
+## Bổ sung 2026-11-03d (ảnh README trailhq/Trail-Code → mục 16 §2j)
+
+- `trailhq/Trail-Code`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (702 commit từ 3/7/2026, HEAD `b9c2e23e9b579200dba83d47e8dbdd8a488b6988`): README.md, TELEMETRY.md, LICENSE, package.json, `scripts/postinstall.mjs`, `scripts/stamp-telemetry-key.mjs`, `src/claude/pre-bash.ts`, `.github/workflows/ci.yml`, `.github/scripts/npm-downloads-badge.mjs`. registry.npmjs.org (`@trailhq/trail-code`, `@nanonets/graft` latest 0.28.1) · api.npmjs.org downloads last-month (3/10–1/11/2026: 13.316 + 84.387) · api.securityscorecards.dev (7.2, 2/11/2026) · GitHub search API 3/11/2026. Không cài, không chạy.
