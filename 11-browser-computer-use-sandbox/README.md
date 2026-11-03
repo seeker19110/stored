@@ -546,6 +546,44 @@ Framework nghiên cứu của ServiceNow trên BrowserGym, quản lý study, son
 
 **Nguồn §3e:** [Playwright LICENSE](https://github.com/microsoft/playwright/blob/820620c98b359f4bb16e1596fd16d6b1a354b2f3/LICENSE); [AgentLab LICENSE](https://github.com/ServiceNow/AgentLab/blob/8488c564eea0525aaff5dea189bb03a9b529546e/LICENSE); [Playwright auth](https://playwright.dev/docs/auth), [BrowserGym ecosystem paper](https://arxiv.org/abs/2412.05467). Nguồn implementation và CI được ghim ngay trong hồ sơ.
 
+## 3f. Hồ sơ radareorg/radare2 (r2): bộ công cụ dịch ngược dòng lệnh, nay có AGENTS.md, MCP server và r2ai cho agent (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: logo r2, "Radare2: Libre Reversing Framework for Unix Geeks", badge CI, build, tcc (đều passing), "openssf best practices in progress 82%", "coverity passed 4 new defects", "radare 1.1K members", dòng "Current git master branch is 6.2.5, next release will be 6.2.6", ảnh chụp giao diện panels (thanh ghi, menu, disassembly, danh sách hàm, graph). Đã clone `--filter=blob:none` đủ lịch sử, HEAD `55b6a167acef2fbc8fd94776c1cdee2448a30ecb` (2/11/2026). **Không build, không chạy.** Dịch ngược là công cụ hai mặt: chỉ dùng trên phần mềm của mình hoặc khi được phép (CTF, nghiên cứu, kiểm thử có hợp đồng).
+
+### 3f.1 Kiểm ảnh
+
+| Ô trong ảnh | Kết quả | Đối chiếu (3/11/2026) |
+|---|---|---|
+| "master is 6.2.5, next release 6.2.6" | ✅ đúng nghĩa nhánh phát triển | `configure.acr:2` `VERSION 6.2.5`. Nhưng **tag phát hành mới nhất là 6.2.4** (5/10/2026); dãy tag 6.2.0, 6.2.2, 6.2.4 cho thấy số lẻ là bản đang phát triển. Ai cài bản phát hành sẽ nhận 6.2.4 |
+| "Distributed under LGPLv3, despite each plugin can have different licenses (see `r2 -Lj`)" | ✅ | `COPYING.md`: phần lớn LGPLv3, plugin và phụ thuộc có license khác; có cờ `--without-gpl` để bỏ phần GPL khi build tĩnh. GitHub hiển thị `NOASSERTION` vì có nhiều license |
+| "embedded Javascript interpreter or via r2pipe" | ✅ | QuickJS nằm trong `shlr/qjs`, plugin ngôn ngữ `libr/lang/p/qjs.c`. r2pipe ở repo riêng `radareorg/radare2-r2pipe` (468★) |
+| Badge CI, build, tcc, Coverity | ✅ có workflow | `.github/workflows/`: `ci.yml`, `build.yml`, `tcc.yml`, `coverity-scan.yml`, `codeql-analysis.yml`, `semgrep.yml`, `qemu.yml`. Trạng thái passing và "4 new defects" của Coverity là ảnh chụp tại thời điểm đó **(không kiểm lại)** |
+| "openssf best practices in progress 82%" | ⚠️ chưa đạt | Badge tự nó ghi là đang làm, chưa đạt mức passing |
+| ★ | – | 25.282★, 3.407 fork, 792 issue+PR mở (GitHub search API) |
+
+### 3f.2 Đọc mã: điều đáng ghi
+
+- **Dự án lâu đời, một người dẫn dắt.** 38.595 commit từ 5/2/2009. Từ 1/8/2026 có 2.056 commit, trong đó `pancake` (Sergi Àlvarez, hai email) chiếm khoảng 1.337, tức hơn 60%. Chỉ 9 commit có trailer Co-Authored-By Claude/Anthropic.
+- **Có `AGENTS.md` cho agent viết mã**: sửa nhỏ nhất có thể, tìm symbol trước rồi chỉ đọc phần liên quan, theo quy ước bộ nhớ (kiểm overflow bằng `r_mul_overflow_*` trước khi cấp phát, cấm `alloca` và mảng độ dài biến đổi trên stack), build bằng `make` ở gốc chứ không biên dịch lẻ từng file, test theo `test/db/` (1.051 file). Đây là mẫu AGENTS.md tốt cho codebase C lớn: ghi đúng quy ước mà agent hay vi phạm.
+- **Hệ sinh thái cho agent** (org `radareorg`): `radare2-mcp` (347★, MIT, "MCP stdio server for radare2", push 15/10/2026) và `r2ai` (508★, MIT, "LLM-based reversing", push 2/11/2026); GUI chính thức `iaito` (GPL-3.0); decompiler `r2ghidra`.
+- ⚠️ **Chính sách bảo mật lạ**: `SECURITY.md` yêu cầu báo lỗ hổng bằng **issue công khai** trên GitHub ("We don't believe in secrecy when security matters"), cam kết sửa trong 24 giờ và **không backport** bản vá cho bản cũ. Hệ quả: phải theo bản mới nhất, và khi mở file hay binary không tin cậy bằng r2 thì nên chạy trong sandbox hoặc máy ảo (mục 11 §3).
+- Cách cài khuyến nghị là build từ git bằng `sys/install.sh`, script dùng `sudo` để cài symlink vào hệ thống. Có thể cài qua `r2env` (pip) hoặc trình quản lý gói (Homebrew, MacPorts…) nếu không muốn chạy script với quyền root.
+- Không thấy mã telemetry (grep chỉ khớp tên syscall `telemetry` trong bảng syscall Darwin).
+
+### 3f.3 So với cùng loại
+
+| Công cụ | ★ (3/11) | License | Khác r2 |
+|---|---|---|---|
+| **radareorg/radare2** | 25k | LGPLv3 (+plugin khác) | Dòng lệnh, nhẹ, script bằng JS/r2pipe, nhiều kiến trúc, debug và emulate (ESIL) |
+| Ghidra (NSA) | – | Apache-2.0 | GUI Java, decompiler mạnh; r2 dùng lại qua `r2ghidra` |
+| `rizinorg/rizin` | – | LGPLv3 | Fork của radare2 từ 2020, ưu tiên API ổn định **(không đọc mã)** |
+| `morluto/rea` (mục 23 §6.4) | API trả số bất thường | MIT | CLI + MCP 95 tool cho agent, có thể dùng Ghidra/Hopper |
+| Craft Anything (mục 01 §3m) | 4,2k | MIT/Apache-2.0 | Engine dịch ngược Rust tự viết + agent dựng lại sản phẩm |
+
+**Dùng thế nào:** cho agent dùng r2 qua `radare2-mcp` thay vì để agent tự gõ lệnh shell; chạy trong container hoặc máy ảo khi phân tích binary lạ; ghim bản phát hành (6.2.4) nếu cần ổn định, hoặc theo master nếu cần bản vá bảo mật mới nhất (vì không có backport).
+
+**Nguồn §3f:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/radareorg/radare2 HEAD `55b6a167acef2fbc8fd94776c1cdee2448a30ecb`: https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/README.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/COPYING.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/AGENTS.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/SECURITY.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/configure.acr · `shlr/qjs`, `libr/lang/p/qjs.c`, `.github/workflows/*`, `sys/install.sh`, `test/db/`; `git tag`, `git shortlog --since=2026-08-01` · GitHub search API `repo:radareorg/radare2`, `org:radareorg` 3/11/2026.
+
 ## 4. Nguồn
 
 - https://gist.github.com/kevinmichaelchen/9d77b8a681238cc45297dff969686175 · https://www.firecrawl.dev/blog/best-browser-agents · https://scrapfly.io/blog/posts/stagehand-vs-browser-use · https://agentscamp.com/guides/comparisons/browser-agents-compared-2026 · https://bug0.com/blog/expect-vs-agent-browser-vs-stagehand-vs-passmark · https://github.com/browserbase/stagehand · https://kanopylabs.com/blog/stagehand-vs-browserbase-vs-steel-browser-ai

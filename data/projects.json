@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 999,
+    "count": 1000,
     "schema_version": 2
   },
   "projects": [
@@ -13217,6 +13217,31 @@
         "https://www.mebius.design/license",
         "https://www.mebius.design/docs",
         "https://www.mebius.design/resources/aivonic"
+      ]
+    },
+    {
+      "name": "radare2 (r2)",
+      "repo": "radareorg/radare2",
+      "category": "reverse-engineering",
+      "license": "LGPL-3.0 (plugin có license khác)",
+      "stars": 25282,
+      "open_source": true,
+      "notes": "Bộ công cụ dịch ngược dòng lệnh (disasm, debug, emulate ESIL, nhiều kiến trúc), script bằng QuickJS nhúng hoặc r2pipe; master 6.2.5 nhưng bản phát hành mới nhất là 6.2.4 (5/10/2026); AGENTS.md ghi quy ước C cho agent; hệ sinh thái radare2-mcp (MCP stdio, MIT) và r2ai; SECURITY.md yêu cầu báo lỗ hổng bằng issue công khai, không backport; cài từ git qua sys/install.sh có sudo; ★ 3/11/2026: 25.282 (GitHub search API), mục 11 §3f",
+      "section": "11",
+      "id": "radare2",
+      "profile_path": "11-browser-computer-use-sandbox/README.md",
+      "profile_anchor": "11-browser-computer-use-sandbox/README.md#3f-hồ-sơ-radareorgradare2-r2-bộ-công-cụ-dịch-ngược-dòng-lệnh-nay-có-agentsmd-mcp-server-và-r2ai-cho-agent-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "55b6a167acef2fbc8fd94776c1cdee2448a30ecb",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/README.md",
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/COPYING.md",
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/AGENTS.md",
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/SECURITY.md",
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/configure.acr",
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/libr/lang/p/qjs.c",
+        "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/sys/install.sh"
       ]
     }
   ]
