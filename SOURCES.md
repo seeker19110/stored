@@ -1507,3 +1507,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03e (ảnh trang repo + README github/spec-kit → mục 13 §5a)
 
 - `github/spec-kit`: ảnh người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (2.329 commit từ 21/8/2025, HEAD `ba8363f8ab56b2da456a81299cfdbfee1ef7b871`, tag v1.2.6): README.md, LICENSE, pyproject.toml, catalog JSON của integrations/extensions/presets/workflows/bundles, `.github/workflows/*`. https://pypi.org/pypi/specify-cli/json · PyPI integrity API (`specify_cli-1.2.6-py3-none-any.whl`: không có provenance) · GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03f (link jangtrinh/design-os-vietnamese → mục 18 §5d)
+
+- `jangtrinh/design-os-vietnamese`: link người dùng gửi 3/11/2026; clone `--filter=blob:none` (63 commit từ 26/10/2026, HEAD `63dc65459628c72bf44691ded75c195d69f9e1d7`, không đổi từ 2/11): README.md, LICENSE, `shared/references/*.md`, `shared/scripts/*.py`, `knowledge/ecommerce-retail-and-consumer-law.md`, `knowledge/_evidence/vn-design-os-261026/{state,review}.json`, `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md`, `.github/workflows/*`, `evals/*/pairs.jsonl`. GitHub search API 3/11/2026. Không chạy mã.

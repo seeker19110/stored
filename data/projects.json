@@ -10984,10 +10984,23 @@
       "license": "PolyForm-Shield-1.0.0",
       "stars": 10,
       "open_source": false,
-      "notes": "Linter văn bản tiếng Việt offline (NFC, kiểu dấu, câu dịch máy, luật theo ngành) + kiểm parity i18n + 16 skill agent; README ghi 489 cặp eval nhưng đếm được 575; license source-available cấm sản phẩm cạnh tranh; ★ 2/11/2026 (GitHub search API), mục 18 §5b",
+      "notes": "Linter văn bản tiếng Việt offline (NFC, kiểu dấu, câu dịch máy, luật theo ngành) + kiểm parity i18n + 16 skill agent; README ghi 489 cặp eval nhưng đếm được 575; license source-available cấm sản phẩm cạnh tranh; ★ 2/11/2026 (GitHub search API), mục 18 §5b; đọc lại 3/11/2026 (§5d): không commit mới; kiểm hiệu lực văn bản qua vbpl legislationLegalForce đã gỡ NĐ 13/2023, nhưng module TMĐT (LND004) vẫn dẫn NĐ 52/2013 + 85/2021, chưa có Luật 122/2025; README nêu STOP_SUFFICIENT trong khi kb gate còn DEEPEN; ★ 3/11/2026: 10",
       "section": "18",
       "id": "design-os-vietnamese",
-      "profile_path": "18-vietnam-community/README.md"
+      "profile_path": "18-vietnam-community/README.md",
+      "profile_anchor": "18-vietnam-community/README.md#5d-hồ-sơ-jangtrinhdesign-os-vietnamese-16-skill-viết-tiếng-việt-theo-ngành-linter-tất-định-và-kho-tri-thức-có-neo-sha-256-link-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "63dc65459628c72bf44691ded75c195d69f9e1d7",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/README.md",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/LICENSE",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/shared/references/compliance.md",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/shared/scripts/validate_copy.py",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/knowledge/ecommerce-retail-and-consumer-law.md",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/knowledge/_evidence/vn-design-os-261026/state.json",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md"
+      ]
     },
     {
       "name": "Google SRE Workbook",
