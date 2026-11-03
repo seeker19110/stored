@@ -72,7 +72,7 @@
       "product-research",
       "feature-management"
     ],
-    "count": 991,
+    "count": 992,
     "schema_version": 2
   },
   "projects": [
@@ -12998,6 +12998,33 @@
         "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/scripts/fetch-site.sh",
         "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/tools/sync.sh",
         "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/.github/workflows/check.yml"
+      ]
+    },
+    {
+      "name": "Craft Anything",
+      "repo": "storytold/craft-anything",
+      "category": "reverse-engineering",
+      "license": "MIT OR Apache-2.0",
+      "stars": 4178,
+      "open_source": true,
+      "notes": "Engine dịch ngược Rust (tự nhận 314 tool CLI+MCP) + coding agent (Claude Code của người dùng) dựng lại website/app/game rồi so với bản gốc; Clean room = allowlist trong dispatcher, tool mới mặc định chỉ Deep, deep_mode mặc định tắt; builder Claude Code qua permission-prompt-tool, adapter Antigravity dùng --dangerously-skip-permissions; 'không vượt DRM' và 'không chép logo/chữ' là chỉ dẫn, không có cổng; CI reusable workflow ghim @main; brand ArtCraft không thuộc license; 211 commit trong 4 ngày, early alpha; ★ 3/11/2026: 4.178 (GitHub search API), mục 01 §3m",
+      "section": "01",
+      "id": "craft-anything",
+      "profile_path": "01-ai-coding-agents/README.md",
+      "profile_anchor": "01-ai-coding-agents/README.md#3m-hồ-sơ-storytoldcraft-anything-craft-anything-engine-dịch-ngược-bằng-rust--coding-agent-dựng-lại-website-app-game-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "8638d6b72be3e99dcc73b06f92a8c113932c75f7",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/README.md",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/LICENSE-MIT",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/LICENSE-APACHE",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/docs/brand/LICENSE-brand.txt",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/engine/src/clean_room.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/engine/src/lib.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/ai/src/cli_agents/adapters.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/ai/src/cli_agents/adapters/antigravity.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/.github/workflows/ci.yml"
       ]
     }
   ]

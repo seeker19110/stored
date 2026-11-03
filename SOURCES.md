@@ -1495,3 +1495,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03b (ảnh "Give Claude a map of your code: graphify in 5 steps" → mục 16 §2e.5)
 
 - Ảnh infographic người dùng gửi 3/11/2026 (không tác giả, không link). Clone `--filter=blob:none` `Graphify-Labs/graphify` HEAD `8e6a6d2129d4aeffc7a0e9ed79b153f7f057f42b` (v0.9.101, 2/11/2026): README.md, pyproject.toml, LICENSE, `graphify/querylog.py`, `git log a0946f9..HEAD` (100 commit), `git tag`. GitHub search API `repo:Graphify-Labs/graphify` 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03c (ảnh README storytold/craft-anything → mục 01 §3m)
+
+- `storytold/craft-anything`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (211 commit 31/10–3/11/2026, HEAD `8638d6b72be3e99dcc73b06f92a8c113932c75f7`, tag v0.3.0): README.md, LICENSE-MIT/APACHE, NOTICE, `docs/brand/LICENSE-brand.txt`, `crates/engine/src/{clean_room,lib,settings}.rs`, `crates/ai/src/cli_agents/adapters.rs` + `adapters/antigravity.rs`, `.github/workflows/*`; grep `telemetry|posthog|sentry|analytics`, `drm|anti-cheat`. GitHub search API 3/11/2026 (`user:storytold`, `repo:storytold/craft-anything`, `repo:morluto/rea`). Không cài, không build.
