@@ -312,6 +312,10 @@ Craft Anything (mục 01 §3m) của nhóm ArtCraft dịch ngược website, app
 
 Trail-code (mục 16 §2j, tên cũ graft) gộp ba lớp: bản đồ code cục bộ, learnings của đội lưu trong git, và skills tự học. Tất cả móc vào Claude Code qua bảy hook. Các badge trong ảnh đều kiểm được: 11k★, Scorecard 7.2, khoảng 97,7k lượt tải/tháng (cộng hai tên gói, phần lớn vẫn là tên cũ). Hợp đồng telemetry làm kỹ: allowlist thực thi trong mã, chỉ gửi bucket, bản fork không có key. Điểm cần biết là telemetry bật mặc định và sự kiện `install` đi ngay từ postinstall, trước khi có thể tắt. Vì vậy muốn không gửi thì phải đặt `DO_NOT_TRACK=1` trước khi cài. Learnings là file trong repo được tiêm vào mọi prompt, nên cần review như review mã.
 
+### 43. Spec Kit (3/11/2026): từ bộ template thành khung quy trình có chợ thành phần
+
+Spec Kit của GitHub (mục 13 §5a, 145k★) không còn là bốn lệnh `specify → plan → tasks → implement`. Nay nó có 43 integration agent và ba quy trình dựng sẵn (SDD, sửa bug, đánh giá ý tưởng). Cùng với đó là extension, preset, workflow và bundle, cả chính thức lẫn cộng đồng (186 extension cộng đồng), cho phép tổ chức dựng catalog riêng. Ảnh người dùng gửi ghi v1.2.5, trong khi bản hiện tại là 1.2.6. Hai điều cần ghi khi tích hợp: thành phần cộng đồng có thể chạy shell và hook nên phải đọc mã hoặc dùng catalog đã duyệt; và gói PyPI được phát hành bằng trusted publishing nhưng chưa có provenance, nên hãy ghim phiên bản.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

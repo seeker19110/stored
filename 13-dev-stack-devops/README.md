@@ -107,6 +107,40 @@
 
 **Liên hệ mục 03:** spec là "hợp đồng" để chạy nhiều agent song song và là tiêu chí dừng cho loop.
 
+### 5a. Hồ sơ github/spec-kit: từ bộ template SDD thành khung quy trình có extension, preset, workflow và bundle (ảnh trang repo người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh ghép hai phần: trang repo (`github/spec-kit`, 102 issue, 125 PR, 13k fork, 145k★, commit cuối `7370e59` của Quratulain-bilal "3 days ago", About "Toolkit to help you get started with SDD or any other process!", topic ai/copilot/development/engineering/prd/spec/spec-driven, MIT) và đầu README ("Build with a spec, fix a bug, or assess an idea — with your coding agent", badge release **v1.2.5**, 145k★, MIT, docs GitHub Pages). Đã clone `--filter=blob:none` đủ lịch sử, HEAD `ba8363f8ab56b2da456a81299cfdbfee1ef7b871` (2/11/2026). **Không cài, không chạy.** Dòng bảng §5 ở trên là ghi chép từ 10/2026; hồ sơ này thay cho nó.
+
+**Kiểm ảnh**
+
+| Ô trong ảnh | Kết quả | Đối chiếu (3/11/2026) |
+|---|---|---|
+| 145k★, 13k fork | ✅ | 145.528★, 13.055 fork (GitHub search API) |
+| 102 issue + 125 PR | ✅ gần đúng | API trả 214 issue+PR mở; ảnh cộng lại là 227, khác nhau do thời điểm chụp |
+| "release v1.2.5" | ⚠️ cũ | v1.2.5 ra 28/10/2026; **v1.2.6** ra 2/11/2026 (PyPI cũng 1.2.6). `pyproject.toml` ở HEAD đã là `1.2.7.dev0` |
+| "MIT" | ✅ | `LICENSE` MIT, "Copyright GitHub, Inc." |
+| Câu "SDD or any other process" | ✅ | README nay chia **ba quy trình**: SDD nằm trong lõi, còn bug fixing và idea assessment là extension đi kèm (bundle `bugfix`, `assess`), cộng cơ chế để tự làm quy trình riêng |
+
+**Đã đổi so với dòng §5 (ghi 10/2026)**
+
+- Không còn chỉ là `specify → plan → tasks → implement` với 4 agent. `integrations/catalog.json` có **43 integration**. Có thêm 5 lớp mở rộng: extension (5 chính thức, **186 cộng đồng**), preset (42 cộng đồng), workflow (có overlay và step package), bundle theo vai trò, và catalog riêng của tổ chức, hỗ trợ cả air-gapped. README tự nói: "Catalog listings are not audits or endorsements, so review community source code before installing".
+- Cài bằng `uv tool install specify-cli` từ PyPI (Python ≥ 3.11). Trước đây README hướng dẫn cài `--from git+https://github.com/github/spec-kit.git`; lệnh này bị bỏ trong đợt tinh gọn README 5/2026 (`707e929`) rồi 9/2026 (`3affdb2`).
+- Dự án lớn nhanh: 2.329 commit từ 21/8/2025. Manfred Riem 424, bot 249, Den Delimarsky khoảng 286 (2 tên); **869 dòng trailer Co-Authored-By Claude**.
+
+**Cổng và chuỗi phát hành (đọc mã)**
+
+- `publish-pypi.yml` build bằng `uv build`, rồi `uv publish` trong environment `pypi` với `id-token: write` (trusted publishing OIDC). Action ghim theo **SHA**. Tuy vậy PyPI **không có provenance** cho `specify_cli-1.2.6-py3-none-any.whl` (API integrity của PyPI trả "No provenance available"). Muốn kiểm nguồn gốc thì phải đối chiếu với release trên GitHub.
+- CI có `test.yml` (Python 3.11 và 3.12 từ #5220), `lint.yml`, `codeql.yml`, `security.yml`, `extension-version-guard.yml`. Repo cũng tự dùng **GitHub Agentic Workflows** (cặp `*.md` + `*.lock.yml`) để agent đánh giá bug, PR và feature, và để duyệt đề xuất thêm extension, preset, bundle cộng đồng, có danh sách `trusted-users` (xem gh-aw ở mục 21).
+- Grep `telemetry|posthog|analytics` trong `src/` chỉ thấy comment về handler sự kiện; **không thấy mã gửi telemetry**.
+
+**Rủi ro và cách dùng**
+
+- Extension, preset và workflow cộng đồng có thể chạy lệnh shell và hook theo vòng đời agent. Hãy đọc mã trước khi cài, hoặc dựng catalog riêng chỉ gồm thành phần đã duyệt (tính năng có sẵn).
+- Ghim phiên bản (`uv tool install specify-cli==1.2.6`). Nhịp phát hành vài ngày một bản; CHANGELOG và `docs/upgrade` là nơi xem thay đổi phá vỡ tương thích.
+- Spec Kit "sở hữu quy trình" giống BMAD hay GSD. Nếu chỉ cần skill nhỏ, xem phản đề ở mục 20 §3c (mattpocock/skills). OpenSpec gọn hơn cho thay đổi nhỏ; Kiro khoá vào IDE của AWS.
+
+**Nguồn §5a:** ảnh người dùng gửi 3/11/2026 · clone https://github.com/github/spec-kit HEAD `ba8363f8ab56b2da456a81299cfdbfee1ef7b871` (README.md, LICENSE, pyproject.toml, `integrations/catalog.json`, `extensions/catalog{,.community}.json`, `presets/catalog.community.json`, `workflows/`, `bundles/`, `.github/workflows/{publish-pypi,test}.yml` và các `*.lock.yml`; `git tag`, `git shortlog`, `git log -S git+https`) · https://pypi.org/pypi/specify-cli/json (1.2.6, 78 bản) · PyPI integrity API (không có provenance cho 1.2.6) · GitHub search API `repo:github/spec-kit` 3/11/2026.
+
 ## 6. AI code review
 
 | Công cụ | Giá | Thế mạnh | Hạn chế |

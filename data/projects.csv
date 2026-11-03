@@ -147,7 +147,7 @@ OpenTofu,opentofu/opentofu,,devops,MPL-2.0,,True,13,Fork Terraform
 Terraform,hashicorp/terraform,,devops,BSL-1.1,,True,13,
 Argo CD,argoproj/argo-cd,,devops,Apache-2.0,,True,13,CNCF graduated
 Dagger,dagger/dagger,,devops,Apache-2.0,,True,13,
-GitHub Spec Kit,github/spec-kit,,spec-driven,MIT,,True,13,specify/plan/tasks/implement
+GitHub Spec Kit,github/spec-kit,,spec-driven,MIT,145528,True,13,"CLI specify-cli (PyPI, Python ≥3.11) + template SDD; nay 3 quy trình (SDD lõi, bug fixing và idea assessment là extension đi kèm) cùng extension (5 chính thức, 186 cộng đồng), preset (42), workflow có overlay, bundle, catalog riêng/air-gapped; 43 integration agent; trusted publishing OIDC nhưng PyPI 1.2.6 không có provenance; CI ghim SHA, dùng gh-aw; không thấy telemetry; 869 trailer Claude; v1.2.6 (2/11/2026); ★ 3/11/2026: 145.528 (GitHub search API), mục 13 §5a"
 BMAD-METHOD,bmad-code-org/BMAD-METHOD,,spec-driven,MIT,,True,13,role agents
 OpenSpec,Fission-AI/OpenSpec,,spec-driven,MIT,,True,13,
 Kiro,,https://kiro.dev,spec-driven,proprietary,,False,13,AWS IDE

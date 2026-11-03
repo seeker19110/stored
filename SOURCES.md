@@ -1503,3 +1503,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03d (ảnh README trailhq/Trail-Code → mục 16 §2j)
 
 - `trailhq/Trail-Code`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (702 commit từ 3/7/2026, HEAD `b9c2e23e9b579200dba83d47e8dbdd8a488b6988`): README.md, TELEMETRY.md, LICENSE, package.json, `scripts/postinstall.mjs`, `scripts/stamp-telemetry-key.mjs`, `src/claude/pre-bash.ts`, `.github/workflows/ci.yml`, `.github/scripts/npm-downloads-badge.mjs`. registry.npmjs.org (`@trailhq/trail-code`, `@nanonets/graft` latest 0.28.1) · api.npmjs.org downloads last-month (3/10–1/11/2026: 13.316 + 84.387) · api.securityscorecards.dev (7.2, 2/11/2026) · GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03e (ảnh trang repo + README github/spec-kit → mục 13 §5a)
+
+- `github/spec-kit`: ảnh người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (2.329 commit từ 21/8/2025, HEAD `ba8363f8ab56b2da456a81299cfdbfee1ef7b871`, tag v1.2.6): README.md, LICENSE, pyproject.toml, catalog JSON của integrations/extensions/presets/workflows/bundles, `.github/workflows/*`. https://pypi.org/pypi/specify-cli/json · PyPI integrity API (`specify_cli-1.2.6-py3-none-any.whl`: không có provenance) · GitHub search API 3/11/2026. Không cài, không chạy.

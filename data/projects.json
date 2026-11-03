@@ -1918,12 +1918,25 @@
       "repo": "github/spec-kit",
       "category": "spec-driven",
       "license": "MIT",
-      "stars": null,
+      "stars": 145528,
       "open_source": true,
-      "notes": "specify/plan/tasks/implement",
+      "notes": "CLI specify-cli (PyPI, Python ≥3.11) + template SDD; nay 3 quy trình (SDD lõi, bug fixing và idea assessment là extension đi kèm) cùng extension (5 chính thức, 186 cộng đồng), preset (42), workflow có overlay, bundle, catalog riêng/air-gapped; 43 integration agent; trusted publishing OIDC nhưng PyPI 1.2.6 không có provenance; CI ghim SHA, dùng gh-aw; không thấy telemetry; 869 trailer Claude; v1.2.6 (2/11/2026); ★ 3/11/2026: 145.528 (GitHub search API), mục 13 §5a",
       "section": "13",
       "id": "github-spec-kit",
-      "profile_path": "13-dev-stack-devops/README.md"
+      "profile_path": "13-dev-stack-devops/README.md",
+      "profile_anchor": "13-dev-stack-devops/README.md#5a-hồ-sơ-githubspec-kit-từ-bộ-template-sdd-thành-khung-quy-trình-có-extension-preset-workflow-và-bundle-ảnh-trang-repo-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "ba8363f8ab56b2da456a81299cfdbfee1ef7b871",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/README.md",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/LICENSE",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/pyproject.toml",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/integrations/catalog.json",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/extensions/catalog.community.json",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/.github/workflows/publish-pypi.yml",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/.github/workflows/test.yml"
+      ]
     },
     {
       "name": "BMAD-METHOD",
