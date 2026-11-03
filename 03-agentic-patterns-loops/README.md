@@ -508,6 +508,37 @@ Advisor Tool (§8e) và Agent Teams (§8f) đều ảnh hưởng cache (model kh
 
 **Nguồn phần mở rộng:** [1](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/LICENSE) · [2](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/middleware/subagents.py) · [3](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/backends/filesystem.py) · [4](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/libs/deepagents/deepagents/graph.py) · [5](https://github.com/langchain-ai/deepagents/blob/311ed7fb0e496b93ca56fb0b8e46ed0e5355600f/.github/workflows/evals.yml) · [6](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/LICENSE) · [7](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/check-complete.sh) · [8](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/attest-plan.sh) · [9](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/scripts/session-catchup.py) · [10](https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/.github/workflows/tests.yml) · [11](https://docs.langchain.com/oss/python/deepagents/subagents)
 
+## 8k. Kiểm ảnh "Workflow Orchestration" (đoạn CLAUDE.md lan truyền, gắn tên Boris Cherny) (ảnh người dùng gửi, 3/11/2026)
+
+> Ảnh là một đoạn CLAUDE.md gồm ba phần: **Workflow Orchestration** (6 mục: Plan Node Default, Subagent Strategy, Self-Improvement Loop, Verification Before Done, Demand Elegance (Balanced), Autonomous Bug Fixing), **Task Management** (6 bước quanh `tasks/todo.md` và `tasks/lessons.md`) và **Core Principles** (Simplicity First, No Laziness, Minimal Impact). Ảnh có lỗi chính tả "Bug Fizing", "Minimat Impact", "One tack per subagent", có thể đã bị gõ lại.
+
+### 8k.1 Nguồn gốc: lan rộng, nhưng chưa xác minh được tác giả
+
+- **Mức lan truyền:** GitHub code search (3/11/2026) cho chuỗi `"Demand Elegance" "lessons.md"` trả về **1.960 kết quả**. Đoạn này đã được chép thành `AGENTS.md`, `CLAUDE.md` hoặc `docs/workflow.md` trong các repo thật như FastLED/FastLED, onflow/flow-nft, onflow/flow-ft, openvax/pyensembl và anonfaded/FadCam, cùng nhiều repo cá nhân có `tasks/lessons.md`. Có nhiều gist với tiêu đề "Boris Cherny's CLAUDE.md" hoặc "My CLAUDE.md workflow orchestration", mỗi bản khác nhau một ít.
+- **Gắn tên tác giả:** một số trang (nina-ai.nl, leadgenman, bài X của Hasan Toor) gọi đây là file "chính xác" mà Boris Cherny, người tạo Claude Code, dùng; bài X còn ghi "someone turned it into a CLAUDE.md". **Không tìm được bài gốc nào của Boris Cherny có đúng văn bản này, và cũng không thấy ông phủ nhận** **(chưa xác minh)**.
+- **Điều có nguồn:** InfoQ (10/1/2026) tổng hợp các thread X của ông: mỗi team ở Anthropic giữ một CLAUDE.md trong git để ghi lỗi (khoảng 2,5k token), và ông tag `@.claude` trên PR để thêm bài học vào đó; ông dùng Plan mode cho PR; mẹo quan trọng nhất là **cho Claude cách tự kiểm kết quả** (test, bash, trình duyệt); ông dùng hook PostToolUse chạy formatter và hầu như không dùng `--dangerously-skip-permissions`. Bài **không** nhắc `tasks/lessons.md` hay "Demand Elegance". Nghĩa là ý tưởng chung có cơ sở, còn văn bản trong ảnh là bản phái sinh của người khác.
+
+### 8k.2 Đối chiếu từng phần với điều kho đã biết
+
+| Phần trong ảnh | Đánh giá | Ghi chú |
+|---|---|---|
+| 1. Plan mode cho mọi việc 3+ bước; lệch hướng thì dừng và lập lại kế hoạch | ✅ hợp lý | Khớp thực hành có nguồn ở trên. Plan mode của Claude Code **chờ người duyệt**; trong phiên tự động không có người duyệt sẽ treo (mục 21) |
+| 2. Dùng subagent "liberally", "throw more compute" | ⚠️ thiếu điều kiện | Subagent giữ ngữ cảnh chính sạch nhưng nhân chi phí token, và mỗi lần giao việc đều mất bớt thông tin (§8j: hợp đồng ngữ cảnh cho subagent). Nên giao khi việc độc lập, có thể song song, hoặc phải đọc nhiều file |
+| 3. Sau mỗi lần bị sửa thì ghi `tasks/lessons.md`, đọc lại đầu phiên | ⚠️ đúng ý, thiếu giới hạn | Không có cơ chế gộp hay xóa, nên file chỉ phình ra và ngày càng chiếm ngữ cảnh. Claude Code đã có sẵn CLAUDE.md theo cấp (user, project, local) và memory. Ở Anthropic bài học vào CLAUDE.md của team, qua review PR |
+| 4. "Never mark a task complete without proving it works" | ✅ quan trọng nhất, nhưng mới là văn xuôi | Đây chỉ là lời dặn. Kho đã ghi nhiều lần rằng nên **grep cổng đang chạy, đừng đọc văn xuôi** (WORKFLOW.md; mục 23: ba cổng máy thay `<promise>`). Cách biến nó thành cổng: hook Stop hoặc PostToolUse chạy test, lint, formatter; CI bắt buộc |
+| 5. Demand Elegance (Balanced) | ✅ có cân bằng | Chính câu "skip this for simple, obvious fixes" là thứ giữ cho mục này không thành over-engineering |
+| 6. Autonomous Bug Fixing: "just fix it, don't ask" | ⚠️ mâu thuẫn nội bộ | Đối nghịch với Task Management bước 2 "Check in before starting implementation", và với mục 1 (plan mode chờ duyệt). Cần nói rõ khi nào được tự sửa (bug có test tái hiện, phạm vi hẹp) và khi nào phải hỏi (đổi API, xóa dữ liệu, đẩy lên production) |
+| Task Management: `tasks/todo.md` có checkbox | ⚠️ trùng công cụ | Claude Code có TodoWrite và task list riêng. File ngoài thì có ích khi cần lưu qua nhiều phiên hoặc commit cùng mã |
+| Core Principles | ✅ | Ngắn và đúng. "No temporary fixes" cần ngoại lệ cho hotfix có ticket theo dõi |
+
+### 8k.3 Dùng thế nào
+
+- Chép **ý**, không chép nguyên văn: giữ 4 (bằng chứng trước khi báo xong) và 5 (có điều kiện bỏ qua), rồi biến 4 thành cổng máy bằng hook và CI thay vì chỉ để là lời dặn.
+- Giải quyết mâu thuẫn giữa 1, 6 và Task Management bằng một bảng **được tự làm / phải hỏi** theo mức rủi ro của thao tác.
+- Nếu giữ `lessons.md`: đặt giới hạn số dòng, ghi ngày cho từng bài học, định kỳ gộp vào CLAUDE.md của dự án qua review, và xóa bài học đã thành test hoặc lint (mẫu TRAPS.md ở mục 23).
+
+**Nguồn §8k:** ảnh người dùng gửi 3/11/2026 · GitHub code search `"Demand Elegance" "lessons.md"` 3/11/2026 (1.960 kết quả; mẫu: FastLED/FastLED `agents/docs/workflow.md`, onflow/flow-nft `AGENTS.md` và `CLAUDE.md`, openvax/pyensembl `AGENTS.md`) · https://www.infoq.com/news/2026/01/claude-code-creator-workflow/ (10/1/2026) · https://gist.github.com/hqman/e29cb6386c539d795767e8c3fd2c959b · https://gist.github.com/gonzaloplaza/cb3c0160ce3cf9ee88c3a35b3f6d3e74 · https://www.nina-ai.nl/en/freebies/claude-md-boris-cherny · https://x.com/hasantoxr/status/2025851900911038603 (không đọc được, HTTP 402; nội dung theo kết quả tìm kiếm).
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)

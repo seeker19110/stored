@@ -332,6 +332,10 @@ AI-Money (mục 21 §10g) giao cho một agent 20 ngày để tự kiếm doanh 
 
 Link (mục 06 §7w) không phải repo mà là thư viện prompt trả phí do một người vận hành, bán theo tháng, năm, trọn đời và gói lẻ, kèm MCP chạy trên một hàm Supabase không công bố tool. Repo chính thức là một skill Claude đạt 1,5k sao trong 8 ngày: cơ chế đáng học (đọc 2–3 example có số liệu, chọn media thật bằng mắt, viết spec trước khi code, chụp màn hình và chấm rubric với ngưỡng số), LICENSE hai phần tách MIT cho mã khỏi © cho 40 prompt và media, và phễu bán hàng được khai báo ngay trong SKILL.md. Phần phải tránh là ít nhất tám repo dump gắn MIT hoặc Unlicense lên nội dung có chủ, đã bị gỡ qua bốn thông báo DMCA từ tháng 5 đến tháng 9. Bài học: với skill thương mại, đọc LICENSE theo thư mục và đếm utm thay vì tin nhãn GitHub; với prompt "miễn phí", tra kho DMCA của GitHub trước khi dùng. Catalog 995 → 997.
 
+### 47. Đoạn CLAUDE.md "Workflow Orchestration" (3/11/2026): chép vào gần 2.000 file, tác giả chưa xác minh, phần quan trọng nhất vẫn chỉ là lời dặn
+
+Đoạn CLAUDE.md sáu mục (plan mode, subagent, `tasks/lessons.md`, kiểm trước khi báo xong, "demand elegance", tự sửa bug) được gắn tên Boris Cherny và đã nằm trong khoảng 1.960 file trên GitHub, kể cả `AGENTS.md` của FastLED và onflow (mục 03 §8k). Không tìm thấy bài gốc của ông với đúng văn bản này. Nguồn có thật (InfoQ 1/2026) chỉ xác nhận ý chung: CLAUDE.md của team ghi lỗi qua review PR, plan mode, và cho Claude cách tự kiểm. Nội dung phần lớn hợp lý nhưng tự mâu thuẫn ("just fix it, don't ask" ngược với "check in before starting"), `lessons.md` không có giới hạn, và quy tắc giá trị nhất ("never mark complete without proving it works") vẫn là văn xuôi. Nên biến quy tắc đó thành hook hoặc CI.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
