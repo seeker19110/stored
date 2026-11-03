@@ -316,6 +316,10 @@ Trail-code (mục 16 §2j, tên cũ graft) gộp ba lớp: bản đồ code cụ
 
 Spec Kit của GitHub (mục 13 §5a, 145k★) không còn là bốn lệnh `specify → plan → tasks → implement`. Nay nó có 43 integration agent và ba quy trình dựng sẵn (SDD, sửa bug, đánh giá ý tưởng). Cùng với đó là extension, preset, workflow và bundle, cả chính thức lẫn cộng đồng (186 extension cộng đồng), cho phép tổ chức dựng catalog riêng. Ảnh người dùng gửi ghi v1.2.5, trong khi bản hiện tại là 1.2.6. Hai điều cần ghi khi tích hợp: thành phần cộng đồng có thể chạy shell và hook nên phải đọc mã hoặc dùng catalog đã duyệt; và gói PyPI được phát hành bằng trusted publishing nhưng chưa có provenance, nên hãy ghim phiên bản.
 
+### 44. design-os-vietnamese đọc lại (3/11/2026): kiểm hiệu lực văn bản bằng máy, nhưng chỉ cho phần đã được hỏi
+
+design-os-vietnamese (mục 18 §5d) có cách kiểm luật chặt nhất trong các bộ skill tiếng Việt kho đã đọc. Trạng thái hiệu lực lấy từ trường `legislationLegalForce` của vbpl.vn, nguồn được đóng băng kèm hash SHA-256, có reviewer độc lập khác model, và nhận định cũ về NĐ 13/2023 đã được gỡ. Cùng lúc đó, module thương mại điện tử nằm ngoài đợt kiểm nên vẫn dẫn NĐ 52/2013 + 85/2021, chưa nhắc Luật 122/2025. README cũng chỉ nêu cổng `verify_ukmc` (STOP_SUFFICIENT) trong khi cổng chặt hơn của chính dự án vẫn là DEEPEN. Bài học: một đợt kiểm hiệu lực phải liệt kê cả những module **không** được kiểm, nếu không thì người đọc sẽ tin cả bộ như nhau.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

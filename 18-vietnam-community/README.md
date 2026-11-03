@@ -259,6 +259,51 @@ UAX #15 được đọc ở bản revision 58 (12/8/2026); CLDR và runtime đư
 
 **Nguồn §5c:** GitHub metadata/clone ViRE ngày 2/11/2026 (LICENSE, README, mã eval) và permalink trên; paper EACL 2026, VMLU ACL 2025, VialectBench (trang công bố; harness đầy đủ chưa xác minh), Unicode UAX #15 và UTS #35. Không tải dữ liệu người dùng và không chạy benchmark.
 
+## 5d. Hồ sơ jangtrinh/design-os-vietnamese: 16 skill viết tiếng Việt theo ngành, linter tất định và kho tri thức có neo SHA-256 (link người dùng gửi, đọc mã 3/11/2026)
+
+> §5b chỉ có một dòng bảng. Đây là hồ sơ đầy đủ, đọc lại tại `63dc65459628c72bf44691ded75c195d69f9e1d7` (1/11/2026). Upstream **không có commit mới** kể từ lần đọc 2/11. Clone `--filter=blob:none`, 63 commit từ 26/10/2026. **Không chạy mã** (`validate_copy.py`, `verify_ukmc.py`, test).
+
+### 5d.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/jangtrinh/design-os-vietnamese · **10★, 0 fork**, 0 issue mở (GitHub search API) |
+| Tác giả | Jang Trịnh (`jangtrinh`), một người: 62/63 commit. Cũng là upstream của `design-os-3d-blender` (mục 23 §6.1). 36 dòng trailer Co-Authored-By |
+| License | **PolyForm Shield 1.0.0** (GitHub hiển thị `NOASSERTION`): source-available, **cấm dùng trong sản phẩm cạnh tranh** với tác giả. Không phải license OSI, nên catalog ghi `open_source: false` |
+| Nội dung | **16 skill** cho Claude Code, Codex, Gemini CLI, Antigravity: landing, e-commerce, tài chính, bảo hiểm, y tế, giáo dục, pháp lý–hợp đồng, nhân sự, chính phủ–dịch vụ công, bất động sản–xây dựng, du lịch, truyền thông–PR, an ninh mạng, tech writing, business comms, design system UX. Có `shared/references/` dùng chung (register-matrix 31 đối tượng, banned-phrases, compliance, locale-formatting) và mỗi skill có một bản copy |
+| Cổng máy | `shared/scripts/validate_copy.py` (1.745 dòng, chỉ dùng thư viện chuẩn) với 23 mã rule kiểu `LAW001`, `PROD004`, `SPAM001`, `PLAIN001–007`… Thêm `plain_tone.py`, `check_i18n_parity.py`, `check_font_coverage.py` và `writing_context.py`. CI chạy `self_check.py`, `verify_ukmc.py`, `unittest` và pre-commit |
+| Kho tri thức | 18 module "UKMC.v1" trong `knowledge/`. Mỗi đoạn có neo `<!-- ease:source uri=… sha256=… -->` trỏ tới nguồn đã đóng băng trong `knowledge/_evidence/vn-design-os-261026/sources/` (văn bản tải từ vbpl.vn, hethongphapluat.com, hoatieu.vn) |
+
+### 5d.2 Điểm đáng học
+
+- **Kiểm hiệu lực văn bản bằng dữ liệu máy đọc.** Báo cáo `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md` (28–29/10) lấy trạng thái từ trường schema.org `legislationLegalForce` trên trang vbpl.vn (InForce, NotInForce, PartiallyInForce) và đóng băng thành dòng 1 của mỗi file nguồn. Đợt này đã **gỡ nhận định cũ coi NĐ 13/2023 là văn bản đang hiệu lực** (`state.json`, `retired_claim_ids`) và chuyển sang Luật 91/2025 + NĐ 356/2025, kèm NĐ 330/2026 về xử phạt. Đây là cách làm chặt hơn hẳn cách "tóm tắt từ blog luật".
+- **Đếm nguồn độc lập theo nhà xuất bản, không theo file.** Báo cáo tự ghi: hai file của cùng một nơi chỉ là một nguồn. Kết quả: 3 nhà xuất bản bên ngoài, 0 trước đợt này.
+- **Reviewer độc lập khác model** (`review.json`: `passed: true`, 29/10/2026). Rule có "negation guard": "không phải số 1" không bị bắt là quảng cáo bậc nhất. Muốn giữ claim bậc nhất thì phải ghi chú `<!-- proof: … -->`.
+
+### 5d.3 Lệch giữa README, cổng và nội dung (tự kiểm)
+
+- ⚠️ **Module TMĐT vẫn theo khung cũ.** `shared/references/compliance.md` §4 (footer bắt buộc, mã `LND004`) và `knowledge/ecommerce-retail-and-consumer-law.md` dẫn **NĐ 52/2013 + NĐ 85/2021**, không nhắc **Luật TMĐT 122/2025** (hiệu lực 01/07/2026) và NĐ 248/2026. Grep `122/2025|248/2026` trong repo không có kết quả. Đợt kiểm hiệu lực 28/10 không có TMĐT trong bảng, và nguồn của module này là corpus do dự án tự viết (`06-realestate-ecommerce-…-corpus.md`). Theo vn-law-check (§4e), website đăng ký theo khung cũ còn hoạt động được tới 30/06/2027. Nội dung footer có đổi hay không **(chưa xác minh)**.
+- ⚠️ **README chỉ nêu cổng dễ hơn.** README ghi 18 module "STOP_SUFFICIENT"; `verify_ukmc.py` đúng là trả kết quả đó. Nhưng cổng chặt hơn của chính dự án (`kb gate`) vẫn là **DEEPEN** (§14 của báo cáo), vì mới bão hòa 1/3 vòng và còn câu hỏi mở: điều khoản nào của Luật KDBĐS 29/2023 đã hết hiệu lực, nghị định nào thay NĐ 15/2018, từ điển. `state.json`: `status: RUNNING`, vòng 13.
+- ⚠️ README ghi "489 golden evaluation pairs" nhưng `evals/*/pairs.jsonl` (17 file) có **575 dòng**, đúng như §5b đã ghi. Chưa sửa.
+- `register-matrix.md` và `compliance.md` được copy vào từng skill. Sửa ở `shared/` mà không đồng bộ thì các bản copy lệch nhau, và repo không có cổng chặn lệch kiểu `sync.sh --check` của vn-law-check **(chưa thấy, chưa kiểm hết `self_check.py`)**.
+
+### 5d.4 So với cùng loại
+
+| Repo | ★ (3/11) | License | Khác |
+|---|---|---|---|
+| **jangtrinh/design-os-vietnamese** | 10 | PolyForm Shield | Viết tiếng Việt theo ngành, linter tất định, tri thức có neo SHA-256 + reviewer độc lập |
+| `mhfed/vn-law-check` (§4e) | 126 | MIT (+ghi chú) | Audit pháp lý website/app, không viết copy. Đã theo Luật TMĐT 122/2025 |
+| antislop (mục 06 §7i) | 8k | MIT | Lọc "AI slop" cho UI và văn bản tiếng Anh, không có luật VN |
+| X-Templates `framework/16-compliance-privacy` | – | – | Khung yêu cầu, không phải linter |
+
+### 5d.5 Dùng thế nào
+
+- Lấy **ý tưởng** linter (NFC, kiểu dấu, câu dịch máy, claim bậc nhất có proof, giờ gửi tin quảng cáo) và cách neo nguồn bằng hash. Nếu sản phẩm của bạn có thể cạnh tranh với tác giả thì đừng nhúng mã (PolyForm Shield).
+- Với nội dung TMĐT, đối chiếu thêm Luật 122/2025 và NĐ 248/2026 trước khi tin rule `LND004`. Với dữ liệu cá nhân thì module đã cập nhật theo luật mới.
+- Đọc `plans/reports/…legal-validity…md` §14 để biết những phần nào còn mở trước khi dùng các module tương ứng.
+
+**Nguồn §5d:** link người dùng gửi 3/11/2026 · clone https://github.com/jangtrinh/design-os-vietnamese HEAD `63dc65459628c72bf44691ded75c195d69f9e1d7` (README.md, LICENSE, `shared/references/{compliance,register-matrix,banned-phrases}.md`, `shared/scripts/*.py`, `knowledge/ecommerce-retail-and-consumer-law.md`, `knowledge/_evidence/vn-design-os-261026/{state,review}.json`, `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md`, `.github/workflows/*`, `evals/*/pairs.jsonl`; grep `122/2025|248/2026|52/2013|85/2021`) · GitHub search API `repo:jangtrinh/design-os-vietnamese` 3/11/2026.
+
 ## 6. Nguồn
 
 - https://www.emergentmind.com/topics/phogpt · https://arxiv.org/html/2509.26189v2 · https://arxiv.org/html/2608.25478 · https://ai.stanford.edu/blog/crossing-linguistic-horizon/ · https://aisean.org/resources/ · https://huggingface.co/Vi-VLM/Vistral-V-7B · https://github.com/vndee/awsome-vietnamese-nlp
