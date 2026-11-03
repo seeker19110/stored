@@ -1540,3 +1540,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03l (link mebius.design → mục 06 §7x)
 
 - WebFetch 3/11/2026: https://www.mebius.design · `/license` · `/docs` · `/resources/aivonic`; curl trang chủ (grep `MCP`, `/resources/`). WebSearch: https://keitoto.gumroad.com · https://contra.com/keitotostudio. Không tạo tài khoản, không mua.
+
+## Bổ sung 2026-11-03m (ảnh README radareorg/radare2 → mục 11 §3f)
+
+- `radareorg/radare2`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (38.595 commit từ 5/2/2009, HEAD `55b6a167acef2fbc8fd94776c1cdee2448a30ecb`, tag mới nhất 6.2.4): README.md, COPYING.md, AGENTS.md, SECURITY.md, configure.acr, `shlr/qjs`, `libr/lang/p/qjs.c`, `.github/workflows/*`, `sys/install.sh`, `test/db/`. GitHub search API 3/11/2026 (`repo:radareorg/radare2`, `org:radareorg`, `repo:radareorg/radare2-mcp`, `repo:radareorg/r2ai`). Không build, không chạy.

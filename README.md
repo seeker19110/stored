@@ -348,6 +348,10 @@ RCCOF của Danh Nolan (mục 17 §4e) là khung 5 lớp (vai trò, ngữ cảnh
 
 Mebius của Keitoto (mục 06 §7x) bán 33 UI kit Figma, $19 mỗi kit, quảng cáo là "React & UI Libraries for AI Agents". Docs và trang sản phẩm chỉ cho thấy file `.fig` và PSD dạng zip: không có mã React, gói npm hay MCP server. "MCP Ready" nhiều khả năng chỉ là "đọc được qua MCP của Figma". License cấm chia sẻ hay biến kit thành thư viện, và không nói gì về AI. Bài học: với tài nguyên gắn nhãn "cho AI agent", hãy kiểm thứ thực sự được giao (mã, registry, endpoint) và license về AI trước khi mua.
 
+### 51. radare2 (3/11/2026): công cụ dịch ngược 17 năm tuổi có AGENTS.md mẫu mực, nhưng nhận báo lỗ hổng bằng issue công khai
+
+radare2 (mục 11 §3f, 25k★, LGPLv3) khớp ảnh README; riêng "master 6.2.5" là bản đang phát triển, bản phát hành mới nhất là 6.2.4. Điểm đáng học là `AGENTS.md`: ghi đúng các quy ước C mà agent hay vi phạm (kiểm overflow trước khi cấp phát, cấm `alloca`, build từ gốc, test theo `test/db/`). Org cũng có `radare2-mcp` và `r2ai` để agent dùng r2 qua MCP. Điểm cần cảnh giác: `SECURITY.md` bảo báo lỗ hổng bằng issue công khai và không backport bản vá, nên khi phân tích binary lạ phải theo bản mới và chạy trong sandbox.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
