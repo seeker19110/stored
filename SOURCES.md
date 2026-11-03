@@ -1544,3 +1544,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03m (ảnh README radareorg/radare2 → mục 11 §3f)
 
 - `radareorg/radare2`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (38.595 commit từ 5/2/2009, HEAD `55b6a167acef2fbc8fd94776c1cdee2448a30ecb`, tag mới nhất 6.2.4): README.md, COPYING.md, AGENTS.md, SECURITY.md, configure.acr, `shlr/qjs`, `libr/lang/p/qjs.c`, `.github/workflows/*`, `sys/install.sh`, `test/db/`. GitHub search API 3/11/2026 (`repo:radareorg/radare2`, `org:radareorg`, `repo:radareorg/radare2-mcp`, `repo:radareorg/r2ai`). Không build, không chạy.
+
+## Bổ sung 2026-11-03n (ảnh README stablyai/orca → mục 01 §3n)
+
+- `stablyai/orca`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (18.913 commit từ 16/3/2026, HEAD `76472f27ce04e1039337dac9b650c7b3004dfc3d`, tag v1.4.247): README.md, LICENSE, AGENTS.md, `src/shared/{default-global-settings,tui-agent-permissions,tui-agent-launch-defaults}.ts`, `src/main/persistence/applying-settings/terminal-settings-migrations.ts`, `src/renderer/src/components/onboarding/*`, `src/main/telemetry/{consent,client}.ts`, `cloud/README.md`, `cloud/docs/relay-security-2026-10-21.md`, `mobile/` (grep E2EE), badge downloads. GitHub search API 3/11/2026. Không cài, không chạy.

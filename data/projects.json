@@ -3750,12 +3750,25 @@
       "repo": "stablyai/orca",
       "category": "agent-workspace",
       "license": "MIT",
-      "stars": null,
+      "stars": 114095,
       "open_source": true,
-      "notes": "Fan-out 1 prompt sang nhiều CLI agent, mỗi agent một worktree; số sao 10k–43k tùy nguồn (chưa xác minh)",
+      "notes": "App Electron điều phối nhiều CLI agent (Claude, Codex, Gemini, Cursor, OpenCode…), mỗi agent một worktree, có app mobile + relay E2EE; MẶC ĐỊNH agentPermissionDefault full-access → --dangerously-skip-permissions / --dangerously-bypass-approvals-and-sandbox / --yolo, công tắc YOLO lúc onboarding bật sẵn; telemetry PostHog opt-in, fail closed; 18.913 commit trong 7,5 tháng, 7.998 issue+PR mở; badge 107m là tổng lượt tải release tự dựng (13/10); MIT (Lovecast Inc.); ★ 3/11/2026: 114.095 (GitHub search API), mục 01 §3n",
       "section": "01",
       "id": "orca",
-      "profile_path": "01-ai-coding-agents/README.md"
+      "profile_path": "01-ai-coding-agents/README.md",
+      "profile_anchor": "01-ai-coding-agents/README.md#3n-hồ-sơ-stablyaiorca-orca-bàn-điều-phối-nhiều-coding-agent-mỗi-agent-một-worktree-mặc-định-chạy-agent-ở-chế-độ-bỏ-qua-quyền-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "76472f27ce04e1039337dac9b650c7b3004dfc3d",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/README.md",
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/LICENSE",
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/shared/default-global-settings.ts",
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/shared/tui-agent-permissions.ts",
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/renderer/src/components/onboarding/AgentStep.tsx",
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/main/telemetry/consent.ts",
+        "https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/cloud/README.md"
+      ]
     },
     {
       "name": "ThinkRail",
