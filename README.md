@@ -336,6 +336,10 @@ Link (mục 06 §7w) không phải repo mà là thư viện prompt trả phí do
 
 Đoạn CLAUDE.md sáu mục (plan mode, subagent, `tasks/lessons.md`, kiểm trước khi báo xong, "demand elegance", tự sửa bug) được gắn tên Boris Cherny và đã nằm trong khoảng 1.960 file trên GitHub, kể cả `AGENTS.md` của FastLED và onflow (mục 03 §8k). Không tìm thấy bài gốc của ông với đúng văn bản này. Nguồn có thật (InfoQ 1/2026) chỉ xác nhận ý chung: CLAUDE.md của team ghi lỗi qua review PR, plan mode, và cho Claude cách tự kiểm. Nội dung phần lớn hợp lý nhưng tự mâu thuẫn ("just fix it, don't ask" ngược với "check in before starting"), `lessons.md` không có giới hạn, và quy tắc giá trị nhất ("never mark complete without proving it works") vẫn là văn xuôi. Nên biến quy tắc đó thành hook hoặc CI.
 
+### 48. "Codex Project Structure" (3/11/2026): bản đồ file đúng phần lớn, nhưng số liệu cũ ngay khi lan truyền
+
+Infographic cấu trúc dự án Codex (mục 04 §4e) khớp mã nguồn ở hầu hết các hộp: `AGENTS.override.md`, trần 32 KiB, skills trong `.agents/`, `.codex/config.toml` bị tắt khi dự án chưa được tin cậy, subagent dạng TOML với role default/worker/explorer, rules Starlark lấy quyết định chặt nhất, hook chặn bằng exit code 2. Hai chỗ lệch: mã hiện có 14 sự kiện hook (ảnh ghi 12), và hộp local environments mang nhầm tiêu đề "Tokenomics". Mục này có thêm bảng tương ứng file giữa Codex và Claude Code. Điểm Claude Code nên học: tắt toàn bộ cấu hình dự án cho tới khi người dùng tin cậy thư mục.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

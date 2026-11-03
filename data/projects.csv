@@ -2,7 +2,7 @@ name,repo,url,category,license,stars_est,open_source,section,notes
 OpenCode,anomalyco/opencode,,coding-agent,MIT,224000,True,01,CLI/TUI agent đa model; #1 nhóm mở 9/2026; ★ 31/10/2026: 224.000 (shields); repo chuyển sang anomalyco/opencode (31/10/2026)
 DeepSeek Harness,deepseek-ai/deepseek-harness,,coding-agent,MIT,267428,True,01,Ra mắt 13/8/2026; mọi thứ là plugin; developer preview; ★ 31/10/2026: 267.428 (GitHub API)
 Claude Code,anthropics/claude-code,,coding-tool-commercial,proprietary,154088,False,01,"CLI/IDE/web; hooks, skills, subagents, ralph-loop plugin; ★ 31/10/2026: 154.088 (GitHub API)"
-OpenAI Codex CLI,openai/codex,,coding-agent,Apache-2.0,132487,True,01,Rust; sandbox; multi-agent; ★ 31/10/2026: 132.487 (GitHub API)
+OpenAI Codex CLI,openai/codex,,coding-agent,Apache-2.0,132944,True,01,"Rust; sandbox; multi-agent; ★ 31/10/2026: 132.487 (GitHub API); cấu hình dự án đối chiếu mã 3/11/2026 (mục 04 §4e): AGENTS.override.md, trần 32 KiB, .agents/skills, .codex/config.toml tắt khi untrusted, agents/*.toml, rules Starlark (chặt nhất thắng), hooks 14 sự kiện + exit 2; ★ 3/11/2026: 132.944 (GitHub search API)"
 Gemini CLI,google-gemini/gemini-cli,,coding-agent,Apache-2.0,108655,True,01,; ★ 31/10/2026: 108.655 (GitHub API)
 OpenHands,OpenHands/OpenHands,,coding-agent,MIT,92366,True,01,Cũ: OpenDevin / All-Hands-AI; ★ 31/10/2026: 92.366 (GitHub API)
 Cline,cline/cline,,coding-agent,Apache-2.0,71118,True,01,VS Code extension; plan/act; ★ 31/10/2026: 71.118 (GitHub API)

@@ -1528,3 +1528,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03i (ảnh đoạn CLAUDE.md "Workflow Orchestration" → mục 03 §8k)
 
 - Ảnh người dùng gửi 3/11/2026 (không link, không tác giả). GitHub code search `"Demand Elegance" "lessons.md"` 3/11/2026 (1.960 kết quả). WebSearch extended 3/11/2026 (2 truy vấn về nguồn gốc và gắn tên). WebFetch https://www.infoq.com/news/2026/01/claude-code-creator-workflow/ (10/1/2026). Gist: https://gist.github.com/hqman/e29cb6386c539d795767e8c3fd2c959b · https://gist.github.com/gonzaloplaza/cb3c0160ce3cf9ee88c3a35b3f6d3e74 · https://gist.github.com/Olanetsoft/5931f1861d2ee9bcefb16774ff21e41e. Trang tổng hợp: https://www.nina-ai.nl/en/freebies/claude-md-boris-cherny · https://resources.leadgenman.com/claudemdfile. X: https://x.com/hasantoxr/status/2025851900911038603 (HTTP 402, không đọc được).
+
+## Bổ sung 2026-11-03j (ảnh "Codex Project Structure" → mục 04 §4e)
+
+- Ảnh infographic người dùng gửi 3/11/2026 (tác giả trên ảnh: Ananya Ghosh Chowdhury). Clone `--depth 1 --filter=blob:none` `openai/codex` HEAD `ac91c14443c11c4279a9305099354e443c6fa7d4`: `codex-rs/core/src/agents_md.rs`, `config/src/{config_toml.rs,loader/mod.rs}`, `ext/skills/src/host_roots.rs`, `agent-roles/src/agent_role_config.rs`, `core/src/agent/role.rs`, `execpolicy/src/{decision,policy}.rs`, `cli/src/{main,mcp_cmd}.rs`, `app-server-protocol/src/protocol/v2/hook.rs`, `hooks/src/events/*.rs`. WebSearch: https://developers.openai.com/codex/app/local-environments. GitHub search API 3/11/2026. Không chạy Codex.

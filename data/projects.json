@@ -118,9 +118,9 @@
       "repo": "openai/codex",
       "category": "coding-agent",
       "license": "Apache-2.0",
-      "stars": 132487,
+      "stars": 132944,
       "open_source": true,
-      "notes": "Rust; sandbox; multi-agent; ★ 31/10/2026: 132.487 (GitHub API)",
+      "notes": "Rust; sandbox; multi-agent; ★ 31/10/2026: 132.487 (GitHub API); cấu hình dự án đối chiếu mã 3/11/2026 (mục 04 §4e): AGENTS.override.md, trần 32 KiB, .agents/skills, .codex/config.toml tắt khi untrusted, agents/*.toml, rules Starlark (chặt nhất thắng), hooks 14 sự kiện + exit 2; ★ 3/11/2026: 132.944 (GitHub search API)",
       "section": "01",
       "id": "openai-codex-cli",
       "profile_path": "01-ai-coding-agents/README.md"
