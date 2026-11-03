@@ -120,6 +120,48 @@ Chuẩn trao đổi issue/viewpoint, có schema/testcases; default branch releas
 - **Chi tiết tham số:** FreeCAD/OpenSCAD → kiểm hình học → STEP/STL → kiểm kích thước lại; muốn giao dịch trong Revit dùng host bridge của case study, không thay bằng mesh generator.
 - **Asset mesh:** Blender → Trimesh → kiểm kỹ thuật + render review; license texture/font/model là lớp riêng với license code.
 
+## 5b. Kiểm bài giới thiệu CanvasAnvil (codingfeng101/canvasanvil): “bản vẽ cải tạo nội thất chuyên nghiệp từ một câu” phần lớn là ảnh do model sinh ảnh vẽ (bài người dùng gửi, đọc mã 3/11/2026)
+
+> Bài người dùng gửi: "CanvasAnvil: The AI Studio For Everything… turns a single sentence into a full set of professional interior renovation drawings, including floor plans, ceiling layouts, and material lists… Open source: github.com/codingfeng101/canvasanvil". Đã clone `--filter=blob:none` đủ lịch sử, HEAD `27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e` (1/11/2026). **Không cài, không chạy.**
+
+### 5b.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/codingfeng101/canvasanvil · **113★, 8 fork**, tạo 24/1/2026 (GitHub search API). README ghi v2.2.0 |
+| License | MIT, "Copyright (c) 2026 CodingFeng101" |
+| Lịch sử | 157 commit, một tác giả (hai email), **88 commit có trailer Co-Authored-By Claude** |
+| Là gì | Web app React + Vite + server Node với 4 workspace: sơ đồ (flowchart, xuất XML), nội thất ("CAD"), slide (PPT xuất PDF hoặc PPT dạng ảnh), chỉnh ảnh. Dùng API tương thích OpenAI do người dùng tự cấu hình (`server/ai/model.ts`: key, base URL, model theo từng request) |
+
+### 5b.2 Kiểm nhận định "bộ bản vẽ kỹ thuật chuyên nghiệp"
+
+Đọc `client/workspaces/cad/lib/tasks.ts` và `resources/prompts/cad/`:
+
+1. LLM sinh **plan JSON + một mặt bằng 2D dạng SVG** (`svg-markup.ts`, `apply-cad-patch.ts`). Đây là phần duy nhất có hình học vector.
+2. Agent "Master Renovation Scheme" viết phương án tổng làm nguồn chung.
+3. Với mỗi tờ (Renovation Plan Layout, Floor Finish Plan, **Reflected Ceiling Plan**, Wall Setting-Out, **MEP**, Elevations, Detail Drawings, hai bảng phân tích), một agent riêng viết **prompt JSON "directly usable by the downstream image generator"** (`images-agents/reflected-ceiling-plan.md`). Prompt này được gửi tới model sinh ảnh (`server/ai/image.ts`: `/images/generations`, gpt-image hoặc dall-e-3, hoặc cổng chat tương thích).
+4. Bảng vật tư (BOM) do LLM viết từ plan JSON + SVG (`bom-prompt.md`).
+
+| Nhận định | Kết quả |
+|---|---|
+| "single sentence → full set of drawings" | ✅ đúng về luồng: một yêu cầu kéo theo chuỗi agent sinh đủ các tờ |
+| "professional interior renovation drawings… floor plans, ceiling layouts" | ⚠️ **phần lớn là ảnh raster do AI vẽ**, không phải bản vẽ CAD: không có lớp (layer), kích thước không đo được, không xuất DXF, DWG hay IFC (grep dxf, dwg, ifc trong `client/` và `server/` không có kết quả). Kích thước, ký hiệu đèn, MEP và chi tiết trên ảnh có thể trông hợp lý nhưng không có cơ chế kiểm tra nào ràng buộc chúng với mặt bằng SVG |
+| "material lists" | ⚠️ văn bản do LLM viết, không tính từ hình học; số lượng cần kiểm lại |
+| "Open source" | ✅ MIT. Nhưng cần API key trả phí của bên thứ ba cho LLM và model sinh ảnh |
+
+### 5b.3 Dữ liệu và rủi ro
+
+- **Langfuse tùy chọn ghi toàn bộ nội dung**: nếu đặt `LANGFUSE_PUBLIC_KEY` (`server/telemetry/langfuse.ts`), mọi request chat ghi `recordInputs` và `recordOutputs`, và `server/routes/chat.ts` lấy **IP của người dùng (`x-forwarded-for`) làm `userId`**. Không bật thì không gửi. Ai tự host cho người khác dùng cần thông báo việc này và cân nhắc dữ liệu cá nhân (mục 18 §4e).
+- Nội dung yêu cầu và ảnh tham chiếu đi tới nhà cung cấp model mà người dùng cấu hình.
+- Dự án nhỏ, một tác giả; README ghi "PRs welcome", 0 issue mở.
+
+### 5b.4 Đặt trong bối cảnh mục 27
+
+- Khác với các cổng kiểm theo biểu diễn ở §3 (IFC/IDS, hình học có kiểm), CanvasAnvil cho ra **ảnh minh họa phương án**: dùng được để trao đổi ý tưởng với khách hoặc làm moodboard, **không dùng làm hồ sơ thi công** khi chưa có người có chứng chỉ dựng lại trên CAD/BIM thật.
+- Nếu muốn agent ra bản vẽ đo được: sinh hình học (SVG/DXF/IFC) rồi kiểm bằng máy (kích thước phòng, va chạm, IDS), như các stack ở §5, thay vì nhờ model sinh ảnh vẽ tờ hoàn chỉnh.
+
+**Nguồn §5b:** bài người dùng gửi 3/11/2026 · clone https://github.com/codingfeng101/canvasanvil HEAD `27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e`: https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/README.md · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/LICENSE · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/client/workspaces/cad/lib/tasks.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/resources/prompts/cad/images-agents/reflected-ceiling-plan.md · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/resources/prompts/cad/bom-prompt.md · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/ai/image.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/ai/model.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/telemetry/langfuse.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/routes/chat.ts · GitHub search API `repo:codingfeng101/canvasanvil` 3/11/2026.
+
 ## Nguồn
 
 Các permalink trong từng hồ sơ cố định đúng phiên bản đã đọc; số sao/trạng thái archive là snapshot GitHub API ngày 2026-11-02. Không chạy mã, huấn luyện model hoặc tái lập kết quả của upstream.

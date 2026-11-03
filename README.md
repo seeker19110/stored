@@ -368,6 +368,10 @@ Pullboard (mục 21 §10h, 528★) đưa board, spec và luật của dự án v
 
 Ảnh trang build-your-own-x (mục 08 §5b, 559k★) khớp số liệu. Kiểm thêm: license CC0 chỉ được khai ở cuối README, không có file LICENSE nên GitHub hiện "null" (§2i từng ghi "không ghi"); trong 12 tháng chỉ có hai đợt merge, 689 issue+PR đang chờ. Kiểm 359 link: 4 link 404 và 6 link không truy cập được, kể cả "Write You a Haskell" và hướng dẫn OS của James Molloy; nhóm 403/429 (GitHub, Medium, YouTube) không kết luận được. Danh sách vẫn là điểm vào tốt, nhưng nên kiểm ngày từng bài và dùng web.archive.org khi link chết.
 
+### 56. CanvasAnvil (3/11/2026): "bộ bản vẽ nội thất chuyên nghiệp" phần lớn là ảnh AI vẽ, không phải CAD
+
+Bài giới thiệu CanvasAnvil (mục 27 §5b, 113★, MIT) nói một câu lệnh sinh ra trọn bộ bản vẽ cải tạo nội thất "chuyên nghiệp". Đọc mã: LLM chỉ dựng một mặt bằng 2D dạng SVG; các tờ trần, sàn, MEP, mặt đứng và chi tiết được tạo bằng cách để agent viết prompt rồi gửi cho model sinh ảnh, nên ra ảnh raster không đo được, không có DXF/DWG/IFC; bảng vật tư do LLM viết. Dùng tốt để trình bày ý tưởng, không dùng làm hồ sơ thi công. Nếu bật Langfuse, app ghi toàn bộ hội thoại và dùng IP người dùng làm định danh.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

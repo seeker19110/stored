@@ -1560,3 +1560,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03q (ảnh trang repo codecrafters-io/build-your-own-x → mục 08 §5b)
 
 - `codecrafters-io/build-your-own-x`: ảnh người dùng gửi 3/11/2026; clone đủ lịch sử (616 commit từ 9/5/2018, HEAD `aa17439b62f384511a5561ce308e9598b94d8989`): README.md (31 mục `####`, "Origins & License"), `git log`. Kiểm HTTP 359 link bằng curl 3/11/2026 (403 của github.com do proxy môi trường). GitHub search API 3/11/2026.
+
+## Bổ sung 2026-11-03r (bài giới thiệu CanvasAnvil → mục 27 §5b)
+
+- `codingfeng101/canvasanvil`: bài người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (157 commit từ 24/1/2026, HEAD `27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e`): README.md, LICENSE, `client/workspaces/cad/lib/*`, `resources/prompts/cad/**`, `server/ai/{image,model}.ts`, `server/telemetry/langfuse.ts`, `server/routes/chat.ts`; grep `dxf|dwg|ifc`, `telemetry`. GitHub search API 3/11/2026. Không cài, không chạy.
