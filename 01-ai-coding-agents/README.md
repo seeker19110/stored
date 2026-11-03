@@ -628,6 +628,56 @@ Memory "kiểu OpenClaw":
 
 **Nguồn phần mở rộng:** [1](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/LICENSE) · [2](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/agents.py) · [3](https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/.github/workflows/pytest.yaml) · [4](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/LICENSE.txt) · [5](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py) · [6](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/analytics.py) · [7](https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/.github/workflows/ubuntu-tests.yml) · [8](https://arxiv.org/abs/2405.15793) · [9](https://aider.chat/docs/usage/lint-test.html)
 
+## 3m. Hồ sơ storytold/craft-anything (Craft Anything): engine dịch ngược bằng Rust + coding agent dựng lại website, app, game (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: logo ArtCraft, icon con quạ, "Craft Anything", badge "100% Rust · macOS · Windows · Linux · FreeBSD · Web native · MIT / Apache-2.0 · early alpha", ảnh chụp app với nút "Clean room" và thẻ xin quyền "May I run a command: `curl https://example.com/robots.txt`?". Đã clone `--filter=blob:none` đủ lịch sử, HEAD `8638d6b72be3e99dcc73b06f92a8c113932c75f7` (2/11/2026, tag v0.3.0). **Không cài, không build, không chạy.** Cùng tổ chức với FilmCraft (§3d) và ArtCraft Launcher (§3e).
+
+### 3m.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/storytold/craft-anything · **4.178★, 686 fork, 134 issue+PR mở** (GitHub search API). Tạo 31/10/2026 |
+| Mô tả | "See how any website, app or game works, then have AI build your own version": quy trình Study → Build → Check → Ready. Engine dịch ngược tự viết, sau đó một coding agent (mặc định Claude Code của chính người dùng) dựng dự án mới và so với bản gốc |
+| License | **MIT OR Apache-2.0** (`LICENSE-MIT`, `LICENSE-APACHE`, `NOTICE`). Logo và tên ArtCraft **không** thuộc license mã: `docs/brand/LICENSE-brand.txt` ghi là nhãn hiệu, chỉ cho dùng nguyên bản trong bản copy của repo, fork không được dùng |
+| Lịch sử | **211 commit trong 4 ngày** (31/10 → 3/11: 12, 41, 133, 25). `BFlat` 85 commit, `GGWA` 19, Brandon Thomas 18, `phatloi0010` 17; 18 trailer Co-Authored-By Claude. 3 tag v0.1.0–v0.3.0 |
+| Mã | 379 file `.rs` trên tổng 622 file. Badge "100% Rust" đúng với mã ứng dụng (ngoài ra chỉ có script `.sh`/`.ps1` để đóng gói). Các crate chính: `engine` (89 file), `formats`, `ai`, `ui-egui`, `engines`, `disasm`, `mcp`, `evidence`, `js`; app desktop, CLI và bản web (WASM) |
+| Công cụ | README tự nhận **314 tool** (298 trong engine), mỗi tool là một lệnh CLI và một tool MCP: native, .NET, Java, Android, Apple, Electron/JS, website, firmware, pcap, DB, file game. Có disassembler/decompiler riêng, dùng thêm Ghidra nếu máy đã cài **(số tool chưa đếm lại)** |
+| AI | Builder chạy chương trình `claude` của người dùng với tài khoản của họ (`docs/claude-code.md`). Có adapter Codex (chưa chạy thật) và ACP (Gemini CLI, Qwen Code, opencode, goose, Hermes, Maki; chỉ Maki đã chạy thật). Hỏi đáp qua Anthropic/OpenAI/OpenRouter/server cục bộ. Ảnh và 3D sinh bằng fal.ai: opt-in, dùng key của người dùng |
+| Trạng thái | "early alpha". Chưa có bản phát hành công khai; installer cho Windows/macOS/Linux/FreeBSD mới được dựng trong CI |
+
+### 3m.2 Đọc mã: điểm tốt
+
+- **Clean room thực thi bằng allowlist trong engine, không chỉ nằm trong prompt.** `crates/engine/src/clean_room.rs` liệt kê các tool chạy được khi Deep mode tắt (chỉ nhìn từ ngoài: ảnh chụp, layout hiển thị, ảnh cửa sổ, bản ghi chạy). Mỗi lần gọi tool đều qua `crates/engine/src/lib.rs:250` (`if session.clean_room() && !clean_room::allows(id) → refusal`). Tool mới, kể cả tool từ plugin, **mặc định chỉ chạy ở Deep** cho đến khi được thêm vào danh sách, tức là fail-closed. `deep_mode` mặc định `false` (`settings.rs:200`). Có test cho cả hai chế độ (`rebuild/tests.rs:765`, `:1613`).
+- **Builder Claude Code bị giới hạn công cụ.** `crates/ai/src/cli_agents/adapters.rs` chạy `claude -p` với `--strict-mcp-config` và `--allowedTools mcp__craft-anything__*`, chỉ thêm `Read/Glob/Grep/TodoWrite` khi đọc file không đi qua MCP. Quyền được hỏi qua `--permission-prompt-tool` (thẻ duyệt trong app, đúng như trong ảnh). Chế độ hỏi đáp chặn các tool thay đổi trạng thái (`--disallowedTools` + `CHANGING_TOOLS`) và tắt lưu phiên.
+- **Kết quả là bản ghi bằng chứng** (confidence, coverage, limitations), có ledger "unknowns" và báo cáo ghi rõ chế độ (`mode_words`: "Clean room (nothing inside the original was read)").
+- Không tìm thấy telemetry trong mã (grep `telemetry|posthog|sentry|analytics`: chỉ thấy bảng nhận diện SDK Sentry **trong game được phân tích**).
+
+### 3m.3 Đọc mã: rủi ro
+
+- ⚠️ **Rủi ro pháp lý nằm ở mục đích sử dụng.** "Recreate this website/game" là tính năng chính. README dặn chỉ dùng trên phần mềm mình sở hữu hoặc được phép xem xét, và ghi agent "được dặn" không chép logo, ảnh, chữ. Nhưng đó là **chỉ dẫn trong prompt**, không phải cổng kiểm trong mã. Deep mode đọc mã, file và JS của bản gốc "for your private use". Dù vậy, điều khoản sử dụng (ToS/EULA) của bên thứ ba và luật bản quyền hay chống dịch ngược nơi người dùng sống vẫn áp dụng. Tên "clean room" chỉ mô tả chế độ thu thập; nó **không** tương đương quy trình clean-room có hai đội tách biệt về mặt pháp lý.
+- ⚠️ "It never bypasses DRM, logins or anti-cheat": grep `drm|anti-cheat` trong `crates/` không thấy cơ chế chặn nào. Tuyên bố này dựa vào việc **không có tính năng**, chứ không có cổng từ chối **(suy từ mã, chưa xác minh từng tool)**.
+- ⚠️ Adapter **Antigravity** truyền `--dangerously-skip-permissions` ở chế độ builder (`adapters/antigravity.rs:4,18`). Với host này, thẻ duyệt lệnh như trong ảnh không còn tác dụng; chỉ Claude Code đi qua permission-prompt-tool.
+- ⚠️ CI gọi reusable workflow `storytold/craft-common-actions/...@main` (5 workflow), **ghim theo nhánh, không theo SHA**, nên ai sửa được repo kia sẽ đổi được pipeline phát hành có ký mã.
+- Tuổi đời 4 ngày, nhịp khoảng 50 commit/ngày, alpha. README ghi nhiều phần "built, not yet run live" (API key, agent khác, kiểm hành vi app/game). Đây là mẫu chung của bộ Craft (§3d: FilmCraft có CI không chạy test). Tool ADB (`adb_app_install/remove`) nằm trong danh sách clean room vì chỉ điều khiển thiết bị chứ không đọc mã, nhưng vẫn **thay đổi điện thoại** của người dùng.
+
+### 3m.4 So với công cụ cùng loại
+
+| Công cụ | ★ (3/11/2026) | License | Khác Craft Anything |
+|---|---|---|---|
+| **storytold/craft-anything** | 4.178 | MIT OR Apache-2.0 | Dịch ngược **và** dựng lại có so khớp. Clean room/Deep thực thi trong engine. App desktop + CLI + MCP |
+| `morluto/rea` (mục 23 §6.4) | API trả **422.904★ / 105.451 fork**, con số bất thường **(chưa xác minh)** | MIT | CLI + MCP 95 tool cho agent dịch ngược (Hopper/Ghidra, CDP, sandbox replay JS), Evidence v2. Không có bước "dựng lại" |
+| Ghidra (NSA) | – | Apache-2.0 | Bộ dịch ngược chuẩn cho người dùng. Craft Anything gọi nó ở Deep mode nếu máy đã cài |
+| Screenshot-to-code / v0 / Lovable (mục 06) | – | khác nhau | Chỉ dựng UI từ ảnh hoặc prompt, không có bước kiểm "giống bản gốc bao nhiêu" ở 3 độ rộng |
+
+### 3m.5 Dùng thế nào
+
+- Bài học đáng lấy cho harness khác: **chế độ quyền là allowlist trong dispatcher**, tool mới mặc định bị khóa, lời từ chối có `reason` máy đọc được kèm hướng bật. Cùng mạch với "fail-closed" ở mục 02 §4g.
+- Chỉ dùng trên phần mềm của chính mình hoặc có văn bản cho phép. Giữ **Clean room**, đọc ToS của mục tiêu trước khi bật Deep. Không phát hành bản dựng lại có tên, logo hay nội dung của bên khác.
+- Dùng builder Claude Code (đi qua thẻ duyệt), tránh adapter Antigravity khi chưa có sandbox. Chạy trong máy ảo hoặc container, vì builder tự cài phụ thuộc và chạy lệnh.
+- Chờ bản phát hành có chữ ký; không cài từ repo nhái (§3d đã ghi trường hợp `filmcraft-app/filmcraft`).
+
+**Nguồn §3m:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/storytold/craft-anything HEAD `8638d6b72be3e99dcc73b06f92a8c113932c75f7` (README.md, LICENSE-MIT, LICENSE-APACHE, `docs/brand/LICENSE-brand.txt`, `crates/engine/src/{clean_room.rs,lib.rs,settings.rs}`, `crates/ai/src/cli_agents/{adapters.rs,adapters/antigravity.rs}`, `.github/workflows/*.yml`; `git log`, `git shortlog`, `git tag`) · GitHub search API `user:storytold`, `repo:storytold/craft-anything`, `repo:morluto/rea` 3/11/2026.
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
