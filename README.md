@@ -352,6 +352,10 @@ Mebius của Keitoto (mục 06 §7x) bán 33 UI kit Figma, $19 mỗi kit, quản
 
 radare2 (mục 11 §3f, 25k★, LGPLv3) khớp ảnh README; riêng "master 6.2.5" là bản đang phát triển, bản phát hành mới nhất là 6.2.4. Điểm đáng học là `AGENTS.md`: ghi đúng các quy ước C mà agent hay vi phạm (kiểm overflow trước khi cấp phát, cấm `alloca`, build từ gốc, test theo `test/db/`). Org cũng có `radare2-mcp` và `r2ai` để agent dùng r2 qua MCP. Điểm cần cảnh giác: `SECURITY.md` bảo báo lỗ hổng bằng issue công khai và không backport bản vá, nên khi phân tích binary lạ phải theo bản mới và chạy trong sandbox.
 
+### 52. Orca (3/11/2026): telemetry hỏi trước, nhưng quyền của agent mặc định là toàn quyền
+
+Orca (mục 01 §3n, 114k★) chạy nhiều coding agent song song, mỗi agent một worktree, có app mobile điều khiển máy qua relay mã hóa đầu cuối. Đọc mã thấy hai cực: telemetry làm đúng (opt-in, fail closed, bản build của contributor không gửi), còn quyền của agent thì ngược lại: cài mới đặt `agentPermissionDefault: 'full-access'`, tức Claude Code chạy `--dangerously-skip-permissions`, Codex chạy `--dangerously-bypass-approvals-and-sandbox`, và công tắc YOLO lúc onboarding bật sẵn. Ảnh README cho thấy đúng điều đó ("bypass permissions on", "YOLO mode"). Badge "107m downloads" là SVG tự dựng, cập nhật lần cuối 13/10. Khi cài: tắt YOLO ở onboarding, chỉ chạy toàn quyền trong máy ảo tạm.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

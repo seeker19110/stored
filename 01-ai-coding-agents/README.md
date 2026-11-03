@@ -678,6 +678,43 @@ Memory "kiểu OpenClaw":
 
 **Nguồn §3m:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/storytold/craft-anything HEAD `8638d6b72be3e99dcc73b06f92a8c113932c75f7` (README.md, LICENSE-MIT, LICENSE-APACHE, `docs/brand/LICENSE-brand.txt`, `crates/engine/src/{clean_room.rs,lib.rs,settings.rs}`, `crates/ai/src/cli_agents/{adapters.rs,adapters/antigravity.rs}`, `.github/workflows/*.yml`; `git log`, `git shortlog`, `git tag`) · GitHub search API `user:storytold`, `repo:storytold/craft-anything`, `repo:morluto/rea` 3/11/2026.
 
+## 3n. Hồ sơ stablyai/orca (Orca): bàn điều phối nhiều coding agent, mỗi agent một worktree; mặc định chạy agent ở chế độ bỏ qua quyền (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: logo, badge "★ 113k", "downloads 107m", "license MIT", Discord, X, "macOS | Windows | Linux"; câu "The AI Orchestrator for 100x builders. Run Codex, ClaudeCode, OpenCode or Pi side-by-side — each in its own worktree, tracked in one place"; ảnh chụp app desktop (cột workspace và task, phiên Claude Code có dòng "bypass permissions on", phiên Codex có "permissions: YOLO mode") kèm app mobile ("Pair Desktop", "New Worktree"). §1.3 và §3i.1 trước đây chỉ có một dòng bảng; đây là hồ sơ đọc mã. Clone `--filter=blob:none` đủ lịch sử, HEAD `76472f27ce04e1039337dac9b650c7b3004dfc3d` (3/11/2026). **Không cài, không chạy.**
+
+### 3n.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/stablyai/orca · **114.095★, 7.211 fork, 7.998 issue+PR mở** (GitHub search API). Tạo 17/3/2026 |
+| License | MIT, "Copyright (c) 2026 Lovecast Inc." (repo nằm dưới org `stablyai`; quan hệ pháp lý giữa Lovecast và Stably **chưa xác minh**) |
+| Nhịp phát triển | **18.913 commit trong 7,5 tháng** (16/3 → 3/11/2026). Neil 7.157, Brennan Benson 2.780, Jinwoo Hong 2.243, Jinjing 2.165, tài khoản `OrcaWin` 1.757. 2.589 commit có trailer Co-Authored-By Claude. Tag mới nhất v1.4.247, nhưng `package.json` ở HEAD ghi 1.4.214 (lệch số phiên bản). 73 workflow CI. `AGENTS.md` bắt chạy `pnpm check:changed` trước khi push, cấm `--no-verify`, dặn "Don't Poll the CI" |
+| Phạm vi | App Electron chạy nhiều CLI agent song song, mỗi agent một git worktree. `src/main/` có adapter cho rất nhiều agent và dịch vụ: Claude, Codex, Gemini, Cursor, Copilot, Amp, Devin, Grok, Hermes, Antigravity, CodeBuddy, Droid…, cùng GitHub, GitLab, Bitbucket, Azure DevOps, SSH, máy ảo tạm, trình duyệt, emulator. Có app mobile và relay đám mây |
+
+### 3n.2 Kiểm ảnh
+
+| Ô trong ảnh | Kết quả | Đối chiếu |
+|---|---|---|
+| ★ 113k | ✅ | 114.095★ (3/11/2026). §3i.1 ghi 111,7k ngày 31/10 |
+| "downloads 107m" | ⚠️ số cũ, tự dựng | Badge là file SVG trong repo (`docs/assets/readme-downloads.svg`), do workflow `readme-downloads-badge.yml` sinh từ tổng lượt tải release, lần cập nhật cuối 13/10/2026. Đây là tổng lượt tải file release (gồm cả bản tự cập nhật), không phải số người dùng |
+| "Run Codex, ClaudeCode, OpenCode or Pi … each in its own worktree" | ✅ | Đúng với mô hình worktree; số agent hỗ trợ nhiều hơn bốn cái được nêu |
+| Phiên trong ảnh chạy "bypass permissions" / "YOLO mode" | ⚠️ **là mặc định** | Xem 3n.3 |
+
+### 3n.3 Đọc mã: điều quan trọng nhất
+
+- ⚠️ **Agent mặc định chạy với toàn quyền.** `src/shared/default-global-settings.ts:239` đặt `agentPermissionDefault: 'full-access'`. `src/shared/tui-agent-permissions.ts` (`YOLO_TUI_AGENT_ARGS`) ánh xạ "full-access" thành cờ bỏ qua quyền của từng agent: `claude --dangerously-skip-permissions`, `codex --dangerously-bypass-approvals-and-sandbox` (tắt cả sandbox lẫn duyệt), `gemini/cursor/crush/kimi --yolo`, `amp --dangerously-allow-all`, `kiro --trust-all-tools`, `aider --yes-always`, `cline --auto-approve true`… Bước onboarding có công tắc YOLO (`AgentStep.tsx:28`, `yoloPermissions = true`), nhưng công tắc này **mặc định bật**. Người dùng mới bấm "tiếp" là mọi agent trên mọi worktree đều chạy lệnh và sửa file không cần hỏi. Đối chiếu: Craft Anything (§3m) chỉ dùng cờ này cho một adapter; Javis OS (mục 02 §4f) bị kho ghi nhận vì `bypassPermissions` khi không có allowlist.
+- **Telemetry có hỏi trước (opt-in).** `src/main/telemetry/consent.ts`: nếu chưa có cài đặt thì `pending_banner` (fail closed); chỉ gửi khi `optedIn === true`; có biến môi trường để ghi đè. `client.ts`: chỉ bản build chính thức có write key PostHog, bản build của contributor không gửi được. Đây là cách làm tốt hơn hẳn các tool "opt-out" (Trail-code mục 16 §2j, codegraph §2f).
+- **Điện thoại điều khiển máy tính qua relay, có mã hóa đầu cuối.** `cloud/README.md`: điện thoại và máy tính đều mở WebSocket ra ngoài tới relay của Stably, relay ghép cặp rồi chuyển tiếp khung dữ liệu. App mobile dùng E2EE bằng tweetnacl (`mobile/src/transport/paired-e2ee-*`; ghi chú "Everything is encrypted end-to-end"), máy tính xác thực bằng khóa X25519. Có bản review bảo mật relay ngày 21/10/2026 (`cloud/docs/relay-security-2026-10-21.md`): image relay và push 0 lỗ hổng theo Trivy; Cloud SQL Auth Proxy còn 1 HIGH, provider Terraform còn 12 HIGH; tự ghi "not a claim that every execution path was manually audited". Lưu ý ghép với điểm trên: một điện thoại đã ghép cặp điều khiển được máy đang chạy agent toàn quyền.
+- **Hàng tồn rất lớn**: gần 8.000 issue+PR mở, nhịp khoảng 80 commit/ngày, phần lớn do agent viết. Nhiều tính năng mới mỗi ngày nên hành vi đổi nhanh; ghim bản và đọc release notes.
+
+### 3n.4 Dùng thế nào
+
+- Trong onboarding, **tắt công tắc YOLO**, hoặc vào Settings đặt quyền mặc định của agent thành "ask"/"own" trước khi mở repo thật. Nếu cần chạy toàn quyền thì chỉ dùng trong máy ảo tạm hoặc container (Orca có tính năng ephemeral VM).
+- Chỉ ghép điện thoại khi cần, và gỡ ghép khi không dùng.
+- So với nhóm ADE ở §1.3 (T3 Code, Vibe Kanban, Claude Squad, Conductor): Orca rộng nhất (desktop, mobile, remote runtime, hơn 20 agent) và có telemetry opt-in làm đúng, nhưng mặc định quyền là lỏng nhất.
+
+**Nguồn §3n:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/stablyai/orca HEAD `76472f27ce04e1039337dac9b650c7b3004dfc3d`: https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/README.md · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/LICENSE · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/AGENTS.md · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/shared/default-global-settings.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/shared/tui-agent-permissions.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/renderer/src/components/onboarding/AgentStep.tsx · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/main/telemetry/consent.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/main/telemetry/client.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/cloud/README.md · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/cloud/docs/relay-security-2026-10-21.md · `docs/assets/readme-downloads.svg` + `.github/workflows/readme-downloads-badge.yml`; `git shortlog`, `git tag` · GitHub search API `repo:stablyai/orca` 3/11/2026.
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
