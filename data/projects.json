@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1002,
+    "count": 1003,
     "schema_version": 2
   },
   "projects": [
@@ -13311,6 +13311,30 @@
         "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/relay/README.md",
         "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/src/bar-check.js",
         "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/bin/check-signoffs.js"
+      ]
+    },
+    {
+      "name": "CanvasAnvil",
+      "repo": "codingfeng101/canvasanvil",
+      "category": "cad-bim",
+      "license": "MIT",
+      "stars": 113,
+      "open_source": true,
+      "notes": "Web app 4 workspace (sơ đồ, nội thất 'CAD', PPT, ảnh) trên API tương thích OpenAI của người dùng; 'bộ bản vẽ nội thất chuyên nghiệp từ một câu': chỉ mặt bằng 2D là SVG vector, các tờ trần/MEP/mặt đứng/chi tiết là ảnh raster do model sinh ảnh vẽ từ prompt, không DXF/DWG/IFC, BOM do LLM viết; Langfuse tùy chọn ghi toàn bộ input/output và dùng IP làm userId; một tác giả, 88/157 commit có trailer Claude; ★ 3/11/2026: 113 (GitHub search API), mục 27 §5b",
+      "section": "27",
+      "id": "canvasanvil",
+      "profile_path": "27-3d-cad-bim-engineering/README.md",
+      "profile_anchor": "27-3d-cad-bim-engineering/README.md#5b-kiểm-bài-giới-thiệu-canvasanvil-codingfeng101canvasanvil-bản-vẽ-cải-tạo-nội-thất-chuyên-nghiệp-từ-một-câu-phần-lớn-là-ảnh-do-model-sinh-ảnh-vẽ-bài-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/README.md",
+        "https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/LICENSE",
+        "https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/client/workspaces/cad/lib/tasks.ts",
+        "https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/resources/prompts/cad/images-agents/reflected-ceiling-plan.md",
+        "https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/ai/image.ts",
+        "https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/telemetry/langfuse.ts"
       ]
     }
   ]
