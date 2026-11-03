@@ -344,6 +344,10 @@ Infographic cấu trúc dự án Codex (mục 04 §4e) khớp mã nguồn ở h�
 
 RCCOF của Danh Nolan (mục 17 §4e) là khung 5 lớp (vai trò, ngữ cảnh, ràng buộc, định dạng, few-shot) cho nội dung marketing và AEO, gọi là "đặc tả mở" và có DOI Zenodo. Kiểm thì thấy: trang web nêu "loại bỏ trên 95% hallucination" nhưng PDF 2 trang trên Zenodo không có benchmark nào; câu "lệnh cấm hiệu quả hơn khuyến nghị" ngược với hướng dẫn của Anthropic ("tell Claude what to do instead of what not to do"); license vừa ghi "All rights reserved" vừa ghi CC BY 4.0. Các thành phần đều đã có trong docs chính thức và trong các khung có trước như CO-STAR. Có thể dùng như checklist nhớ; DOI chỉ có nghĩa là tài liệu đã được lưu trữ, không có nghĩa đã được kiểm chứng.
 
+### 50. Mebius (3/11/2026): "React & Tailwind · MCP Ready" trên thẻ sản phẩm, nhưng thứ giao là file Figma
+
+Mebius của Keitoto (mục 06 §7x) bán 33 UI kit Figma, $19 mỗi kit, quảng cáo là "React & UI Libraries for AI Agents". Docs và trang sản phẩm chỉ cho thấy file `.fig` và PSD dạng zip: không có mã React, gói npm hay MCP server. "MCP Ready" nhiều khả năng chỉ là "đọc được qua MCP của Figma". License cấm chia sẻ hay biến kit thành thư viện, và không nói gì về AI. Bài học: với tài nguyên gắn nhãn "cho AI agent", hãy kiểm thứ thực sự được giao (mã, registry, endpoint) và license về AI trước khi mua.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

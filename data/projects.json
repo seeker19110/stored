@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 998,
+    "count": 999,
     "schema_version": 2
   },
   "projects": [
@@ -13195,6 +13195,28 @@
         "https://danhnolan.com/en/rccof",
         "https://zenodo.org/records/22856974",
         "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+      ]
+    },
+    {
+      "name": "Mebius (Keitoto)",
+      "repo": null,
+      "url": "https://www.mebius.design",
+      "category": "design-tool",
+      "license": "Proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Chợ 33 UI kit Figma (dashboard/mobile/website, nhiều kit cho sản phẩm AI) của Keitoto Studio, $19/kit hoặc $259 trọn bộ qua Polar; nhãn 'React & Tailwind · MCP Ready' chưa có nội dung: docs chỉ giao file .fig + PSD dạng zip, không npm/repo/MCP server; license một người, cấm bán lại/làm template/công bố, không nhắc AI; đọc 3/11/2026, mục 06 §7x",
+      "section": "06",
+      "id": "mebius-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7x-kiểm-link-mebiusdesign-chợ-ui-kit-figma-của-keitoto-nhãn-react--tailwind--mcp-ready-chưa-có-nội-dung-đi-kèm-link-người-dùng-gửi-3112026",
+      "last_verified_at": "2026-11-03",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.mebius.design",
+        "https://www.mebius.design/license",
+        "https://www.mebius.design/docs",
+        "https://www.mebius.design/resources/aivonic"
       ]
     }
   ]

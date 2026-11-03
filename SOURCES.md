@@ -1536,3 +1536,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03k (link danhnolan.com/en/rccof → mục 17 §4e)
 
 - https://danhnolan.com/en/rccof (WebFetch 3/11/2026) · Zenodo API https://zenodo.org/api/records/22856974 (Report, 20/9/2026, CC BY 4.0, 58 lượt xem) và PDF `RCCOF_Framework_Specification_v1.0-v3.pdf` (7.519 byte, đọc bằng pdftotext) · https://zenodo.org/api/records/22843346 (DLN technical note) · https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (đọc 3/11/2026).
+
+## Bổ sung 2026-11-03l (link mebius.design → mục 06 §7x)
+
+- WebFetch 3/11/2026: https://www.mebius.design · `/license` · `/docs` · `/resources/aivonic`; curl trang chủ (grep `MCP`, `/resources/`). WebSearch: https://keitoto.gumroad.com · https://contra.com/keitotostudio. Không tạo tài khoản, không mua.

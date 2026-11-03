@@ -1408,6 +1408,33 @@ Luồng tham chiếu: component/route → extract → bản dịch có placehold
 
 **Nguồn §7w:** WebFetch 3/11/2026: https://motionsites.ai · https://motionsites.ai/llms.txt · https://motionsites.ai/unlimited · https://motionsites.ai/mcp · https://motionsites.ai/terms · https://www.stork.ai/en/motionsites-ai · clone `--filter=blob:none` `Motionsites-AI/claude-skill` 3/11/2026 (HEAD `faa30d5`; LICENSE, README.md, `.claude-plugin/`, `SKILL.md`, `examples/INDEX.md`, `media/MEDIA.md`, `references/{review.md,spec-template.md,techniques/*}`, `scripts/shoot.py`; grep host) · GitHub search API 3/11/2026 (`motionsites`, `user:Motionsites-AI`, `repo:` cho 6 repo so sánh; code search `"motionsites.ai"`) · raw.githubusercontent.com/github/dmca/master/2026/05/2026-05-26-motionsites.md · …/2026/09/2026-09-09-motionsites.md · WebSearch 3/11/2026 (x.com/AiMotionSiteS, moge.ai, chatgate.ai, motionsites.org là domain khác chưa rõ liên hệ)
 
+## 7x. Kiểm link mebius.design: chợ UI kit Figma của Keitoto, nhãn “React & Tailwind · MCP Ready” chưa có nội dung đi kèm (link người dùng gửi, 3/11/2026)
+
+> Người dùng gửi https://www.mebius.design. Đã đọc trang chủ, `/license`, `/docs` và một trang sản phẩm (`/resources/aivonic`) bằng WebFetch, cùng mã HTML trang chủ bằng curl. Không tạo tài khoản, không mua, không tải file.
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Là gì | Chợ UI kit: 33 bộ (11 dashboard, 14 mobile app, 8 website), tiêu đề "React & UI Libraries for AI Agents". Mỗi thẻ kit ghi "Figma ready · React & Tailwind · MCP Ready"; nhiều kit hướng sản phẩm AI (AI chat app, AI receptionist) |
+| Ai làm | Footer ghi "created by Keitoto" (Keitoto Studio, có cửa hàng trên Gumroad và hồ sơ Contra hướng tới "Web3 and AI SaaS"). Trang không ghi người sáng lập hay địa chỉ. Liên kết mạng xã hội và "Keitoto on UI8" đều là `#` (chưa trỏ đi đâu) |
+| Giá | $19 mỗi kit hoặc $259 trọn bộ, trả một lần, được cập nhật miễn phí. Thanh toán qua Polar |
+| License | Riêng của Mebius, không phải mã nguồn mở. Được dùng cho dự án cá nhân, thương mại và SaaS có thu phí. **Cấm** bán lại hay chia sẻ file (kể cả bản đã sửa), cấm biến thành UI kit, template, thư viện hay design system, cấm công bố để người dùng cuối trích component, cấm làm app builder hay sản phẩm thiết kế cạnh tranh. Mỗi license cho **một người**; nhóm phải hỏi license tổ chức. **Không nhắc gì tới việc dùng với công cụ AI hay huấn luyện AI**, cũng không nói tới dự án mã nguồn mở |
+
+**Kiểm nhãn trên thẻ kit**
+
+| Nhãn | Kết quả | Căn cứ |
+|---|---|---|
+| "Figma ready" | ✅ | `/docs` mô tả mỗi lần mua là một file `.zip` trong "My Library", giải nén ra file `.fig`; có hướng dẫn font, variables, auto layout, smart object PSD. Kit Aivonic: `Aivonic.fig` 75,5 MB, 108 màn hình, 33 component, v1.0, cập nhật 28/10/2026 |
+| "React & Tailwind" | ⚠️ chưa thấy | Docs không có trang nào về React hay Tailwind, không có gói npm, repo hay registry shadcn. Trang Aivonic chỉ liệt kê file Figma. Có thể ý là "thiết kế theo lối dễ dựng bằng React/Tailwind", nhưng trang không nói rõ **(chưa xác minh khi chưa mua)** |
+| "MCP Ready" | ⚠️ không định nghĩa | Không có MCP server, endpoint hay lệnh cài. Trang sản phẩm có một mục điều hướng "Installation & MCP" nhưng không có nội dung đọc được. Nhiều khả năng là file Figma được dựng gọn gàng để đọc qua MCP của Figma (Dev Mode), là tính năng của Figma chứ không phải của Mebius **(suy luận)** |
+
+**Đặt trong bối cảnh**
+
+- Cùng nhóm với các nguồn UI có trả phí mà mục 06 đã đọc (motionsites.ai §7w, Saaspo §7v). Khác biệt so với thư viện mã nguồn mở như shadcn/ui hay HyperUI (§7h) là ở đây bạn mua **file thiết kế**, chưa phải mã.
+- ⚠️ Khi đưa kit cho agent dựng giao diện: license cấm "publish" hay để người khác trích component, và không nói gì về AI. Gửi file hoặc ảnh chụp cho dịch vụ AI bên thứ ba là vùng xám; nên hỏi Mebius trước nếu dùng cho sản phẩm thương mại. Không commit file `.fig` hay mã xuất từ kit vào repo công khai.
+- Nếu cần thứ thật sự "sẵn cho agent": chọn thư viện có registry máy đọc được (shadcn/ui có registry và MCP server chính thức, §7f, §7h) hoặc kit có kèm mã nguồn và license rõ ràng.
+
+**Nguồn §7x:** https://www.mebius.design · https://www.mebius.design/license · https://www.mebius.design/docs · https://www.mebius.design/resources/aivonic (WebFetch 3/11/2026) · curl trang chủ (grep `MCP`, `/resources/`) · https://keitoto.gumroad.com · https://contra.com/keitotostudio.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
