@@ -156,6 +156,24 @@
 
 **Nguồn §2e:** clone github.com/Graphify-Labs/graphify 31/10/2026 (blob:none, 2.675 commit, HEAD a0946f9 30/10/2026; README.md (What it does, Benchmarks, always-on), SECURITY.md (Security Model, Optional network calls), NOTICE, LICENSE, LICENSE-MIT, pyproject.toml, graphify/querylog.py, CHANGELOG.md, .github/workflows/*; git log "relicense from MIT to Apache-2.0" 22/7/2026; git shortlog) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/Graphify-Labs/graphify.json (31/10/2026) · app.graphify.com · docs.graphify.com
 
+### 2e.5 Kiểm ảnh "Give Claude a map of your code: graphify in 5 steps" (ảnh người dùng gửi, đọc lại mã 3/11/2026)
+
+> Ảnh là infographic 5 bước (cài tool → thêm skill → map dự án → mở 3 file → hỏi graph), không có tác giả hay link. Đối chiếu với clone `--filter=blob:none` HEAD `8e6a6d2129d4aeffc7a0e9ed79b153f7f057f42b` (2/11/2026, tag v0.9.101, 2.775 commit, 100 commit sau lần đọc §2e). **Không cài, không chạy.**
+
+| Bước trong ảnh | Kết quả | Đối chiếu |
+|---|---|---|
+| 1. "Note the double y in the name. You need Python 3.10 or newer", lệnh `uv tool instal` | ⚠️ | Python `>=3.10` và tên PyPI `graphifyy` đúng (`pyproject.toml`). Nhưng ô lệnh trong ảnh bị cắt đúng chỗ tên gói, nên chính phần "hai chữ y" mà ảnh dặn lại không hiện ra. Lệnh đủ là `uv tool install graphifyy` (README:53). Gõ `graphify` một chữ y là cài nhầm gói khác (§2e.1) |
+| 2. "Registers graphify with your AI assistant" | ✅ (ô lệnh trống) | `graphify install` tự nhận agent; `--project` để cài theo dự án, `--platform <host>` cho 20+ host (README:202–230) |
+| 3. "Type it inside Claude Code. Your code is mapped on your machine, with no AI" | ⚠️ đúng một phần | `/graphify .` (README:60). "No AI" chỉ đúng với **code** (tree-sitter AST). Docs, PDF, ảnh, video trong cùng thư mục đi qua lượt ngữ nghĩa bằng model của agent hoặc API key (README:36, :123). Với repo có tài liệu nội bộ, đây là dữ liệu rời máy |
+| 4. "Open the 3 files: a map you can click, the key ideas Claude reads first, and the full graph" | ✅ | `graphify-out/graph.html`, `GRAPH_REPORT.md`, `graph.json` (README:67–69) |
+| 5. "Ask the graph: shows how two parts of your code connect, without reading every file" | ✅ (ô lệnh trống) | `graphify path A B` trả đường đi và độ tin cậy của chặng yếu nhất; `graphify query "<câu hỏi>"` trả subgraph (README:102–107). Lưu ý cạnh `INFERRED` là do tool suy ra, không phải đọc trực tiếp từ source |
+
+**Đã đổi từ §2e (31/10 → 3/11/2026):** v0.9.99 → **v0.9.101**. Schema cache AST tăng từ 32 lên **36** chỉ trong 3 ngày (sửa extractor PHP, Scala/Terraform, Go/Python, Rust, C++). Vẫn Apache-2.0 (`pyproject.toml` khai `license-files` gồm LICENSE, LICENSE-MIT, NOTICE). Vẫn không có telemetry; query log vẫn tắt mặc định (`graphify/querylog.py:17–23`). 141.191★, 13.496 fork, 1.622 issue+PR mở (GitHub search API 3/11/2026; 31/10 là 722 issue + 920 PR).
+
+**Bổ sung cho §2e.4:** nhịp đổi schema cao xác nhận lời khuyên ghim phiên bản (`uv tool install graphifyy==0.9.101`) và dựng lại graph sau mỗi lần nâng. Ảnh hướng dẫn bỏ qua cả hai việc này, cũng như việc `graphify install` ghi hook PreToolUse vào cấu hình agent (§2e.2).
+
+**Nguồn §2e.5:** ảnh infographic người dùng gửi 3/11/2026 · clone https://github.com/Graphify-Labs/graphify HEAD `8e6a6d2129d4aeffc7a0e9ed79b153f7f057f42b` (README.md:34–123, :190–230; pyproject.toml; LICENSE; graphify/querylog.py; `git log a0946f9..HEAD`; `git tag`) · GitHub search API `repo:Graphify-Labs/graphify` 3/11/2026.
+
 ## 2f. Hồ sơ `colbymchenry/codegraph`: code graph cho agent qua MCP, chạy cục bộ (yêu cầu người dùng, clone 2026-10-31)
 
 > §2d chỉ có một đoạn so sánh (12/10/2026). Đã clone đủ lịch sử (blob:none), đọc README, `TELEMETRY.md`, `install.sh`, `telemetry-worker/`, cấu trúc `codegraph-kernel/`, workflow CI. **Không cài, không chạy.**

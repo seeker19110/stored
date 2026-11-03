@@ -300,6 +300,10 @@ OpenWorker (mục 02 §4g) là đối trọng của Javis OS trong cùng ngày: 
 
 vn-law-check (mục 18 §4e, 126★ sau một ngày) là bộ rule đầu tiên kho tìm được cho coding agent theo luật Việt Nam mới: Luật BVDLCN 91/2025 với NĐ 356/2025, cùng các luật TMĐT, An ninh mạng và AI. Phần đáng học là quy trình. `scan.sh` phân loại site 0–3 bằng grep có bằng chứng và có 8 fixture trong CI. Agent chỉ mở checklist áp dụng được, mỗi dòng có Điều/khoản, chỗ chưa đối chiếu toàn văn ghi `CHƯA XÁC MINH` và cấm agent tự điền. Lỗi tự kiểm được: README ghi 32 chỗ chưa xác minh nhưng HEAD có 43; bảng triage chưa tính checklist mobile; mức 3 trong script hẹp hơn mô tả; bộ lọc "cùng tên miền" so theo tiền tố. Hệ quả cho kho: X-Templates (`CMP-VN-007`, `CMP-RIGHTS-004`) còn ghi thời hạn "72 giờ" cho yêu cầu chủ thể dữ liệu, là mốc của NĐ 13 cũ. Hai bản tóm tắt độc lập của NĐ 356 cho mốc 2 ngày làm việc và 10/15/20 ngày, nên đã bàn giao `XT-H-111` (cột shallower). Ảnh antislop người dùng gửi cùng lượt là bản v3.2.18 (26/9). Upstream nay ở v3.2.25 với 40 luật, và lỗi định nghĩa chữ lớn 18px vẫn còn (mục 06 §7i.6).
 
+### 40. Kiểm ảnh "graphify in 5 steps" (3/11/2026): hướng dẫn đúng luồng nhưng cắt mất đúng chi tiết nó dặn
+
+Infographic năm bước cho Graphify (mục 16 §2e.5) khớp README ở luồng chính: `uv tool install graphifyy` → `graphify install` → `/graphify .` → ba file `graph.html`/`GRAPH_REPORT.md`/`graph.json` → `graphify path`. Hai chỗ lệch: ô lệnh bước 1 bị cắt đúng tên gói hai chữ y mà chính ảnh dặn, và "mapped with no AI" chỉ đúng với code, còn docs/PDF/ảnh trong repo vẫn qua model. Upstream đổi nhanh: schema cache AST tăng 32→36 trong ba ngày, nên ghim phiên bản và dựng lại graph sau mỗi lần nâng vẫn là điều kiện tích hợp.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
