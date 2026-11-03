@@ -364,6 +364,10 @@ higgsfield-ai/skills (mục 19 §3f, 1,9k★) khớp ảnh: MIT, v0.14.0, 9 skil
 
 Pullboard (mục 21 §10h, 528★) đưa board, spec và luật của dự án vào chính repo (SQLite trong `.git`, git hook, worktree cho từng lane, 0 phụ thuộc npm) để nhiều agent tự nhận việc, build và land. Luật PB1 "a builder never verifies their own work" được thực thi thật (`bar-check.js` từ chối khi builder và reviewer cùng phiên), nhưng hai phiên vẫn có thể cùng model, cùng máy. Các số "32 agents, 180 landed in 24 hours" và "1169 items" là tự công bố. 7.341 commit trong 24 ngày đều mang tên một người nên git không cho kiểm từng agent. README nói "Nothing is hosted" nhưng có relay tùy chọn tại app.pullboard.dev, dữ liệu được niêm phong bằng khóa của board.
 
+### 55. build-your-own-x (3/11/2026): repo nhiều sao nhất GitHub, license chỉ nằm trong README, ít nhất 3% link đã hỏng
+
+Ảnh trang build-your-own-x (mục 08 §5b, 559k★) khớp số liệu. Kiểm thêm: license CC0 chỉ được khai ở cuối README, không có file LICENSE nên GitHub hiện "null" (§2i từng ghi "không ghi"); trong 12 tháng chỉ có hai đợt merge, 689 issue+PR đang chờ. Kiểm 359 link: 4 link 404 và 6 link không truy cập được, kể cả "Write You a Haskell" và hướng dẫn OS của James Molloy; nhóm 403/429 (GitHub, Medium, YouTube) không kết luận được. Danh sách vẫn là điểm vào tốt, nhưng nên kiểm ngày từng bài và dùng web.archive.org khi link chết.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

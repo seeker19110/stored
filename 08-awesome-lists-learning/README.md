@@ -595,6 +595,30 @@ Ghi chú: `anthropics/courses` (23k★) **đã archive** (xem mục 17). Noteboo
 
 **Nguồn §5:** metadata GitHub API ngày 2/11/2026 và các permalink ở §5.2; đọc thêm nguồn chính thức ngoài repo: [Missing Semester 2026](https://missing.csail.mit.edu/2026/course-shell/), [D2L Preface](https://d2l.ai/chapter_preface/index.html), [DataTalks.Club MLOps Zoomcamp](https://datatalks.club/blog/mlops-zoomcamp.html), [tài liệu đồ án](https://datatalksclub.github.io/docs/courses/mlops-zoomcamp/project/). Đã đọc `license.md`, `.github/workflows/{build,links}.yml`, `_2026/{course-shell,code-quality,agentic-coding}.md` của Missing Semester; `LICENSE*`, `chapter_preliminaries/{index,autograd}.md`, `.github/workflows/ci.yml`, `static/build.yml` của D2L; `README.md`, `07-project/README.md`, `06-best-practices/code/{model.py,tests/model_test.py}`, hai workflow CI/CD của Zoomcamp. **Chưa chạy bài tập, model, cloud hay workflow của các nguồn.**
 
+## 5b. Kiểm ảnh codecrafters-io/build-your-own-x: license thật, nhịp bảo trì và link chết (ảnh trang repo người dùng gửi, 3/11/2026)
+
+> Ảnh là trang repo: 288 issue, 401 PR, 52,3k fork, 559k★, commit cuối `aa17439` (Paul Kuruvilla, "4 months ago"), About "Master programming by recreating your favorite technologies from scratch", link codecrafters.io, topic awesome-list/free/programming/tutorial-code/tutorial-exercises/tutorials. Repo đã có ở §1 (bảng #1) và §2i (#3). Đợt này clone đủ lịch sử, HEAD `aa17439b62f384511a5561ce308e9598b94d8989`, và kiểm link.
+
+| Ô trong ảnh / câu hỏi | Kết quả | Đối chiếu (3/11/2026) |
+|---|---|---|
+| 559k★, 52,3k fork | ✅ | 559.221★, 52.319 fork (GitHub search API) |
+| 288 issue + 401 PR | ✅ | API trả 689 issue+PR mở (= 288 + 401). Hàng đợi đóng góp lớn so với nhịp duyệt |
+| Commit cuối "4 months ago" | ✅ | `aa17439` ngày 14/7/2026. Trong 12 tháng gần nhất chỉ có hai đợt merge: một loạt PR ngày 21/2/2026 và vài PR tháng 6–7/2026. 616 commit từ 9/5/2018 |
+| **License** (ảnh không hiện) | ✅ CC0, nhưng chỉ khai trong README | Repo **không có file LICENSE**, nên GitHub API trả `license: null` (vì thế §2i ghi "không ghi"). Mục "Origins & License" cuối README gắn badge CC0 1.0. Catalog ghi CC0 là đúng theo README. CC0 áp cho danh sách; mỗi bài hướng dẫn được dẫn link có license riêng của tác giả |
+| Quan hệ thương mại | ℹ️ | Repo thuộc org CodeCrafters (nền tảng học có trả phí); dòng đầu README là banner dẫn tới `codecrafters.io/github-banner`. Người khởi xướng ban đầu là Daniel Stefanovic |
+
+**Nội dung và độ tươi của link** (kiểm bằng curl ngày 3/11/2026 từ môi trường của kho; chỉ đọc mã trạng thái HTTP, không đọc nội dung)
+
+- README có **31 chủ đề** (`#### Build your own …`: Database, Docker, Git, Operating System, Programming Language, Web Browser, AI Model, Neural Network…) và khoảng 389 mục; tách được 359 link dạng `* [..](url)`. Tên miền nhiều nhất: github.com 42, youtube.com 34, medium.com 20, aosabook.org 11.
+- Kết quả: **257 trả 200**; 73 trả 403 và 17 trả 429. Toàn bộ 42 link github.com rơi vào 403 vì proxy của môi trường kiểm chặn curl tới GitHub, còn Medium và YouTube thường chặn bot, nên nhóm 403/429 **không kết luận được**.
+- **Chắc chắn hỏng (404, kiểm hai lần): 4 link**: `sj14.gitlab.io` (Go Unix shell), `joaoventura.net` (Python web server), `seasonofcode.com` (X window manager), `joshburns-xyz.vercel.app` (Git plugin).
+- **Không truy cập được: 6 link**: `blog.usejournal.com` (không còn DNS), `tutorials.botsfloor.com`, `dev.stephendiehl.com/fun/` ("Write You a Haskell"), `stories.algolia.com`, `ilovephp.jondh.me.uk`, `lethalbrains.com` (timeout); `jamesmolloy.co.uk` (hướng dẫn OS kinh điển) trả 503. Một số có thể chỉ tạm thời; nên tìm bản lưu trên web.archive.org.
+- Tức là ít nhất khoảng 3% link đã hỏng; con số thật có thể cao hơn trong nhóm chưa kiểm được.
+
+**Dùng thế nào**: vẫn là điểm vào tốt nhất để chọn bài "tự dựng lại X". Nhưng hãy coi đây là danh mục 2018–2024 được bảo trì thưa: kiểm ngày đăng và phiên bản ngôn ngữ của từng bài, dùng bản lưu archive khi link chết. Với bài có cổng chấm tự động, xem codecrafters.io (trả phí) hoặc các khoá có autograder ở §4.
+
+**Nguồn §5b:** ảnh trang repo người dùng gửi 3/11/2026 · clone https://github.com/codecrafters-io/build-your-own-x HEAD `aa17439b62f384511a5561ce308e9598b94d8989` (https://github.com/codecrafters-io/build-your-own-x/blob/aa17439b62f384511a5561ce308e9598b94d8989/README.md, mục "Origins & License"; `git log`) · curl HTTP status 359 link ngày 3/11/2026 (`-L --max-time 12`, kiểm lại 404/000 với timeout 20–30 s) · GitHub search API `repo:codecrafters-io/build-your-own-x` 3/11/2026.
+
 ## Nguồn
 
 - https://gitstarclub.com/rankings · https://www.countly.net/most-starred-github-repositories-june-2026 · https://www.stackscan.com/blog/github-statistics · https://github.com/EvanLi/Github-Ranking · https://www.firecrawl.dev/blog/best-github-repos
