@@ -1484,7 +1484,43 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 - 5 trang thiết kế (danh sách người dùng gửi 2/11/2026): WebFetch posts.design + posts.design/llms.txt · transitions.dev · fontinlogo.com · icon.museum (chỉ title) · saaspo.com và www.saaspo.com (403); WebSearch: producthunt.com/products/saaspo · awwwards.com/sites/icon-museum · microsaasexamples.com/p/icon-museum · toolfolio.com/tools/icon-museum. transitions.dev đã có hồ sơ mục 06 §7p.5 (clone 31/10/2026).
 - X-Templates: clone HEAD `204913574eccd293886ceaff9388dab3923521a0` (2/11/2026), grep → `LOOP-HARNESS-022` (harness-files.md:282), `SEC-AI-002` (ai-security.md:54); bàn giao XT-H-110 (cột deeper, không đề xuất ID mới).
 
-## Bổ sung 2026-11-03a (link motionsites.ai → mục 06 §7w)
+## Bổ sung 2026-11-03a (link mhfed/vn-law-check → mục 18 §4e; ảnh README antislop → mục 06 §7i.6)
+
+- `mhfed/vn-law-check`: link người dùng gửi 3/11/2026; clone đủ lịch sử (18 commit trong ngày 2/11/2026, HEAD `5847e324337faab6886b6aedfd4e9bea4e0f2fea` v1.3.0): README, LICENSE, SKILL.md, AGENTS.md, `references/00…09`, `sources/legal-references.md`, `scripts/{scan,fetch-site}.sh`, `install.sh`, `tools/sync.sh`, `tests/run.sh` + fixture, `.github/workflows/check.yml`, `.claude-plugin/marketplace.json`, `plugins/vn-law-check/.claude-plugin/plugin.json`. GitHub search API 3/11/2026 (`repo:mhfed/vn-law-check`, `user:mhfed`). Không chạy mã.
+- Lựa chọn cùng loại: GitHub search API 3/11/2026 ("gdpr skill claude", "privacy compliance agent skill"); clone `--depth 1 --filter=blob:none` `waldo-van-der-code/deutsches-recht-mit-claude` `4c5e72d98b9ce8f1fe3c9c1122619049929c98fe`, `mukul975/Privacy-Data-Protection-Skills` `9b2ef9eae161c00a17241d42a388571321b33e9f` (grep "Decree 13/2023").
+- Luật (tóm tắt thứ cấp, toàn văn chưa đọc vì thuvienphapluat trả 403): https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-so-356-2025-nd-cp-quy-dinh-chi-tiet-mot-so-dieu-va-bien-phap-thi-hanh-luat-bao-ve-du-lieu-ca-nhan · https://luatvietan.vn/diem-moi-cua-nghi-dinh-356-2025-so-voi-nghi-dinh-13-2023-ve-huong-dan-bao-ve-du-lieu-ca-nhan.html · https://english.luatvietnam.vn/legal-updates/the-latest-law-on-personal-data-protection-and-the-guiding-documents-892-106778-article.html
+- `miqdadbadjuber/anti-slop`: ảnh README người dùng gửi 3/11/2026 (v3.2.18, 38 luật, Skills 19.0K); clone đủ lịch sử HEAD `941b1532f9cc8ffde766bca5921d75257c9e5762` (v3.2.25, 1/11/2026), `git log 439a2ef..HEAD`, grep "18px" và "DURING"; GitHub search API `user:miqdadbadjuber` 3/11/2026.
+- X-Templates: clone `--depth 1 --filter=blob:none` HEAD `5316026b22ca8d0202333c909947fdafc3633e28` (3/11/2026), grep `framework/16-compliance-privacy/` → `CMP-VN-007` (vietnam-data-law.md:68), `CMP-RIGHTS-004` (consent-and-user-rights.md:47); bàn giao XT-H-111 (cột shallower).
+
+## Bổ sung 2026-11-03b (ảnh "Give Claude a map of your code: graphify in 5 steps" → mục 16 §2e.5)
+
+- Ảnh infographic người dùng gửi 3/11/2026 (không tác giả, không link). Clone `--filter=blob:none` `Graphify-Labs/graphify` HEAD `8e6a6d2129d4aeffc7a0e9ed79b153f7f057f42b` (v0.9.101, 2/11/2026): README.md, pyproject.toml, LICENSE, `graphify/querylog.py`, `git log a0946f9..HEAD` (100 commit), `git tag`. GitHub search API `repo:Graphify-Labs/graphify` 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03c (ảnh README storytold/craft-anything → mục 01 §3m)
+
+- `storytold/craft-anything`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (211 commit 31/10–3/11/2026, HEAD `8638d6b72be3e99dcc73b06f92a8c113932c75f7`, tag v0.3.0): README.md, LICENSE-MIT/APACHE, NOTICE, `docs/brand/LICENSE-brand.txt`, `crates/engine/src/{clean_room,lib,settings}.rs`, `crates/ai/src/cli_agents/adapters.rs` + `adapters/antigravity.rs`, `.github/workflows/*`; grep `telemetry|posthog|sentry|analytics`, `drm|anti-cheat`. GitHub search API 3/11/2026 (`user:storytold`, `repo:storytold/craft-anything`, `repo:morluto/rea`). Không cài, không build.
+
+## Bổ sung 2026-11-03d (ảnh README trailhq/Trail-Code → mục 16 §2j)
+
+- `trailhq/Trail-Code`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (702 commit từ 3/7/2026, HEAD `b9c2e23e9b579200dba83d47e8dbdd8a488b6988`): README.md, TELEMETRY.md, LICENSE, package.json, `scripts/postinstall.mjs`, `scripts/stamp-telemetry-key.mjs`, `src/claude/pre-bash.ts`, `.github/workflows/ci.yml`, `.github/scripts/npm-downloads-badge.mjs`. registry.npmjs.org (`@trailhq/trail-code`, `@nanonets/graft` latest 0.28.1) · api.npmjs.org downloads last-month (3/10–1/11/2026: 13.316 + 84.387) · api.securityscorecards.dev (7.2, 2/11/2026) · GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03e (ảnh trang repo + README github/spec-kit → mục 13 §5a)
+
+- `github/spec-kit`: ảnh người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (2.329 commit từ 21/8/2025, HEAD `ba8363f8ab56b2da456a81299cfdbfee1ef7b871`, tag v1.2.6): README.md, LICENSE, pyproject.toml, catalog JSON của integrations/extensions/presets/workflows/bundles, `.github/workflows/*`. https://pypi.org/pypi/specify-cli/json · PyPI integrity API (`specify_cli-1.2.6-py3-none-any.whl`: không có provenance) · GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03f (link jangtrinh/design-os-vietnamese → mục 18 §5d)
+
+- `jangtrinh/design-os-vietnamese`: link người dùng gửi 3/11/2026; clone `--filter=blob:none` (63 commit từ 26/10/2026, HEAD `63dc65459628c72bf44691ded75c195d69f9e1d7`, không đổi từ 2/11): README.md, LICENSE, `shared/references/*.md`, `shared/scripts/*.py`, `knowledge/ecommerce-retail-and-consumer-law.md`, `knowledge/_evidence/vn-design-os-261026/{state,review}.json`, `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md`, `.github/workflows/*`, `evals/*/pairs.jsonl`. GitHub search API 3/11/2026. Không chạy mã.
+
+## Bổ sung 2026-11-03g (ảnh README kornia/kornia → mục 14 §5f)
+
+- `kornia/kornia`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (4.748 commit từ 22/8/2018, HEAD `a733fe3b6248652b0a509d002cf452b2167965f0`, tag v0.9.0): README.md, ROADMAP.md, AI_POLICY.md, CONTRIBUTING.md, LICENSE, pyproject.toml, `.github/workflows/*`; đếm `test_convention_*`, `gradcheck`, `__all__`. https://pypi.org/pypi/kornia/json · PyPI integrity API · https://pypistats.org/api/packages/kornia/recent · GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03h (ảnh link duongbirken2510/AI-Money → mục 21 §10g, trỏ chéo 18 §4b)
+
+- `duongbirken2510/AI-Money`: ảnh dòng link người dùng gửi 3/11/2026; clone đủ lịch sử (2 commit, HEAD `31a660d6a26ff92691949c76cdf63bd71fbc9f0a`): README.md, `server.py`, `agent_worker.py`, `fb_poster.py`, `numerology_comment_bot.py`, `.agents/skills/facebook-group-posting/SKILL.md`, `public/*.html` (grep chính sách bảo mật). GitHub search API 3/11/2026. Không cài, không chạy, không truy cập kiemtien.deta.vn.
+
+## Bổ sung 2026-11-03i (link motionsites.ai → mục 06 §7w)
 
 - motionsites.ai: WebFetch 3/11/2026 trang chủ, `llms.txt`, `/unlimited` (giá), `/mcp` (endpoint Supabase), `/terms` (cập nhật 30/9/2026, operator Viktor Odainyi); stork.ai/en/motionsites-ai (review ngoài, giá đo 1/11/2026, đếm 7/2026). Clone `--filter=blob:none` `Motionsites-AI/claude-skill` (2 commit, HEAD `faa30d512e3973e58675c72101a7ef42ed37ae83` 26/10/2026): LICENSE hai phần, README, `.claude-plugin/marketplace.json`, `plugins/motionsites-web-builder/.claude-plugin/plugin.json`, `SKILL.md`, `examples/` (đếm 40), `media/MEDIA.md`, `references/{review.md,spec-template.md,techniques/*}` (đếm dòng), `scripts/shoot.py` (đọc import); grep host/utm. GitHub search API 3/11/2026: `motionsites` (8 repo không chính thức), `user:Motionsites-AI`, `repo:` cho Nutlope/hallmark 46.248 · Leonxlnx/taste-skill 108.986 · pbakaus/impeccable 100.786 · yihui-dev/awesome-opus5-5-videos 13.306 · xianxian-sensen/motionsites-prompts 136 · xiiiabu/motionsites.ai 114; code search `"motionsites.ai"` → github/dmca. DMCA: raw.githubusercontent.com/github/dmca/master/2026/05/2026-05-26-motionsites.md và 2026/09/2026-09-09-motionsites.md (WebFetch); 2026-06-15 và 2026-07-14 "ai-web-design-prompts" chỉ thấy tên file (chưa đọc). WebSearch 3/11/2026: x.com/AiMotionSiteS, moge.ai, chatgate.ai, shweta-lodha.medium.com, motionsites.org (domain khác).
-- X-Templates: ID ở commit `204913574eccd293886ceaff9388dab3923521a0` (đã clone 2/11/2026): `CMP-LIC-004` (licensing-and-ip.md:52), `SEC-SUPPLY-027` (supply-chain.md:72); bàn giao XT-H-111 (cột deeper).
+- X-Templates: ID ở commit `204913574eccd293886ceaff9388dab3923521a0` (đã clone 2/11/2026): `CMP-LIC-004` (licensing-and-ip.md:52), `SEC-SUPPLY-027` (supply-chain.md:72); bàn giao XT-H-112 (cột deeper).

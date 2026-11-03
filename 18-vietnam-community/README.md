@@ -50,6 +50,7 @@
 - Model VN nên theo dõi thêm: nhóm Hermes/Antigravity dùng Gemini 3.x làm model chính cho tiếng Việt (quan sát trong config, chưa có benchmark).
 - **Repo VN về video-as-code và đội agent (tìm thấy khi kiểm bài đăng "điền form nhận 4 thứ", mục 22 §9i, 2/11/2026):** `HaiTLU/video-studio` (kho sản xuất video của Trung tâm Đào tạo ngắn hạn ĐH Thăng Long: 52 skill tiếng Việt, bảng đối chiếu nguồn/giấy phép từng skill, **không có LICENSE**), `hdduytran/one-studio-skill` (plugin video trọn gói, TTS tiếng Việt ZeroTTS, không LICENSE), `Freedombuiders/AIOS-Lite` (MIT, "hệ điều hành cho đội agent" có 8 bài học tiếng Việt), `lelongc/tools` (kho cá nhân giữ nguyên văn danh sách 20 repo video). Mẫu chung: viết tiếng Việt toàn bộ, vendor skill mở rồi ghi nguồn, nhưng hai trong bốn kho chưa khai license của chính mình.
 - **`blogminhquy/javis-os` (mục 02 §4f, đọc mã 2/11/2026):** trợ lý tự host tiếng Việt nhiều sao nhất của VN mà kho đọc được (537★, 205 fork, MIT), 1.531 commit trong 4 tháng gần như toàn bộ do agent viết (4.116 trailer Co-Authored-By), nối Zalo/Pancake POS/Meta Ads qua MCP cho chủ shop; mã và comment tiếng Việt không dấu kèm GLOSSARY cho người đọc nước ngoài; README 12 ngôn ngữ có workflow kiểm dịch. Điểm cần đọc trước khi dùng: nhánh `bypassPermissions` khi không có allowlist, plugin Python chạy trong process, cập nhật bằng `git pull` không tag.
+- **`duongbirken2510/AI-Money` (mục 21 §10g, đọc mã 3/11/2026):** thực nghiệm "AI tự kiếm tiền nuôi server" trong 20 ngày bằng Python thuần + SQLite + VietQR/SePay/Casso. Webhook ngân hàng làm đúng (HMAC, fail-closed). Nhưng có bot Facebook điều khiển Chrome qua CDP để đăng nhóm và trả lời bình luận, kèm skill viết rõ mục đích lách Admin Assist; thu số điện thoại và ngày sinh mà không thấy chính sách bảo mật; không có LICENSE.
 
 ## 4c. Repo & model tiếng Việt đã xác minh (2026-10-12)
 
@@ -126,6 +127,66 @@
 
 **Nguồn §4d:** GitHub search API 31/10/2026 (`repo:` cho repo cũ, 16 truy vấn) · `git ls-remote` cho `DAMO-NLP-SG/SeaLLMs`, `Viet-Mistral/Vistral-7B-Chat` · clone `undertheseanlp/underthesea` (LICENSE, `git log -- LICENSE`) · clone `--filter=blob:none` 7 repo mới, đọc: vietnamese-provinces-database (LICENSE, README (bảng nghị quyết, Download, GIS, FAQ), AGENTS.md, workflows), local_ai_ocr (LICENSE, README, `env_setup_linux.sh`, `requirements.txt`, `src/{transformers_service,lang_handler,config}.py`), elasticsearch-analysis-vietnamese (README, git log, tags), v-tts (LICENSE, README, `dist/`, `src/`), ZeroTTS (LICENSE, NOTICE, LICENSES/, README (Install, Benchmarks, License), `src/zerotts/{hub,cli}.py`), Vietnamese_LLMs (LICENSE, README, git log), gipformer (README, cây file) · https://huggingface.co/g-group-ai-lab/gipformer1.5-68M-rnnt · https://huggingface.co/zeroweight-ai/ZeroTTS · https://sapnhap.bando.com.vn (link trong README, chưa mở)
 
+## 4e. Hồ sơ mhfed/vn-law-check: skill audit pháp lý website và mobile app theo luật Việt Nam 2025–2026 (link người dùng gửi, đọc mã 3/11/2026)
+
+> Đọc mã tại `5847e324337faab6886b6aedfd4e9bea4e0f2fea` (v1.3.0, 2/11/2026). Clone đủ lịch sử: 18 commit, toàn bộ trong ngày 2/11/2026, một tác giả. Số sao lấy từ GitHub search API ngày 3/11/2026. **Không chạy, cài hay build mã của repo**; `tests/run.sh` và `scan.sh` chỉ được đọc. Điều khoản luật đối chiếu với tóm tắt của EY và Luật Việt An, **chưa đọc toàn văn** (thuvienphapluat trả 403).
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / URL | https://github.com/mhfed/vn-law-check |
+| Mô tả 1 dòng | Bộ checklist + skill cho coding agent (Claude Code, Cursor, Copilot, Windsurf, Cline, Codex): quét code hoặc URL để phân loại site, rồi audit theo luật dữ liệu cá nhân, TMĐT, an ninh mạng, người tiêu dùng, quảng cáo, giao dịch điện tử và AI của Việt Nam, có dẫn Điều/khoản |
+| Loại | checklist / agent skill + Claude plugin marketplace |
+| License | MIT cho mã và cấu trúc. GitHub hiện `NOASSERTION` vì file `LICENSE` có thêm đoạn ghi chú sau văn bản MIT. Dòng copyright ghi "Contributors to vn-web-compliance-audit", là tên cũ của dự án. Văn bản pháp luật được dẫn là tài liệu công khai, không thuộc phạm vi license |
+| Phiên bản đã đọc | `5847e324337faab6886b6aedfd4e9bea4e0f2fea` (plugin.json `1.3.0`) |
+| Kiểm chứng | 2026-11-03; code-read: README, LICENSE, SKILL.md, AGENTS.md, 10 file `references/`, `sources/legal-references.md`, `scripts/scan.sh`, `scripts/fetch-site.sh`, `install.sh`, `tools/sync.sh`, `tests/run.sh` + 8 fixture `EXPECTED`, `.github/workflows/check.yml`, `.claude-plugin/marketplace.json`, `plugin.json`. Chưa chạy test |
+| ★ (ngày) | 126★, 29 fork (2026-11-03, GitHub search API). Repo tạo 2/11/2026. Topic: `claude-plugin`, `agent-skills`, `cursor-rules`, `legal-tech`, `vietnam` |
+| Tác giả | `mhfed`: dev web/TypeScript cá nhân. Các repo khác đều dưới 10★ (`next-query-sync`, `react-shadcn-shopping-cart`, `gom`…). README tự nhận "Mình là dev, không phải luật sư". Web search 3/11/2026 chưa thấy bài viết hay thảo luận bên ngoài về repo |
+
+**Cấu trúc thật (đối chiếu với README)**
+
+- **Một nguồn, nhiều bản copy.** Nguồn gốc là `AGENTS.md`, `SKILL.md`, `references/`, `sources/`, `examples/`, `scripts/`. `tools/sync.sh` sinh ra `CLAUDE.md`, `.windsurfrules`, `.clinerules`, `.github/copilot-instructions.md`, `.cursor/rules/*.mdc` (thêm frontmatter) và bản trong `plugins/vn-law-check/` (copy file thật, vì thư mục plugin của Claude không nhận symlink). CI chạy `sync.sh --check` và báo lỗi khi bản copy bị lệch so với nguồn.
+- **Triage trước khi audit** (`references/00-triage.md`). `scan.sh` grep 10 nhóm tín hiệu (FORM, TRACKING, COMMERCE, AUTH, MARKETPLACE, AI, PERMISSIONS, SDK_TRACKING, ADS_SDK, FOREIGN_HOST), nhận diện Flutter/React Native/Expo/Android/iOS, rồi in `LEVEL=0..3 AI= FOREIGN_HOST= APP=` kèm bằng chứng `file:dòng:đoạn khớp`. Site mức 0 chỉ nhận 1 dòng kết luận, không phải bảng checklist dài. Regex có mẫu cho JSX đã compile (`jsx("form"`) để bắt form trong bundle React/Next. Script chạy được trên bash 3.2 của macOS vì không dùng `declare -A`.
+- **Quét theo URL** (`fetch-site.sh`): tải trang chủ, tối đa 15 trang cùng gốc có tên gợi ý chính sách/giỏ hàng/đăng nhập và tối đa 20 file JS, rồi quét như code. Header phản hồi được dùng để đoán hosting (Vercel, Cloudflare, CloudFront…).
+- **Test**: 8 fixture (static-blog, landing-form, shop, marketplace, ai-chat, spa-url phục vụ qua `python3 -m http.server`, rn-app, flutter-shop), mỗi fixture có `EXPECTED` dạng `LEVEL=… AI=… APP=…`.
+- **Cách ghi chưa chắc chắn**: điều khoản nào chưa đối chiếu toàn văn thì ghi `CHƯA XÁC MINH` ngay tại chỗ, và SKILL.md cấm agent tự điền số điều hay mức phạt cho các mục đó. Mỗi phát hiện xếp 🔴/🟡/🟢/⚪. Báo cáo phải đóng bằng phần giới hạn và khuyến nghị tham vấn luật sư.
+- **Không có telemetry.** Mạng chỉ dùng trong `fetch-site.sh` (GET tới site đang quét, UA `vn-law-check (+github…)`) và `install.sh` (`git clone` nhánh `main`).
+
+**Vì sao đáng tham khảo**
+
+- Đây là bộ rule compliance theo **luật Việt Nam mới** đầu tiên cho coding agent mà kho tìm được. Các bộ privacy lớn hơn vẫn dẫn luật cũ: `mukul975/Privacy-Data-Protection-Skills` (328★, Apache-2.0, đọc HEAD `9b2ef9e` ngày 16/3/2026) vẫn ghi "Decree 13/2023/ND-CP" trong nhiều skill APAC, trong khi NĐ 13 hết hiệu lực từ 01/01/2026.
+- Mẫu đáng học cho mọi skill "audit theo luật": **triage bằng máy có bằng chứng** → chỉ mở checklist áp dụng được → mỗi dòng có Điều/khoản → chỗ chưa kiểm ghi rõ và cấm agent bịa. Cách này khác GESF (mục 09 §2b), nơi công cụ tự chấm điểm "100%".
+- Thời hạn xử lý quyền chủ thể dữ liệu ghi theo **Điều 5 NĐ 356/2025**: phản hồi 2 ngày làm việc; xem/sửa 10 ngày; rút đồng ý/hạn chế/phản đối 15 ngày; xóa 20 ngày. Hai bản tóm tắt độc lập (EY, Luật Việt An) cho cùng các mốc này, kèm mốc 15/20/30 ngày khi phải phối hợp bên thứ ba. Mốc "72 giờ" chung là của NĐ 13/2023 cũ. Chỗ này lệch với X-Templates (xem dưới).
+- Tách nguồn khỏi bản copy cho từng công cụ và có CI chặn lệch là cách phân phối một bộ rule cho 6 agent mà không phải sửa tay 6 chỗ.
+
+**Hạn chế / rủi ro (tự kiểm 3/11/2026)**
+
+- ⚠️ **README ghi "còn 32 chỗ CHƯA XÁC MINH", nhưng tại HEAD đếm được 43 dòng** trong `references/`. 11 dòng thêm đến từ `09-mobile-app.md`, mới thêm ở v1.3.0 (43 − 11 = 32), nên con số trong README đã cũ sau đợt thêm mobile.
+- ⚠️ Bảng mức trong `00-triage.md` ghi mức 3 = "Toàn bộ `01`–`08`" và "không áp đủ 8 checklist", chưa tính `09-mobile-app`. Bảng mô tả mức 3 là "có tài khoản, **hoặc** xử lý dữ liệu lớn, **hoặc** là nền tảng", nhưng `scan.sh` chỉ xếp mức 3 khi có **cả** AUTH **và** MARKETPLACE. Một SaaS có đăng nhập mà không có từ khóa người bán sẽ bị xếp mức 1 hoặc 2.
+- ⚠️ `fetch-site.sh` lọc link cùng gốc bằng so khớp tiền tố (`[[ "$href" == "$origin"* ]]`), nên `https://shop.vn.example.com/...` vẫn lọt qua khi quét `https://shop.vn`. Thêm vào đó `curl -L` đi theo redirect sang miền khác. Tuyên bố "không gửi request đi đâu khác" vì vậy chỉ đúng với site bình thường **(suy từ mã, chưa chạy thử)**.
+- Grep heuristic: chữ "thanh toán" trong bài blog cũng bị tính là COMMERCE, và tài liệu tự nói phải xem lại bằng chứng. Quét qua URL không thấy được phía server (chatbot gọi AI ở backend, nơi lưu dữ liệu).
+- Tuổi đời một ngày, một tác giả không phải luật sư, chưa có issue hay PR từ bên ngoài. Phần lớn số điều lấy từ tóm tắt của công ty luật và báo chí. Mức phạt NĐ 330/2026 và toàn bộ khung phạt TMĐT, quảng cáo, AI còn `CHƯA XÁC MINH`.
+- Cài bằng `curl … | bash` sẽ clone `main` không ghim tag. `install.sh` chèn khối có marker vào `AGENTS.md`/`CLAUDE.md` của dự án (không ghi đè, chạy lại không chèn trùng) nhưng xóa và tạo lại `.vn-law-check/` mỗi lần chạy.
+
+**So với lựa chọn cùng loại (GitHub search API 3/11/2026)**
+
+| Repo | ★ · license | Phạm vi | Khác biệt |
+|---|---|---|---|
+| **mhfed/vn-law-check** | 126 · MIT (+ghi chú) | Luật VN 2025–2026, web + mobile | Triage bằng `scan.sh` + fixture CI. Đánh dấu `CHƯA XÁC MINH` tại chỗ |
+| `waldo-van-der-code/deutsches-recht-mit-claude` | 44 · MIT (`4c5e72d`, 20/10/2026) | DSGVO/BFSG/Widerruf của Đức | Mẫu gần nhất: 4 skill thuần Markdown, `/legal-audit` quét code hoặc URL. Không có script quét hay test |
+| `mukul975/Privacy-Data-Protection-Skills` | 328 · Apache-2.0 (`9b2ef9e`, 16/3/2026) | 282+ skill GDPR/CCPA/PIPL/DPDP… | Rộng nhưng phần Việt Nam còn dẫn NĐ 13/2023 đã hết hiệu lực |
+| `Sushegaad/Claude-Skills-Governance-Risk-and-Compliance` | 1.031 · MIT | ISO 27001, SOC 2, GDPR… | Hướng dẫn GRC tổng quát, không theo luật VN **(chỉ đọc mô tả)** |
+| `greenarmor/GESF` (mục 09 §2b) | 48 · MIT | GDPR/OWASP/CIS dạng control JSON | CLI tự chấm điểm, không có checklist VN |
+
+**Tích hợp**
+
+- Dùng làm **bước rà soát ban đầu** trước khi phát hành site hoặc app có người dùng Việt Nam. Không dùng làm bằng chứng tuân thủ gửi ra ngoài. Ghim commit hoặc tag khi cài (`git clone` rồi checkout `5847e32`) thay vì `curl | bash` vào `main`.
+- Dự án đã có khung compliance (X-Templates `framework/16-compliance-privacy/vietnam-data-law.md`) nên đối chiếu từng mốc thời hạn và số điều, chưa nên nhúng nguyên bộ. Phần đáng lấy là triage và kỷ luật `CHƯA XÁC MINH`.
+- Khi quét URL của site người khác: chỉ dùng kết quả để báo riêng cho chủ site, đúng như README dặn.
+
+**Liên quan:** mục 09 §2b (GESF), mục 20 (Claude plugin marketplace, SKILL.md), mục 04 (AGENTS.md), §4b (pháp lý số tại VN, nhận định NĐ 13/2023 lấy từ docs nội bộ đã cũ), mục 23.
+
+**Nguồn §4e:** clone đủ lịch sử `mhfed/vn-law-check` HEAD `5847e324337faab6886b6aedfd4e9bea4e0f2fea` (3/11/2026) · GitHub search API 3/11/2026 (`repo:mhfed/vn-law-check`, `user:mhfed`, 3 truy vấn chủ đề compliance/GDPR skill) · clone `--depth 1 --filter=blob:none`: `waldo-van-der-code/deutsches-recht-mit-claude` `4c5e72d`, `mukul975/Privacy-Data-Protection-Skills` `9b2ef9e` (grep "Decree 13/2023") · https://www.ey.com/vi_vn/technical/tax/tax-and-law-updates/nghi-dinh-so-356-2025-nd-cp-quy-dinh-chi-tiet-mot-so-dieu-va-bien-phap-thi-hanh-luat-bao-ve-du-lieu-ca-nhan · https://luatvietan.vn/diem-moi-cua-nghi-dinh-356-2025-so-voi-nghi-dinh-13-2023-ve-huong-dan-bao-ve-du-lieu-ca-nhan.html · https://english.luatvietnam.vn/legal-updates/the-latest-law-on-personal-data-protection-and-the-guiding-documents-892-106778-article.html
+
 ## 5. Gợi ý bổ sung tiếp
 
 - Thêm link GitHub cụ thể của từng model/toolkit (số sao, ngày cập nhật) khi có.
@@ -198,6 +259,51 @@ UAX #15 được đọc ở bản revision 58 (12/8/2026); CLDR và runtime đư
 5. Chỉ phát hành khi task outcome, an toàn và bản địa hóa đều qua cổng; liên kết kết quả với commit sản phẩm để không tái dùng báo cáo cũ sau khi đổi model/prompt.
 
 **Nguồn §5c:** GitHub metadata/clone ViRE ngày 2/11/2026 (LICENSE, README, mã eval) và permalink trên; paper EACL 2026, VMLU ACL 2025, VialectBench (trang công bố; harness đầy đủ chưa xác minh), Unicode UAX #15 và UTS #35. Không tải dữ liệu người dùng và không chạy benchmark.
+
+## 5d. Hồ sơ jangtrinh/design-os-vietnamese: 16 skill viết tiếng Việt theo ngành, linter tất định và kho tri thức có neo SHA-256 (link người dùng gửi, đọc mã 3/11/2026)
+
+> §5b chỉ có một dòng bảng. Đây là hồ sơ đầy đủ, đọc lại tại `63dc65459628c72bf44691ded75c195d69f9e1d7` (1/11/2026). Upstream **không có commit mới** kể từ lần đọc 2/11. Clone `--filter=blob:none`, 63 commit từ 26/10/2026. **Không chạy mã** (`validate_copy.py`, `verify_ukmc.py`, test).
+
+### 5d.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/jangtrinh/design-os-vietnamese · **10★, 0 fork**, 0 issue mở (GitHub search API) |
+| Tác giả | Jang Trịnh (`jangtrinh`), một người: 62/63 commit. Cũng là upstream của `design-os-3d-blender` (mục 23 §6.1). 36 dòng trailer Co-Authored-By |
+| License | **PolyForm Shield 1.0.0** (GitHub hiển thị `NOASSERTION`): source-available, **cấm dùng trong sản phẩm cạnh tranh** với tác giả. Không phải license OSI, nên catalog ghi `open_source: false` |
+| Nội dung | **16 skill** cho Claude Code, Codex, Gemini CLI, Antigravity: landing, e-commerce, tài chính, bảo hiểm, y tế, giáo dục, pháp lý–hợp đồng, nhân sự, chính phủ–dịch vụ công, bất động sản–xây dựng, du lịch, truyền thông–PR, an ninh mạng, tech writing, business comms, design system UX. Có `shared/references/` dùng chung (register-matrix 31 đối tượng, banned-phrases, compliance, locale-formatting) và mỗi skill có một bản copy |
+| Cổng máy | `shared/scripts/validate_copy.py` (1.745 dòng, chỉ dùng thư viện chuẩn) với 23 mã rule kiểu `LAW001`, `PROD004`, `SPAM001`, `PLAIN001–007`… Thêm `plain_tone.py`, `check_i18n_parity.py`, `check_font_coverage.py` và `writing_context.py`. CI chạy `self_check.py`, `verify_ukmc.py`, `unittest` và pre-commit |
+| Kho tri thức | 18 module "UKMC.v1" trong `knowledge/`. Mỗi đoạn có neo `<!-- ease:source uri=… sha256=… -->` trỏ tới nguồn đã đóng băng trong `knowledge/_evidence/vn-design-os-261026/sources/` (văn bản tải từ vbpl.vn, hethongphapluat.com, hoatieu.vn) |
+
+### 5d.2 Điểm đáng học
+
+- **Kiểm hiệu lực văn bản bằng dữ liệu máy đọc.** Báo cáo `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md` (28–29/10) lấy trạng thái từ trường schema.org `legislationLegalForce` trên trang vbpl.vn (InForce, NotInForce, PartiallyInForce) và đóng băng thành dòng 1 của mỗi file nguồn. Đợt này đã **gỡ nhận định cũ coi NĐ 13/2023 là văn bản đang hiệu lực** (`state.json`, `retired_claim_ids`) và chuyển sang Luật 91/2025 + NĐ 356/2025, kèm NĐ 330/2026 về xử phạt. Đây là cách làm chặt hơn hẳn cách "tóm tắt từ blog luật".
+- **Đếm nguồn độc lập theo nhà xuất bản, không theo file.** Báo cáo tự ghi: hai file của cùng một nơi chỉ là một nguồn. Kết quả: 3 nhà xuất bản bên ngoài, 0 trước đợt này.
+- **Reviewer độc lập khác model** (`review.json`: `passed: true`, 29/10/2026). Rule có "negation guard": "không phải số 1" không bị bắt là quảng cáo bậc nhất. Muốn giữ claim bậc nhất thì phải ghi chú `<!-- proof: … -->`.
+
+### 5d.3 Lệch giữa README, cổng và nội dung (tự kiểm)
+
+- ⚠️ **Module TMĐT vẫn theo khung cũ.** `shared/references/compliance.md` §4 (footer bắt buộc, mã `LND004`) và `knowledge/ecommerce-retail-and-consumer-law.md` dẫn **NĐ 52/2013 + NĐ 85/2021**, không nhắc **Luật TMĐT 122/2025** (hiệu lực 01/07/2026) và NĐ 248/2026. Grep `122/2025|248/2026` trong repo không có kết quả. Đợt kiểm hiệu lực 28/10 không có TMĐT trong bảng, và nguồn của module này là corpus do dự án tự viết (`06-realestate-ecommerce-…-corpus.md`). Theo vn-law-check (§4e), website đăng ký theo khung cũ còn hoạt động được tới 30/06/2027. Nội dung footer có đổi hay không **(chưa xác minh)**.
+- ⚠️ **README chỉ nêu cổng dễ hơn.** README ghi 18 module "STOP_SUFFICIENT"; `verify_ukmc.py` đúng là trả kết quả đó. Nhưng cổng chặt hơn của chính dự án (`kb gate`) vẫn là **DEEPEN** (§14 của báo cáo), vì mới bão hòa 1/3 vòng và còn câu hỏi mở: điều khoản nào của Luật KDBĐS 29/2023 đã hết hiệu lực, nghị định nào thay NĐ 15/2018, từ điển. `state.json`: `status: RUNNING`, vòng 13.
+- ⚠️ README ghi "489 golden evaluation pairs" nhưng `evals/*/pairs.jsonl` (17 file) có **575 dòng**, đúng như §5b đã ghi. Chưa sửa.
+- `register-matrix.md` và `compliance.md` được copy vào từng skill. Sửa ở `shared/` mà không đồng bộ thì các bản copy lệch nhau, và repo không có cổng chặn lệch kiểu `sync.sh --check` của vn-law-check **(chưa thấy, chưa kiểm hết `self_check.py`)**.
+
+### 5d.4 So với cùng loại
+
+| Repo | ★ (3/11) | License | Khác |
+|---|---|---|---|
+| **jangtrinh/design-os-vietnamese** | 10 | PolyForm Shield | Viết tiếng Việt theo ngành, linter tất định, tri thức có neo SHA-256 + reviewer độc lập |
+| `mhfed/vn-law-check` (§4e) | 126 | MIT (+ghi chú) | Audit pháp lý website/app, không viết copy. Đã theo Luật TMĐT 122/2025 |
+| antislop (mục 06 §7i) | 8k | MIT | Lọc "AI slop" cho UI và văn bản tiếng Anh, không có luật VN |
+| X-Templates `framework/16-compliance-privacy` | – | – | Khung yêu cầu, không phải linter |
+
+### 5d.5 Dùng thế nào
+
+- Lấy **ý tưởng** linter (NFC, kiểu dấu, câu dịch máy, claim bậc nhất có proof, giờ gửi tin quảng cáo) và cách neo nguồn bằng hash. Nếu sản phẩm của bạn có thể cạnh tranh với tác giả thì đừng nhúng mã (PolyForm Shield).
+- Với nội dung TMĐT, đối chiếu thêm Luật 122/2025 và NĐ 248/2026 trước khi tin rule `LND004`. Với dữ liệu cá nhân thì module đã cập nhật theo luật mới.
+- Đọc `plans/reports/…legal-validity…md` §14 để biết những phần nào còn mở trước khi dùng các module tương ứng.
+
+**Nguồn §5d:** link người dùng gửi 3/11/2026 · clone https://github.com/jangtrinh/design-os-vietnamese HEAD `63dc65459628c72bf44691ded75c195d69f9e1d7` (README.md, LICENSE, `shared/references/{compliance,register-matrix,banned-phrases}.md`, `shared/scripts/*.py`, `knowledge/ecommerce-retail-and-consumer-law.md`, `knowledge/_evidence/vn-design-os-261026/{state,review}.json`, `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md`, `.github/workflows/*`, `evals/*/pairs.jsonl`; grep `122/2025|248/2026|52/2013|85/2021`) · GitHub search API `repo:jangtrinh/design-os-vietnamese` 3/11/2026.
 
 ## 6. Nguồn
 

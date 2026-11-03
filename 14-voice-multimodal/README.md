@@ -206,6 +206,44 @@
 
 **Nguồn §5e:** GitHub metadata/HEAD 2/11/2026 và các permalink trên; clone chỉ đọc LICENSE, README, CI, `utils_vad.py`, `rtcpeerconnection.py`; W3C Media Capture and Streams; SEA-HELM Audio (preprint). Không có benchmark chạy mới.
 
+## 5f. Hồ sơ kornia/kornia: thư viện thị giác máy tính khả vi trên PyTorch, đang chuyển sang làm đặc tả thực thi được (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: logo Kornia "Open Source and Computer Vision, Powered by PyTorch"; badge pypi 0.9.0, downloads 120M, G-Star 98, license Apache 2.0; khối "Direction" (reference implementation và executable specification); mục "When to use Kornia" (1.200+ operator, tham số theo lô, minimal solver và RANSAC theo lô). Đã clone `--filter=blob:none` đủ lịch sử, HEAD `a733fe3b6248652b0a509d002cf452b2167965f0` (2/11/2026). **Không cài, không chạy test.**
+
+### 5f.1 Kiểm ảnh
+
+| Ô trong ảnh | Kết quả | Đối chiếu (3/11/2026) |
+|---|---|---|
+| "pypi package 0.9.0" | ✅ | PyPI `kornia` 0.9.0, Python ≥ 3.11; phụ thuộc `torch>=2.5.1`, `numpy`, `kornia_rs` (phần Rust). `main` đang là `0.9.1.dev` |
+| "license Apache 2.0" | ✅ | `LICENSE` Apache-2.0, cộng thêm file `COPYRIGHT` |
+| "downloads 120M" | ⚠️ khó kiểm | Có vẻ là tổng tích lũy. pypistats (không tính mirror) cho **2,18 triệu/tháng**; `ROADMAP.md` tự ghi "~3M downloads/month" |
+| "1,200+ public operators" | ⚠️ chưa xác minh | Đếm `__all__` trong các `__init__.py` được **712 tên**. Đây là cận dưới, vì không phải module con nào cũng khai `__all__`. Con số 1.200 có thể tính cả lớp augmentation, model và alias |
+| "From Kornia 0.9.1, a `sigma` tensor … validated on the device" | ⚠️ chưa phát hành | README trên `main` đang mô tả bản 0.9.1 chưa ra. Người dùng 0.9.0 chưa có hành vi này |
+| ★ | ✅ | 12.188★, 1.494 fork, 144 issue+PR mở (GitHub search API) |
+
+### 5f.2 Điều đáng học (đọc mã)
+
+- **"Đặc tả thực thi được" thay vì thêm API.** `ROADMAP.md` (23/10/2026) nói rõ lỗi nguy hiểm nhất của mã hình học là sai **quy ước**: `align_corners`, tâm hay góc pixel, (x,y) hay (row,col), tọa độ chuẩn hóa hay pixel, chiều quay, chuẩn hóa homography. Code vẫn chạy nhưng sai về toán, và "this is exactly the error class LLMs reproduce". Lộ trình ba bước: **ghi rõ** (mỗi op có khối Convention trong docs và test `test_convention_*`; hiện có **1.413 test** như vậy) → **sửa và deprecate trong một cửa sổ chung** → **đóng băng** một tập "Tier A" có bảo đảm autograd, gradcheck, compile, dtype/device. Tier A **mới là đề xuất**, chưa áp dụng.
+- **Conformance corpus** (dự kiến): bộ vector vàng trung lập với framework, kèm tolerance và metadata quy ước, để các port sang JAX, Rust/Triton, bản vendor **và mã do LLM sinh ra** có thể tự kiểm. Đây là mẫu tốt cho mọi thư viện có lỗi khó thấy.
+- **Chính sách AI rõ ràng**: `AI_POLICY.md` và `CONTRIBUTING.md` không phân loại đóng góp theo mức dùng AI, chỉ yêu cầu nói rõ AI đã giúp gì và "care". Từ 1/8/2026 có 1.456 commit, trong đó **999 có trailer Co-Authored-By Claude**. Maintainer chính Dmytro Mishkin có 431 commit trong kỳ. Repo có `AGENTS.md` và `CLAUDE.md`. PR im lặng 15 ngày bị gắn nhãn stale nhưng **không bị đóng**.
+- **Phát hành**: `pypi-release.yml` dùng trusted publishing (`id-token: write`, `pypa/gh-action-pypi-publish@release/v1`). ROADMAP ghi đã đối chiếu wheel PyPI với bản build trong CI. Tuy vậy PyPI **không có provenance** cho `kornia-0.9.0-py3-none-any.whl`. CI có workflow riêng cho typecheck, import-surface, test gói PyPI định kỳ, upstream probe và tutorial. Action **ghim theo tag** (`actions/checkout@v7`, `setup-pixi@v0.11.2`), không theo SHA.
+- Không thấy telemetry (grep `telemetry|posthog|sentry_sdk` trong `kornia/`).
+
+### 5f.3 Rủi ro và cách dùng
+
+- Phiên bản 0.x, và lộ trình đã báo trước một **cửa sổ sửa quy ước** (box, camera, augmentation) có cảnh báo deprecation ít nhất một bản minor. Ghim phiên bản; đọc trang "Conventions & Pitfalls" và "stability policy" trước khi nâng.
+- Ảnh và tham số phải là float trong `[0, 1]`. Đầu vào số nguyên không được hỗ trợ theo `CONTRIBUTING.md`.
+- **Với agent viết mã thị giác**: bắt agent trích dẫn khối Convention của op đang dùng, và tái dùng test `test_convention_*` của Kornia làm cổng kiểm trước khi tin hàm hình học tự viết.
+
+| Thư viện | ★ (3/11) | License | Khác Kornia |
+|---|---|---|---|
+| **kornia/kornia** | 12k | Apache-2.0 | Khả vi, chạy theo lô trên GPU; hình học epipolar, camera, RANSAC; đang xây đặc tả |
+| `pytorch/vision` (torchvision) | – | BSD-3-Clause | Transform cơ bản (resize, crop, flip, jitter); mỗi lần gọi một tham số **(theo README Kornia)** |
+| OpenCV | – | Apache-2.0 | Rộng nhất nhưng chạy trên CPU hoặc CUDA riêng, không khả vi |
+| `albumentations` | – | MIT (bản gốc) | Augmentation trên CPU bằng numpy **(không đọc mã)** |
+
+**Nguồn §5f:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/kornia/kornia HEAD `a733fe3b6248652b0a509d002cf452b2167965f0` (README.md, ROADMAP.md, AI_POLICY.md, CONTRIBUTING.md, LICENSE, pyproject.toml, `.github/workflows/{pypi-release,tests}.yml`; đếm `def test_convention_`, `gradcheck`, `__all__`; `git shortlog --since=2026-08-01`) · https://pypi.org/pypi/kornia/json · PyPI integrity API (0.9.0: không có provenance) · https://pypistats.org/api/packages/kornia/recent (2.176.424/tháng) · GitHub search API `repo:kornia/kornia` 3/11/2026.
+
 ## 6. Nguồn
 
 - https://micdrop.dev/blog/open-source-voice-agent-frameworks · https://livekit.com/blog/best-open-source-voice-and-video-ai-agent-frameworks · https://www.forasoft.com/blog/article/pipecat-vs-livekit-agents · https://github.com/pipecat-ai/pipecat · https://techsy.io/en/blog/best-open-source-voice-agent-frameworks · https://grokipedia.com/page/List_of_open-source_voice_AI_frameworks

@@ -156,6 +156,24 @@
 
 **Nguồn §2e:** clone github.com/Graphify-Labs/graphify 31/10/2026 (blob:none, 2.675 commit, HEAD a0946f9 30/10/2026; README.md (What it does, Benchmarks, always-on), SECURITY.md (Security Model, Optional network calls), NOTICE, LICENSE, LICENSE-MIT, pyproject.toml, graphify/querylog.py, CHANGELOG.md, .github/workflows/*; git log "relicense from MIT to Apache-2.0" 22/7/2026; git shortlog) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/Graphify-Labs/graphify.json (31/10/2026) · app.graphify.com · docs.graphify.com
 
+### 2e.5 Kiểm ảnh "Give Claude a map of your code: graphify in 5 steps" (ảnh người dùng gửi, đọc lại mã 3/11/2026)
+
+> Ảnh là infographic 5 bước (cài tool → thêm skill → map dự án → mở 3 file → hỏi graph), không có tác giả hay link. Đối chiếu với clone `--filter=blob:none` HEAD `8e6a6d2129d4aeffc7a0e9ed79b153f7f057f42b` (2/11/2026, tag v0.9.101, 2.775 commit, 100 commit sau lần đọc §2e). **Không cài, không chạy.**
+
+| Bước trong ảnh | Kết quả | Đối chiếu |
+|---|---|---|
+| 1. "Note the double y in the name. You need Python 3.10 or newer", lệnh `uv tool instal` | ⚠️ | Python `>=3.10` và tên PyPI `graphifyy` đúng (`pyproject.toml`). Nhưng ô lệnh trong ảnh bị cắt đúng chỗ tên gói, nên chính phần "hai chữ y" mà ảnh dặn lại không hiện ra. Lệnh đủ là `uv tool install graphifyy` (README:53). Gõ `graphify` một chữ y là cài nhầm gói khác (§2e.1) |
+| 2. "Registers graphify with your AI assistant" | ✅ (ô lệnh trống) | `graphify install` tự nhận agent; `--project` để cài theo dự án, `--platform <host>` cho 20+ host (README:202–230) |
+| 3. "Type it inside Claude Code. Your code is mapped on your machine, with no AI" | ⚠️ đúng một phần | `/graphify .` (README:60). "No AI" chỉ đúng với **code** (tree-sitter AST). Docs, PDF, ảnh, video trong cùng thư mục đi qua lượt ngữ nghĩa bằng model của agent hoặc API key (README:36, :123). Với repo có tài liệu nội bộ, đây là dữ liệu rời máy |
+| 4. "Open the 3 files: a map you can click, the key ideas Claude reads first, and the full graph" | ✅ | `graphify-out/graph.html`, `GRAPH_REPORT.md`, `graph.json` (README:67–69) |
+| 5. "Ask the graph: shows how two parts of your code connect, without reading every file" | ✅ (ô lệnh trống) | `graphify path A B` trả đường đi và độ tin cậy của chặng yếu nhất; `graphify query "<câu hỏi>"` trả subgraph (README:102–107). Lưu ý cạnh `INFERRED` là do tool suy ra, không phải đọc trực tiếp từ source |
+
+**Đã đổi từ §2e (31/10 → 3/11/2026):** v0.9.99 → **v0.9.101**. Schema cache AST tăng từ 32 lên **36** chỉ trong 3 ngày (sửa extractor PHP, Scala/Terraform, Go/Python, Rust, C++). Vẫn Apache-2.0 (`pyproject.toml` khai `license-files` gồm LICENSE, LICENSE-MIT, NOTICE). Vẫn không có telemetry; query log vẫn tắt mặc định (`graphify/querylog.py:17–23`). 141.191★, 13.496 fork, 1.622 issue+PR mở (GitHub search API 3/11/2026; 31/10 là 722 issue + 920 PR).
+
+**Bổ sung cho §2e.4:** nhịp đổi schema cao xác nhận lời khuyên ghim phiên bản (`uv tool install graphifyy==0.9.101`) và dựng lại graph sau mỗi lần nâng. Ảnh hướng dẫn bỏ qua cả hai việc này, cũng như việc `graphify install` ghi hook PreToolUse vào cấu hình agent (§2e.2).
+
+**Nguồn §2e.5:** ảnh infographic người dùng gửi 3/11/2026 · clone https://github.com/Graphify-Labs/graphify HEAD `8e6a6d2129d4aeffc7a0e9ed79b153f7f057f42b` (README.md:34–123, :190–230; pyproject.toml; LICENSE; graphify/querylog.py; `git log a0946f9..HEAD`; `git tag`) · GitHub search API `repo:Graphify-Labs/graphify` 3/11/2026.
+
 ## 2f. Hồ sơ `colbymchenry/codegraph`: code graph cho agent qua MCP, chạy cục bộ (yêu cầu người dùng, clone 2026-10-31)
 
 > §2d chỉ có một đoạn so sánh (12/10/2026). Đã clone đủ lịch sử (blob:none), đọc README, `TELEMETRY.md`, `install.sh`, `telemetry-worker/`, cấu trúc `codegraph-kernel/`, workflow CI. **Không cài, không chạy.**
@@ -328,6 +346,56 @@ Các repo còn lại (vitepress, mdBook, docsify, deepwiki-open, codeflow) dao �
 **Đã đổi sau §2h:** sửa dòng Context7 ở §2 để không đồng nhất tài liệu “mới nhất” với tài liệu “đúng phiên bản”; thêm hai lớp owner/provenance và freshness có bằng chứng bên cạnh cổng văn xuôi. Không đánh dấu index mới hay ETag trùng là kết luận nội dung kỹ thuật đúng.
 
 **Nguồn §2i:** metadata GitHub API 2/11/2026; các permalink §2i.2–§2i.3; nguồn chính thức ngoài repo [Context7 API Guide](https://context7.com/docs/api-guide), [TechDocs architecture](https://backstage.io/docs/features/techdocs/architecture/), [TechDocs how-to](https://backstage.io/docs/features/techdocs/how-to-guides/). Đã đọc Context7 `LICENSE`, `docs/api-guide.mdx`, `packages/mcp/src/{index.ts,lib/api.ts,lib/constants.ts,lib/types.ts}`, `.github/workflows/test.yml`; Backstage `LICENSE`, catalog descriptor/example, builder/synchronizer/HTML transformer và sanitizer test, `.github/workflows/{verify_docs-quality,verify_e2e-linux}.yml`. **Chưa gọi API hay tái lập build, test và portal của các nguồn.**
+
+## 2j. Hồ sơ trailhq/Trail-Code (Trail-code, tên cũ graft): bản đồ code + “learnings” cho coding agent, telemetry bật mặc định (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: "Trail-code (previously graft) by Trail", "The self-learning context layer for coding agents", bảng Code map / Learnings, Trendshift "#4 Repository Of The Day" (TypeScript), cùng các badge "11K", "npm v0.28.0", "downloads 102K/month", "node >=20", "typescript strict", "license MIT", "telemetry anonymous, opt-out", "OpenSSF Scorecard 7.2". Đã clone `--filter=blob:none` đủ lịch sử, HEAD `b9c2e23e9b579200dba83d47e8dbdd8a488b6988` (2/11/2026). **Không cài, không chạy**: cài gói npm sẽ chạy postinstall có gửi sự kiện (xem dưới).
+
+### 2j.1 Kiểm từng ô trong ảnh
+
+| Ô trong ảnh | Kết quả | Đối chiếu (3/11/2026) |
+|---|---|---|
+| ★ "11K" | ✅ | 11.040★, 981 fork, 282 issue+PR mở (GitHub search API) |
+| "license MIT" | ✅ | `LICENSE` MIT, dòng copyright "Context Graph Engine contributors"; `package.json` `"license": "MIT"` |
+| "npm v0.28.0" | ⚠️ cũ một bản | npm `@trailhq/trail-code` và `@nanonets/graft` đều đã lên **0.28.1** (registry). Tag git chỉ tới `v0.21.1`, tức tag đi sau bản npm 7 minor |
+| "downloads 102K/month" | ✅ gần đúng | Badge **cộng hai gói** (`.github/scripts/npm-downloads-badge.mjs`). Kỳ 3/10–1/11: `@nanonets/graft` 84.387 + `@trailhq/trail-code` 13.316 = **97.703**. Phần lớn lượt tải vẫn là tên cũ |
+| "node >=20", "typescript strict" | ✅ | Khớp README và tsconfig (không kiểm sâu) |
+| "telemetry anonymous, opt-out" | ✅ nhưng cần đọc kỹ | Bật mặc định. Xem §2j.3 |
+| "OpenSSF Scorecard 7.2" | ✅ | api.securityscorecards.dev: 7.2 (2/11/2026). CI ghim action theo **SHA**, chạy `npm test` (513 file test), có CodeQL và Scorecard |
+| "Your code, read on your machine" | ✅ đúng một phần | Map dựng bằng tree-sitter, không model, không mạng. `trail build --deep` gửi tóm tắt tới model mà người dùng chọn |
+
+### 2j.2 Nó làm gì (đọc mã)
+
+- **Graft map**: chỉ mục hàm và nơi gọi, dạng thư mục markdown liên kết dưới `graft/`, tự đồng bộ ở mỗi truy vấn (gồm cả sửa chưa commit). Có MCP server, `trail grep`/`trail map`, `trail viz`.
+- **Tích hợp sâu với Claude Code** (mặc định chọn): `trail init` gộp các khối hook vào `.claude/settings.json`, không đè (session-start, prompt, pre-bash, pre-edit, post-bash, post-edit, stop), kèm statusline. Hook pre-bash có thể trả `permissionDecision: deny` cho guardrail có sẵn (`no-timeout`, `prod-after-beta`). Mỗi prompt tự kéo node và learnings liên quan vào ngữ cảnh. Sửa file thì in "blast radius". Định kỳ đọc **nhánh mở của đồng đội** để báo khi trùng hàm.
+- **Learnings**: file trong `.trail/learnings/` (commit qua git) hoặc `~/.trail` (cá nhân). `trail init` có bước "cold start": đọc **transcript Claude Code cũ** của repo và **review comment của 50 PR gần nhất** (qua `gh` của người dùng), rồi để Claude Code của người dùng đề xuất learnings (tốn quota Claude của người dùng). Có thêm "skills" tự học từ lệnh lặp lại.
+- **Benchmark tự công bố**: SWE-bench Verified **50 instance**: 27/50 → 33/50, ít hơn 23% token, chấm bằng `swebench` 4.1.0 chính thức. Sweep 162 lượt cho kết quả ít hơn 46% tool call và 60% thời gian, đo trên harness của chính họ. Mẫu nhỏ, chưa có bên độc lập chạy lại **(chưa xác minh)**.
+
+### 2j.3 Dữ liệu và rủi ro
+
+- ⚠️ **Telemetry PostHog bật mặc định.** `TELEMETRY.md` liệt kê từng sự kiện, và `src/telemetry/contract.ts` thực thi allowlist: số đếm chỉ gửi theo bucket, chuỗi chỉ thuộc tập cố định. Key chỉ được chèn vào gói npm lúc publish (`scripts/stamp-telemetry-key.mjs`), nên bản clone hoặc fork không gửi gì. Tắt bằng `trail telemetry disable` hoặc `DO_NOT_TRACK=1`; CI không gửi. Xem trước bằng `trail telemetry debug`.
+- ⚠️ **Sự kiện `install` gửi ngay trong `npm install`.** `scripts/postinstall.mjs` ghi sự kiện rồi bật một tiến trình tách rời để đẩy lên ngay, **trước khi** người dùng có cơ hội chạy `trail telemetry disable`. Muốn không gửi thì phải đặt `DO_NOT_TRACK=1` **trước khi cài**, hoặc cài với `--ignore-scripts`.
+- Hook Stop **đọc transcript** của agent sau mỗi lượt có dùng Trail để đếm câu "saved ~N tokens". Theo `TELEMETRY.md`, chỉ hai bộ đếm dạng bucket được gửi **(theo tài liệu, chưa tự lần hết mã)**.
+- **Kết nối Trail workspace** (dịch vụ trả phí) sẽ gửi learnings đã commit của các repo được thêm, **kể cả learnings trên nhánh đồng đội đã push**. Mặc định không kết nối. Lệnh trong sản phẩm sẽ đưa link đăng nhập cho agent chuyển tiếp ("nudge", có sự kiện `brain_signup_*`).
+- Hai tên gói cùng mã (`@nanonets/graft`, `@trailhq/trail-code`), dòng dõi từ Nanonets. Nhịp đổi nhanh: 702 commit từ 3/7/2026; `Shrish Dwivedi` 374, `anirudhkumar-nanonets` 181; 132 trailer Claude. Tag git đi sau bản npm.
+- Hook tiêm ngữ cảnh ở mọi prompt và đổi hành vi agent (rủi ro tin map hoặc learnings cũ, giống Graphify §2e.3). Learnings là file trong repo nên ai push được là đưa được chỉ dẫn vào ngữ cảnh agent của cả đội. Cần review `.trail/learnings/` như review mã.
+
+### 2j.4 So với cùng loại
+
+| Tool | ★ (gần nhất) | License | Telemetry | Khác |
+|---|---|---|---|---|
+| **trailhq/Trail-Code** | 11k (3/11) | MIT | **Bật mặc định**, allowlist trong mã, install event lúc postinstall | Map + learnings đội + skills tự học, hook sâu cho Claude Code, có SWE-bench n=50 |
+| `Graphify-Labs/graphify` (§2e) | 141k (3/11) | Apache-2.0 | Không | Graph đa phương tiện, nhãn EXTRACTED/INFERRED, không có lớp learnings |
+| `colbymchenry/codegraph` (§2f) | 76k (31/10) | MIT | Bật mặc định | MCP Rust + SQLite, file-watch |
+| `Egonex-AI/Understand-Anything` (mục 01 §3b) | 89k (30/10) | MIT | – | Pipeline LLM, hướng tới người học |
+
+### 2j.5 Dùng thế nào
+
+- Cài với `DO_NOT_TRACK=1` đặt sẵn (hoặc `npm i -g --ignore-scripts`), ghim phiên bản (`@trailhq/trail-code@0.28.1`), rồi chạy `trail telemetry disable` một lần.
+- Đọc diff của `.claude/settings.json` sau `trail init`. Bỏ bước cold start nếu transcript hoặc review cũ có thông tin nhạy cảm. Không kết nối workspace với repo khách hàng.
+- Không cài chồng với Graphify hoặc codegraph (§2d điểm 4). Chọn Trail khi giá trị nằm ở **learnings đội qua git**, chọn Graphify khi cần map tất định không telemetry.
+
+**Nguồn §2j:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/trailhq/Trail-Code HEAD `b9c2e23e9b579200dba83d47e8dbdd8a488b6988` (README.md: What stays on your machine, SWE-bench Verified, Claude Code deep integration; TELEMETRY.md; LICENSE; package.json; `scripts/{postinstall,stamp-telemetry-key}.mjs`; `src/claude/pre-bash.ts`; `.github/workflows/ci.yml`; `.github/scripts/npm-downloads-badge.mjs`; `git shortlog`, `git tag`) · registry.npmjs.org `@trailhq/trail-code`, `@nanonets/graft` (latest 0.28.1) · api.npmjs.org downloads last-month 3/10–1/11/2026 · api.securityscorecards.dev (7.2, 2/11/2026) · GitHub search API `repo:trailhq/Trail-Code` 3/11/2026.
 
 ## 3. Nguồn
 

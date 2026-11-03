@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 2049135 (XT-H-111)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 06 §7w)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w)",
     "columns": [
       "deeper",
       "shallower",
@@ -10,7 +10,7 @@
       "not_adding"
     ],
     "updated": "2026-11-03",
-    "count": 111,
+    "count": 112,
     "current_batch": {
       "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
       "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
@@ -2426,6 +2426,44 @@
     },
     {
       "id": "XT-H-111",
+      "date": "2026-11-03",
+      "stored_ref": [
+        "18 §4e"
+      ],
+      "profile_anchors": [
+        "18-vietnam-community/README.md#4e-hồ-sơ-mhfedvn-law-check-skill-audit-pháp-lý-website-và-mobile-app-theo-luật-việt-nam-20252026-link-người-dùng-gửi-đọc-mã-3112026"
+      ],
+      "lesson": "Thời hạn thực hiện quyền chủ thể dữ liệu theo NĐ 356/2025 (Điều 5 theo vn-law-check; EY và Luật Việt An tóm tắt cùng mốc): phản hồi 2 ngày làm việc; xem/sửa/cung cấp 10 ngày (15 nếu phối hợp bên thứ ba); rút đồng ý/hạn chế/phản đối 15 ngày (20); xoá 20 ngày (30); gia hạn 1 lần. Mốc '72 giờ' chung cho yêu cầu chủ thể là của NĐ 13/2023 đã hết hiệu lực; 72 giờ trong luật mới là thông báo vi phạm (Đ.23 Luật 91/2025).",
+      "xt_ids": [
+        "CMP-VN-007",
+        "CMP-RIGHTS-004"
+      ],
+      "column": "shallower",
+      "existing_coverage": "CMP-VN-007 ghi 'thường 72 giờ cho xoá/rút đồng ý' theo NĐ 356/2025 (chưa xác minh số điều); CMP-RIGHTS-004 ghi rút đồng ý 'không quá 72 giờ theo NĐ 356/2025 — chưa xác minh số điều'.",
+      "delta": "Đề xuất đính chính SLA theo bảng mốc NĐ 356/2025 Đ.5 (2 ngày làm việc phản hồi; 10/15/20 ngày thực hiện; mốc dài hơn khi phối hợp bên thứ ba) sau khi phiên X-Templates đối chiếu toàn văn; giữ 72 giờ chỉ cho thông báo vi phạm (CMP-VN-006). Mẫu tham khảo: vn-law-check triage bằng scan.sh có bằng chứng và ghi CHƯA XÁC MINH tại chỗ.",
+      "proposal": {
+        "level": "MUST",
+        "text": "Sửa CMP-VN-007 và CMP-RIGHTS-004: thay mốc '72 giờ' cho yêu cầu chủ thể dữ liệu bằng bảng thời hạn của NĐ 356/2025 (phản hồi 2 ngày làm việc; xem/sửa/cung cấp 10 ngày, rút đồng ý/hạn chế/phản đối 15 ngày, xoá 20 ngày; mốc dài hơn khi phải phối hợp bên xử lý/bên thứ ba; gia hạn 1 lần) sau khi đối chiếu toàn văn Điều tương ứng; giữ 72 giờ cho thông báo vi phạm (CMP-VN-006). Kiểm: hàng chờ DSAR có `due_at` tính theo loại yêu cầu, test mỗi loại ra đúng hạn."
+      },
+      "related_handoffs": [],
+      "xt_evidence": [
+        {
+          "id": "CMP-VN-007",
+          "file": "framework/16-compliance-privacy/vietnam-data-law.md",
+          "line": 68,
+          "url": "https://github.com/seeker19110/X-Templates/blob/5316026b22ca8d0202333c909947fdafc3633e28/framework/16-compliance-privacy/vietnam-data-law.md#L68"
+        },
+        {
+          "id": "CMP-RIGHTS-004",
+          "file": "framework/16-compliance-privacy/consent-and-user-rights.md",
+          "line": 47,
+          "url": "https://github.com/seeker19110/X-Templates/blob/5316026b22ca8d0202333c909947fdafc3633e28/framework/16-compliance-privacy/consent-and-user-rights.md#L47"
+        }
+      ],
+      "note": "Nguồn thời hạn là tóm tắt thứ cấp (EY, Luật Việt An) + checklist vn-law-check; toàn văn NĐ 356/2025 chưa đọc được (thuvienphapluat 403) — chưa xác minh số điều. Chỉ đề xuất, không sửa X-Templates."
+    },
+    {
+      "id": "XT-H-112",
       "date": "2026-11-03",
       "stored_ref": [
         "06 §7w"

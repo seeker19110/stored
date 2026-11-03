@@ -430,6 +430,42 @@ SDK MIT dùng `ctx.run` để ghi kết quả thao tác không tất định và
 
 **Nguồn §10f:** [Temporal SDK LICENSE](https://github.com/temporalio/sdk-python/blob/c1a79fb659ffab144d7949213664a584809089f7/LICENSE); [Restate SDK LICENSE](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/LICENSE), [CI SDK](https://github.com/restatedev/sdk-typescript/blob/280fbc32e3858f853aa19296b7edcf771a22bc99/.github/workflows/test.yml); [Temporal retries](https://docs.temporal.io/encyclopedia/retry-policies), [Temporal activity failures](https://docs.temporal.io/encyclopedia/detecting-activity-failures), [Restate durable steps](https://docs.restate.dev/develop/ts/durable-steps). Mọi số sao và HEAD thuộc snapshot 2/11/2026, không phải phiên bản package đã chạy.
 
+## 10g. Hồ sơ duongbirken2510/AI-Money: “thực nghiệm 20 ngày để AI tự kiếm tiền nuôi server”, bot Facebook lách bộ lọc nhóm (link người dùng gửi, đọc mã 3/11/2026)
+
+> Người dùng gửi ảnh dòng chữ "GITHUB REPO: github.com/duongbirken2510/AI-Money". Đã clone đủ lịch sử, HEAD `31a660d6a26ff92691949c76cdf63bd71fbc9f0a` (3/11/2026 10:53 +07). **Không cài, không chạy**, không truy cập website của dự án.
+
+### 10g.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/duongbirken2510/AI-Money · **13★, 8 fork**, tạo 3/11/2026 03:22 UTC. Chỉ có **2 commit** (bản đẩy lên đầu tiên và một commit thêm banner) |
+| Tác giả | Dương Birken (`duongbirken2510`). Repo khác của tác giả: `deskaura` (0★, tạo 2/11/2026) |
+| License | **Không có file LICENSE.** README có mục "Giấy phép & Cam kết" nhưng chỉ ghi mục đích học tập, không cấp quyền dùng. Mặc định là bảo lưu mọi quyền |
+| Mô tả | Một agent được giao "tối hậu thư": trong 20 ngày phải tự kiếm doanh thu thật > 0đ để trả tiền server (`kiemtien.deta.vn`). Sản phẩm gồm "Liên Hoa Các" (chùa online 4-trong-1: gõ mõ, thả hoa đăng trả phí qua VietQR, gieo quẻ do AI luận giải), thần số học Pythagoras, cẩm nang 12 bài chatbot chốt đơn (bán phần mở khóa), khoảng 9 công cụ AI miễn phí và gói dịch vụ B2B dựng landing page |
+| Mã | Khoảng 10.000 dòng Python thuần: `server.py` 3.500 dòng (`ThreadingHTTPServer` + SQLite, không framework), `social_autopilot.py` 1.870, `numerology_comment_bot.py` 1.026, `fb_poster.py` 939, `agent_worker.py` 781. Frontend HTML/Canvas/WebAudio trong `public/`. 34 MB, phần lớn là ảnh. Không có test, không có CI |
+| AI | Gemini API (key của chủ site), hoặc CLI Antigravity `agy` chạy với `--sandbox` và câu dặn trong prompt "không gọi tool, không chạy shell". 3 skill trong `.agents/skills/` (đăng bài nhóm Facebook, landing page, three.js) |
+
+### 10g.2 Đọc mã: phần làm đúng
+
+- **Webhook ngân hàng** (`server.py:886`, `verify_webhook_auth`): nhận SePay (Apikey hoặc secret trên URL) và Casso V1/V2 (HMAC-SHA512), mọi phép so sánh dùng `hmac.compare_digest`. **Chưa cấu hình secret thì từ chối** (`unconfigured`). Có lọc giao dịch trùng theo `tx_ref` trong bảng `webhook_logs`.
+- Khóa admin cũng so bằng `compare_digest` và bắt buộc có trong `config.json`. Server bind `127.0.0.1:8080` (biến `HOST` mặc định), đưa ra ngoài qua Cloudflare Tunnel. Secret không commit; chỉ có `config.example.json`.
+
+### 10g.3 Rủi ro (đọc mã)
+
+- ⚠️ **Tự động hóa tài khoản Facebook cá nhân để lách bộ lọc nhóm.** `fb_poster.py`, `social_autopilot.py` và `numerology_comment_bot.py` điều khiển Chrome đang đăng nhập Facebook qua CDP (`127.0.0.1:9225`) để đăng bài vào nhóm và **tự trả lời bình luận mỗi 4 giờ**. Skill `.agents/skills/facebook-group-posting/SKILL.md` nêu thẳng mục đích "anti-filter": không đặt link trong chữ để **Admin Assist của nhóm không tự từ chối**, mà in tên miền vào watermark của ảnh đính kèm. Điều khoản của Meta cấm tự động hóa tài khoản theo cách này; rủi ro bị khóa tài khoản và bị coi là spam **(điều khoản chưa đối chiếu nguyên văn)**. Kho chỉ ghi đây là dữ kiện, không khuyến nghị dùng.
+- ⚠️ **Thu dữ liệu cá nhân mà không thấy chính sách bảo mật.** Form B2B lấy số điện thoại/Zalo và ghi chú; thần số học nhận họ tên và ngày sinh; có bảng `private_messages`, `group_messages`, `free_chat_trials`, `viewers`. Grep `public/*.html` không thấy trang chính sách bảo mật hay cơ chế xin đồng ý. Theo Luật 91/2025 + NĐ 356/2025 (mục 18 §4e, checklist 01 mục A–B), site thu thập như vậy ít nhất ở **mức 1** và phải có thông báo cùng sự đồng ý.
+- ⚠️ Webhook chấp nhận secret qua **query string** (`?secret=`), và trang admin hiển thị sẵn URL có kèm secret. Secret trên URL dễ lọt vào log của proxy hoặc tunnel. Nên dùng header hoặc HMAC.
+- Trường `_test` do client gửi lên khiến lead B2B không được tính vào thống kê sự kiện (`server.py:3381`). Không phải lỗ hổng, nhưng bất kỳ ai cũng làm lệch được số liệu "minh bạch" của thực nghiệm.
+- Nội dung tâm linh và thần số học có thu phí (thắp "Đại Liên Hoa Đăng 30 ngày" 20.000đ) do AI luận giải. README tự ghi "không phải cơ sở tôn giáo, không tuyên truyền mê tín". Quảng cáo dịch vụ loại này vẫn chịu Luật Quảng cáo (mục 18 §5d có rule cho claim tuyệt đối).
+- Mới 1 ngày, 2 commit, không test, không CI, không license. Số liệu doanh thu và lượt dùng trong README và ảnh (`tsh-daily-*.png`) là **tự công bố, chưa xác minh**.
+
+### 10g.4 Đặt trong bối cảnh
+
+- Cùng dòng "giao agent một mục tiêu kinh doanh rồi để nó tự chạy" (mục 21 §10, lịch sử AutoGPT/BabyAGI): điểm khác là có **tiền thật qua VietQR + webhook** và một deadline cứng. Bài học có giá trị là phần webhook fail-closed, không phải phần tăng trưởng.
+- Nếu dựng thử nghiệm tương tự: dùng API chính thức của nền tảng (Facebook Graph API cho Page, Zalo OA) thay vì điều khiển trình duyệt; có trang chính sách bảo mật và ô đồng ý trước khi nhận số điện thoại hay ngày sinh; chạy vn-law-check (mục 18 §4e) trước khi mở site.
+
+**Nguồn §10g:** ảnh người dùng gửi 3/11/2026 · clone https://github.com/duongbirken2510/AI-Money HEAD `31a660d6a26ff92691949c76cdf63bd71fbc9f0a` (README.md, `server.py` dòng 107–113, 886–926, 2545–2563, 3215–3240, 3370–3400, 3496–3497; `agent_worker.py` dòng 60–100; `fb_poster.py`; `numerology_comment_bot.py`; `.agents/skills/facebook-group-posting/SKILL.md`; grep chính sách bảo mật trong `public/*.html`) · GitHub search API `repo:duongbirken2510/AI-Money`, `user:duongbirken2510` 3/11/2026.
+
 ## 11. Nguồn
 
 - Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)

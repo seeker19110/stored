@@ -70,9 +70,10 @@
       "cad-bim",
       "product-analytics",
       "product-research",
-      "feature-management"
+      "feature-management",
+      "computer-vision"
     ],
-    "count": 992,
+    "count": 997,
     "schema_version": 2
   },
   "projects": [
@@ -1918,12 +1919,25 @@
       "repo": "github/spec-kit",
       "category": "spec-driven",
       "license": "MIT",
-      "stars": null,
+      "stars": 145528,
       "open_source": true,
-      "notes": "specify/plan/tasks/implement",
+      "notes": "CLI specify-cli (PyPI, Python ≥3.11) + template SDD; nay 3 quy trình (SDD lõi, bug fixing và idea assessment là extension đi kèm) cùng extension (5 chính thức, 186 cộng đồng), preset (42), workflow có overlay, bundle, catalog riêng/air-gapped; 43 integration agent; trusted publishing OIDC nhưng PyPI 1.2.6 không có provenance; CI ghim SHA, dùng gh-aw; không thấy telemetry; 869 trailer Claude; v1.2.6 (2/11/2026); ★ 3/11/2026: 145.528 (GitHub search API), mục 13 §5a",
       "section": "13",
       "id": "github-spec-kit",
-      "profile_path": "13-dev-stack-devops/README.md"
+      "profile_path": "13-dev-stack-devops/README.md",
+      "profile_anchor": "13-dev-stack-devops/README.md#5a-hồ-sơ-githubspec-kit-từ-bộ-template-sdd-thành-khung-quy-trình-có-extension-preset-workflow-và-bundle-ảnh-trang-repo-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "ba8363f8ab56b2da456a81299cfdbfee1ef7b871",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/README.md",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/LICENSE",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/pyproject.toml",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/integrations/catalog.json",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/extensions/catalog.community.json",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/.github/workflows/publish-pypi.yml",
+        "https://github.com/github/spec-kit/blob/ba8363f8ab56b2da456a81299cfdbfee1ef7b871/.github/workflows/test.yml"
+      ]
     },
     {
       "name": "BMAD-METHOD",
@@ -5679,9 +5693,9 @@
       "repo": "Graphify-Labs/graphify",
       "category": "codebase-knowledge",
       "license": "Apache-2.0",
-      "stars": 140015,
+      "stars": 141191,
       "open_source": true,
-      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng); hồ sơ đầy đủ mục 16 §2e (31/10/2026): 140k★/13k fork, v0.9.99, 2.675 commit/408 tác giả, 722 issue/920 PR mở, PyPI `graphifyy` (hai chữ y), không telemetry, query log tắt mặc định, hook PreToolUse đẩy agent sang graph, action CI ghim tag không ghim SHA; ★ 31/10/2026: 140.015 (GitHub API)",
+      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng); hồ sơ đầy đủ mục 16 §2e (31/10/2026): 140k★/13k fork, v0.9.99, 2.675 commit/408 tác giả, 722 issue/920 PR mở, PyPI `graphifyy` (hai chữ y), không telemetry, query log tắt mặc định, hook PreToolUse đẩy agent sang graph, action CI ghim tag không ghim SHA; ★ 31/10/2026: 140.015 (GitHub API); kiểm ảnh \"graphify in 5 steps\" 3/11/2026 (mục 16 §2e.5): 3✅/2⚠️, ô lệnh bị cắt mất tên graphifyy, \"no AI\" chỉ đúng với code; v0.9.101, schema cache AST 32→36 trong 3 ngày; ★ 3/11/2026: 141.191 (GitHub search API)",
       "section": "16",
       "id": "graphify",
       "profile_path": "16-docs-tools/README.md"
@@ -6160,9 +6174,9 @@
       "repo": "miqdadbadjuber/anti-slop",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 7761,
+      "stars": 8025,
       "open_source": true,
-      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i; ★ 31/10/2026: 7.761 (GitHub API)",
+      "notes": "Bộ lọc \"AI slop\" 38 luật R-01…R-38 + 6 skill (UI, copywriting, layout mobile, comment code, a11y); check-repo 13/13 + smoke test pass tự chạy; ngưỡng chữ lớn ghi 18px (WCAG: 24px/18,66px đậm); lõi ~58 KB load always; mặc định hỏi chế độ mỗi phiên; Skills 32K = tổng lượt cài 6 skill; ★ 19/10/2026, mục 06 §7i; ★ 31/10/2026: 7.761 (GitHub API); đọc lại 3/11/2026 (§7i.6): v3.2.25, 40 luật R-01…R-40, lõi 53,7 KB, lỗi 18px vẫn còn; ★ 3/11/2026: 8.025 (GitHub search API)",
       "section": "06",
       "id": "antislop",
       "profile_path": "06-ui-ux-design/README.md"
@@ -10971,10 +10985,23 @@
       "license": "PolyForm-Shield-1.0.0",
       "stars": 10,
       "open_source": false,
-      "notes": "Linter văn bản tiếng Việt offline (NFC, kiểu dấu, câu dịch máy, luật theo ngành) + kiểm parity i18n + 16 skill agent; README ghi 489 cặp eval nhưng đếm được 575; license source-available cấm sản phẩm cạnh tranh; ★ 2/11/2026 (GitHub search API), mục 18 §5b",
+      "notes": "Linter văn bản tiếng Việt offline (NFC, kiểu dấu, câu dịch máy, luật theo ngành) + kiểm parity i18n + 16 skill agent; README ghi 489 cặp eval nhưng đếm được 575; license source-available cấm sản phẩm cạnh tranh; ★ 2/11/2026 (GitHub search API), mục 18 §5b; đọc lại 3/11/2026 (§5d): không commit mới; kiểm hiệu lực văn bản qua vbpl legislationLegalForce đã gỡ NĐ 13/2023, nhưng module TMĐT (LND004) vẫn dẫn NĐ 52/2013 + 85/2021, chưa có Luật 122/2025; README nêu STOP_SUFFICIENT trong khi kb gate còn DEEPEN; ★ 3/11/2026: 10",
       "section": "18",
       "id": "design-os-vietnamese",
-      "profile_path": "18-vietnam-community/README.md"
+      "profile_path": "18-vietnam-community/README.md",
+      "profile_anchor": "18-vietnam-community/README.md#5d-hồ-sơ-jangtrinhdesign-os-vietnamese-16-skill-viết-tiếng-việt-theo-ngành-linter-tất-định-và-kho-tri-thức-có-neo-sha-256-link-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "63dc65459628c72bf44691ded75c195d69f9e1d7",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/README.md",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/LICENSE",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/shared/references/compliance.md",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/shared/scripts/validate_copy.py",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/knowledge/ecommerce-retail-and-consumer-law.md",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/knowledge/_evidence/vn-design-os-261026/state.json",
+        "https://github.com/jangtrinh/design-os-vietnamese/blob/63dc65459628c72bf44691ded75c195d69f9e1d7/plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md"
+      ]
     },
     {
       "name": "Google SRE Workbook",
@@ -12971,6 +12998,136 @@
       "verification_level": "docs-read",
       "sources": [
         "https://fontinlogo.com/"
+      ]
+    },
+    {
+      "name": "vn-law-check",
+      "repo": "mhfed/vn-law-check",
+      "category": "checklist",
+      "license": "MIT",
+      "stars": 126,
+      "open_source": true,
+      "notes": "Skill/rules audit pháp lý website + mobile app theo luật VN 2025–2026 (BVDLCN 91/2025 + NĐ 356/2025, TMĐT 122/2025, ANM 116/2025, AI 134/2025) cho Claude Code/Cursor/Copilot/Windsurf/Cline/Codex; scan.sh triage LEVEL 0–3 bằng grep có bằng chứng + 8 fixture CI, quét URL qua fetch-site.sh; sync.sh sinh bản copy theo từng tool, CI chặn lệch; đánh dấu CHƯA XÁC MINH tại chỗ (README ghi 32, đếm được 43 dòng sau v1.3.0); mức 3 cần AUTH+MARKETPLACE (lệch bảng triage); lọc cùng gốc bằng tiền tố + curl -L; LICENSE MIT kèm ghi chú (GitHub NOASSERTION); tác giả không phải luật sư, repo 1 ngày tuổi; ★ 3/11/2026: 126 (GitHub search API), mục 18 §4e",
+      "section": "18",
+      "id": "vn-law-check",
+      "profile_path": "18-vietnam-community/README.md",
+      "profile_anchor": "18-vietnam-community/README.md#4e-hồ-sơ-mhfedvn-law-check-skill-audit-pháp-lý-website-và-mobile-app-theo-luật-việt-nam-20252026-link-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "5847e324337faab6886b6aedfd4e9bea4e0f2fea",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/LICENSE",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/README.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/SKILL.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/references/00-triage.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/references/01-personal-data-protection.md",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/scripts/scan.sh",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/scripts/fetch-site.sh",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/tools/sync.sh",
+        "https://github.com/mhfed/vn-law-check/blob/5847e324337faab6886b6aedfd4e9bea4e0f2fea/.github/workflows/check.yml"
+      ]
+    },
+    {
+      "name": "Craft Anything",
+      "repo": "storytold/craft-anything",
+      "category": "reverse-engineering",
+      "license": "MIT OR Apache-2.0",
+      "stars": 4178,
+      "open_source": true,
+      "notes": "Engine dịch ngược Rust (tự nhận 314 tool CLI+MCP) + coding agent (Claude Code của người dùng) dựng lại website/app/game rồi so với bản gốc; Clean room = allowlist trong dispatcher, tool mới mặc định chỉ Deep, deep_mode mặc định tắt; builder Claude Code qua permission-prompt-tool, adapter Antigravity dùng --dangerously-skip-permissions; 'không vượt DRM' và 'không chép logo/chữ' là chỉ dẫn, không có cổng; CI reusable workflow ghim @main; brand ArtCraft không thuộc license; 211 commit trong 4 ngày, early alpha; ★ 3/11/2026: 4.178 (GitHub search API), mục 01 §3m",
+      "section": "01",
+      "id": "craft-anything",
+      "profile_path": "01-ai-coding-agents/README.md",
+      "profile_anchor": "01-ai-coding-agents/README.md#3m-hồ-sơ-storytoldcraft-anything-craft-anything-engine-dịch-ngược-bằng-rust--coding-agent-dựng-lại-website-app-game-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "8638d6b72be3e99dcc73b06f92a8c113932c75f7",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/README.md",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/LICENSE-MIT",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/LICENSE-APACHE",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/docs/brand/LICENSE-brand.txt",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/engine/src/clean_room.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/engine/src/lib.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/ai/src/cli_agents/adapters.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/crates/ai/src/cli_agents/adapters/antigravity.rs",
+        "https://github.com/storytold/craft-anything/blob/8638d6b72be3e99dcc73b06f92a8c113932c75f7/.github/workflows/ci.yml"
+      ]
+    },
+    {
+      "name": "Trail-code (graft)",
+      "repo": "trailhq/Trail-Code",
+      "category": "codebase-knowledge",
+      "license": "MIT",
+      "stars": 11040,
+      "open_source": true,
+      "notes": "Context layer cho coding agent: graft map (tree-sitter, chỉ mục hàm/caller, markdown dưới graft/, auto-sync) + learnings đội trong .trail/ qua git + skills tự học; hook sâu cho Claude Code (prompt/pre-bash/pre-edit/stop, đọc nhánh mở của đồng đội); trail init đọc transcript Claude Code cũ + review 50 PR qua gh; telemetry PostHog bật mặc định, allowlist trong contract.ts, key chỉ có trong gói npm, sự kiện install gửi ngay từ postinstall (cần DO_NOT_TRACK=1 trước khi cài); SWE-bench Verified n=50 tự chạy 27→33 (chưa xác minh); npm @nanonets/graft + @trailhq/trail-code 0.28.1, ~97,7k tải/tháng (3/10–1/11); OpenSSF 7.2; ★ 3/11/2026: 11.040 (GitHub search API), mục 16 §2j",
+      "section": "16",
+      "id": "trail-code",
+      "profile_path": "16-docs-tools/README.md",
+      "profile_anchor": "16-docs-tools/README.md#2j-hồ-sơ-trailhqtrail-code-trail-code-tên-cũ-graft-bản-đồ-code--learnings-cho-coding-agent-telemetry-bật-mặc-định-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "b9c2e23e9b579200dba83d47e8dbdd8a488b6988",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/README.md",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/TELEMETRY.md",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/LICENSE",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/package.json",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/scripts/postinstall.mjs",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/scripts/stamp-telemetry-key.mjs",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/src/claude/pre-bash.ts",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/.github/workflows/ci.yml",
+        "https://github.com/trailhq/Trail-Code/blob/b9c2e23e9b579200dba83d47e8dbdd8a488b6988/.github/scripts/npm-downloads-badge.mjs"
+      ]
+    },
+    {
+      "name": "Kornia",
+      "repo": "kornia/kornia",
+      "category": "computer-vision",
+      "license": "Apache-2.0",
+      "stars": 12188,
+      "open_source": true,
+      "notes": "Thư viện thị giác máy tính khả vi trên PyTorch (epipolar, camera, RANSAC/minimal solver theo lô, augmentation); ROADMAP: thành đặc tả thực thi được (1.413 test_convention_*, dự kiến conformance corpus cho port và mã do LLM sinh, Tier A mới là đề xuất); 0.9.0 trên PyPI (Python ≥3.11, torch ≥2.5.1, kornia_rs), trusted publishing nhưng không có provenance; 999/1.456 commit từ 1/8/2026 có trailer Claude, AI_POLICY không phân loại theo mức dùng AI; '1,200+ operators' chưa xác minh (đếm __all__ được 712); 2,18 triệu tải/tháng (pypistats); ★ 3/11/2026: 12.188 (GitHub search API), mục 14 §5f",
+      "section": "14",
+      "id": "kornia",
+      "profile_path": "14-voice-multimodal/README.md",
+      "profile_anchor": "14-voice-multimodal/README.md#5f-hồ-sơ-korniakornia-thư-viện-thị-giác-máy-tính-khả-vi-trên-pytorch-đang-chuyển-sang-làm-đặc-tả-thực-thi-được-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "a733fe3b6248652b0a509d002cf452b2167965f0",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/README.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/ROADMAP.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/AI_POLICY.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/CONTRIBUTING.md",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/LICENSE",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/pyproject.toml",
+        "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/.github/workflows/pypi-release.yml"
+      ]
+    },
+    {
+      "name": "AI-Money (Deta AI Lab)",
+      "repo": "duongbirken2510/AI-Money",
+      "category": "workflow-automation",
+      "license": null,
+      "stars": 13,
+      "open_source": false,
+      "notes": "Thực nghiệm 20 ngày giao agent tự kiếm doanh thu nuôi server (kiemtien.deta.vn): Python thuần ThreadingHTTPServer + SQLite + Gemini/agy --sandbox + VietQR; webhook SePay/Casso so HMAC, fail-closed khi thiếu secret, nhưng nhận secret qua query string; bot Facebook qua Chrome CDP đăng nhóm/trả lời bình luận, skill nêu mục đích lách Admin Assist (rủi ro ToS Meta); thu SĐT/ngày sinh không thấy chính sách bảo mật (Luật 91/2025); nội dung tâm linh/thần số học thu phí; không LICENSE, không test/CI, 2 commit; ★ 3/11/2026: 13 (GitHub search API), mục 21 §10g",
+      "section": "21",
+      "id": "ai-money-deta",
+      "profile_path": "21-autonomous-workflows/README.md",
+      "profile_anchor": "21-autonomous-workflows/README.md#10g-hồ-sơ-duongbirken2510ai-money-thực-nghiệm-20-ngày-để-ai-tự-kiếm-tiền-nuôi-server-bot-facebook-lách-bộ-lọc-nhóm-link-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "31a660d6a26ff92691949c76cdf63bd71fbc9f0a",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/README.md",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/server.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/agent_worker.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/fb_poster.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/numerology_comment_bot.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/.agents/skills/facebook-group-posting/SKILL.md"
       ]
     },
     {
