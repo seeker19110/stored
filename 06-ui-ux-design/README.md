@@ -602,6 +602,24 @@ Liên hệ với các mục khác: layout chỉ là khung; giá trị màu, kho�
 
 **Nguồn §7i:** https://github.com/miqdadbadjuber/anti-slop (clone đủ, 119 commit, HEAD 439a2ef 16/10/2026, tag v3.2.21; README.md, GUIDE.md, ROADMAP.md, LICENSE, package.json, `.claude-plugin/{plugin.json,marketplace.json,contrast-mcp-launcher.mjs}`, `skills/*/SKILL.md`, `skills/antislop-human/{contrast-check.py,contrast-mcp.py}`, `cli/lib/{install,settings}.mjs`, `.github/workflows`; tự chạy 19/10/2026: `check-repo.mjs` 13/13, `contrast-check.py --selftest` 9/9, `smoke-test.mjs` pass) · trang GitHub 19/10/2026 (~6,5k★, 457 fork) · https://github.com/miqdadbadjuber (Indonesia, 110 follower) · https://trendshift.io/repositories/137042 (Daily #2 ngày 9/10/2026, Weekly #13, +6.083★/61 ngày) · https://skills.sh/miqdadbadjuber/anti-slop (32,0K tổng lượt cài, 6 skill) · api.npmjs.org `antislop-ai` (9.992, 17/9–16/10/2026; tạo 15/8/2026) · ssdnodes.com/learn/anti-slop-skill-for-coding-agents · skillsllm.com/skill/miqdadbadjuber-anti-slop · betterstack.com/community/guides/ai/anti-slop-oxlint (dự án trùng tên `dmmulroy/anti-slop`) · pypi.org/project/aislop · https://www.w3.org/TR/WCAG22/#dfn-large-scale (định nghĩa chữ lớn)
 
+### 7i.6 Đọc lại 3/11/2026: ảnh thứ hai là bản v3.2.18 đã cũ
+
+Người dùng gửi thêm một ảnh phần đầu README: logo "/antislop", huy hiệu "license MIT", "version **v3.2.18**", "Skills **19.0K**", "**38 mandatory rules** (R-01 to R-38)", Liveliness Toolkit (ENERGY/RHYTHM/MOTION), Delivery Gate, additive skills. Đối chiếu với clone đủ lịch sử, HEAD `941b1532f9cc8ffde766bca5921d75257c9e5762` (1/11/2026, tag v3.2.25, 139 commit):
+
+| Ô trong ảnh | Kết quả | Hiện tại |
+|---|---|---|
+| "version v3.2.18" | ⚠️ cũ | v3.2.18 là commit `a56a8a7` ngày 26/9/2026. Sau đó đã có bảy tag nữa, tới v3.2.25 ngày 1/11/2026 |
+| "38 mandatory rules (R-01 to R-38)" | ⚠️ cũ | README và `skills/antislop/SKILL.md` nay ghi **40 luật (R-01 đến R-40)**. v3.2.24 (28/10) đưa ngữ nghĩa trợ năng và cơ chế hiệu năng thành luật Hard Gate |
+| "Skills 19.0K" | ⚠️ cũ | §7i.2 đã ghi 29,7K rồi 32,0K. Đây vẫn là tổng lượt cài của 6 skill, không phải số người dùng |
+| "license MIT" | ✅ | `LICENSE` MIT, © 2026 Miqdad Badjuber |
+| Mô tả "filter, not a style guide", `DESIGN.md` cung cấp định hướng (R-37) | ✅ | Không đổi |
+
+**Những gì đã đổi từ 16/10 (`439a2ef..941b153`, 35 file, +1.106/−139 dòng):** sửa trình cài đặt (không ghi con trỏ khi chạy từ thư mục home; gói npm có kèm README và LICENSE; yêu cầu Node 20.12), khai báo capability `skills` cho plugin Cline, đánh dấu Roo là "not planned" vì dự án Roo đã archive, và ghi rõ trong README rằng `DESIGN.md` là bắt buộc. Lõi `skills/antislop/SKILL.md` nay dài 53,7 KB (trước đây khoảng 58 KB). Vẫn là file "load always".
+
+**Vẫn chưa sửa (tự kiểm tại `941b153`):** định nghĩa chữ lớn vẫn ghi "**18px+**" ở `skills/antislop/SKILL.md:289`, `antislop.md:334`, `skills/antislop-human/SKILL.md:26,65` và `contrast-check.py:10`. WCAG định nghĩa chữ lớn là 18pt, tức 24px, hoặc 14pt đậm, tức khoảng 18,66px (xem §7i.3). Câu hỏi "DURING hay AFTER" vẫn là mặc định ở dòng 58–59 của SKILL.md lõi. 8.025★ (3/11/2026, GitHub search API).
+
+**Nguồn §7i.6:** ảnh người dùng gửi 3/11/2026 · clone https://github.com/miqdadbadjuber/anti-slop HEAD `941b1532f9cc8ffde766bca5921d75257c9e5762` (`git log 439a2ef..HEAD`, `git tag`, README.md, LICENSE, `skills/antislop/SKILL.md`, `skills/antislop-human/{SKILL.md,contrast-check.py}`, `antislop.md`) · GitHub search API `user:miqdadbadjuber` 3/11/2026.
+
 ## 7j. Hồ sơ: Leonxlnx/taste-skill (Taste Skill) — skill chống "AI slop" có inspector chạy trên trình duyệt thật (bổ sung hồ sơ, clone 2026-10-19)
 
 > §4 và bảng §1–§6 nhắc Taste Skill nhiều lần nhưng chưa có hồ sơ riêng; §7g.5 còn để ngỏ câu "mô tả GitHub mới có browser check (chưa xác minh)". Mục này clone đầy đủ, đọc skill và **tự chạy** để chốt: inspector trên trình duyệt thật là có thật.
