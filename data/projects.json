@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1000,
+    "count": 1001,
     "schema_version": 2
   },
   "projects": [
@@ -13255,6 +13255,30 @@
         "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/configure.acr",
         "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/libr/lang/p/qjs.c",
         "https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/sys/install.sh"
+      ]
+    },
+    {
+      "name": "Higgsfield AI Skills",
+      "repo": "higgsfield-ai/skills",
+      "category": "agentic-video",
+      "license": "MIT",
+      "stars": 1869,
+      "open_source": true,
+      "notes": "9 skill (8 riêng + 1 alias) cho Claude Code/Codex/Cursor gọi CLI Higgsfield để sinh ảnh/video (30+ model), brand kit, product photoshoot, website deploy lên Cloudflare Workers, train 'Soul' khuôn mặt; CLI higgsfield-ai/cli không có mã nguồn (binary qua install.sh, checksum cùng release); soul-id tự cài CLI bằng curl|sh không hỏi (brandkit thì hỏi); không có bước đồng ý cho ảnh khuôn mặt; dịch vụ trả phí theo credit; v0.14.0; ★ 3/11/2026: 1.869 (GitHub search API), mục 19 §3f",
+      "section": "19",
+      "id": "higgsfield-skills",
+      "profile_path": "19-agentic-video-media/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3f-hồ-sơ-higgsfield-aiskills-9-skill-gọi-cli-đóng-của-higgsfield-để-sinh-ảnh-video-brand-kit-và-train-soul-khuôn-mặt-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "4d0757471a704dac8729ea3c2ef0f3f330e0d9b6",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/README.md",
+        "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/LICENSE",
+        "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/INSTALL_FOR_AGENTS.md",
+        "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-soul-id/SKILL.md",
+        "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-brandkit/SKILL.md",
+        "https://github.com/higgsfield-ai/cli/blob/fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2/install.sh"
       ]
     }
   ]
