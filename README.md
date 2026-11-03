@@ -356,6 +356,10 @@ radare2 (mục 11 §3f, 25k★, LGPLv3) khớp ảnh README; riêng "master 6.2.
 
 Orca (mục 01 §3n, 114k★) chạy nhiều coding agent song song, mỗi agent một worktree, có app mobile điều khiển máy qua relay mã hóa đầu cuối. Đọc mã thấy hai cực: telemetry làm đúng (opt-in, fail closed, bản build của contributor không gửi), còn quyền của agent thì ngược lại: cài mới đặt `agentPermissionDefault: 'full-access'`, tức Claude Code chạy `--dangerously-skip-permissions`, Codex chạy `--dangerously-bypass-approvals-and-sandbox`, và công tắc YOLO lúc onboarding bật sẵn. Ảnh README cho thấy đúng điều đó ("bypass permissions on", "YOLO mode"). Badge "107m downloads" là SVG tự dựng, cập nhật lần cuối 13/10. Khi cài: tắt YOLO ở onboarding, chỉ chạy toàn quyền trong máy ảo tạm.
 
+### 53. Higgsfield AI Skills (3/11/2026): skill MIT, nhưng mọi việc chạy qua CLI đóng và dịch vụ trả phí, kể cả train khuôn mặt
+
+higgsfield-ai/skills (mục 19 §3f, 1,9k★) khớp ảnh: MIT, v0.14.0, 9 skill (một skill là alias). Phần mở chỉ là lớp hướng dẫn. Việc sinh ảnh, video, deploy site và train "Soul" khuôn mặt đều đi qua CLI `higgsfield`; repo của CLI chỉ có script cài binary, không có mã nguồn. Hai điểm cần sửa nếu dùng: skill `soul-id` tự cài CLI bằng `curl | sh` không hỏi (skill `brandkit` cùng repo thì có hỏi), và không có bước xác nhận người trong ảnh đã đồng ý trước khi train mô hình khuôn mặt, vốn là dữ liệu sinh trắc học.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

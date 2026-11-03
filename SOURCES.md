@@ -1548,3 +1548,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03n (ảnh README stablyai/orca → mục 01 §3n)
 
 - `stablyai/orca`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (18.913 commit từ 16/3/2026, HEAD `76472f27ce04e1039337dac9b650c7b3004dfc3d`, tag v1.4.247): README.md, LICENSE, AGENTS.md, `src/shared/{default-global-settings,tui-agent-permissions,tui-agent-launch-defaults}.ts`, `src/main/persistence/applying-settings/terminal-settings-migrations.ts`, `src/renderer/src/components/onboarding/*`, `src/main/telemetry/{consent,client}.ts`, `cloud/README.md`, `cloud/docs/relay-security-2026-10-21.md`, `mobile/` (grep E2EE), badge downloads. GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03o (ảnh README higgsfield-ai/skills → mục 19 §3f)
+
+- `higgsfield-ai/skills`: ảnh README người dùng gửi 3/11/2026; clone đủ lịch sử (108 commit, HEAD `4d0757471a704dac8729ea3c2ef0f3f330e0d9b6`): README.md, LICENSE, VERSION, INSTALL_FOR_AGENTS.md, `higgsfield-*/SKILL.md`, `higgsfield-generate/references/prompt-engineering.md`, `.github/workflows/validate-skills.yml`, `evals/`. `higgsfield-ai/cli` (44 commit, HEAD `fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2`): `install.sh`, README.md, LICENSE. GitHub search API 3/11/2026. Không cài, không chạy, không đăng nhập.

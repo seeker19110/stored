@@ -693,6 +693,35 @@ Không repo nào của mục 19 bị archive. `MoneyPrinterTurbo` được nhắ
 
 **Nguồn §3e:** GitHub metadata/HEAD, LICENSE/README/CI và các file mã permalink trên (2/11/2026); tài liệu OTIO, PySceneDetect; chuẩn và cổng đo ở §3d. Chưa kiểm round-trip adapter hay chạy renderer tại đây.
 
+## 3f. Hồ sơ higgsfield-ai/skills: 9 skill gọi CLI đóng của Higgsfield để sinh ảnh, video, brand kit và train “Soul” khuôn mặt (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: "Higgsfield AI Skills", badge license MIT, version 0.14.0, skills 9, Discord; ba cách cài (`npx skills add higgsfield-ai/skills`, `gh skill install higgsfield-ai/skills`, Claude Code `/plugin marketplace add higgsfield-ai/skills` + `/plugin install higgsfield@higgsfield`) và "Setup script". Đã clone đủ lịch sử `higgsfield-ai/skills` (HEAD `4d0757471a704dac8729ea3c2ef0f3f330e0d9b6`, 27/10/2026, 108 commit) và `higgsfield-ai/cli` (HEAD `fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2`, 44 commit). **Không cài, không chạy, không đăng nhập.**
+
+### 3f.1 Kiểm ảnh
+
+| Ô trong ảnh | Kết quả | Đối chiếu (3/11/2026) |
+|---|---|---|
+| license MIT | ✅ | `LICENSE` MIT (repo skills). Lưu ý: MIT chỉ áp cho file skill; dịch vụ Higgsfield là thương mại, có trả phí |
+| version 0.14.0 | ✅ | `VERSION` 0.14.0; frontmatter mỗi `SKILL.md` cũng ghi 0.14.0 |
+| skills 9 | ✅ | 9 thư mục: `generate`, `soul-id`, `product-photoshoot`, `brandkit`, `marketplace-cards`, `websites`, `faceless-video`, `video-explainer` (README ghi là "compatibility entry", tức bản trùng của faceless-video), `youtube-thumbnail`. Thực chất là 8 skill riêng |
+| "Each method handles the Higgsfield CLI install and auth as part of skill setup" | ⚠️ | Đúng: skill tự cài CLI. Nhưng **CLI không có mã nguồn**: repo `higgsfield-ai/cli` (694★) chỉ chứa `install.sh`, README, `MODELS.md` và LICENSE MIT. `install.sh` tải binary từ GitHub Releases, kiểm SHA-256 với `checksums.txt` **cùng release** (chống file hỏng, không chứng minh nguồn gốc), ghi vào `/usr/local/bin` bằng sudo hoặc `--prefix` |
+| ★ | – | 1.869★, 348 fork, tạo 9/4/2026, push cuối 27/10/2026 (GitHub search API). Org còn có `higgsfield-ai/higgsfield` (6.279★, Apache-2.0, framework điều phối GPU, khác hẳn sản phẩm này) |
+
+### 3f.2 Đọc mã: điều đáng ghi
+
+- **Skill chỉ là lớp mỏng trên một dịch vụ trả phí.** Mọi việc sinh nội dung đều qua `higgsfield <lệnh>`, đăng nhập bằng `higgsfield auth login` (OAuth trên trình duyệt) và trừ credit. `generate` gọi hơn 30 model (Veo 3.1, Kling 3.0, Seedance 2.5, Flux 2, GPT Image 2.5…); `websites` tạo và deploy site React lên Cloudflare Workers **trên hạ tầng của Higgsfield**. Ảnh, video, ảnh khuôn mặt và mã site của bạn đều đi tới dịch vụ đó.
+- ⚠️ **Cài CLI không hỏi ở một số skill.** `higgsfield-soul-id/SKILL.md` bước 0: "If `higgsfield` is not on `$PATH`, install it" bằng `curl … install.sh | sh`. Trong khi đó `higgsfield-brandkit/SKILL.md` ghi "install it only after permission" và "Never install system packages without the user…". Hai skill cùng repo có hai chuẩn khác nhau.
+- ⚠️ **Train khuôn mặt mà không có bước đồng ý.** `soul-id` train "a personalized model on a person's face" từ ảnh người dùng đưa vào, sau đó dùng cho ảnh và video (kể cả `youtube-thumbnail` "identity-preserving"). Skill không có câu nào yêu cầu xác nhận ảnh là của chính người dùng hoặc đã được người trong ảnh đồng ý. Phần "Safety" duy nhất (`generate/references/prompt-engineering.md`) chỉ nói model sẽ từ chối "real public figures", nội dung tình dục và thương hiệu, tức là dựa vào bộ lọc phía server. Ảnh khuôn mặt là dữ liệu sinh trắc học: ở Việt Nam, Luật 91/2025 + NĐ 356/2025 có quy định riêng cho dữ liệu sinh trắc học theo tóm tắt của EY (mục 18 §4e), số điều **chưa xác minh**; ở EU là dữ liệu đặc biệt theo GDPR Điều 9.
+- **Cổng chất lượng**: workflow `validate-skills.yml` kiểm frontmatter và cấu trúc skill (cài `pyyaml`); có `evals/scenarios.md` mô tả kịch bản đánh giá nhưng không thấy harness tự chạy. Không thấy mã telemetry trong repo skill (CLI đóng nên không kiểm được).
+- Hỗ trợ nhiều agent: `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `agents/openai.yaml`; có `INSTALL_FOR_AGENTS.md` viết sẵn để agent tự cài.
+
+### 3f.3 So với cùng loại và cách dùng
+
+- Cùng dạng "skill gói một dịch vụ sinh media trả phí" như các skill video ở mục 19 §1 và mục 22. Khác với pipeline mở như Remotion hay HyperFrames (mục 22), nơi mã render chạy trên máy bạn.
+- Nếu dùng: cài CLI thủ công với `--tag` cụ thể thay vì để skill tự cài `main`; chỉ train Soul bằng ảnh của chính bạn hoặc người đã đồng ý bằng văn bản; đọc điều khoản dữ liệu của Higgsfield trước khi tải ảnh khuôn mặt hay mã nguồn site lên; với nội dung phát hành, gắn nhãn nội dung do AI tạo (Luật AI 134/2025 + NĐ 142/2026, mục 18 §4e checklist 07).
+
+**Nguồn §3f:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/higgsfield-ai/skills HEAD `4d0757471a704dac8729ea3c2ef0f3f330e0d9b6`: https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/README.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/INSTALL_FOR_AGENTS.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/VERSION · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-soul-id/SKILL.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-brandkit/SKILL.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-generate/references/prompt-engineering.md · `.github/workflows/validate-skills.yml` · clone https://github.com/higgsfield-ai/cli HEAD `fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2` (`install.sh`, README.md, LICENSE) · GitHub search API `repo:higgsfield-ai/skills`, `org:higgsfield-ai` 3/11/2026.
+
 ## 4. Nguồn
 
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video
