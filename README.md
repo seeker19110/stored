@@ -360,6 +360,10 @@ Orca (mục 01 §3n, 114k★) chạy nhiều coding agent song song, mỗi agent
 
 higgsfield-ai/skills (mục 19 §3f, 1,9k★) khớp ảnh: MIT, v0.14.0, 9 skill (một skill là alias). Phần mở chỉ là lớp hướng dẫn. Việc sinh ảnh, video, deploy site và train "Soul" khuôn mặt đều đi qua CLI `higgsfield`; repo của CLI chỉ có script cài binary, không có mã nguồn. Hai điểm cần sửa nếu dùng: skill `soul-id` tự cài CLI bằng `curl | sh` không hỏi (skill `brandkit` cùng repo thì có hỏi), và không có bước xác nhận người trong ảnh đã đồng ý trước khi train mô hình khuôn mặt, vốn là dữ liệu sinh trắc học.
 
+### 54. Pullboard (3/11/2026): luật "builder không tự verify" có trong mã, nhưng "khác người" mới chỉ là khác phiên chạy
+
+Pullboard (mục 21 §10h, 528★) đưa board, spec và luật của dự án vào chính repo (SQLite trong `.git`, git hook, worktree cho từng lane, 0 phụ thuộc npm) để nhiều agent tự nhận việc, build và land. Luật PB1 "a builder never verifies their own work" được thực thi thật (`bar-check.js` từ chối khi builder và reviewer cùng phiên), nhưng hai phiên vẫn có thể cùng model, cùng máy. Các số "32 agents, 180 landed in 24 hours" và "1169 items" là tự công bố. 7.341 commit trong 24 ngày đều mang tên một người nên git không cho kiểm từng agent. README nói "Nothing is hosted" nhưng có relay tùy chọn tại app.pullboard.dev, dữ liệu được niêm phong bằng khóa của board.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

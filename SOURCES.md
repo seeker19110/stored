@@ -1552,3 +1552,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03o (ảnh README higgsfield-ai/skills → mục 19 §3f)
 
 - `higgsfield-ai/skills`: ảnh README người dùng gửi 3/11/2026; clone đủ lịch sử (108 commit, HEAD `4d0757471a704dac8729ea3c2ef0f3f330e0d9b6`): README.md, LICENSE, VERSION, INSTALL_FOR_AGENTS.md, `higgsfield-*/SKILL.md`, `higgsfield-generate/references/prompt-engineering.md`, `.github/workflows/validate-skills.yml`, `evals/`. `higgsfield-ai/cli` (44 commit, HEAD `fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2`): `install.sh`, README.md, LICENSE. GitHub search API 3/11/2026. Không cài, không chạy, không đăng nhập.
+
+## Bổ sung 2026-11-03p (ảnh README pullboard-dev/pullboard → mục 21 §10h)
+
+- `pullboard-dev/pullboard`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (7.341 commit 4/10–28/10/2026, HEAD `6231e10d4f22673b41ec5797a642b7b6f8e9fd06`, tag v0.9.3): README.md, package.json, LICENSE, CLA.md, docs/architecture.md, relay/README.md, `src/bar-check.js`, `src/blueprints/pullboard.json`, `bin/check-signoffs.js`, `.github/workflows/*`, `docs/badges/items.json`. https://registry.npmjs.org/pullboard (0.9.3). GitHub search API 3/11/2026. Không cài, không chạy.
