@@ -340,6 +340,10 @@ Link (mục 06 §7w) không phải repo mà là thư viện prompt trả phí do
 
 Infographic cấu trúc dự án Codex (mục 04 §4e) khớp mã nguồn ở hầu hết các hộp: `AGENTS.override.md`, trần 32 KiB, skills trong `.agents/`, `.codex/config.toml` bị tắt khi dự án chưa được tin cậy, subagent dạng TOML với role default/worker/explorer, rules Starlark lấy quyết định chặt nhất, hook chặn bằng exit code 2. Hai chỗ lệch: mã hiện có 14 sự kiện hook (ảnh ghi 12), và hộp local environments mang nhầm tiêu đề "Tokenomics". Mục này có thêm bảng tương ứng file giữa Codex và Claude Code. Điểm Claude Code nên học: tắt toàn bộ cấu hình dự án cho tới khi người dùng tin cậy thư mục.
 
+### 49. RCCOF (3/11/2026): khung prompt có DOI nhưng không có số đo, và một nguyên tắc ngược với docs nhà cung cấp
+
+RCCOF của Danh Nolan (mục 17 §4e) là khung 5 lớp (vai trò, ngữ cảnh, ràng buộc, định dạng, few-shot) cho nội dung marketing và AEO, gọi là "đặc tả mở" và có DOI Zenodo. Kiểm thì thấy: trang web nêu "loại bỏ trên 95% hallucination" nhưng PDF 2 trang trên Zenodo không có benchmark nào; câu "lệnh cấm hiệu quả hơn khuyến nghị" ngược với hướng dẫn của Anthropic ("tell Claude what to do instead of what not to do"); license vừa ghi "All rights reserved" vừa ghi CC BY 4.0. Các thành phần đều đã có trong docs chính thức và trong các khung có trước như CO-STAR. Có thể dùng như checklist nhớ; DOI chỉ có nghĩa là tài liệu đã được lưu trữ, không có nghĩa đã được kiểm chứng.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

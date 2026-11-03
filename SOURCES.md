@@ -1532,3 +1532,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03j (ảnh "Codex Project Structure" → mục 04 §4e)
 
 - Ảnh infographic người dùng gửi 3/11/2026 (tác giả trên ảnh: Ananya Ghosh Chowdhury). Clone `--depth 1 --filter=blob:none` `openai/codex` HEAD `ac91c14443c11c4279a9305099354e443c6fa7d4`: `codex-rs/core/src/agents_md.rs`, `config/src/{config_toml.rs,loader/mod.rs}`, `ext/skills/src/host_roots.rs`, `agent-roles/src/agent_role_config.rs`, `core/src/agent/role.rs`, `execpolicy/src/{decision,policy}.rs`, `cli/src/{main,mcp_cmd}.rs`, `app-server-protocol/src/protocol/v2/hook.rs`, `hooks/src/events/*.rs`. WebSearch: https://developers.openai.com/codex/app/local-environments. GitHub search API 3/11/2026. Không chạy Codex.
+
+## Bổ sung 2026-11-03k (link danhnolan.com/en/rccof → mục 17 §4e)
+
+- https://danhnolan.com/en/rccof (WebFetch 3/11/2026) · Zenodo API https://zenodo.org/api/records/22856974 (Report, 20/9/2026, CC BY 4.0, 58 lượt xem) và PDF `RCCOF_Framework_Specification_v1.0-v3.pdf` (7.519 byte, đọc bằng pdftotext) · https://zenodo.org/api/records/22843346 (DLN technical note) · https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (đọc 3/11/2026).

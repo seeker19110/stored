@@ -241,6 +241,42 @@
 
 **Nguồn phần mở rộng:** [1](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/LICENSE) · [2](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/dspy/teleprompt/gepa/gepa.py) · [3](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/dspy/teleprompt/mipro_optimizer_v2.py) · [4](https://github.com/stanfordnlp/dspy/blob/25162c4fc05c2d2d019b0ffb5b6b2a9f315ec007/.github/workflows/run_tests.yml) · [5](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/LICENSE) · [6](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/src/gepa/api.py) · [7](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/src/gepa/core/engine.py) · [8](https://github.com/gepa-ai/gepa/blob/8c7b697a71977980afc7537dac0881e784eef99f/.github/workflows/run_tests.yml) · [9](https://arxiv.org/abs/2507.19457) · [10](https://openreview.net/pdf?id=RQm2KQTM5r)
 
+## 4e. Kiểm khung RCCOF của Danh Nolan (Role, Context, Constraint, Output format, Few-shot): “đặc tả mở” có DOI nhưng không có dữ liệu đo (link người dùng gửi, 3/11/2026)
+
+> Người dùng gửi https://danhnolan.com/en/rccof. Đã đọc trang tiếng Anh, bản ghi Zenodo 10.5281/zenodo.22856974 qua API, PDF đính kèm (`RCCOF_Framework_Specification_v1.0-v3.pdf`, 7.519 byte, 2 trang) và bản ghi liên quan 10.5281/zenodo.22843346. Đối chiếu với docs prompt chính thức của Anthropic (platform.claude.com, "Prompting best practices", đọc 3/11/2026).
+
+### 4e.1 Nó là gì
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Tác giả | Danh Nolan (Văn Hùng Danh), danhnolan.com, ORCID 0009-0007-7906-5091. Trang có Zalo và số điện thoại để liên hệ học "master program" có phí (không ghi giá) |
+| Ngày, phiên bản | v1.0, đăng Zenodo 20/9/2026 (loại **Report**, tác giả tự nộp, không qua bình duyệt); trang web cập nhật 24/9/2026. Zenodo ghi 58 lượt xem, 14 lượt tải (3/11/2026) |
+| Nội dung | Prompt gồm 5 lớp: **R**ole (vai trò chuyên môn), **C**ontext (persona, search intent, "emotional trigger", dữ kiện đã kiểm), **C**onstraint (giới hạn độ dài, cấm từ sáo, "không bịa ngoài dữ kiện"), **O**utput format (ví dụ H2 + đoạn trả lời trước 40–60 từ + 3 gạch đầu dòng + CTA), **F**ew-shot (1–2 đoạn mẫu). Ba quy tắc: đặt [TASK] cuối prompt; mọi số liệu phải nằm trong Context; bắt phân tích phản đối của người dùng trước khi viết. "Quy tắc 70/30": 70% giá trị đến từ con người |
+| License | **Tự mâu thuẫn trên trang**: mục quyền ghi "All rights reserved" với văn bản gốc, còn FAQ và Zenodo ghi **CC BY 4.0** |
+| Hệ sinh thái | Cùng tác giả còn DLN, WGS, SQA-200, SEO Master, EP-9, 4-ZIA, E-PROVE, PIOC, SIUM-1, MME-GA4; bản ghi Zenodo liên quan là "Decision Ladder Navigation™ (DLN)" (technical note, 19/9/2026) |
+
+### 4e.2 Kiểm nhận định
+
+| Nhận định | Kết quả | Căn cứ |
+|---|---|---|
+| "eliminates over 95% of factual hallucinations in enterprise generation benchmarks" (trang web) | ❌ không có nguồn | PDF trên Zenodo không có benchmark, bộ dữ liệu, model, phương pháp đo hay con số 95%. Trang web không nêu tên benchmark. PDF còn tự ghi "guarantees 100% Brand Voice alignment" và "Replicates 100% authentic Brand Voice DNA" mà không có bằng chứng |
+| Biên tập giảm từ 45–90 phút xuống 5–10 phút mỗi bài | ❌ không có nguồn | Không có dữ liệu đi kèm |
+| "Deterministic" control architecture | ⚠️ sai khái niệm | Prompt không làm đầu ra của LLM thành tất định; chỉ thu hẹp phân phối. Muốn chắc chắn về định dạng thì dùng structured output hoặc schema (mục 17 §2b) và cổng kiểm sau sinh |
+| "A prohibition contracts the space of acceptable outputs where a recommendation only expands it" (lệnh cấm hiệu quả hơn khuyến nghị) | ⚠️ ngược với docs của nhà cung cấp | Anthropic khuyên "**Tell Claude what to do instead of what not to do**" và xếp "NEVER use ellipses" là cách kém hiệu quả hơn so với giải thích lý do. Danh sách từ cấm vẫn có ích, nhưng kiểm bằng linter sau sinh chắc hơn là chỉ cấm trong prompt (mục 18 §5d, mục 06 §7i) |
+| Rule 1: đặt task ở đầu khiến model "bắt đầu sinh trước khi đọc Constraints phía sau" | ⚠️ đúng khuyến nghị, sai cơ chế | Model đọc toàn bộ prompt trước khi sinh token đầu tiên. Khuyến nghị đặt câu hỏi ở cuối có căn cứ khác: Anthropic ghi "Queries at the end can improve response quality by up to 30 percent in tests", chủ yếu với tài liệu dài, nhiều nguồn |
+| Rule 2: mọi số liệu phải được cung cấp, "do not infer or fabricate" | ✅ hợp lý | Đây là grounding cơ bản. Tuy vậy cấm trong prompt không đảm bảo; cần kiểm đối chiếu dữ kiện sau sinh |
+| Few-shot 1–2 đoạn mẫu | ✅ nhưng ít | Anthropic khuyên **3–5 ví dụ**, đa dạng, bọc trong thẻ `<example>` để không bị chép nguyên mẫu |
+| Tính mới | ⚠️ | Năm thành phần đều đã có trong hướng dẫn chính thức (vai trò, ngữ cảnh, định dạng, ví dụ) và trong các khung viết tắt phổ biến có trước như CO-STAR, RISEN, CRISPE (kho chưa có hồ sơ riêng cho các khung này). Điểm riêng là áp vào nội dung marketing và AEO |
+
+### 4e.3 Dùng thế nào
+
+- Dùng như một **checklist nhớ** khi viết prompt nội dung: có vai trò, dữ kiện, ràng buộc, định dạng và ví dụ chưa. Không coi đây là "đặc tả" hay "tiêu chuẩn": nó không có bộ kiểm, phiên bản máy đọc hay dữ liệu đo.
+- Thay câu cấm bằng mô tả điều muốn có kèm lý do; giữ danh sách từ cấm nhưng chặn bằng linter (design-os-vietnamese, antislop).
+- Đo thật trước khi tin con số: cùng bộ đề bài, có và không dùng khung, chấm hallucination bằng đối chiếu dữ kiện (mục 07 cho công cụ eval).
+- Một DOI Zenodo chỉ cho biết tài liệu đã được lưu trữ và trích dẫn được; nó **không** có nghĩa là đã được bình duyệt hay kiểm chứng.
+
+**Nguồn §4e:** https://danhnolan.com/en/rccof (đọc 3/11/2026) · https://zenodo.org/api/records/22856974 và PDF `RCCOF_Framework_Specification_v1.0-v3.pdf` · https://zenodo.org/api/records/22843346 · https://doi.org/10.5281/zenodo.22856974 · https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (mục "Add context to improve performance", "Control the format of responses", "Use examples effectively", "Long context prompting").
+
 ## 5. Nguồn
 
 - https://github.com/dair-ai/Prompt-Engineering-Guide · https://www.star-history.com/dair-ai/prompt-engineering-guide/ · https://dev.to/web_dev-usman/10-github-repos-every-serious-prompt-writer-should-be-using-21jk

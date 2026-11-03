@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 997,
+    "count": 998,
     "schema_version": 2
   },
   "projects": [
@@ -13174,6 +13174,27 @@
         "https://motionsites.ai/mcp",
         "https://motionsites.ai/terms",
         "https://raw.githubusercontent.com/github/dmca/master/2026/05/2026-05-26-motionsites.md"
+      ]
+    },
+    {
+      "name": "RCCOF Framework (Danh Nolan)",
+      "repo": null,
+      "url": "https://danhnolan.com/en/rccof",
+      "category": "prompt",
+      "license": "CC-BY-4.0",
+      "stars": null,
+      "open_source": false,
+      "notes": "Khung prompt 5 lớp Role-Context-Constraint-Output format-Few-shot cho nội dung marketing/AEO, Zenodo Report tự nộp 20/9/2026 (DOI 10.5281/zenodo.22856974, PDF 2 trang); trang web nêu 'loại bỏ trên 95% hallucination' nhưng PDF không có benchmark hay phương pháp đo; 'prohibition' hiệu quả hơn khuyến nghị ngược với docs Anthropic; license tự mâu thuẫn (All rights reserved vs CC BY 4.0); không có bộ kiểm; đọc 3/11/2026, mục 17 §4e",
+      "section": "17",
+      "id": "rccof-danh-nolan",
+      "profile_path": "17-prompt-engineering/README.md",
+      "profile_anchor": "17-prompt-engineering/README.md#4e-kiểm-khung-rccof-của-danh-nolan-role-context-constraint-output-format-few-shot-đặc-tả-mở-có-doi-nhưng-không-có-dữ-liệu-đo-link-người-dùng-gửi-3112026",
+      "last_verified_at": "2026-11-03",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://danhnolan.com/en/rccof",
+        "https://zenodo.org/records/22856974",
+        "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
       ]
     }
   ]
