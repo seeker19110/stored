@@ -1030,13 +1030,20 @@
       "name": "build-your-own-x",
       "repo": "codecrafters-io/build-your-own-x",
       "category": "learning",
-      "license": "CC0",
-      "stars": 557898,
+      "license": "CC0-1.0",
+      "stars": 559221,
       "open_source": true,
-      "notes": "#1 GitHub; ★ 31/10/2026: 557.898 (GitHub API)",
+      "notes": "Danh sách hướng dẫn \"tự dựng lại X\" (31 chủ đề, ~389 mục) của CodeCrafters; CC0 1.0 chỉ khai trong README, không có file LICENSE (GitHub hiện null); commit cuối 14/7/2026, 689 issue+PR mở; kiểm link 3/11/2026: 257/359 trả 200, ít nhất 4 link 404 và 6 không truy cập được (403/429 của GitHub/Medium/YouTube không kết luận); #1 GitHub; ★ 3/11/2026: 559.221 (GitHub search API), mục 08 §5b",
       "section": "08",
       "id": "build-your-own-x",
-      "profile_path": "08-awesome-lists-learning/README.md"
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#5b-kiểm-ảnh-codecrafters-iobuild-your-own-x-license-thật-nhịp-bảo-trì-và-link-chết-ảnh-trang-repo-người-dùng-gửi-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "aa17439b62f384511a5561ce308e9598b94d8989",
+      "verification_level": "checks-run",
+      "sources": [
+        "https://github.com/codecrafters-io/build-your-own-x/blob/aa17439b62f384511a5561ce308e9598b94d8989/README.md"
+      ]
     },
     {
       "name": "freeCodeCamp",

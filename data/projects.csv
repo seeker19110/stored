@@ -73,7 +73,7 @@ Promptfoo,promptfoo/promptfoo,,eval-observability,MIT,26736,True,07,"red-team; �
 DeepEval,confident-ai/deepeval,,eval-observability,Apache-2.0,,True,07,
 Ragas,vibrantlabsai/ragas,,eval-observability,Apache-2.0,,True,07,"; repo chuyển sang vibrantlabsai/ragas, không commit từ 23/2/2026 (31/10/2026)"
 Arize Phoenix,Arize-ai/phoenix,,eval-observability,ELv2,,False,07,source-available
-build-your-own-x,codecrafters-io/build-your-own-x,,learning,CC0,557898,True,08,#1 GitHub; ★ 31/10/2026: 557.898 (GitHub API)
+build-your-own-x,codecrafters-io/build-your-own-x,,learning,CC0-1.0,559221,True,08,"Danh sách hướng dẫn ""tự dựng lại X"" (31 chủ đề, ~389 mục) của CodeCrafters; CC0 1.0 chỉ khai trong README, không có file LICENSE (GitHub hiện null); commit cuối 14/7/2026, 689 issue+PR mở; kiểm link 3/11/2026: 257/359 trả 200, ít nhất 4 link 404 và 6 không truy cập được (403/429 của GitHub/Medium/YouTube không kết luận); #1 GitHub; ★ 3/11/2026: 559.221 (GitHub search API), mục 08 §5b"
 freeCodeCamp,freeCodeCamp/freeCodeCamp,,learning,BSD-3,458325,True,08,; ★ 31/10/2026: 458.325 (GitHub API)
 developer-roadmap,nilbuild/developer-roadmap,,learning,custom,371000,True,08,; ★ 31/10/2026: 371.000 (shields); repo chuyển sang nilbuild/developer-roadmap (31/10/2026)
 system-design-primer,donnemartin/system-design-primer,,learning,CC BY 4.0,376351,True,08,; ★ 31/10/2026: 376.351 (GitHub API)

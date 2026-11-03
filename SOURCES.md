@@ -1556,3 +1556,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03p (ảnh README pullboard-dev/pullboard → mục 21 §10h)
 
 - `pullboard-dev/pullboard`: ảnh README người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (7.341 commit 4/10–28/10/2026, HEAD `6231e10d4f22673b41ec5797a642b7b6f8e9fd06`, tag v0.9.3): README.md, package.json, LICENSE, CLA.md, docs/architecture.md, relay/README.md, `src/bar-check.js`, `src/blueprints/pullboard.json`, `bin/check-signoffs.js`, `.github/workflows/*`, `docs/badges/items.json`. https://registry.npmjs.org/pullboard (0.9.3). GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-03q (ảnh trang repo codecrafters-io/build-your-own-x → mục 08 §5b)
+
+- `codecrafters-io/build-your-own-x`: ảnh người dùng gửi 3/11/2026; clone đủ lịch sử (616 commit từ 9/5/2018, HEAD `aa17439b62f384511a5561ce308e9598b94d8989`): README.md (31 mục `####`, "Origins & License"), `git log`. Kiểm HTTP 359 link bằng curl 3/11/2026 (403 của github.com do proxy môi trường). GitHub search API 3/11/2026.
