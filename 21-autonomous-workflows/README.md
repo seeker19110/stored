@@ -466,6 +466,43 @@ SDK MIT dùng `ctx.run` để ghi kết quả thao tác không tất định và
 
 **Nguồn §10g:** ảnh người dùng gửi 3/11/2026 · clone https://github.com/duongbirken2510/AI-Money HEAD `31a660d6a26ff92691949c76cdf63bd71fbc9f0a` (README.md, `server.py` dòng 107–113, 886–926, 2545–2563, 3215–3240, 3370–3400, 3496–3497; `agent_worker.py` dòng 60–100; `fb_poster.py`; `numerology_comment_bot.py`; `.agents/skills/facebook-group-posting/SKILL.md`; grep chính sách bảo mật trong `public/*.html`) · GitHub search API `repo:duongbirken2510/AI-Money`, `user:duongbirken2510` 3/11/2026.
 
+## 10h. Hồ sơ pullboard-dev/pullboard: hàng đợi điều phối nhiều agent sống trong repo, “agent thứ hai kiểm tra” thực thi bằng khác phiên chạy (ảnh README người dùng gửi, đọc mã 3/11/2026)
+
+> Ảnh là phần đầu README: logo, "pullboard.dev · lives in your git repo · no dependencies · Walk away, and it builds", badge "pullboard 1169 items", "npm v0.9.3", "license MIT"; ba bước Vision → Specification → Inspection; ảnh chụp trang live "32 agents, 22 building, 3 reviewing, 180 landed in 24 hours" với bảng 45 seat (`core-695`…). Đã clone `--filter=blob:none` đủ lịch sử, HEAD `6231e10d4f22673b41ec5797a642b7b6f8e9fd06` (28/10/2026). **Không cài, không chạy.**
+
+### 10h.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (3/11/2026) |
+|---|---|
+| Repo | https://github.com/pullboard-dev/pullboard · **528★** (GitHub search API; ảnh chụp ngày 28/10 ghi 426). Tạo 7/10/2026. npm `pullboard` 0.9.3 (40 bản từ 16/7/2026) |
+| License | MIT, "Copyright (c) 2026 Corey Olson". Đóng góp phải ký **CLA** (dựa trên Apache ICLA 2.2) qua bot, ngoài sign-off DCO kiểm trong CI |
+| Lịch sử | **7.341 commit trong 24 ngày** (4/10 → 28/10/2026), tất cả dưới tên **Corey Olson** (hai email), cao điểm 886 commit/ngày (24/10). Không có trailer Co-Authored-By: hàng chục agent commit dưới cùng một danh tính nên git không cho biết agent nào làm gì |
+| Thành phần | CLI Node (`bin/pullboard.js`, Node ≥ 22.13), **0 phụ thuộc npm** (đúng như "no dependencies"); board là **một file SQLite trong `.git`** dùng chung cho mọi worktree, không commit; `SPEC.md`, `DOCTRINE.md`, `pullboard.json`, `AGENTS.md` và git hook ở checkout chính; skill cho agent; trang "Pullboard View" chạy local. Relay tùy chọn (`relay/`) cho điện thoại và máy khác |
+
+### 10h.2 Kiểm ảnh
+
+| Ô trong ảnh | Kết quả | Đối chiếu |
+|---|---|---|
+| "no dependencies" | ✅ | `package.json` không có `dependencies` lẫn `devDependencies` |
+| "npm v0.9.3", MIT | ✅ | npm latest 0.9.3; `LICENSE` MIT |
+| "pullboard 1169 items" | ⚠️ tự công bố | Badge đọc `docs/badges/items.json` trong repo, tức số do chính dự án ghi |
+| "32 agents… 180 landed in 24 hours" | ⚠️ tự công bố | Là ảnh chụp trang live ngày 28/10 (`docs/img/live-floor-*.png`). Có thể đối chiếu một phần với git: 7.341 commit trong 24 ngày, khoảng 300 commit/ngày. Một "item landed" có thể gồm nhiều commit, nên không so trực tiếp được. Từ 28/10 tới 3/11 repo công khai **không có commit mới**, nên trang live tại thời điểm đọc có thể đang chạy trên bản khác **(chưa xác minh)** |
+| "lives in your git repo" / "Nothing is hosted" | ⚠️ đúng cho phần lõi | Board, spec, hook đều local. Nhưng README cũng giới thiệu **relay** chạy tại `app.pullboard.dev` (Railway): lưu bản ghi board đã niêm phong, journal, backup, liên kết GitHub App. Theo `docs/architecture.md`, relay chỉ đọc được metadata (repo `owner/name`, thời điểm, thiết bị); nội dung cần khóa board, chỉ máy và điện thoại đã ghép cặp có. Board không liên kết hoặc 90 ngày không hoạt động thì bị xóa |
+
+### 10h.3 Đọc mã: "agent thứ hai kiểm tra" thực thi tới đâu
+
+- Luật PB1 trong blueprint: "A builder never verifies their own work." Trong mã: `src/bar-check.js:86` từ chối khi `builderSession === reviewerSession` (`BAR_SELF_SIGN`). Mỗi ghi chú bar-check chỉ nhận một câu trả lời của reviewer (`:81`). Lane được build trong worktree riêng, không build ở checkout chính (`src/board.js:996`).
+- Giới hạn: "khác người" ở đây là **khác phiên chạy**. Hai phiên có thể cùng model, cùng prompt, cùng máy, cùng tài khoản. Không có chữ ký số theo từng agent, và commit đều mang danh tính chủ repo. Đây là cổng chống "tự khen" hữu ích, nhưng chưa phải review độc lập theo nghĩa khác model hay khác người (so với Kornia mục 14 §5f và quy trình reviewer khác model của design-os-vietnamese mục 18 §5d).
+- CI: `check-signoffs.js` kiểm sign-off của mọi commit với chính sách ở base tin cậy (đọc file sự kiện, không nội suy giá trị do contributor đưa vào shell), `pullboard spec check`, test chia shard. Action ghim theo tag (`actions/checkout@v4`), không theo SHA.
+- Grep `telemetry` chỉ thấy "private telemetry" về sức khỏe relay, đọc local (`src/relay-canary-*.js`); không thấy client analytics gửi ra ngoài.
+
+### 10h.4 Đặt trong bối cảnh
+
+- Cùng bài toán với nhóm "đội agent" ở mục 03 §8f (Agent Teams) và ADE ở mục 01 (Orca §3n, Vibe Kanban): điểm khác là Pullboard đưa **spec và luật** vào repo, có máy kiểm (bar-check, spec check, hook), thay vì chỉ là giao diện quản lý phiên.
+- Rủi ro: một người duy trì, dự án mới 4 tuần, nhịp hàng trăm commit mỗi ngày do agent viết; số liệu năng suất đều tự công bố. Nếu thử, chạy trên repo phụ, không liên kết relay với repo khách hàng, và đọc `DOCTRINE.md` + `SPEC.md` để biết hook sẽ chặn những gì.
+
+**Nguồn §10h:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/pullboard-dev/pullboard HEAD `6231e10d4f22673b41ec5797a642b7b6f8e9fd06`: https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/README.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/package.json · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/LICENSE · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/CLA.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/docs/architecture.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/relay/README.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/src/bar-check.js · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/src/blueprints/pullboard.json · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/bin/check-signoffs.js · `docs/badges/items.json`; `git shortlog`, `git log` theo ngày · https://registry.npmjs.org/pullboard · GitHub search API 3/11/2026.
+
 ## 11. Nguồn
 
 - Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)

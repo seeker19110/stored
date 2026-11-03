@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1001,
+    "count": 1002,
     "schema_version": 2
   },
   "projects": [
@@ -13279,6 +13279,31 @@
         "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-soul-id/SKILL.md",
         "https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-brandkit/SKILL.md",
         "https://github.com/higgsfield-ai/cli/blob/fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2/install.sh"
+      ]
+    },
+    {
+      "name": "Pullboard",
+      "repo": "pullboard-dev/pullboard",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": 528,
+      "open_source": true,
+      "notes": "Hàng đợi điều phối nhiều agent sống trong repo: board SQLite trong .git, SPEC.md/DOCTRINE.md, git hook, worktree mỗi lane, CLI Node 0 phụ thuộc; PB1 'builder không tự verify' thực thi bằng builderSession != reviewerSession (khác phiên, không phải khác model/người); relay tùy chọn app.pullboard.dev lưu bản ghi niêm phong (README vẫn ghi 'Nothing is hosted'); 7.341 commit/24 ngày dưới một danh tính, không trailer; số '180 landed/24h', '1169 items' tự công bố; CLA bắt buộc; npm 0.9.3; ★ 3/11/2026: 528 (GitHub search API), mục 21 §10h",
+      "section": "21",
+      "id": "pullboard",
+      "profile_path": "21-autonomous-workflows/README.md",
+      "profile_anchor": "21-autonomous-workflows/README.md#10h-hồ-sơ-pullboard-devpullboard-hàng-đợi-điều-phối-nhiều-agent-sống-trong-repo-agent-thứ-hai-kiểm-tra-thực-thi-bằng-khác-phiên-chạy-ảnh-readme-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "6231e10d4f22673b41ec5797a642b7b6f8e9fd06",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/README.md",
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/package.json",
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/LICENSE",
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/docs/architecture.md",
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/relay/README.md",
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/src/bar-check.js",
+        "https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/bin/check-signoffs.js"
       ]
     }
   ]
