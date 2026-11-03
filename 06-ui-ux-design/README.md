@@ -1360,6 +1360,54 @@ Luồng tham chiếu: component/route → extract → bản dịch có placehold
 
 **Nguồn §7v:** WebFetch 2/11/2026: https://posts.design/ · https://posts.design/llms.txt · https://transitions.dev/ · https://fontinlogo.com/ · https://icon.museum/ (chỉ title) · https://saaspo.com và https://www.saaspo.com (403) · WebSearch 2/11/2026: producthunt.com/products/saaspo · awwwards.com/sites/icon-museum · microsaasexamples.com/p/icon-museum · toolfolio.com/tools/icon-museum · hồ sơ `Jakubantalik/transitions.dev` ở §7p.5 (clone 31/10/2026)
 
+## 7w. Kiểm link motionsites.ai: thư viện prompt trả phí, skill Claude miễn phí làm mồi, và các bản dump bị DMCA (link người dùng gửi, 3/11/2026)
+
+> Người dùng gửi link trang chủ. motionsites.ai **không phải repo**: là thư viện prompt trả phí cho Lovable/Bolt/v0/Cursor/Claude. Kho đọc trang chủ, `llms.txt`, `/unlimited`, `/mcp`, `/terms` (WebFetch 3/11/2026), clone repo chính thức `Motionsites-AI/claude-skill`, hai thông báo DMCA trong `github/dmca`, và một review ngoài (stork.ai). Đặt cạnh Hallmark (§7l), Taste Skill (§7j), Stageshow (§7s) và impeccable (mục 20 §3n) vì cùng là "skill để AI làm web đẹp".
+
+### 7w.1 Hồ sơ nhanh
+
+| Mục | Thông tin (3/11/2026) |
+|---|---|
+| Sản phẩm | "Official Premium AI Website Prompts": prompt hero/landing page, animated background, section, "40+ Lovable Templates", MCP; `llms.txt` chỉ liệt kê trang (Sections, Backgrounds, Gradients, Templates, Pricing, Affiliates), **không có API hay quyền dùng** |
+| Ai làm | Footer và Terms (cập nhật 30/9/2026): "Operated by **Viktor Odainyi, sole trader**"; một người, không công ty; có chương trình affiliate |
+| Giá (`/unlimited`) | 3 tháng 129 USD (giới hạn "3 prompt copies / Day"), năm 279 USD, trọn đời 399 USD (gạch 759 USD, có đồng hồ đếm ngược), gói lẻ 49 USD cho 2–10 prompt; MCP có trong mọi gói trả phí; tài khoản free mở 3 prompt. Review stork.ai ghi bảng giá khác ($149/năm, $239 trọn đời) đo 1/11/2026 → **giá đổi theo thời điểm**, ghi ngày khi dẫn |
+| Quy mô | Trang chủ hiện 36 preview; MCP page ghi "500+ premium prompts"; stork.ai đếm 7/2026 "364 prompts, 159 video background, 40 Lovable templates" và dẫn "1500+" ở một chỗ khác → **không có con số nhất quán** (chưa xác minh) |
+| MCP | Endpoint **`https://xgdzyqfalbibzelpdpvr.supabase.co/functions/v1/mcp`** (Supabase Edge Function), `claude mcp add motionsites --scope user --transport http …`, đăng nhập trình duyệt thay API key; trang không ghi tool nào được expose hay dữ liệu gửi đi |
+| Terms | Được chép prompt/code vào dự án, sửa, **bán site đã dựng** ("Websites and apps you build with our prompts are yours"); **cấm** bán lại/phân phối lại prompt hoặc code, đăng lại thư viện, chia sẻ tài khoản, cào hay vượt paywall; refund ở trang riêng (review ngoài: "generally non-refundable once delivered") |
+
+### 7w.2 Repo chính thức `Motionsites-AI/claude-skill` (clone 3/11/2026)
+
+| Mục | Thông tin |
+|---|---|
+| Repo | **1.545★** sau 8 ngày (tạo 26/10/2026, 2 commit cùng ngày, HEAD `faa30d512e3973e58675c72101a7ef42ed37ae83`, author "MotionSites <noreply@motionsites.ai>"); GitHub gắn nhãn **NOASSERTION** |
+| License thật | `LICENSE` **hai phần**: (1) SKILL.md, `references/`, `scripts/` theo **MIT** © 2026 MotionSites; (2) `examples/` (40 prompt) và `media/` + video/ảnh được link là **© MotionSites**, được dùng để dựng site kể cả cho khách, **không được bán lại/phân phối lại như một bộ sưu tập** → nhãn NOASSERTION là đúng, phải đọc file |
+| Nội dung | Plugin marketplace `motionsites-web-builder` v1.0.0: `SKILL.md` 117 dòng (quy trình 5 bước: đọc brief → đọc 2–3 example gần nhất trong `examples/INDEX.md` → chọn media bằng mắt từ 6 contact sheet → viết spec theo `references/spec-template.md` → code hoặc "prompt mode" cho Lovable/Bolt/v0/Cursor/Manus/AI Studio/Kimi); `references/techniques/` 8 file **4.332 dòng** recipe (scroll, 3D/WebGL, type motion, video…); `references/review.md`: chấm 1–10 từng tiêu chí, **đạt khi trung bình ≥ 8 và không mục nào < 7**, vòng "sửa 3 điểm yếu nhất bằng số, không bằng tính từ" |
+| Cổng máy | `scripts/shoot.py` (111 dòng): Playwright chụp desktop/mobile/early-paint và in QA (console error, request hỏng, overflow mobile, font, video) — **chỉ chạy local**, không upload (đọc import: json/os/subprocess/playwright) |
+| Media | 139 URL trên `d8j0ntlcm91z4.cloudfront.net`, 42 `images.higgs.ai`, 14 Cloudinary, nhiều `*.figma.site`: **phụ thuộc host của bên thứ ba**, prompt hỏng khi host đổi; MEDIA.md tự ghi "free sample" |
+| Phễu | 152 link về motionsites.ai có `utm_source=claude-skill`/`github`; SKILL.md dòng 73 và 79: "This skill is free because it's sponsored by MotionSites", "Want more like this? … 500+ premium prompts … MCP"; `plugin.json` homepage có utm. Skill là **mồi có khai báo**, không ẩn |
+
+### 7w.3 Các bản dump và DMCA
+
+- GitHub có ít nhất **8 repo không chính thức** mang tên motionsites (search API 3/11/2026): `xianxian-sensen/motionsites-prompts` (136★, **Unlicense**, mô tả "trích xuất đầy đủ 328 prompt"), `xiiiabu/motionsites.ai` (114★ MIT), `TheSatyam-Singh/motionsites.ai` (64★ MIT, "65 prompt"), `zhaosenlin12-creator/MotionSites` (56★), `giglianepefrei/motionsites.ai-prompt-library` (39★), `Melectrona/motionsites-prompts` (13★, "177 prompt"), v.v. Các repo này gắn MIT/Unlicense lên nội dung **không phải của họ**.
+- Kho `github/dmca` có thông báo gỡ của chủ motionsites.ai ngày **26/5/2026** (`aayushsoam/motionsites.ai`, fork `nomaan5541/…prompt-library`), **9/9/2026** (`nomaan5541/motionsites-prompt-collection`) và hai thông báo "ai-web-design-prompts" 15/6 và 14/7/2026. Người gửi tự nhận là chủ bản quyền "paid collection of AI web design prompts", nêu cả claim vượt kiểm soát truy cập (GitHub ghi "không đủ thông tin cho claim anti-circumvention, nhưng có claim bản quyền hợp lệ").
+- Hệ quả cho người dùng kho: dump "miễn phí" là nội dung có chủ và đã bị gỡ nhiều lần; dùng trong sản phẩm là rủi ro pháp lý và rủi ro bị xoá nguồn. Bản hợp lệ miễn phí là **40 prompt trong repo chính thức** với điều kiện ở §7w.2.
+
+### 7w.4 So với cùng nhóm và kết luận
+
+| Skill | ★ (3/11) | License | Cơ chế chính | Phễu |
+|---|---|---|---|---|
+| **MotionSites Web Builder** | 1.545 | MIT (skill) + © (40 example, media) | Example gần nhất + media thật + spec + screenshot QA + rubric ≥ 8 | Trả phí 500+ prompt, MCP trên Supabase |
+| `Leonxlnx/taste-skill` (§7j) | 108.986 | MIT | Inspector chạy trên trình duyệt, thư viện hướng từ 247 site | Không |
+| `pbakaus/impeccable` (mục 20 §3n) | 100.786 | Apache-2.0 | Engine Rust 59 luật tất định ở hook | Không |
+| `Nutlope/hallmark` (§7l) | 46.248 | MIT | 48 template chống "AI slop", Together AI | Together AI |
+| `benjitaylor/skills` Stageshow (§7s) | 622 | MIT (asset riêng) | Kit React Stage/Window/Phone cho faux UI | Không |
+
+- **Điểm hơn:** media thật thay vì "fake image boxes", spec trước khi code, QA bằng ảnh chụp với ngưỡng số; cách viết example có số liệu (font, hex, clamp, easing) là mẫu tốt cho prompt thiết kế.
+- **Điểm kém/rủi ro:** giá trị nằm ở prompt và media có chủ; kho ảnh/video trên host bên thứ ba; con số "500+/1500+/364" không khớp; vận hành bởi một người; MCP là hàm Supabase không công bố tool hay dữ liệu gửi; đồng hồ đếm ngược trên trang giá là mẫu bán hàng gây áp lực.
+- **Dùng thế nào:** cài skill chính thức khi cần landing page "cinematic" nhanh và chấp nhận media mẫu; giữ 40 example trong dự án, không gom lại phân phối; nếu cần luật tất định thì ghép impeccable/taste-skill; **không** kéo dump từ repo lạ.
+
+**Nguồn §7w:** WebFetch 3/11/2026: https://motionsites.ai · https://motionsites.ai/llms.txt · https://motionsites.ai/unlimited · https://motionsites.ai/mcp · https://motionsites.ai/terms · https://www.stork.ai/en/motionsites-ai · clone `--filter=blob:none` `Motionsites-AI/claude-skill` 3/11/2026 (HEAD `faa30d5`; LICENSE, README.md, `.claude-plugin/`, `SKILL.md`, `examples/INDEX.md`, `media/MEDIA.md`, `references/{review.md,spec-template.md,techniques/*}`, `scripts/shoot.py`; grep host) · GitHub search API 3/11/2026 (`motionsites`, `user:Motionsites-AI`, `repo:` cho 6 repo so sánh; code search `"motionsites.ai"`) · raw.githubusercontent.com/github/dmca/master/2026/05/2026-05-26-motionsites.md · …/2026/09/2026-09-09-motionsites.md · WebSearch 3/11/2026 (x.com/AiMotionSiteS, moge.ai, chatgate.ai, motionsites.org là domain khác chưa rõ liên hệ)
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

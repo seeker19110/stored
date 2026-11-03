@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 995,
+    "count": 997,
     "schema_version": 2
   },
   "projects": [
@@ -13128,6 +13128,52 @@
         "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/fb_poster.py",
         "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/numerology_comment_bot.py",
         "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/.agents/skills/facebook-group-posting/SKILL.md"
+      ]
+    },
+    {
+      "name": "MotionSites Web Builder (claude-skill)",
+      "repo": "Motionsites-AI/claude-skill",
+      "category": "design-skill",
+      "license": "MIT (skill) + © MotionSites (examples, media)",
+      "stars": 1545,
+      "open_source": true,
+      "notes": "Skill/plugin Claude chính thức của motionsites.ai: 40 example prompt có số liệu, media shelf trên CloudFront/Cloudinary/figma.site, 4.332 dòng recipe kỹ thuật, spec trước khi code, shoot.py Playwright chụp + QA local, rubric ≥ 8; LICENSE hai phần (GitHub nhãn NOASSERTION), examples/media không được phân phối lại; là mồi có khai báo cho gói trả phí 500+ prompt + MCP Supabase; 2 commit 26/10/2026; ★ 3/11/2026: 1.545 (GitHub search API)",
+      "section": "06",
+      "id": "motionsites-claude-skill",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7w-kiểm-link-motionsitesai-thư-viện-prompt-trả-phí-skill-claude-miễn-phí-làm-mồi-và-các-bản-dump-bị-dmca-link-người-dùng-gửi-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "faa30d512e3973e58675c72101a7ef42ed37ae83",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/Motionsites-AI/claude-skill/blob/faa30d512e3973e58675c72101a7ef42ed37ae83/LICENSE",
+        "https://github.com/Motionsites-AI/claude-skill/blob/faa30d512e3973e58675c72101a7ef42ed37ae83/README.md",
+        "https://github.com/Motionsites-AI/claude-skill/blob/faa30d512e3973e58675c72101a7ef42ed37ae83/plugins/motionsites-web-builder/skills/motionsites-web-builder/SKILL.md",
+        "https://github.com/Motionsites-AI/claude-skill/blob/faa30d512e3973e58675c72101a7ef42ed37ae83/plugins/motionsites-web-builder/skills/motionsites-web-builder/scripts/shoot.py",
+        "https://github.com/Motionsites-AI/claude-skill/blob/faa30d512e3973e58675c72101a7ef42ed37ae83/plugins/motionsites-web-builder/skills/motionsites-web-builder/media/MEDIA.md"
+      ]
+    },
+    {
+      "name": "MotionSites AI (motionsites.ai)",
+      "repo": null,
+      "url": "https://motionsites.ai/",
+      "category": "design-tool",
+      "license": "proprietary",
+      "stars": null,
+      "open_source": false,
+      "notes": "Thư viện prompt trả phí cho Lovable/Bolt/v0/Cursor/Claude (hero, landing, background, section, 40+ Lovable template) + MCP trên Supabase Edge Function; vận hành bởi Viktor Odainyi (sole trader); giá 3/11/2026: $129/3 tháng (3 prompt/ngày), $279/năm, $399 trọn đời, gói lẻ $49; Terms cho bán site đã dựng, cấm phân phối lại prompt; số prompt 364/500+/1500+ không nhất quán (chưa xác minh); đã gửi DMCA gỡ dump trên GitHub 5–9/2026",
+      "section": "06",
+      "id": "motionsites-ai",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7w-kiểm-link-motionsitesai-thư-viện-prompt-trả-phí-skill-claude-miễn-phí-làm-mồi-và-các-bản-dump-bị-dmca-link-người-dùng-gửi-3112026",
+      "last_verified_at": "2026-11-03",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://motionsites.ai/",
+        "https://motionsites.ai/unlimited",
+        "https://motionsites.ai/mcp",
+        "https://motionsites.ai/terms",
+        "https://raw.githubusercontent.com/github/dmca/master/2026/05/2026-05-26-motionsites.md"
       ]
     }
   ]

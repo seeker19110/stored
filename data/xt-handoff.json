@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w)",
     "columns": [
       "deeper",
       "shallower",
@@ -10,7 +10,7 @@
       "not_adding"
     ],
     "updated": "2026-11-03",
-    "count": 111,
+    "count": 112,
     "current_batch": {
       "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
       "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
@@ -2461,6 +2461,43 @@
         }
       ],
       "note": "Nguồn thời hạn là tóm tắt thứ cấp (EY, Luật Việt An) + checklist vn-law-check; toàn văn NĐ 356/2025 chưa đọc được (thuvienphapluat 403) — chưa xác minh số điều. Chỉ đề xuất, không sửa X-Templates."
+    },
+    {
+      "id": "XT-H-112",
+      "date": "2026-11-03",
+      "stored_ref": [
+        "06 §7w"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#7w-kiểm-link-motionsitesai-thư-viện-prompt-trả-phí-skill-claude-miễn-phí-làm-mồi-và-các-bản-dump-bị-dmca-link-người-dùng-gửi-3112026"
+      ],
+      "lesson": "Skill thương mại có LICENSE hai phần trong một repo (MIT cho SKILL.md/scripts, © cho examples/media cấm phân phối lại) và GitHub gắn NOASSERTION; cùng lúc ≥ 8 repo dump gắn MIT/Unlicense lên nội dung có chủ và bị DMCA gỡ 4 lần. Khi thêm skill/prompt pack vào dự án: đọc LICENSE theo thư mục, đếm link utm/phễu, và tra kho github/dmca theo tên sản phẩm trước khi vendor.",
+      "xt_ids": [
+        "CMP-LIC-004",
+        "SEC-SUPPLY-027"
+      ],
+      "column": "deeper",
+      "existing_coverage": "CMP-LIC-004 cấm asset không license rõ và phân loại source-available; SEC-SUPPLY-027 yêu cầu mục Đánh giá trong PR thêm skill/plugin ghi SHA, license, telemetry, phạm vi quyền.",
+      "delta": "Không thêm ID; gợi ý hai dòng kiểm cho SEC-SUPPLY-027: (a) license theo thư mục con (grep LICENSE/NOTICE trong từng thư mục skill, không chỉ gốc repo); (b) với prompt/asset pack 'miễn phí' có tên sản phẩm thương mại, tra github/dmca và trang Terms của sản phẩm gốc.",
+      "related_handoffs": [
+        "XT-H-108",
+        "XT-H-022"
+      ],
+      "xt_evidence": [
+        {
+          "id": "CMP-LIC-004",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/16-compliance-privacy/licensing-and-ip.md#L52"
+        },
+        {
+          "id": "SEC-SUPPLY-027",
+          "file": "framework/12-security/supply-chain.md",
+          "line": 72,
+          "url": "https://github.com/seeker19110/X-Templates/blob/204913574eccd293886ceaff9388dab3923521a0/framework/12-security/supply-chain.md#L72"
+        }
+      ],
+      "note": "Đã có ID. Ví dụ phản mẫu cho bẫy: repo dump prompt gắn Unlicense; ví dụ tốt: LICENSE hai phần của Motionsites-AI/claude-skill ghi rõ thư mục nào theo license nào."
     }
   ]
 }
