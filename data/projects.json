@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 994,
+    "count": 995,
     "schema_version": 2
   },
   "projects": [
@@ -13104,6 +13104,30 @@
         "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/LICENSE",
         "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/pyproject.toml",
         "https://github.com/kornia/kornia/blob/a733fe3b6248652b0a509d002cf452b2167965f0/.github/workflows/pypi-release.yml"
+      ]
+    },
+    {
+      "name": "AI-Money (Deta AI Lab)",
+      "repo": "duongbirken2510/AI-Money",
+      "category": "workflow-automation",
+      "license": null,
+      "stars": 13,
+      "open_source": false,
+      "notes": "Thực nghiệm 20 ngày giao agent tự kiếm doanh thu nuôi server (kiemtien.deta.vn): Python thuần ThreadingHTTPServer + SQLite + Gemini/agy --sandbox + VietQR; webhook SePay/Casso so HMAC, fail-closed khi thiếu secret, nhưng nhận secret qua query string; bot Facebook qua Chrome CDP đăng nhóm/trả lời bình luận, skill nêu mục đích lách Admin Assist (rủi ro ToS Meta); thu SĐT/ngày sinh không thấy chính sách bảo mật (Luật 91/2025); nội dung tâm linh/thần số học thu phí; không LICENSE, không test/CI, 2 commit; ★ 3/11/2026: 13 (GitHub search API), mục 21 §10g",
+      "section": "21",
+      "id": "ai-money-deta",
+      "profile_path": "21-autonomous-workflows/README.md",
+      "profile_anchor": "21-autonomous-workflows/README.md#10g-hồ-sơ-duongbirken2510ai-money-thực-nghiệm-20-ngày-để-ai-tự-kiếm-tiền-nuôi-server-bot-facebook-lách-bộ-lọc-nhóm-link-người-dùng-gửi-đọc-mã-3112026",
+      "last_verified_at": "2026-11-03",
+      "verified_ref": "31a660d6a26ff92691949c76cdf63bd71fbc9f0a",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/README.md",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/server.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/agent_worker.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/fb_poster.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/numerology_comment_bot.py",
+        "https://github.com/duongbirken2510/AI-Money/blob/31a660d6a26ff92691949c76cdf63bd71fbc9f0a/.agents/skills/facebook-group-posting/SKILL.md"
       ]
     }
   ]
