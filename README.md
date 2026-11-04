@@ -399,6 +399,10 @@ ThinkRail của JetBrains (mục 01 §3o, 7,5k★, Apache-2.0) là IDE bọc age
 
 dsh-superagent-prototype (mục 21 §10i, 18k★ sau 4 ngày, MIT) là agent trực cho một repo GitHub: người trong danh sách gọi tên thì nó mở ticket, làm trong thư mục riêng và trả lời bằng PR. Phần quyền làm tốt: host giữ danh sách và Mandate, bot và CI chỉ làm ngữ cảnh, chế độ chủ động mặc định chỉ quan sát, không cần webhook, lọc biến môi trường chứa secret, panel chỉ bind 127.0.0.1. Chính tài liệu cũng ghi rõ giới hạn: worker "run commands without approval as the operator's OS user", danh sách lệnh chặn "not a security boundary", auto-merge chỉ do prompt quyết định. Nên chạy trên máy hoặc VM riêng, cấp tài khoản agent quyền tối thiểu và bật branch protection.
 
+### 60. "Server 12 đô chịu 280.000 user" (4/11/2026): kỹ thuật đúng, bảng xếp hạng trong bài đã cũ
+
+Bài viết về twelve-dollar-server-challenge (mục 34 §6) tóm đúng luật (SQLite, không cache, verify JWT mỗi request, commit trước khi trả lời) và đúng điểm chung của nhóm đầu: `io_uring`, group commit, tái dùng buffer, tách WAL checkpoint. Đối chiếu `LEADERBOARD.md` ngày 4/11: hạng 1 nay là Rust với 310.000 user (khoảng 29.000 req/s), 280.000 chỉ là hạng 5. Bài "tự viết engine theo định dạng SQLite" đã bị loại theo phán quyết ngày 31/10 và chấm lại 260.000 khi dùng SQLite gốc. Giới hạn 65.000 fd là `LimitNOFILE` do ban tổ chức đặt, không phải của Linux. Số user là user ảo có thời gian nghỉ, và máy chấm đã đổi giữa các đợt. Phần mang về dự án thật được: group commit có giới hạn lô, checkpoint tách luồng, đo việc trên mỗi request. Không nên mang về: đọc thẳng B-tree hay fast path dựa vào dữ liệu seed.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

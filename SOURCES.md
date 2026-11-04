@@ -1910,3 +1910,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-04c (ảnh README deepseek-ai/dsh-superagent-prototype → mục 21 §10i)
 
 - `deepseek-ai/dsh-superagent-prototype`: ảnh README người dùng gửi 4/11/2026; clone đủ lịch sử (1 commit, HEAD `8c32a9dc5d72c033816c6a8110b37f40cf94fba4`, 31/10/2026): README.md, SETUP.md, LICENSE, package.json, `docs/000…008`, `prompts/dispatch.md`, `src/sources/github*.ts`. GitHub search API 4/11/2026 (`dsh-superagent`). Không cài, không chạy.
+
+## Bổ sung 2026-11-04d (bài "218 developers vắt kiệt server 12 đô" → mục 34 §6)
+
+- Bài người dùng gửi 4/11/2026 (không link). Clone `--depth 1` `arjaythedev/twelve-dollar-server-challenge` HEAD `b7b7b651fe243b0417ae82b3bfc1fc4beb53c456`: README.md, SPEC.md, LEADERBOARD.md, `benchmarks/batch-1.md`, `benchmarks/batch-2.md`. WebSearch extended + WebFetch https://benchmarks.arjaythedev.com/12-dollar-server/leaderboard (bản 25/10/2026). GitHub search API 4/11/2026. Không chạy bài dự thi nào.

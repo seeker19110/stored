@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1041,
+    "count": 1042,
     "schema_version": 2
   },
   "projects": [
@@ -14393,6 +14393,29 @@
         "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/002-authorization.md",
         "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/003-execution.md",
         "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/006-deployment.md"
+      ]
+    },
+    {
+      "name": "The $12 Server Challenge",
+      "repo": "arjaythedev/twelve-dollar-server-challenge",
+      "category": "backend",
+      "license": "MIT",
+      "stars": 660,
+      "open_source": true,
+      "notes": "Cuộc thi hiệu năng: Social Media API trên SQLite in-process, 1 vCPU/2 GB, cấm cache kết quả và nhớ JWT, ghi phải commit (WAL, synchronous≥NORMAL, cho phép group commit); điểm = số user ảo giữ 5 phút với p95<500ms, p99<1s; leaderboard 4/11/2026: rust-iouring-kensac 310k (~29k req/s), 280k là hạng 5; top đều io_uring + đọc qua B-tree cursor API (hợp lệ theo phán quyết 31/10), tự viết engine file SQLite và vá SQLite bị cấm; máy chấm đổi từ DigitalOcean sang Synteq từ batch 2; LimitNOFILE=65535 do harness đặt; ★ 4/11/2026: 660 (GitHub search API), mục 34 §6",
+      "section": "34",
+      "id": "twelve-dollar-server-challenge",
+      "profile_path": "34-backend-data-identity-integration/README.md",
+      "profile_anchor": "34-backend-data-identity-integration/README.md#6-kiểm-bài-viết-218-developers-vắt-kiệt-server-12-đô-twelve-dollar-server-challenge-kỹ-thuật-đúng-bảng-xếp-hạng-trong-bài-đã-cũ-bài-người-dùng-gửi-đối-chiếu-repo-4112026",
+      "last_verified_at": "2026-11-04",
+      "verified_ref": "b7b7b651fe243b0417ae82b3bfc1fc4beb53c456",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/README.md",
+        "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/SPEC.md",
+        "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/LEADERBOARD.md",
+        "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/benchmarks/batch-1.md",
+        "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/benchmarks/batch-2.md"
       ]
     }
   ]
