@@ -391,6 +391,10 @@ Các phát hiện làm đổi quyết định: Remotion có điều kiện licen
 
 Sơ đồ 6 bước (góp ý → kho CSV/SQLite → BM25 → agent áp dụng → kiểm tra → góp ý mới) đúng về ý và tự nêu đúng giới hạn của BM25 (mục 10 §6f). Thử với SQLite FTS5 cho thấy tiếng Việt cần thêm một bước: `remove_diacritics=1` không bỏ được dấu của chữ mang hai dấu, `=2` thì gộp "mở" với "mờ"; văn bản NFD không khớp truy vấn NFC; "kĩ"/"kỹ" là hai token; diễn đạt khác thì trượt. Tokenizer của ui-ux-pro-max còn bỏ âm tiết một chữ như "ý". Cách làm: chuẩn hoá NFC và chính tả trước khi ghi lẫn khi truy vấn, giữ dấu khi xếp hạng, truy vấn theo cụm từ, lai thêm embedding tiếng Việt khi kho lớn, và có ngày, người duyệt, hết hạn cho từng dòng.
 
+### 58. ThinkRail (4/11/2026): cổng duyệt MCP tốt, nhưng analytics cơ bản luôn bật và phần bổ sung bắt đầu gửi trước khi bấm Done
+
+ThinkRail của JetBrains (mục 01 §3o, 7,5k★, Apache-2.0) là IDE bọc agent pi, mỗi workspace một git worktree, mỗi module có SPEC.md làm "living spec". Điểm làm tốt: MCP server do repo tự khai báo bị tắt tới khi người dùng duyệt; báo lỗi được dựng lại theo allow-list, không gửi mã hay đường dẫn. Điểm cần biết: sự kiện cơ bản và báo lỗi luôn gửi, không hỗ trợ `DO_NOT_TRACK`; công tắc "Share additional usage data" bật sẵn và bắt đầu gửi ngay khi hộp thoại đồng ý hiện ra. Worktree tách thay đổi nhưng không phải sandbox, và không thấy cổng duyệt riêng cho lệnh shell của pi.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

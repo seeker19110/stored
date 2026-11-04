@@ -742,6 +742,38 @@ Memory "kiểu OpenClaw":
 
 **Nguồn đọc thêm:** [LICENSE](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/LICENSE) · [CI nhanh](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/.github/workflows/rust-ci.yml) · [CI đầy đủ](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/.github/workflows/rust-ci-full.yml). CI nguồn là cấu hình kiểm của Codex, chưa phải kết quả một run hay bằng chứng patch của người dùng đúng.
 
+## 3o. Hồ sơ JetBrains/thinkrail (ThinkRail): IDE bọc agent pi, workspace là git worktree; analytics cơ bản luôn bật, phần bổ sung bật sẵn (ảnh README người dùng gửi, đọc mã 4/11/2026)
+
+> Ảnh là phần đầu README: badge "JetBrains incubator", "Stars 2k" (đã cũ); "ThinkRail is the agentic IDE that gets better every time you use it — learning your project through living specs today, and building its own capabilities tomorrow"; "Next, we're adding full extension support"; ảnh chụp "A pi session and the change it made, scoped to an isolated git-worktree workspace". §1.3 trước đây chỉ có một dòng bảng (29/10). Đã clone `--filter=blob:none` đủ lịch sử, HEAD `c10f8808cee693e4abffeeb1844a132ed0a91cc5` (3/11/2026). **Không cài, không chạy.**
+
+### 3o.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (4/11/2026) |
+|---|---|
+| Repo | https://github.com/JetBrains/thinkrail · **7.532★** (GitHub search API; ảnh ghi 2k là ảnh cũ, §1.3 ghi 5,8k ngày 29/10). Tạo 8/7/2026. Apache-2.0 |
+| Lịch sử | 659 commit từ 22/6/2026; Rinat S (JetBrains, hai email) khoảng 273, danyaberezun 185, Olga Lavrichenko 52. 52 trailer Co-Authored-By Claude. Tag mới nhất `v0.4.0-nightly.4`, kèm gói npm `@thinkrail/pi-ask-user-question`, `@thinkrail/pi-visualize` |
+| Kiến trúc | Monorepo Bun + Turbo: `apps/` (web, desktop, CLI, website), `packages/` (server, contracts, shared…), `pi-extensions/` và `thinkrail-extensions/` (ask-user-question, visualize, web-access). Mỗi module có `SPEC.md` (YAML front-matter, liên kết `[[...]]`); đây chính là "living specs" của dự án |
+| Cách dùng agent | Chạy agent **pi** (`badlogic/pi-mono`; fork oh-my-pi ở mục 01 §3i) và đọc cấu hình pi có sẵn (`~/.pi/agent`). Provider dùng credential của người dùng, hoặc đăng nhập JetBrains AI. ThinkRail không có tài khoản riêng |
+| Cài đặt | `install.sh` tải binary từ GitHub Releases và **kiểm checksum**; có `thinkrail uninstall` (giữ `~/.thinkrail` trừ khi `--remove-data`) |
+
+### 3o.2 Đọc mã: điều đáng ghi
+
+- **Cách ly bằng git worktree, không phải sandbox.** Mỗi workspace là một `git worktree`, nên tách được nhánh và thay đổi, nhưng agent vẫn chạy lệnh với quyền của người dùng trên cùng máy. Với tool có sẵn của pi (bash, edit), tôi **không tìm thấy cổng duyệt** trong mã ThinkRail (grep `approv|permission|allowlist` chỉ ra cổng cho MCP và review). Bản thân pi có chế độ hỏi quyền hay không **chưa xác minh** ở lần đọc này.
+- **MCP có cổng duyệt tốt.** README: ThinkRail hỏi trong chat trước khi gọi tool mà server không đánh dấu read-only (hoặc luôn cho phép tool bạn tin trong một project), và **để tắt các MCP server mà repo tự khai báo cho tới khi bạn duyệt**. Cách này chặn được repo lạ tự gài server.
+- ⚠️ **Analytics PostHog (vùng EU)**, theo `packages/server/src/analytics/SPEC.md` và README "Analytics & privacy":
+  - **Sự kiện cơ bản luôn bật** trong bản build có key: `app_installed`, `app_started`, `chat_started {provider, model, auth_method}`, `message_sent`, `provider_login`, gắn ID cài đặt ngẫu nhiên, không gồm prompt, mã hay file. **Báo lỗi cũng luôn gửi.** `--no-analytics` / `THINKRAIL_NO_ANALYTICS` chỉ tắt phần **bổ sung**. Không có hỗ trợ `DO_NOT_TRACK`; chỉ tắt hẳn khi đặt `CI` hoặc `NODE_ENV=test` (`mute.ts`), hoặc chạy bản build từ mã nguồn (không có key).
+  - **Dữ liệu bổ sung bật sẵn.** Cửa sổ đồng ý lần đầu khởi tạo công tắc ở trạng thái bật và "persists `analyticsEnabled: true` without confirmation and enables delivery as soon as the applied settings update succeeds, **before the user presses Done**". Tức là dữ liệu bổ sung bắt đầu gửi khi hộp thoại vừa hiện. Khi bật, bản đóng gói có thể mở blog ThinkRail một lần để gắn lượt cài với lượt truy cập website (attribution, hết hạn sau 30 ngày).
+  - **Báo lỗi làm kỹ**: dựng lại toàn bộ `$exception` theo allow-list (tên kiểu lỗi, tên hàm, file đã chuẩn hóa, số dòng); bỏ context lines, biến, đường dẫn tuyệt đối, và thay frame modifier mặc định của SDK (vốn đọc ±7 dòng mã từ đĩa). Đây là cách làm đúng.
+- **Bảo trì có kỷ luật spec**: mỗi module có SPEC.md mô tả trách nhiệm, phụ thuộc cho phép, phụ thuộc bị cấm; `AGENTS.md`, `architecture.md`, `goal-and-requirements.md`, `pi-compatibility.md` ở gốc.
+
+### 3o.3 Dùng thế nào
+
+- Nếu muốn giảm dữ liệu gửi đi: tắt "Share additional usage data" **ngay ở bước đầu**, vì nó đã bật khi hộp thoại hiện. Sự kiện cơ bản và báo lỗi vẫn gửi; muốn tắt hẳn thì chạy bản build từ mã nguồn.
+- Worktree không phải sandbox: chạy agent trong container hoặc máy ảo khi làm với repo lạ, và để ý lệnh shell mà pi chạy.
+- So với Orca (§3n): cùng mô hình "mỗi agent một worktree", nhưng ThinkRail tập trung vào một agent (pi), có cổng duyệt MCP, và không tự bật cờ bỏ qua quyền như Orca. Ngược lại, telemetry của Orca là opt-in, còn của ThinkRail thì cơ bản luôn bật và bổ sung bật sẵn.
+
+**Nguồn §3o:** ảnh README người dùng gửi 4/11/2026 · clone https://github.com/JetBrains/thinkrail HEAD `c10f8808cee693e4abffeeb1844a132ed0a91cc5`: https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/README.md (Analytics & privacy, MCP servers) · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/packages/server/src/analytics/SPEC.md · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/packages/server/src/analytics/mute.ts · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/packages/server/src/analytics/service.ts · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/apps/web/src/panels/useAnalyticsConsent.ts · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/apps/cli/SPEC.md · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/install.sh · https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/LICENSE; `git shortlog`, `git tag` · GitHub search API `thinkrail` 4/11/2026.
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/
