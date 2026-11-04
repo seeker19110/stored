@@ -518,6 +518,56 @@ Thêm một điểm khi chép script có sẵn: tokenizer của ui-ux-pro-max (`
 
 **Nguồn §6f:** ảnh người dùng gửi 4/11/2026 · thí nghiệm SQLite FTS5 3.53.1 (Python `sqlite3`) trong scratchpad, không lưu vào kho · https://www.sqlite.org/fts5.html (tuỳ chọn `remove_diacritics` của tokenizer unicode61) · clone `--depth 1` https://github.com/nextlevelbuilder/ui-ux-pro-max-skill HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`.claude/skills/ui-ux-pro-max/scripts/core.py`).
 
+## 6g. Hồ sơ Zagitta/gpu-unlock: mở tốc độ tensor đầy đủ (FP16/BF16/TF32, cộng dồn FP32) cho GeForce RTX 20/30/40 trên Linux (link người dùng gửi, đọc mã 4/11/2026)
+
+> Người dùng gửi https://github.com/Zagitta/gpu-unlock. Đã clone đủ lịch sử, HEAD `7eb51bccae0a0b7e599e084d971170e9a1e82d0c` (28/10/2026, bản 2.0.0). Đọc README, `docs/How Ampere was unlocked.md`, `firmware/NOTICE.md`, `debian/copyright`, header SPDX và CI. **Không cài, không nạp module.**
+
+### 6g.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (4/11/2026) |
+|---|---|
+| Repo | https://github.com/Zagitta/gpu-unlock · **16.464★, 1.639 fork** (GitHub search API), tạo 18/10/2026; 37 commit, có đóng góp từ ngoài |
+| License | **GPL-2.0-only**: header SPDX của mọi file trong `kernel/`, `debian/copyright` và thư mục `licenses/` (GPL-2.0, NVIDIA-MIT, CMP40HX-MIT). GitHub hiện "null" vì gốc repo chưa có file `LICENSE` |
+| Là gì | Kernel module Linux `gpu_unlock` chạy **lúc boot, trước driver NVIDIA**, gỡ giới hạn một nửa tốc độ tensor của GeForce với phép FP16/BF16/TF32 cộng dồn FP32 (dạng mà gần như mọi bài huấn luyện và suy luận không lượng tử hóa dùng). Không vá driver, không flash VBIOS, không cần làm lại khi NVIDIA ra driver mới |
+| GPU | Ampere RTX 30 (3050 tới 3090 Ti, cả 3070/3080 Laptop): **ổn định, hơn 100 báo cáo**. Ada RTX 40 và Turing RTX 20: thử nghiệm. RTX 50: chưa hỗ trợ. Danh sách PCI ID trong `kernel/gpu_unlock/recipes.c` |
+| Đóng gói | DKMS (`.deb`), RPM spec, Arch PKGBUILD, plugin Unraid; hook initramfs cho dracut, initramfs-tools, mkinitcpio. CI build module và đóng gói |
+
+### 6g.2 Lợi ích (theo README, từ báo cáo của người dùng)
+
+Nhân ma trận dày (BF16, cộng dồn FP32, giới hạn công suất gốc):
+
+| Card | Trước | Sau | Tăng |
+|---|---:|---:|---:|
+| RTX 3060 12 GB | 27 TFLOPS | 51 TFLOPS | +87% |
+| RTX 3080 10 GB | 65 TFLOPS | 113 TFLOPS | +73% |
+| RTX 3090 | 75 TFLOPS | 125 TFLOPS | +65% |
+| RTX 4080 | 104 TFLOPS | 193 TFLOPS | +87% |
+| RTX 4090 | 165 TFLOPS | 329 TFLOPS | +100% (tốc độ MMA đỉnh) |
+
+Khối việc thật: LLM prefill FP16/BF16 hoặc AWQ/GPTQ (vLLM, PyTorch, Transformers) **+25–55%**, thời gian ra token đầu giảm 25–30%; LoRA và fine-tune BF16 **+25–50%**; sinh ảnh FP16/BF16 (SDXL, SD 1.5, DiT trong ComfyUI) **+30–55%**; FlashAttention/SDPA **+50–60%**. Kết quả **giống từng bit** trước và sau; chỉ tốc độ đổi. Không ảnh hưởng tới phần vốn không dùng đường này: decode (giới hạn bởi băng thông bộ nhớ), mô hình INT8/FP8/INT4, game và CUDA FP32.
+
+### 6g.3 Cách hoạt động (đọc mã và tài liệu)
+
+- `docs/How Ampere was unlocked.md` mô tả chuỗi boot của GPU: VBIOS và DEVINIT → FWSEC trên GSP Falcon (heavy-secure) dựng vùng WPR2 → SEC2 chạy Booter có chữ ký → nạp GSP-RM. Module chèn một **payload re-entrant** vào đúng chuỗi này trước khi driver NVIDIA nạp, ghi các thanh ghi giới hạn (PLM) rồi trả lại luồng boot bình thường.
+- Mã chia theo "recipe" cho từng dòng chip (`recipes.c`, `prep_610.c`, `unlock_610.c`, `falcon.c`, `vbios_610.c`); bản 2.0 tái cấu trúc thành recipe-driven.
+- **Firmware có nguồn rõ ràng** (`firmware/NOTICE.md`): `gsp_ga10x.bin` và `gsp_tu10x.bin` trích **nguyên byte** từ gói driver NVIDIA 610.43.03 bằng `extract_gsp.py`, kèm nguyên văn giấy phép NVIDIA; payload GA102 dựng lại từ hành vi Booter 610.43.03; nguồn gốc ban đầu từ `amoghmunikote/cmpunlocker` (GPL-2.0) được ghi kèm commit. Driver 610.43.03 chỉ dùng để lấy firmware; máy dùng driver NVIDIA nào cũng được.
+
+### 6g.4 Cài và dùng
+
+```sh
+git clone https://github.com/Zagitta/gpu-unlock
+cd gpu-unlock
+make install
+```
+
+Sau đó thêm `gpu_unlock.targets=all` vào kernel command line (GRUB, `grubby`, systemd-boot hoặc UKI; README có lệnh cho từng loại) rồi khởi động lại.
+
+Điều kiện: chỉ Linux (bản Windows là port của bên thứ ba, `impacifist/Windows-GPU-UNLOCK`). Với laptop, GPU rời phải không bị tắt nguồn hoàn toàn khi rảnh, vì tắt nguồn sẽ đặt lại trạng thái; README gợi ý `options nvidia NVreg_DynamicPowerManagement=0x00`. Tác giả nói đây là nguồn chính thức duy nhất: không có website, coin hay bộ cài nào khác. Firmware NVIDIA đi kèm theo đúng giấy phép NVIDIA ghi trong `firmware/NOTICE.md` (đóng gói cá nhân, cục bộ).
+
+**Liên quan:** chạy LLM cục bộ (mục 10 §1: vLLM, llama.cpp, Ollama), fine-tune (mục 25), sinh ảnh/video (mục 14, 19).
+
+**Nguồn §6g:** link người dùng gửi 4/11/2026 · clone https://github.com/Zagitta/gpu-unlock HEAD `7eb51bccae0a0b7e599e084d971170e9a1e82d0c`: https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/README.md · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/docs/How%20Ampere%20was%20unlocked.md · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/firmware/NOTICE.md · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/debian/copyright · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/kernel/gpu_unlock/recipes.c · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/.github/workflows/ci.yml · GitHub search API `repo:Zagitta/gpu-unlock` 4/11/2026.
+
 ## 7. Nguồn
 
 - https://dev.to/sreeraj-sreenivasan/the-complete-guide-to-local-llm-inference-tools-in-july-2026-llamacpp-ollama-vllm-sglang-and-4mh1 · https://blog.starmorph.com/blog/local-llm-inference-tools-guide · https://openalternative.co/blog/best-local-llm-tools · https://www.storagereview.com/best/local-llm-tools · https://deepresearch.ninja/2026/06/Open-Source-LLM-Inference-Projects-A-Comprehensive-Comparative-Analysis/ · https://www.digitalapplied.com/blog/run-local-llms-ollama-vs-lm-studio-vs-vllm-2026-guide

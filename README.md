@@ -403,6 +403,10 @@ dsh-superagent-prototype (mục 21 §10i, 18k★ sau 4 ngày, MIT) là agent tr�
 
 Mục 34 §6 ghi kỹ thuật của nhóm dẫn đầu cuộc thi twelve-dollar-server-challenge: Rust 310.000 user (29.284 req/s, p99 190 ms), Mojo 304.000, C 295.000 (p99 117 ms), trên server 1 vCPU / 2 GB, vẫn verify JWT mỗi request và commit trước khi trả lời. Kỹ thuật chung: io_uring direct descriptors trên nhiều ring, nhiều listener `SO_REUSEPORT`, kết nối rảnh không giữ buffer, một luồng xử lý theo lô, không cấp phát trên đường xử lý, đọc qua B-tree cursor của SQLite gốc theo đúng index, group commit, WAL `NORMAL` với VFS `unix-excl`, checkpoint ở luồng riêng, build ghim SHA-256. Phần mang về dự án thường: group commit có giới hạn lô, checkpoint tách luồng, `SO_REUSEPORT`, feed đi đúng index, serialize thẳng vào buffer.
 
+### 61. gpu-unlock (4/11/2026): GeForce RTX 30/40 chạy tensor FP16/BF16 nhanh gần gấp đôi trên Linux
+
+gpu-unlock (mục 10 §6g, 16k★, GPL-2.0-only) là kernel module chạy lúc boot, trước driver NVIDIA, gỡ giới hạn một nửa tốc độ tensor của GeForce với phép FP16/BF16/TF32 cộng dồn FP32. Theo báo cáo người dùng trong README: BF16 dense +65–100% (RTX 4090 từ 165 lên 329 TFLOPS), LLM prefill +25–55%, fine-tune BF16 +25–50%, sinh ảnh +30–55%, kết quả giống từng bit. Không vá driver, không flash VBIOS, không phải làm lại khi đổi driver. RTX 30 đã ổn định với hơn 100 báo cáo; RTX 40/20 đang thử nghiệm. Cài bằng `make install` rồi thêm `gpu_unlock.targets=all` vào kernel command line.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
