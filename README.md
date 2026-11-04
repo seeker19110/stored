@@ -395,6 +395,10 @@ Sơ đồ 6 bước (góp ý → kho CSV/SQLite → BM25 → agent áp dụng �
 
 ThinkRail của JetBrains (mục 01 §3o, 7,5k★, Apache-2.0) là IDE bọc agent pi, mỗi workspace một git worktree, mỗi module có SPEC.md làm "living spec". Điểm làm tốt: MCP server do repo tự khai báo bị tắt tới khi người dùng duyệt; báo lỗi được dựng lại theo allow-list, không gửi mã hay đường dẫn. Điểm cần biết: sự kiện cơ bản và báo lỗi luôn gửi, không hỗ trợ `DO_NOT_TRACK`; công tắc "Share additional usage data" bật sẵn và bắt đầu gửi ngay khi hộp thoại đồng ý hiện ra. Worktree tách thay đổi nhưng không phải sandbox, và không thấy cổng duyệt riêng cho lệnh shell của pi.
 
+### 59. dsh-superagent của DeepSeek (4/11/2026): mô hình quyền ở host làm kỹ, nhưng worker chạy shell không cần duyệt
+
+dsh-superagent-prototype (mục 21 §10i, 18k★ sau 4 ngày, MIT) là agent trực cho một repo GitHub: người trong danh sách gọi tên thì nó mở ticket, làm trong thư mục riêng và trả lời bằng PR. Phần quyền làm tốt: host giữ danh sách và Mandate, bot và CI chỉ làm ngữ cảnh, chế độ chủ động mặc định chỉ quan sát, không cần webhook, lọc biến môi trường chứa secret, panel chỉ bind 127.0.0.1. Chính tài liệu cũng ghi rõ giới hạn: worker "run commands without approval as the operator's OS user", danh sách lệnh chặn "not a security boundary", auto-merge chỉ do prompt quyết định. Nên chạy trên máy hoặc VM riêng, cấp tài khoản agent quyền tối thiểu và bật branch protection.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
