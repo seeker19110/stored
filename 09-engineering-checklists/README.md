@@ -314,6 +314,47 @@ Phần: Dependencies & build · Environment & secrets · Rendering/caching/data 
 
 **Nguồn §3d:** metadata GitHub API 2/11/2026; các permalink §3d.2; đọc `restic` LICENSE/README, `doc/{045_working_with_repos,050_restore}.rst`, `cmd/restic/cmd_{check,restore}.go`, `.github/workflows/tests.yml`; `velero` LICENSE/README, ARCHITECTURE, `pkg/controller/backup_controller.go`, docs backup/FSB/disaster recovery, `.github/workflows/e2e-test-kind.yaml`; `opencost` LICENSE/README, spec, `pkg/env/costmodel.go`, `pkg/inferencecost/{collector,calculator}.go` và unit/integration workflow. Nguồn chính thức ngoài repo: [restic check và repo health](https://restic.readthedocs.io/en/stable/045_working_with_repos.html), [Velero FSB](https://velero.io/docs/main/file-system-backup/), [OpenCost specification](https://opencost.io/docs/specification/), [OpenCost API](https://opencost.io/docs/integrations/api/), [SRE Workbook mục lục](https://sre.google/workbook/table-of-contents/). Docs `main` là bản phát triển; khi triển khai phải đọc đúng release của dự án đích.
 
+## 3e. Nâng trần 4/11/2026: checklist thành hồ sơ bằng chứng theo từng bản phát hành
+
+<a id="checklist-factory-2026-11-04"></a>
+
+**Khoảng trống:** OSPS/SLSA/ASVS đã có ID chuẩn, SLO/backup/cost đã có thước đo. Xưởng vẫn cần biết **ai chứng minh, bằng artifact nào, tại bản nào, còn hiệu lực đến đâu**. Một checklist được agent đánh dấu đầy không đủ để chấp nhận release; báo cáo scanner cũ hoặc sai target cũng không đủ.
+
+### 3e.1 Thêm lớp trưởng thành tổ chức: OWASP SAMM
+
+<a id="owasp-samm-factory"></a>
+
+**OWASP SAMM Core**, owaspsamm/core, SHA **bc2b5474ab248effbc357c389bec372b0f5e200f**, HEAD 2026-07-06; đọc 2026-11-04. License trong license.txt là **CC BY-SA 4.0**. Repo lưu model gốc dạng YAML cho **5 business functions, 15 security practices**, các hoạt động, câu hỏi và quality criteria; không phải scanner ứng dụng. Ví dụ V-ST-1-A hỏi tổ chức có dùng kiểm thử bảo mật tự động phù hợp stack không; V-ST-3-A đi tới tích hợp build/deploy, theo dõi kết quả và nối defect management. Workflow yaml-process.yml lint YAML rồi sinh Markdown; **không kiểm chứng tổ chức đã thực hiện control**.
+
+Giá trị cho xưởng: nối chính sách và năng lực đội với bằng chứng thực hiện. Có thể dùng ID câu hỏi/hoạt động để tạo bản đồ trạng thái theo sản phẩm, chủ sở hữu và phạm vi. Khi trích/chuyển thể model cần giữ attribution và nghĩa vụ ShareAlike phù hợp; không suy license của SAMM sang tài liệu sản phẩm tự viết độc lập.
+
+| Lớp đánh giá | Nguồn đã có/bổ sung | Đơn vị đánh giá | Artifact cần có |
+|---|---|---|---|
+| Chất lượng hoạt động của tổ chức | SAMM | Nhóm, hoạt động và mục tiêu trưởng thành | Phỏng vấn/quan sát + policy + mẫu artifact thực tế; tự khai phải ghi là tự khai |
+| Mức tối thiểu của repo và release | OSPS/SLSA §3c | Repo/build identity/artifact | Quyền nhánh, CI, provenance và kết quả verify artifact đúng bản |
+| Yêu cầu bảo mật ứng dụng | ASVS/WSTG §3b | Control áp dụng cho ứng dụng cụ thể | Test/evidence theo control, target/environment và phần chưa phủ |
+| Khả năng vận hành/phục hồi | OpenSLO/restic/Velero §3c–§3d | Dịch vụ và dữ liệu | SLI và bài restore có kiểm tính đúng đắn sau phục hồi |
+
+Các lớp bổ sung nhau; không lấy “SAMM level cao” thay test ứng dụng hoặc badge tự khai thay bằng chứng một release.
+
+### 3e.2 Hợp đồng bằng chứng và ngoại lệ
+
+Một dòng kiểm phát hành nên có: **requirement/control ID · owner · target/revision · command/method · artifact URI + checksum · observed result · thời điểm/hạn hiệu lực · reviewer · exception**. Tách pass/fail/skipped/not-applicable/inconclusive; not-applicable phải có lý do theo threat model hoặc phạm vi hợp đồng, không tự chuyển lỗi thành miễn trừ.
+
+| Cổng đề xuất | Điều kiện chấp nhận | Ca phải từ chối |
+|---|---|---|
+| Đúng target và đúng lần chạy | Artifact gắn commit/build/image digest cần phát hành, có kết quả hiện tại | Dùng lại báo cáo của nhánh khác hoặc bộ test rỗng |
+| Kiểm thực sự có hiệu lực | Một fixture lỗi đã biết bị policy/test/scanner từ chối | Có file cấu hình nhưng job không gọi, bị allow-failure hoặc lọc hết target |
+| Ngoại lệ có giới hạn | Người chịu trách nhiệm, phạm vi, lý do, biện pháp bù và ngày hết hạn | Ignore wildcard hoặc miễn trừ vĩnh viễn không người sở hữu |
+| Bằng chứng dữ liệu/vận hành | Migration/restore và rollback chạy trên dữ liệu thử đại diện | Backup job xanh nhưng chưa từng kiểm ứng dụng đọc dữ liệu phục hồi |
+| Nghiệm thu độc lập | Reviewer đối chiếu yêu cầu critical và artifact | Chỉ nhận lời tự báo “xong” từ agent sinh code |
+
+### 3e.3 Ghép vào xưởng
+
+Bắt đầu bằng ASVS/OSPS control áp dụng và mức SAMM mục tiêu theo rủi ro; không bắt mọi sản phẩm đạt mức cao nhất ngay. Ánh xạ ID tới cổng mục 30–34, giữ manifest bằng chứng trong repo sản phẩm, chặn release khi thiếu bằng chứng critical hoặc ngoại lệ hết hạn. Sau incident, cập nhật một ca regression và control liên quan; giữ lịch sử quyết định để người mới hiểu lý do. Đây là thiết kế quản trị bằng chứng, **chưa có công cụ nào trong đợt này tự chứng minh toàn bộ quy trình**.
+
+**Nguồn §3e:** [license.txt](https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/license.txt) · [README.md](https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/README.md) · [model/security_practices/V-Security-Testing.yml](https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/model/security_practices/V-Security-Testing.yml) · [model/questions/V-ST-1-A.yml](https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/model/questions/V-ST-1-A.yml) · [model/questions/V-ST-3-A.yml](https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/model/questions/V-ST-3-A.yml) · [.github/workflows/yaml-process.yml](https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/.github/workflows/yaml-process.yml)
+
 ## 4. Nguồn
 
 - https://github.com/PinoyFreeCoder/deployment-checklist (README, `agent.md`, `CONTRIBUTING.md`, `checklists/base.md`, `checklists/nextjs.md`, cây `checklists/`, lịch sử commit – đọc 2026-10-12)

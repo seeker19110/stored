@@ -1331,6 +1331,40 @@ Các số đo hữu ích gồm tỷ lệ kích hoạt sai trên bộ ca âm, ch�
 
 **Nguồn §3x:** ảnh người dùng gửi 2/11/2026 · clone `--filter=blob:none` 2/11/2026 (HEAD `05ad7c8`; `git ls-tree`, `git log`, `git tag`); LICENSE, README.md, CHANGELOG.md (1.2.0), `.claude/settings.json`, `.claude/agents/*.md` (frontmatter), `.claude/skills/*/SKILL.md` (frontmatter `allowed-tools`), `.claude/hooks/*` (`update-check.sh` :132–134, `validate-read.sh`), `.claude/rules/`, `.claude/scripts/`, `studio-tests/{README.md,catalog.yaml}`, `src/CLAUDE.md`, `.github/{FUNDING.yml,PULL_REQUEST_TEMPLATE.md}` · GitHub search API 2/11/2026 (repo, issues `is:issue is:open`, `is:pr is:open`, `is:pr is:merged -author:Donchitos`) · WebSearch 2/11/2026: gameproductionalchemist.substack.com/p/claude-code-game-studios-49-agents · martianlee.github.io/posts/2026-04-18-claude-code-game-studios-architecture (không thấy thảo luận HN/Reddit trực tiếp; các trang gom ghi 11k/19k★ là snapshot cũ)
 
+<a id="factory-skill-admission-2026-11-04"></a>
+
+## 3y. Nâng trần 4/11/2026: skill vào xưởng qua cổng tiếp nhận, không qua số lượng prompt
+
+**Trần và khoảng trống.** §3v đã có validator/eval; §3w có vòng đời ref/hash/update/revoke. Phần bổ sung là chuyển danh mục plugin thành **quyết định tiếp nhận cho từng môi trường/harness**, có policy và bằng chứng bắt đúng lỗi. Một gói lint sạch vẫn có thể không hợp tác vụ, đòi quyền quá rộng hoặc tải mã vào thời điểm chạy.
+
+### 3y.1 Đọc sâu agnix: strict có ngữ nghĩa exit, nhưng phạm vi luật vẫn do cấu hình
+
+`agent-sh/agnix`, HEAD `5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf` đọc 4/11/2026; dual MIT hoặc Apache-2.0. Đường CLI đếm lỗi/cảnh báo và trả exit 1 khi còn errors, hoặc khi bật `--strict` và còn warnings. Sau autofix không ở dry-run, CLI chạy validation lại rồi mới quyết định exit. Nhánh JSON và SARIF cũng kiểm errors/strict warnings; có output JSON không đồng nghĩa kết quả đã pass. [CLI và callsite]( https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/crates/agnix-cli/src/main.rs ).
+
+`crates/agnix-cli/Cargo.toml` đặt `default = []`; feature telemetry kéo `reqwest` tùy chọn, và `main.rs` chọn module thật/stub theo feature. Đây là bằng chứng cho cấu hình build đọc được, **không phải** kết luận mọi binary tải sẵn đều build cùng feature hay mọi plugin được lint đều không gửi dữ liệu. Workflow CI có fmt/test cùng cổng đồng bộ rule/schema; chưa chạy upstream. [Cargo features]( https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/crates/agnix-cli/Cargo.toml ) · [CI]( https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/.github/workflows/ci.yml ) · [MIT]( https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/LICENSE-MIT ) · [Apache]( https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/LICENSE-APACHE ).
+
+### 3y.2 Bốn lớp quyết định không thay thế nhau
+
+| Lớp | Lựa chọn từ kho | Bằng chứng cần giữ |
+|---|---|---|
+| Cấu trúc/khả năng host đọc | Validator chính thức của harness; agnix cho luật đa harness (§3v) | Harness/version, file thực được quét, cấu hình luật, exceptions có owner và test mẫu lỗi phải thất bại |
+| Nội dung/mạng/quyền | Đọc script/callsite + scanner mục 12/31; host thực thi quyền ở mục 11 | Tool/command, mount, domain, credential scope; `allowed-tools` trong metadata chỉ có giá trị khi host hỗ trợ và thi hành |
+| Giá trị tác vụ | SkillEvaluator/skillgrade/coder_eval hoặc plugin eval (§3v) | Ca nên/không nên kích hoạt, baseline không skill, artifact cuối, lỗi/ràng buộc bị vi phạm, tổng phí và latency |
+| Phân phối/cập nhật | `skills` CLI, marketplace hoặc vendor phần nhỏ (§3w) | Source/ref/hash; diff toàn artifact và dependency sau cập nhật; cách remove/rollback cùng đường thu hồi quyền |
+
+### 3y.3 Tiếp nhận một skill vào nhiều nhóm sản phẩm
+
+1. Bắt đầu từ nhiệm vụ và baseline không skill; chọn ít nội dung đủ dùng thay vì cài cả pack theo số sao. Ghi nguồn/license theo skill và dependency/vendor riêng.
+2. Đóng băng artifact/ref/hash và harness version; khai quyền cần thiết của task. Tách môi trường nghiên cứu chỉ đọc, môi trường sửa code và môi trường phát hành có quyền ghi ra ngoài.
+3. Lint đúng tập file có thể được host nạp, bật strict theo chính sách; review suppression và luật bị tắt. Kiểm một fixture sai có chủ đích ở repo tích hợp để chứng minh wrapper CI thực sự nhận mã thoát lỗi.
+4. Chạy eval kích hoạt và tác vụ trong sandbox bằng quyền tương đương deployment; giữ model/tool/budget ngang baseline. Đo không kích hoạt khi không cần và trường hợp adversarial reference chứa chỉ dẫn xấu.
+5. Admit bundle cụ thể khi các cổng đạt; release note ghi quyền/domain/behavior thay đổi. Không tự cấp quyền publish chỉ vì skill tên là “deploy” hoặc reviewer model chấm cao.
+6. Thu hồi có hai phần: xóa/khôi phục nội dung như §3w, rồi kiểm token, quyền host, process nền và artifact bên ngoài nếu task đã tạo. Remove file không hoàn tác side effect trước đó.
+
+**Tiêu chí chấp nhận:** có danh mục bundle được phép theo task/harness, evidence lint + eval và ca âm của policy; owner chịu trách nhiệm update/revoke; lỗi scanner/eval/provider ghi là blocked/inconclusive thay vì pass. Quy trình này là thiết kế rút ra từ các cơ chế đã đọc, chưa có kết quả đo làm skill hiệu quả hơn ở một xưởng cụ thể.
+
+**Nguồn §3y:** implementation/LICENSE/feature/CI agnix ở SHA ghi trên; đối chiếu spec/installer/eval đã ghim §3v–§3w. Không cài plugin, không cấp thêm quyền hay chạy agent eval trong đợt này.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

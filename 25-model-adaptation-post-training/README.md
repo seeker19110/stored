@@ -190,6 +190,47 @@ Không có trần VRAM phổ quát cho “model 7B/8B”. Trọng số, activati
 
 **Trần được nâng:** kho có đường đi từ recipe dữ liệu đến adapter/model đã kiểm, tránh lấy “hỗ trợ LoRA” hay một biểu đồ benchmark làm lý do duy nhất để tích hợp. Chưa chạy phép đo độc lập, chưa kiểm license từng model/dataset và chưa xác minh mọi backend được quảng bá **(chưa xác minh)**.
 
+<a id="factory-2026-11-04"></a>
+
+## 6b. Nâng trần 4/11/2026: hậu huấn luyện thành một tuyến phát hành có đường thoát
+
+**Trần hiện tại:** §3–§6 đã có trainer, loss mask và artifact. Xưởng còn cần một quyết định kinh tế trước training, phép kiểm khôi phục thực sự, hợp đồng chuyển sang inference và kế hoạch khi upstream ngừng duy trì. Phần này là thiết kế vận dụng của kho; chưa huấn luyện hoặc tái lập số đo upstream.
+
+| Lựa chọn | Dùng khi | Cổng quyết định của xưởng | Không được suy ra |
+|---|---|---|---|
+| Prompt/RAG ở mục 17/10 | Lỗi do thiếu tri thức/context hoặc cần cập nhật/xóa nguồn | Baseline cùng corpus, quyền tài liệu và chi phí/tác vụ được chấp nhận | Fine-tune sẽ tự bổ sung citation hay cập nhật tri thức |
+| PEFT + TRL ở §3.1–3.2 | Cần kiểm soát adapter, mask, trainer bằng Python | Snapshot dữ liệu/tokenizer, kiểm token mask, held-out theo tác vụ | Loss giảm tương đương chất lượng sản phẩm tăng |
+| Axolotl/LlamaFactory ở §3.4–3.5 | Nhóm cần cấu hình và tuyến train nhất quán | Resolve config, restart, export rồi tải trong runtime sạch | YAML giống nhau bảo đảm kết quả giống trên mọi GPU |
+| verl ở §3.6 | Reward/rollout phân tán có lợi ích đã đo | Eval reward hacking, timeout sandbox, budget rollout, held-out độc lập | Reward cao là tiêu chí phát hành đủ |
+| torchtune dưới đây | Đọc kiến trúc recipe/checkpointer, duy trì pipeline cũ | Ghim toàn stack và chứng minh đường chuyển sang trainer còn được duy trì | Nhãn PyTorch bảo đảm đang được duy trì |
+
+<a id="torchtune-maintenance"></a>
+
+### torchtune: bài học về checkpoint và điều kiện rời một dependency
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo, loại | [pytorch/torchtune](https://github.com/pytorch/torchtune), `model-training` |
+| Phiên bản / license | `bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1`; BSD-3-Clause, không thay license model/dataset |
+| Kiểm chứng 2026-11-04 | `code-read`: README, recipe LoRA single-device, checkpointer và CI; chưa chạy training/restore/GPU |
+| ★ / trạng thái | Không lấy số mới; README tự thông báo không còn được duy trì tích cực, development đã thu hẹp trong 2025; không suy ra trạng thái archive qua API |
+| Cơ chế đã đọc | Recipe khôi phục epoch/seed/max steps từ checkpoint; khi seed hoặc max steps khác config, cảnh báo rồi dùng giá trị checkpoint. Docstring của recipe ghi optimizer/recipe state lưu ở cuối epoch và chưa hỗ trợ checkpoint giữa epoch. Phạm vi là recipe này, không khái quát mọi recipe. |
+| CI | `unit_test.yaml` và `gpu_test.yaml` tách unit/GPU, có điều kiện owner; đọc workflow không chứng minh job hiện còn chạy hoặc đã pass. |
+| Tích hợp / giới hạn | Dùng như tài liệu kiến trúc hoặc dependency cũ được cô lập; với dự án mới so PEFT/TRL/Axolotl và khả năng chuyển đổi artifact trước. Recipe state, weights và sampler/data position là các hợp đồng khác nhau. |
+
+**Đã đổi so với đợt trước:** thêm bằng chứng maintenance trực tiếp từ README của torchtune. Đây là trường hợp loại khỏi shortlist triển khai mới, không phải thêm một công cụ chỉ vì thương hiệu. Không xác minh lại ngày/mức của sáu hồ sơ cũ chỉ bằng lần đọc này.
+
+**Tuyến nâng sâu cho xưởng:**
+
+1. Khóa quyết định đầu tư: lỗi mục tiêu, baseline prompt/RAG, bộ dữ liệu có quyền dùng, metric chất lượng và ngân sách inference/training. Giữ test theo khách hàng/tenant và thời gian, tránh cùng tài liệu rơi vào train và test.
+2. Duyệt vài mẫu đã tokenize cùng mask thực tế. Lưu dataset revision, template, base/tokenizer revision, dependency/kernel/GPU và config đã resolve; hash manifest, không đưa dữ liệu khách hàng vào log mặc định.
+3. Đặt ngân sách thất bại: VRAM, wall time, token/rollout, checkpoint retention. Tiêm dừng tiến trình tại ranh giới đã hỗ trợ rồi kiểm có tải optimizer/recipe state; không gọi việc chỉ tải weights là resume training.
+4. Eval base, adapter, merged và exported runtime trên cùng corpus; so chất lượng từng nhóm, schema/tool-call, latency và chi phí/tác vụ đạt. Ghim ngưỡng trước khi xem kết quả, không dùng một điểm benchmark chung để thay chấp nhận nghiệp vụ.
+5. Phát hành base + adapter + tokenizer + config + kết quả eval + quyền weights/dataset. Canary, kill switch và rollback về phiên bản cũ phải hoạt động độc lập với training; nối [mục 30](../30-software-testing-quality/README.md), [31](../31-software-supply-chain-security/README.md) và [32](../32-platform-delivery-engineering/README.md).
+6. Giữ exit test: artifact xuất được nạp lại bằng runtime khác hoặc ghi rõ phụ thuộc không thể thay. Trường hợp torchtune cho thấy cần người sở hữu dependency và điều kiện chuyển đổi, không chỉ pin phiên bản.
+
+**Nguồn §6b:** [README.md](https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/README.md) · [LICENSE](https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/LICENSE) · [recipes/lora_finetune_single_device.py](https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/recipes/lora_finetune_single_device.py) · [torchtune/training/checkpointing/_checkpointer.py](https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/torchtune/training/checkpointing/_checkpointer.py) · [.github/workflows/unit_test.yaml](https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/.github/workflows/unit_test.yaml) · [.github/workflows/gpu_test.yaml](https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/.github/workflows/gpu_test.yaml). Các tiêu chí phát hành trên là đề xuất của kho, chưa phải kết quả chạy upstream.
+
 ## 7. Nguồn và cách cập nhật
 
 Nguồn GitHub trong từng hồ sơ ghim full commit SHA đã clone; số sao và `archived` đọc bằng GitHub REST ngày 2/11/2026. Commit date là ngày của `HEAD` đã đọc, khác `pushed_at` (có thể là nhánh khác). README/CI là bằng chứng về thiết kế và định nghĩa kiểm, không phải kết quả thực thi tại kho này. Nguồn ngoài repo gồm các paper gốc ở §4; không dùng bài SEO để quyết định tính tương thích hay license.

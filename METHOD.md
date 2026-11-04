@@ -52,3 +52,13 @@ Kho giữ mô tả, kết quả và link artifact; implementation benchmark/demo
 Trước tích hợp, kiểm lại claim biến động cao: license, ownership, endpoint/telemetry, security advisory, model/provider dependency và trạng thái hỗ trợ. Có thể lọc JSON theo thiếu metadata hoặc ngày cũ để lập lượt rà; không coi việc thêm một lịch tự động là đã hoàn thành xác minh.
 
 Catalog có [JSON Schema](data/projects.schema.json); [cổng kiểm](scripts/check_catalog.py) kiểm dữ liệu cơ bản, CSV từng ô và sự tồn tại của neo nội bộ. Cổng offline không xác minh nội dung trang nguồn hoặc chứng minh ngữ nghĩa claim đúng.
+
+## 6. Phạm vi đợt nghiên cứu xưởng phần mềm 2026-11-04
+
+Đợt này đọc lại những cơ chế quyết định khả năng tích hợp của công cụ, mở rộng 28 chuyên mục và thêm sáu mục 29–34. Bản ghép quy trình ở [FACTORY.md](FACTORY.md) phân biệt **dữ kiện đã đọc trong upstream** với **cổng/fixture đề xuất cho repo sản phẩm**. Chưa triển khai hay benchmark những stack được đề xuất; không gắn `checks-run` cho upstream chỉ vì các kiểm của catalog pass.
+
+Phạm vi đọc mới phải có neo riêng. Hồ sơ cũ được đọc lại giữ nguyên `id`, `section` và `profile_path` gốc; `profile_anchor` có thể dẫn sang phần kiểm mới ở chuyên mục liên quan. Các trường license/notes/sources chỉ đổi khi có nguồn cụ thể; ngày snapshot và việc rà một phần không cấp ngày kiểm mới cho các thực thể còn lại.
+
+Mỗi nhóm nghiên cứu chọn các claim có thể làm đổi quyết định (license, trạng thái hỗ trợ, default/callsite, mã thoát của cổng) để người/agent khác kiểm đối kháng tại cùng SHA. Việc đọc một hàm không suy thành khả năng của mọi deployment; nhận định được sửa hoặc hạ phạm vi khi nguồn không đủ. Số sao để `null` nếu không lấy được số liệu đáng tin; lỗi API không được suy thành repo archive hoặc ngừng bảo trì.
+
+Nguồn chính là LICENSE, implementation, tests/CI và tài liệu upstream đã ghim. So sánh chéo dùng chuẩn và các dự án cùng nhiệm vụ. Chưa có xác minh web độc lập cho mọi tuyên bố của tác giả; các con số hiệu năng, khả năng production và hiệu lực pháp luật không được nâng thành kết quả tự kiểm. Danh sách nguồn theo đợt ở [SOURCES.md](SOURCES.md).

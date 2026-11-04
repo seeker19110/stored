@@ -440,11 +440,50 @@ Runtime MLC chạy model trong browser qua WebGPU, phù hợp ứng dụng web m
 
 **Nguồn §6d:** [KServe LICENSE](https://github.com/kserve/kserve/blob/41defa23f4592b1468a68fb023cb931743e9ec06/LICENSE); [llm-d LICENSE](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/LICENSE), [llm-d nightly](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/.github/workflows/nightly-e2e-optimized-baseline-gke-acc-gpu-vllm-x.yaml); [AIPerf LICENSE](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/LICENSE); [ExecuTorch CPU CI](https://github.com/pytorch/executorch/blob/f2564fb486c07844d39e2eb91c7ff39b68e0dc3e/.github/workflows/test-backend-cpu.yml); [WebLLM LICENSE](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/LICENSE), [WebLLM CI](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/.github/workflows/tests.yaml); [KServe docs](https://kserve.github.io/website/), [WebLLM docs](https://webllm.mlc.ai/docs/).
 
-## 6e. Kiểm ảnh "Lưu tri thức để agent dùng lại" (CSV/SQLite + BM25): mẫu đúng, nhưng tiếng Việt cần chuẩn hoá trước khi BM25 có nghĩa (ảnh người dùng gửi, thử bằng SQLite 3.53.1 ngày 4/11/2026)
+## 6e. Nâng trần 4/11/2026: RAG cho xưởng phải quản vòng đời tri thức và quyền truy cập
+
+<a id="rag-factory-2026-11-04"></a>
+
+§6c–§6d đã có retrieval benchmark, memory và serving. Khi dùng cho code/tài liệu khách hàng, trần tiếp theo là **tri thức đúng phiên bản, đúng tenant/quyền và xóa được**. Tìm được đoạn liên quan không đủ nếu đó là branch cũ, tài liệu hết hiệu lực hoặc bí mật của khách hàng khác. Các cổng dưới đây là thiết kế tích hợp; chưa chạy model/vector DB hay benchmark upstream.
+
+### 6e.1 Bổ sung FastEmbed và ranh giới của “local”
+
+<a id="fastembed-factory"></a>
+
+**qdrant/fastembed**, thư viện embedding của Qdrant, Apache-2.0; SHA **f91d9168c0291daeafb0a54cebc7c5b4b83f312f**, HEAD 2026-10-29; đọc 2026-11-04. TextEmbedding chọn implementation từ registry, có query_embed/passage_embed; OnnxTextEmbedding nạp model qua model management. Hữu ích cho baseline embedding tự chạy cạnh Qdrant/pgvector và reranker, tránh bắt mọi repo cần GPU/PyTorch. Không có phép đo mới chứng minh nhanh hơn hoặc chất lượng tiếng Việt tốt hơn các lựa chọn §6c.
+
+**Code local không đồng nghĩa model đã có sẵn hoặc mọi model cùng license.** Registry có license theo model; cần kiểm model card/trọng số riêng trước dùng thương mại. Loader mặc định có thể tải model từ Hugging Face; local_files_only và đường model đã chuẩn bị phục vụ vận hành offline. Chưa tải model hay kiểm đường mạng thực tế trong đợt này.
+
+**Giới hạn integrity đã đọc:** hàm _verify_files_from_metadata trong model_management.py khi offline kiểm tồn tại và **kích thước file**; khi online đối chiếu metadata size/blob_id với danh sách Hub. Không coi riêng lớp metadata này là phép băm lại toàn bộ nội dung local. Nếu yêu cầu tái lập/kiểm chống thay đổi artifact, cần manifest checksum và revision model do quy trình cung ứng của xưởng xác minh, giữ tokenizer/config cùng weights; không tắt kiểm của thư viện để vượt lỗi tải.
+
+### 6e.2 Chọn pipeline theo corpus và phép đo
+
+| Bài toán | Baseline/đối chiếu | Bằng chứng để tăng độ phức tạp |
+|---|---|---|
+| Tên hàm, ticket ID, mã lỗi chính xác | Grep/BM25/full-text trước; so semantic retrieval | Tập câu thật cho thấy bỏ sót từ đồng nghĩa; không thêm vector chỉ vì catalog có vector DB |
+| Tài liệu nhiều ngôn ngữ | FastEmbed/model phù hợp so BGE-M3/FlagEmbedding §6c, MTEB/ViRE mục 18 | Recall/nDCG từng ngôn ngữ và nhóm tác vụ, latency/RAM, quyền model |
+| Tra cứu có lọc tenant/role/version | Qdrant/pgvector đã có + filter ở đường truy vấn đáng tin | Bộ ca cùng truy vấn nhưng khác principal không trả đoạn bị cấm; không lọc quyền chỉ sau khi đưa vào prompt |
+| Liên kết nhiều thực thể có ích rõ | GraphRAG/LightRAG §3 so hybrid retrieval + rerank | Tăng chất lượng trên ca cần nối quan hệ bù chi phí ingest/update, không chỉ điểm demo |
+| Nhớ qua phiên và cập nhật/xóa tri thức | Memory §4 và LongMemEval §6c | Kiểm cập nhật, mâu thuẫn, hết hạn, xóa và tenant isolation riêng khỏi QA accuracy |
+
+### 6e.3 Hợp đồng tri thức và cổng nghiệm thu
+
+1. **Nguồn có định danh:** mỗi document/chunk giữ tenant/project, source URI, commit/version, section/line, timestamp, ACL, license/retention và checksum. Metadata là hợp đồng đề xuất; chưa khẳng định mọi engine tự hỗ trợ đủ trường/quy tắc này.
+2. **Ingest có kiểm:** parser/chunker/model revision, phát hiện tài liệu rỗng/lỗi/trùng, incremental update theo source version; tài liệu chưa có quyền không được vào kho chia sẻ. Tài liệu không tin cậy giữ là dữ liệu tham khảo, không thành chỉ thị cấp quyền cho agent.
+3. **Retrieval có kiểm quyền:** principal → filter → retrieval/rerank → trích dẫn; kiểm ca âm giữa hai tenant và tài liệu đã bị thu hồi. Cache key cần bao gồm ngữ cảnh quyền/phiên bản phù hợp; test lại sau thay đổi quyền.
+4. **Đánh giá tách tầng:** qrels cho retrieval, reference/citation cho câu trả lời, invariant quyền/xóa là cổng riêng. Câu không đủ căn cứ phải biết từ chối; đo riêng answerability và tỷ lệ trích dẫn không hỗ trợ nhận định.
+5. **Vòng đời xóa:** theo dấu source tới chunk/vector/graph/cache/memory; kiểm tìm lại không còn trả dữ liệu bị xóa và ghi thời hạn xử lý backup theo chính sách. Không gọi một lệnh delete vector là đã xóa toàn hệ.
+6. **Phát hành và phục hồi index:** giữ manifest corpus/model/config, build index ứng viên, so cặp cùng qrels và quyền, chuyển phiên bản có rollback; diễn tập rebuild từ nguồn được phép. Dùng mục 07 cho eval release và mục 09 cho bằng chứng phục hồi.
+
+**Đã sâu hơn:** lựa chọn engine chuyển thành quản trị tri thức cho nhiều khách hàng. Không đồng nhất inference local với riêng tư toàn ứng dụng; provider/judge/tracing ở mục 07 vẫn là các đường mạng riêng cần kiểm theo cấu hình thực.
+
+**Nguồn §6e:** [LICENSE](https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/LICENSE) · [README.md](https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/README.md) · [fastembed/text/text_embedding.py](https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/fastembed/text/text_embedding.py) · [fastembed/text/onnx_embedding.py](https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/fastembed/text/onnx_embedding.py) · [fastembed/common/model_management.py](https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/fastembed/common/model_management.py) · [.github/workflows/python-tests.yml](https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/.github/workflows/python-tests.yml)
+
+## 6f. Kiểm ảnh "Lưu tri thức để agent dùng lại" (CSV/SQLite + BM25): mẫu đúng, nhưng tiếng Việt cần chuẩn hoá trước khi BM25 có nghĩa (ảnh người dùng gửi, thử bằng SQLite 3.53.1 ngày 4/11/2026)
 
 > Ảnh là sơ đồ vòng 6 bước: (1) góp ý sau khi làm, ghi lỗi và cách sửa → (2) công việc mới ("Viết mở đầu video kỹ thuật") → kho tri thức CSV/SQLite với cột ID, Context tìm kiếm, Lỗi sai, Cách sửa, Lý do → (3) script BM25 tìm theo cột context, xếp hạng → (4) lấy dòng liên quan → (5) agent áp dụng, viết và sửa bản thảo → (6) kiểm tra lại bằng script/review/eval → góp ý mới. Ảnh tự ghi hai giới hạn: "BM25 chỉ tìm và xếp hạng mức độ liên quan về văn bản, không tự động đánh giá chất lượng kể chuyện" và "Truy xuất… không đảm bảo bản thảo luôn đúng hoặc hoàn hảo". Không có tác giả hay repo đi kèm.
 
-### 6e.1 Đánh giá mẫu
+### 6f.1 Đánh giá mẫu
 
 | Phần trong ảnh | Kết quả | Ghi chú |
 |---|---|---|
@@ -454,7 +493,7 @@ Runtime MLC chạy model trong browser qua WebGPU, phù hợp ứng dụng web m
 | Bước 6 "kiểm tra lại" | ⚠️ thiếu cách đo | Chưa nói đo gì. Tối thiểu: ghi ID các dòng đã truy xuất vào bản thảo (để biết dòng nào được dùng); eval trước/sau trên một tập đề cố định; dòng nào truy xuất mà không giúp gì thì hạ hoặc xoá |
 | Vòng "góp ý mới → thêm/cập nhật" | ⚠️ thiếu vệ sinh kho | Không có khử trùng, ngày ghi, người duyệt hay hết hạn. Kho chỉ thêm mà không bớt sẽ đầy dòng mâu thuẫn và BM25 trả về cả bài học cũ đã sai |
 
-### 6e.2 Thử thật: BM25 với tiếng Việt
+### 6f.2 Thử thật: BM25 với tiếng Việt
 
 Dựng bảng `fts5(ctx, loi, sua, lydo)` từ hai dòng trong ảnh, thêm một dòng nhiễu ("Mờ ảnh đầu video / Ảnh bị mờ"), rồi truy vấn bằng SQLite 3.53.1 (Python `sqlite3`):
 
@@ -469,7 +508,7 @@ Dựng bảng `fts5(ctx, loi, sua, lydo)` từ hai dòng trong ảnh, thêm mộ
 
 Thêm một điểm khi chép script có sẵn: tokenizer của ui-ux-pro-max (`.claude/skills/ui-ux-pro-max/scripts/core.py:305`, HEAD `713eef5`) không chuẩn hoá Unicode và **bỏ mọi token dưới 2 ký tự**, nên âm tiết một chữ của tiếng Việt như "ý" biến mất ("mỗi câu một ý" → `mỗi câu một`). Với văn bản NFD, `re.sub(r'[^\w\s]', ' ', …)` còn tách dấu ra khỏi chữ ("thuật" → `thua`, `t`). Repo đó viết cho tiếng Anh nên không phải lỗi của nó; chỉ là không nên dùng nguyên cho kho tiếng Việt.
 
-### 6e.3 Cách làm cho tiếng Việt
+### 6f.3 Cách làm cho tiếng Việt
 
 1. **Chuẩn hoá trước khi ghi và trước khi truy vấn**: NFC; một kiểu đặt dấu; quy ước i/y. Có thể dùng linter của design-os-vietnamese (mục 18 §5d) làm chuẩn; lưu ý license của nó.
 2. **Giữ dấu khi xếp hạng** (`remove_diacritics 0`). Nếu cần cho người gõ không dấu, thêm một cột bản không dấu riêng và chỉ dùng khi truy vấn không có dấu.
@@ -477,7 +516,7 @@ Thêm một điểm khi chép script có sẵn: tokenizer của ui-ux-pro-max (`
 4. **Lai BM25 + embedding tiếng Việt** (bi-encoder BKAI hoặc Vietnamese_Embedding, mục 18 §4c), gộp bằng RRF, khi kho vượt vài trăm dòng hoặc người viết hay diễn đạt khác nhau. Đo bằng một tập truy vấn tự gán nhãn trước khi đổi.
 5. **Vệ sinh kho**: mỗi dòng có ngày, người duyệt, phạm vi và trạng thái (đang dùng / đã thành lint hay test / bỏ); khử trùng theo context. Dòng nào đã thành cổng máy thì gỡ khỏi kho truy xuất.
 
-**Nguồn §6e:** ảnh người dùng gửi 4/11/2026 · thí nghiệm SQLite FTS5 3.53.1 (Python `sqlite3`) trong scratchpad, không lưu vào kho · https://www.sqlite.org/fts5.html (tuỳ chọn `remove_diacritics` của tokenizer unicode61) · clone `--depth 1` https://github.com/nextlevelbuilder/ui-ux-pro-max-skill HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`.claude/skills/ui-ux-pro-max/scripts/core.py`).
+**Nguồn §6f:** ảnh người dùng gửi 4/11/2026 · thí nghiệm SQLite FTS5 3.53.1 (Python `sqlite3`) trong scratchpad, không lưu vào kho · https://www.sqlite.org/fts5.html (tuỳ chọn `remove_diacritics` của tokenizer unicode61) · clone `--depth 1` https://github.com/nextlevelbuilder/ui-ux-pro-max-skill HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`.claude/skills/ui-ux-pro-max/scripts/core.py`).
 
 ## 7. Nguồn
 

@@ -1435,6 +1435,43 @@ Luồng tham chiếu: component/route → extract → bản dịch có placehold
 
 **Nguồn §7x:** https://www.mebius.design · https://www.mebius.design/license · https://www.mebius.design/docs · https://www.mebius.design/resources/aivonic (WebFetch 3/11/2026) · curl trang chủ (grep `MCP`, `/resources/`) · https://keitoto.gumroad.com · https://contra.com/keitotostudio.
 
+## 7y. Nâng trần 4/11/2026: component là hợp đồng có kiểm thử của xưởng phần mềm
+
+<a id="ui-factory-2026-11-04"></a>
+
+**Phạm vi đọc:** mã nguồn, LICENSE và cấu hình CI ghim bên dưới; không cài/chạy Storybook, trình duyệt hay test upstream. Các cổng tích hợp là thiết kế đề xuất cho repo sản phẩm. Số sao không thu thập trong đợt này.
+
+### 7y.1 Khoảng trống sau token, a11y và quốc tế hóa
+
+§7t–§7u đã có thước đo màu, token, ảnh và bản dịch. Để dùng chung trong nhiều dự án, xưởng còn cần một **hợp đồng component**: trạng thái, tương tác, quyền và lỗi đều có ví dụ chạy được. Một ảnh đẹp không chứng minh modal giữ focus, form xử lý lỗi server, hay nút đang tải không gửi đơn hai lần. Story phải phủ loading/empty/error/disabled/permission-denied cùng trạng thái thành công; dùng dữ liệu giả đã khử thông tin khách hàng.
+
+| Lựa chọn | Khi nên chọn | Bằng chứng cần giữ | Giới hạn |
+|---|---|---|---|
+| Storybook + **@storybook/addon-vitest** | Component của dự án Vite, muốn dùng story làm ca kiểm thử trình duyệt | Danh sách story/test đã chạy, assertion trong play, báo cáo a11y và coverage | Cần tương thích Storybook/Vite/Vitest/browser provider; không thay E2E xuyên backend |
+| Playwright ở mục 11 và mục 30 | Luồng route/auth/API của ứng dụng đã ghép | Trace, screenshot/video khi lỗi, assertion nghiệp vụ | Chậm hơn test component; phải kiểm soát đồng hồ, font, mạng và dữ liệu |
+| axe-core + jsx-a11y (§7t) | Cổng accessibility động và tĩnh | Violation, incomplete và phần kiểm thủ công | Không tự chứng nhận toàn bộ WCAG hay chất lượng trải nghiệm |
+| Argos/pixelmatch (§7t) | Phát hiện thay đổi hình ảnh có người duyệt | Baseline được duyệt theo commit, diff, viewport/locale | Không chấm ý nghĩa nút hoặc đúng/sai nghiệp vụ; không tự cập nhật baseline trong lượt sửa lỗi |
+
+### 7y.2 Đọc mã: addon mới và đường chuyển từ runner cũ
+
+<a id="storybook-addon-vitest-factory"></a>
+
+**Storybook Vitest addon** là thực thể kiểm thử trong cùng upstream storybookjs/storybook, khác hồ sơ thư viện component Storybook ở §1. Đọc nhánh next tại **e4ec60736988a349e8a5d4484ea5a832fde49af8** ngày 2026-11-04: package đang ghi **11.0.0-beta.0**, license MIT. Đây là snapshot phát triển, **không phải khuyến nghị cài beta vào sản phẩm**; khi tích hợp phải chọn bộ phiên bản stable tương thích và kiểm lại migration guide.
+
+Plugin biến story thành test qua vitestTransform, nạp setup-file và project annotations. Đường a11y ở preview phân biệt chế độ **todo** (warning), **error** (failed) và **off**; giá trị khai báo mặc định của addon-a11y là **todo**. Trong lượt Vitest standalone, chỉ khi có violation và mode failed thì matcher làm test thất bại. Vì vậy có addon hoặc có bảng cảnh báo chưa đủ làm cổng phát hành: cấu hình a11y.test thành error cho phạm vi cần chặn, thử một fixture có lỗi để chứng minh pipeline thực sự từ chối. Giữ incomplete cho review riêng.
+
+**Phát hiện cần chuyển đổi:** storybookjs/test-runner tại **5364e386006e31f436813af9205138cfe320be04** ghi rõ **đã kết thúc hỗ trợ chính thức**. MIGRATION.md của Storybook nói package vẫn được phát hành nhưng không tiếp tục nhận fixes/compatibility updates. Mã runner cũ có preVisit/postVisit, coverage instrumentation và telemetry có cờ tắt; đây là thông tin bảo trì cho hệ đang dùng, không thêm runner cũ như lựa chọn mặc định cho dự án mới. Dự án Vite chuyển sang addon-vitest; hệ không tương thích cần thử Playwright/portable stories và xác minh coverage tương đương trước khi bỏ runner cũ.
+
+### 7y.3 Pipeline giao diện cho nhiều sản phẩm
+
+1. **Thiết kế hợp đồng trước:** token DTCG, semantic HTML, API props/events, trạng thái và ma trận quyền/locale; story gắn ID yêu cầu và link về thiết kế đã duyệt.
+2. **PR component:** typecheck/lint → test interaction và a11y mode error → so ảnh trên viewport/locale đã chọn. Phải ghi tổng số story hợp lệ/đã chạy/skipped; bộ lọc rỗng không được xem là pass.
+3. **Ghép ứng dụng:** E2E cho thao tác quan trọng như đăng nhập, lưu form, thanh toán; có test từ chối quyền phía server. Không suy quyền truy cập backend từ việc ẩn nút UI.
+4. **Phát hành design system:** version component/token, changelog breaking changes và kiểm ứng dụng tiêu thụ đại diện trước nâng phiên bản; thêm bài di trú khi đổi props hoặc token.
+5. **Nghiệm thu:** người dùng thực hiện tác vụ, kiểm keyboard/screen reader và nội dung tiếng Việt; giữ bằng chứng này cạnh báo cáo máy. Ngưỡng tự động do sản phẩm quy định, không dùng một điểm UI tổng hợp cho mọi tác vụ.
+
+**Nguồn §7y:** [LICENSE](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/LICENSE) · [MIGRATION.md](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/MIGRATION.md) · [code/addons/vitest/package.json](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/package.json) · [code/addons/vitest/src/vitest-plugin/index.ts](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/src/vitest-plugin/index.ts) · [code/addons/vitest/src/vitest-plugin/setup-file.ts](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/src/vitest-plugin/setup-file.ts) · [code/addons/a11y/src/preview.tsx](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/a11y/src/preview.tsx) · [.circleci/config.yml](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/.circleci/config.yml) · [README.md](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/README.md) · [LICENSE](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/LICENSE) · [src/playwright/transformPlaywright.ts](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/src/playwright/transformPlaywright.ts) · [src/test-storybook.ts](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/src/test-storybook.ts) · [.github/workflows/tests.yml](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/.github/workflows/tests.yml)
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

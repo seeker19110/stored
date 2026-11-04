@@ -1565,6 +1565,340 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 
 - `codingfeng101/canvasanvil`: bài người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (157 commit từ 24/1/2026, HEAD `27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e`): README.md, LICENSE, `client/workspaces/cad/lib/*`, `resources/prompts/cad/**`, `server/ai/{image,model}.ts`, `server/telemetry/langfuse.ts`, `server/routes/chat.ts`; grep `dxf|dwg|ifc`, `telemetry`. GitHub search API 3/11/2026. Không cài, không chạy.
 
-## Bổ sung 2026-11-04a (ảnh "Lưu tri thức để agent dùng lại" → mục 10 §6e)
+## Bổ sung 2026-11-04 (xưởng phát triển phần mềm, 34 chuyên mục)
+
+Phạm vi: 28 mục nâng sâu, sáu mục mới, 37 hồ sơ mới và 16 hồ sơ đọc lại. Nguồn chính là LICENSE, implementation/callsite, CI và tài liệu tại SHA đầy đủ; mức kiểm gắn riêng từng hồ sơ. Không chạy upstream; không tái lập benchmark hay chứng minh production readiness. Chưa có xác minh web độc lập cho mọi claim. API GitHub trả Forbidden nên không cập nhật hàng loạt số sao, trạng thái archive hoặc độ phổ biến. Đọc nguồn Git/HTTPS ghim SHA không bị chặn.
+
+Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết định, được người/agent khác đọc tại cùng SHA. Các phạm vi được làm rõ gồm Temporal replay đơn/nhiều lịch sử; in-toto command alignment chỉ warning trong implementation Python; SQLMesh standalone audit không thể bật blocking; C2PA Valid/Trusted phụ thuộc trạng thái validation/trust policy. Kết quả này là kiểm nguồn, không là phép thử runtime.
+
+### Nguồn nhóm 01-05 và chuyên mục bổ sung
+
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/.github/workflows/_common.yml
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/LICENSE.md
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/README.md
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/doorstop/cli/commands.py
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/doorstop/cli/main.py
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/doorstop/core/item.py
+- https://github.com/doorstop-dev/doorstop/blob/f5f2bef01a99c92210cad2713079f09cc4aed876/doorstop/core/validators/item_validator.py
+- https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/.github/workflows/integration_tests.yml
+- https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/LICENSE
+- https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/match.py
+- https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/strict.py
+- https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/subset.py
+- https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/utils.py
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/.github/workflows/ci.yml
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/LICENSE
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/README.md
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/requirements/2026-07-28.yaml
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/expected-failures.ts
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/index.ts
+- https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/requirements.ts
+- https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/.github/workflows/tests.yml
+- https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/LICENSE
+- https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/@node-red/editor-api/lib/auth/index.js
+- https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/@node-red/runtime/lib/nodes/credentials.js
+- https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/node-red/red.js
+- https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/node-red/settings.js
+- https://github.com/oasdiff/oasdiff/blob/aa8a46f666d73479c542cd089037cc4989b6e42d/.github/workflows/go.yml
+- https://github.com/oasdiff/oasdiff/blob/aa8a46f666d73479c542cd089037cc4989b6e42d/LICENSE
+- https://github.com/oasdiff/oasdiff/blob/aa8a46f666d73479c542cd089037cc4989b6e42d/docs/BREAKING-CHANGES.md
+- https://github.com/oasdiff/oasdiff/blob/aa8a46f666d73479c542cd089037cc4989b6e42d/internal/breaking_changes.go
+- https://github.com/oasdiff/oasdiff/blob/aa8a46f666d73479c542cd089037cc4989b6e42d/internal/breaking_files_test.go
+- https://github.com/oasdiff/oasdiff/blob/aa8a46f666d73479c542cd089037cc4989b6e42d/internal/changelog.go
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/.github/workflows/rust-ci-full.yml
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/.github/workflows/rust-ci.yml
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/LICENSE
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/core/src/exec_policy.rs
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/execpolicy/README.md
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/execpolicy/src/decision.rs
+- https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/execpolicy/src/execpolicycheck.rs
+- https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/.github/workflows/tests.yml
+- https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/LICENSE
+- https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/docs/guardrails.md
+- https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/src/agents/guardrail.py
+- https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/src/agents/run.py
+- https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/src/agents/run_internal/tool_execution.py
+- https://github.com/structurizr/structurizr/blob/e3a736a90194d3ac692ad7b5c1c7a48287355347/.github/workflows/maven.yml
+- https://github.com/structurizr/structurizr/blob/e3a736a90194d3ac692ad7b5c1c7a48287355347/LICENSE
+- https://github.com/structurizr/structurizr/blob/e3a736a90194d3ac692ad7b5c1c7a48287355347/README.md
+- https://github.com/structurizr/structurizr/blob/e3a736a90194d3ac692ad7b5c1c7a48287355347/structurizr-application/src/main/java/com/structurizr/command/ValidateCommand.java
+- https://github.com/structurizr/structurizr/blob/e3a736a90194d3ac692ad7b5c1c7a48287355347/structurizr-dsl/src/main/java/com/structurizr/dsl/StructurizrDslParser.java
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/.github/workflows/ci.yml
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/LICENSE
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/README.md
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/src/cli/index.mjs
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/src/cli/init-config/config-template.mjs
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/src/report/error.mjs
+- https://github.com/sverweij/dependency-cruiser/blob/e6517db02e169f3db5c838bb1565ebd0fefeb452/src/report/json.mjs
+
+### Nguồn nhóm 06-10 và chuyên mục bổ sung
+
+- https://github.com/HypothesisWorks/hypothesis/blob/535f94db57d2248d4c0f799f319563c5c7fbbdbb/.github/workflows/main.yml
+- https://github.com/HypothesisWorks/hypothesis/blob/535f94db57d2248d4c0f799f319563c5c7fbbdbb/LICENSE.txt
+- https://github.com/HypothesisWorks/hypothesis/blob/535f94db57d2248d4c0f799f319563c5c7fbbdbb/hypothesis/docs/tutorial/replaying-failures.rst
+- https://github.com/HypothesisWorks/hypothesis/blob/535f94db57d2248d4c0f799f319563c5c7fbbdbb/hypothesis/src/hypothesis/_settings.py
+- https://github.com/HypothesisWorks/hypothesis/blob/535f94db57d2248d4c0f799f319563c5c7fbbdbb/hypothesis/src/hypothesis/database.py
+- https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/.github/workflows/test-runner.yml
+- https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/LICENSE
+- https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/bin/test_exercises.py
+- https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/docker-compose.yml
+- https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/exercises/practice/leap/leap_test.py
+- https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/.github/workflows/continuous-integration-workflow.yml
+- https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/LICENSE
+- https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/src/content/11/en/part11a.md
+- https://github.com/grafana/k6/blob/48d8dbbc12be13c42ab63a40b2221223b6e7cb4d/.github/workflows/test.yml
+- https://github.com/grafana/k6/blob/48d8dbbc12be13c42ab63a40b2221223b6e7cb4d/LICENSE.md
+- https://github.com/grafana/k6/blob/48d8dbbc12be13c42ab63a40b2221223b6e7cb4d/README.md
+- https://github.com/grafana/k6/blob/48d8dbbc12be13c42ab63a40b2221223b6e7cb4d/internal/cmd/run.go
+- https://github.com/grafana/k6/blob/48d8dbbc12be13c42ab63a40b2221223b6e7cb4d/internal/js/modules/k6/k6.go
+- https://github.com/grafana/k6/blob/48d8dbbc12be13c42ab63a40b2221223b6e7cb4d/metrics/thresholds.go
+- https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/.github/workflows/integration_tests.yml
+- https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/LICENSE
+- https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/code/e2b/execution.py
+- https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/exact.py
+- https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/llm.py
+- https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/utils.py
+- https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/.github/workflows/yaml-process.yml
+- https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/license.txt
+- https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/model/questions/V-ST-1-A.yml
+- https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/model/questions/V-ST-3-A.yml
+- https://github.com/owaspsamm/core/blob/bc2b5474ab248effbc357c389bec372b0f5e200f/model/security_practices/V-Security-Testing.yml
+- https://github.com/pytest-dev/pytest/blob/8b005ed7f972987033ec34dc1e68b0635fb8142b/.github/workflows/test.yml
+- https://github.com/pytest-dev/pytest/blob/8b005ed7f972987033ec34dc1e68b0635fb8142b/LICENSE
+- https://github.com/pytest-dev/pytest/blob/8b005ed7f972987033ec34dc1e68b0635fb8142b/src/_pytest/config/__init__.py
+- https://github.com/pytest-dev/pytest/blob/8b005ed7f972987033ec34dc1e68b0635fb8142b/src/_pytest/fixtures.py
+- https://github.com/pytest-dev/pytest/blob/8b005ed7f972987033ec34dc1e68b0635fb8142b/src/_pytest/main.py
+- https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/.github/workflows/python-tests.yml
+- https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/LICENSE
+- https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/fastembed/common/model_management.py
+- https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/fastembed/text/onnx_embedding.py
+- https://github.com/qdrant/fastembed/blob/f91d9168c0291daeafb0a54cebc7c5b4b83f312f/fastembed/text/text_embedding.py
+- https://github.com/schemathesis/schemathesis/blob/8033ef464ac7d1d12b527a6de5952defad2760d0/.github/workflows/build.yml
+- https://github.com/schemathesis/schemathesis/blob/8033ef464ac7d1d12b527a6de5952defad2760d0/.github/workflows/test-hypothesis.yml
+- https://github.com/schemathesis/schemathesis/blob/8033ef464ac7d1d12b527a6de5952defad2760d0/LICENSE
+- https://github.com/schemathesis/schemathesis/blob/8033ef464ac7d1d12b527a6de5952defad2760d0/README.md
+- https://github.com/schemathesis/schemathesis/blob/8033ef464ac7d1d12b527a6de5952defad2760d0/src/schemathesis/checks.py
+- https://github.com/schemathesis/schemathesis/blob/8033ef464ac7d1d12b527a6de5952defad2760d0/src/schemathesis/specs/openapi/checks.py
+- https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/.circleci/config.yml
+- https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/LICENSE
+- https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/MIGRATION.md
+- https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/a11y/src/preview.tsx
+- https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/package.json
+- https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/src/vitest-plugin/index.ts
+- https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/.github/workflows/tests.yml
+- https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/README.md
+- https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/src/playwright/transformPlaywright.ts
+- https://github.com/testcontainers/testcontainers-python/blob/6146aa1170f415fcc825ed9bddc4eacbeb937a12/.github/workflows/ci-core.yml
+- https://github.com/testcontainers/testcontainers-python/blob/6146aa1170f415fcc825ed9bddc4eacbeb937a12/LICENSE.txt
+- https://github.com/testcontainers/testcontainers-python/blob/6146aa1170f415fcc825ed9bddc4eacbeb937a12/src/testcontainers/community/postgres/__init__.py
+- https://github.com/testcontainers/testcontainers-python/blob/6146aa1170f415fcc825ed9bddc4eacbeb937a12/src/testcontainers/core/container.py
+- https://github.com/testcontainers/testcontainers-python/blob/6146aa1170f415fcc825ed9bddc4eacbeb937a12/src/testcontainers/postgres.py
+- https://github.com/vitest-dev/vitest/blob/289caab9cf9e9440e2a0be2d8783f7bd0f489a8b/.github/workflows/ci.yml
+- https://github.com/vitest-dev/vitest/blob/289caab9cf9e9440e2a0be2d8783f7bd0f489a8b/LICENSE
+- https://github.com/vitest-dev/vitest/blob/289caab9cf9e9440e2a0be2d8783f7bd0f489a8b/packages/vitest/src/node/logger.ts
+- https://github.com/vitest-dev/vitest/blob/289caab9cf9e9440e2a0be2d8783f7bd0f489a8b/packages/vitest/src/node/test-run.ts
+
+### Nguồn nhóm 11-15 và chuyên mục bổ sung
+
+- https://github.com/DependencyTrack/dependency-track/blob/2e3fd965a76bbfdd9e7ec1fb990600cc1f4f11ba/.github/workflows/ci-test.yaml
+- https://github.com/DependencyTrack/dependency-track/blob/2e3fd965a76bbfdd9e7ec1fb990600cc1f4f11ba/LICENSE.txt
+- https://github.com/DependencyTrack/dependency-track/blob/2e3fd965a76bbfdd9e7ec1fb990600cc1f4f11ba/V5_MIGRATION.md
+- https://github.com/DependencyTrack/dependency-track/blob/2e3fd965a76bbfdd9e7ec1fb990600cc1f4f11ba/apiserver/src/main/java/org/dependencytrack/policy/cel/CelPolicyEngine.java
+- https://github.com/DependencyTrack/dependency-track/blob/2e3fd965a76bbfdd9e7ec1fb990600cc1f4f11ba/apiserver/src/main/java/org/dependencytrack/resources/v1/BomResource.java
+- https://github.com/DependencyTrack/dependency-track/blob/2e3fd965a76bbfdd9e7ec1fb990600cc1f4f11ba/apiserver/src/main/java/org/dependencytrack/resources/v1/EventResource.java
+- https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/.github/workflows/test_linux.yml
+- https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/LICENSE
+- https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/garak/command.py
+- https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/garak/evaluators/base.py
+- https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/garak/harnesses/base.py
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/.github/workflows/pr.yaml
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/LICENSE
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/analytics/dispatcher.py
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/audit/definition.py
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/config/root.py
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/context.py
+- https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/scheduler.py
+- https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/.github/workflows/check.yml
+- https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/LICENSE
+- https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/README.md
+- https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/bubblewrap.c
+- https://github.com/guacsec/guac/blob/a3f0a4df51abcf271221cf9c400de3158d9c20fa/.github/workflows/ci.yaml
+- https://github.com/guacsec/guac/blob/a3f0a4df51abcf271221cf9c400de3158d9c20fa/LICENSE
+- https://github.com/guacsec/guac/blob/a3f0a4df51abcf271221cf9c400de3158d9c20fa/README.md
+- https://github.com/guacsec/guac/blob/a3f0a4df51abcf271221cf9c400de3158d9c20fa/pkg/ingestor/parser/cyclonedx/parser_cyclonedx.go
+- https://github.com/guacsec/guac/blob/a3f0a4df51abcf271221cf9c400de3158d9c20fa/pkg/ingestor/parser/dsse/parser_dsse.go
+- https://github.com/guacsec/guac/blob/a3f0a4df51abcf271221cf9c400de3158d9c20fa/pkg/ingestor/verifier/verifier.go
+- https://github.com/in-toto/in-toto/blob/e352b43ad7cb8915d84c36d791aa61346152a0a3/.github/workflows/_test.yml
+- https://github.com/in-toto/in-toto/blob/e352b43ad7cb8915d84c36d791aa61346152a0a3/LICENSE
+- https://github.com/in-toto/in-toto/blob/e352b43ad7cb8915d84c36d791aa61346152a0a3/README.md
+- https://github.com/in-toto/in-toto/blob/e352b43ad7cb8915d84c36d791aa61346152a0a3/in_toto/in_toto_verify.py
+- https://github.com/in-toto/in-toto/blob/e352b43ad7cb8915d84c36d791aa61346152a0a3/in_toto/verifylib.py
+- https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/.github/workflows/test.yml
+- https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/LICENSE
+- https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/docs/dev-tools/mise-lock.md
+- https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/docs/security.md
+- https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/src/cli/install.rs
+- https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/src/cli/lock.rs
+- https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/.github/workflows/tests.yml
+- https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/LICENSE
+- https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/README.md
+- https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/whisperx/alignment.py
+- https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/whisperx/diarize.py
+- https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/whisperx/transcribe.py
+
+### Nguồn nhóm 16-20 và chuyên mục bổ sung
+
+- https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/.github/workflows/ci.yml
+- https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/LICENSE-APACHE
+- https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/LICENSE-MIT
+- https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/crates/agnix-cli/Cargo.toml
+- https://github.com/agent-sh/agnix/blob/5070e8f67ec9cdfbf42bfd6e351b6f3f5e6a25cf/crates/agnix-cli/src/main.rs
+- https://github.com/argoproj/argo-cd/blob/211c2b4fdc82f2ebd0b94c3fbf48779c06d83bad/.github/workflows/ci-build.yaml
+- https://github.com/argoproj/argo-cd/blob/211c2b4fdc82f2ebd0b94c3fbf48779c06d83bad/LICENSE
+- https://github.com/argoproj/argo-cd/blob/211c2b4fdc82f2ebd0b94c3fbf48779c06d83bad/docs/user-guide/auto_sync.md
+- https://github.com/argoproj/argo-cd/blob/211c2b4fdc82f2ebd0b94c3fbf48779c06d83bad/server/application/application.go
+- https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/.github/workflows/tier-1a.yml
+- https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/LICENSE-APACHE
+- https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/LICENSE-MIT
+- https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/sdk/src/reader.rs
+- https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/sdk/src/validation_results.rs
+- https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/.github/workflows/ci.yml
+- https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/LICENSE-APACHE
+- https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/LICENSE-MIT
+- https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/src/main.rs
+- https://github.com/devcontainers/spec/blob/c95ffeed1d059abfe9ffbe79762dc2fa4e7c2421/LICENSE
+- https://github.com/devcontainers/spec/blob/c95ffeed1d059abfe9ffbe79762dc2fa4e7c2421/LICENSE-CODE
+- https://github.com/devcontainers/spec/blob/c95ffeed1d059abfe9ffbe79762dc2fa4e7c2421/README.md
+- https://github.com/devcontainers/spec/blob/c95ffeed1d059abfe9ffbe79762dc2fa4e7c2421/docs/specs/devcontainerjson-reference.md
+- https://github.com/devcontainers/spec/blob/c95ffeed1d059abfe9ffbe79762dc2fa4e7c2421/schemas/devContainer.base.schema.json
+- https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/.github/workflows/java-unit-test.yml
+- https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/FALSEHOODS.md
+- https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/FAQ.md
+- https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/LICENSE
+- https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/java/libphonenumber/src/com/google/i18n/phonenumbers/PhoneNumberUtil.java
+- https://github.com/opentofu/opentofu/blob/c570669d0fed5787f18d2f017f56b2658e2e6cce/.github/workflows/checks.yml
+- https://github.com/opentofu/opentofu/blob/c570669d0fed5787f18d2f017f56b2658e2e6cce/LICENSE
+- https://github.com/opentofu/opentofu/blob/c570669d0fed5787f18d2f017f56b2658e2e6cce/internal/backend/local/backend_local.go
+- https://github.com/opentofu/opentofu/blob/c570669d0fed5787f18d2f017f56b2658e2e6cce/internal/command/plan.go
+- https://github.com/opentofu/opentofu/blob/c570669d0fed5787f18d2f017f56b2658e2e6cce/website/docs/cli/commands/plan.mdx
+- https://github.com/opentofu/opentofu/blob/c570669d0fed5787f18d2f017f56b2658e2e6cce/website/docs/language/state/sensitive-data.mdx
+- https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/.github/workflows/ci.yml
+- https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/LICENSE.txt
+- https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/pyproject.toml
+- https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/src/sybil/evaluators/python.py
+- https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/src/sybil/integration/pytest.py
+- https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/.github/workflows/run_tests.yml
+- https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/LICENSE
+- https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/dspy/predict/predict.py
+- https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/dspy/primitives/base_module.py
+- https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/dspy/utils/saving.py
+- https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/.github/workflows/test.yml
+- https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/LICENSE
+- https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/cmd/vale/flag.go
+- https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/cmd/vale/main.go
+
+### Nguồn nhóm 21-24 và chuyên mục bổ sung
+
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/.github/workflows/build-and-test.yml
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/LICENSE
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/processor/redactionprocessor/README.md
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/processor/redactionprocessor/config.go
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/processor/redactionprocessor/factory.go
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/processor/redactionprocessor/metadata.yaml
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/970f597792f2e60786e480dad4598b1078ba5627/processor/redactionprocessor/processor.go
+- https://github.com/pyrra-dev/pyrra/blob/a71aef6f7dd9e2774662211a805af5ab54445216/.github/workflows/go.yaml
+- https://github.com/pyrra-dev/pyrra/blob/a71aef6f7dd9e2774662211a805af5ab54445216/LICENSE
+- https://github.com/pyrra-dev/pyrra/blob/a71aef6f7dd9e2774662211a805af5ab54445216/README.md
+- https://github.com/pyrra-dev/pyrra/blob/a71aef6f7dd9e2774662211a805af5ab54445216/kubernetes/controllers/servicelevelobjective.go
+- https://github.com/pyrra-dev/pyrra/blob/a71aef6f7dd9e2774662211a805af5ab54445216/slo/rules.go
+- https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/.github/workflows/push.yml
+- https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/LICENSE.md
+- https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/LICENSE.md
+- https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/src/random.ts
+- https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/renderer/src/render-media.ts
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/.github/workflows/ci.yml
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/LICENSE
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/00-method/evidence-and-sources.md
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/01-baseline/quality-gates.md
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/scripts/xt.py
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/tests/test_merge.py
+- https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/tests/test_xt_loop.py
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/.github/workflows/ci.yaml
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/LICENSE
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/README.md
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/cmd/sloth/commands/generate.go
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/cmd/sloth/commands/validate.go
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/internal/app/generate/generate.go
+- https://github.com/slok/sloth/blob/dfab41f326c042e75f9cf7262ef66d19a755cb54/internal/plugin/slo/core/alert_rules_v1/plugin.go
+- https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/.github/workflows/ci.yml
+- https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/LICENSE
+- https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/temporalio/common.py
+- https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/temporalio/worker/_replayer.py
+- https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/tests/worker/test_replayer.py
+- https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/.github/workflows/tests.yaml
+- https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/LICENSE
+- https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/pull.py
+- https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/reproduce.py
+- https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/status.py
+
+### Nguồn nhóm 25-28 và chuyên mục bổ sung
+
+- https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/.github/workflows/apptainer_build.yml
+- https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/LICENSE
+- https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/README.md
+- https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/cadquery/occ_impl/exporters/__init__.py
+- https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/cadquery/occ_impl/importers/__init__.py
+- https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/cadquery/occ_impl/shapes.py
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/.github/workflows/checks.yml
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/.github/workflows/ci.yml
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/LICENSE
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/README.md
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/datamodel/pipeline_options.py
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/document_converter.py
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/pipeline/base_pipeline.py
+- https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/pipeline/standard_pdf_pipeline.py
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/.github/workflows/ci.yml
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/.github/workflows/conformance.yml
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/LICENSE.txt
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/README.md
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/docs/guides/server/configuration-production.adoc
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/services/src/main/java/org/keycloak/protocol/oidc/endpoints/AuthorizationEndpoint.java
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/services/src/main/java/org/keycloak/protocol/oidc/endpoints/AuthorizationEndpointChecker.java
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/services/src/main/java/org/keycloak/protocol/oidc/grants/AuthorizationCodeGrantType.java
+- https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/services/src/main/java/org/keycloak/protocol/oidc/utils/PkceUtils.java
+- https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/.github/workflows/build.yaml
+- https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/LICENSE
+- https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/README.md
+- https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/core/pkg/evaluator/fractional.go
+- https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/core/pkg/evaluator/json.go
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/.github/workflows/ci.yaml
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/.github/workflows/integration.yaml
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/LICENSE
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/README.md
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/migration_sql.go
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/provider_options.go
+- https://github.com/pressly/goose/blob/2d285d2249855c959765409c68b17a6634f0acb4/provider_run.go
+- https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/.github/workflows/gpu_test.yaml
+- https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/.github/workflows/unit_test.yaml
+- https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/LICENSE
+- https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/README.md
+- https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/recipes/lora_finetune_single_device.py
+- https://github.com/pytorch/torchtune/blob/bd2a0fc7c31430972728494fa01aaeeb0ebf1ba1/torchtune/training/checkpointing/_checkpointer.py
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/.github/workflows/ci.yml
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/LICENSE
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/README.md
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/docs/howto/vet.md
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/docs/reference/cli.md
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/internal/cmd/diff.go
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/internal/cmd/verify.go
+- https://github.com/sqlc-dev/sqlc/blob/3ad8b20fb02b5bea81591b673da0758b8685d951/internal/cmd/vet.go
+
+### Khung ghép quy trình xưởng
+
+- https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/00-method/lifecycle.md
+- https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/00-method/evidence-and-sources.md
+- https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/14-testing-quality/coverage-and-mutation.md
+
+## Bổ sung 2026-11-04a (ảnh "Lưu tri thức để agent dùng lại" → mục 10 §6f)
 
 - Ảnh infographic người dùng gửi 4/11/2026 (không tác giả, không repo). Thí nghiệm SQLite FTS5 3.53.1 với tokenizer `unicode61` (`remove_diacritics` 0/1/2, NFC/NFD, biến thể i/y, diễn đạt khác) chạy trong scratchpad. https://www.sqlite.org/fts5.html. Clone `--depth 1` `nextlevelbuilder/ui-ux-pro-max-skill` HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`scripts/core.py` tokenizer).

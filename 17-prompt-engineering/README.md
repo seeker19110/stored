@@ -277,6 +277,42 @@
 
 **Nguồn §4e:** https://danhnolan.com/en/rccof (đọc 3/11/2026) · https://zenodo.org/api/records/22856974 và PDF `RCCOF_Framework_Specification_v1.0-v3.pdf` · https://zenodo.org/api/records/22843346 · https://doi.org/10.5281/zenodo.22856974 · https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices (mục "Add context to improve performance", "Control the format of responses", "Use examples effectively", "Long context prompting").
 
+<a id="factory-prompt-release-2026-11-04"></a>
+
+## 4f. Nâng trần 4/11/2026: prompt là artifact phát hành, có ranh giới tin cậy và cổng hồi quy
+
+**Trần và khoảng trống.** §4c–§4d đã có định dạng prompt, optimizer, holdout và ngân sách. Phần còn thiếu cho xưởng là **artifact nào được deploy**, ai có quyền đổi endpoint/model, và cách trả về bản cũ khi metric sản phẩm xấu đi. Kết quả tối ưu tốt trên validation không tự cấp quyền nạp mọi file optimizer gửi sang.
+
+### 4f.1 Đọc sâu DSPy: state JSON và chương trình pickle có quyền khác nhau
+
+`stanfordnlp/dspy` (MIT), HEAD `c941671b1d2b6e208d472e93f954632b94000277` đọc ngày 4/11/2026. `BaseModule.save` tách lưu state (`.json`/`.pkl`) khỏi lưu toàn chương trình (`save_program=True`, cloudpickle). `BaseModule.load` mặc định `allow_pickle=False`; nhánh `.pkl` từ chối nếu chưa cho phép. Hàm top-level `dspy.load` cho chương trình cũng yêu cầu `allow_pickle=True` trước khi gọi `cloudpickle.load`. Bật cờ này là chấp nhận một nguồn có thể thực thi code, không chỉ là chọn định dạng nén. [State save/load và callsite]( https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/dspy/primitives/base_module.py ) · [whole-program load]( https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/dspy/utils/saving.py ).
+
+Ở `Predict.load_state`, `_sanitize_lm_state` mặc định loại các khóa `api_base`, `base_url`, `model_list`; cờ `allow_unsafe_lm_state` mở đường giữ các khóa này và cho phép class LM tùy biến. Kết luận chỉ áp dụng đường state-load đã đọc, không khẳng định mọi nhánh import/plugin đều bị sandbox. Vì vậy bản prompt được review phải kèm schema, hash và cấu hình model/endpoint độc lập do môi trường kiểm soát. **JSON ít quyền thực thi hơn pickle không có nghĩa nội dung JSON đáng tin để đưa vào prompt.** [Sanitize và LM callsite]( https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/dspy/predict/predict.py ).
+
+Loader so dependency versions với metadata đã lưu và **cảnh báo** khi lệch; không coi cảnh báo đó là kiểm tương thích bắt buộc. CI upstream có lint/test/build nhưng chưa chạy ở đây; khả năng round-trip artifact và chất lượng sau deploy phải kiểm trong ứng dụng đích. [CI]( https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/.github/workflows/run_tests.yml ) · [license]( https://github.com/stanfordnlp/dspy/blob/c941671b1d2b6e208d472e93f954632b94000277/LICENSE ).
+
+### 4f.2 Ma trận lựa chọn và ranh giới
+
+| Cách làm | Khi có ích | Cổng còn cần |
+|---|---|---|
+| Prompt thủ công, file review trong git | Tác vụ nhỏ, baseline rẻ và dễ audit | Contract đầu ra, eval hồi quy, model/config ghim; không mặc định cần optimizer |
+| DSPy / GEPA (§2, §4d) | Có metric nhiệm vụ và corpus đủ để tối ưu | Train/validation/test tách đúng; artifact/source được tin; phí tính cả search/judge/retry, không chỉ lượt inference cuối |
+| BAML / Outlines / Instructor (§2b) | Kiểu/schema, parsing và retry structured output | Schema pass không chứng minh tính đúng ngữ nghĩa hay quyền gọi tool; cần kiểm dữ kiện và quyền ở ứng dụng |
+| Prompty / Dotprompt (§4c) | Định dạng prompt có thể review và chạy giữa runtime | Conformance với phiên bản runtime; secret/endpoint quản ở môi trường, không chép vào artifact |
+
+### 4f.3 Luồng prompt → bản phát hành → theo dõi
+
+1. Định nghĩa contract: input có provenance, output schema, quy tắc từ chối khi thiếu dữ liệu và metric nghiệp vụ. Tập case gồm tiếng Việt, không dấu, input nhiễu và trường hợp không nên gọi tool.
+2. Ghim nguồn corpus và quyền dữ liệu; tách nhóm theo khách hàng/thời gian/tài liệu để tránh cùng nội dung rơi vào train và test. Tập tối ưu không thay tập nghiệm thu giữ kín.
+3. Tối ưu có ngân sách; lưu baseline cố định cùng model, tool, retrieval và giới hạn tương đương. Không thay metric sau khi thấy kết quả rồi gọi đó là cải thiện đã xác nhận.
+4. Đóng gói prompt/state + schema + model/config ID + dependency lock + bộ case/version + kết quả theo từng nhóm + hash. State JSON được kiểm schema; pickle chỉ từ nguồn đã tin và môi trường phù hợp; không lấy artifact không rõ nguồn chỉ vì `load` hỗ trợ.
+5. Cổng phát hành kiểm hồi quy chất lượng, tỷ lệ lỗi parse/từ chối sai, tool call ngoài dự kiến, latency phân vị và tổng phí trên ngưỡng do sản phẩm đặt. Nêu số case thực chạy, skip, lỗi provider và bất định; không đổi lỗi API thành pass.
+6. Canary và theo dõi drift ở mục 07/28; giữ bundle cũ để rollback nguyên prompt/config/retrieval phù hợp, không chỉ một chuỗi system prompt. Input thu hồi về eval phải được xử lý quyền truy cập và dữ liệu cá nhân.
+
+**Tiêu chí chấp nhận:** có bundle định danh duy nhất, baseline và held-out report cùng schema; người/CI có thể đối chiếu artifact chạy thật với artifact đã duyệt; khi provider/model đổi có lượt kiểm mới. Đây là yêu cầu thiết kế của kho, chưa phải cam kết tính năng tự có của DSPy.
+
+**Nguồn §4f:** permalink implementation/LICENSE/CI DSPy trên; đối chiếu cơ chế optimizer, spec và eval ở §4c–§4d. Không tuyên bố tái lập chất lượng/chi phí hay chạy model upstream trong đợt đọc này.
+
 ## 5. Nguồn
 
 - https://github.com/dair-ai/Prompt-Engineering-Guide · https://www.star-history.com/dair-ai/prompt-engineering-guide/ · https://dev.to/web_dev-usman/10-github-repos-every-serious-prompt-writer-should-be-using-21jk

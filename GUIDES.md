@@ -2,6 +2,8 @@
 
 Các tuyến đọc dưới đây ghép những hồ sơ đã có trong kho. Bắt đầu bằng ràng buộc, chọn 2–4 ứng viên để thử trên tác vụ thật, giữ baseline và kiểm lại ngày/license trong hồ sơ. Đây là bản đồ tham khảo, không phải cấu hình triển khai đã được kho chạy thử.
 
+Để xây **xưởng phát triển phần mềm**, đọc [FACTORY.md](FACTORY.md): bản đồ 34 mục, chín cổng giao hàng, trách nhiệm, bằng chứng phát hành và đường khởi đầu theo loại sản phẩm. Đợt 2026-11-04 bổ sung các tuyến sản phẩm thông thường bên dưới để ghép với các chuyên mục AI.
+
 | Bài toán | Tuyến đọc | Quyết định và bằng chứng cần có |
 |---|---|---|
 | Agent sửa code trong repo | [01](01-ai-coding-agents/README.md) → [03](03-agentic-patterns-loops/README.md) → [07](07-eval-observability/README.md) → [13](13-dev-stack-devops/README.md) | Chọn harness theo quyền, context, sandbox và test contract. Patch/commit/submission chưa có nghĩa test pass; kiểm diff và kết quả độc lập. |
@@ -18,7 +20,19 @@ Các tuyến đọc dưới đây ghép những hồ sơ đã có trong kho. B�
 | Agent Revit/AutoCAD/Blender | [27](27-3d-cad-bim-engineering/README.md) → [23](23-own-repos-lessons/README.md) → [11](11-browser-computer-use-sandbox/README.md) | Mesh/B-rep/BIM, unit/tolerance, host version, dry-run→confirm→readback; schema pass không chứng minh hình học/thi công đúng. |
 | Chọn plugin/skill và đưa vào quy trình | [20](20-claude-plugins-ecosystem/README.md) → [04](04-protocols-standards/README.md) → [12](12-ai-security-guardrails/README.md) | Phạm vi cài, pin/lock/update, quyền/telemetry, eval kích hoạt, rollback và license nội dung. |
 
-## Mẫu quyết định gọn
+## Tuyến đọc cho xưởng phát triển phần mềm
+
+| Nhu cầu của xưởng | Tuyến đọc | Đầu ra cần mang về repo sản phẩm |
+|---|---|---|
+| Từ yêu cầu đến kiến trúc/API | [28](28-product-discovery-experimentation/README.md) → [29](29-software-architecture-api-contracts/README.md) → [06](06-ui-ux-design/README.md) → [30](30-software-testing-quality/README.md) | Acceptance cases, ADR, ranh giới module, hợp đồng và compatibility checks |
+| Chặn lỗi trước khi giao | [09](09-engineering-checklists/README.md) → [30](30-software-testing-quality/README.md) → [07](07-eval-observability/README.md) | Unit/integration/E2E theo rủi ro; eval AI khi có model; bằng chứng test thực sự chạy |
+| Bảo vệ dependency và artifact | [31](31-software-supply-chain-security/README.md) → [12](12-ai-security-guardrails/README.md) → [20](20-claude-plugins-ecosystem/README.md) | License/secret/CVE policy, SBOM, provenance, identity/digest verification |
+| Tạo nền và đường phát hành dùng chung | [13](13-dev-stack-devops/README.md) → [32](32-platform-delivery-engineering/README.md) → [33](33-reliability-observability-operations/README.md) | Toolchain pin, IaC, promote cùng artifact, rollout/rollback và health gates |
+| SaaS nhiều tenant, giao dịch và tích hợp | [34](34-backend-data-identity-integration/README.md) → [29](29-software-architecture-api-contracts/README.md) → [21](21-autonomous-workflows/README.md) | Authn/authz, migration rehearsal, isolation, idempotency và đối soát kết quả chưa biết |
+| Có thể trực và phục hồi production | [33](33-reliability-observability-operations/README.md) → [34](34-backend-data-identity-integration/README.md) → [32](32-platform-delivery-engineering/README.md) | SLO, alert drill, incident runbook, backup/restore với RPO/RTO đo được |
+| Đưa bài học vào template của xưởng | [23](23-own-repos-lessons/README.md) → [FACTORY.md §8](FACTORY.md#8-vòng-học-của-xưởng-và-chi-phí-sở-hữu) → [X-TEMPLATES.md](X-TEMPLATES.md) | Triệu chứng có nguồn, control hiện có, delta thực sự và fixture bắt regression |
+
+## Mẫu quyết định áp dụng
 
 Ghi bài toán và người dùng; ràng buộc dữ liệu/hardware/license/ngân sách; 2–4 lựa chọn cùng loại; bằng chứng hồ sơ; phép thử nhỏ trên tác vụ thật; phần chưa kiểm; điều kiện đổi lựa chọn. Dùng [METHOD.md](METHOD.md) để giữ phép so sánh cùng cơ sở.
 

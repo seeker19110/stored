@@ -721,6 +721,38 @@ Nguyên tắc xuyên suốt mà ảnh không ghi: mỗi ô phải nói rõ **cod
 
 **Nguồn §4e:** ảnh infographic người dùng gửi 2/11/2026 · https://dev.to/msnmongare/the-top-5-places-to-implement-guardrails-in-an-ai-agent-4158 (31/10/2026) · https://vercel.com/i/five-ai-agent-guardrails-production (7/8/2026) · https://developers.openai.com/api/docs/guides/agents/guardrails-approvals · GitHub search API và img.shields.io (`stars`, `license`, `last-commit`, `v/release`, `release-date`) 2/11/2026 cho 8 repo · `git ls-remote` HEAD `microsoft/presidio` = `data-privacy-stack/presidio` (2/11/2026) · https://github.com/data-privacy-stack/presidio (README: disclaimer; `docs/project_transition.md`) · https://presidio.dataprivacystack.org/project_transition/ · https://github.com/meta-llama/PurpleLlama (README bảng license; `Llama-Guard4/README.md`, `Prompt-Guard/README.md`, `Llama-Prompt-Guard-2/README.md`, `LlamaFirewall/README.md`) · https://huggingface.co/meta-llama/Llama-Guard-4-12B (license tag `llama4`, S1–S14, gated) · clone sparse `NVIDIA-NeMo/Guardrails` HEAD `8d027fd` 30/10/2026: `README.md` (5 loại rail, v0.24.1), `pyproject.toml` (0.25.0-rc1), `docs/configure-rails/guardrail-catalog/{index,jailbreak-protection,pii-detection,tool-calling,tool-safety-check,agentic-security}.mdx`, `docs/configure-rails/guardrail-catalog/community/{presidio,llama-guard,guardrails-ai,alignscore,patronus-lynx}.mdx`, `docs/reference/rail-engine-support.mdx`, `docs/telemetry.mdx` (chỉ ghi nhận tồn tại) · https://github.com/guardrails-ai/guardrails (README "News") · https://github.com/guardrails-ai/guardrails/issues/1560 · https://docs.langchain.com/oss/python/langgraph/interrupts · https://docs.langchain.com/oss/python/langchain/human-in-the-loop · https://docs.docker.com/ai/sandboxes/ · https://docs.docker.com/ai/sandboxes/architecture/ · https://docs.docker.com/ai/sandboxes/agents/ · https://github.com/open-policy-agent/opa · https://github.com/pydantic/pydantic · clone `--depth 1 --filter=blob:none` `seeker19110/x-templates` HEAD `fb7b62c` 2/11/2026: `framework/12-security/ai-security.md`, `framework/13-ai-engineering/agents-and-tools.md`, `framework/11-autonomous-loop/{stop-points-and-escalation,context-and-token-budget}.md`, `framework/09-database/search-and-vector.md`
 
+## 4f. Nâng sâu 4/11/2026: kiểm bảo mật AI phải gắn với quyền và artifact phát hành
+
+**Trần hiện tại:** các lớp input/output rail và danh tính agent đã có. Xưởng còn cần một bộ bằng chứng cho đúng phiên bản prompt, model, tool, retrieval và policy được phát hành; điểm quét model không đại diện cho hệ thống có quyền ghi dữ liệu thật. Bảo mật dependency/build chuyển sang [mục 31](../31-software-supply-chain-security/README.md); mục này giữ rủi ro do hành vi model và đường gọi tool.
+
+<a id="factory-2026-11-04-garak"></a>
+
+### Đọc lại garak: phân biệt điểm detector với quyết định chặn phát hành
+
+| Thuộc tính | Kết quả đọc |
+|---|---|
+| Repo · license · SHA | `NVIDIA/garak` · Apache-2.0 · `b1681c5bf8ff71971f83848fe245c6c1550aff08` |
+| Phạm vi | Scanner tạo probe → gọi generator → detector chấm output → evaluator ghi JSONL và tóm tắt. Hữu ích cho regression theo nhóm rủi ro, không thay sandbox hay ACL |
+| Bằng chứng | `garak/harnesses/base.py` gọi `evaluator.evaluate(attempt_results)`; `garak/evaluators/base.py` ghi cả prompt/output vào hitlog; `garak/command.py` tạo report và bản HTML |
+| Điều dễ hiểu sai | `eval_threshold` thuộc cách đánh giá output. Không được suy chữ FAIL/điểm detector thành exit status chặn pipeline; adapter CI phải kiểm báo cáo, số mẫu và chính sách chấp nhận của xưởng |
+| CI upstream | `test_linux.yml` chạy pytest trên ma trận OS/Python; chưa chạy test upstream hoặc quét model trong kho này |
+| Dữ liệu | Hitlog có thể chứa prompt và phản hồi nhạy cảm; generator REST/cloud có thể gửi input ra nhà cung cấp. Dùng corpus giả, lọc log và giới hạn quyền đọc artifact |
+
+**Phạm vi kiểm (2026-11-04):** đọc tài liệu, LICENSE, mã đường gọi và workflow tại SHA dưới đây; không cài/chạy upstream. Các cổng nghiệm thu là đề xuất cho repo tích hợp, chưa phải kết quả chạy của kho. Số sao không thu thập trong đợt này.
+
+| Công cụ/lớp | Câu hỏi trả lời | Không thay thế |
+|---|---|---|
+| garak | Model/endpoint có sinh output thuộc loại lỗi đã dò không? | Tính đúng ACL và tác dụng tool |
+| PyRIT | Chiến dịch red-team có orchestration, memory và scorer | Kiểm tự động của policy nghiệp vụ |
+| AgentDojo | Agent có tool chịu injection từ dữ liệu không tin cậy ra sao? | Corpus riêng theo domain và quyền thật của sản phẩm |
+| NeMo Guardrails + OpenFGA/SpiceDB/Cedar | Rail và quyết định quyền chạy trên đường gọi nào? | Kiểm đường đi vòng, retry, cache và tenant boundary |
+
+**Stack cho xưởng:** lập threat model cho endpoint và tool → chốt corpus tấn công/benign tiếng Việt, nhãn kỳ vọng và nhóm người dùng → ghim phiên bản model/prompt/tool/policy → chạy regression offline hoặc staging có scope → đối chiếu log quyết định quyền với hậu điều kiện → phát hành cùng báo cáo rủi ro còn lại. Seed/model revision và budget được lưu; provider không cho pin model thì ghi rõ giới hạn tái lập.
+
+**Cổng nghiệm thu:** không chấp nhận report rỗng, thiếu probe dự kiến, lỗi gọi provider bị tính như pass hoặc mẫu bị bỏ không có lý do. Luồng bị từ chối phải không gây side effect dù qua retry/cached answer; tài liệu có injection không được mở quyền tool. Đo riêng attack success rate, false refusal trên tác vụ hợp lệ, số mẫu/lỗi/skipped và chi phí; ngưỡng do tác vụ quyết định. Kiểm fixture làm rail/ACL lỗi để bảo đảm hệ thống đóng quyền ở đúng callsite. Không dùng một điểm an toàn chung cho mọi tenant.
+
+**Nguồn §4f:** [LICENSE](https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/LICENSE) · [harness callsite](https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/garak/harnesses/base.py) · [evaluator/hitlog](https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/garak/evaluators/base.py) · [report lifecycle](https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/garak/command.py) · [CI](https://github.com/NVIDIA/garak/blob/b1681c5bf8ff71971f83848fe245c6c1550aff08/.github/workflows/test_linux.yml).
+
 ## 5. Nguồn
 
 - Mục 23 §3.3, §4.3, §4.4, §6.2, §6.4 (qlkh, xboss, Dhcb-Tools, Claude-Red, REA; đọc 2026-10-12) · https://github.com/SnailSploit/claude-red · https://github.com/morluto/rea · https://www.openpolicyagent.org/ · https://github.com/anchore/syft

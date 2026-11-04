@@ -244,6 +244,38 @@
 
 **Nguồn §5f:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/kornia/kornia HEAD `a733fe3b6248652b0a509d002cf452b2167965f0` (README.md, ROADMAP.md, AI_POLICY.md, CONTRIBUTING.md, LICENSE, pyproject.toml, `.github/workflows/{pypi-release,tests}.yml`; đếm `def test_convention_`, `gradcheck`, `__all__`; `git shortlog --since=2026-08-01`) · https://pypi.org/pypi/kornia/json · PyPI integrity API (0.9.0: không có provenance) · https://pypistats.org/api/packages/kornia/recent (2.176.424/tháng) · GitHub search API `repo:kornia/kornia` 3/11/2026.
 
+## 5g. Nâng sâu 4/11/2026: từ ghi âm yêu cầu đến transcript kiểm chứng được
+
+**Trần hiện tại:** mục này đã có ASR/TTS, đo WER và voice reliability. Với xưởng phần mềm, ghi âm phỏng vấn khách hàng, dựng phụ đề demo và voice UI cần thêm provenance của transcript, timestamp, speaker và quyền dữ liệu. Transcript do ASR không tự thành yêu cầu đã được khách hàng xác nhận; tóm tắt phải dẫn về đoạn ghi âm và giữ phần không nghe rõ.
+
+<a id="factory-2026-11-04-whisperx"></a>
+
+### WhisperX: forced alignment và diarization là các bước có lỗi riêng
+
+| Thuộc tính | Kết quả đọc |
+|---|---|
+| Repo · SHA | `m-bain/whisperX` · `5d3678b8535698a2826a5db9eb3e4105aef85dd9` |
+| License | Code BSD-2-Clause; weights ASR, alignment và diarization có license/điều kiện riêng. Không suy BSD của wrapper sang tất cả model |
+| Đường xử lý | `whisperx/transcribe.py`: ASR → alignment nếu không tắt → diarization nếu bật → gán speaker theo word → writer. `alignment.py` có model mặc định theo ngôn ngữ, gồm tiếng Việt |
+| Phụ thuộc | `DiarizationPipeline` tải `pyannote/speaker-diarization-community-1` qua `Pipeline.from_pretrained`, có tham số token/cache; README yêu cầu chấp nhận điều khoản model. Tải model/cache không chứng minh audio đã rời máy; cũng không được suy toàn bộ pipeline offline khi chưa kiểm egress |
+| Giới hạn | README tự nêu speech chồng lấn xử lý kém, diarization không hoàn hảo, từ ngoài dictionary alignment có thể thiếu timing. Nhãn SPEAKER không xác thực danh tính con người |
+| CI | `.github/workflows/tests.yml` dùng uv chạy pytest theo ma trận Python; chưa chạy inference, đo WER hay GPU trong đợt này |
+
+**Phạm vi kiểm (2026-11-04):** đọc tài liệu, LICENSE, mã đường gọi và workflow tại SHA dưới đây; không cài/chạy upstream. Các cổng nghiệm thu là đề xuất cho repo tích hợp, chưa phải kết quả chạy của kho. Số sao không thu thập trong đợt này.
+
+| Lựa chọn | Vai trò | Điều kiện lựa chọn |
+|---|---|---|
+| Whisper / faster-whisper | ASR văn bản/segment; faster-whisper dùng CTranslate2 | Baseline cho chất lượng, latency và bộ nhớ cùng model/corpus |
+| whisper.cpp | ASR tối ưu triển khai cục bộ theo nền tảng | Kiểm feature/model format/hardware trên thiết bị đích |
+| WhisperX | Ghép ASR với alignment và speaker diarization | Cần phụ đề có word timing hoặc phân đoạn hội thoại; chấp nhận thêm model và lỗi ghép |
+| LiveKit / Pipecat | Pipeline voice tương tác theo thời gian thực | Đo barge-in, timeout, mất gói, khôi phục kết nối; không thay bộ chép lời batch |
+
+**Stack cho xưởng:** ghi nhận quyền thu âm và mục đích → mã hóa/giới hạn lưu giữ → chốt audio hash và model revisions → ASR/align/diarize → người nghe kiểm lại đoạn có giá trị pháp lý/nghiệp vụ → liên kết yêu cầu/ADR tới timestamp → xóa dữ liệu theo policy. Nếu cần bí mật, prefetch model qua đường được phép rồi kiểm pipeline trong môi trường egress bị chặn; đo thay vì tin nhãn local.
+
+**Cổng nghiệm thu:** corpus tách tiếng Việt vùng miền, code-switching, số tiền/tên riêng, nhiễu và nhiều người nói; đo WER/CER cùng lỗi entity quan trọng, sai số timestamp và speaker attribution. Fixture audio im lặng, quá ngắn, không có speech, chồng lấn phải có trạng thái rõ, không sinh transcript bịa thành yêu cầu. Chỉ xuất artifact đã lọc PII theo scope; review thủ công các quyết định quan trọng. Benchmark tốc độ quảng cáo upstream chưa được tái lập tại kho.
+
+**Nguồn §5g:** [LICENSE](https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/LICENSE) · [README/limits](https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/README.md) · [pipeline callsite](https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/whisperx/transcribe.py) · [language alignment](https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/whisperx/alignment.py) · [diarization load](https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/whisperx/diarize.py) · [CI](https://github.com/m-bain/whisperX/blob/5d3678b8535698a2826a5db9eb3e4105aef85dd9/.github/workflows/tests.yml).
+
 ## 6. Nguồn
 
 - https://micdrop.dev/blog/open-source-voice-agent-frameworks · https://livekit.com/blog/best-open-source-voice-and-video-ai-agent-frameworks · https://www.forasoft.com/blog/article/pipecat-vs-livekit-agents · https://github.com/pipecat-ai/pipecat · https://techsy.io/en/blog/best-open-source-voice-agent-frameworks · https://grokipedia.com/page/List_of_open-source_voice_AI_frameworks

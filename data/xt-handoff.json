@@ -1,26 +1,37 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục)",
     "columns": [
       "deeper",
       "shallower",
       "missing",
       "not_adding"
     ],
-    "updated": "2026-11-03",
-    "count": 112,
+    "updated": "2026-11-04",
+    "count": 116,
     "current_batch": {
-      "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
-      "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
+      "stored_base": "79c86359b6acc72da840fdd040e26bea32cfb57d",
+      "xt_commit": "23447d817d2bc8cf68093591177f85fd72a8a2f6",
       "ids": [
-        "XT-H-094",
-        "XT-H-105"
+        "XT-H-113",
+        "XT-H-116"
       ],
-      "status": "proposal-pr-open",
-      "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/410"
-    }
+      "status": "documented-in-stored"
+    },
+    "previous_batches": [
+      {
+        "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
+        "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
+        "ids": [
+          "XT-H-094",
+          "XT-H-105"
+        ],
+        "status": "proposal-pr-open",
+        "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/410"
+      }
+    ]
   },
   "items": [
     {
@@ -2498,6 +2509,169 @@
         }
       ],
       "note": "Đã có ID. Ví dụ phản mẫu cho bẫy: repo dump prompt gắn Unlicense; ví dụ tốt: LICENSE hai phần của Motionsites-AI/claude-skill ghi rõ thư mục nào theo license nào."
+    },
+    {
+      "id": "XT-H-113",
+      "date": "2026-11-04",
+      "stored_ref": [
+        "29 §4–5",
+        "30 §3–4",
+        "31 §2.2"
+      ],
+      "profile_anchors": [
+        "29-software-architecture-api-contracts/README.md#dependency-cruiser-architecture-gates",
+        "29-software-architecture-api-contracts/README.md#oasdiff-compatibility-gates",
+        "30-software-testing-quality/README.md#k6-factory",
+        "31-software-supply-chain-security/README.md#factory-2026-11-04-owasp-dependency-track"
+      ],
+      "lesson": "Lệnh chạy thành công, report sinh được và phân tích kết thúc là các trạng thái khác nhau: dependency-cruiser JSON reporter trả0; oasdiff cần fail-on rõ; k6 check false ghi metric/boolean còn threshold quyết định lỗi tương ứng; BOM token processing=false không chứng minh analysis thành công.",
+      "xt_ids": [
+        "QA-STRAT-001",
+        "BASE-GATE-014",
+        "LOOP-HARNESS-023"
+      ],
+      "column": "shallower",
+      "existing_coverage": "QA-STRAT-001 chốt lệnh CI, BASE-GATE-014 giữ report, LOOP-HARNESS-023 đặt sàn/chặn no-op. Implementation zero_tests_red chỉ regex Ran 0 tests, không là parser số test đa runner.",
+      "delta": "Giữ sàn; bổ sung hợp đồng kết quả theo adapter, fixture âm cho report rỗng/thiếu target, trạng thái bất đồng bộ chưa biết, và report-only mặc định.",
+      "xt_evidence": [
+        {
+          "id": "QA-STRAT-001",
+          "file": "framework/14-testing-quality/test-strategy.md",
+          "line": 79,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/14-testing-quality/test-strategy.md#L79"
+        },
+        {
+          "id": "BASE-GATE-014",
+          "file": "framework/01-baseline/quality-gates.md",
+          "line": 53,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/01-baseline/quality-gates.md#L53"
+        },
+        {
+          "id": "LOOP-HARNESS-023",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 288,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/11-autonomous-loop/harness-files.md#L288"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework/implementation tại 23447d817d2bc8cf68093591177f85fd72a8a2f6; bàn giao trong stored, chưa sửa/gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Cho cổng test/scan được dự án chọn, khai adapter/report format+version, target/config, trạng thái hoàn tất và số test/thực thể đã thực thi khi định dạng hỗ trợ. Thiếu report,0 test của suite bắt buộc, only-report hoặc unknown/infrastructure-error không được coi pass. Cổng tĩnh không có test count cần điều kiện riêng. Gắn SHA/run ID, kiểm exit semantics; fixture âm phải làm adapter chặn. Không đoán theo tên công cụ; unsupported parser báo chưa kết luận."
+      }
+    },
+    {
+      "id": "XT-H-114",
+      "date": "2026-11-04",
+      "stored_ref": [
+        "31 §2.1–2.3",
+        "32 §3"
+      ],
+      "profile_anchors": [
+        "31-software-supply-chain-security/README.md#factory-2026-11-04-in-toto",
+        "31-software-supply-chain-security/README.md#factory-2026-11-04-guac",
+        "32-platform-delivery-engineering/README.md#factory-opentofu-2026-11-04"
+      ],
+      "lesson": "Chữ ký/DSSE ingest khác trust decision: GUAC DSSE GetIdentities trả rỗng ở SHA đã đọc; in-toto Python command alignment chỉ warning và cần rule đóng tập artifact khi policy yêu cầu. Evidence phát hành nối identity/builder, subject digest và policy thực thi.",
+      "xt_ids": [
+        "SEC-SUPPLY-013",
+        "SEC-SUPPLY-014"
+      ],
+      "column": "deeper",
+      "existing_coverage": "SEC-SUPPLY-013/014 đã yêu cầu ký, provenance và consumer verify; không cần thêm ID chỉ để thêm công cụ.",
+      "delta": "Thêm fixture sai issuer/subject/digest, artifact ngoài rule, command mismatch; graph ingest không thay release verifier. Plan report cần diễn giải theo CLI. Không thay trust root bằng lời agent.",
+      "xt_evidence": [
+        {
+          "id": "SEC-SUPPLY-013",
+          "file": "framework/12-security/supply-chain.md",
+          "line": 58,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/12-security/supply-chain.md#L58"
+        },
+        {
+          "id": "SEC-SUPPLY-014",
+          "file": "framework/12-security/supply-chain.md",
+          "line": 59,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/12-security/supply-chain.md#L59"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework/implementation tại 23447d817d2bc8cf68093591177f85fd72a8a2f6; bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-115",
+      "date": "2026-11-04",
+      "stored_ref": [
+        "34 §3–4"
+      ],
+      "profile_anchors": [
+        "34-backend-data-identity-integration/README.md#goose-migrations",
+        "34-backend-data-identity-integration/README.md#keycloak",
+        "34-backend-data-identity-integration/README.md#sqlc"
+      ],
+      "lesson": "Migration lock phải kiểm theo API: goose Provider bật locker qua option, không suy mọi CLI không khóa. sqlc verify gọi cloud/query-set API; SSO của IdP không tự kiểm phân quyền object/tenant của ứng dụng.",
+      "xt_ids": [
+        "DB-MIG-012",
+        "BE-AUTH-010"
+      ],
+      "column": "deeper",
+      "existing_coverage": "DB-MIG-012 có migration riêng/tương thích rollout; BE-AUTH-010 có test truy cập chéo chủ thể/tenant.",
+      "delta": "Bổ sung matrix concurrent migration, N/N−1, khác tài khoản/tenant trên dữ liệu đại diện; ghi quyền mạng/dữ liệu khi chọn cloud verify. Không thêm requirement riêng cho từng thư viện.",
+      "xt_evidence": [
+        {
+          "id": "DB-MIG-012",
+          "file": "framework/09-database/migrations.md",
+          "line": 66,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/09-database/migrations.md#L66"
+        },
+        {
+          "id": "BE-AUTH-010",
+          "file": "framework/08-backend/authn-authz.md",
+          "line": 58,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/08-backend/authn-authz.md#L58"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework/implementation tại 23447d817d2bc8cf68093591177f85fd72a8a2f6; bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-116",
+      "date": "2026-11-04",
+      "stored_ref": [
+        "33 §3–4"
+      ],
+      "profile_anchors": [
+        "33-reliability-observability-operations/README.md#otel-collector-egress",
+        "33-reliability-observability-operations/README.md#sloth-slo-generator",
+        "33-reliability-observability-operations/README.md#pyrra-slo-operations"
+      ],
+      "lesson": "Collector redaction có ignored_keys bypass masking, allowed_values áp sau key allowlist; maturity khác theo signal. Sinh SLO rule/resource thành công chưa chứng minh Prometheus đang đánh giá hoặc alert đến người trực.",
+      "xt_ids": [
+        "OPS-OBS-008",
+        "BASE-GATE-014"
+      ],
+      "column": "deeper",
+      "existing_coverage": "OPS-OBS-008 có che dữ liệu trước export/test PII; BASE-GATE-014 giữ evidence. SLO file/error budget đã có XT-H-086.",
+      "delta": "Đưa email/token canary qua resource/body/attributes theo signal tới exporter test, kiểm dữ liệu thực nhận và alert drill; absent series không tự healthy. Dẫn XT-H-086 thay vì tạo yêu cầu SLO trùng.",
+      "xt_evidence": [
+        {
+          "id": "OPS-OBS-008",
+          "file": "framework/15-operations/observability.md",
+          "line": 46,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/15-operations/observability.md#L46"
+        },
+        {
+          "id": "BASE-GATE-014",
+          "file": "framework/01-baseline/quality-gates.md",
+          "line": 53,
+          "url": "https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/01-baseline/quality-gates.md#L53"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-064",
+        "XT-H-072",
+        "XT-H-086"
+      ],
+      "note": "Đối chiếu framework/implementation tại 23447d817d2bc8cf68093591177f85fd72a8a2f6; bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
     }
   ]
 }

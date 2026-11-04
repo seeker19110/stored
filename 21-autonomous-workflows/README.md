@@ -503,6 +503,39 @@ SDK MIT dùng `ctx.run` để ghi kết quả thao tác không tất định và
 
 **Nguồn §10h:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/pullboard-dev/pullboard HEAD `6231e10d4f22673b41ec5797a642b7b6f8e9fd06`: https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/README.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/package.json · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/LICENSE · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/CLA.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/docs/architecture.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/relay/README.md · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/src/bar-check.js · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/src/blueprints/pullboard.json · https://github.com/pullboard-dev/pullboard/blob/6231e10d4f22673b41ec5797a642b7b6f8e9fd06/bin/check-signoffs.js · `docs/badges/items.json`; `git shortlog`, `git log` theo ngày · https://registry.npmjs.org/pullboard · GitHub search API 3/11/2026.
 
+## 10i. Nâng trần 4/11/2026: workflow phục hồi được và nâng phiên bản không phá lịch sử
+
+**Trần hiện tại:** §10f đã phân biệt retry, timeout và idempotency. Với xưởng phần mềm, khoảng trống tiếp theo là kiểm **tương thích lịch sử khi đổi code**, và xác nhận tác động ngoài hệ thống chỉ xảy ra theo hợp đồng nghiệp vụ. Một workflow hoàn thành sau restart chưa chứng minh nó không gửi hai email, tạo hai hoá đơn hoặc gọi model thêm tiền.
+
+<a id="temporal-replay-factory"></a>
+
+### 10i.1 Temporal Python SDK: dùng lịch sử thật làm tập regression
+
+Đọc mã ngày **2026-11-04**, SHA `1845f25aeac33114b9c46fbccfac19976129f796`, license MIT; chỉ đọc source/LICENSE/CI, chưa chạy Temporal, không tái lập khả năng phục hồi.
+
+`Replayer.replay_workflow` và `replay_workflows` mặc định `raise_on_replay_failure=True`; đường gọi thực sự ném lỗi khi replay trả `replay_failure`. Khi đặt `False`, API đơn `replay_workflow` trả lỗi trong trường `WorkflowReplayResult.replay_failure`; API nhiều lịch sử `replay_workflows` tích luỹ lỗi trong map `WorkflowReplayResults.replay_failures`. Caller phải kiểm đúng trường theo API đã gọi. `tests/worker/test_replayer.py` có lịch sử nondeterministic và assertion `NondeterminismError`: đây là mẫu negative fixture hữu ích, không phải kết quả kiểm của kho này. CI gọi `poe test`, xuất JUnit và chạy thêm môi trường time-skipping; việc đọc YAML không xác nhận mọi run ở upstream đều xanh.
+
+`RetryPolicy.maximum_attempts=0` vẫn là **không đặt trần số lần thử**; deadline/timeout và giới hạn nghiệp vụ cần được định nghĩa riêng. Retry activity không mang lại exactly-once cho API bên ngoài. Xưởng cần operation ID ổn định, khoá/unique constraint hoặc idempotency key ở đích, cùng bước đối soát khi timeout làm kết quả trở nên không rõ.
+
+| Lựa chọn | Nên chọn khi | Cổng cần thêm tại dự án tích hợp |
+|---|---|---|
+| Temporal SDK + history replay | Có workflow đang chạy qua nhiều phiên bản, cần kiểm thay đổi code trên history đã lưu | Tập history đã ẩn dữ liệu; replay phải có số workflow >0, không có failure; phân biệt API không ném với kết quả sạch |
+| [Restate SDK](#restate-typescript-sdk) | App TypeScript muốn durable context và ingress idempotency | Crash ở trước/sau side effect, gửi trùng key, kiểm sổ nghiệp vụ; pin tương thích SDK/server |
+| DBOS, đã so ở §5 | Đã dùng Postgres, muốn trạng thái durable gần dữ liệu ứng dụng | Kiểm transaction boundary và tác động ngoài DB; không suy transaction DB bao trùm dịch vụ ngoài |
+| Job/queue thông thường + outbox | Tác vụ nhỏ, không cần orchestration dài hạn | Lease/ack, retry có trần, DLQ và đối soát; ít thành phần hơn nhưng vẫn phải kiểm duplicate |
+
+### 10i.2 Đường nghiệm thu cho xưởng
+
+1. Tách phần suy luận agent khỏi activity có side effect; manifest ghi workflow type, deployment/version, retry/deadline và chủ sở hữu.
+2. Lưu history đại diện cho nhánh thành công, lỗi, chờ người duyệt, huỷ và phiên bản cũ; xoá/che dữ liệu nhạy cảm trước khi đưa vào CI. History cũng là tài sản có quyền truy cập và retention.
+3. Khi đổi orchestration, replay tập history cũ trước rollout. Có negative fixture đã biết sai để chứng minh cổng thực sự bắt nondeterminism; không chấp nhận tập history rỗng.
+4. Fault injection tại dự án tích hợp: worker chết trước/sau API call, mất mạng sau khi đích đã commit, hết lease, request lặp. Artifact là run ID + operation ID + số side effect cuối, không chỉ log “retry succeeded”.
+5. Đưa workflow error/queue age/cost vào [mục 33](../33-reliability-observability-operations/README.md); stop/cancel có đường đối soát. Kết quả replay sạch chỉ áp cho history đã chọn, không chứng minh mọi tương tác production.
+
+**Đã đổi so với lượt trước:** bổ sung đường gọi của replay và tình huống API thu lỗi thay vì ném; cập nhật SHA phạm vi SDK. Không suy rằng Temporal server hay toàn bộ integration ở §10e đã được kiểm lại.
+
+**Nguồn §10i:** [LICENSE](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/LICENSE) · [temporalio/worker/_replayer.py](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/temporalio/worker/_replayer.py) · [temporalio/common.py](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/temporalio/common.py) · [tests/worker/test_replayer.py](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/tests/worker/test_replayer.py) · [.github/workflows/ci.yml](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/.github/workflows/ci.yml).
+
 ## 11. Nguồn
 
 - Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)

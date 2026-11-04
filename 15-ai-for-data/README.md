@@ -159,6 +159,38 @@
 
 **Nguồn §5:** GitHub metadata/HEAD 2/11/2026 và permalink trên; LICENSE, README, CI, `BackfillPolicy`, instance settings, `Incremental`, runtime telemetry, Debezium core/PostgreSQL; tài liệu chính thức Dagster/dlt/Debezium. Các cổng trên là tiêu chí để dự án đích áp dụng, chưa có kết quả chạy trong khảo sát này.
 
+## 6. Nâng sâu 4/11/2026: thay đổi dữ liệu phải có plan, test, audit và đường phục hồi
+
+**Trần hiện tại:** kho đã có text-to-SQL, semantic layer, ingestion và lineage. Xưởng cần thêm vòng đời thay đổi mô hình dữ liệu: AI đề xuất SQL → review thay đổi → test logic → tính dữ liệu ở môi trường riêng → audit kết quả → promote có kiểm soát. Phân quyền DB/tenant và migration giao dịch thuộc [mục 34](../34-backend-data-identity-integration/README.md); mô hình analytical không thay migration OLTP.
+
+<a id="factory-2026-11-04-sqlmesh"></a>
+
+### SQLMesh: version mô hình và audit có đường chặn thật
+
+| Thuộc tính | Kết quả đọc |
+|---|---|
+| Repo · license · SHA | `TobikoData/sqlmesh` · Apache-2.0 · `c4dbac499c312ccab17cb328ffb6ecfd801ce73d` |
+| Cơ chế | Model SQL/Python, snapshot/version, plan tác động và virtual environment; test dùng fixture, audit trả hàng dữ liệu vi phạm |
+| Cổng test | `Context._run_plan_tests` raise `PlanError` nếu test không thành công; `skip_tests` và chế độ chỉ test thay đổi là nhánh cấu hình cần kiểm, không mặc nhiên mọi plan đều chạy mọi test |
+| Cổng audit | `ModelAudit.blocking=True` mặc định, nhưng `StandaloneAudit` mặc định không blocking và validator từ chối `blocking=True`; không thể chỉ bật cờ để đổi loại audit này thành cổng chặn. Scheduler gom audit có kết quả lỗi: blocking → `NodeAuditsErrors`, nonblocking → cảnh báo |
+| Telemetry | `disable_anonymized_analytics=False` trong config; dispatcher đích `analytics.tobikodata.com/v1/`. Có optout `SQLMESH__DISABLE_ANONYMIZED_ANALYTICS=true` hoặc config tương ứng; không khẳng định payload đã được audit toàn bộ |
+| CI | `pr.yaml` có docs/tests/lint và ma trận; chưa chạy SQLMesh, engine cloud hay benchmark trong đợt này |
+
+**Phạm vi kiểm (2026-11-04):** đọc tài liệu, LICENSE, mã đường gọi và workflow tại SHA dưới đây; không cài/chạy upstream. Các cổng nghiệm thu là đề xuất cho repo tích hợp, chưa phải kết quả chạy của kho. Số sao không thu thập trong đợt này.
+
+| Lựa chọn | Mặt mạnh | Phạm vi khác nhau |
+|---|---|---|
+| SQLMesh | Plan/version/environment gắn với backfill và audit | Hợp với vòng thay đổi analytical model; cần đánh giá engine, state store và lịch chạy |
+| dbt | Mô hình biến đổi, tests và ecosystem | So feature ở đúng bản/adapter; không gộp dbt Core/fusion/cloud thành một thực thể |
+| Great Expectations / Soda | Kiểm data quality theo expectation/check | Bổ sung contract ở nguồn/đầu ra; không tự thay kế hoạch deployment SQL |
+| Dagster + OpenLineage | Orchestration tài sản và quan hệ chạy | Bổ sung nguồn gốc, không tự chứng minh ý nghĩa nghiệp vụ của SQL |
+
+**Stack cho xưởng:** chốt schema và ví dụ nghiệp vụ → AI chỉ đề xuất SQL trên dữ liệu đã giảm nhạy cảm → parser/lint + test fixture → đọc plan gồm dữ liệu cần backfill → chạy môi trường dev có hạn mức → audit blocking → promote và theo dõi freshness/volume/business invariant. Ghi plan digest, snapshot/model revision, engine, window thời gian và lineage. Không cho text-to-SQL agent quyền DDL/write production chỉ vì truy vấn đã parse.
+
+**Cổng nghiệm thu:** fixture làm sai join cardinality, duplicate key, timezone, tiền tệ, late-arriving data và PII phải gây lỗi đúng test/audit; test rỗng, audit bị skip/nonblocking và backfill ngoài window phải được phát hiện. So sánh kết quả theo khóa/grain, không chỉ row count. Thử rollback/khôi phục state và dữ liệu trên engine đích trước khi gọi quy trình có thể phục hồi; đổi virtual view không tự đảo ngược side effect bên ngoài hay mọi DDL.
+
+**Nguồn §6:** [LICENSE](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/LICENSE) · [test callsite](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/context.py) · [audit types](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/audit/definition.py) · [scheduler enforcement](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/scheduler.py) · [analytics config](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/config/root.py) · [analytics dispatcher](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/analytics/dispatcher.py) · [CI](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/.github/workflows/pr.yaml).
+
 ## Nguồn
 
 - https://duckdb.org/2026/08/05/github-40k-stars · https://en.wikipedia.org/wiki/Polars_(software) · https://github.com/sinaptik-ai/pandas-ai · https://github.com/topics/sql?l=python · https://aitools.flocci.in/alternatives/pandasai · https://jupysql.readthedocs.io/en/latest/tutorials/duckdb-github.html

@@ -206,6 +206,41 @@
 
 **Nguồn phần mở rộng:** [1](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/LICENSE) · [2](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/model/_cache.py) · [3](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/scorer/_metrics/std.py) · [4](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/src/inspect_ai/scorer/_metrics/aggregate.py) · [5](https://github.com/UKGovernmentBEIS/inspect_ai/blob/1f1a0039d49c628a41898a7a7ba4843c5bbbc91b/.github/workflows/pr-gate.yml) · [6](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/LICENSE) · [7](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/src/evaluator.ts) · [8](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/test/evaluator/repeatCache.test.ts) · [9](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/src/telemetry.ts) · [10](https://github.com/promptfoo/promptfoo/blob/bfb96e2ee2304ec87a7a32054a4907ea39f5c920/.github/workflows/main.yml) · [11](https://inspect.aisi.org.uk/metrics.html) · [12](https://inspect.aisi.org.uk/caching.html) · [13](https://www.promptfoo.dev/docs/usage/command-line/)
 
+## Nâng trần 4/11/2026: eval là điều kiện nhận hàng của tính năng AI
+
+<a id="eval-factory-2026-11-04"></a>
+
+**Trần hiện tại:** hai phần 2/11 đã phủ trace, bộ eval, judge và thống kê. Xưởng cần nối những phép đo đó với **ID yêu cầu, bản dữ liệu, bản model/prompt/tool và quyết định phát hành**. Trace giúp giải thích một lần chạy; điểm benchmark công khai không thay bộ ca nghiệm thu của khách hàng. Đợt này đọc code/LICENSE/CI; chưa gọi model, gửi trace hay chạy eval upstream.
+
+### Thêm OpenEvals: chọn scorer theo điều có thể chứng minh
+
+<a id="openevals-factory"></a>
+
+**langchain-ai/openevals**, do LangChain duy trì, MIT; SHA **5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3** (HEAD ngày 2026-11-01, đọc 2026-11-04). Thư viện scorer Python/JS có exact match, structured-output và LLM-as-judge; README dẫn agentevals cho trajectory (đã có mục 03). Điểm hữu ích là ghép scorer nhỏ vào harness hiện có; không cần thay toàn bộ hệ eval để dùng một phép so tất định.
+
+Đọc **exact.py**: so JSON sau khi sắp key, từ chối khi thiếu outputs/reference_outputs; không phải phép so ngữ nghĩa và vẫn cần đầu vào JSON-serializable. Đọc **llm.py**: judge tạo prompt và schema output cho điểm; điểm có cấu trúc không chứng minh judge đúng. Đọc **utils.py**: scorer bọc traceable của LangSmith; dữ liệu có rời máy hay không phụ thuộc cấu hình tracing và client, cần kiểm ở repo tích hợp. CI integration bật tracing và dùng credential provider; không gọi các ca đó là kiểm offline không tốn phí.
+
+**Giới hạn quan trọng với code sinh:** evaluator E2B ghi outputs.py, suy import để cài dependency và chạy lệnh; kết quả execution_succeeded phản ánh tiến trình chạy thành công, **chưa chứng minh đáp ứng yêu cầu nghiệp vụ**. Với code của xưởng, phải chạy bộ test độc lập trong môi trường hạn quyền, không đưa credential production vào sandbox. Đánh giá bởi model chỉ là một tín hiệu bổ sung cho test thật ở mục 30.
+
+| Câu hỏi | Công cụ/cơ chế phù hợp | Điều không được suy ra |
+|---|---|---|
+| JSON đúng cấu trúc, số tiền/ID đúng tuyệt đối? | Schema + exact match/OpenEvals; assertion tự viết | JSON hợp lệ chưa là dữ liệu đúng; chuẩn hóa timezone/số thực phải có quy tắc trước |
+| Agent gọi đúng tool và tham số? | agentevals mục 03, ghi trajectory và trạng thái cuối | Giống đường đi mẫu không chứng minh side effect an toàn hoặc mục tiêu đã hoàn thành |
+| Chất lượng câu trả lời và căn cứ? | Promptfoo/Inspect/Ragas/DeepEval đã có, OpenEvals judge được hiệu chuẩn | Không gộp các thang khác nhau thành một điểm chung; không dùng cùng model sinh để tự chứng nhận |
+| Code sinh sửa được lỗi? | Runner/test độc lập ở mục 30, test hồi quy thất bại trước bản sửa | Chạy được, typecheck xanh hoặc judge khen chưa là task success |
+
+### Cổng phát hành và vận hành của xưởng
+
+1. **Bộ nghiệm thu có chủ:** lưu ID yêu cầu, input/reference, lý do chọn ca, quyền dữ liệu và nhóm critical; tách tập phát triển khỏi holdout. Khử dữ liệu khách hàng trước khi gửi provider/judge.
+2. **Ghim mọi thành phần:** dataset SHA, prompt/model/tool/schema revision, cấu hình cache/repeat, judge/rubric và ngân sách; giữ raw outcome theo ca, timeout/refusal/skipped riêng.
+3. **Hard gate trước judge:** schema, invariant, quyền, tác vụ không side effect ngoài phạm vi và ngân sách. Một lỗi critical đã định trước có thể chặn release dù điểm trung bình tăng; chính sách đó phải có người sở hữu.
+4. **So cặp trên cùng ca:** bản ứng viên so bản đang dùng, phân tích nhóm tiếng Việt, câu hỏi thiếu căn cứ và ca từ chối; báo độ bất định và chi phí/latency cùng chất lượng. Giữ ca thua thay vì chỉ công bố tổng điểm.
+5. **Replay và rollback:** trace đã khử dữ liệu → fixture được review → regression ở PR; triển khai giới hạn traffic, giữ khả năng quay về prompt/model/tool cũ. Drift alert là tín hiệu điều tra, không tự cho phép train lại từ dữ liệu chưa được duyệt.
+
+**Đã sâu hơn:** eval trở thành artifact gắn release, không chỉ bộ công cụ chấm. Các bước trên là thiết kế đề xuất, chưa có phép đo hiệu quả do kho tự chạy.
+
+**Nguồn phần 4/11:** [LICENSE](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/LICENSE) · [README.md](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/README.md) · [python/openevals/exact.py](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/exact.py) · [python/openevals/llm.py](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/llm.py) · [python/openevals/utils.py](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/utils.py) · [python/openevals/code/e2b/execution.py](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/python/openevals/code/e2b/execution.py) · [.github/workflows/integration_tests.yml](https://github.com/langchain-ai/openevals/blob/5753dc75d40c2be75ffd38eb6d63bb966cbcc4e3/.github/workflows/integration_tests.yml)
+
 ## Nguồn
 
 - Mục 23 §3.1, §4.3, §5 (X-Agents, xboss, Hermes-Agents; đọc 2026-10-12)

@@ -232,6 +232,42 @@ Croissant 1.0 là phiên bản của trang đặc tả đã đọc, không phả
 
 **Trần được nâng:** kho nối được nguồn → recipe → nhãn → snapshot → tác vụ đo được. Tốc độ parser, tỷ lệ dedup hoặc số sample synthetic không còn được coi là đại diện đầy đủ cho chất lượng dữ liệu. Chưa chạy pipeline thực, chưa benchmark tiếng Việt, chưa xác minh mọi model/dataset license được dependency tải **(chưa xác minh)**.
 
+## 6b. Nâng trần 4/11/2026: dataset phát hành phải khôi phục và kiểm lại được
+
+**Trần hiện tại:** §5 đã có schema, PII, group split và chống leakage. Xưởng còn thiếu cổng **tải lại artifact từ môi trường sạch**, và hợp đồng thu hồi dữ liệu khi một nguồn/nhãn/consent không còn hợp lệ. Một lockfile đẹp không chứng minh object remote còn tồn tại hoặc recipe tái tạo được cùng dữ liệu.
+
+<a id="dvc-factory-artifact"></a>
+
+### 6b.1 DVC: phân biệt lấy lại object với chạy lại pipeline
+
+Đọc mã/LICENSE/CI **2026-11-04** tại `56e59829512ff134aa269099a2099587b810b4dd`, Apache-2.0; SHA trùng phạm vi khảo sát trước, đây là đọc sâu cơ chế chứ không phải công bố release mới. Chưa chạy DVC, tải dataset hay huấn luyện.
+
+`dvc/repo/pull.py` gọi `fetch` rồi `checkout`; `allow_missing` mặc định false nhưng caller có thể truyền khác. Cổng nghiệm thu phải giữ điều kiện không bỏ qua object thiếu và kiểm dữ liệu dùng được sau checkout. `dvc/repo/reproduce.py` điều phối stage dependency, có đường run-cache và xử lý lỗi stage. Lấy object từ remote, tái sử dụng cache và thực thi lại recipe là ba phép kiểm khác nhau; không ghi “reproduced” chỉ vì `pull` thành công. `status.py` mô tả cả trạng thái missing/new/deleted; trạng thái working tree không thay kiểm quyền dùng dữ liệu.
+
+| Lựa chọn | Bài toán phù hợp | Cổng riêng cần giữ |
+|---|---|---|
+| DVC + Git metadata | Dataset/model theo từng project và recipe | Clone/cache sạch, tải đúng object, hashes/manifest, schema và khả năng đọc; pin môi trường khi thử reproduce |
+| [lakeFS](#lakefs) | Branch/commit trên data lake dùng chung | Production grant BUSL cần kiểm theo phiên bản; permission và retention của object store vẫn riêng |
+| Object store bất biến + manifest | Pipeline đơn giản, muốn ít dependency | Tự giữ checksum, source lineage và quyền truy cập; không mặc định có dependency DAG |
+| [DataTrove](#datatrove) / [Data-Juicer](#data-juicer) | Biến đổi/lọc/khử trùng corpus | Thống kê theo nhóm và downstream holdout; các công cụ này không thay artifact registry/versioning |
+
+### 6b.2 Cổng promote dữ liệu cho xưởng
+
+| Thời điểm | Bằng chứng máy đọc | Negative case / điều kiện chặn |
+|---|---|---|
+| Trước xử lý | Source manifest: origin ID, quyền dùng, revision, hash, retention và nguồn consent nếu áp dụng | Không xác định được phạm vi sử dụng; source ID bị mất sau parse |
+| Sau biến đổi | Input/output lineage, recipe/dependency/model revisions, số lượng theo source/nhóm, lý do loại | Mất một ngôn ngữ/tenant/nhóm hiếm nhưng tổng số dòng vẫn hợp lệ |
+| Trước split | Cluster/group/time keys được truyền qua mọi bản dẫn xuất | Một source và synthetic descendant lọt hai partition; held-out dùng để chọn filter |
+| Trước promote | Schema/PII/leakage/downstream reports và các case không kết luận được | Chỉ data score tăng mà task quality giảm; quyền truy cập của CI rộng hơn mục đích |
+| Sau lưu trữ | Receipt tải từ remote vào môi trường sạch, checksum, record count và representative reader test | Cache local che object thiếu; `allow_missing` hoặc skip làm kết quả xanh giả |
+| Khi thu hồi | Source → derived records → export/model/index versions bị ảnh hưởng, quyết định giữ/xoá và biên bản kiểm | Chỉ xoá source nhưng bản dẫn xuất/index/backup còn truy cập; nhầm rollback với xoá dữ liệu |
+
+Đường đi tham khảo: source manifest → xử lý có thống kê theo nhóm → snapshot/version bất biến → tải lại và đọc từ môi trường sạch → promote đúng revision sang [mục 10](../10-local-llm-rag-memory/README.md), [25](../25-model-adaptation-post-training/README.md), [26](../26-document-intelligence-ocr/README.md). Khi dữ liệu bị thu hồi, xác định cả artifact đã phát hành và dữ liệu sao lưu; yêu cầu xoá khỏi weights sau training cần cơ chế/đánh giá riêng, không được hứa “đã quên” chỉ từ việc xoá file.
+
+CI DVC ở SHA này có matrix OS/Python và đặt `DVC_NO_ANALYTICS` ở các job được đọc. Điều đó cho thấy cấu hình từng job quan trọng; chưa audit toàn bộ telemetry runtime của DVC hoặc dịch vụ remote. Các ngưỡng quyền riêng tư, coverage nhóm và chất lượng do dự án đặt trước khi nhìn holdout. Đợt này chỉ kiểm hồ sơ của kho, chưa nghiệm thu dataset thực tế.
+
+**Nguồn §6b:** [LICENSE](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/LICENSE) · [dvc/repo/reproduce.py](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/reproduce.py) · [dvc/repo/pull.py](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/pull.py) · [dvc/repo/status.py](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/status.py) · [.github/workflows/tests.yaml](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/.github/workflows/tests.yaml).
+
 ## 7. Nguồn và nguyên tắc cập nhật
 
 Mỗi hồ sơ dẫn README/LICENSE/CI/source ghim full SHA đã clone. Stars và `archived` lấy từ GitHub REST ngày 2/11/2026; commit date lấy từ HEAD đã đọc. `pushed_at` có thể là hoạt động nhánh khác. Không gọi repo “còn phát triển mạnh” chỉ vì chưa archive. Không chạy mã, upload dataset hay kiểm chứng con số marketing trong đợt này.

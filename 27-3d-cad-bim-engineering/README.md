@@ -162,6 +162,43 @@ Chuẩn trao đổi issue/viewpoint, có schema/testcases; default branch releas
 
 **Nguồn §5b:** bài người dùng gửi 3/11/2026 · clone https://github.com/codingfeng101/canvasanvil HEAD `27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e`: https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/README.md · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/LICENSE · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/client/workspaces/cad/lib/tasks.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/resources/prompts/cad/images-agents/reflected-ceiling-plan.md · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/resources/prompts/cad/bom-prompt.md · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/ai/image.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/ai/model.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/telemetry/langfuse.ts · https://github.com/codingfeng101/canvasanvil/blob/27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e/server/routes/chat.ts · GitHub search API `repo:codingfeng101/canvasanvil` 3/11/2026.
 
+<a id="factory-2026-11-04"></a>
+
+## 6. Nâng trần 4/11/2026: CAD tạo bằng mã phải có hợp đồng đơn vị và vòng xuất–nhập
+
+**Trần hiện tại:** §3 đã tách mesh/B-rep/BIM và §4 có đọc lại host. Xưởng còn cần fixture hồi quy hình học, unit/tolerance qua exporter và quy trình kiểm artifact độc lập với ảnh preview. Các ngưỡng dưới đây do dự án tích hợp chọn theo domain, không phải một chuẩn an toàn chế tạo chung.
+
+| Lựa chọn | Điểm mạnh phù hợp | Bằng chứng nghiệm thu | Giới hạn phải giữ |
+|---|---|---|---|
+| CadQuery dưới đây | Sinh B-rep tham số bằng Python, hợp backend/CI không GUI | Validity + số solid + bbox/volume + STEP round-trip có đơn vị | Kernel hợp lệ không chứng minh chi tiết sản xuất được |
+| FreeCAD ở §2 | Workbench/tài liệu tham số và GUI cho kỹ sư | Recompute, mở/lưu/mở lại file, đọc giá trị sau chỉnh | Phiên bản host/add-in và headless cần kiểm riêng |
+| OpenSCAD ở §2 | Mô hình CSG bằng mã dễ review | Render backend đã ghim, solid/dimension sau export | Preview không thay render; STL không tự định nghĩa unit |
+| IfcOpenShell/IfcTester ở §2 | BIM và yêu cầu thông tin IDS | Schema IFC + IDS + GUID/property/domain | IDS pass chỉ phủ yêu cầu được mô tả |
+| Trimesh ở §2 | Kiểm mesh độc lập sau tessellation | Component, winding, volume, bbox/scale | Không thay kernel B-rep, kiểm độ bền hoặc DFM |
+
+<a id="cadquery"></a>
+
+### CadQuery: exporter và importer đều mang tham số đơn vị
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / SHA / license | [CadQuery/cadquery](https://github.com/CadQuery/cadquery), `8178185a24a035c9af7f4679033be14267f6a6ef`, Apache-2.0; OCP/OCCT và dependency kiểm quyền riêng |
+| Kiểm chứng 2026-11-04 | `code-read`: README/LICENSE, `shapes.py`, export/import STEP và workflow container; chưa tạo shape/build hoặc chạy kernel |
+| Cơ chế cụ thể | `Shape.isValid()` gọi `BRepCheck_Analyzer(...).IsValid()`. `export()` nhận `unit="MM"`, `outputUnit`, chuyển tham số cho `exportStep`; import STEP nhận `unit="MM"`, đặt target cascade unit trước khi đọc, để OCCT scale từ unit khai trong file. |
+| Cổng đã có trong upstream | Workflow `apptainer_build.yml` build container rồi gọi `pytest tests/`; sự hiện diện workflow không xác nhận run thành công hoặc mọi distro/phiên bản kernel đều tương đương. |
+| Tích hợp | Khóa schema tham số, phiên bản CadQuery/OCP/OCCT, đơn vị đầu vào/xuất/nhập và tolerance theo model units. Lưu script + input manifest + checksum STEP/STL + số đo sau reimport. |
+| Hạn chế / rủi ro | Một cờ valid không chứng minh đúng kích thước, không self-intersection ở mọi phép biểu diễn, wall thickness, clearance hoặc tuân quy chuẩn. Python script do agent sinh cần sandbox/quota như mã thực thi, không mở quyền ghi host tùy ý. |
+
+**Tuyến nâng sâu:**
+
+1. Mô tả yêu cầu thành schema: đơn vị, hệ tọa độ, miền tham số, dung sai kích thước, số solid và feature quan trọng; có fixture biên/âm (rỗng, chiều âm, giao nhau, lỗ nhỏ hơn ngưỡng). Agent chỉ đề xuất tham số/lệnh trong capability của host.
+2. Sinh bằng engine đã ghim, giữ artifact gốc và lịch sử tham số; kiểm exception, recompute, validity, số solid, bbox và volume có ý nghĩa. Sai một cổng không được che bằng ảnh render đẹp.
+3. Export STEP theo unit rõ, import vào tiến trình sạch bằng target unit rõ; so dimensions/volume theo tolerance nghiệp vụ. Đối với STL, mang unit trong manifest ngoài file và kiểm lại scale ở consumer.
+4. Chạy hồi quy hình học trên nhiều bộ tham số; so invariants/đặc trưng thay vì hash binary đơn độc vì kernel/export có thể đổi byte không đổi hình. Với BIM thêm schema/IDS; với host thật kiểm save/reopen và readback.
+5. Kỹ sư có thẩm quyền duyệt DFM/tải trọng/quy chuẩn theo ngữ cảnh; giữ report đo và người duyệt bên cạnh model revision. Nối [mục 30](../30-software-testing-quality/README.md) cho contract/hồi quy, [31](../31-software-supply-chain-security/README.md) cho dependency/asset.
+
+**Đã đổi so với đợt trước:** bổ sung CadQuery như một tuyến B-rep chạy trong pipeline, và kiểm đơn vị ở cả hai phía STEP thay vì chỉ ghi unit trong prompt. Không suy ảnh CanvasAnvil ở §5b thành artifact CAD đo được. **Nguồn §6:** [README.md](https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/README.md) · [LICENSE](https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/LICENSE) · [cadquery/occ_impl/shapes.py](https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/cadquery/occ_impl/shapes.py) · [exporter STEP](https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/cadquery/occ_impl/exporters/__init__.py) · [importer STEP](https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/cadquery/occ_impl/importers/__init__.py) · [.github/workflows/apptainer_build.yml](https://github.com/CadQuery/cadquery/blob/8178185a24a035c9af7f4679033be14267f6a6ef/.github/workflows/apptainer_build.yml).
+
 ## Nguồn
 
 Các permalink trong từng hồ sơ cố định đúng phiên bản đã đọc; số sao/trạng thái archive là snapshot GitHub API ngày 2026-11-02. Không chạy mã, huấn luyện model hoặc tái lập kết quả của upstream.
