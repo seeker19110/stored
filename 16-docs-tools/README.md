@@ -397,6 +397,49 @@ Các repo còn lại (vitepress, mdBook, docsify, deepwiki-open, codeflow) dao �
 
 **Nguồn §2j:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/trailhq/Trail-Code HEAD `b9c2e23e9b579200dba83d47e8dbdd8a488b6988` (README.md: What stays on your machine, SWE-bench Verified, Claude Code deep integration; TELEMETRY.md; LICENSE; package.json; `scripts/{postinstall,stamp-telemetry-key}.mjs`; `src/claude/pre-bash.ts`; `.github/workflows/ci.yml`; `.github/scripts/npm-downloads-badge.mjs`; `git shortlog`, `git tag`) · registry.npmjs.org `@trailhq/trail-code`, `@nanonets/graft` (latest 0.28.1) · api.npmjs.org downloads last-month 3/10–1/11/2026 · api.securityscorecards.dev (7.2, 2/11/2026) · GitHub search API `repo:trailhq/Trail-Code` 3/11/2026.
 
+<a id="factory-docs-executable-2026-11-04"></a>
+
+## 2k. Nâng trần 4/11/2026: tài liệu là hợp đồng chạy được của xưởng phần mềm
+
+**Trần và khoảng trống.** §2h đã có lint/link; §2i có owner, provenance và đúng phiên bản; §2j có tri thức codebase. Xưởng vẫn có thể phát hành một hướng dẫn đẹp nhưng ví dụ đã hỏng, hoặc runbook chưa từng phục hồi được hệ thống. Bước sâu hơn là nối **mỗi lời hứa kỹ thuật quan trọng với một phép kiểm** ở repo sản phẩm. Phần này đọc mã và CI upstream, không chạy ví dụ hay benchmark ngoài kho; đây là thiết kế tích hợp, chưa là kết quả nghiệm thu.
+
+### 2k.1 Sybil: lấy ví dụ ngay trong docs đưa vào test runner
+
+| Thuộc tính | Kết quả đọc 4/11/2026 |
+|---|---|
+| Repo / tác giả | `simplistix/sybil`, Chris Withers và cộng đồng; công cụ kiểm ví dụ tài liệu Python |
+| License · phiên bản | MIT trong `LICENSE.txt`; HEAD `de4cdc5a24d5c8879bf3db1089924f51bd25c972`; `pyproject.toml` yêu cầu Python ≥3.11; không thu thập sao |
+| Cơ chế | Parser tìm vùng ví dụ trong reST/Markdown/MyST; tích hợp pytest tạo `SybilItem` cho từng example, `runtest()` gọi `example.evaluate()` và gắn fixtures vào namespace |
+| Đường thực thi | `PythonEvaluator` dùng `compile(..., 'exec')` rồi `exec` trong namespace; đây là **thực thi mã tài liệu**, không phải sandbox. Chỉ chạy nguồn đã review trong môi trường test có quyền giới hạn |
+| CI đã đọc | Workflow `ci.yml` gọi reusable workflow `cjw296/python-workflow/.../uv-ci.yml@v2`; repo có fixture pass/fail. Tham chiếu tag workflow vẫn là phụ thuộc cần kiểm khi vendor |
+| Giới hạn | Chỉ vùng do parser/pattern chọn mới thành test. Code block chạy hết nhưng không có assertion có thể vẫn không chứng minh kết quả; ví dụ bị skip hay không được collect phải được báo riêng |
+
+[Collector và callsite]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/src/sybil/integration/pytest.py ) · [evaluator Python]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/src/sybil/evaluators/python.py ) · [mẫu khai báo parser]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/docs/examples/quickstart/conftest.py ) · [license]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/LICENSE.txt ) · [CI]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/.github/workflows/ci.yml ).
+
+### 2k.2 Chọn đúng lớp kiểm
+
+| Nhu cầu | Baseline / lựa chọn | Bằng chứng và phần còn thiếu |
+|---|---|---|
+| Ví dụ Python trong docs | `doctest` chuẩn; Sybil khi cần parser/fixture từ nhiều định dạng; `sphinx.ext.doctest` nếu đã dùng Sphinx (§1) | Báo cáo số ví dụ collect/pass/fail/skip; assertion trên giá trị/side effect quan trọng. Không ép stack JS/Go dùng Python chỉ để có doctest |
+| Văn phong/thuật ngữ | Vale; CSpell; markdownlint (§2h) | Kiểm văn bản, không chứng minh API tương thích. Với Vale, `--no-exit` có thể biến lỗi lint thành mã thoát 0; không dùng nó làm cổng blocking |
+| Hợp đồng SDK/API | Ví dụ phải compile/typecheck/test với lockfile thật; đối chiếu API contract ở mục 29 | Báo cáo version/dependency và kết quả request; renderer HTML thành công không kiểm đường gọi |
+| Runbook vận hành | Diễn tập có phạm vi trong môi trường thử; liên kết mục 33 | Chứng cứ khôi phục, thời gian và mất dữ liệu; không chạy lệnh phá hủy chỉ vì nó nằm trong docs |
+
+Chi tiết Vale được đọc lại ở HEAD `0d9e80234ba63323fefa027b5698467cf477c46d` (MIT): `main.go` chọn exit 2 khi có tài liệu không lint được, exit 1 khi `hasErrors` và không `--no-exit`, còn lại exit 0. Luật/style và mức severity phải được review, không lấy một lệnh có output làm bằng chứng CI đang chặn. [Đường exit]( https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/cmd/vale/main.go ) · [cờ CLI]( https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/cmd/vale/flag.go ) · [CI đa nền tảng]( https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/.github/workflows/test.yml ).
+
+### 2k.3 Luồng tích hợp và tiêu chí nghiệm thu
+
+1. Mỗi trang gắn owner, version áp dụng và nguồn như §2i; chọn loại Diátaxis để tách tutorial khỏi reference và giải thích kiến trúc.
+2. Với hướng dẫn quan trọng, trỏ đến ví dụ có assertion ngay trong docs hoặc test của repo sản phẩm; tránh sao chép cùng đoạn code thành hai bản trôi khác nhau.
+3. CI kiểm lint/link trước, rồi collect và chạy ví dụ bằng runtime/lockfile của sản phẩm. Lưu danh sách file và số ví dụ; **zero collected** không được ghi là “docs đã được kiểm”.
+4. Xuất artifact gồm commit tài liệu, commit ứng dụng, dependency lock, báo cáo test và site build; thay dependency/API/CLI thì chạy lại các ví dụ bị ảnh hưởng.
+5. Chặn phát hành nếu ví dụ luồng chính hỏng, API bị bỏ mà docs còn dạy, hoặc runbook bắt buộc không có bằng chứng diễn tập còn hiệu lực theo chính sách nhóm. Lint/style có thể chia severity, không biến mọi cảnh báo câu chữ thành lỗi sản phẩm.
+6. Portal Backstage (§2i) phù hợp khi cần catalog owner và nhiều dịch vụ; SSG đơn giản vẫn đủ với một repo. Lớp kiểm trên không phụ thuộc phải triển khai portal.
+
+**Đã nâng sâu:** từ “docs hợp lệ và có nguồn” sang ví dụ thực thi được và artifact gắn với release. Không tự sửa/cài pipeline của dự án khác trong kho này.
+
+**Nguồn §2k:** các permalink trên; [README Sybil]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/README.rst ), [manifest]( https://github.com/simplistix/sybil/blob/de4cdc5a24d5c8879bf3db1089924f51bd25c972/pyproject.toml ), [Vale LICENSE]( https://github.com/vale-cli/vale/blob/0d9e80234ba63323fefa027b5698467cf477c46d/LICENSE ). Đã đọc mã/LICENSE/CI tại SHA ghi trong hồ sơ; chưa chạy upstream.
+
 ## 3. Nguồn
 
 - https://www.mintlify.com/library/best-llms-txt-platforms · https://dupple.com/learn/best-documentation-tools · https://ekline.io/blog/docusaurus-alternatives · https://www.pkgpulse.com/guides/best-documentation-frameworks-2026 · https://docsalot.dev/blog/best-mintlify-alternatives · https://affine.pro/blog/best-technical-documentation-software-tools-for-developers

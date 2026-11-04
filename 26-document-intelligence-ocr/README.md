@@ -123,6 +123,45 @@ Một pipeline tốt giữ riêng **trang xử lý thành công, fallback, bị 
 
 Paper gốc [OmniDocBench (CVPR 2025)](https://openaccess.thecvf.com/content/CVPR2025/html/Ouyang_OmniDocBench_Benchmarking_Diverse_PDF_Document_Parsing_with_Comprehensive_Annotations_CVPR_2025_paper.html) hỗ trợ đánh giá nhiều thành phần tài liệu; benchmark miền đích vẫn cần corpus riêng, nhất là biểu mẫu tiếng Việt và ảnh chụp điện thoại.
 
+<a id="factory-2026-11-04"></a>
+
+## 5. Nâng trần 4/11/2026: tài liệu vào xưởng phải có nguồn gốc và trạng thái từng trang
+
+**Trần hiện tại:** §2–§4 đã tách OCR, layout, bảng và citation. Khoảng thiếu là hợp đồng đưa tài liệu khách hàng vào phần mềm: giới hạn tài nguyên, trạng thái partial, định danh phiên bản, quyền truy xuất và xóa dữ liệu dẫn xuất. Bản đọc bổ sung không tự chứng minh accuracy trên PDF tiếng Việt hoặc dữ liệu thực tế của xưởng.
+
+| Tuyến | Nên chọn | Đầu ra cần giữ | Cổng và giới hạn |
+|---|---|---|---|
+| PDF đã có text đáng tin | Native extraction, Docling; so OCRmyPDF ở §2 khi cần searchable PDF | Text có trang/bbox, version parser và hash file | Reading order, ký tự/font và bảng; không OCR lại mọi trang vì có thể làm sai text đúng |
+| Scan/ảnh nhiều nhiễu | Tesseract/PaddleOCR ở §2 | Text, vùng, confidence và lỗi từng trang | CER/WER trên corpus đúng ngôn ngữ; confidence không được dùng như xác suất trường nghiệp vụ đúng |
+| Tài liệu nhiều bố cục/bảng | Docling/PaddleOCR/MinerU ở §2 | Cấu trúc bảng/ô/span, trang/bbox, provenance | Đo cấu trúc lẫn giá trị ô; Markdown nhìn đẹp chưa đủ |
+| Trích trường hợp đồng/hóa đơn | Parser + schema + luật nghiệp vụ + hàng chờ review | Trường, raw value, normalized value, nguồn và trạng thái | Decimal/unit/date, tổng tiền, thiếu/không đọc được/không áp dụng phải phân biệt |
+
+<a id="docling-factory"></a>
+
+### Docling đọc sâu: hai cờ false chưa chứng minh chạy hoàn toàn offline
+
+Hồ sơ gốc ở [mục 10](../10-local-llm-rag-memory/README.md); giữ nguyên thực thể catalog `docling`, không tạo bản sao cho mục 26.
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / SHA / license | [docling-project/docling](https://github.com/docling-project/docling), `0634e2f74561e5950d69b2cace67ef95400506ad`, MIT cho thư viện; quyền weights/artifact phải kiểm riêng |
+| Kiểm chứng 2026-11-04 | `code-read`: converter, pipeline options, base/standard PDF pipeline, LICENSE và CI; chưa convert tài liệu hoặc bắt lưu lượng |
+| Default đã đọc | `enable_remote_services=False`, `allow_external_plugins=False`, nhưng `artifacts_path=None` được mô tả sẽ lấy model từ nguồn từ xa khi cần. Pipeline truyền các cờ tới factory/model; không suy ra mọi plugin hoặc cấu hình tùy chọn đều giữ nguyên mặc định. |
+| Partial | `convert_all()` cho `PARTIAL_SUCCESS` đi tiếp ngay cả khi `raises_on_error=True`; việc không ném exception không có nghĩa tài liệu đã xử lý đủ. `document_timeout` có thể cho kết quả partial. |
+| Giới hạn đầu vào | `max_num_pages` / `max_file_size` mặc định ở converter là `sys.maxsize`; xưởng cần đặt giới hạn tường minh, không dùng mặc định như một quota nghiệp vụ. |
+| CI / chưa phủ | `ci.yml` gọi các lane trong `checks.yml`; có điều kiện lọc thay đổi và danh sách example không hỗ trợ/không chạy ở CI. Không nhận định mọi định dạng, model và backend đã được CI bao phủ. |
+
+**Tuyến tích hợp và cổng nhận tài liệu:**
+
+1. Nhận file bằng content hash + source revision + tenant/ACL; loại file được chấp nhận, page/size/time quota và sandbox parser là hợp đồng riêng. Tên file hoặc prompt trong PDF không được coi là chỉ dẫn điều khiển agent.
+2. Chọn native/OCR theo từng trang; ghi parser/model/version, model artifact đã chuẩn bị, ngôn ngữ và trạng thái OCR. Nếu yêu cầu offline, cấp model artifacts cục bộ và kiểm lưu lượng thực tế trong môi trường tích hợp; hai cờ mặc định không thay phép kiểm này.
+3. Lưu trạng thái `success/partial/failed` từng trang và toàn tài liệu; hàng chờ review tiếp nhận trang lỗi/timeout. Không đưa kết quả partial vào chỉ mục như bản đầy đủ, không biến thiếu trường thành chuỗi rỗng hợp lệ.
+4. Đo corpus có gold annotation: text, reading order, table cells, field exact match/normalization và tỷ lệ citation chỉ đúng vùng. Chia theo scan/native, tiếng Việt, bảng dài, file mã hóa và trang xoay; báo cả file bị loại và lỗi.
+5. Chunk/index chỉ từ phiên bản đã duyệt, giữ page/bbox/ACL xuyên retrieval tới câu trả lời; câu trả lời phải kiểm citation tồn tại và thuộc revision/tenant hiện hành. Nối [24](../24-ai-data-engineering/README.md), [10](../10-local-llm-rag-memory/README.md), [12](../12-ai-security-guardrails/README.md).
+6. Diễn tập thay thế và xóa nguồn: raw file, extraction, chunks, embedding, cache và audit reference phải có retention/lineage. Phép kiểm là query không còn trả nội dung đã thu hồi, không chỉ xóa một hàng metadata.
+
+**Đã đổi so với đợt trước:** chuẩn hóa phạm vi đọc Docling tại SHA mới và đưa `PARTIAL_SUCCESS` vào điều kiện nghiệm thu; chưa đánh giá lại accuracy hoặc quyền từng bộ weights. **Nguồn §5:** [README.md](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/README.md) · [LICENSE](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/LICENSE) · [docling/datamodel/pipeline_options.py](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/datamodel/pipeline_options.py) · [docling/document_converter.py](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/document_converter.py) · [docling/pipeline/base_pipeline.py](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/pipeline/base_pipeline.py) · [docling/pipeline/standard_pdf_pipeline.py](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/docling/pipeline/standard_pdf_pipeline.py) · [.github/workflows/ci.yml](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/.github/workflows/ci.yml) · [.github/workflows/checks.yml](https://github.com/docling-project/docling/blob/0634e2f74561e5950d69b2cace67ef95400506ad/.github/workflows/checks.yml).
+
 ## Nguồn
 
 Các permalink trong từng hồ sơ cố định đúng phiên bản đã đọc; số sao/trạng thái archive là snapshot GitHub API ngày 2026-11-02. Không chạy mã, huấn luyện model hoặc tái lập kết quả của upstream.

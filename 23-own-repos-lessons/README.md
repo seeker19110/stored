@@ -480,6 +480,47 @@ Các SHA trên không mới hơn bản khảo sát §8d ở mọi repo; phần n
 
 **Nguồn §8e:** GitHub metadata/HEAD và clone chỉ đọc ngày 2/11/2026 cho Dhcb-Tools (`ebc363a3d9679f5ad56e105544305ad9bbbe516c`), design-os-3d-blender (`0a75a30c7fd696899e8c1d00c3299fd6ca44397e`), X-Agents (`da755ba418bb2ab0e1c737f9b7e7f0bf1b1b68c9`); LICENSE/README, các file mã/test permalink trên. Đây là evidence review của snapshot, không có kết quả thực thi mới.
 
+## 8f. Nâng trần 4/11/2026: học cơ chế có phạm vi, ràng bằng chứng với đầu vào thật
+
+**Trần hiện tại:** §8e đã đặt ranh giới chuyển bài học. Xưởng nhiều repo còn cần biết bằng chứng nào đã hết hiệu lực, và dùng cùng một hợp đồng nghiệm thu mà không chép nguyên một harness sang mọi sản phẩm. Tên chủ repo, số lượng rule hay CI xanh của framework không thay phép kiểm trên dự án nhận.
+
+<a id="x-templates-factory-evidence"></a>
+
+### 8f.1 X-Templates: bằng chứng không chỉ là một cờ xanh
+
+| Thuộc tính | Giá trị đã đối chiếu |
+|---|---|
+| Repo / tác giả | [seeker19110/x-templates](https://github.com/seeker19110/x-templates), cùng hệ sinh thái chủ kho; quan hệ này cần được ghi khi so sánh |
+| Phiên bản / license | `23447d817d2bc8cf68093591177f85fd72a8a2f6`; MIT trong `LICENSE`; đọc mã/CI 2026-11-04 |
+| Phạm vi | `scripts/xt.py`: `loop_record`, `evidence_meta`, `evidence_stale`, `run_gate_shell` và `zero_tests_red`; đọc thêm test/CI, chưa chạy chúng |
+| Cơ chế có bằng chứng | Evidence v2 lưu hash lệnh, `scope`, revision yêu cầu và digest các file trong phạm vi **trước khi chạy**. `evidence_stale` buộc chạy lại khi các trường không khớp, thiếu trường, hoặc task không khai phạm vi để giữ kết quả. |
+| Giới hạn | Digest chỉ thấy phạm vi đã khai; không tự bao trùm dependency ngoài phạm vi, dịch vụ từ xa, cấu hình hay dữ liệu không được đưa vào hợp đồng. Evidence không phải attestation chống sửa bởi người có quyền ghi cùng filesystem. |
+| Cổng 0 test | `run_gate_shell` chuyển kết quả exit 0 có dòng khớp `^Ran 0 tests` thành exit 5; đây là mẫu unittest cụ thể, **không phải detector mọi test runner**. |
+| CI | `.github/workflows/ci.yml` có fan-out build/typecheck/lint/test và job quality phụ thuộc các nhánh; đọc cấu hình và test, không xác nhận live required checks/ruleset đang áp dụng ở mọi repo nhận. |
+
+Điểm học được là quan hệ **yêu cầu → lệnh → phạm vi đầu vào → kết quả**, thay vì tin file “done”. CI của framework có `blueprint-status ... || true` ở bước khảo sát profile; không nên biến mọi bước informational thành cổng chặn khi đọc lướt YAML. Phải xác định bước nào thực sự quyết định verdict cuối.
+
+### 8f.2 So cơ chế trước khi đưa vào mẫu xưởng
+
+| Mẫu đã có trong kho | Giá trị nên chuyển | Điều không được suy |
+|---|---|---|
+| X-Templates evidence v2 | Vô hiệu kết quả khi yêu cầu/lệnh/input trong scope đổi; chặn fixture 0 test đã biết | Mọi input production đều đã được hash; mọi output tự khai đều đáng tin |
+| projects-template / xboss-manager (§2, §8e) | Tách plan/progress/verification, cổng dừng theo tác vụ | Phiên bản đã đọc tháng trước là phiên bản hôm nay; không backfill ngày kiểm |
+| X-Agents (§3.1) | Model đề xuất, code thực thi và ghi người/đường kiểm | “Hai agent” tự bảo đảm độc lập về dữ liệu, quyền và model |
+| qlkh / xboss (§3.3, §4.3) | Lệnh chuẩn và kiểm application domain | Bộ cổng của web app đủ cho CLI, BIM host hoặc payment workflow |
+
+### 8f.3 Chuỗi học chuyển được sang nhiều sản phẩm
+
+1. Lập matrix profile/rủi ro: library, web, API, desktop/BIM hay data pipeline; đánh dấu cơ chế dùng chung và phần cần host thật.
+2. Mỗi bài học trỏ đến SHA/file/callsite và một negative case; đối chiếu xem dự án đích đã sâu hơn, còn nông hay thiếu. Không thêm rule trùng chỉ để tăng số lượng.
+3. Chọn một pilot có baseline, đưa cơ chế vào repo nhận và chạy test của chính repo đó; kho `stored` giữ hồ sơ/đánh giá và nguồn, không chứa code công cụ tích hợp.
+4. Artifact nghiệm thu phải ràng yêu cầu, input revision, command, môi trường và kết quả; môi trường/remote thay đổi cần có chính sách chạy lại dù source không đổi.
+5. Review độc lập tập trung vào đường bypass, input ngoài scope, zero-test và skipped checks. Bàn giao bài học theo hợp đồng [X-TEMPLATES.md](../X-TEMPLATES.md), không tự tuyên bố requirement đã được triển khai ở repo đích.
+
+**Đã đổi so với lượt trước:** bổ sung hồ sơ X-Templates với cơ chế evidence v2 và giới hạn detector zero-test, không rà lại toàn bộ 19 repo. Các nhận định lịch sử của §1–§8b vẫn giữ ngày đọc ban đầu. Không có benchmark productivity/cost hay kiểm production nào được tự chạy trong lượt này.
+
+**Nguồn §8f:** [LICENSE](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/LICENSE) · [scripts/xt.py](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/scripts/xt.py) · [tests/test_xt_loop.py](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/tests/test_xt_loop.py) · [tests/test_merge.py](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/tests/test_merge.py) · [.github/workflows/ci.yml](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/.github/workflows/ci.yml) · [framework/01-baseline/quality-gates.md](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/01-baseline/quality-gates.md) · [framework/00-method/evidence-and-sources.md](https://github.com/seeker19110/x-templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/00-method/evidence-and-sources.md).
+
 ## 9. Nguồn (đường dẫn trong các clone nông, đọc 2026-10-12)
 
 - projects-template: `README.md`, `.claude/settings.json`, `.claude/hooks/{auto-complete-guard,pre-commit-gate,session-resume,usage-guard,telemetry-record}.sh`, `scripts/{dev-task.sh,check-docs-consistency.sh,test-hooks-loop.sh,model-capability-tiers.json,subagent-dispatch.py,maintain-run.sh}`, `docs/framework/{adopt-from-outside,orchestration-3-tier}.md`, `docs/reports/2026-09-22…2026-10-12-*.md`, `TRAPS.md`, `docs/adr/0003,0005,0006,0007,0009,0010,0011`, `.github/workflows/{ci,pr-policy,maintenance}.yml`, `docs/ops/{supply-chain,threat-model-maintain-cron}.md`

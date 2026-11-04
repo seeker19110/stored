@@ -582,6 +582,46 @@ Không repo nào của mục 22 bị archive.
 
 **Nguồn §9i:** bài đăng người dùng dán 2/11/2026 (không link, không tác giả) · GitHub search API 2/11/2026 (`search/repositories`, `search/code` cho "rapier" "howler" "mediabunny" "remotion" "gsap"; `repo:` cho 12 repo trong bảng) · clone `--depth 1 --filter=blob:none` 2/11/2026: `lelongc/tools` (HEAD `dbe944e`; `other/agent-video/repo.md`) · `HaiTLU/video-studio` (HEAD `786e38c`; README, CLAUDE.md, `tai-lieu/NGUON-KY-NANG.md`, `.claude/skills/embedded-captions/CATALOG.md`, `.claude/skills/sound-layer/SKILL.md`, đếm `.claude/skills/`) · `Freedombuiders/AIOS-Lite` (HEAD `750e0fd`; LICENSE, README, `agents/`, `modules/video/docs/dung-nhanh-architecture.md`) · `hdduytran/one-studio-skill` (HEAD `a50aefc`; README, `plugins/one-studio/skills/one-studio/references/`) · `t01090943940-afk/Videos` (HEAD `f3d138e`; `motion-library-atlas/SKILL.md`, đếm `references/libraries/`) · `Bodila51/opus-sound-layer` (HEAD `52ac266`; LICENSE, README) · `Barty-Bart/motion-graphics` (HEAD `3d83d98`; `skills/sound-effects/{SKILL.md,README.md,TOP-PICKS.md,MUSIC.md,LICENSES.md}`, đếm `sfx/`) · `charlie947/motion-graphics-skills` (HEAD `229022e`; `skills/motion-effects/references/effects.md`) · `bestagentkits/motion-video-skill` (HEAD `a73702b`; `references/`) · `Vanilagy/mediabunny` (HEAD `aa59231`; LICENSE, package.json, `.github/workflows/`) · `goldfire/howler.js` (HEAD `1d30535`; LICENSE.md, package.json) · `dimforge/rapier` (HEAD `475caa3`; LICENSE, Cargo.toml) · WebSearch 2/11/2026 (không thấy nguồn nào cho tên 4 món hay bộ vai 6 người)
 
+## 9j. Nâng trần 4/11/2026: motion và video là artifact phần mềm có thể nghiệm thu
+
+**Trần hiện tại:** §9g–9h đã có reduced-motion và kiểm runtime. Xưởng còn cần nối source → render → asset được phát hành, để cùng một cảnh có thể tái kiểm khi agent đổi code, font, media hay browser. Một ảnh đẹp không chứng minh timeline, âm thanh, phụ đề và giấy phép đều đúng.
+
+<a id="remotion-factory"></a>
+
+### 9j.1 Remotion: seed và license là hai hợp đồng khác nhau
+
+Đọc mã/LICENSE/CI **2026-11-04**, SHA `fe9f0c372706f2039da6b2a0a92b92aa746e69cf`; chưa cài, render hoặc chạy test upstream.
+
+`packages/core/src/random.ts` cho kết quả pseudo-random ổn định khi truyền cùng string/number; **`random(null)` gọi `Math.random()`**. Vì vậy dùng API tên `random` không tự tạo render tất định. Seed cố định cũng không khoá font, ảnh URL động, timestamp, codec, browser hay GPU. `render-media.ts` nhận `inputProps`, `frameRange`, concurrency và timeout: cần lưu chúng cùng render manifest, không chỉ giữ file MP4.
+
+`LICENSE.md` và `packages/core/LICENSE.md` là **Remotion License**, không phải MIT/Apache. Free License bao gồm cá nhân và tổ chức có lợi nhuận tới 3 nhân viên theo văn bản đã đọc; các trường hợp ngoài nhóm đủ điều kiện phải có Company License. Có thêm điều kiện use case trong license. Dự án có thể đọc source nhưng không vì thế được ghi `open_source=true` theo nghĩa license OSI. Quyền font, nhạc, ảnh và template vẫn phải kiểm riêng; nhãn license package phụ không thay license engine.
+
+| Pipeline | Phù hợp với xưởng | Điều kiện / lựa chọn thay thế |
+|---|---|---|
+| Remotion, React + frame | Demo sản phẩm, explainers có data/props, cần kết hợp hệ sinh thái React | Kiểm điều kiện pháp nhân/use case trước mua công suất render; so [HyperFrames](#2-nền-tảng-chính-thức-nhóm-e) khi muốn HTML pipeline |
+| HyperFrames, đã có §2/§9e | Nhóm đã có HTML/CSS và cần render theo scene | Pin browser/FFmpeg và resource budgets; Apache của toolkit không cấp quyền media bên ngoài |
+| Motion Canvas, đã có §9b | Explainer kỹ thuật cần timeline bằng code | So công sức scene graph với layout React; test trên frame/timestamp đã chốt |
+| Motion/GSAP cho UI, đã có §6 | Animation nằm trong app tương tác | Kiểm input/focus/reduced-motion trong browser; video offline không kiểm được trải nghiệm bàn phím |
+
+### 9j.2 Hợp đồng artifact và cổng kiểm
+
+| Cổng ở dự án tích hợp | Artifact cần lưu | Tình huống phải bắt được |
+|---|---|---|
+| Input | Hash source, props, seed, scene duration/fps, asset manifest và quyền dùng | URL/font đổi âm thầm; thiếu quyền phát hành; số lượng frame sai |
+| Render | Engine/browser/codec version, kích thước, concurrency, lệnh, log và checksum output | Timeout, frame đen/trống, media chưa tải, thiếu frame/cuối cảnh bị cắt |
+| Timeline | Frame mốc trước/giữa/sau transition; contact sheet hoặc video review | Text đè, vùng an toàn sai, nhảy layout; snapshot một frame không đủ |
+| Nội dung và âm thanh | Transcript/subtitle timing, nguồn số liệu, loudness/peak và audio duration | Claim sản phẩm không có thật, subtitle lệch, clipping hoặc track im lặng |
+| UI motion | Kết quả test với reduced-motion, keyboard/focus và thiết bị yếu | Tắt animation làm mất trạng thái/điều hướng; hiệu ứng chặn thao tác |
+| Regression | Baseline theo môi trường; số cảnh và frame được so; lý do duyệt diff | Cổng chạy 0 cảnh, baseline tự bị ghi đè, noise GPU làm diff mất tác dụng |
+
+Stack tham khảo: review brief/claim → đóng băng assets/seed → render mẫu đại diện → kiểm cấu trúc file và timeline → review nội dung/tiếp cận → promote đúng checksum. Ngưỡng pixel diff/loudness/fps do mục tiêu phát hành quyết định; không có một ngưỡng chung cho mọi nền tảng. Byte-for-byte video giống nhau giữa phần cứng khác nhau **chưa được xác minh** trong đợt này.
+
+CI upstream có kế hoạch “affected tests” rồi chạy các nhánh browser/render theo phạm vi đổi. Khi dùng làm mẫu, kiểm cả planner và job tổng hợp; “có job browser test” không có nghĩa mọi PR render mọi composition. Kết hợp [mục 30](../30-software-testing-quality/README.md) cho chiến lược regression và [mục 31](../31-software-supply-chain-security/README.md) cho artifact/license.
+
+**Đã đổi so với lượt trước:** làm rõ giới hạn determinism và đính chính `open_source` của Remotion trong catalog. Không suy thay đổi license mới chỉ từ việc đọc lại cùng văn bản.
+
+**Nguồn §9j:** [LICENSE.md](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/LICENSE.md) · [packages/core/LICENSE.md](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/LICENSE.md) · [packages/core/src/random.ts](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/src/random.ts) · [packages/renderer/src/render-media.ts](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/renderer/src/render-media.ts) · [.github/workflows/push.yml](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/.github/workflows/push.yml).
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes

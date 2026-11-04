@@ -102,6 +102,43 @@ Hướng dẫn gốc [GOV.UK: lập kế hoạch nghiên cứu](https://www.gov.
 - **Cần điều tra hành trình:** PostHog hoặc OpenReplay tùy nhu cầu; kiểm masking bằng dữ liệu giả trước capture thật. Self-host chỉ là vị trí triển khai, chưa chứng minh mọi SDK/integration giữ dữ liệu trong mạng.
 - **Cần rollout tin cậy:** Unleash + owner/expiry + kill switch; flag không thay transaction hoặc authorization. Nối với [13](../13-dev-stack-devops/README.md), [15](../15-ai-for-data/README.md), [21](../21-autonomous-workflows/README.md).
 
+<a id="factory-2026-11-04"></a>
+
+## 5. Nâng trần 4/11/2026: hợp đồng thử nghiệm độc lập nhà cung cấp và đo giá trị của xưởng
+
+**Trần hiện tại:** §3 đã có A/A, SRM, exposure và metric. Khoảng thiếu là cách đưa chúng vào hợp đồng phát hành: tách flag evaluation, exposure và phân tích; đo đầu ra được khách hàng chấp nhận, không chỉ số code/PR do agent tạo. Phần metric/gate là thiết kế đề xuất, chưa chạy A/B hoặc đo ROI tại kho này.
+
+| Lựa chọn | Khi hợp | Cần nối thêm | Giới hạn |
+|---|---|---|---|
+| PostHog ở §2 | Analytics/replay/flags trong cùng nền tảng | Event dictionary, consent, masking, phân quyền/retention | Tự host không tự chứng minh SDK/integration không gửi dữ liệu ngoài |
+| GrowthBook ở §2 | Experiment gắn warehouse và assignment/exposure | Callback, metric model, audit query, unit randomization | Callback có trong mã chưa chứng minh event tới kho dữ liệu |
+| Unleash ở §2 | Quản trị flag/rollout có owner và kill switch | Analytics/experiment engine độc lập | Flag không thay authorization hoặc bằng chứng nhân quả |
+| OpenFeature + flagd dưới đây | Cần giao diện evaluation và daemon có thể thay provider | Cấu hình flag, SDK provider, exposure pipeline, phân tích thống kê | Không phải toàn bộ nền tảng A/B và không tự giải SRM/power |
+
+<a id="flagd"></a>
+
+### flagd: bucketing có hợp đồng, chưa phải kết luận thử nghiệm
+
+| Thuộc tính | Giá trị |
+|---|---|
+| Repo / SHA / license | [open-feature/flagd](https://github.com/open-feature/flagd), `902555686f8bb1a89fe40c4b532e78c4e098110d`, Apache-2.0 |
+| Kiểm chứng 2026-11-04 | `code-read`: evaluator JSON/fractional, LICENSE/README và `build.yaml`; chưa chạy daemon/provider hoặc kiểm tương đương SDK |
+| Cơ chế đã đọc | `fractional.go` phân biệt explicit hashing input với nhánh implicit; nhánh implicit dùng `[flagKey, targetingKey]`, từ chối missing/null/non-string/empty `targetingKey`. Do đó không ghi "mọi rollout đều bắt buộc targetingKey": input explicit là đường khác. |
+| CI | `build.yaml` chạy `make test` và có lane FIPS; không suy nhãn FIPS trong workflow thành chứng nhận hệ triển khai hoặc mọi bản phân phối. |
+| Tích hợp | Ghim daemon/provider/schema/flag version và context; lập fixture assignment cho cùng subject qua client/server, login, restart, đổi rule. Định nghĩa fallback khi mất nguồn hoặc lỗi evaluation; ghi reason/error cùng exposure, không chỉ giá trị boolean. |
+| Giới hạn | Percentage rollout không tự là randomization đúng ở cấp account/team; thay key hoặc rule có thể đổi tập nhận. Cần phân tích thống kê và pipeline exposure riêng. Không dùng feature flag làm cổng quyền truy cập dữ liệu. |
+
+**Hợp đồng từ khám phá đến phát hành:**
+
+1. Chọn một tác vụ khách hàng và quyết định cụ thể: tỷ lệ hoàn thành được chấp nhận, thời gian/chi phí tới đầu ra, defect escape/rework; giữ cả phân khúc và guardrail. Với xưởng nội bộ, số dòng code/PR/agent chạy là activity, không tự là giá trị.
+2. Trước xây lớn, phỏng vấn/quan sát hoặc prototype theo §1–§3; đối chiếu lựa chọn nhỏ, quy trình thủ công và baseline hiện có. Nếu traffic thấp hoặc đơn vị là cả khách hàng, ưu tiên usability/cohort có giới hạn thay vì A/B thiếu lực.
+3. Đóng băng metric contract: numerator/denominator, window, assignment unit, consent, exposure, query/version, exclusion và phương pháp dừng. Chi phí/tác vụ đạt cần tính cả sửa tay/review/retry, không chỉ tiền token của lần gọi thành công.
+4. Trước rollout, chạy fixture event, A/A và SRM theo phương pháp đã chọn; kiểm dữ liệu trùng/thiếu, context thay sau login, cross-tenant leakage và fallback. Một evaluation thành công nhưng chưa có exposure hợp lệ không được tính vào mẫu đã thấy treatment.
+5. Phát hành theo flag với owner/expiry, guardrail latency/crash/chi phí và kill switch diễn tập; kết nối [32](../32-platform-delivery-engineering/README.md) và [33](../33-reliability-observability-operations/README.md). Hết thời hạn phải có quyết định giữ/bỏ/đo thêm và dọn flag theo quy trình.
+6. Báo effect size/khoảng bất định theo phân khúc, tác động guardrail, mẫu bị loại và chi phí trên đầu ra được chấp nhận. Không kết luận "không khác" khi phép thử thiếu lực; không dùng traffic bên trong xưởng thay người dùng đích.
+
+**Đã đổi so với đợt trước:** bổ sung lớp provider/daemon và kiểm assignment, tách nó khỏi exposure/experiment engine; đưa outcome economics vào nghiệm thu phần mềm. **Nguồn §5:** [README.md](https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/README.md) · [LICENSE](https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/LICENSE) · [core/pkg/evaluator/fractional.go](https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/core/pkg/evaluator/fractional.go) · [core/pkg/evaluator/json.go](https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/core/pkg/evaluator/json.go) · [.github/workflows/build.yaml](https://github.com/open-feature/flagd/blob/902555686f8bb1a89fe40c4b532e78c4e098110d/.github/workflows/build.yaml); phương pháp nghiên cứu/SRM tiếp tục dùng nguồn gốc đã dẫn ở §3.
+
 ## Nguồn
 
 Các permalink trong từng hồ sơ cố định đúng phiên bản đã đọc; số sao/trạng thái archive là snapshot GitHub API ngày 2026-11-02. Không chạy mã, huấn luyện model hoặc tái lập kết quả của upstream.

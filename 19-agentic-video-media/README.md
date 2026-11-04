@@ -722,6 +722,40 @@ Không repo nào của mục 19 bị archive. `MoneyPrinterTurbo` được nhắ
 
 **Nguồn §3f:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/higgsfield-ai/skills HEAD `4d0757471a704dac8729ea3c2ef0f3f330e0d9b6`: https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/README.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/INSTALL_FOR_AGENTS.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/VERSION · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-soul-id/SKILL.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-brandkit/SKILL.md · https://github.com/higgsfield-ai/skills/blob/4d0757471a704dac8729ea3c2ef0f3f330e0d9b6/higgsfield-generate/references/prompt-engineering.md · `.github/workflows/validate-skills.yml` · clone https://github.com/higgsfield-ai/cli HEAD `fd21e7cb550b5835cc00c6b4abfea0c02fe77ff2` (`install.sh`, README.md, LICENSE) · GitHub search API `repo:higgsfield-ai/skills`, `org:higgsfield-ai` 3/11/2026.
 
+<a id="factory-media-release-2026-11-04"></a>
+
+## 3g. Nâng trần 4/11/2026: media phát hành cần quyền sử dụng, provenance và cổng đọc báo cáo
+
+**Trần và khoảng trống.** §3d có C2PA/watermark/chất lượng; §3e đã nối manifest asset, timeline và render. Xưởng cần thêm hợp đồng cho video demo, tài liệu đào tạo, bản ghi kiểm thử và nội dung ra mắt: **ai được phép dùng asset, artifact nào đã phát hành, verifier đã chấp nhận theo trust policy nào**. Lệnh xuất JSON chạy xong không tự tương đương chính sách nội dung đã pass.
+
+### 3g.1 c2patool và SDK: phân biệt đọc báo cáo với chấp nhận trust
+
+`contentauth/c2patool` là CLI riêng của Content Authenticity Initiative/Adobe và cộng đồng, dual license MIT hoặc Apache-2.0; HEAD `e02c55ce02664c1ce41dc6b3c6901d7bc9336e54` đọc 4/11/2026. `reader_from_args` đi qua `read_asset` để mở file hoặc manifest ngoài, rồi `print_reader` chọn JSON/detailed/CR JSON. Nhánh đọc thông thường trả thành công khi đọc và in report được; phần `print_reader` đã đọc **không tự áp chính sách “chỉ Trusted mới được phát hành”**. Nhánh `fragment` riêng có đếm `ValidationState::Invalid` và trả lỗi khi có file thất bại. Cấu hình trust có thể bật `verify_trust`; điều đó vẫn khác chính sách phát hành bắt buộc trạng thái Trusted. Không được suy ngữ nghĩa mã thoát của hai nhánh là một. [Callsite CLI]( https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/src/main.rs ) · [license MIT]( https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/LICENSE-MIT ) · [license Apache]( https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/LICENSE-APACHE ) · [CI đa nền tảng]( https://github.com/contentauth/c2patool/blob/e02c55ce02664c1ce41dc6b3c6901d7bc9336e54/.github/workflows/ci.yml ).
+
+Đọc lại SDK `contentauth/c2pa-rs` ở HEAD `e23bcaf586661103cdbfdff91aa59fb547e4463d`: `ValidationState` tách **Invalid**, **Valid** (có signature-validated/inside-validity và không có failure ngoài nhóm SDK dung thứ) và **Trusted** (valid, có signing-credential-trusted và không còn active/ingredient failure). `Reader.validation_state()` trả kết quả validation, còn JSON là hình thức trình bày. Policy của dự án phải xử lý manifest thiếu, chữ ký sai, không đủ trust và lỗi tải tài nguyên theo các trạng thái riêng; không gọi tất cả là “fake”. [State và điều kiện tính]( https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/sdk/src/validation_results.rs ) · [Reader callsite]( https://github.com/contentauth/c2pa-rs/blob/e23bcaf586661103cdbfdff91aa59fb547e4463d/sdk/src/reader.rs ). Đây là đọc mã, chưa ký asset hay diễn tập trust store.
+
+### 3g.2 Chọn công cụ theo câu hỏi
+
+| Câu hỏi | Cách làm | Giới hạn phải giữ |
+|---|---|---|
+| Manifest/chữ ký/provenance có hợp lệ theo policy? | c2patool cho báo cáo; c2pa-rs khi cần tích hợp decision trong ứng dụng | Cần trust list/version/cert/timestamp policy; provenance không xác nhận mọi câu nói trong video đúng |
+| Nội dung có watermark từ hệ thống của mình? | VideoSeal (§3d) hoặc watermark phù hợp nguồn | Có/không phát hiện watermark không chứng minh quyền asset, độ thật hay tác giả của mọi nội dung |
+| Encode có giữ chất lượng bản master? | VMAF/ffmpeg-quality-metrics (§3d) | Metric có tham chiếu, không kiểm sự thật, license, phụ đề hay lỗi sản phẩm trong demo |
+| Bản dựng có tái kiểm được và relink đủ asset? | OTIO/PySceneDetect + render manifest (§3e); dựng code ở mục 22 | Timeline đọc được không chứng minh effect tương thích; seed không bảo đảm render GPU/model tất định |
+
+### 3g.3 Luồng phát hành media cho xưởng
+
+1. Gắn video với release/build sản phẩm và script có nguồn; demo chức năng phải ghi rõ dữ liệu mẫu và trạng thái thực tế, không trộn màn hình mô phỏng vào bằng chứng E2E.
+2. Manifest quyền ghi nguồn, hash, license code/model/asset/font/nhạc, điều kiện attribution, chấp thuận giọng/hình theo phạm vi. Việc mô hình cho tải ảnh không tự cấp quyền với tài sản bên trong.
+3. Preflight timeline/audio/caption như §3e; chặn thiếu asset và dùng font không có quyền trước render tốn tiền. Tách bản master khỏi encode dành cho từng kênh.
+4. Lưu báo cáo kỹ thuật và provenance cho **đúng hash bản phát hành**. Nếu policy yêu cầu trusted C2PA, verifier phải đọc state/status chứ không chỉ nhìn exit 0 hay thấy trường manifest.
+5. Bộ ca âm ở dự án đích gồm asset bị sửa sau ký, thiếu manifest, signer không nằm trong policy, report không đọc được và transcoding làm mất metadata. Ghi expected behavior theo kênh phát hành; thiếu C2PA có thể là unsupported/unknown, không tự là giả mạo.
+6. Lưu master, release media, manifest/report, trust-list revision và script; nội dung lỗi có đường gỡ/thay bản và kiểm lại các nơi đã phân phối. Tiêu chí hoàn thành gồm cả quyền, chức năng được mô tả và chất lượng bản xuất.
+
+**Đã nâng sâu:** CLI/report trở thành đầu vào của quyết định phát hành có trust policy. Không tuyên bố đã có pipeline ký/trust hay benchmark media chạy tại kho này.
+
+**Nguồn §3g:** các permalink CLI/SDK/LICENSE/CI trên; chuẩn C2PA và đối chiếu metric/timeline §3d–§3e. Không cài CLI, không chạy model hay xuất bản media.
+
 ## 4. Nguồn
 
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video

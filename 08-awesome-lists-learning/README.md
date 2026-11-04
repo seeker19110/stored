@@ -619,6 +619,42 @@ Ghi chú: `anthropics/courses` (23k★) **đã archive** (xem mục 17). Noteboo
 
 **Nguồn §5b:** ảnh trang repo người dùng gửi 3/11/2026 · clone https://github.com/codecrafters-io/build-your-own-x HEAD `aa17439b62f384511a5561ce308e9598b94d8989` (https://github.com/codecrafters-io/build-your-own-x/blob/aa17439b62f384511a5561ce308e9598b94d8989/README.md, mục "Origins & License"; `git log`) · curl HTTP status 359 link ngày 3/11/2026 (`-L --max-time 12`, kiểm lại 404/000 với timeout 20–30 s) · GitHub search API `repo:codecrafters-io/build-your-own-x` 3/11/2026.
 
+## 6. Nâng trần 4/11/2026: đào tạo theo vai trò và bài chuyển giao của xưởng
+
+<a id="learning-factory-2026-11-04"></a>
+
+§4–§5 đã phân biệt đọc sách, test ví dụ, chấm bài và khả năng chuyển giao. Khoảng trống còn lại là **đào tạo đội làm sản phẩm phần mềm**, ngoài nhánh ML/agent: yêu cầu → giao diện/API → dữ liệu → test → phát hành → vận hành. Đợt này đọc nguồn ghim commit, chưa chạy bài tập hay xác minh kết quả cấp chứng chỉ.
+
+### 6.1 Hai nguồn bổ sung và cổng thực tế
+
+<a id="exercism-python-factory"></a>
+
+**Exercism Python track** (exercism/python), MIT, SHA **6105f6d9d3ef66ce3d5c8f529d2882af3d76b706**, HEAD 2026-09-30; đọc 2026-11-04. Có đề bài, test và lời giải mẫu/approach. Ví dụ leap_test.py nhập hàm leap_year và kiểm các ranh giới chia 4/100/400; bin/test_exercises.py là đường runner, workflow test-runner.yml gọi Docker Compose. Đây là bài nhỏ có đầu vào/đầu ra rõ để luyện test/debug; **không phải** bằng chứng người học thiết kế được hệ nhiều dịch vụ. Học viên có thể nhìn thấy test và lời giải, nên test xanh không đo được độc lập khả năng tự làm. Image runner trong docker-compose.yml không ghim digest; nếu dùng làm cổng nội bộ phải ghim artifact riêng và lưu phiên bản bài tập.
+
+<a id="full-stack-open-factory"></a>
+
+**Full Stack Open** (fullstack-hy2020/fullstack-hy2020.github.io), khóa của Đại học Helsinki, SHA **9c24482abcf387699d0f36bcdff5811dbe2ce5a7**, HEAD 2026-10-17; đọc 2026-11-04. Phần 11 yêu cầu dựng pipeline cho ứng dụng mẫu, rồi áp dụng sang ứng dụng tự làm; nối được React/Node, test, CI/CD, container và relational database. LICENSE gốc là **CC BY-NC-SA 3.0**, không gắn nhãn MIT hoặc coi nội dung là mã nguồn mở OSI. Tham khảo/link khóa; xét điều khoản trước khi đóng gói lại thành khóa thương mại hay phân phối bản dịch.
+
+**Đọc CI thay vì đoán:** workflow continuous-integration-workflow.yml của website dùng Gatsby build trên nhánh source với Node 10. Đó là build nội dung website, **không phải autograder bài học viên**; không lấy Node 10 làm runtime cho ứng dụng sản phẩm mới. Phần 11 cũng tự nói không phủ triển khai phức tạp như zero downtime và migration; nối sang mục 32/34 để học phần còn thiếu, thay vì gắn nhãn “production-ready” sau khi hoàn tất khóa.
+
+### 6.2 Ma trận vai trò và bằng chứng trưởng thành
+
+| Vai trò/tình huống | Nguồn đầu vào | Artifact thực hành trong repo riêng | Bài kiểm chuyển giao |
+|---|---|---|---|
+| Developer mới, thiếu thao tác/debug | Missing Semester §5 + Exercism | Test ranh giới và ca lỗi, log chẩn đoán, PR nhỏ | Bài tương tự nhưng dữ liệu/quy tắc mới; giải thích lỗi mà không đọc đáp án |
+| Full-stack developer | Full Stack Open + mục 06/29/30/34 | API contract, migration, UI có trạng thái lỗi, test tích hợp và pipeline | Thay schema có tương thích ngược, phát hiện regression và rollback trong môi trường thử |
+| AI application engineer | agents-course/LLM guidebook đã có + mục 07/10 | Dataset eval riêng, tool giới hạn quyền, báo cáo chất lượng/latency/cost | Chẩn đoán retrieval fail khác generation fail, sửa mà không lộ holdout |
+| Tech lead/QA/platform | System Design Primer + mục 09/29–34 | ADR, kế hoạch kiểm theo rủi ro, SLO và bằng chứng phục hồi | Review độc lập một release có lỗi được cài trước; quyết định go/no-go có căn cứ |
+
+### 6.3 Từ đào tạo sang năng lực giao hàng
+
+- **Đầu vào theo việc cần làm:** chọn nhánh từ một bài chẩn đoán, không bắt mọi người học training model trước khi làm web/API. Dùng 2–4 nguồn cùng vai trò để đối chiếu, tránh khóa học bị biến thành một stack bắt buộc.
+- **Cùng một sản phẩm mẫu của đội:** yêu cầu và acceptance ID → code/test → phát hành → incident giả lập; mỗi người đóng góp artifact khác nhau để luyện bàn giao. Kho stored chỉ ghi đánh giá nguồn, không chứa app hay bài giải triển khai.
+- **Tách hỗ trợ AI khỏi năng lực được đánh giá:** ghi đã dùng agent ở bước nào; giữ một bài chuyển giao mới, phần giải thích và phần sửa lỗi trực tiếp. Không suy phẩm chất con người từ số commit hay lượng code sinh.
+- **Nghiệm thu có reviewer:** chất lượng giải pháp, test có bắt được lỗi cố ý, khả năng tái lập và vận hành; thời gian/ngưỡng do vai trò quyết định. Các tiêu chí này là đề xuất cho xưởng, chưa phải rubric đã được nghiên cứu kiểm định.
+
+**Nguồn §6:** [LICENSE](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/LICENSE) · [README.md](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/README.md) · [exercises/practice/leap/leap_test.py](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/exercises/practice/leap/leap_test.py) · [bin/test_exercises.py](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/bin/test_exercises.py) · [docker-compose.yml](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/docker-compose.yml) · [.github/workflows/test-runner.yml](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/.github/workflows/test-runner.yml) · [LICENSE](https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/LICENSE) · [src/content/11/en/part11a.md](https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/src/content/11/en/part11a.md) · [.github/workflows/continuous-integration-workflow.yml](https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/.github/workflows/continuous-integration-workflow.yml)
+
 ## Nguồn
 
 - https://gitstarclub.com/rankings · https://www.countly.net/most-starred-github-repositories-june-2026 · https://www.stackscan.com/blog/github-statistics · https://github.com/EvanLi/Github-Ranking · https://www.firecrawl.dev/blog/best-github-repos

@@ -334,6 +334,34 @@
 
 **Nguồn §4g:** ảnh README người dùng gửi 2/11/2026 · clone `--filter=blob:none` 2/11/2026 (HEAD `5e3d726`; `git log` tác giả/trailer, `git tag`); LICENSE, README.md (:5–21, :65–90), SECURITY.md, `pyproject.toml`, `docs/openshell.md`, `docs/approval-guidance.md`, `coworker/cloud.py` (:278–305), `coworker/config.py` (:83–99), `coworker/server/manager.py` (:1637–1907, :2132, :6496–6519), `coworker/sandbox/providers/openshell_policy.py`, `surfaces/gui/src-tauri/tauri.conf.json` (:47–52), `.github/workflows/{ci,release,image}.yml` · GitHub search API 2/11/2026 (repo, issues, PR, `is:pr is:merged -author:andrewyng`) · https://openworker.com (WebFetch 2/11/2026) · WebSearch 2/11/2026: marktechpost.com (23/7/2026) · mer.vin · note.com/ai_driven (đọc mã) · theaiagentindex.com
 
+<a id="factory-framework-guardrail-boundaries-2026-11-04"></a>
+
+## 4h. Nâng trần 4/11/2026: kiểm đúng ranh giới guardrail và handoff trước khi chọn framework
+
+> Đọc sâu hồ sơ OpenAI Agents SDK Python (OpenAI), MIT; `23e9996ac146109bdcd9b871e3564f70dc13aae1`; 2026-11-04. Mức **code-read**, không chạy SDK hay gọi model; không cập nhật sao. Giữ phạm vi §4e cho LangGraph/PydanticAI, không nâng mức bằng chứng của các hồ sơ đó chỉ vì được so trong bảng.
+
+**Trần còn thiếu:** checkpoint/retry ở §4e xử lý sống lại sau lỗi; xưởng còn phải biết cổng kiểm nào chạy **trước hành động**, cổng nào chỉ xét đầu vào ban đầu/đầu ra cuối, và đường nào không đi qua cổng. Từ “guardrail” không xác định những ranh giới này.
+
+### OpenAI Agents SDK: guardrail agent và guardrail tool có phạm vi khác nhau
+
+- [`InputGuardrail`](https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/src/agents/guardrail.py) mặc định `run_in_parallel=True`. [Runner](https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/src/agents/run.py) chia guardrail tuần tự và song song; [tài liệu gốc](https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/docs/guardrails.md) nói rõ ở chế độ song song, model có thể đã dùng token và thực thi tool trước khi bị huỷ. Với kiểm điều kiện bắt buộc trước hành động, dùng chế độ blocking và cổng ngay tại side effect; output guardrail không hoàn tác việc đã gửi.
+- Input guardrail cấp agent chỉ áp dụng cho agent đầu chuỗi, output guardrail cho agent tạo đầu ra cuối. **Handoff không tự biến guardrail đầu chuỗi thành kiểm mỗi tool của mọi specialist.** Đặc tả công việc phải ghi từng ranh giới cần xét quyền/tenant/args.
+- [Pipeline function-tool](https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/src/agents/run_internal/tool_execution.py) có kiểm input/output của function tool và kiểm approval. Tài liệu hiện tại nêu tool guardrails áp dụng pipeline `FunctionTool` (kể cả local MCP có cấu hình guardrail), không áp dụng trực tiếp cho handoff, hosted tools hay các built-in execution tools được liệt kê trong docs. Phải kiểm adapter cụ thể; không tuyên bố “mọi tool đều được guardrail” từ việc đã gắn một decorator.
+- Với tool cần approval, input guardrail mặc định chạy sau approval và trước thực thi; tuỳ chọn `pre_approval_tool_input_guardrails=True` cho phép kiểm trước khi tạo interruption và vẫn kiểm lại sau khi được duyệt. Quyết định quyền nên gắn với invocation/args hiện tại, không chỉ tên tool.
+
+| Nhu cầu | Điểm xuất phát | Điều người tích hợp cần thêm |
+|---|---|---|
+| Điều phối handoff và function tool rõ | OpenAI Agents SDK | Ma trận tool → pipeline → guardrail → principal → side effect |
+| State graph, interrupt/resume | LangGraph (§4e) | Persistent checkpointer; idempotency và replay test |
+| Output/tool có kiểu và giới hạn usage | PydanticAI (§4e) | Eval nội dung, timeout và quota bên ngoài |
+| Workflow hữu hạn, ít nhánh | Hàm/queue/state machine tất định | Không thêm vòng agent nếu rule thường giải được |
+
+**Chuỗi tích hợp:** (1) liệt kê tool thật theo đường thực thi, dữ liệu ra provider và quyền tối thiểu; (2) xác định precondition nào phải chặn trước call, condition nào xét sau; (3) giữ canary function tool có receipt để thử input bị từ chối, handoff, timeout và approval với args đổi; (4) kết hợp checkpoint mục 21 với idempotency của side effect, log trace có redaction; (5) chạy cùng dataset và tiêu chí nhiệm vụ ở mục 07/30 trước khi đổi framework.
+
+**Nghiệm thu đề xuất:** input bị từ chối ở chế độ blocking không khởi chạy hành động; mỗi tool ghi principal/tenant và args đã kiểm; hủy run không được báo đã hoàn tác side effect; mọi exception/blocked/budget-exhausted có trạng thái riêng. Đây là yêu cầu kiểm của dự án tích hợp, **(chưa xác minh)** bằng thực nghiệm trong đợt đọc này.
+
+**Nguồn phạm vi:** [LICENSE](https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/LICENSE) · [CI tests](https://github.com/openai/openai-agents-python/blob/23e9996ac146109bdcd9b871e3564f70dc13aae1/.github/workflows/tests.yml). SDK MIT không cấp quyền sử dụng model hay bỏ nghĩa vụ dữ liệu của dịch vụ tích hợp.
+
 ## 5. Nguồn
 
 - https://www.firecrawl.dev/blog/best-open-source-agent-frameworks

@@ -217,6 +217,34 @@
 
 **Nguồn §4e:** ảnh người dùng gửi 3/11/2026 · clone `--depth 1` https://github.com/openai/codex HEAD `ac91c14443c11c4279a9305099354e443c6fa7d4`: https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/core/src/agents_md.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/config/src/config_toml.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/config/src/loader/mod.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/ext/skills/src/host_roots.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/agent-roles/src/agent_role_config.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/core/src/agent/role.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/execpolicy/src/decision.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/execpolicy/src/policy.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/cli/src/mcp_cmd.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/app-server-protocol/src/protocol/v2/hook.rs · https://github.com/openai/codex/blob/ac91c14443c11c4279a9305099354e443c6fa7d4/codex-rs/hooks/src/events/post_tool_use.rs · https://developers.openai.com/codex/app/local-environments · GitHub search API `repo:openai/codex` 3/11/2026.
 
+<a id="factory-protocol-conformance-evidence-2026-11-04"></a>
+
+## 4f. Nâng trần 4/11/2026: phiên bản conformance, mẫu số và license là một phần hợp đồng tích hợp
+
+> Đọc lại MCP Conformance (nhóm Model Context Protocol), `c37eec888e1c6ff140af79987a40008548b7cc5f`, ngày 2026-11-04; **code-read**, không chạy client/server hay bộ test upstream; không cập nhật sao. Nối §4c–§4d; không suy trạng thái chuẩn đã final từ tên một thư mục hay một revision của harness.
+
+**Trần còn thiếu:** có test conformance chưa trả lời “phiên bản wire nào, test nào được tính, có bao nhiêu skipped/expected failures, chứng minh quyền của ứng dụng tới đâu?”. Xưởng phải lưu toàn bộ hợp đồng kiểm này để lần nâng SDK không đổi nghĩa pass âm thầm.
+
+### MCP Conformance: frozen requirements khác toàn bộ suite hiện tại
+
+- [README](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/README.md) phân `--suite`, `--spec-version` và `--requirements <revision>`. Requirements đóng băng danh sách cho revision, cố định wire version và thay lựa chọn suite/scenario; harness còn có scenario ngoài phần chấm. Một scenario có ở cả hai revision phải được chạy cho từng wire; pass một phiên bản không suy sang phiên bản khác.
+- [Loader requirements](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/requirements.ts) chỉ nhận các role client/server, chặn khai báo authorization-server vào requirement set. [`requirementsExitCode`](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/index.ts) lọc scenario được chấm; lỗi ở `not_scored` vẫn báo nhưng không làm exit code của conformance thất bại. Do đó giữ **scored, not-scored, skipped và baseline expected-failure** riêng trong artifact; một tỷ lệ pass không đại diện mọi scenario.
+- [Requirement set cụ thể](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/requirements/2026-07-28.yaml) cùng bản harness là bằng chứng tái kiểm. Những revision/nhãn draft trong upstream cần được đối chiếu đặc tả đang triển khai trước tích hợp; không tự chuyển production sang draft vì nó xuất hiện trong `list`.
+- [LICENSE thực](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/LICENSE) ghi quá trình **MIT → Apache-2.0**: đóng góp chưa có đồng ý chuyển vẫn theo MIT; đóng góp code/spec mới theo Apache-2.0; tài liệu trừ specification theo CC-BY-4.0. Không gán nguyên cây là “MIT thuần” hoặc “Apache-2.0 thuần”; kiểm notice khi đóng gói lại.
+
+| Lớp | Công cụ/nguồn so sánh | Phạm vi đúng |
+|---|---|---|
+| Wire interoperability MCP | MCP Conformance + requirement revision | Message/schema/lifecycle và scenario cụ thể |
+| A2A | A2A TCK/Inspector (§4c) | Giao thức A2A; không thay MCP tests |
+| Kiểm bề mặt tool | Cisco MCP Scanner (§4c) | Tín hiệu policy/phân tích theo khả năng scanner, không là bằng chứng nghiệp vụ |
+| API nghiệp vụ/tenant | OpenAPI + oasdiff (mục 29), test runtime (mục 30/34) | AuthZ, ownership, compatibility và side effect của ứng dụng |
+
+**Chuỗi nâng SDK cho xưởng:** (1) inventory client/server, transport, wire revision và extension sử dụng; (2) ghim SDK, harness SHA, requirements file, exception baseline; (3) chạy role/transport thực sự cần và negative fixture để biết bộ chấm bắt lỗi; (4) lưu checks.json với passed/failed/skipped/not-scored/expected-failure và version; (5) kiểm độc lập access token audience, tenant, quyền từng tool và hành động lặp; (6) thử rollback về SDK/config trước. Harness không tự chứng minh một người dùng có quyền đọc một hồ sơ trong sản phẩm.
+
+**Cổng nhận đề xuất:** không giảm số scenario required ngoài thay đổi revision có duyệt; không biến failure thành baseline chỉ để xanh; mọi exception có phạm vi/owner/hạn xem lại; quyền ứng dụng có ca từ chối truy cập chéo tenant. Đây là tiêu chí tích hợp, chưa chạy trong đợt đọc mã.
+
+**Nguồn kiểm cấu hình:** [CI](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/.github/workflows/ci.yml) · [Expected failures](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/expected-failures.ts). CI chạy kiểm/build/test harness; không chứng nhận một deployment của xưởng.
+
 ## 5. Nguồn
 
 - https://en.wikipedia.org/wiki/Model_Context_Protocol · https://github.com/wong2/awesome-mcp-servers · https://github.com/sadekxD/Awesome-MCP · https://uibakery.io/blog/best-mcp-servers

@@ -539,6 +539,34 @@ Advisor Tool (§8e) và Agent Teams (§8f) đều ảnh hưởng cache (model kh
 
 **Nguồn §8k:** ảnh người dùng gửi 3/11/2026 · GitHub code search `"Demand Elegance" "lessons.md"` 3/11/2026 (1.960 kết quả; mẫu: FastLED/FastLED `agents/docs/workflow.md`, onflow/flow-nft `AGENTS.md` và `CLAUDE.md`, openvax/pyensembl `AGENTS.md`) · https://www.infoq.com/news/2026/01/claude-code-creator-workflow/ (10/1/2026) · https://gist.github.com/hqman/e29cb6386c539d795767e8c3fd2c959b · https://gist.github.com/gonzaloplaza/cb3c0160ce3cf9ee88c3a35b3f6d3e74 · https://www.nina-ai.nl/en/freebies/claude-md-boris-cherny · https://x.com/hasantoxr/status/2025851900911038603 (không đọc được, HTTP 402; nội dung theo kết quả tìm kiếm).
 
+<a id="factory-trajectory-oracles-2026-11-04"></a>
+
+## 8l. Nâng trần 4/11/2026: nghiệm thu vòng agent bằng kết quả và bất biến, không chỉ giống đường đi
+
+> Đọc lại `langchain-ai/agentevals` (LangChain), MIT, `946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e` ngày 2026-11-04. Mức **code-read**; không chạy evaluator hay upstream tests; sao không cập nhật. Đây là mở rộng độ sâu cho thực thể đã có ở §8i.
+
+**Trần còn thiếu:** kho đã có mẫu loop, cổng Stop và so trajectory. Xưởng cần phân biệt “đường đi hợp lệ”, “đã gọi đúng tool” và “sản phẩm đầu ra đúng”. Một trace khớp tham chiếu vẫn có thể nhận dữ liệu sai từ tool hoặc trả câu trả lời sai.
+
+### agentevals: tên `strict` cần đọc xuống scorer
+
+- [Factory evaluator](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/match.py) có bốn chế độ `strict`, `unordered`, `subset`, `superset` và matcher arguments riêng. Mặc định factory là `strict` + `exact` cho tool args; phải ghim cả hai cấu hình khi so hai harness.
+- [Strict scorer](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/strict.py) kiểm số message, role, có/không có tool calls, số tool calls, tên và args. **Hàm này không so nội dung văn bản hay payload trả về của tool.** Với nhiều tool call trong cùng assistant message, nó tìm một-một qua `seen`, nên thứ tự các call trong chính message đó không bị ép giống thứ tự tham chiếu. Không mô tả `strict` là byte-for-byte transcript hoặc oracle nội dung.
+- [Subset scorer](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/subset.py) đặt output là tập con của tham chiếu. Với tác vụ cần một bước bắt buộc, chọn subset có thể cho một đường ít bước hơn thoả điều kiện tập con nhưng chưa hoàn thành nhiệm vụ; phải có assertion kết quả/bất biến riêng. `superset` cũng không chặn mọi hành động thừa ngoài policy.
+- [CI integration](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/.github/workflows/integration_tests.yml) sử dụng provider/LangSmith secrets cho các bài có model. Cần tách so khớp tất định chạy offline khỏi judge gọi model và trace ra ngoài; một thư viện MIT không có nghĩa mọi cách chạy không truyền dữ liệu.
+
+| Cổng | Kiểm được | Chưa chứng minh |
+|---|---|---|
+| Trajectory match tất định | Role/tool/args theo chế độ đã chọn | Nội dung trả lời đúng, side effect chỉ xảy ra một lần |
+| Rule bất biến nghiệp vụ | Ví dụ approve trước write, không vượt tenant | Chất lượng nội dung mở nếu rule không mô tả được |
+| Test artifact cuối ở repo đích | Build, chức năng và regression đã định nghĩa | Tổng quát ngoài corpus và cấu hình đã chạy |
+| LLM judge/rubric | Khía cạnh mở khó viết assertion | Oracle tuyệt đối; còn sai số/thiên lệch judge |
+
+**Thiết kế vòng lặp cho xưởng:** (1) dùng workflow tất định làm baseline; (2) chỉ cho planner/agent xử lý nhánh cần suy luận, đặt số vòng/time/cost cap ở host; (3) lưu transcript chuẩn hoá cùng receipt kết quả tool; (4) chấm riêng policy invariants, trajectory và artifact cuối; (5) phân `complete`, `blocked`, `stalled`, `budget_exhausted` từ bằng chứng; (6) chỉ tăng concurrency/subagent khi cùng corpus cho lợi ích đo được sau chi phí review.
+
+**Bộ ca phá cổng đề xuất:** đổi riêng final prose trong trace; giữ tool name nhưng đổi tenant/đường dẫn trong args; đổi payload tool trả về; bỏ bước kiểm bắt buộc; gọi lại side effect; thêm tool bị cấm. Ghi rõ cổng nào phải bắt từng mutation và fail nếu không có oracle phụ trách. Không lấy việc một trajectory evaluator pass để hợp thức hoá tất cả sáu ca. Ghép cổng acceptance mục 01 và kiểm thử mục 30.
+
+**Nguồn bổ sung:** [LICENSE](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/LICENSE) · [Normalization/match helpers](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/utils.py). Các mutation trên chưa được thực thi trong kho; phạm vi xác minh hiện tại là đường mã scorer.
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)

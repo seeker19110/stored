@@ -431,6 +431,38 @@ Release engineering đa nền tảng, mã trong repo MIT; có bản Pro thương
 
 **Nguồn §6i:** [CI Nix](https://github.com/NixOS/nix/blob/b64c28c2134f5b6e4900e423ec281a2985e57086/.github/workflows/ci.yml); [devenv LICENSE](https://github.com/cachix/devenv/blob/0d6c556e5f862c14a75a543e2ee4fdb7acc005ad/LICENSE), [devenv lock](https://github.com/cachix/devenv/blob/0d6c556e5f862c14a75a543e2ee4fdb7acc005ad/devenv.lock); [GoReleaser LICENSE](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/LICENSE.md), [GoReleaser build CI](https://github.com/goreleaser/goreleaser/blob/3d5c3a2efe1544b8f7d24a8c2ed10dab45b89a61/.github/workflows/build.yml); [Nix how it works](https://nixos.org/guides/how-nix-works/), [devenv basics](https://devenv.sh/basics/), [GoReleaser Go build](https://goreleaser.com/customization/builds/builders/go/), [định nghĩa tái lập](https://reproducible-builds.org/docs/definition/).
 
+## 6j. Nâng sâu 4/11/2026: hợp đồng toolchain và lệnh chuẩn của xưởng
+
+**Trần hiện tại:** mục này đã có môi trường tái lập, IaC, release và lint. Lớp còn thiếu là cách cùng một repository chỉ ra toolchain và lệnh chuẩn cho người, IDE, coding agent và CI; cập nhật môi trường phải đi qua diff review được. Triển khai nền tảng/rollback xem [mục 32](../32-platform-delivery-engineering/README.md), còn chứng thực build xem [mục 31](../31-software-supply-chain-security/README.md).
+
+<a id="factory-2026-11-04-mise"></a>
+
+### mise: khóa toolchain, không thay lockfile dependency của ứng dụng
+
+| Thuộc tính | Kết quả đọc |
+|---|---|
+| Repo · license · SHA | `jdx/mise` · MIT · `02d59ef93faf219319cccac23249501e8763e2da` |
+| Cơ chế đã đọc | `mise.toml` khai báo tools/tasks/env; `mise lock` ghi version cùng URL/checksum khi backend cung cấp; `mise install --locked` yêu cầu dùng dữ liệu lock theo phạm vi cấu hình |
+| Đường gọi | `src/cli/install.rs` truyền `ResolveOptions.use_locked_version` và trạng thái `Settings.locked`; `src/cli/lock.rs` có trust check và từ chối khóa phiên bản không xác minh được khi truy vấn version thất bại |
+| Ranh giới | Lock tool không khóa package của app: vẫn giữ npm/uv/Cargo lock. Download checksum còn phụ thuộc backend/platform; lock có version nhưng thiếu digest không đồng nghĩa byte-for-byte reproducible |
+| Cấu hình thực thi | Template `exec`, hook, env directives và postinstall có thể chạy mã. Trust là quyết định cho phép config, không phải sandbox hay kiểm duyệt tool upstream; phải review trước khi trust |
+| CI | `test.yml` tách luồng trusted/untrusted rồi gọi `test-impl.yml`; không suy việc này thành mọi task của người dùng được cách ly |
+
+**Phạm vi kiểm (2026-11-04):** đọc tài liệu, LICENSE, mã đường gọi và workflow tại SHA dưới đây; không cài/chạy upstream. Các cổng nghiệm thu là đề xuất cho repo tích hợp, chưa phải kết quả chạy của kho. Số sao không thu thập trong đợt này.
+
+| Lựa chọn | Giá trị chính | Chọn khi |
+|---|---|---|
+| mise | Tool versions + task/env ở nhiều hệ sinh thái | Đội cần điểm vào gọn cho runtime/linter/codegen; kiểm đủ platform và backend |
+| Nix | Mô tả build/dev shell và store theo đầu vào | Cần khóa cả dependency hệ thống và chấp nhận học mô hình Nix; đánh giá impurity/network riêng |
+| devenv | Trải nghiệm môi trường dev dựa trên Nix | Cần dịch vụ dev và shell tiện dụng trên nền Nix |
+| Dev Containers | Cấu hình môi trường IDE/container | Cần host/IDE thống nhất; image/features vẫn phải pin và kiểm provenance |
+
+**Stack cho xưởng:** khóa bootstrap của tool manager → review `mise.toml` và task graph → tạo lock cho từng platform dùng thật → install locked → cài dependency app bằng frozen lock → chạy cùng task lint/test/build ở local và CI. Tách task cần secret khỏi PR không tin cậy; ghi tool versions, lock digest và target vào báo cáo.
+
+**Cổng nghiệm thu:** máy sạch và runner mới chạy cùng entrypoint cho kết quả chức năng tương đương; lock không đủ platform/backend phải làm fail rõ thay vì âm thầm chọn latest. Thử thay cấu hình, artifact digest và quyền mạng để chứng minh cổng phát hiện sai lệch. Build thành công chỉ là một lớp; kiểm test count, artifact checksum, SBOM và deployment smoke ở các mục 30–32. Cache hit không được bỏ qua xác minh input.
+
+**Nguồn §6j:** [LICENSE](https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/LICENSE) · [lock contract](https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/docs/dev-tools/mise-lock.md) · [trust/security](https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/docs/security.md) · [install callsite](https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/src/cli/install.rs) · [lock implementation](https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/src/cli/lock.rs) · [CI](https://github.com/jdx/mise/blob/02d59ef93faf219319cccac23249501e8763e2da/.github/workflows/test.yml).
+
 ## 7. Nguồn
 
 - Mục 23 (19 repo của chủ kho, đọc 2026-10-12) · https://github.com/alibaba/open-code-review · https://github.com/googleapis/release-please · https://github.com/oxc-project/oxc · https://github.com/webpro-nl/knip · https://github.com/kucherenko/jscpd · https://github.com/astral-sh/uv · https://github.com/astral-sh/ruff

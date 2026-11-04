@@ -248,6 +248,33 @@ Khi đánh giá nền tảng, thử xuất gói, nhập vào một instance sạ
 
 **Nguồn phần mở rộng:** [Node-RED settings](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/node-red/settings.js), [CI](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/.github/workflows/tests.yml), [FlowGram schema](https://github.com/bytedance/flowgram.ai/blob/f644642123ba05e0207594c582d4f42337af2a1c/packages/runtime/interface/src/schema/workflow.ts), [CI](https://github.com/bytedance/flowgram.ai/blob/f644642123ba05e0207594c582d4f42337af2a1c/.github/workflows/ci.yml), [Prompt flow notice](https://github.com/microsoft/promptflow/blob/33a68c9d3cf349d7fdfad1f41969af27543c0406/README.md), [migration loader](https://github.com/microsoft/promptflow/blob/33a68c9d3cf349d7fdfad1f41969af27543c0406/migration-guide/PromptFlow-to-MAF/workflow_loader.py), [Microsoft Learn: audit/rebuild/parity](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-migrate-prompt-flow-to-agent-framework?view=azureml-api-2). Các link code ghim commit; trang Learn là tài liệu chính thức sống, đọc 2/11/2026.
 
+<a id="factory-lowcode-runtime-boundaries-2026-11-04"></a>
+
+## Nâng trần 4/11/2026: low-code cho xưởng phải tách mặt quản trị, endpoint nghiệp vụ và bí mật khôi phục
+
+> Đọc sâu Node-RED (OpenJS Foundation và contributors), Apache-2.0, `22d019c4eccac31d95f3b6167c7334de72ef02a6` ngày 2026-11-04; **code-read**. Không cài/chạy Node-RED; không cập nhật sao. SHA đọc lại không đổi so với phạm vi portability 2/11: đây là kiểm thêm đường bảo vệ runtime, không phải tuyên bố có bản phát hành mới.
+
+**Trần còn thiếu:** phần portability đã yêu cầu mang đủ graph/dependencies/credentials. Khi dùng low-code làm xưởng, endpoint người dùng gọi và editor/admin API là hai ranh giới riêng; restore flow thành công cũng chưa chứng minh credential giải mã được hoặc tenant bị cách ly đúng.
+
+### Node-RED: `adminAuth` không bảo vệ thay `httpNodeAuth`
+
+- [Settings mặc định](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/node-red/settings.js) để `adminAuth`, `httpNodeAuth`, HTTPS và `uiHost` ở dạng ví dụ comment; mô tả UI mặc định nhận kết nối mọi IPv4 interface. Không công bố editor ra mạng chỉ vì “self-hosted”. Đây là default file tại SHA đã đọc; deployment/reverse proxy có thể thay đổi, cần kiểm cấu hình hiệu lực.
+- [`needsPermission`](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/@node-red/editor-api/lib/auth/index.js) đi tiếp nếu không cấu hình `adminAuth`; [Bootstrap HTTP](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/node-red/red.js) gắn `httpNodeAuth` riêng tại `httpNodeRoot`. Bật auth cho editor không tự bảo vệ HTTP In endpoint; cổng authZ theo dữ liệu/người dùng vẫn do app hoặc gateway đảm trách.
+- [Credential storage](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/packages/node_modules/@node-red/runtime/lib/nodes/credentials.js) có key hệ thống/người dùng/project, với nhánh tắt mã hoá khi cấu hình `false`. Backup chỉ flow JSON không đủ; phải biết key nào được dùng và thử restore với credential thật qua kho bí mật phù hợp. Không đưa giá trị secret vào flow export, catalog hoặc log.
+
+| Lựa chọn | Vai trò hợp lý | Đường phải nghiệm thu |
+|---|---|---|
+| Node-RED | Flow sự kiện/integration, service nhỏ với node có sẵn | Hai mặt auth, node dependency, key restore và duplicate event |
+| n8n (hồ sơ đầu mục) | Automation theo connector | License, credential binding, retry/idempotency và workspace boundary |
+| Dify/Flowise (hồ sơ tương ứng) | Luồng LLM/RAG có UI | Prompt/dataset/model revision, export parity và provider data flow |
+| Service/queue tất định | API trọng yếu có hợp đồng, test và owner rõ | Unit/integration/contract test; chi phí bảo trì có thể thấp hơn nền tảng |
+
+**Chuỗi tích hợp:** (1) chốt workflow nào đáng dùng low-code, vẽ admin plane/data plane; (2) tách principal quản trị với principal nghiệp vụ, giới hạn mạng và cài node/plugin được review; (3) version flow cùng runtime/node/config manifest, tách secret reference; (4) dùng fixture để replay event, kiểm retry/timeout/idempotency và lỗi upstream; (5) restore sang instance sạch, kiểm giải mã credential, expected output và quyền; (6) đối chiếu trace/receipt với source version trước nhận bản phát hành.
+
+**Cổng xưởng đề xuất:** anonymous không mở editor/admin; endpoint nghiệp vụ từ chối caller thiếu quyền dù admin đã đăng nhập ở nơi khác; backup/restore có receipt thành công; sự kiện trùng không tạo side effect trùng; tắt một node bắt buộc phải làm smoke test thất bại rõ. Nội dung này là ma trận kiểm đề xuất ở repo triển khai, **(chưa xác minh)** bằng cách chạy Node-RED trong `stored`.
+
+**Nguồn:** [LICENSE](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/LICENSE) · [CI Node 22/24](https://github.com/node-red/node-red/blob/22d019c4eccac31d95f3b6167c7334de72ef02a6/.github/workflows/tests.yml). Nối mục 29 cho hợp đồng API, mục 30 cho test, mục 33 cho khôi phục và mục 34 cho identity/data.
+
 ## Nguồn
 
 - https://www.knowlee.ai/blog/dify-alternatives-2026 · https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026 · https://www.jahanzaib.ai/blog/flowise-vs-dify-vs-n8n-ai-agents · https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026 · https://makerstack.co/reviews/langflow-review/ · https://enterprisedna.co/directories/compare/dify-vs-flowise-vs-langflow/

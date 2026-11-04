@@ -584,6 +584,38 @@ Framework nghiên cứu của ServiceNow trên BrowserGym, quản lý study, son
 
 **Nguồn §3f:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/radareorg/radare2 HEAD `55b6a167acef2fbc8fd94776c1cdee2448a30ecb`: https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/README.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/COPYING.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/AGENTS.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/SECURITY.md · https://github.com/radareorg/radare2/blob/55b6a167acef2fbc8fd94776c1cdee2448a30ecb/configure.acr · `shlr/qjs`, `libr/lang/p/qjs.c`, `.github/workflows/*`, `sys/install.sh`, `test/db/`; `git tag`, `git shortlog --since=2026-08-01` · GitHub search API `repo:radareorg/radare2`, `org:radareorg` 3/11/2026.
 
+## 3g. Nâng trần 4/11/2026: sandbox theo hợp đồng quyền cho xưởng phần mềm
+
+**Trần hiện tại:** kho đã có browser agent, benchmark và sandbox VM/kernel. Chỗ cần sâu thêm là hợp đồng quyền kiểm được cho từng tác vụ: đường dẫn được ghi, dữ liệu được đọc, đích mạng, secret và hậu điều kiện. Một browser agent hoàn thành bước UI không chứng minh tác dụng nghiệp vụ đúng, cũng không chứng minh shell của agent đã được cách ly.
+
+<a id="factory-2026-11-04-bubblewrap"></a>
+
+### Bubblewrap: cơ chế namespace cần một chính sách bên ngoài
+
+| Thuộc tính | Kết quả đọc |
+|---|---|
+| Repo · phiên bản | `containers/bubblewrap` · `1fb0aa26d3eb66254f7742e704add7f82f41a582` |
+| License | File `LICENSE` là LGPL 2.1; header `bubblewrap.c` ghi `LGPL-2.0-or-later`. Giữ khác biệt theo file khi đóng gói, không gán toàn cây một SPDX tùy ý |
+| Cơ chế | CLI nhận mount bind chỉ đọc/ghi, namespace mạng/PID/user, môi trường và seccomp; chính đối số của wrapper quyết định phạm vi bảo vệ |
+| Đường gọi đã đọc | `bubblewrap.c`: parse `--unshare-net`, `--ro-bind`, `--seccomp`, `--new-session`; thiết lập bind mount kiểm loại đích; `--not-a-security-boundary` thêm `BIND_FAIL_OPEN` |
+| CI đã đọc | `.github/workflows/check.yml` build Meson với sanitizer, chạy test với `BWRAP_MUST_WORK=1`; đây là nội dung workflow, chưa kiểm kết quả từng run |
+| Giới hạn | Dùng chung kernel Linux; không tự cấp CPU/RAM/time quota; không thay firewall/proxy ứng dụng. Cờ `--not-a-security-boundary` không phù hợp nơi cần ranh giới bảo mật; user namespace có thể bị kernel/host vô hiệu hóa |
+
+**Phạm vi kiểm (2026-11-04):** đọc tài liệu, LICENSE, mã đường gọi và workflow tại SHA dưới đây; không cài/chạy upstream. Các cổng nghiệm thu là đề xuất cho repo tích hợp, chưa phải kết quả chạy của kho. Số sao không thu thập trong đợt này.
+
+| Lựa chọn | Khi phù hợp | Điều xưởng vẫn phải chứng minh |
+|---|---|---|
+| Bubblewrap | Job Linux ngắn, wrapper quyền nhỏ cần kiểm soát mount cụ thể | Chỉ mount đúng input; không đọc home/secret; không ghi host; network đúng scope; timeout/quota ở lớp ngoài |
+| [nsjail](README.md#3d-nâng-trần-2112026-benchmark-agent-tái-lập-được-và-cách-ly-mức-nhânvm-yêu-cầu-người-dùng) | Cần policy namespace/seccomp và hạn mức theo process | Profile kernel/namespace thật sự được áp dụng ở host đích |
+| gVisor | Muốn giảm bề mặt syscall của container bằng user-space kernel | Tương thích workload, mount/egress và overhead đo trên workload thật |
+| Firecracker / Kata Containers | Tác vụ không tin cậy hoặc tenant cần ranh giới VM | KVM/host, image digest, mạng và xóa tài nguyên sau job; không suy an toàn chỉ từ tên microVM |
+
+**Stack tích hợp:** phân loại job theo độ tin cậy → dựng wrapper quyền từ manifest đã review → chạy agent trong vùng dữ liệu giả → kiểm trạng thái đích bằng API/DB/locator tất định → thu artifact đã lọc → hủy môi trường. Với browser, credential/session của mỗi tenant phải có vòng đời riêng; không tái dùng profile đăng nhập thật giữa các job.
+
+**Cổng nghiệm thu:** fixture độc hại thử đọc một tệp sentinel ngoài input, ghi ra ngoài output, gọi đích mạng ngoài scope và sống quá timeout đều phải bị chặn; fixture hợp lệ vẫn chạy. Lưu exit status, profile hash, namespace/runner identity và hậu điều kiện nghiệp vụ. Một lệnh `true` trong sandbox chỉ kiểm startup; không thay các phép thử phủ định trên. Liên kết [kiểm thử phần mềm](../30-software-testing-quality/README.md) và [chuỗi cung ứng](../31-software-supply-chain-security/README.md) để image, dependency và chính wrapper cũng được kiểm.
+
+**Nguồn §3g:** [README: security/limitations](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/README.md) · [LICENSE](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/LICENSE) · [callsite](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/bubblewrap.c) · [CI](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/.github/workflows/check.yml).
+
 ## 4. Nguồn
 
 - https://gist.github.com/kevinmichaelchen/9d77b8a681238cc45297dff969686175 · https://www.firecrawl.dev/blog/best-browser-agents · https://scrapfly.io/blog/posts/stagehand-vs-browser-use · https://agentscamp.com/guides/comparisons/browser-agents-compared-2026 · https://bug0.com/blog/expect-vs-agent-browser-vs-stagehand-vs-passmark · https://github.com/browserbase/stagehand · https://kanopylabs.com/blog/stagehand-vs-browserbase-vs-steel-browser-ai

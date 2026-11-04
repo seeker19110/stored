@@ -715,6 +715,33 @@ Memory "kiểu OpenClaw":
 
 **Nguồn §3n:** ảnh README người dùng gửi 3/11/2026 · clone https://github.com/stablyai/orca HEAD `76472f27ce04e1039337dac9b650c7b3004dfc3d`: https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/README.md · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/LICENSE · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/AGENTS.md · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/shared/default-global-settings.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/shared/tui-agent-permissions.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/renderer/src/components/onboarding/AgentStep.tsx · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/main/telemetry/consent.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/src/main/telemetry/client.ts · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/cloud/README.md · https://github.com/stablyai/orca/blob/76472f27ce04e1039337dac9b650c7b3004dfc3d/cloud/docs/relay-security-2026-10-21.md · `docs/assets/readme-downloads.svg` + `.github/workflows/readme-downloads-badge.yml`; `git shortlog`, `git tag` · GitHub search API `repo:stablyai/orca` 3/11/2026.
 
+<a id="factory-coding-policy-2026-11-04"></a>
+
+## 3o. Nâng trần 4/11/2026: coding agent có hợp đồng quyền và bằng chứng chấp nhận cho xưởng phần mềm
+
+> Đọc mã 2026-11-04; mở rộng hồ sơ `openai/codex` đã có, không nhân bản thực thể. OpenAI; Apache-2.0; full SHA `d84c872464aca4821dc5cb548a651651aefd84fa`. Chỉ đọc LICENSE, implementation, callsite và CI; không cài/chạy/build upstream; không cập nhật sao. Các ca nghiệm thu dưới đây là **đề xuất cho repo tích hợp**, chưa được chạy trong `stored`.
+
+**Trần còn thiếu:** §3k–§3l đã tách patch khỏi kết quả chấm. Xưởng còn cần chứng minh lệnh nào agent được chạy, phê duyệt dựa trên đối số nào và liệu một công cụ kiểm policy chỉ in kết quả hay thực sự làm CI thất bại. Chuỗi “approval enabled” trong cấu hình chưa đủ bằng chứng.
+
+### Đọc sâu Codex: phân biệt bộ đánh giá policy với cổng CI
+
+- [`ExecPolicyCheckCommand.run`](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/execpolicy/src/execpolicycheck.rs) nạp rules, đánh giá rồi in JSON và trả `Ok(())`. **Quyết định `forbidden` trong JSON không tự khiến subcommand thoát khác 0.** Muốn dùng `codex execpolicy check` làm cổng, consumer phải parse `decision`, xử lý rõ không có match và không lấy exit 0 làm `allow`. Lỗi parse/nạp rules là một trường hợp khác.
+- [Ngữ nghĩa prefix rules](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/execpolicy/README.md) có `match`/`not_match` được kiểm lúc nạp và quyết định chặt nhất trong các rule khớp. Đây là cách ghim ca hồi quy của chính policy; không phải sandbox chặn mọi side effect. Cùng binary ở đường dẫn tuyệt đối có thể cần `host_executable` và chế độ resolve tương ứng; không giả định basename khớp mọi executable.
+- [Callsite runtime](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/core/src/exec_policy.rs) còn kết hợp kết quả policy, approval policy và ngữ cảnh sandbox; lệnh không match có đường heuristic. Vì vậy JSON từ CLI kiểm tĩnh không thay bài thử hành vi ở host thật. [`Decision`](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/codex-rs/execpolicy/src/decision.rs) cũng phân biệt chặn, xin reviewer và quyết định người dùng; không suy ra “có rule prompt” là đã có người duyệt.
+
+| Phương án | Hợp với xưởng khi | Cổng phải đặt ở repo thực hiện |
+|---|---|---|
+| Codex + rules/sandbox của host | Cần policy lệnh có thể kiểm lại trước khi chạy | Kiểm cả JSON policy và hành vi chặn thực; giữ policy revision, argv và cwd |
+| Aider (§3l) | Người lập trình muốn sửa nhỏ, xem diff và checkpoint | Chạy lại lint/test bên ngoài; commit không là pass |
+| SWE-agent + SWE-bench/Harbor (§3k–§3l) | Cần so harness trên tập issue đóng băng | Oracle/patch rỗng, task denominator, lỗi hạ tầng tách riêng |
+| IDE agent có người review | Chu kỳ tương tác ngắn, chưa cần điều phối tự trị | Quyền tool theo host; cùng acceptance suite để so với CLI |
+
+**Chuỗi tích hợp đề xuất:** (1) đóng băng base SHA, task, model, rules và giới hạn thời gian/chi phí; (2) kiểm positive/negative cases của rules, bao gồm đường dẫn executable và không match; (3) chạy agent trong môi trường cô lập với thông tin quyền hiệu lực; (4) đưa diff sang môi trường nghiệm thu độc lập ở mục 30, giữ kết quả test theo case; (5) người review phạm vi thay đổi trước khi nhận. Artifact tối thiểu là task ID → base SHA → policy/config hash → diff → log test → quyết định nhận, thay vì chỉ lời agent “đã xong”.
+
+**Tiêu chí nâng trần:** một ca bị cấm phải dừng trước side effect; một ca không match phải có kết quả đã định trước; canary command hợp lệ phải vẫn chạy được. Đo solved/attempted, chi phí trên task được nhận và tỷ lệ phải làm lại. Policy test không chứng minh an toàn của tool/provider bên ngoài; quyền mạng, bí mật và lỗi sandbox cần phép thử riêng ở mục 11–12.
+
+**Nguồn đọc thêm:** [LICENSE](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/LICENSE) · [CI nhanh](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/.github/workflows/rust-ci.yml) · [CI đầy đủ](https://github.com/openai/codex/blob/d84c872464aca4821dc5cb548a651651aefd84fa/.github/workflows/rust-ci-full.yml). CI nguồn là cấu hình kiểm của Codex, chưa phải kết quả một run hay bằng chứng patch của người dùng đúng.
+
 ## 4. Nguồn
 
 - https://pinggy.io/blog/best_open_source_cli_coding_agents/

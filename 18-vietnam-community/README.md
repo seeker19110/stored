@@ -305,6 +305,48 @@ UAX #15 được đọc ở bản revision 58 (12/8/2026); CLDR và runtime đư
 
 **Nguồn §5d:** link người dùng gửi 3/11/2026 · clone https://github.com/jangtrinh/design-os-vietnamese HEAD `63dc65459628c72bf44691ded75c195d69f9e1d7` (README.md, LICENSE, `shared/references/{compliance,register-matrix,banned-phrases}.md`, `shared/scripts/*.py`, `knowledge/ecommerce-retail-and-consumer-law.md`, `knowledge/_evidence/vn-design-os-261026/{state,review}.json`, `plans/reports/knowledge-261028-2016-legal-validity-and-rule-variant-tables.md`, `.github/workflows/*`, `evals/*/pairs.jsonl`; grep `122/2025|248/2026|52/2013|85/2021`) · GitHub search API `repo:jangtrinh/design-os-vietnamese` 3/11/2026.
 
+<a id="factory-vietnam-product-2026-11-04"></a>
+
+## 5e. Nâng trần 4/11/2026: tiếng Việt phải đi qua hợp đồng sản phẩm và dữ liệu nghiệp vụ
+
+**Trần và khoảng trống.** Mục này có mô hình/NLP, dữ liệu địa giới, benchmark và skill pháp lý; mục 14 có giọng nói, mục 26 có OCR. Xưởng còn cần kiểm **người dùng Việt hoàn thành tác vụ thật**: đăng ký, tìm kiếm, địa chỉ, ngày/tiền, tải tài liệu và hỗ trợ. Điểm benchmark ngôn ngữ cao không chứng minh biểu mẫu, hóa đơn hay luồng phục hồi tài khoản đúng.
+
+### 5e.1 libphonenumber: chuẩn hóa và kiểm số điện thoại, tách khỏi xác minh chủ thể
+
+| Thuộc tính | Kết quả đọc 4/11/2026 |
+|---|---|
+| Repo / tác giả | `google/libphonenumber`; thư viện gốc Java/C++/JavaScript của Google và cộng đồng; không phải dự án chỉ cho Việt Nam |
+| License · phiên bản | Apache-2.0; HEAD `c9b437b1251b59a71efbd054999ae26f624b0079`; không thu thập sao; wrapper ngôn ngữ khác có vòng phát hành/license riêng |
+| Mã đã đọc | `PhoneNumberUtil.isValidNumber` tìm region rồi gọi `isValidNumberForRegion`; nhánh region kiểm country calling code, metadata và type pattern |
+| Giới hạn quan trọng | “Valid” là dải/mẫu số phù hợp metadata, **không biết số đang được cấp hay ai sở hữu**. FAQ yêu cầu bước xác minh riêng nếu cần chứng minh reachability; short number nằm ở `ShortNumberInfo` |
+| CI | `java-unit-test.yml` chạy Maven tests và Ant JUnit; không đồng nghĩa mọi wrapper JS/Python có cùng metadata hôm nay; chưa chạy thư viện trong đợt này |
+| Tích hợp | Parse với region phù hợp khi thiếu mã quốc gia; lưu dạng chuẩn hóa để đối chiếu, hiển thị dạng phù hợp người dùng; không tự đổi quốc gia chỉ theo vị trí IP |
+
+[Implementation và callsite]( https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/java/libphonenumber/src/com/google/i18n/phonenumbers/PhoneNumberUtil.java ) · [FAQ possible/valid/reachable]( https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/FAQ.md ) · [các giả định hay sai]( https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/FALSEHOODS.md ) · [license]( https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/LICENSE ) · [CI]( https://github.com/google/libphonenumber/blob/c9b437b1251b59a71efbd054999ae26f624b0079/.github/workflows/java-unit-test.yml ).
+
+### 5e.2 So lựa chọn theo tác vụ của sản phẩm Việt Nam
+
+| Tác vụ | Lựa chọn / baseline | Cổng nghiệm thu ở dự án dùng |
+|---|---|---|
+| Số điện thoại | libphonenumber; regex hẹp nếu chỉ kiểm cú pháp; input mask để hỗ trợ nhập; OTP qua provider khi cần xác minh | Phân biệt parse, valid pattern và verified ownership. Ca có `+84`, số nội địa, khoảng trắng, số nước ngoài, máy bàn, short number và metadata đổi |
+| Tên/địa chỉ | Dữ liệu địa giới đã có §4d + lưu version nguồn; form văn bản linh hoạt khi không có mã phù hợp | Không suy tên người từ hai trường first/last bắt buộc; giữ địa chỉ lịch sử theo thời điểm giao dịch, có ánh xạ địa giới mới/cũ, không ghi đè dữ liệu cũ chỉ vì danh mục mới |
+| Dịch giao diện | Lingui/Weblate (mục 13) hoặc tập message nhỏ được review; NLP/model ở §1–§3 cho tác vụ riêng | Key thiếu, placeholder đổi kiểu, plural/date/currency, Unicode và layout dài; screenshot/luồng người dùng với nội dung tiếng Việt thật |
+| Tìm kiếm/RAG | Baseline có/không dấu; PhoBERT/embedding/ViRE đã có §3, §5b–§5c | Corpus truy vấn miền ứng dụng, alias/viết tắt, tên riêng và không dấu; đo theo nhóm truy vấn, không lấy một điểm retrieval làm điểm đúng câu trả lời |
+| Pháp lý và dữ liệu cá nhân | `vn-law-check`, DESIGN:OS Vietnamese (§4e, §5d) để triage có bằng chứng; người có trách nhiệm đối chiếu văn bản gốc | Ghi văn bản/hiệu lực/phạm vi và điều chưa xác minh; checklist của skill không phải ý kiến pháp lý hay chứng nhận tuân thủ |
+
+### 5e.3 Pipeline nghiệm thu cho một sản phẩm phục vụ người Việt
+
+1. Chọn vài luồng tạo giá trị cụ thể, persona và thiết bị; mỗi luồng giữ input mẫu đã ẩn danh, kết quả mong đợi và người chịu trách nhiệm nội dung.
+2. Đóng băng version của message catalog, thư viện locale/phone và dữ liệu địa giới. Không trộn ngày snapshot với ngày pháp lý có hiệu lực; nguồn dữ liệu hành chính và quyền phân phối phải được xem riêng.
+3. Test tất định các ranh giới: Unicode tổ hợp/tách dấu, dấu nháy/tên dài, số/tiền/ngày, locale/timezone, biểu mẫu và thông báo lỗi. Chuẩn hóa để tìm kiếm không được làm mất bản gốc cần hiển thị/chứng từ.
+4. Chạy kiểm frontend/backend cùng contract; giữ ví dụ không hợp lệ và thông báo có thể sửa được. Mask, parser và server phải không bất đồng đến mức người dùng được gửi rồi bị từ chối không rõ lý do.
+5. Với LLM/ASR/OCR, phân nhóm miền ứng dụng và vùng giọng/loại tài liệu như §5b–§5c và mục 14/26; giữ ca có chi phí lỗi cao, tỷ lệ từ chối và đường chuyển người thật.
+6. Nghiệm thu accessibility/E2E (mục 30), đo completion/drop-off có sự đồng ý phù hợp (mục 28), review lại khi danh mục địa giới, cách đánh số hoặc văn bản nguồn đổi. Ngưỡng chất lượng phải do sản phẩm đặt; đợt này không có số đo người dùng mới.
+
+**Đã nâng sâu:** từ danh sách công cụ/cộng đồng tiếng Việt sang hợp đồng đầu vào, phiên bản dữ liệu và luồng nghiệm thu sản phẩm. libphonenumber không tự xử lý tên/địa chỉ hay xác minh pháp lý; các nhánh đó có baseline riêng.
+
+**Nguồn §5e:** implementation/LICENSE/CI/FAQ/`FALSEHOODS.md` upstream đã ghim; các hồ sơ địa giới, benchmark, pháp lý hiện có trong mục này và localization mục 13. Chưa gọi OTP, không dùng dữ liệu khách hàng thật, không chạy upstream.
+
 ## 6. Nguồn
 
 - https://www.emergentmind.com/topics/phogpt · https://arxiv.org/html/2509.26189v2 · https://arxiv.org/html/2608.25478 · https://ai.stanford.edu/blog/crossing-linguistic-horizon/ · https://aisean.org/resources/ · https://huggingface.co/Vi-VLM/Vistral-V-7B · https://github.com/vndee/awsome-vietnamese-nlp
