@@ -1902,3 +1902,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-04a (ảnh "Lưu tri thức để agent dùng lại" → mục 10 §6f)
 
 - Ảnh infographic người dùng gửi 4/11/2026 (không tác giả, không repo). Thí nghiệm SQLite FTS5 3.53.1 với tokenizer `unicode61` (`remove_diacritics` 0/1/2, NFC/NFD, biến thể i/y, diễn đạt khác) chạy trong scratchpad. https://www.sqlite.org/fts5.html. Clone `--depth 1` `nextlevelbuilder/ui-ux-pro-max-skill` HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`scripts/core.py` tokenizer).
+
+## Bổ sung 2026-11-04b (ảnh README JetBrains/thinkrail → mục 01 §3o)
+
+- `JetBrains/thinkrail`: ảnh README người dùng gửi 4/11/2026; clone `--filter=blob:none` đủ lịch sử (659 commit từ 22/6/2026, HEAD `c10f8808cee693e4abffeeb1844a132ed0a91cc5`, tag `v0.4.0-nightly.4`): README.md, LICENSE, `packages/server/src/analytics/{SPEC.md,mute.ts,service.ts}`, `apps/web/src/panels/useAnalyticsConsent.ts`, `apps/cli/SPEC.md`, `install.sh`, `pi-extensions/`, `thinkrail-extensions/`; grep `approv|permission|allowlist`. GitHub search API 4/11/2026. Không cài, không chạy.

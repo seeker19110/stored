@@ -3841,12 +3841,24 @@
       "repo": "JetBrains/thinkrail",
       "category": "agent-workspace",
       "license": "Apache-2.0",
-      "stars": 6810,
+      "stars": 7532,
       "open_source": true,
-      "notes": "IDE (Monaco+terminal+diff) bọc agent pi in-process; workspace = git worktree; living specs = đồ thị SPEC.md; Agent Skills + MCP; JetBrains InnovationHub incubator; v0.2.0 (18/10); 5.774★/304 fork (29/10/2026, API GitHub); ★ 31/10/2026: 6.810 (GitHub API)",
+      "notes": "IDE (Monaco+terminal+diff) bọc agent pi in-process; workspace = git worktree; living specs = đồ thị SPEC.md; Agent Skills + MCP; JetBrains InnovationHub incubator; v0.2.0 (18/10); 5.774★/304 fork (29/10/2026, API GitHub); ★ 31/10/2026: 6.810 (GitHub API); đọc mã 4/11/2026 (mục 01 §3o): v0.4.0-nightly.4; analytics PostHog EU: sự kiện cơ bản + báo lỗi luôn gửi (chỉ tắt bằng CI/NODE_ENV=test hoặc build từ nguồn), dữ liệu bổ sung bật sẵn và bắt đầu gửi khi hộp thoại đồng ý vừa hiện; báo lỗi dựng lại theo allow-list; MCP có cổng duyệt, server do repo khai báo tắt tới khi duyệt; workspace là git worktree, không phải sandbox; ★ 4/11/2026: 7.532 (GitHub search API)",
       "section": "01",
       "id": "thinkrail",
-      "profile_path": "01-ai-coding-agents/README.md"
+      "profile_path": "01-ai-coding-agents/README.md",
+      "profile_anchor": "01-ai-coding-agents/README.md#3o-hồ-sơ-jetbrainsthinkrail-thinkrail-ide-bọc-agent-pi-workspace-là-git-worktree-analytics-cơ-bản-luôn-bật-phần-bổ-sung-bật-sẵn-ảnh-readme-người-dùng-gửi-đọc-mã-4112026",
+      "last_verified_at": "2026-11-04",
+      "verified_ref": "c10f8808cee693e4abffeeb1844a132ed0a91cc5",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/README.md",
+        "https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/LICENSE",
+        "https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/packages/server/src/analytics/SPEC.md",
+        "https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/packages/server/src/analytics/mute.ts",
+        "https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/apps/web/src/panels/useAnalyticsConsent.ts",
+        "https://github.com/JetBrains/thinkrail/blob/c10f8808cee693e4abffeeb1844a132ed0a91cc5/install.sh"
+      ]
     },
     {
       "name": "OpenJarvis",
