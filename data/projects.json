@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1040,
+    "count": 1041,
     "schema_version": 2
   },
   "projects": [
@@ -14370,6 +14370,30 @@
         "https://github.com/keycloak/keycloak/blob/2174fdf38731f7191a00240f66fb599e9779005d/.github/workflows/conformance.yml"
       ],
       "profile_anchor": "34-backend-data-identity-integration/README.md#keycloak"
+    },
+    {
+      "name": "dsh-superagent (prototype)",
+      "repo": "deepseek-ai/dsh-superagent-prototype",
+      "category": "coding-agent",
+      "license": "MIT",
+      "stars": 18363,
+      "open_source": true,
+      "notes": "Bundle cho DeepSeek Harness: agent chủ động cho một repo GitHub (+Feishu), nhận việc bằng polling, mỗi ticket một Executor session và thư mục (thường git worktree), trả lời bằng PR; quyền nhiều tầng do host giữ (allowed list, admission table, Mandate; bot/CI chỉ là ngữ cảnh; mặc định observe); lọc biến KEY/PASSWORD/SECRET/TOKEN, panel 127.0.0.1 chống CSRF; nhưng worker chạy lệnh không cần duyệt dưới user OS của người vận hành, blocked commands 'not a security boundary', auto-merge do prompt quyết định; 1 commit, v0.1.0, tự nhận research prototype; ★ 4/11/2026: 18.363 (GitHub search API), mục 21 §10i",
+      "section": "21",
+      "id": "dsh-superagent",
+      "profile_path": "21-autonomous-workflows/README.md",
+      "profile_anchor": "21-autonomous-workflows/README.md#10i-hồ-sơ-deepseek-aidsh-superagent-prototype-agent-chủ-động-cho-một-repo-github-phân-quyền-nhiều-tầng-nhưng-worker-chạy-lệnh-không-cần-duyệt-ảnh-readme-người-dùng-gửi-đọc-mã-4112026",
+      "last_verified_at": "2026-11-04",
+      "verified_ref": "8c32a9dc5d72c033816c6a8110b37f40cf94fba4",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/README.md",
+        "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/SETUP.md",
+        "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/LICENSE",
+        "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/002-authorization.md",
+        "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/003-execution.md",
+        "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/006-deployment.md"
+      ]
     }
   ]
 }

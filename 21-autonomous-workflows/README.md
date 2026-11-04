@@ -536,6 +536,45 @@ SDK MIT dùng `ctx.run` để ghi kết quả thao tác không tất định và
 
 **Nguồn §10i:** [LICENSE](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/LICENSE) · [temporalio/worker/_replayer.py](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/temporalio/worker/_replayer.py) · [temporalio/common.py](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/temporalio/common.py) · [tests/worker/test_replayer.py](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/tests/worker/test_replayer.py) · [.github/workflows/ci.yml](https://github.com/temporalio/sdk-python/blob/1845f25aeac33114b9c46fbccfac19976129f796/.github/workflows/ci.yml).
 
+## 10i. Hồ sơ deepseek-ai/dsh-superagent-prototype: agent chủ động cho một repo GitHub, phân quyền nhiều tầng nhưng worker chạy lệnh không cần duyệt (ảnh README người dùng gửi, đọc mã 4/11/2026)
+
+> Ảnh là phần đầu README: "dsh-superagent", ghi chú "Research prototype for reference only, not an official DeepSeek product… with much of the engineering done by coding agents… not production-ready", nhắc bài "Exploring Super-agent Design: Towards a More Autonomous Agent System", mô tả agent chủ động cho một repo GitHub (tùy chọn Feishu), cách cài "Ask your coding agent: Read SETUP.md…" và 7 tài liệu đánh số 000–006. Đã clone đủ lịch sử, HEAD `8c32a9dc5d72c033816c6a8110b37f40cf94fba4` (31/10/2026). **Không cài, không chạy.**
+
+### 10i.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (4/11/2026) |
+|---|---|
+| Repo | https://github.com/deepseek-ai/dsh-superagent-prototype · **18.363★** sau 4 ngày (tạo 31/10/2026, GitHub search API) |
+| License | MIT, "Copyright (c) 2026 DeepSeek Harness Team" |
+| Lịch sử | **1 commit duy nhất** ("feat: add the dsh-superagent research prototype", tác giả `DeepSeek Harness Team <team@dsh.dev>`): bản được dọn lại để công bố, không xem được quá trình phát triển. README tự ghi phần lớn mã do coding agent viết |
+| Thành phần | Bundle (plugin) cho **DeepSeek Harness** (mục 01, `deepseek-harness`), phụ thuộc `@deepseek-ai/cordis` 4.0.5-alpha.1. 216 file: `src/` 111, `tests/` 65 (vitest), `prompts/` 15, `docs/` 9 (000–008), `skills/`, `locale/` |
+| Cách chạy | Chạy trong một profile DeepSeek Harness riêng (`superagent`), panel web tại `127.0.0.1:3082`. Nghe GitHub bằng **polling** thông báo của tài khoản agent (mặc định mỗi phút), không cần webhook hay mở cổng vào. Feishu qua `lark-cli` |
+
+### 10i.2 Đọc mã: mô hình quyền làm kỹ
+
+- **Tách "ai được ra lệnh" khỏi nội dung tin nhắn.** `docs/002-authorization.md`: "The host enforces allowed lists, rules and Mandates. Messages, comments and quoted documents are inputs to a decision; they cannot change those permissions." Có ba mức: `explicit` (người trong danh sách gọi agent), `inferred` (theo dõi thread, bot trong danh sách), `not admitted` (bot lạ và mọi thứ khác). Bot và CI chỉ được làm **ngữ cảnh** trên ticket đã có, không tạo quyền mới.
+- **Chế độ chủ động mặc định là `observe`**: ứng viên suy ra được đánh giá, nhưng chỉ ghi lại "would accept" chứ không nhận việc. Phải chủ động chuyển sang `auto` sau khi xem lại các quyết định. Bảng admission mặc định `ignore` với người ngoài danh sách.
+- **Mỗi ticket có Mandate** (quy tắc đã khớp, phạm vi). Executor trả lại tin nhắn vượt phạm vi để đánh giá lại. Siết một ô của bảng admission không dừng ngay các ticket đang mở, nhưng có thể thu hồi Mandate của chúng khi được kiểm lại trước lúc chạy tiếp.
+- **Vệ sinh credential**: dịch vụ subprocess bỏ mọi biến môi trường có tên chứa KEY, PASSWORD, SECRET hoặc TOKEN; worker dùng file git config riêng (`worker-gitconfig`) với tài khoản agent riêng qua wrapper `gh-agent`; API panel yêu cầu header `x-orchestrator-request: 1` và từ chối `Origin` khác (chống CSRF). `SETUP.md` cấm agent hỏi secret trong chat; bước nhập secret do người vận hành tự chạy.
+- **Tài liệu tự nói rõ giới hạn**, đúng kiểu kho muốn thấy.
+
+### 10i.3 Rủi ro (theo chính tài liệu)
+
+- ⚠️ **Worker chạy lệnh không cần duyệt.** `docs/003-execution.md`: "Executor Sessions run commands without approval as the operator's OS user." Danh sách lệnh bị chặn (`DSH_SUPERAGENT_BLOCKED_COMMANDS`) và thư mục riêng chỉ là mặc định: "not a security boundary. A worker can still execute a program by absolute path." Worker còn giữ credential `gh` của tài khoản agent qua credential helper.
+- ⚠️ **Prompt injection qua ngữ cảnh**: mọi tin nhắn trên thread đã đăng ký (kể cả bot, log CI, comment của người ngoài danh sách) đều tới worker làm ngữ cảnh. Chúng không tạo quyền mới trong host, nhưng worker chạy shell không cần duyệt với credential của tài khoản agent nên vẫn có thể bị dẫn đi. Phạm vi thiệt hại phụ thuộc vào quyền của tài khoản agent trên repo.
+- **Auto-merge do prompt quyết định**: "Auto-merge is governed by the Delivery requirements prompt. The host has no merge-specific decision logic." Nếu cho tài khoản agent quyền merge, cổng duy nhất là branch protection của GitHub và lời dặn trong prompt.
+- Background job được chạy tối đa 30 phút sau mỗi lượt; server dựng cho người review có thể chạy tới khi assignment kết thúc.
+- Phiên bản 0.1.0, phụ thuộc bản alpha của cordis, một commit, tự nhận "not production-ready".
+
+### 10i.4 Dùng thế nào
+
+- Chạy trên **máy hoặc VM riêng** (user OS riêng, không có credential khác), vì giới hạn lệnh không phải ranh giới bảo mật. Container hoặc VM là lớp cách ly thật (mục 11 §3).
+- Cấp cho tài khoản agent **quyền tối thiểu**: không quyền admin, bật branch protection bắt buộc review và check trên `main`, để auto-merge không thể bỏ qua cổng.
+- Giữ `observe` lâu, đọc các Decision đã ghi rồi mới bật `auto`; danh sách người được ra lệnh càng ngắn càng tốt.
+- So với Pullboard (§10h): Pullboard điều phối nhiều agent trong một repo bằng board và luật trong git; dsh-superagent là **một agent trực** nhận việc từ GitHub/IM với mô hình quyền chặt hơn ở phía host, nhưng cả hai đều không sandbox lệnh.
+
+**Nguồn §10i:** ảnh README người dùng gửi 4/11/2026 · clone https://github.com/deepseek-ai/dsh-superagent-prototype HEAD `8c32a9dc5d72c033816c6a8110b37f40cf94fba4`: https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/README.md · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/SETUP.md · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/LICENSE · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/package.json · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/002-authorization.md · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/003-execution.md · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/005-panel.md · https://github.com/deepseek-ai/dsh-superagent-prototype/blob/8c32a9dc5d72c033816c6a8110b37f40cf94fba4/docs/006-deployment.md · `prompts/dispatch.md` · GitHub search API `dsh-superagent` 4/11/2026.
+
 ## 11. Nguồn
 
 - Mục 23 §2, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc 2026-10-12)

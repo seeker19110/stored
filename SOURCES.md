@@ -1906,3 +1906,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-04b (ảnh README JetBrains/thinkrail → mục 01 §3o)
 
 - `JetBrains/thinkrail`: ảnh README người dùng gửi 4/11/2026; clone `--filter=blob:none` đủ lịch sử (659 commit từ 22/6/2026, HEAD `c10f8808cee693e4abffeeb1844a132ed0a91cc5`, tag `v0.4.0-nightly.4`): README.md, LICENSE, `packages/server/src/analytics/{SPEC.md,mute.ts,service.ts}`, `apps/web/src/panels/useAnalyticsConsent.ts`, `apps/cli/SPEC.md`, `install.sh`, `pi-extensions/`, `thinkrail-extensions/`; grep `approv|permission|allowlist`. GitHub search API 4/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-04c (ảnh README deepseek-ai/dsh-superagent-prototype → mục 21 §10i)
+
+- `deepseek-ai/dsh-superagent-prototype`: ảnh README người dùng gửi 4/11/2026; clone đủ lịch sử (1 commit, HEAD `8c32a9dc5d72c033816c6a8110b37f40cf94fba4`, 31/10/2026): README.md, SETUP.md, LICENSE, package.json, `docs/000…008`, `prompts/dispatch.md`, `src/sources/github*.ts`. GitHub search API 4/11/2026 (`dsh-superagent`). Không cài, không chạy.
