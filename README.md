@@ -372,6 +372,10 @@ Pullboard (mục 21 §10h, 528★) đưa board, spec và luật của dự án v
 
 Bài giới thiệu CanvasAnvil (mục 27 §5b, 113★, MIT) nói một câu lệnh sinh ra trọn bộ bản vẽ cải tạo nội thất "chuyên nghiệp". Đọc mã: LLM chỉ dựng một mặt bằng 2D dạng SVG; các tờ trần, sàn, MEP, mặt đứng và chi tiết được tạo bằng cách để agent viết prompt rồi gửi cho model sinh ảnh, nên ra ảnh raster không đo được, không có DXF/DWG/IFC; bảng vật tư do LLM viết. Dùng tốt để trình bày ý tưởng, không dùng làm hồ sơ thi công. Nếu bật Langfuse, app ghi toàn bộ hội thoại và dùng IP người dùng làm định danh.
 
+### 57. "Lưu tri thức để agent dùng lại" (4/11/2026): CSV + BM25 là mẫu đúng, nhưng tiếng Việt phải chuẩn hoá trước
+
+Sơ đồ 6 bước (góp ý → kho CSV/SQLite → BM25 → agent áp dụng → kiểm tra → góp ý mới) đúng về ý và tự nêu đúng giới hạn của BM25 (mục 10 §6e). Thử với SQLite FTS5 cho thấy tiếng Việt cần thêm một bước: `remove_diacritics=1` không bỏ được dấu của chữ mang hai dấu, `=2` thì gộp "mở" với "mờ"; văn bản NFD không khớp truy vấn NFC; "kĩ"/"kỹ" là hai token; diễn đạt khác thì trượt. Tokenizer của ui-ux-pro-max còn bỏ âm tiết một chữ như "ý". Cách làm: chuẩn hoá NFC và chính tả trước khi ghi lẫn khi truy vấn, giữ dấu khi xếp hạng, truy vấn theo cụm từ, lai thêm embedding tiếng Việt khi kho lớn, và có ngày, người duyệt, hết hạn cho từng dòng.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

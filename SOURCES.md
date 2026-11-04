@@ -1564,3 +1564,7 @@ Commit `628e36caeb706001cf512787eba56bcfcb44f133`;12bài học được map vào
 ## Bổ sung 2026-11-03r (bài giới thiệu CanvasAnvil → mục 27 §5b)
 
 - `codingfeng101/canvasanvil`: bài người dùng gửi 3/11/2026; clone `--filter=blob:none` đủ lịch sử (157 commit từ 24/1/2026, HEAD `27f1aea1b8a7e2fcfe01cb2610a3d4e54db4987e`): README.md, LICENSE, `client/workspaces/cad/lib/*`, `resources/prompts/cad/**`, `server/ai/{image,model}.ts`, `server/telemetry/langfuse.ts`, `server/routes/chat.ts`; grep `dxf|dwg|ifc`, `telemetry`. GitHub search API 3/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-04a (ảnh "Lưu tri thức để agent dùng lại" → mục 10 §6e)
+
+- Ảnh infographic người dùng gửi 4/11/2026 (không tác giả, không repo). Thí nghiệm SQLite FTS5 3.53.1 với tokenizer `unicode61` (`remove_diacritics` 0/1/2, NFC/NFD, biến thể i/y, diễn đạt khác) chạy trong scratchpad. https://www.sqlite.org/fts5.html. Clone `--depth 1` `nextlevelbuilder/ui-ux-pro-max-skill` HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`scripts/core.py` tokenizer).

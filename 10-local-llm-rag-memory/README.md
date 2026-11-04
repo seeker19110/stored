@@ -440,6 +440,45 @@ Runtime MLC chạy model trong browser qua WebGPU, phù hợp ứng dụng web m
 
 **Nguồn §6d:** [KServe LICENSE](https://github.com/kserve/kserve/blob/41defa23f4592b1468a68fb023cb931743e9ec06/LICENSE); [llm-d LICENSE](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/LICENSE), [llm-d nightly](https://github.com/llm-d/llm-d/blob/fbc542142983335372bbaa47f83117bb25156b0f/.github/workflows/nightly-e2e-optimized-baseline-gke-acc-gpu-vllm-x.yaml); [AIPerf LICENSE](https://github.com/ai-dynamo/aiperf/blob/6b565f4e4872755087c13285ba43dd0695c12b8a/LICENSE); [ExecuTorch CPU CI](https://github.com/pytorch/executorch/blob/f2564fb486c07844d39e2eb91c7ff39b68e0dc3e/.github/workflows/test-backend-cpu.yml); [WebLLM LICENSE](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/LICENSE), [WebLLM CI](https://github.com/mlc-ai/web-llm/blob/f1ecbaa916c9ede297b692035ba368cf32d03835/.github/workflows/tests.yaml); [KServe docs](https://kserve.github.io/website/), [WebLLM docs](https://webllm.mlc.ai/docs/).
 
+## 6e. Kiểm ảnh "Lưu tri thức để agent dùng lại" (CSV/SQLite + BM25): mẫu đúng, nhưng tiếng Việt cần chuẩn hoá trước khi BM25 có nghĩa (ảnh người dùng gửi, thử bằng SQLite 3.53.1 ngày 4/11/2026)
+
+> Ảnh là sơ đồ vòng 6 bước: (1) góp ý sau khi làm, ghi lỗi và cách sửa → (2) công việc mới ("Viết mở đầu video kỹ thuật") → kho tri thức CSV/SQLite với cột ID, Context tìm kiếm, Lỗi sai, Cách sửa, Lý do → (3) script BM25 tìm theo cột context, xếp hạng → (4) lấy dòng liên quan → (5) agent áp dụng, viết và sửa bản thảo → (6) kiểm tra lại bằng script/review/eval → góp ý mới. Ảnh tự ghi hai giới hạn: "BM25 chỉ tìm và xếp hạng mức độ liên quan về văn bản, không tự động đánh giá chất lượng kể chuyện" và "Truy xuất… không đảm bảo bản thảo luôn đúng hoặc hoàn hảo". Không có tác giả hay repo đi kèm.
+
+### 6e.1 Đánh giá mẫu
+
+| Phần trong ảnh | Kết quả | Ghi chú |
+|---|---|---|
+| Lưu phản hồi thành bản ghi có cấu trúc (context, lỗi, cách sửa, lý do) | ✅ | Tốt hơn `lessons.md` dạng văn xuôi (mục 03 §8k): có khoá, có cột để lọc, có "lý do" giúp agent khái quát hoá. Cùng tinh thần với ghi lỗi trong CLAUDE.md của team và TRAPS.md (mục 23) |
+| BM25 trên CSV/SQLite | ✅ đã có tiền lệ | ui-ux-pro-max (mục 06 §7g: CSV + BM25 trong `scripts/core.py`), context-mode (mục 03 §8b: SQLite FTS5 + BM25 + trigram), Hindsight (mục 10 §4: BM25 + vector + graph). Đủ dùng khi kho nhỏ, không cần key hay GPU |
+| Hai câu giới hạn tự ghi | ✅ chính xác | BM25 là xếp hạng theo trùng từ khoá. Bước 6 mới là cổng chất lượng |
+| Bước 6 "kiểm tra lại" | ⚠️ thiếu cách đo | Chưa nói đo gì. Tối thiểu: ghi ID các dòng đã truy xuất vào bản thảo (để biết dòng nào được dùng); eval trước/sau trên một tập đề cố định; dòng nào truy xuất mà không giúp gì thì hạ hoặc xoá |
+| Vòng "góp ý mới → thêm/cập nhật" | ⚠️ thiếu vệ sinh kho | Không có khử trùng, ngày ghi, người duyệt hay hết hạn. Kho chỉ thêm mà không bớt sẽ đầy dòng mâu thuẫn và BM25 trả về cả bài học cũ đã sai |
+
+### 6e.2 Thử thật: BM25 với tiếng Việt
+
+Dựng bảng `fts5(ctx, loi, sua, lydo)` từ hai dòng trong ảnh, thêm một dòng nhiễu ("Mờ ảnh đầu video / Ảnh bị mờ"), rồi truy vấn bằng SQLite 3.53.1 (Python `sqlite3`):
+
+| Thí nghiệm | Kết quả | Hệ quả |
+|---|---|---|
+| Truy vấn "mở đầu video kỹ thuật", tokenizer `unicode61` mặc định | Dòng 01 đứng đầu ✅ | Mẫu chạy được khi dữ liệu sạch |
+| Truy vấn "mờ" với `remove_diacritics=1` (mặc định) | Chỉ khớp dòng "mờ", **không** gộp với "Mở" | Chế độ 1 không bỏ được dấu của chữ mang **hai dấu** (ơ + thanh, ư + thanh…), nên thực tế giữ dấu với phần lớn âm tiết có ơ/ư/ô/â/ă/ê |
+| Truy vấn "mờ" với `remove_diacritics 2` | Khớp **cả "Mở" lẫn "mờ"** | Chế độ 2 bỏ mọi dấu: "mở" (open) ≡ "mờ" (blur) ≡ "mỡ". Tiện cho người gõ không dấu, nhưng gây trùng nghĩa |
+| Văn bản lưu NFD, truy vấn NFC, `remove_diacritics 0` | Mất khớp các từ có dấu; chỉ còn "video" | Dữ liệu dán từ macOS, PDF hay web có thể ở dạng NFD: cùng chữ nhưng khác byte |
+| Truy vấn "kĩ thuật" (i ngắn) với dữ liệu "kỹ thuật" | Chỉ khớp nhờ "thuật" | Hai cách viết i/y và kiểu đặt dấu cũ/mới ("hoà"/"hòa") là token khác nhau |
+| Truy vấn diễn đạt khác "phần mở màn clip công nghệ" | Chỉ khớp nhờ "mở" | BM25 không hiểu đồng nghĩa (clip ↔ video, công nghệ ↔ kỹ thuật) |
+
+Thêm một điểm khi chép script có sẵn: tokenizer của ui-ux-pro-max (`.claude/skills/ui-ux-pro-max/scripts/core.py:305`, HEAD `713eef5`) không chuẩn hoá Unicode và **bỏ mọi token dưới 2 ký tự**, nên âm tiết một chữ của tiếng Việt như "ý" biến mất ("mỗi câu một ý" → `mỗi câu một`). Với văn bản NFD, `re.sub(r'[^\w\s]', ' ', …)` còn tách dấu ra khỏi chữ ("thuật" → `thua`, `t`). Repo đó viết cho tiếng Anh nên không phải lỗi của nó; chỉ là không nên dùng nguyên cho kho tiếng Việt.
+
+### 6e.3 Cách làm cho tiếng Việt
+
+1. **Chuẩn hoá trước khi ghi và trước khi truy vấn**: NFC; một kiểu đặt dấu; quy ước i/y. Có thể dùng linter của design-os-vietnamese (mục 18 §5d) làm chuẩn; lưu ý license của nó.
+2. **Giữ dấu khi xếp hạng** (`remove_diacritics 0`). Nếu cần cho người gõ không dấu, thêm một cột bản không dấu riêng và chỉ dùng khi truy vấn không có dấu.
+3. **Từ ghép là nhiều âm tiết**: dùng truy vấn cụm (`"kỹ thuật"`) hoặc tách từ (underthesea, mục 18 §2) trước khi đánh chỉ mục.
+4. **Lai BM25 + embedding tiếng Việt** (bi-encoder BKAI hoặc Vietnamese_Embedding, mục 18 §4c), gộp bằng RRF, khi kho vượt vài trăm dòng hoặc người viết hay diễn đạt khác nhau. Đo bằng một tập truy vấn tự gán nhãn trước khi đổi.
+5. **Vệ sinh kho**: mỗi dòng có ngày, người duyệt, phạm vi và trạng thái (đang dùng / đã thành lint hay test / bỏ); khử trùng theo context. Dòng nào đã thành cổng máy thì gỡ khỏi kho truy xuất.
+
+**Nguồn §6e:** ảnh người dùng gửi 4/11/2026 · thí nghiệm SQLite FTS5 3.53.1 (Python `sqlite3`) trong scratchpad, không lưu vào kho · https://www.sqlite.org/fts5.html (tuỳ chọn `remove_diacritics` của tokenizer unicode61) · clone `--depth 1` https://github.com/nextlevelbuilder/ui-ux-pro-max-skill HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`.claude/skills/ui-ux-pro-max/scripts/core.py`).
+
 ## 7. Nguồn
 
 - https://dev.to/sreeraj-sreenivasan/the-complete-guide-to-local-llm-inference-tools-in-july-2026-llamacpp-ollama-vllm-sglang-and-4mh1 · https://blog.starmorph.com/blog/local-llm-inference-tools-guide · https://openalternative.co/blog/best-local-llm-tools · https://www.storagereview.com/best/local-llm-tools · https://deepresearch.ninja/2026/06/Open-Source-LLM-Inference-Projects-A-Comprehensive-Comparative-Analysis/ · https://www.digitalapplied.com/blog/run-local-llms-ollama-vs-lm-studio-vs-vllm-2026-guide
