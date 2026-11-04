@@ -1914,3 +1914,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-04d (bài "218 developers vắt kiệt server 12 đô" → mục 34 §6)
 
 - Bài người dùng gửi 4/11/2026 (không link). Clone `--depth 1` `arjaythedev/twelve-dollar-server-challenge` HEAD `b7b7b651fe243b0417ae82b3bfc1fc4beb53c456`: README.md, SPEC.md, LEADERBOARD.md, `submissions/{rust-iouring-kensac,mojo-iouring-oh-meh,c-iouring-pavlyhalim,rust-native-scooter1337}/README.md`. WebFetch https://benchmarks.arjaythedev.com/12-dollar-server/leaderboard. Không chạy bài dự thi nào.
+
+## Bổ sung 2026-11-04e (link Zagitta/gpu-unlock → mục 10 §6g)
+
+- `Zagitta/gpu-unlock`: link người dùng gửi 4/11/2026; clone đủ lịch sử (37 commit, HEAD `7eb51bccae0a0b7e599e084d971170e9a1e82d0c`, v2.0.0): README.md, `docs/How Ampere was unlocked.md`, `firmware/NOTICE.md`, `debian/copyright`, header SPDX trong `kernel/gpu_unlock/`, `licenses/`, `.github/workflows/ci.yml`. GitHub search API 4/11/2026. Không cài, không nạp module.

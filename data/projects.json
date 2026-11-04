@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1042,
+    "count": 1043,
     "schema_version": 2
   },
   "projects": [
@@ -14417,6 +14417,29 @@
         "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/rust-iouring-kensac/README.md",
         "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/c-iouring-pavlyhalim/README.md",
         "https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/rust-native-scooter1337/README.md"
+      ]
+    },
+    {
+      "name": "gpu-unlock",
+      "repo": "Zagitta/gpu-unlock",
+      "category": "inference",
+      "license": "GPL-2.0-only",
+      "stars": 16464,
+      "open_source": true,
+      "notes": "Kernel module Linux chạy lúc boot trước driver NVIDIA, gỡ giới hạn một nửa tốc độ tensor FP16/BF16/TF32 (cộng dồn FP32) trên GeForce RTX 30 (ổn định, 100+ báo cáo), RTX 40/20 (thử nghiệm); BF16 dense +65–100% (RTX 4090 165→329 TFLOPS), LLM prefill +25–55%, fine-tune +25–50%, sinh ảnh +30–55%, kết quả giống từng bit; không vá driver, không flash VBIOS; firmware trích nguyên byte từ driver NVIDIA 610.43.03 kèm giấy phép NVIDIA; DKMS/RPM/Arch/Unraid; v2.0.0; GPL-2.0-only theo SPDX (gốc repo chưa có file LICENSE); ★ 4/11/2026: 16.464 (GitHub search API), mục 10 §6g",
+      "section": "10",
+      "id": "gpu-unlock",
+      "profile_path": "10-local-llm-rag-memory/README.md",
+      "profile_anchor": "10-local-llm-rag-memory/README.md#6g-hồ-sơ-zagittagpu-unlock-mở-tốc-độ-tensor-đầy-đủ-fp16bf16tf32-cộng-dồn-fp32-cho-geforce-rtx-203040-trên-linux-link-người-dùng-gửi-đọc-mã-4112026",
+      "last_verified_at": "2026-11-04",
+      "verified_ref": "7eb51bccae0a0b7e599e084d971170e9a1e82d0c",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/README.md",
+        "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/firmware/NOTICE.md",
+        "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/debian/copyright",
+        "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/kernel/gpu_unlock/recipes.c",
+        "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/.github/workflows/ci.yml"
       ]
     }
   ]
