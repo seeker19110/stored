@@ -101,49 +101,69 @@ OpenFGA, SpiceDB, Debezium và Temporal giữ hồ sơ gốc ở mục đã dẫ
 
 Ngưỡng chấp nhận phải gắn nghiệp vụ và dữ liệu đại diện; chưa có số benchmark, kết quả chạy hoặc SLA được chứng minh trong đợt đọc mã này.
 
-## 6. Kiểm bài viết “218 developers vắt kiệt server 12 đô” (twelve-dollar-server-challenge): kỹ thuật đúng, bảng xếp hạng trong bài đã cũ (bài người dùng gửi, đối chiếu repo 4/11/2026)
+## 6. Kỹ thuật đáng học từ nhóm dẫn đầu The $12 Server Challenge (twelve-dollar-server-challenge, đọc README bài dự thi 4/11/2026)
 
-> Bài người dùng gửi tóm tắt cuộc thi của Arjay McCandless: dựng một Social Media API trên SQLite, chạy trên server 12 đô (1 vCPU, 2 GB). Bài kể "Top 10" đạt 240.000–280.000 người dùng ảo đồng thời (khoảng 23.000–26.800 req/s), và rút ra điểm chung: `io_uring` với direct descriptors, batching từ I/O tới transaction, tái dùng buffer, tách WAL checkpoint khỏi event loop. Đối chiếu với repo https://github.com/arjaythedev/twelve-dollar-server-challenge (MIT, 660★, 318 fork, tạo 3/10/2026), clone nông tại `b7b7b651fe243b0417ae82b3bfc1fc4beb53c456` (4/11/2026 13:34 UTC): `README.md` (luật), `SPEC.md`, `LEADERBOARD.md`, `benchmarks/batch-1.md`, `batch-2.md`. **Không chạy bài dự thi nào.**
+> Nguồn: bài người dùng gửi về cuộc thi của Arjay McCandless, đối chiếu repo https://github.com/arjaythedev/twelve-dollar-server-challenge (MIT) tại `b7b7b651fe243b0417ae82b3bfc1fc4beb53c456`: luật trong `README.md`, `SPEC.md`, bảng `LEADERBOARD.md` và README của bốn bài dẫn đầu trong `submissions/`. Mục này chỉ ghi các kỹ thuật mạnh nhất đã được chấm. **Không chạy bài dự thi nào.**
 
-### 6.1 Luật chơi: khớp bài viết
+### 6.1 Bài toán và luật: một chuẩn đo tốt
 
-| Bài viết nói | Repo | Kết quả |
-|---|---|---|
-| SQLite, cấm cache feed và cấm nhớ kết quả xác thực token | README luật 2 và 5: chỉ SQLite in-process; "no response caches, query-result caches, in-memory copies of tables, or remembered JWT verifications (verify every token's signature)". Page cache và `mmap` của SQLite được phép; prepared statement được phép | ✅ |
-| Ghi phải commit trước khi trả lời | Luật 6: WAL với `synchronous=NORMAL` trở lên; cấm `synchronous=OFF` và DB trong RAM; **được gom ghi của nhiều request vào một transaction** (group commit) nếu mỗi response chờ commit | ✅ (đây chính là nền của kỹ thuật batching) |
-| 500.000 posts, 2 triệu likes | `seed/make-seed.sh`: 50k users, 500k posts, 2M likes, token ký sẵn cho 20.000 user (HS256) | ✅ |
-| Giữ 5 phút, P95 < 500 ms, P99 < 1 s, lỗi < 1% | Đúng; điểm là số user cao nhất giữ qua một lần 5 phút | ✅ |
-| "Concurrent virtual users" | Mỗi user ảo chạy `bench/load.js`: feed → nghỉ → post → nghỉ, 15% like, 2% đăng bài. **Có thời gian nghỉ**, nên 280.000 user tương ứng khoảng 26.700 req/s chứ không phải 280.000 request cùng lúc | ⚠️ cần hiểu đúng |
-| "Hệ điều hành giới hạn mỗi process 65.000 file descriptor" | Không phải giới hạn của Linux: ban tổ chức chạy mọi bài qua systemd với **`LimitNOFILE=65535`** (`LEADERBOARD.md`). Direct descriptor của `io_uring` (file đăng ký trong ring) không chiếm bảng fd của process nên vượt được giới hạn đó | ⚠️ sai nguyên nhân, đúng kỹ thuật |
-| Server "12 đô" | Batch 1 (10–11/10) chạy trên droplet DigitalOcean 12 đô; từ batch 2 (20–21/10) chuyển sang **VPS Synteq** 1 vCPU / 2 GB (Xeon Platinum 8260, AVX-512), nhanh hơn khoảng 2 lần với bài nặng CPU. Mọi con số 240k–310k là trên máy Synteq | ⚠️ |
+- Social Media API (feed 20 bài mới nhất kèm tác giả và số like, mở bài, đăng bài, like, health) trên **SQLite in-process**, seed 50k user, 500k bài, 2 triệu like; server 1 vCPU / 2 GB.
+- Luật giữ cho bài đo trung thực: không cache kết quả hay bảng trong RAM; **verify chữ ký JWT ở mọi request**; ghi phải **commit trước khi trả lời** (WAL, `synchronous=NORMAL` trở lên). Được phép **group commit** (gom ghi nhiều request vào một transaction, mỗi request chờ commit) và đọc qua **B-tree/cursor API của chính SQLite** (phán quyết 31/10/2026).
+- Điểm = số user ảo giữ được 5 phút với p95 < 500 ms, p99 < 1 s, lỗi < 1%; mỗi lần đo khởi động lại app trên DB mới.
 
-### 6.2 Từng bài trong "Top 10" của bài viết, đối chiếu `LEADERBOARD.md` (4/11/2026)
+### 6.2 Nhóm dẫn đầu (LEADERBOARD.md, 4/11/2026)
 
-| Bài viết | Dòng tương ứng trên leaderboard | Kết quả |
-|---|---|---|
-| Assembly, 240.000 user, RAM thấp nhất 545 MB | `asm-epoll-umitaltintas` #152: 240.000, 545 MB, **hạng 23** | ✅ số đúng, nhưng không còn trong top 10 |
-| F# bẻ Kestrel, 247.000, P99 72 ms | `fsharp-kestrel-delneg` #201: 247.000, P99 72 ms, **hạng 21** | ✅ |
-| C và Assembly cùng tác giả, 250.000 | `asm-iouring-unorig-username` #206: 250.000, P99 397 ms, 1.486 MB ✅. Bản C cùng tác giả (`c-iouring-unorig-username` #290) nay **280.000** (P99 713 ms) | ⚠️ số của bản C đã cũ |
-| Rust, 264.000, range scan cho feed | `rust-epoll-scooter1337` #82: 264.000. Chú thích ˣ: lần đầu **hết cổng nguồn của máy tạo tải** ở khoảng 240.000 kết nối (1 IP × 4 máy), phải chấm lại với thêm 3 IPv4 và 5 máy tạo tải; 360k/480k thì app bị OOM-kill | ✅, kèm lưu ý về giới hạn của chính bộ đo |
-| Ada, 270.000, P99 177 ms | `ada-native-visseranalytics` hiện được chấm ở #237: **250.000**. Các lần #211 và #216 giữ được 270.000; cùng mã của #216 chạy lại thì 260k/280k trượt P99. Lịch sử 226k → 270k khớp bài viết | ⚠️ điểm dao động giữa các lần chạy |
-| Crystal tắt GC, 270.000 | `crystal-epoll-faustinoaq` #193: 270.000, P99 879 ms | ✅ |
-| Lean sinh mã C, 280.000, P99 316 ms | `lean-derive-hargup` #153: 280.000, P99 316 ms, 836 MB | ✅ |
-| Tự viết engine đọc/ghi file SQLite, 280.000, P99 23 ms | `c-rawsqlite-larvance` #210 từng chấm 280.000 khi chưa link libsqlite3. **Arjay ra phán quyết ngày 31/10: không được phép** ("an own engine for SQLite's file format", luật 2), nên bài bị gỡ khỏi bảng. Bản sửa dùng SQLite 3.54.1 gốc và đọc qua B-tree cursor API được chấm lại **260.000** | ⚠️ bài viết nói "đi quá giới hạn", thực tế là bị loại rồi chấm lại |
-| C dùng SIMD xác thực theo lô và đọc thẳng B-tree, 266.000 | Không tìm được dòng 266.000 khớp; có thể là lần chạy cũ của một bài C io_uring | (chưa xác minh) |
-| "Hai nhà đồng vô địch ở 280.000" | Bảng hiện tại: hạng 1 **`rust-iouring-kensac` 310.000** (P99 190 ms), Mojo 304.000, C 295.000, Rust 290.000; 280.000 là **hạng 5**, đồng hạng giữa hai bài Lean 4, Objective-C và C | ❌ đã cũ |
-| "218 developers" | Leaderboard ghi tổng số bài dự thi, không ghi số người; bản 25/10 có 167 bài | (chưa xác minh) |
+| # | Bài | Ngôn ngữ | User giữ 5 phút | req/s | p95 / p99 ms | RAM MB |
+|---|---|---|---:|---:|---|---:|
+| 1 | `rust-iouring-kensac` | Rust | 310.000 | 29.284 | 62 / 190 | 1.114 |
+| 2 | `mojo-iouring-oh-meh` | Mojo | 304.000 | 28.705 | 159 / 545 | 726 |
+| 3 | `c-iouring-pavlyhalim` | C | 295.000 | 28.013 | 28 / 117 | 1.536 |
+| 4 | `rust-native-scooter1337` | Rust | 290.000 | 27.580 | 26,5 / 514 | 1.035 |
+| 5 | `lean-verified-soonhokong` | Lean 4 | 280.000 | 26.738 | 40,6 / 188 | 1.446 |
 
-Phán quyết ngày 31/10 cũng làm rõ: đọc `/feed` và `/posts/:id` qua **B-tree/cursor API của chính SQLite là hợp lệ**; được dùng page cache tùy chỉnh (`SQLITE_CONFIG_PCACHE2`) và VFS riêng; **không** được sửa mã nguồn SQLite (hai bài đã bỏ bản vá và chấm lại). Ngoài ra còn các câu hỏi đang chờ: PGO profile huấn luyện trên chính bài tải (go-lowlevel #91), bài tối ưu theo thứ tự lặp của bộ tạo tải (cpp-eastl #32), bài trả cả lô request bằng một SELECT qua virtual table (sql-oneselect #243).
+Cả nhóm có 0% lỗi và khoảng 25–31 µs CPU mỗi request, tức một lõi phục vụ gần 30.000 request/giây trong khi vẫn verify JWT và commit ghi xuống đĩa.
 
-### 6.3 Bài học cho dự án thật (đã lọc)
+### 6.3 Kỹ thuật chung của nhóm dẫn đầu
 
-1. **Group commit là kỹ thuật dùng được ngay.** Gom ghi của nhiều request vào một transaction, mỗi request vẫn chờ commit xong mới trả lời. Giữ an toàn dữ liệu và chia đều chi phí fsync. Cần giới hạn kích thước lô hoặc thời gian chờ (bài viết nhắc 128 request / 6 ms) để không phá P99.
-2. **Tách WAL checkpoint khỏi đường phục vụ** và theo dõi kích thước WAL: áp dụng cho mọi app SQLite có nhiều ghi.
-3. **Đếm việc trên mỗi request**: query plan (`EXPLAIN QUERY PLAN`), số lần cấp phát, serialize thẳng vào buffer. Top 10 có µs CPU/request khoảng 25–34; framework thông thường ở cuối bảng cao hơn nhiều lần.
-4. **Đừng mang về production**: đọc thẳng B-tree cursor (gắn vào phiên bản SQLite), tự viết engine theo định dạng file (bị cấm ngay trong cuộc thi), tắt GC toàn cục, fast path dựa vào bất biến của dữ liệu seed (ID liên tiếp, timestamp tăng dần) mà không có fallback và test.
-5. **Benchmark có giới hạn của chính nó**: hết cổng nguồn của máy tạo tải ở khoảng 240k kết nối/IP, đổi máy chấm giữa các đợt, điểm dao động giữa các lần chạy cùng mã. So sánh chỉ có nghĩa trong cùng một đợt và cùng một máy.
+**Kết nối (mỗi user là một kết nối keep-alive)**
 
-**Nguồn §6:** bài người dùng gửi 4/11/2026 · clone `--depth 1` https://github.com/arjaythedev/twelve-dollar-server-challenge HEAD `b7b7b651fe243b0417ae82b3bfc1fc4beb53c456`: https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/README.md (luật 2, 5, 6, 9) · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/SPEC.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/LEADERBOARD.md (bảng, chú thích ˣ, "Arjay's rulings on SQLite (2026-10-31)") · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/benchmarks/batch-1.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/benchmarks/batch-2.md · https://benchmarks.arjaythedev.com/12-dollar-server/leaderboard (bản 25/10/2026, 167 bài) · GitHub search API `repo:arjaythedev/twelve-dollar-server-challenge` 4/11/2026.
+- **io_uring direct descriptors**: socket nằm trong bảng file cố định của ring thay vì bảng fd của process, nên `LimitNOFILE=65535` chỉ giới hạn một ring. Bài C hạng 3 dùng tới 8 ring × 65.471 slot (trên 500.000 kết nối); bài Mojo mở ring dần, tối đa 16.
+- **Nhiều listener `SO_REUSEPORT`** (bài C hạng 3: 8 listener): mỗi listener có hàng đợi accept riêng (`somaxconn` 4.096), cộng lại giữ khoảng 32.000 kết nối chờ khi server bận. Với một listener, một lần chạy ghi nhận 1,8 triệu lần tràn hàng đợi; với tám listener thì không có lần nào khi tăng tới 160.000 user.
+- **Kết nối rảnh gần như không tốn gì**: chỉ một bản ghi 40–64 byte, không giữ buffer. Bài C hạng 3 dùng multishot poll và một hàng đợi đọc, cấp buffer từ provided-buffer ring khi có dữ liệu, nên chịu được cơn dồn tải mà không cạn buffer.
+
+**Vòng lặp và xử lý theo lô**
+
+- **Một luồng** chạy event loop, HTTP/1.1, JSON, HS256 và đọc SQLite; ring đặt `SINGLE_ISSUER`, `DEFER_TASKRUN`; nhận dữ liệu bằng multishot receive vào provided buffers.
+- **Lô tự hình thành khi bận**: một vòng lặp xử lý nhiều completion rồi mới submit và chờ một lần, nên chi phí syscall được chia cho nhiều request.
+- **Không cấp phát trên đường xử lý**: parse request tại chỗ, ghi response vào arena của lô và tái dùng khi lần gửi cuối hoàn tất, dựng sẵn các response lỗi cố định lúc khởi động, dùng pool buffer.
+
+**Đọc dữ liệu**
+
+- **Đọc qua B-tree cursor của SQLite gốc** (amalgamation 3.54.1, không vá, ghim SHA-256): bỏ qua bytecode engine, giải mã bytes của record và ghi thẳng ra JSON.
+- **Feed theo đúng index**: duyệt `posts_created_at_id_idx` (`created_at DESC, id DESC`), tương đương đúng `ORDER BY` của truy vấn chuẩn; tra 20 bài theo id tăng dần để các id liền nhau rơi vào cùng lá B-tree; đếm like bằng một lần quét đoạn trên `likes_post_id_idx` khi các id gần nhau (trong khoảng 512), còn không thì seek từng bài.
+- **Đúng với mọi dữ liệu**: không giả định id liên tiếp hay timestamp theo id; nếu gặp trường hợp mà truy vấn SQL chuẩn sẽ xử lý khác (ví dụ bài không có user), dùng truy vấn SQL chuẩn; khi khởi động kiểm thứ tự cột của từng bảng và index cần giải mã, sai schema thì từ chối chạy.
+
+**Ghi và độ bền**
+
+- **Ghi bằng SQL đã prepare** (`INSERT … RETURNING`, `ON CONFLICT DO NOTHING`) với **group commit**: một transaction cho mỗi lô (bài C hạng 3), hoặc gom 20 ms rồi chạy tối đa 1.024 request (bài Rust hạng 4); response chỉ gửi sau khi commit thành công, commit lỗi thì đổi thành response lỗi.
+- **WAL `synchronous=NORMAL` + VFS `unix-excl`**: process khóa độc quyền file, WAL index nằm trong heap dùng chung cho các connection của process, không cần file `-shm` và không khóa file mỗi transaction.
+- **Checkpoint tách khỏi đường phục vụ**: một luồng hoặc connection riêng chạy checkpoint PASSIVE ở độ ưu tiên thấp (nice 19).
+
+**Build tái lập**
+
+- SQLite amalgamation và các phụ thuộc được ghim phiên bản và kiểm SHA-256 trong `build.sh`/`install.sh`; build `-O3 -march=native`, có bài dùng PGO huấn luyện trên database tổng hợp lúc build.
+
+### 6.4 Mang về dự án thật
+
+1. **Group commit có giới hạn lô hoặc thời gian chờ**: giữ cam kết "commit rồi mới trả lời" mà vẫn chia chi phí fsync.
+2. **Checkpoint WAL ở luồng hoặc connection riêng**, độ ưu tiên thấp.
+3. **`SO_REUSEPORT` với nhiều listener** và theo dõi tràn hàng đợi accept khi có nhiều kết nối keep-alive.
+4. **Giữ kết nối rảnh thật nhẹ** (không buffer, bản ghi nhỏ) và cấp buffer khi có dữ liệu.
+5. **Feed đi đúng index phủ thứ tự sắp xếp**; kiểm bằng `EXPLAIN QUERY PLAN`; đếm theo khoảng khi id gần nhau.
+6. **Serialize thẳng vào buffer, không dựng object trung gian**; dựng sẵn response cố định.
+7. **Ghim phiên bản và kiểm SHA-256** cho thư viện native (SQLite) trong script build.
+
+**Nguồn §6:** bài người dùng gửi 4/11/2026 · clone `--depth 1` https://github.com/arjaythedev/twelve-dollar-server-challenge HEAD `b7b7b651fe243b0417ae82b3bfc1fc4beb53c456`: https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/README.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/SPEC.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/LEADERBOARD.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/rust-iouring-kensac/README.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/mojo-iouring-oh-meh/README.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/c-iouring-pavlyhalim/README.md · https://github.com/arjaythedev/twelve-dollar-server-challenge/blob/b7b7b651fe243b0417ae82b3bfc1fc4beb53c456/submissions/rust-native-scooter1337/README.md · https://benchmarks.arjaythedev.com/12-dollar-server/leaderboard.
 
 ## Nguồn và giới hạn kiểm chứng
 
