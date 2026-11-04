@@ -1898,3 +1898,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 - https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/00-method/lifecycle.md
 - https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/00-method/evidence-and-sources.md
 - https://github.com/seeker19110/X-Templates/blob/23447d817d2bc8cf68093591177f85fd72a8a2f6/framework/14-testing-quality/coverage-and-mutation.md
+
+## Bổ sung 2026-11-04a (ảnh "Lưu tri thức để agent dùng lại" → mục 10 §6f)
+
+- Ảnh infographic người dùng gửi 4/11/2026 (không tác giả, không repo). Thí nghiệm SQLite FTS5 3.53.1 với tokenizer `unicode61` (`remove_diacritics` 0/1/2, NFC/NFD, biến thể i/y, diễn đạt khác) chạy trong scratchpad. https://www.sqlite.org/fts5.html. Clone `--depth 1` `nextlevelbuilder/ui-ux-pro-max-skill` HEAD `713eef51b04efc98d6fa565323b495f7c9c89fd4` (`scripts/core.py` tokenizer).

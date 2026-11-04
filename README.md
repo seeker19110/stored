@@ -387,6 +387,10 @@ Cả **28 chuyên mục** có thêm phần nâng sâu theo nhu cầu xưởng; b
 
 Các phát hiện làm đổi quyết định: Remotion có điều kiện license, không ghi là mã mở OSI; torchtune tự thông báo ngừng phát triển tích cực; test-runner cũ của Storybook hết hỗ trợ. Báo cáo từ dependency-cruiser/oasdiff, kết quả quét, upload token hay chữ ký phải được adapter/policy diễn giải đúng; exit 0 hoặc có file báo cáo chưa đủ kết luận release đạt. Các nhóm kiểm chéo claim ở SHA ghim, sửa phạm vi Temporal replay và các định nghĩa trust/audit. Chỉ chạy kiểm của chính kho; mọi pipeline triển khai trong đợt này là đề xuất cho repo tích hợp, chưa là stack đã vận hành.
 
+### 57. "Lưu tri thức để agent dùng lại" (4/11/2026): CSV + BM25 là mẫu đúng, nhưng tiếng Việt phải chuẩn hoá trước
+
+Sơ đồ 6 bước (góp ý → kho CSV/SQLite → BM25 → agent áp dụng → kiểm tra → góp ý mới) đúng về ý và tự nêu đúng giới hạn của BM25 (mục 10 §6f). Thử với SQLite FTS5 cho thấy tiếng Việt cần thêm một bước: `remove_diacritics=1` không bỏ được dấu của chữ mang hai dấu, `=2` thì gộp "mở" với "mờ"; văn bản NFD không khớp truy vấn NFC; "kĩ"/"kỹ" là hai token; diễn đạt khác thì trượt. Tokenizer của ui-ux-pro-max còn bỏ âm tiết một chữ như "ý". Cách làm: chuẩn hoá NFC và chính tả trước khi ghi lẫn khi truy vấn, giữ dấu khi xếp hạng, truy vấn theo cụm từ, lai thêm embedding tiếng Việt khi kho lớn, và có ngày, người duyệt, hết hạn cho từng dòng.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
