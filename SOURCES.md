@@ -1918,3 +1918,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-04e (link Zagitta/gpu-unlock → mục 10 §6g)
 
 - `Zagitta/gpu-unlock`: link người dùng gửi 4/11/2026; clone đủ lịch sử (37 commit, HEAD `7eb51bccae0a0b7e599e084d971170e9a1e82d0c`, v2.0.0): README.md, `docs/How Ampere was unlocked.md`, `firmware/NOTICE.md`, `debian/copyright`, header SPDX trong `kernel/gpu_unlock/`, `licenses/`, `.github/workflows/ci.yml`. GitHub search API 4/11/2026. Không cài, không nạp module.
+
+## Bổ sung 2026-11-05a (ảnh README AgriciDaniel/claude-seo → mục 20 §3z)
+
+- `AgriciDaniel/claude-seo`: ảnh README người dùng gửi 5/11/2026; clone đủ lịch sử (412 commit, HEAD `6be93f45064ffbadced572b5d5c95f55fd263af0`, tag v2.5.0): README.md, PRIVACY.md, LICENSE, `skills/` (26), `agents/` (19), `scripts/fetch_page.py`, `skills/seo-programmatic/SKILL.md`, `tests/` (78 file), `.github/workflows/*`. GitHub search API 5/11/2026. Không cài, không chạy.

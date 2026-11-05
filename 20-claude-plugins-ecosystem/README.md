@@ -1365,6 +1365,38 @@ Các số đo hữu ích gồm tỷ lệ kích hoạt sai trên bộ ca âm, ch�
 
 **Nguồn §3y:** implementation/LICENSE/feature/CI agnix ở SHA ghi trên; đối chiếu spec/installer/eval đã ghim §3v–§3w. Không cài plugin, không cấp thêm quyền hay chạy agent eval trong đợt này.
 
+## 3z. Hồ sơ AgriciDaniel/claude-seo (Claude SEO): plugin audit SEO và GEO cho Claude Code, 26 skill + 19 agent + 1.077 test (ảnh README người dùng gửi, đọc mã 5/11/2026)
+
+> Ảnh là phần đầu README: banner "claude-seo, Rank in Google. Get cited by AI.", badge Claude Code Plugin, License MIT, release v2.5.0, tests 1077 passing, stars 26k, "GitHub Trending #3 Repository Of The Day"; mô tả audit trọn website trong 10–15 phút rồi đưa kế hoạch hành động xếp theo mức quan trọng (technical SEO, chất lượng nội dung E-E-A-T, structured data…). Mục 08 §2h trước đây chỉ có một dòng bảng. Đã clone đủ lịch sử, HEAD `6be93f45064ffbadced572b5d5c95f55fd263af0` (22/10/2026, tag v2.5.0). **Không cài, không chạy.**
+
+### 3z.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (5/11/2026) |
+|---|---|
+| Repo | https://github.com/AgriciDaniel/claude-seo · **26.854★, 3.486 fork** (GitHub search API), tạo 7/2/2026 · MIT |
+| Tác giả | Agrici Daniel; 412 commit; có `CONTRIBUTORS.md`, `CITATION.cff`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `PRIVACY.md` |
+| Thành phần | **26 skill** (`seo`, `seo-audit`, `seo-technical`, `seo-content`, `seo-schema`, `seo-geo`, `seo-local`, `seo-hreflang`, `seo-programmatic`, `seo-sxo`, `seo-drift`…), **19 agent** (`seo-technical`, `seo-performance`, `seo-schema`, `seo-geo`…), khoảng 30 script Python (`fetch_page.py`, `gsc_query.py`, `ga4_report.py`, `crux_history.py`, `drift_compare.py`…), `schema/`, `extensions/`, `hooks/` |
+| Cài | Claude Code: `/plugin marketplace add AgriciDaniel/claude-seo` rồi `/plugin install claude-seo@agricidaniel-claude-seo`; hoặc `install.sh` / `install.ps1` (có cả `uninstall`) |
+| Kiểm thử | `tests/` 78 file, 785 hàm `test_` (badge ghi 1.077 test được thu thập, gồm cả test tham số hóa); CI `ci.yml` chạy `pytest tests/`, thêm `v2.yml` và `windows-smoke.yml` |
+
+### 3z.2 Điểm mạnh (đọc mã)
+
+- **Phủ đủ các mảng một chuyên gia SEO sẽ kiểm**: crawl và index (sitemap, robots, redirect), Core Web Vitals (CrUX), nội dung theo E-E-A-T, structured data (`schema/` để kiểm và sinh JSON-LD), SEO địa phương, hreflang, ảnh, thương mại điện tử, và **GEO** (được trích dẫn trong AI search). Mỗi mảng là một skill riêng có agent chuyên trách, nên Claude chỉ nạp phần cần cho từng việc.
+- **Riêng tư mặc định** (`PRIVACY.md`): lõi skill chạy trong phiên Claude Code, không gọi API bên thứ ba, không telemetry; báo cáo PDF/HTML/Excel lưu trên máy. DataForSEO, Firecrawl, Gemini chỉ dùng khi bạn gọi đúng lệnh của extension đó, và mỗi dịch vụ được liệt kê kèm dữ liệu gửi đi.
+- **Chặn SSRF khi crawl**: `fetch_page.py` dùng `url_safety.validate_url_strict`, kiểm bản ghi DNS chống dải private/loopback/reserved và ghim IP đã kiểm, nên trỏ audit vào một URL lạ không làm lộ dịch vụ nội bộ.
+- **Cổng chặn nội dung mỏng** trong `seo-programmatic`: cảnh báo khi 100+ trang chưa qua duyệt nội dung; **HARD STOP** khi 500+ trang chưa có lý do, phải người dùng duyệt; gắn cờ trang có dưới 40% nội dung riêng hoặc dưới 300 từ; yêu cầu duyệt tay 5–10% mẫu và phát hành theo lô 50–100 trang. Đây là cổng bảo vệ người dùng khỏi phạt "scaled content abuse" của Google.
+- **Dữ liệu thật thay vì đoán**: script đọc Google Search Console, GA4, CrUX lịch sử, Bing Webmaster, Common Crawl; `seo-drift` lưu baseline rồi so sánh để thấy trang thay đổi theo thời gian.
+- **Đóng gói chuẩn plugin**: cài qua marketplace của Claude Code, có script gỡ cài đặt cho cả Unix và Windows, kiểm thử trên Windows trong CI.
+
+### 3z.3 Dùng thế nào
+
+- Gọi `/seo` để audit trọn site, hoặc gọi thẳng skill cần dùng (`seo-technical`, `seo-schema`, `seo-geo`…).
+- Nối Search Console và GA4 để kế hoạch hành động dựa trên dữ liệu truy cập thật.
+- Khi làm trang programmatic, giữ nguyên cổng chặn nội dung mỏng của `seo-programmatic`.
+- Cùng nhóm: `zubair-trabzada/geo-seo-claude` (11,5k★, MIT) tập trung vào GEO.
+
+**Nguồn §3z:** ảnh README người dùng gửi 5/11/2026 · clone https://github.com/AgriciDaniel/claude-seo HEAD `6be93f45064ffbadced572b5d5c95f55fd263af0`: https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/README.md · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/PRIVACY.md · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/LICENSE · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/scripts/fetch_page.py · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/skills/seo-programmatic/SKILL.md · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/.github/workflows/ci.yml · `skills/`, `agents/`, `tests/` · GitHub search API `claude-seo` 5/11/2026.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills

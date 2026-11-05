@@ -7198,12 +7198,24 @@
       "repo": "AgriciDaniel/claude-seo",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 25024,
+      "stars": 26854,
       "open_source": true,
-      "notes": "Skill pack SEO/GEO cho Claude Code: 26 skill + 19 agent + script Python (GSC, GA4, CrUX); không telemetry, API trả phí (DataForSEO, Ahrefs, Firecrawl) là extension tùy chọn; cổng chặn nội dung mỏng trong seo-programmatic (dừng >500 trang, cờ <40% nội dung riêng); 412 commit 2/2026→10/2026; ★ 25/10/2026 (shields), mục 08 §2h; ★ 31/10/2026: 25.024 (GitHub API)",
-      "section": "08",
+      "notes": "Plugin SEO/GEO cho Claude Code (marketplace): 26 skill + 19 agent + ~30 script Python (GSC, GA4, CrUX, Bing, Common Crawl, drift baseline); lõi không gọi API bên thứ ba, không telemetry (PRIVACY.md), extension DataForSEO/Firecrawl/Gemini tùy chọn; crawl chặn SSRF (validate_url_strict, ghim IP); cổng chặn nội dung mỏng trong seo-programmatic (HARD STOP 500+ trang, cờ <40% nội dung riêng, <300 từ); 1.077 test, CI pytest + Windows smoke; v2.5.0; ★ 5/11/2026: 26.854 (GitHub search API), mục 20 §3z (trước: 08 §2h)",
+      "section": "20",
       "id": "claude-seo",
-      "profile_path": "08-awesome-lists-learning/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3z-hồ-sơ-agricidanielclaude-seo-claude-seo-plugin-audit-seo-và-geo-cho-claude-code-26-skill--19-agent--1077-test-ảnh-readme-người-dùng-gửi-đọc-mã-5112026",
+      "last_verified_at": "2026-11-05",
+      "verified_ref": "6be93f45064ffbadced572b5d5c95f55fd263af0",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/README.md",
+        "https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/PRIVACY.md",
+        "https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/LICENSE",
+        "https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/scripts/fetch_page.py",
+        "https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/skills/seo-programmatic/SKILL.md",
+        "https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/.github/workflows/ci.yml"
+      ]
     },
     {
       "name": "iFixAi",

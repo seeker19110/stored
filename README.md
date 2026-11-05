@@ -407,6 +407,10 @@ Mục 34 §6 ghi kỹ thuật của nhóm dẫn đầu cuộc thi twelve-dollar-
 
 gpu-unlock (mục 10 §6g, 16k★, GPL-2.0-only) là kernel module chạy lúc boot, trước driver NVIDIA, gỡ giới hạn một nửa tốc độ tensor của GeForce với phép FP16/BF16/TF32 cộng dồn FP32. Theo báo cáo người dùng trong README: BF16 dense +65–100% (RTX 4090 từ 165 lên 329 TFLOPS), LLM prefill +25–55%, fine-tune BF16 +25–50%, sinh ảnh +30–55%, kết quả giống từng bit. Không vá driver, không flash VBIOS, không phải làm lại khi đổi driver. RTX 30 đã ổn định với hơn 100 báo cáo; RTX 40/20 đang thử nghiệm. Cài bằng `make install` rồi thêm `gpu_unlock.targets=all` vào kernel command line.
 
+### 62. Claude SEO (5/11/2026): audit SEO và GEO trọn website ngay trong Claude Code
+
+claude-seo (mục 20 §3z, 26,9k★, MIT, v2.5.0) là plugin Claude Code gồm 26 skill và 19 agent, phủ technical SEO, Core Web Vitals, E-E-A-T, structured data, local, hreflang, thương mại điện tử và GEO, kèm script đọc Search Console, GA4 và CrUX để kế hoạch dựa trên dữ liệu thật. Lõi chạy hoàn toàn trên máy, không telemetry; crawl có chặn SSRF; skill programmatic có cổng chặn nội dung mỏng (dừng hẳn ở 500 trang chưa duyệt). Có 1.077 test với CI trên cả Windows. Cài qua `/plugin marketplace add AgriciDaniel/claude-seo`.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
