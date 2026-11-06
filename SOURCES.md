@@ -1926,3 +1926,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-06a (ảnh trang cài đặt evondevKit ui-ux → mục 06 §7n.5)
 
 - `evondev/evondevKit`: ảnh trang giới thiệu người dùng gửi 6/11/2026; clone đủ lịch sử (277 commit, HEAD `69fc1b347dd779f29f13bb4efb42075fb80a1c3a`, plugin 0.6.0), `git log 4d02153..HEAD` (18 commit), README.vi.md, `.claude-plugin/plugin.json`, LICENSE. https://evondev-uiux.vercel.app/ui-ux. GitHub search API 6/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-06b (ảnh README patchy631/ai-engineering-hub → mục 08 §6b)
+
+- `patchy631/ai-engineering-hub`: ảnh README người dùng gửi 6/11/2026; clone `--filter=blob:none --no-checkout` (554 commit, HEAD `042aeb5067384981eeba6a07fa882f436bb1660d`): README.md (Projects by Difficulty), LICENSE, `git ls-tree` (thư mục dự án, README, requirements, `.env.example`), `git shortlog`. GitHub search API 6/11/2026. Không chạy dự án nào.

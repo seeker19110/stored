@@ -655,6 +655,29 @@ Ghi chú: `anthropics/courses` (23k★) **đã archive** (xem mục 17). Noteboo
 
 **Nguồn §6:** [LICENSE](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/LICENSE) · [README.md](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/README.md) · [exercises/practice/leap/leap_test.py](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/exercises/practice/leap/leap_test.py) · [bin/test_exercises.py](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/bin/test_exercises.py) · [docker-compose.yml](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/docker-compose.yml) · [.github/workflows/test-runner.yml](https://github.com/exercism/python/blob/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/.github/workflows/test-runner.yml) · [LICENSE](https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/LICENSE) · [src/content/11/en/part11a.md](https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/src/content/11/en/part11a.md) · [.github/workflows/continuous-integration-workflow.yml](https://github.com/fullstack-hy2020/fullstack-hy2020.github.io/blob/9c24482abcf387699d0f36bcdff5811dbe2ce5a7/.github/workflows/continuous-integration-workflow.yml)
 
+## 6b. Hồ sơ patchy631/ai-engineering-hub: hơn 90 dự án AI chạy được, xếp theo mức độ (ảnh README người dùng gửi, đọc 6/11/2026)
+
+> Ảnh là phần đầu README: badge "GitHub Trending #1 Repository Of The Day", banner LLMs · RAG · AI Agents · MCP · LLMOps · Evaluations (join.DailyDoseofDS.com), "93+ Production-Ready Projects across all skill levels", hướng dẫn chuyên sâu về LLM, RAG, agent, ứng dụng agent thật. §2 trước đây chỉ có một dòng bảng. Đã clone `--filter=blob:none`, HEAD `042aeb5067384981eeba6a07fa882f436bb1660d` (30/10/2026). **Không chạy dự án nào.**
+
+| Thuộc tính | Giá trị (6/11/2026) |
+|---|---|
+| Repo | https://github.com/patchy631/ai-engineering-hub · **41.193★** (GitHub search API), MIT, tạo 21/10/2024 |
+| Tác giả | Akshay Pachaar (`patchy631`, Daily Dose of Data Science) cùng cộng tác viên, nổi bật là Sitam Meur; 554 commit |
+| Nội dung | Hơn 100 thư mục dự án, mỗi dự án là một ứng dụng độc lập có README riêng (118 README), 69 file `requirements.txt`/`pyproject.toml`, 53 file `.env.example` để điền key |
+| Lộ trình | README xếp **88 dự án** theo mức: **22 cơ bản** (OCR và thị giác, giao diện chat, RAG cơ bản, đa phương tiện), **44 trung cấp** (agent và workflow, voice, RAG nâng cao, đa phương thức, MCP, so sánh và đánh giá model), **22 nâng cao** (fine-tuning, hệ agent nâng cao, MCP và hạ tầng, hệ thống production). Kèm `ai-engineering-roadmap/` cho người mới và `courses/anthropic-academy-courses/` |
+
+**Điểm mạnh**
+
+- **Học bằng dự án chạy được**: mỗi thư mục là một ứng dụng hoàn chỉnh (thường Streamlit hoặc notebook) kèm file phụ thuộc và mẫu `.env`, nên clone một thư mục là chạy được ngay.
+- **Phủ đủ chuỗi AI engineering hiện nay**: RAG (cơ bản, agentic, corrective, ColBERT, ModernBERT, multimodal, Milvus + Groq, Docling), agent (CrewAI, AutoGen, Swarm, A2A, ACP), MCP (memory, voice, video RAG, Graphiti, MindsDB, Pixeltable), voice agent, OCR local (Llama 3.2 Vision, Gemma 3, Qwen 2.5 VL), fine-tuning (DeepSeek, GRPO trên Qwen3, knowledge distillation), context engineering, eval và observability, triển khai an toàn (OpenClaw).
+- **Bài so sánh model đặt cạnh nhau** (Llama 4 vs DeepSeek-R1, Qwen3 vs DeepSeek-R1, Sonnet 4 vs o4, gpt-oss vs Qwen3, MiniMax M2 vs Sonnet 4.5 vs Kimi K2 vs Gemini 3…), tiện để chọn model cho bài toán cụ thể.
+- **Ưu tiên chạy cục bộ**: nhiều dự án dùng model mở qua Ollama (local ChatGPT với DeepSeek hoặc Gemma 3, OCR 100% local).
+- **Cập nhật đều**: dự án mới theo các model và chuẩn mới (MCP, A2A, gpt-oss, YOLO26), nhiều cộng tác viên.
+
+**Dùng thế nào**: người mới bắt đầu từ `ai-engineering-roadmap`, rồi đi theo ba mức cơ bản → trung cấp → nâng cao trong README. Muốn tham khảo cách làm một tính năng (RAG cho tài liệu, voice agent, MCP server) thì mở đúng thư mục đó, đọc README, điền `.env` theo mẫu rồi chạy. Kết hợp với lộ trình học ở §1–§2 và các khóa có chấm tự động ở §4.
+
+**Nguồn §6b:** ảnh README người dùng gửi 6/11/2026 · clone https://github.com/patchy631/ai-engineering-hub HEAD `042aeb5067384981eeba6a07fa882f436bb1660d`: https://github.com/patchy631/ai-engineering-hub/blob/042aeb5067384981eeba6a07fa882f436bb1660d/README.md (Projects by Difficulty) · https://github.com/patchy631/ai-engineering-hub/blob/042aeb5067384981eeba6a07fa882f436bb1660d/LICENSE · `ai-engineering-roadmap/`, `courses/` · `git ls-tree`, `git shortlog` · GitHub search API `ai-engineering-hub` 6/11/2026.
+
 ## Nguồn
 
 - https://gitstarclub.com/rankings · https://www.countly.net/most-starred-github-repositories-june-2026 · https://www.stackscan.com/blog/github-statistics · https://github.com/EvanLi/Github-Ranking · https://www.firecrawl.dev/blog/best-github-repos
