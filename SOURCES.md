@@ -1922,3 +1922,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-05a (ảnh README AgriciDaniel/claude-seo → mục 20 §3z)
 
 - `AgriciDaniel/claude-seo`: ảnh README người dùng gửi 5/11/2026; clone đủ lịch sử (412 commit, HEAD `6be93f45064ffbadced572b5d5c95f55fd263af0`, tag v2.5.0): README.md, PRIVACY.md, LICENSE, `skills/` (26), `agents/` (19), `scripts/fetch_page.py`, `skills/seo-programmatic/SKILL.md`, `tests/` (78 file), `.github/workflows/*`. GitHub search API 5/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-06a (ảnh trang cài đặt evondevKit ui-ux → mục 06 §7n.5)
+
+- `evondev/evondevKit`: ảnh trang giới thiệu người dùng gửi 6/11/2026; clone đủ lịch sử (277 commit, HEAD `69fc1b347dd779f29f13bb4efb42075fb80a1c3a`, plugin 0.6.0), `git log 4d02153..HEAD` (18 commit), README.vi.md, `.claude-plugin/plugin.json`, LICENSE. https://evondev-uiux.vercel.app/ui-ux. GitHub search API 6/11/2026. Không cài, không chạy.
