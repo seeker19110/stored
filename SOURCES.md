@@ -1930,3 +1930,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-06b (ảnh README patchy631/ai-engineering-hub → mục 08 §6b)
 
 - `patchy631/ai-engineering-hub`: ảnh README người dùng gửi 6/11/2026; clone `--filter=blob:none --no-checkout` (554 commit, HEAD `042aeb5067384981eeba6a07fa882f436bb1660d`): README.md (Projects by Difficulty), LICENSE, `git ls-tree` (thư mục dự án, README, requirements, `.env.example`), `git shortlog`. GitHub search API 6/11/2026. Không chạy dự án nào.
+
+## Bổ sung 2026-11-06c (ảnh README vercel-labs/agent-desktop → mục 11 §3h)
+
+- `vercel-labs/agent-desktop`: ảnh README người dùng gửi 6/11/2026; clone `--filter=blob:none` đủ lịch sử (335 commit, HEAD `b43ac4f6e892ef608f8851428613c4009f0e84c7`, tag v1.2.0): README.md, LICENSE, Cargo.toml, `crates/`, `.github/workflows/*`, `benchmarks/`; đếm `#[test]`. https://registry.npmjs.org/agent-desktop · https://api.npmjs.org/downloads/point/last-month/agent-desktop. GitHub search API 6/11/2026. Không cài, không chạy.

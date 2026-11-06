@@ -616,6 +616,45 @@ Framework nghiên cứu của ServiceNow trên BrowserGym, quản lý study, son
 
 **Nguồn §3g:** [README: security/limitations](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/README.md) · [LICENSE](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/LICENSE) · [callsite](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/bubblewrap.c) · [CI](https://github.com/containers/bubblewrap/blob/1fb0aa26d3eb66254f7742e704add7f82f41a582/.github/workflows/check.yml).
 
+## 3h. Hồ sơ vercel-labs/agent-desktop: computer use cho AI agent qua accessibility tree trên macOS, Windows, Linux (ảnh README người dùng gửi, đọc mã 6/11/2026)
+
+> Ảnh là phần đầu README: "Computer use for AI agents: see and operate desktop apps on macOS, Windows, and Linux through the OS accessibility tree", badge Vercel LABS PRODUCT, npm v1.2.0, Apache-2.0, 31K/month; mô tả không dùng ảnh chụp hay so pixel, trả cây accessibility dạng JSON có ref cho từng phần tử, vòng lặp nằm ở agent, phát hành dạng CLI và thư viện C. §3c.3 trước đây chỉ có một đoạn ngắn. Đã clone `--filter=blob:none` đủ lịch sử, HEAD `b43ac4f6e892ef608f8851428613c4009f0e84c7` (5/11/2026, tag v1.2.0). **Không cài, không chạy.**
+
+### 3h.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (6/11/2026) |
+|---|---|
+| Repo | https://github.com/vercel-labs/agent-desktop · **17.675★** (GitHub search API; 4.217★ ngày 31/10), Apache-2.0, tạo 19/2/2026 |
+| npm | `agent-desktop` 1.2.0, **46.698 lượt tải** từ 7/10 tới 5/11/2026 (api.npmjs.org) |
+| Mã | Rust workspace: `crates/core`, `crates/ffi` (thư viện C `libagent_desktop_ffi`), mỗi hệ điều hành một crate (`macos` AX API, `windows` UI Automation, `linux` AT-SPI) chọn lúc build; 335 commit, tác giả chính Lahfir |
+| Lệnh | 60 tên lệnh, 56 lệnh chạy được: quan sát (`snapshot`, `find`, `get`, `is`, `screenshot`), thao tác theo ref (`click`, `type`, `set-value`, `select`, `toggle`, `scroll-to`…), bàn phím và chuột, ứng dụng và cửa sổ, thông báo, clipboard, `wait`, session và `trace`, `batch` |
+| Nền tảng | macOS 13+ (Intel, Apple Silicon); Windows 10 1809+ (x64, ARM64); Linux Ubuntu 24.04+ (x86_64, aarch64, X11 hoặc Wayland) |
+| Kiểm thử | 6.701 test Rust; CI gồm `ci.yml`, `linux-e2e.yml`, `native-e2e.yml`, `windows-capability-probe.yml`, `codeql.yml`, `supply-chain.yml`, `release-dry-run.yml`; `benchmarks/locator-resolution`; thư mục `probes/` |
+
+### 3h.2 Điểm mạnh
+
+- **Không cần ảnh chụp hay mô hình thị giác**: đọc thẳng cây accessibility của hệ điều hành, nên rẻ, nhanh và chính xác hơn đoán pixel; agent nào cũng dùng được vì agent-desktop không chứa model.
+- **Ref gắn với snapshot**: mỗi phần tử có ref dạng `@s8f3k2p9:e8`; ref trần bị từ chối (`INVALID_ARGS`); khi UI đổi, thao tác trả `STALE_REF` hoặc `AMBIGUOUS_TARGET` để agent chụp lại thay vì bấm nhầm. Mỗi lệnh in một JSON envelope; lỗi có `error.disposition.retry`, chỉ thử lại khi giá trị là `safe`.
+- **Chạy nền mặc định**: thao tác theo ref dùng accessibility API, không di chuột hay lấy focus, nên không làm phiền người đang dùng máy; cần thì bật `--headed`.
+- **App dày đặc**: `snapshot --skeleton … --compact` để có bản đồ trước, rồi `--root @ref` để đi sâu một vùng, giữ ngữ cảnh của agent gọn.
+- **Chờ sau thao tác có phạm vi rõ**: ref gắn với cửa sổ gốc (kể cả sheet, alert, popover), lệnh chờ đọc đúng cửa sổ đó.
+- **Giữ bí mật ngoài tham số tiến trình**: `type`, `set-value`, `clipboard-set` nhận `--stdin`. README nhắc snapshot, clipboard, ảnh chụp và log debug có thể chứa nội dung riêng tư, nên giữ ngoài log và upload công khai.
+- **Ba cách nối vào agent**: CLI; `agent-desktop mcp` phục vụ mọi lệnh thành tool MCP qua stdio (`desktop_snapshot`, `desktop_click`…); thư viện C để gọi trong tiến trình (có kiểm phiên bản ABI). Binary kèm hướng dẫn đúng phiên bản: `agent-desktop skills get desktop` và `skills get platform`; skill cài qua `npx skills add`.
+- **Chuỗi phát hành cẩn thận** (theo §3c.3 và CI hiện tại): `postinstall` của npm tải binary từ GitHub Releases và kiểm SHA-256; CI có CodeQL và workflow kiểm chuỗi cung ứng.
+
+### 3h.3 Dùng thế nào
+
+```bash
+npm install -g agent-desktop
+agent-desktop snapshot --app Finder -i
+agent-desktop click @s8f3k2p9:e8
+agent-desktop snapshot --app Finder -i
+```
+
+Với Claude Code hoặc client MCP khác: thêm `{"mcpServers": {"agent-desktop": {"command": "agent-desktop", "args": ["mcp"]}}}`. Trước lần dùng đầu, cho agent đọc `agent-desktop skills get desktop` và `skills get platform`. Cùng nhà với `agent-browser` (§1h.2) cho trình duyệt.
+
+**Nguồn §3h:** ảnh README người dùng gửi 6/11/2026 · clone https://github.com/vercel-labs/agent-desktop HEAD `b43ac4f6e892ef608f8851428613c4009f0e84c7`: https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/README.md · https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/LICENSE · https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/Cargo.toml · `crates/{core,ffi,macos,windows,linux}`, `.github/workflows/*`, `benchmarks/` · https://registry.npmjs.org/agent-desktop (1.2.0) · https://api.npmjs.org/downloads/point/last-month/agent-desktop · GitHub search API 6/11/2026.
+
 ## 4. Nguồn
 
 - https://gist.github.com/kevinmichaelchen/9d77b8a681238cc45297dff969686175 · https://www.firecrawl.dev/blog/best-browser-agents · https://scrapfly.io/blog/posts/stagehand-vs-browser-use · https://agentscamp.com/guides/comparisons/browser-agents-compared-2026 · https://bug0.com/blog/expect-vs-agent-browser-vs-stagehand-vs-passmark · https://github.com/browserbase/stagehand · https://kanopylabs.com/blog/stagehand-vs-browserbase-vs-steel-browser-ai
