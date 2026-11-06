@@ -419,6 +419,10 @@ evondevKit (mục 06 §7n.5, 460★, MIT) nay cài qua marketplace của Claude 
 
 AI Engineering Hub (mục 08 §6b, 41k★, MIT) của Akshay Pachaar là kho dự án mẫu: mỗi thư mục là một ứng dụng hoàn chỉnh có README, file phụ thuộc và mẫu `.env`. README xếp 88 dự án theo ba mức (22 cơ bản, 44 trung cấp, 22 nâng cao), phủ OCR chạy local, RAG nhiều biến thể, agent (CrewAI, AutoGen, A2A), MCP, voice agent, fine-tuning (GRPO, distillation), so sánh model cạnh nhau và eval; kèm lộ trình cho người mới. Hợp để học bằng cách chạy thử, và để tham khảo nhanh cách dựng một tính năng cụ thể.
 
+### 65. agent-desktop (6/11/2026): computer use đọc cây accessibility, không cần ảnh chụp
+
+agent-desktop của Vercel Labs (mục 11 §3h, 17,7k★, Apache-2.0) cho agent điều khiển ứng dụng desktop trên macOS, Windows và Linux bằng cây accessibility của hệ điều hành thay vì ảnh chụp. Mỗi phần tử có ref gắn với snapshot; khi UI đổi, lệnh trả `STALE_REF` để agent chụp lại thay vì bấm nhầm. Thao tác chạy nền, không chiếm chuột. Có 56 lệnh qua CLI, server MCP (`agent-desktop mcp`) và thư viện C. Viết bằng Rust với 6.701 test và E2E trên từng hệ điều hành; npm khoảng 47 nghìn lượt tải/tháng.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

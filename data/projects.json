@@ -9250,12 +9250,22 @@
       "repo": "vercel-labs/agent-desktop",
       "category": "browser-agent",
       "license": "Apache-2.0",
-      "stars": 4217,
+      "stars": 17675,
       "open_source": true,
-      "notes": "Computer use desktop qua accessibility tree macOS/Windows/Linux, ref theo snapshot; postinstall kiểm SHA256; skill jev gửi dữ liệu tới api.typesafe.ai; ★ 31/10/2026 (GitHub API), mục 11 §3c.3",
+      "notes": "Computer use cho AI agent qua accessibility tree (macOS AX, Windows UI Automation, Linux AT-SPI), không ảnh chụp hay model; CLI 56 lệnh, MCP stdio (agent-desktop mcp), thư viện C; ref gắn snapshot, STALE_REF/AMBIGUOUS_TARGET, retry theo error.disposition; chạy nền mặc định, --stdin cho bí mật; Rust, 6.701 test, CI E2E Linux/native, CodeQL, supply-chain; npm 1.2.0, 46.698 tải/tháng; ★ 6/11/2026: 17.675 (GitHub search API), mục 11 §3h (trước: §3c.3)",
       "section": "11",
       "id": "agent-desktop",
-      "profile_path": "11-browser-computer-use-sandbox/README.md"
+      "profile_path": "11-browser-computer-use-sandbox/README.md",
+      "profile_anchor": "11-browser-computer-use-sandbox/README.md#3h-hồ-sơ-vercel-labsagent-desktop-computer-use-cho-ai-agent-qua-accessibility-tree-trên-macos-windows-linux-ảnh-readme-người-dùng-gửi-đọc-mã-6112026",
+      "last_verified_at": "2026-11-06",
+      "verified_ref": "b43ac4f6e892ef608f8851428613c4009f0e84c7",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/README.md",
+        "https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/LICENSE",
+        "https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/Cargo.toml",
+        "https://github.com/vercel-labs/agent-desktop/blob/b43ac4f6e892ef608f8851428613c4009f0e84c7/.github/workflows/ci.yml"
+      ]
     },
     {
       "name": "Fara",
