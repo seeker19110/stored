@@ -851,6 +851,25 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7n:** bài đăng Facebook tác giả (ảnh người dùng gửi 31/10/2026) · clone đủ lịch sử github.com/evondev/evondevKit 31/10/2026 (259 commit, HEAD 4d02153 22/10/2026; README.md, README.vi.md, LICENSE, TESTS.md, .claude-plugin/{marketplace,plugin}.json, skills/ui-ux/{SKILL.md, VERSION, references/*, scripts/{probe,check-update,lint-skill}.mjs}; đếm trailer bằng git log) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/evondev/evondevKit.json (31/10/2026) · evondev-uiux.vercel.app/ui-ux
 
+### 7n.5 Đọc lại 6/11/2026: v0.6.0, cài được cho sáu công cụ, thêm phân tích sản phẩm và bộ mặt dashboard
+
+> Người dùng gửi ảnh trang giới thiệu (evondev-uiux.vercel.app/ui-ux, mục "Cài xong trong một phút") với các tab Claude Code, Cursor, Codex, OpenCode, Antigravity, ZCode và ba bước: thêm marketplace rồi cài plugin `evon`, gọi `/evon:ui-ux`, cập nhật bằng `/plugin marketplace update evondevkit`. Đối chiếu clone đủ lịch sử, HEAD `69fc1b347dd779f29f13bb4efb42075fb80a1c3a` (5/11/2026): **18 commit sau lần đọc `4d02153`**, plugin từ 0.3.27 lên **0.6.0**, 460★, 62 fork (GitHub search API 6/11/2026). MIT, © Tuấn Trần. **Không cài, không chạy.**
+
+**Cài đặt (khớp ảnh)**
+
+- Claude Code: `/plugin marketplace add evondev/evondevKit` → `/plugin install evon@evondevkit`; gọi `/evon:ui-ux` hoặc chỉ cần viết prompt về giao diện app là skill tự bật; cập nhật `/plugin marketplace update evondevkit` (hoặc bật auto-update trong Marketplaces). README có cả bước gỡ cài đặt.
+- Cursor, OpenCode, Codex, Antigravity, omp: `npx skills add evondev/evondevKit` (hoặc `bunx`), chép skill vào `.agents/skills/ui-ux/`; ZCode vào `.zcode/skills/ui-ux/`; `-a` để chọn công cụ, `-g` để dùng chung mọi dự án; cập nhật `npx skills update`. README có bảng cú pháp gọi skill cho từng công cụ.
+
+**Tính năng mới từ 0.3.28 tới 0.6.0 (theo commit và README)**
+
+- **Phân tích sản phẩm trước khi dựng** (0.5.0): một báo cáo gồm brief, các màn chính và cách các sản phẩm cùng loại làm; **soi luồng** (ví dụ onboarding tới việc chính đầu tiên) đếm số bước; sinh `DESIGN.md` cho dự án; `probe --stress` để thử giao diện với dữ liệu khó.
+- **Bộ mặt dashboard (P13, 0.4.0)**: các bộ phong cách có tên (Clean, Dark Sidebar, Soft, Night…) đổi font, nền và sidebar mà không đổi bố cục, để các dashboard khác nhau không ra cùng một gương mặt; skill chỉ tự gợi ý những bộ đã có test.
+- **Màu nhấn theo ngành (0.4.1)**: gợi ý ba màu nhấn theo ngành, dựa trên đo màu chính của khoảng 60 trang chủ sản phẩm ở 12 ngành; ngành không có quy ước thì không bịa; bảng màu đạt tương phản từ 5:1 với chữ trắng; tránh màu trùng ý nghĩa với nút xóa, success, warning.
+- **Trục khung app (0.6.0)**: kiểu điều hướng (Float, Rail có nhãn, Topbar), bề mặt (Không viền, Xếp lớp, Editorial) và bố cục nội dung (Danh sách + chi tiết, Hai panel, Trang hoạt động), chọn theo việc chính của màn.
+- Giữ cách làm cũ: wireframe 2–3 phương án trước khi dựng, `probe.mjs` (Playwright) đo tràn, cắt chữ, tương phản ở 375–1920 px; kiểm bản mới tối đa một lần mỗi ngày bằng cách đọc file version trên GitHub (không gửi dữ liệu), tắt bằng biến môi trường.
+
+**Nguồn §7n.5:** ảnh trang giới thiệu người dùng gửi 6/11/2026 · clone https://github.com/evondev/evondevKit HEAD `69fc1b347dd779f29f13bb4efb42075fb80a1c3a`: https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/README.vi.md · https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/.claude-plugin/plugin.json · https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/LICENSE · `git log 4d02153..HEAD` · https://evondev-uiux.vercel.app/ui-ux · GitHub search API 6/11/2026.
+
 ## 7o. Ba skill thiết kế trong ảnh: `/figma-use-motion` (Figma), `/design-critique` và `/design-handoff` (Anthropic) (ảnh người dùng gửi, clone 2026-10-31)
 
 > Ảnh là ba chip lệnh slash trên nền cam, không kèm chữ (sau chip đầu thấy loáng thoáng "…The faded card behind it rises a…", tức một bài viết về hiệu ứng chuyển động). Đã clone `figma/mcp-server-guide`, `anthropics/knowledge-work-plugins` và `openai/plugins`, đọc `SKILL.md` cùng `references/`, `plugin.json`, `.mcp.json`, `CONNECTORS.md` và lịch sử git của từng skill. **Không cài, không gọi Figma MCP.**

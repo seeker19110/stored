@@ -411,6 +411,10 @@ gpu-unlock (mục 10 §6g, 16k★, GPL-2.0-only) là kernel module chạy lúc b
 
 claude-seo (mục 20 §3z, 26,9k★, MIT, v2.5.0) là plugin Claude Code gồm 26 skill và 19 agent, phủ technical SEO, Core Web Vitals, E-E-A-T, structured data, local, hreflang, thương mại điện tử và GEO, kèm script đọc Search Console, GA4 và CrUX để kế hoạch dựa trên dữ liệu thật. Lõi chạy hoàn toàn trên máy, không telemetry; crawl có chặn SSRF; skill programmatic có cổng chặn nội dung mỏng (dừng hẳn ở 500 trang chưa duyệt). Có 1.077 test với CI trên cả Windows. Cài qua `/plugin marketplace add AgriciDaniel/claude-seo`.
 
+### 63. evondevKit ui-ux 0.6.0 (6/11/2026): skill UI tiếng Việt cài được cho sáu công cụ, thêm phân tích sản phẩm và bộ mặt dashboard
+
+evondevKit (mục 06 §7n.5, 460★, MIT) nay cài qua marketplace của Claude Code hoặc `npx skills add evondev/evondevKit` cho Cursor, OpenCode, Codex, Antigravity, ZCode và omp. Từ 0.3.27 lên 0.6.0 có thêm phân tích sản phẩm và soi luồng trước khi dựng, sinh `DESIGN.md`, `probe --stress`, các bộ mặt dashboard có tên (Clean, Dark Sidebar, Soft, Night) để các dashboard không giống nhau, màu nhấn gợi ý theo ngành dựa trên đo khoảng 60 sản phẩm thật (tương phản từ 5:1), và các trục khung app (Float, Rail, Topbar; danh sách + chi tiết, hai panel).
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
