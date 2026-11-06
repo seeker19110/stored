@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1043,
+    "count": 1044,
     "schema_version": 2
   },
   "projects": [
@@ -14461,6 +14461,26 @@
         "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/debian/copyright",
         "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/kernel/gpu_unlock/recipes.c",
         "https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/.github/workflows/ci.yml"
+      ]
+    },
+    {
+      "name": "AI Engineering Hub",
+      "repo": "patchy631/ai-engineering-hub",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 41193,
+      "open_source": true,
+      "notes": "Hơn 100 dự án AI engineering chạy được (Akshay Pachaar, Daily Dose of DS), README xếp 88 dự án theo 3 mức (22 cơ bản, 44 trung cấp, 22 nâng cao): OCR local, RAG (agentic, corrective, ColBERT, multimodal), agent (CrewAI, AutoGen, A2A), MCP, voice agent, fine-tuning (GRPO, distillation), so sánh model, context engineering, eval; mỗi dự án có README, requirements và .env.example; kèm ai-engineering-roadmap và courses; 554 commit; ★ 6/11/2026: 41.193 (GitHub search API), mục 08 §6b",
+      "section": "08",
+      "id": "ai-engineering-hub",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6b-hồ-sơ-patchy631ai-engineering-hub-hơn-90-dự-án-ai-chạy-được-xếp-theo-mức-độ-ảnh-readme-người-dùng-gửi-đọc-6112026",
+      "last_verified_at": "2026-11-06",
+      "verified_ref": "042aeb5067384981eeba6a07fa882f436bb1660d",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/patchy631/ai-engineering-hub/blob/042aeb5067384981eeba6a07fa882f436bb1660d/README.md",
+        "https://github.com/patchy631/ai-engineering-hub/blob/042aeb5067384981eeba6a07fa882f436bb1660d/LICENSE"
       ]
     }
   ]

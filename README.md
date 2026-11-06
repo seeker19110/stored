@@ -415,6 +415,10 @@ claude-seo (mục 20 §3z, 26,9k★, MIT, v2.5.0) là plugin Claude Code gồm 2
 
 evondevKit (mục 06 §7n.5, 460★, MIT) nay cài qua marketplace của Claude Code hoặc `npx skills add evondev/evondevKit` cho Cursor, OpenCode, Codex, Antigravity, ZCode và omp. Từ 0.3.27 lên 0.6.0 có thêm phân tích sản phẩm và soi luồng trước khi dựng, sinh `DESIGN.md`, `probe --stress`, các bộ mặt dashboard có tên (Clean, Dark Sidebar, Soft, Night) để các dashboard không giống nhau, màu nhấn gợi ý theo ngành dựa trên đo khoảng 60 sản phẩm thật (tương phản từ 5:1), và các trục khung app (Float, Rail, Topbar; danh sách + chi tiết, hai panel).
 
+### 64. AI Engineering Hub (6/11/2026): hơn 90 dự án AI chạy được, đi từ cơ bản tới nâng cao
+
+AI Engineering Hub (mục 08 §6b, 41k★, MIT) của Akshay Pachaar là kho dự án mẫu: mỗi thư mục là một ứng dụng hoàn chỉnh có README, file phụ thuộc và mẫu `.env`. README xếp 88 dự án theo ba mức (22 cơ bản, 44 trung cấp, 22 nâng cao), phủ OCR chạy local, RAG nhiều biến thể, agent (CrewAI, AutoGen, A2A), MCP, voice agent, fine-tuning (GRPO, distillation), so sánh model cạnh nhau và eval; kèm lộ trình cho người mới. Hợp để học bằng cách chạy thử, và để tham khảo nhanh cách dựng một tính năng cụ thể.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
