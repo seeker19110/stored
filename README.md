@@ -427,6 +427,10 @@ agent-desktop của Vercel Labs (mục 11 §3h, 17,7k★, Apache-2.0) cho agent 
 
 agent-skills (mục 20 §3o.2b, 113,8k★, MIT, 0.6.15) biến vòng đời một tính năng thành bảy slash command: `/spec` viết đặc tả, `/plan` chia task có tiêu chí nghiệm thu, `/build` làm từng phần có test và commit (thêm `auto` để chạy cả kế hoạch), `/test` theo TDD, `/review` năm trục, `/code-simplify` giảm phức tạp không đổi hành vi, `/ship` chạy song song ba persona (review, bảo mật, test) rồi ra quyết định go/no-go. Mỗi lệnh gọi một skill trong bộ 25 skill; bản 0.6.15 thêm bước kiểm từng phát hiện review với mã và baseline, cổng bảo mật và accessibility, và quét secret không in credential.
 
+### 67. Ba skill giao diện (7/11/2026): animation của Emil Kowalski, ảnh App Store, gstack chấm thiết kế 0–10
+
+`emilkowalski/skills` (mục 06 §7z.1, 54k★, MIT) có 17 skill viết từ kinh nghiệm design engineer ở Vercel và Linear: dựng, review, audit và tối ưu animation, cộng `break-ui`, `mobile-native`, `pick-ui-library`. `ParthJadhav/app-store-screenshots` (mục 06 §7z.2, 7,8k★, MIT) dựng một editor Next.js để làm ảnh quảng cáo cho App Store và Google Play, có 18 phong cách và xuất đủ mọi kích thước. gstack của Garry Tan (mục 20 §3za, 140k★, MIT) là bộ 71 skill chạy theo sprint; `/plan-design-review` chấm từng mặt thiết kế 0–10, nói thế nào là 10 rồi sửa kế hoạch tới đó.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

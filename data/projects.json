@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1044,
+    "count": 1046,
     "schema_version": 2
   },
   "projects": [
@@ -913,12 +913,20 @@
       "repo": "emilkowalski/skills",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 52428,
+      "stars": 54263,
       "open_source": true,
-      "notes": "Skills for Designers and Engineers (Emil Kowalski — sonner/vaul): animation, design, code, performance cho design engineer; npx skills add; Claude Code/Codex/Cursor; 51.327★/3.001 fork (29/10/2026, API GitHub); ảnh infographic §7m.1; ★ 31/10/2026: 52.418 (GitHub API)",
+      "notes": "Skills for Designers and Engineers (Emil Kowalski — sonner/vaul): animation, design, code, performance cho design engineer; npx skills add; Claude Code/Codex/Cursor; 51.327★/3.001 fork (29/10/2026, API GitHub); ảnh infographic §7m.1; ★ 31/10/2026: 52.418 (GitHub API); đọc lại 7/11/2026 (§7z.1): 17 skill (emil-design-eng, animate, animate-expo, review/improve/find/remove-animations, choreograph, animation-performance, animation-vocabulary, apple-design, write-swift, pick-ui-library, prototype, mobile-native, break-ui, ask-sonner) + 2 cheatsheet; ★ 7/11/2026: 54.263 (GitHub search API)",
       "section": "06",
       "id": "emilkowalski-skills",
-      "profile_path": "06-ui-ux-design/README.md"
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7z-kiểm-ảnh-ba-thẻ-skill-emil-kowalski-animation-app-store-screenshots-ra-mắt-app-gstack-review-thiết-kế-ảnh-người-dùng-gửi-đọc-mã-7112026",
+      "last_verified_at": "2026-11-07",
+      "verified_ref": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/emilkowalski/skills/blob/c8a79627b59d72d764d6ab6f2c87c09a48169833/README.md",
+        "https://github.com/emilkowalski/skills/blob/c8a79627b59d72d764d6ab6f2c87c09a48169833/LICENSE"
+      ]
     },
     {
       "name": "evondevKit (ui-ux)",
@@ -14491,6 +14499,49 @@
       "sources": [
         "https://github.com/patchy631/ai-engineering-hub/blob/042aeb5067384981eeba6a07fa882f436bb1660d/README.md",
         "https://github.com/patchy631/ai-engineering-hub/blob/042aeb5067384981eeba6a07fa882f436bb1660d/LICENSE"
+      ]
+    },
+    {
+      "name": "gstack",
+      "repo": "garrytan/gstack",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 140570,
+      "open_source": true,
+      "notes": "\"Đội kỹ sư ảo\" cho Claude Code của Garry Tan (YC): 71 SKILL.md theo sprint Think→Plan→Build→Review→Test→Ship→Reflect (/office-hours, /plan-ceo-review, /plan-design-review chấm từng mặt thiết kế 0–10 và sửa tới 10, /autoplan, /review, /qa trình duyệt thật, /cso, /ship, /land-and-deploy, /careful /freeze /guard); 1.741 file test, ~34 workflow CI; telemetry tắt mặc định; cài git clone vào ~/.claude/skills/gstack && ./setup, có --team và --host codex; VERSION 1.97.0.0, 1.077 commit; ★ 7/11/2026: 140.570 (GitHub search API), mục 20 §3za",
+      "section": "20",
+      "id": "gstack",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3za-hồ-sơ-garrytangstack-đội-kỹ-sư-ảo-cho-claude-code-plan-design-review-chấm-thiết-kế-010-ảnh-thẻ-skill-người-dùng-gửi-đọc-mã-7112026",
+      "last_verified_at": "2026-11-07",
+      "verified_ref": "297f50c7e1d46aab1404f5f2e8a9584af76ad6b2",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/README.md",
+        "https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/plan-design-review/SKILL.md",
+        "https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/LICENSE",
+        "https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/docs/privacy.md"
+      ]
+    },
+    {
+      "name": "App Store Screenshots",
+      "repo": "ParthJadhav/app-store-screenshots",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 7834,
+      "open_source": true,
+      "notes": "Skill dựng editor Next.js + shadcn/ui cho ảnh chụp App Store, Mac App Store và Google Play: canvas nối liền, Style Lab, 18 phong cách + thư viện tiêu đề, đa ngôn ngữ/RTL, xuất zip PNG đủ mọi kích thước (html-to-image), lưu deck trong app-store-screenshots.json; cài npx skills add ParthJadhav/app-store-screenshots; ★ 7/11/2026: 7.834 (GitHub search API), mục 06 §7z.2",
+      "section": "06",
+      "id": "app-store-screenshots",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7z-kiểm-ảnh-ba-thẻ-skill-emil-kowalski-animation-app-store-screenshots-ra-mắt-app-gstack-review-thiết-kế-ảnh-người-dùng-gửi-đọc-mã-7112026",
+      "last_verified_at": "2026-11-07",
+      "verified_ref": "3bdfb8d3dc794bae05f240b2cb9607cd23de40ec",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/README.md",
+        "https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/skills/app-store-screenshots/SKILL.md",
+        "https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/LICENSE"
       ]
     }
   ]

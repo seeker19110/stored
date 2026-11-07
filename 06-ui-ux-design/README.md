@@ -1491,6 +1491,43 @@ Plugin biến story thành test qua vitestTransform, nạp setup-file và projec
 
 **Nguồn §7y:** [LICENSE](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/LICENSE) · [MIGRATION.md](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/MIGRATION.md) · [code/addons/vitest/package.json](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/package.json) · [code/addons/vitest/src/vitest-plugin/index.ts](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/src/vitest-plugin/index.ts) · [code/addons/vitest/src/vitest-plugin/setup-file.ts](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/vitest/src/vitest-plugin/setup-file.ts) · [code/addons/a11y/src/preview.tsx](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/code/addons/a11y/src/preview.tsx) · [.circleci/config.yml](https://github.com/storybookjs/storybook/blob/e4ec60736988a349e8a5d4484ea5a832fde49af8/.circleci/config.yml) · [README.md](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/README.md) · [LICENSE](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/LICENSE) · [src/playwright/transformPlaywright.ts](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/src/playwright/transformPlaywright.ts) · [src/test-storybook.ts](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/src/test-storybook.ts) · [.github/workflows/tests.yml](https://github.com/storybookjs/test-runner/blob/5364e386006e31f436813af9205138cfe320be04/.github/workflows/tests.yml)
 
+## 7z. Kiểm ảnh ba thẻ skill: Emil Kowalski (animation), App Store Screenshots (ra mắt app), gstack (review thiết kế) (ảnh người dùng gửi, đọc mã 7/11/2026)
+
+> Ảnh gồm ba thẻ "SKILL 03/05 Animation – Emil Kowalski ★52.1K (github.com/emilkowalski/skill)", "SKILL 04/05 Ra mắt app – App Store Design ★7.7K (github.com/ParthJadhav/app-store-screenshots)", "SKILL 05/05 Review thiết kế – gstack ★138.3K (github.com/garrytan/gstack)". Đường dẫn đúng của thẻ đầu là `emilkowalski/skills` (có chữ s). Hồ sơ gstack ở mục 20 §3za.
+
+### 7z.1 `emilkowalski/skills` đọc lại (bổ sung §7m.1)
+
+| Thuộc tính | Giá trị (7/11/2026) |
+|---|---|
+| Repo | https://github.com/emilkowalski/skills · **54.263★, 3.167 fork** (GitHub search API) · MIT · 60 commit |
+| Cài | `npx skills@latest add emilkowalski/skills` |
+| Thành phần | 17 skill: `emil-design-eng` (skill chính, chủ yếu animation), `animate`, `animate-expo` (React Native/Expo), `review-animations`, `improve-animations`, `find-animation-opportunities`, `remove-animations`, `choreograph`, `animation-performance`, `animation-vocabulary`, `apple-design`, `write-swift`, `pick-ui-library`, `prototype`, `mobile-native`, `break-ui`, `ask-sonner`; thêm `ui-cheatsheet.md` và `performance-cheatsheet.md` |
+
+Điểm mạnh:
+
+- **Kinh nghiệm thật của design engineer** (Vercel, Linear; tác giả Sonner và Vaul) được viết thành luật cụ thể, ví dụ animation xuất hiện dùng `ease-out` chứ không dùng `ease-in`.
+- **Đủ vòng animation**: dựng mới (`animate`), tìm chỗ nên có (`find-animation-opportunities`), bỏ chỗ thừa (`remove-animations`), phối nhiều phần tử (`choreograph`), review nghiêm (`review-animations`), audit cả codebase thành kế hoạch tự chứa cho agent khác chạy (`improve-animations`), sửa rớt khung (`animation-performance`).
+- **Mở rộng ngoài animation**: thử giao diện bằng dữ liệu xấu nhất (`break-ui`), web có cảm giác native trên điện thoại (`mobile-native`), chọn thư viện đáng tin thay vì để AI tự viết (`pick-ui-library`), làm nhiều phương án có thanh chuyển (`prototype`), nguyên tắc Apple cho web (`apple-design`).
+
+### 7z.2 `ParthJadhav/app-store-screenshots`: skill dựng editor ảnh chụp App Store và Google Play
+
+| Thuộc tính | Giá trị (7/11/2026) |
+|---|---|
+| Repo | https://github.com/ParthJadhav/app-store-screenshots · **7.834★, 557 fork** (GitHub search API), tạo 7/3/2026 · MIT · 90 commit (Parth Jadhav 71) |
+| Cài | `npx skills add ParthJadhav/app-store-screenshots` (thêm `-g` để cài toàn cục, `-a claude-code` cho một agent), hoặc `git clone` vào `~/.claude/skills/app-store-screenshots`; dùng được với Claude Code, Cursor, Windsurf, OpenCode, Codex |
+| Thành tích | README ghi 14,1K lượt cài trên skills.sh, Trendshift #10 Repository of the Day, Product Hunt #8; ảnh tạo bằng skill được App Store duyệt cho app Bloom Coffee Shelf Recipe |
+
+Điểm mạnh:
+
+- **Dựng cả một editor, không chỉ một trang tĩnh**: skill scaffold dự án Next.js + shadcn/ui có canvas nối liền (điện thoại, chữ, họa tiết vắt qua nhiều ảnh rồi cắt chính xác từng màn), sidebar màn hình kéo thả, inspector, chọn theme, Style Lab (bốn phong cách cạnh nhau, khóa màu/chữ/bố cục/cảnh), Scene Playground, kính lúp phóng chi tiết.
+- **Xuất đúng mọi kích thước bắt buộc** của App Store, Mac App Store và Google Play bằng `html-to-image`, gói zip theo nền tảng, thiết bị, độ phân giải và ngôn ngữ; phủ iPhone, iPad, Apple TV, Apple Watch, CarPlay, Mac, điện thoại và tablet Android, feature graphic.
+- **Ảnh là quảng cáo, không phải chụp UI**: 18 phong cách đặt tên có đặc tả riêng (`style-prompts/`) và thư viện tiêu đề (`copy-ideas.md`); hỗ trợ đa ngôn ngữ và bố cục RTL.
+- **Lưu dự án theo git**: mọi deck nằm trong `app-store-screenshots.json`, autosave qua `/api/project` có phát hiện bản mới hơn trên đĩa trước khi ghi đè; dự án cũ được migrate tại chỗ, có chế độ isolated giữ nguyên cách xuất cũ.
+
+Dùng: sau khi cài, yêu cầu agent "Build App Store and Google Play screenshots for my app." Skill sẽ hỏi bối cảnh app, ảnh nguồn, nền tảng, ngôn ngữ, phong cách và số slide rồi mới dựng editor. Ảnh nguồn iPhone dễ nhất là chụp từ simulator 6.1 inch.
+
+**Nguồn §7z:** ảnh ba thẻ người dùng gửi 7/11/2026 · clone https://github.com/emilkowalski/skills HEAD `c8a79627b59d72d764d6ab6f2c87c09a48169833`: https://github.com/emilkowalski/skills/blob/c8a79627b59d72d764d6ab6f2c87c09a48169833/README.md · https://github.com/emilkowalski/skills/blob/c8a79627b59d72d764d6ab6f2c87c09a48169833/LICENSE · clone https://github.com/ParthJadhav/app-store-screenshots HEAD `3bdfb8d3dc794bae05f240b2cb9607cd23de40ec`: https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/README.md · https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/skills/app-store-screenshots/SKILL.md · https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/LICENSE · GitHub search API 7/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

@@ -1428,6 +1428,41 @@ Các số đo hữu ích gồm tỷ lệ kích hoạt sai trên bộ ca âm, ch�
 
 **Nguồn §3z:** ảnh README người dùng gửi 5/11/2026 · clone https://github.com/AgriciDaniel/claude-seo HEAD `6be93f45064ffbadced572b5d5c95f55fd263af0`: https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/README.md · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/PRIVACY.md · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/LICENSE · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/scripts/fetch_page.py · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/skills/seo-programmatic/SKILL.md · https://github.com/AgriciDaniel/claude-seo/blob/6be93f45064ffbadced572b5d5c95f55fd263af0/.github/workflows/ci.yml · `skills/`, `agents/`, `tests/` · GitHub search API `claude-seo` 5/11/2026.
 
+## 3za. Hồ sơ garrytan/gstack: "đội kỹ sư ảo" cho Claude Code, `/plan-design-review` chấm thiết kế 0–10 (ảnh thẻ skill người dùng gửi, đọc mã 7/11/2026)
+
+> Ảnh là thẻ "SKILL 05/05 · Review thiết kế · gstack ★138.3K", ghi lệnh `/plan-design-review` chấm điểm thiết kế 0–10. Hai thẻ còn lại (Emil Kowalski, App Store Design) ở mục 06 §7z.
+
+### 3za.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (7/11/2026) |
+|---|---|
+| Repo | https://github.com/garrytan/gstack · **140.570★, 20.749 fork** (GitHub search API), tạo 11/3/2026 · MIT |
+| Tác giả | Garry Tan (Chủ tịch kiêm CEO Y Combinator); 1.077 commit, 1.031 của tác giả; `VERSION` 1.97.0.0 (tag mới nhất v1.96.0.0) |
+| Thành phần | 71 file `SKILL.md`: quy trình (`/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`, `/plan-devex-review`, `/autoplan`, `/spec`), review và QA (`/review`, `/design-review`, `/qa`, `/qa-only`, `/cso`, `/test-audit`, `/verify`), phát hành (`/ship`, `/land-and-deploy`, `/canary`, `/benchmark`, `/document-release`), an toàn (`/careful`, `/freeze`, `/guard`), trình duyệt (`/browse`, `/scrape`, `/open-gstack-browser`), iOS (`/ios-qa`, `/ios-design-review`…), ghi nhớ (`/learn`, GBrain) |
+| Kiểm thử | 1.741 file `.test.ts`; khoảng 34 workflow CI (evals, quality-gate, release-gate, test trên Windows, OSV-Scanner, OpenSSF Scorecard, dependency-review) |
+
+### 3za.2 Điểm mạnh (đọc mã)
+
+- **Quy trình nối nhau thành một sprint**: Think → Plan → Build → Review → Test → Ship → Reflect. `/office-hours` viết design doc cho `/plan-ceo-review` đọc, pha eng của `/autoplan` viết test plan cho `/qa` dùng, `/review` bắt lỗi rồi `/ship` kiểm lại đã sửa.
+- **`/plan-design-review` chấm điểm có lý do** (`plan-design-review/SKILL.md`, mục "The 0-10 Rating Method"): chấm từng mặt thiết kế 0–10, nói rõ thế nào là 10, đề xuất cách sửa và hỏi người dùng từng điểm một, áp đúng cách sửa đã chọn rồi chấm lại, lặp tới 10 hoặc tới khi người dùng dừng. Có điểm tổng về độ hoàn chỉnh, review 7 mặt, nhận diện "AI slop"; nếu có binary thiết kế, mặt nào dưới 7/10 thì sinh mockup bản 10/10. Chạy lại: mặt từ 8 trở lên chỉ rà nhanh, dưới 8 rà đầy đủ.
+- **Bảng chọn review theo đối tượng**: người dùng cuối dùng `/plan-design-review` (trước khi code) và `/design-review` (sau khi lên, tự sửa, commit nguyên tử, ảnh trước/sau); developer dùng `/plan-devex-review` và `/devex-review`; kiến trúc dùng `/autoplan` và `/review`.
+- **QA bằng trình duyệt thật và cả khi không có giao diện**: `/qa` mở trình duyệt, tái hiện lỗi, viết regression test đỏ, sửa rồi kiểm lại; cùng lệnh test được CLI, API, job, webhook.
+- **Rào an toàn có sẵn**: `/careful` cảnh báo trước `rm -rf`, `DROP TABLE`, force-push; `/freeze` khóa sửa trong một thư mục; `/guard` gộp cả hai.
+- **Riêng tư mặc định**: telemetry tắt, chỉ hỏi một lần; kiểm cập nhật chỉ vài request tới GitHub (`docs/privacy.md`).
+- **Chạy trên nhiều agent**: Claude Code mặc định, thêm `./setup --host auto` hoặc `--host codex` cho agent khác; có chế độ team tự cập nhật cho repo dùng chung.
+
+### 3za.3 Cài và dùng
+
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && cd ~/.claude/skills/gstack && ./setup
+```
+
+- Repo dùng chung: `./setup --team` rồi `gstack-team-init required` trong repo.
+- Bắt đầu: `/office-hours` mô tả sản phẩm, `/review` trên nhánh có thay đổi, `/qa` trên URL staging. Muốn trọn sprint thì `/autoplan` rồi `/ship`.
+- Với kế hoạch có giao diện, chạy `/plan-design-review` trước khi code; cùng nhóm skill thiết kế ở mục 06 §7z (animation của Emil Kowalski) và §7o (`/design-critique`).
+
+**Nguồn §3za:** ảnh thẻ skill người dùng gửi 7/11/2026 · clone https://github.com/garrytan/gstack HEAD `297f50c7e1d46aab1404f5f2e8a9584af76ad6b2`: https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/README.md · https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/plan-design-review/SKILL.md · https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/LICENSE · https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/docs/privacy.md · GitHub search API 7/11/2026.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
