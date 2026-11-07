@@ -3537,9 +3537,9 @@
       "repo": "addyosmani/agent-skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 112246,
+      "stars": 113774,
       "open_source": true,
-      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.2 (31/10/2026): 112k★, v0.6.14, 772 commit/103 tác giả, 25 skill/4 agent/9 command/7 checklist; CI lint + eval routing ≥95% hạng 1 (TF-IDF, tất định), eval hành vi chạy tay; hook tùy chọn có test (sdd-cache xác thực lại bằng ETag); ledger thay đổi bị từ chối; không telemetry; ★ 31/10/2026: 112.246 (GitHub API)",
+      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.2 (31/10/2026): 112k★, v0.6.14, 772 commit/103 tác giả, 25 skill/4 agent/9 command/7 checklist; CI lint + eval routing ≥95% hạng 1 (TF-IDF, tất định), eval hành vi chạy tay; hook tùy chọn có test (sdd-cache xác thực lại bằng ETag); ledger thay đổi bị từ chối; không telemetry; ★ 31/10/2026: 112.246 (GitHub API); đọc lại 7/11/2026 (§3o.2b): 0.6.15, 807 commit; bảy bước /spec /plan /build (auto) /test /review /code-simplify /ship ánh xạ tới skill tương ứng, /ship chạy song song 3 persona (code-reviewer, security-auditor, test-engineer) rồi ra go/no-go; 0.6.15 thêm kiểm phát hiện review với baseline, cổng bảo mật và accessibility trong constraints, quét secret không in credential; ★ 7/11/2026: 113.774 (GitHub search API)",
       "section": "20",
       "id": "agent-skills-addyosmani",
       "profile_path": "20-claude-plugins-ecosystem/README.md"

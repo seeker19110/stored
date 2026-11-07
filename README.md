@@ -423,6 +423,10 @@ AI Engineering Hub (mục 08 §6b, 41k★, MIT) của Akshay Pachaar là kho d�
 
 agent-desktop của Vercel Labs (mục 11 §3h, 17,7k★, Apache-2.0) cho agent điều khiển ứng dụng desktop trên macOS, Windows và Linux bằng cây accessibility của hệ điều hành thay vì ảnh chụp. Mỗi phần tử có ref gắn với snapshot; khi UI đổi, lệnh trả `STALE_REF` để agent chụp lại thay vì bấm nhầm. Thao tác chạy nền, không chiếm chuột. Có 56 lệnh qua CLI, server MCP (`agent-desktop mcp`) và thư viện C. Viết bằng Rust với 6.701 test và E2E trên từng hệ điều hành; npm khoảng 47 nghìn lượt tải/tháng.
 
+### 66. Agent Skills của Addy Osmani (7/11/2026): bảy lệnh từ Spec tới Ship
+
+agent-skills (mục 20 §3o.2b, 113,8k★, MIT, 0.6.15) biến vòng đời một tính năng thành bảy slash command: `/spec` viết đặc tả, `/plan` chia task có tiêu chí nghiệm thu, `/build` làm từng phần có test và commit (thêm `auto` để chạy cả kế hoạch), `/test` theo TDD, `/review` năm trục, `/code-simplify` giảm phức tạp không đổi hành vi, `/ship` chạy song song ba persona (review, bảo mật, test) rồi ra quyết định go/no-go. Mỗi lệnh gọi một skill trong bộ 25 skill; bản 0.6.15 thêm bước kiểm từng phát hiện review với mã và baseline, cổng bảo mật và accessibility, và quét secret không in credential.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

@@ -1934,3 +1934,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-06c (ảnh README vercel-labs/agent-desktop → mục 11 §3h)
 
 - `vercel-labs/agent-desktop`: ảnh README người dùng gửi 6/11/2026; clone `--filter=blob:none` đủ lịch sử (335 commit, HEAD `b43ac4f6e892ef608f8851428613c4009f0e84c7`, tag v1.2.0): README.md, LICENSE, Cargo.toml, `crates/`, `.github/workflows/*`, `benchmarks/`; đếm `#[test]`. https://registry.npmjs.org/agent-desktop · https://api.npmjs.org/downloads/point/last-month/agent-desktop. GitHub search API 6/11/2026. Không cài, không chạy.
+
+## Bổ sung 2026-11-07a (ảnh banner "Agent Skills" → mục 20 §3o.2b)
+
+- `addyosmani/agent-skills`: ảnh banner người dùng gửi 7/11/2026; clone `--filter=blob:none` đủ lịch sử (807 commit, HEAD `301b02b12bff98e4688e6984af6556802322bbde`, tag 0.6.15): `.claude/commands/*.md`, `commands/*.toml`, `agents/`, `skills/`, `git log 0.6.14..HEAD`. GitHub search API 7/11/2026.
