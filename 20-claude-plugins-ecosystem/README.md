@@ -919,6 +919,37 @@ Ba công cụ đầu viết bằng Python, **chưa phát hành lên PyPI**: clon
 
 **Đánh giá:** bộ skill "vòng đời kỹ thuật" có quản trị tốt nhất trong nhóm pack lớn: eval routing trong CI, ledger thay đổi bị từ chối, hook tùy chọn có test, bảo trì đều. Rộng hơn superpowers (thêm security, performance, observability, launch) nhưng ít "ép quy trình" hơn. Hợp để chọn lọc vài skill (doubt-driven, source-driven, incremental-implementation — Hermes-Agents đã vendor, mục 23).
 
+#### 3o.2b Đọc lại 7/11/2026: bảy bước Spec → Ship trong ảnh, và bản 0.6.15
+
+> Người dùng gửi ảnh banner "Agent Skills" với bảy nhãn Spec · Plan · Build · Test · Review · Simplify · Ship. Đối chiếu clone đủ lịch sử, HEAD `301b02b12bff98e4688e6984af6556802322bbde` (1/11/2026, tag 0.6.15): **113.774★, 11.890 fork** (GitHub search API 7/11/2026), MIT, 807 commit.
+
+**Bảy bước là bảy slash command, mỗi lệnh gọi skill tương ứng** (`.claude/commands/*.md`; bản cho Gemini/Codex ở `commands/*.toml`):
+
+| Bước | Lệnh | Skill chính | Việc lệnh làm |
+|---|---|---|---|
+| Spec | `/spec` | `spec-driven-development` | Viết đặc tả có cấu trúc trước khi viết mã |
+| Plan | `/plan` | `planning-and-task-breakdown` | Chia việc thành task nhỏ kiểm được, có tiêu chí nghiệm thu và thứ tự phụ thuộc |
+| Build | `/build` | `incremental-implementation`, `test-driven-development`, `doubt-driven-development` | Làm từng phần: build, test, kiểm, commit; thêm `auto` để chạy cả kế hoạch trong một lần duyệt |
+| Test | `/test` | `test-driven-development` | TDD: viết test hỏng trước, làm cho qua, kiểm; với bug dùng mẫu Prove-It |
+| Review | `/review` | `code-review-and-quality` | Review năm trục: đúng, dễ đọc, kiến trúc, bảo mật, hiệu năng |
+| Simplify | `/code-simplify` | `code-simplification` | Giảm độ phức tạp mà không đổi hành vi |
+| Ship | `/ship` | `shipping-and-launch` | Checklist trước phát hành: chạy song song ba persona chuyên môn (`code-reviewer`, `security-auditor`, `test-engineer`) rồi gộp báo cáo thành một quyết định go/no-go; harness không có tool Agent thì chạy lần lượt |
+
+Ngoài bảy bước còn `/constraints` (constraint-driven-development) và `/webperf` (persona `web-performance-auditor`).
+
+**Cải tiến trong 0.6.15 (35 commit từ 0.6.14, 52 file):**
+
+- Review: kiểm từng phát hiện với mã và baseline trước khi báo (#736); giữ bằng chứng mâu thuẫn từ phía gọi trong cùng đơn vị review (#754).
+- Ràng buộc: cổng chất lượng bảo mật và accessibility được thực thi trong `constraint-driven-development` (#694); sửa ngưỡng tương phản và kiểm resize sau khi giao diện ổn định (#733).
+- Bảo mật: quét secret đã stage mà không in credential ra màn hình (#718); mô tả skill nêu rõ session cookie (#759).
+- TDD: test crash và rollback chạy qua ranh giới thật (#750); fixture không còn lộ sẵn đáp án.
+- Eval: chọn chạy riêng một ca hành vi theo id (#742); ghi lại lượt chạy lại sau thay đổi #714 và độ trôi TDD giữa các phiên bản CLI.
+- Hook `simplify-ignore.sh`: giữ đúng placeholder đã thụt lề lại và dọn dẹp chắc hơn ở Stop (#766).
+
+**Dùng thế nào:** cài plugin, rồi đi đúng thứ tự `/spec` → `/plan` → `/build` (hoặc `/build auto`) → `/test` → `/review` → `/code-simplify` → `/ship` cho mỗi tính năng; agent tự gọi skill phù hợp cả khi không gõ lệnh.
+
+**Nguồn §3o.2b:** ảnh banner người dùng gửi 7/11/2026 · clone https://github.com/addyosmani/agent-skills HEAD `301b02b12bff98e4688e6984af6556802322bbde`: https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/.claude/commands/spec.md · https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/.claude/commands/build.md · https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/.claude/commands/ship.md · `commands/*.toml`, `agents/`, `skills/` · `git log 0.6.14..HEAD` · GitHub search API 7/11/2026.
+
 ### 3o.3 So sánh nhanh các pack quy trình (shields 31/10/2026, trừ ghi chú)
 
 | Repo | ★ | CI / eval | Hook mặc định | Dữ liệu rời máy |
