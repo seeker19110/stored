@@ -1938,3 +1938,10 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-07a (ảnh banner "Agent Skills" → mục 20 §3o.2b)
 
 - `addyosmani/agent-skills`: ảnh banner người dùng gửi 7/11/2026; clone `--filter=blob:none` đủ lịch sử (807 commit, HEAD `301b02b12bff98e4688e6984af6556802322bbde`, tag 0.6.15): `.claude/commands/*.md`, `commands/*.toml`, `agents/`, `skills/`, `git log 0.6.14..HEAD`. GitHub search API 7/11/2026.
+
+## Bổ sung 2026-11-07b (ảnh ba thẻ skill → mục 06 §7z, mục 20 §3za)
+
+- `garrytan/gstack`: clone `--filter=blob:none` HEAD `297f50c7e1d46aab1404f5f2e8a9584af76ad6b2` (1.077 commit, VERSION 1.97.0.0): README, `plan-design-review/SKILL.md`, `docs/privacy.md`, `.github/workflows/`, đếm `SKILL.md` và `.test.ts`.
+- `ParthJadhav/app-store-screenshots`: clone HEAD `3bdfb8d3dc794bae05f240b2cb9607cd23de40ec` (90 commit): README, `skills/app-store-screenshots/SKILL.md`, `style-prompts/`.
+- `emilkowalski/skills`: clone HEAD `c8a79627b59d72d764d6ab6f2c87c09a48169833` (60 commit): README, `skills/`. Thẻ ghi `emilkowalski/skill`, đúng là `emilkowalski/skills`.
+- GitHub search API 7/11/2026 cho cả ba repo.
