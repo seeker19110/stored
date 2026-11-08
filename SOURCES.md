@@ -1945,3 +1945,9 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 - `ParthJadhav/app-store-screenshots`: clone HEAD `3bdfb8d3dc794bae05f240b2cb9607cd23de40ec` (90 commit): README, `skills/app-store-screenshots/SKILL.md`, `style-prompts/`.
 - `emilkowalski/skills`: clone HEAD `c8a79627b59d72d764d6ab6f2c87c09a48169833` (60 commit): README, `skills/`. Thẻ ghi `emilkowalski/skill`, đúng là `emilkowalski/skills`.
 - GitHub search API 7/11/2026 cho cả ba repo.
+
+## Bổ sung 2026-11-08a (bài "8 kho UI sẵn dùng" → mục 06 §7za; ảnh slide Lemo-Opuscar → mục 22 §9k)
+
+- Clone `--filter=blob:none` 8/11/2026: `Jakubantalik/Libraries.dev` HEAD `9a42e88847dab0ac145733f15cf90535e9cb59ab`, `cabralorenzo/bencho` HEAD `c65992417427bb09e661674ffa800bef29adef49`, `starc007/ui-components` HEAD `7664db5374761439e6582d534311a17aed34d29d`, `BoardUI/boardui` HEAD `ec5c5eb3e29c2441be63b9422cd54f411ef23466`, `flohoeller/affectui` HEAD `7ac87beb0ffaef2dd0305e508b4e3d471f269d84`, `WatermelonCorp/watermelon-platform` HEAD `2a2aeef7533d7df52be294e73628a216238d1b90`, `lemomo-ai/lemo-opuscar` HEAD `5c05490cc55dfb54f8f4c333f0f0e79cb6500564`; đọc README, LICENSE, cây thư mục (`packages/`, `blocks/`, `skills/`, `mcp/`, `tests/`, `styles/`, `core/`).
+- Arc UI: https://uiarc.dev/docs/introduction · Kobra: https://kobra.systems, https://kobra.systems/pricing (không tìm thấy repo công khai qua GitHub search).
+- GitHub search API 8/11/2026 cho các repo trên.

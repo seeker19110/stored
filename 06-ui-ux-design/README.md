@@ -1528,6 +1528,50 @@ Dùng: sau khi cài, yêu cầu agent "Build App Store and Google Play screensho
 
 **Nguồn §7z:** ảnh ba thẻ người dùng gửi 7/11/2026 · clone https://github.com/emilkowalski/skills HEAD `c8a79627b59d72d764d6ab6f2c87c09a48169833`: https://github.com/emilkowalski/skills/blob/c8a79627b59d72d764d6ab6f2c87c09a48169833/README.md · https://github.com/emilkowalski/skills/blob/c8a79627b59d72d764d6ab6f2c87c09a48169833/LICENSE · clone https://github.com/ParthJadhav/app-store-screenshots HEAD `3bdfb8d3dc794bae05f240b2cb9607cd23de40ec`: https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/README.md · https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/skills/app-store-screenshots/SKILL.md · https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/LICENSE · GitHub search API 7/11/2026.
 
+## 7za. Kiểm bài "8 kho UI sẵn dùng": Libraries.dev, Bencho, beUI, Arc UI, BoardUI, Kobra, affectUI, Watermelon UI (bài người dùng gửi, đọc mã 8/11/2026)
+
+> Bài đăng chia 8 kho thành ba nhóm: hiệu ứng và micro-interaction (Libraries.dev, Bencho, beUI Pro), product UI cho dashboard và agent (Arc, BoardUI, Kobra), và component cho agent (affectUI), với Watermelon UI là catalog mở để bắt đầu. Cả 8 đều đưa source vào project và có đường cho coding agent đọc (MCP, `llms.txt`, registry hoặc skill). Sáu kho có repo công khai và đã được đọc mã; Arc UI và Kobra chỉ đọc qua trang chính thức.
+
+### 7za.1 Bảng nhanh
+
+| Kho | Repo hoặc trang | ★ / fork (8/11/2026) | Giấy phép | Thế mạnh | Đường cho agent |
+|---|---|---|---|---|---|
+| Libraries.dev | `Jakubantalik/Libraries.dev` · libraries.dev | 4.637 / 277 | MIT (thư viện); model `.mfxl` theo license riêng | 7 hiệu ứng React: border beam, thinking orbs, bot avatars, gooey, voice glow, liquid metal, image loader WebGL | Nút *Copy prompt* mỗi trang, skill `libraries-dev` |
+| Bencho | `cabralorenzo/bencho` · bencho.dev | 91 / 5 | MIT (bản free); Pro license riêng | 47 block tương tác xếp theo cử chỉ (hover, drag, swipe, slide, press, type, select) + 24 âm thanh giao diện | MCP, *Copy prompt* mỗi block |
+| beUI | `starc007/ui-components` · beui.dev | 1.934 / 94 | MIT (core); Pro qua registry riêng | Component motion, block, giao diện AI agent, chart | MCP `mcp.beui.dev`, skill `beui`, `llms.txt`, registry shadcn |
+| Arc UI | uiarc.dev (chưa thấy repo công khai) | — | MIT (bản free) | 121 component + 22 block miễn phí cho settings, billing, analytics, sign-in | MCP `uiarc.dev/api/mcp`, `llms.txt`, trang Markdown mỗi item |
+| BoardUI | `BoardUI/boardui` · boardui.com | 1.085 / 90 | MIT (bản free) | Design system cho dashboard và giao diện agent, React Aria + Tailwind v4, 400+ token, RTL | MCP qua `npx boardui mcp`, skill, `AGENTS.md`, `llms.txt` |
+| Kobra | kobra.systems (chưa thấy repo công khai) | — | Bản free dùng cá nhân; Pro trả một lần | Component có motion riêng, dark mode tinh chỉnh tay, âm thanh tổng hợp, nhóm Generative UI và Agents | `/install.md` cho agent; MCP và skill trong bản Pro |
+| affectUI | `flohoeller/affectui` · affectui.com | 523 / 30 | MIT (40 item free) | Component cho việc agent làm: tool call, decision inbox, handoff, approval, trace | MCP `affectui.com/api/mcp`, `llms.txt` |
+| Watermelon UI | `WatermelonCorp/watermelon-platform` · ui.watermelon.sh | 184 / 10 | MIT | Catalog mở: animated component, block, dashboard, template | MCP (stdio và hosted), `llms.txt`, `openapi.json`, API catalog, skill `watermelon-ui` |
+
+### 7za.2 Nhóm hiệu ứng và micro-interaction
+
+- **Libraries.dev** (Jakub Antalik, 702 commit): mỗi thư viện là một package npm độc lập, không phụ thuộc runtime (riêng `img-fx` cần `three`), bọc quanh phần tử sẵn có nên giữ nguyên ngữ nghĩa HTML. Cần React 18+. `theme="auto"` tự đọc `data-theme`, class `dark` hoặc `prefers-color-scheme`. Cài: `npm install border-beam` (hoặc `thinking-orbs`, `bot-avatars`, `liquid-gooey`, `voice-glow`, `metal-fx`, `img-fx`) rồi `<BorderBeam><button>…</button></BorderBeam>`. Pro mở Studio để chỉnh sâu và xuất cấu hình.
+- **Bencho** (Lorenzo Cabra): mỗi block là một thư mục gồm component, stylesheet và README liệt kê props; props trùng với nút chỉnh trên bencho.dev. `tokens.css` chứa màu sáng và tối. 24 âm thanh tạo bằng Web Audio API nằm gọn trong một file, không có file audio. Dùng: `cp -r blocks/like src/components/like` rồi `npm install framer-motion lucide-react`.
+- **beUI** (841 commit, từ 1/2024): React, TypeScript, Tailwind CSS, Motion; component có hành vi bàn phím và reduced-motion, kèm bộ test accessibility (35 file trong `tests/`). Cài: `npx shadcn@latest add @beui/animated-toast-stack`; agent nối MCP `https://mcp.beui.dev/mcp` (không cần key) hoặc `npx skills add starc007/ui-components --skill beui`. Bản Pro thêm section động và template Next.js qua skill `beui-pro`.
+
+### 7za.3 Nhóm product UI cho dashboard và agent
+
+- **Arc UI** (uiarc.dev): component là TSX thuần với CSS modules và token chung cho màu, bo góc, chữ, chuyển động; mỗi trang component có mục bàn phím, screen reader và reduced-motion, bản xem trước chạy đúng source sẽ được cài. Cài: `npx shadcn@latest add https://uiarc.dev/r/arc-foundation.json`; Claude Code: `claude mcp add --transport http arc https://uiarc.dev/api/mcp`. Pro mở thêm 121 component và 118 block.
+- **BoardUI**: repo chứa đủ 69 item miễn phí và một app mẫu (chat, dashboard có chart, đăng nhập) dựng từ chính các component đó. Route chat đọc API key phía server, nhận key của Anthropic, OpenAI, Gemini, OpenRouter, Groq, xAI, Vercel AI Gateway và server tương thích OpenAI. Hỗ trợ RTL qua `DirectionProvider`. Cài: `npx boardui@latest add data-table`; nối agent: `claude mcp add boardui -- npx -y boardui@latest mcp`, rồi nói "Install every free BoardUI component".
+- **Kobra** (Harsh Singh): khoảng 89 mục chia nhóm Free, Generative UI, Agents (Conversation, Composer, Message, Reasoning Steps, Task List…), Content, Feedback, Form controls, Layout, Navigation, Overlays; React + Tailwind, nhiều mục dựa trên Base UI và Motion. Bản free có 11 component, Figma kit, theme sáng/tối và âm thanh giao diện. Cài: `npx shadcn@latest add @kobra/tabs`.
+
+### 7za.4 Component cho agent và catalog mở
+
+- **affectUI** (`flohoeller`): component cho từng việc agent làm (Tool Call Card, Decision Inbox, Change Summary, Thinking Loader, Progress Tracker) và cho phần còn lại của app; mỗi item có hai kiểu `clean` và classic, motion tôn trọng `prefers-reduced-motion`, React 19. Cài: `npx shadcn@latest add @affectui/reaction-bar` hoặc copy file từ `components/`; MCP: `claude mcp add --transport http affectui https://www.affectui.com/api/mcp`. Agent Tree và Trace Waterfall thuộc Pro.
+- **Watermelon UI** (942 commit): mã của cả nền tảng ui.watermelon.sh đều mở (React 19, Vite, Tailwind 4, Motion); nội dung lưu dạng file MDX trong `src/data/contents`. Có MCP server cả stdio (`bun run mcp`) lẫn bản hosted trên Cloudflare, sinh registry shadcn bằng `bun run generate:shadcn-registry`, endpoint `/llms.txt`, `/openapi.json`, `/api/catalog/entries?kind=blocks`; kèm skill `watermelon-ui` và `make-interfaces-feel-better`.
+
+### 7za.5 Chọn theo việc đang thiếu
+
+- Giao diện đã có cấu trúc, thiếu cảm giác sống: Libraries.dev (hiệu ứng AI), Bencho (cử chỉ và âm thanh), beUI (component có motion).
+- Dashboard, settings, form: Arc UI, BoardUI.
+- Sản phẩm có agent: affectUI (tool call, approval, inbox), BoardUI và Kobra (chat, reasoning), beUI (approval, tool result).
+- Bắt đầu miễn phí với catalog mở: Watermelon UI.
+- Cách thử: nối MCP hoặc dán *Copy prompt* vào agent, cài một item miễn phí vào codebase rồi mới cân nhắc bản Pro. Liên quan: §7f (design system AI-ready), §7y (component là hợp đồng có kiểm thử), mục 22 (animation).
+
+**Nguồn §7za:** bài đăng người dùng gửi 8/11/2026 · clone `--filter=blob:none`: https://github.com/Jakubantalik/Libraries.dev/blob/9a42e88847dab0ac145733f15cf90535e9cb59ab/README.md · https://github.com/Jakubantalik/Libraries.dev/blob/9a42e88847dab0ac145733f15cf90535e9cb59ab/LICENSE-MODEL.md · https://github.com/cabralorenzo/bencho/blob/c65992417427bb09e661674ffa800bef29adef49/README.md · https://github.com/cabralorenzo/bencho/blob/c65992417427bb09e661674ffa800bef29adef49/LICENSE · https://github.com/starc007/ui-components/blob/7664db5374761439e6582d534311a17aed34d29d/README.md · https://github.com/BoardUI/boardui/blob/ec5c5eb3e29c2441be63b9422cd54f411ef23466/README.md · https://github.com/flohoeller/affectui/blob/7ac87beb0ffaef2dd0305e508b4e3d471f269d84/README.md · https://github.com/WatermelonCorp/watermelon-platform/blob/2a2aeef7533d7df52be294e73628a216238d1b90/README.md · https://uiarc.dev/docs/introduction · https://kobra.systems · https://kobra.systems/pricing · GitHub search API 8/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

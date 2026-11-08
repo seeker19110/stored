@@ -622,6 +622,35 @@ CI upstream có kế hoạch “affected tests” rồi chạy các nhánh brows
 
 **Nguồn §9j:** [LICENSE.md](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/LICENSE.md) · [packages/core/LICENSE.md](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/LICENSE.md) · [packages/core/src/random.ts](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/src/random.ts) · [packages/renderer/src/render-media.ts](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/renderer/src/render-media.ts) · [.github/workflows/push.yml](https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/.github/workflows/push.yml).
 
+## 9k. Đọc lại lemomo-ai/lemo-opuscar: 66 phong cách phim làm bằng code, cài bằng plugin Claude Code (ảnh slide người dùng gửi, đọc mã 8/11/2026)
+
+> Ảnh gồm năm slide TOPMAX: "Lemo-Opuscar là gì?", "66 phong cách chọn là dùng", "Cài 2 lệnh, rồi nói bằng lời", "Agent làm việc như một studio nhỏ", "Biến phong cách có sẵn thành của riêng bạn". Bổ sung cho bảng ở §9e.
+
+| Thuộc tính | Giá trị (8/11/2026) |
+|---|---|
+| Repo | https://github.com/lemomo-ai/lemo-opuscar · **13.396★, 1.564 fork** (GitHub search API) · tạo 26/9/2026 · 122 commit · gallery lemomo-ai.github.io/lemo-opuscar |
+| Giấy phép | Mã và tài liệu MIT; phim mẫu và ảnh tĩnh CC BY 4.0; phim bạn làm ra thuộc về bạn |
+| Thành phần | 66 phong cách trong `styles/` (mỗi thư mục có `STYLE.md` và phim mẫu), `DIRECTOR.md` (câu chuyện, âm thanh, nhịp, máy quay), `TECHNIQUE.md` (render khung, giọng, nhạc, mix), `MY-STYLES.md`; `core/` gồm render (`page.mjs`, `video.mjs`, `mux.sh`, `readcheck.mjs`), audio (`sampler.py`, `sfx.py`), TTS, three |
+| Yêu cầu | Node 20+, ffmpeg 7+, Python 3.11+ (hoặc uv); mỗi phim khoảng 30–60 phút agent; mặc định 1920×1080, 24 fps |
+
+Điểm mạnh:
+
+- **Mọi thứ đều là code**: hình vẽ bằng trang canvas và WebGL render từng khung, nhạc nền viết từ thư viện sample miễn phí, lời dẫn bằng text-to-speech; không dùng model tạo video, không dùng cảnh quay có sẵn.
+- **Phong cách phủ rộng, nào cũng có phim mẫu**: bản tin, tư liệu, Evidence Films (mọi con số có nguồn), vẽ tay và màu nước, truyền thống Đông Á, in ấn, đồ họa chữ, keynote, hoạt hình và anime, game, các thời kỳ điện ảnh, vật liệu và 3D. Phim tổng hợp OPUSCAR 98 (6:31) dựng 98 phong cách.
+- **Agent làm như một studio nhỏ**: viết kịch bản, lời dẫn, storyboard, nhạc, hiệu ứng âm thanh rồi render; hỏi một lần từ đầu về chỗ chưa rõ và về giọng, nhạc, tư liệu của bạn; có thể dừng một lần để bạn duyệt storyboard.
+- **Phong cách riêng**: đổi màu thương hiệu, logo, font, nhân vật hoặc bắt đầu từ trang trắng; năm bước (trả lời câu hỏi, duyệt tóm tắt, xem khung mẫu, nhận phim demo 15–30 giây, lưu); lưu trong `~/lemo-my-styles/<name>/`, cập nhật thư viện không đụng tới.
+
+Cài và dùng:
+
+```sh
+claude plugin marketplace add lemomo-ai/lemo-opuscar
+claude plugin install lemo-opuscar@lemolab
+```
+
+Rồi nói bằng lời, gọi tên phong cách bằng tiếng Anh hoặc tiếng Trung, ví dụ "Make a 45-second film in the watercolor style about…". Gõ `/lemo-opuscar:lemo-opuscar` để được hỏi từng bước. Agent khác: copy `plugin/skills/lemo-opuscar/` vào thư mục skill. Tác giả tinh chỉnh các phong cách cho Claude Opus 5.5.
+
+**Nguồn §9k:** ảnh slide người dùng gửi 8/11/2026 · clone https://github.com/lemomo-ai/lemo-opuscar HEAD `5c05490cc55dfb54f8f4c333f0f0e79cb6500564`: https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/README.md · https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/LICENSE · https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/MY-STYLES.md · GitHub search API 8/11/2026.
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes
