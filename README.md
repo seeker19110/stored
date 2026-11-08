@@ -447,6 +447,10 @@ unslop của Damir Sokolovsky (mục 06 §7zb, CC BY 4.0) là skill cho Claude C
 
 Mục 19 §3h đọc 5 thẻ đầu của loạt "AI Video Stack". Remotion Skills (6,6k★) gồm 13 skill chính thức để agent dựng video bằng React, từ tạo dự án, phụ đề, bản đồ tới render. Blender (21,8k★, GPL-3.0) lo dựng hình 3D. MCP for Blender (33,6k★, MIT, tên cũ blender-mcp) cho agent viết Python trong Blender rồi tự nhìn lại cảnh. faster-whisper (26,6k★) phiên âm nhanh tới 4 lần Whisper gốc, có timestamp từng từ để làm phụ đề. Chatterbox (27,7k★) tạo giọng đọc và clone giọng 23+ ngôn ngữ, có watermark. GSAP (30,3k★) điều khiển chuyển động theo timeline, miễn phí cả plugin. Chín công cụ còn lại gồm Chrome DevTools MCP để agent tự xem khung render, FFmpeg, Remotion, Impeccable, three.js, ComfyUI, yt-dlp (206k★) và HyperFrames. Mục này có gợi ý ghép cả 14 thành một pipeline.
 
+### 72. Bộ cài sẵn cho Claude (8/11/2026): 8 plugin, 8 kỹ năng, 8 MCP
+
+Mục 20 §3zb ghép 24 mục trong ảnh với repo hoặc trang chính thức và đo lại số sao. 14 mục đã có hồ sơ: gstack, superpowers, codex-plugin-cc, claude-skills, social-media-skills, frontend-design, skill-creator, mcp-builder, find-skills, hyperframes, claude-seo, caveman, Higgsfield và agent-browser. 10 mục mới gồm hai bộ plugin chuyên ngành của Anthropic (tài chính 41k★, pháp lý 9,9k★), Marketing Skills (59k★, 53 skill) và Humanizer (66k★). Phần MCP mới gồm Granola, Slack, Notion, Kondo, Zapier và Perplexity, đều chạy theo quyền của người dùng.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

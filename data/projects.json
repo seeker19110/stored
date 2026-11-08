@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1056,
+    "count": 1066,
     "schema_version": 2
   },
   "projects": [
@@ -1512,9 +1512,9 @@
       "repo": "vercel-labs/agent-browser",
       "category": "browser-agent",
       "license": "Apache-2.0",
-      "stars": 45034,
+      "stars": 46938,
       "open_source": false,
-      "notes": "CLI Rust; hồ sơ đầy đủ mục 11 §1h.2 (31/10/2026): 45k★, v0.41.0, CLI Rust; hàng rào opt-in: auth vault mã hóa, --allowed-domains, --action-policy (fail closed), --confirm-actions, --content-boundaries, --max-output; MCP server; không thấy telemetry; 582 issue+PR tồn, test mỏng; ★ 31/10/2026: 45.034 (GitHub API)",
+      "notes": "CLI Rust; hồ sơ đầy đủ mục 11 §1h.2 (31/10/2026): 45k★, v0.41.0, CLI Rust; hàng rào opt-in: auth vault mã hóa, --allowed-domains, --action-policy (fail closed), --confirm-actions, --content-boundaries, --max-output; MCP server; không thấy telemetry; 582 issue+PR tồn, test mỏng; ★ 31/10/2026: 45.034 (GitHub API); ★ 8/11/2026: 46.938 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "11",
       "id": "agent-browser",
       "profile_path": "11-browser-computer-use-sandbox/README.md"
@@ -3013,9 +3013,9 @@
       "repo": "heygen-com/hyperframes",
       "category": "video-engine",
       "license": "Apache-2.0",
-      "stars": 80641,
+      "stars": 80643,
       "open_source": true,
-      "notes": "HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0; ★ 31/10/2026: 76.551 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): HTML/CSS/media → MP4 tất định; plugin Claude Code (marketplace heygen-com/hyperframes), npx skills add, Studio app; ★ 8/11/2026: 80.641 (GitHub search API)",
+      "notes": "HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0; ★ 31/10/2026: 76.551 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): HTML/CSS/media → MP4 tất định; plugin Claude Code (marketplace heygen-com/hyperframes), npx skills add, Studio app; ★ 8/11/2026: 80.641 (GitHub search API); ★ 8/11/2026: 80.643 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "22",
       "id": "hyperframes",
       "profile_path": "22-motion-design-animation/README.md",
@@ -3543,9 +3543,9 @@
       "repo": "obra/superpowers",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 310036,
+      "stars": 314177,
       "open_source": true,
-      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.1 (31/10/2026): 310k★, v7.0.1, 686 commit, 195 issue/180 PR mở, KHÔNG có CI (.github/workflows), eval Quorum ở repo riêng prime-radiant-inc/superpowers-evals (không license); 1 hook SessionStart chèn using-superpowers; logo visual companion tải từ web kèm phiên bản (tắt SUPERPOWERS_DISABLE_TELEMETRY=1); TDD xóa code viết trước test; ★ 31/10/2026: 310.036 (GitHub API)",
+      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.1 (31/10/2026): 310k★, v7.0.1, 686 commit, 195 issue/180 PR mở, KHÔNG có CI (.github/workflows), eval Quorum ở repo riêng prime-radiant-inc/superpowers-evals (không license); 1 hook SessionStart chèn using-superpowers; logo visual companion tải từ web kèm phiên bản (tắt SUPERPOWERS_DISABLE_TELEMETRY=1); TDD xóa code viết trước test; ★ 31/10/2026: 310.036 (GitHub API); ★ 8/11/2026: 314.177 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "superpowers",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
@@ -4258,9 +4258,9 @@
       "repo": "anthropics/skills",
       "category": "plugin-marketplace",
       "license": "Apache-2.0 (một phần source-available)",
-      "stars": 185863,
+      "stars": 188891,
       "open_source": true,
-      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3s.4 (31/10/2026): 186k★, chỉ 61 commit, ~1k PR mở; 19 skill: 15 Apache-2.0, 4 skill tài liệu docx/pdf/pptx/xlsx © Anthropic all rights reserved, doc-coauthoring không license; spec Agent Skills + template; README: chỉ để minh họa; ★ 31/10/2026: 185.863 (GitHub API)",
+      "notes": "Repo Agent Skills chính thức; docx/pdf/pptx/xlsx source-available; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3s.4 (31/10/2026): 186k★, chỉ 61 commit, ~1k PR mở; 19 skill: 15 Apache-2.0, 4 skill tài liệu docx/pdf/pptx/xlsx © Anthropic all rights reserved, doc-coauthoring không license; spec Agent Skills + template; README: chỉ để minh họa; ★ 31/10/2026: 185.863 (GitHub API); ★ 8/11/2026: 188.891 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "22",
       "id": "anthropics-skills",
       "profile_path": "22-motion-design-animation/README.md"
@@ -6161,9 +6161,9 @@
       "repo": "charlie947/social-media-skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 4518,
+      "stars": 4603,
       "open_source": true,
-      "notes": "17 skill viết nội dung mạng xã hội (LinkedIn là chính), voice-builder làm nền, plugin Claude Code + Codex v1.1.0; validator 87/0 (13/10); test kiểm hợp đồng chuỗi + cài đặt bảo toàn; chỉ soạn nháp, hỏi trước khi chạy Apify trả phí; đọc lại 2/11/2026: HEAD 10ca79c (18/10) cây giống 8cefb5b, PR #23/#24 thêm rồi gỡ claude-reel-editor trong 3 phút; banner giữ '350k followers' (chưa xác minh); ★ 2/11/2026: 4.518 (GitHub search API)",
+      "notes": "17 skill viết nội dung mạng xã hội (LinkedIn là chính), voice-builder làm nền, plugin Claude Code + Codex v1.1.0; validator 87/0 (13/10); test kiểm hợp đồng chuỗi + cài đặt bảo toàn; chỉ soạn nháp, hỏi trước khi chạy Apify trả phí; đọc lại 2/11/2026: HEAD 10ca79c (18/10) cây giống 8cefb5b, PR #23/#24 thêm rồi gỡ claude-reel-editor trong 3 phút; banner giữ '350k followers' (chưa xác minh); ★ 2/11/2026: 4.518 (GitHub search API); ★ 8/11/2026: 4.603 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "social-media-skills-charlie-hills",
       "profile_path": "20-claude-plugins-ecosystem/README.md",
@@ -6892,9 +6892,9 @@
       "repo": "JuliusBrussee/caveman",
       "category": "context-optimization",
       "license": "Apache-2.0",
-      "stars": 116520,
+      "stars": 118188,
       "open_source": true,
-      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật mục 20 §3g.6 (31/10/2026): 116k★, 1.886 commit, 63 issue/68 PR mở, bin-v4.0.2 vá Go CVE, ENABLE_TOOL_SEARCH mặc định true, telemetry CLI vẫn bật mặc định (IP giữ 90 ngày); ★ 31/10/2026: 116.520 (GitHub API)",
+      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật mục 20 §3g.6 (31/10/2026): 116k★, 1.886 commit, 63 issue/68 PR mở, bin-v4.0.2 vá Go CVE, ENABLE_TOOL_SEARCH mặc định true, telemetry CLI vẫn bật mặc định (IP giữ 90 ngày); ★ 31/10/2026: 116.520 (GitHub API); ★ 8/11/2026: 118.188 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "caveman",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
@@ -7293,9 +7293,9 @@
       "repo": "AgriciDaniel/claude-seo",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 26854,
+      "stars": 27295,
       "open_source": true,
-      "notes": "Plugin SEO/GEO cho Claude Code (marketplace): 26 skill + 19 agent + ~30 script Python (GSC, GA4, CrUX, Bing, Common Crawl, drift baseline); lõi không gọi API bên thứ ba, không telemetry (PRIVACY.md), extension DataForSEO/Firecrawl/Gemini tùy chọn; crawl chặn SSRF (validate_url_strict, ghim IP); cổng chặn nội dung mỏng trong seo-programmatic (HARD STOP 500+ trang, cờ <40% nội dung riêng, <300 từ); 1.077 test, CI pytest + Windows smoke; v2.5.0; ★ 5/11/2026: 26.854 (GitHub search API), mục 20 §3z (trước: 08 §2h)",
+      "notes": "Plugin SEO/GEO cho Claude Code (marketplace): 26 skill + 19 agent + ~30 script Python (GSC, GA4, CrUX, Bing, Common Crawl, drift baseline); lõi không gọi API bên thứ ba, không telemetry (PRIVACY.md), extension DataForSEO/Firecrawl/Gemini tùy chọn; crawl chặn SSRF (validate_url_strict, ghim IP); cổng chặn nội dung mỏng trong seo-programmatic (HARD STOP 500+ trang, cờ <40% nội dung riêng, <300 từ); 1.077 test, CI pytest + Windows smoke; v2.5.0; ★ 5/11/2026: 26.854 (GitHub search API), mục 20 §3z (trước: 08 §2h); ★ 8/11/2026: 27.295 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "claude-seo",
       "profile_path": "20-claude-plugins-ecosystem/README.md",
@@ -9556,9 +9556,9 @@
       "repo": "vercel-labs/skills",
       "category": "plugin-marketplace",
       "license": "MIT",
-      "stars": 37721,
+      "stars": 38507,
       "open_source": true,
-      "notes": "Đọc sâu lock source/ref/skillPath/content hash, fullSHA fetch và update/remove. DO_NOT_TRACK/DISABLE_TELEMETRY tắt cả security audit requests; remote audit lỗi không chặn install; chưa cài skill. Đọc mã/LICENSE/CI 2/11/2026.",
+      "notes": "Đọc sâu lock source/ref/skillPath/content hash, fullSHA fetch và update/remove. DO_NOT_TRACK/DISABLE_TELEMETRY tắt cả security audit requests; remote audit lỗi không chặn install; chưa cài skill. Đọc mã/LICENSE/CI 2/11/2026.; ★ 8/11/2026: 38.507 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "last_verified_at": "2026-11-02",
       "verified_ref": "92a9a34ac3bf88e695e468b90c7bf32f163d32c8",
@@ -9580,9 +9580,9 @@
       "repo": "openai/codex-plugin-cc",
       "category": "plugin-marketplace",
       "license": "Apache-2.0",
-      "stars": 34769,
+      "stars": 34968,
       "open_source": true,
-      "notes": "Plugin OpenAI chính chủ: /codex:review chạy read-only, rescue mặc định --write, Stop hook review gate ALLOW/BLOCK có thể đốt hạn mức; 29 commit, push cuối 7/7/2026; ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "notes": "Plugin OpenAI chính chủ: /codex:review chạy read-only, rescue mặc định --write, Stop hook review gate ALLOW/BLOCK có thể đốt hạn mức; 29 commit, push cuối 7/7/2026; ★ 31/10/2026 (GitHub API), mục 20 §3t; ★ 8/11/2026: 34.968 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "codex-plugin-for-claude-code",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
@@ -9592,9 +9592,9 @@
       "repo": "alirezarezvani/claude-skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 29071,
+      "stars": 29460,
       "open_source": true,
-      "notes": "407 skill + 127 agent + 165 command đa phòng ban; 545/1.668 commit có trailer Claude; CI skill-security-audit; 'stdlib-only' sai với ít nhất 13 file .py; ★ 31/10/2026 (GitHub API), mục 20 §3t",
+      "notes": "407 skill + 127 agent + 165 command đa phòng ban; 545/1.668 commit có trailer Claude; CI skill-security-audit; 'stdlib-only' sai với ít nhất 13 file .py; ★ 31/10/2026 (GitHub API), mục 20 §3t; ★ 8/11/2026: 29.460 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "claude-skills-alireza-rezvani",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
@@ -14602,9 +14602,9 @@
       "repo": "garrytan/gstack",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 140570,
+      "stars": 140677,
       "open_source": true,
-      "notes": "\"Đội kỹ sư ảo\" cho Claude Code của Garry Tan (YC): 71 SKILL.md theo sprint Think→Plan→Build→Review→Test→Ship→Reflect (/office-hours, /plan-ceo-review, /plan-design-review chấm từng mặt thiết kế 0–10 và sửa tới 10, /autoplan, /review, /qa trình duyệt thật, /cso, /ship, /land-and-deploy, /careful /freeze /guard); 1.741 file test, ~34 workflow CI; telemetry tắt mặc định; cài git clone vào ~/.claude/skills/gstack && ./setup, có --team và --host codex; VERSION 1.97.0.0, 1.077 commit; ★ 7/11/2026: 140.570 (GitHub search API), mục 20 §3za",
+      "notes": "\"Đội kỹ sư ảo\" cho Claude Code của Garry Tan (YC): 71 SKILL.md theo sprint Think→Plan→Build→Review→Test→Ship→Reflect (/office-hours, /plan-ceo-review, /plan-design-review chấm từng mặt thiết kế 0–10 và sửa tới 10, /autoplan, /review, /qa trình duyệt thật, /cso, /ship, /land-and-deploy, /careful /freeze /guard); 1.741 file test, ~34 workflow CI; telemetry tắt mặc định; cài git clone vào ~/.claude/skills/gstack && ./setup, có --team và --host codex; VERSION 1.97.0.0, 1.077 commit; ★ 7/11/2026: 140.570 (GitHub search API), mục 20 §3za; ★ 8/11/2026: 140.677 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
       "section": "20",
       "id": "gstack",
       "profile_path": "20-claude-plugins-ecosystem/README.md",
@@ -14831,6 +14831,194 @@
       "sources": [
         "https://github.com/yt-dlp/yt-dlp/blob/412e7f0a4b0588fe884a02b344ac66a06538475b/README.md",
         "https://github.com/yt-dlp/yt-dlp/blob/412e7f0a4b0588fe884a02b344ac66a06538475b/LICENSE"
+      ]
+    },
+    {
+      "name": "Claude for Financial Services",
+      "repo": "anthropics/financial-services",
+      "category": "harness-pack",
+      "license": "Apache-2.0",
+      "stars": 41115,
+      "open_source": true,
+      "notes": "Plugin Cowork/Claude Code và template Managed Agents của Anthropic cho IB, equity research, PE, wealth: 10 agent (Pitch, Earnings Reviewer, Model Builder DCF/LBO trong Excel, GL Reconciler, KYC Screener…), 6 plugin theo mảng, plugin đối tác LSEG và S&P Global; claude plugin marketplace add anthropics/financial-services; ★ 8/11/2026: 41.115 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "claude-for-financial-services",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "60565064557ca77b12f62aa7877f365d111c129d",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md"
+      ]
+    },
+    {
+      "name": "Claude for Legal",
+      "repo": "anthropics/claude-for-legal",
+      "category": "harness-pack",
+      "license": "Apache-2.0",
+      "stars": 9930,
+      "open_source": true,
+      "notes": "Plugin pháp lý của Anthropic theo mảng hành nghề (thương mại, privacy, sản phẩm, doanh nghiệp, lao động, tranh tụng, AI governance, IP, sinh viên luật); phỏng vấn đầu học playbook vào CLAUDE.md; agent theo việc, cookbook theo dõi định kỳ, connector Ironclad, DocuSign, iManage, CourtListener; kết quả là bản nháp cho luật sư; ★ 8/11/2026: 9.930 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "claude-for-legal",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/README.md",
+        "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/QUICKSTART.md"
+      ]
+    },
+    {
+      "name": "Marketing Skills",
+      "repo": "coreyhaines31/marketingskills",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 59094,
+      "open_source": true,
+      "notes": "53 skill marketing của Corey Haines (CRO, copywriting, SEO, analytics, growth); validate-skills.sh, tests/, nối tài khoản bằng credential giới hạn; npx skills add coreyhaines31/marketingskills; 1.404 commit; ★ 8/11/2026: 59.094 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "marketingskills",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "96798cf38736ecdba015a1d2b0521b0c8f8f41dd",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/coreyhaines31/marketingskills/blob/96798cf38736ecdba015a1d2b0521b0c8f8f41dd/README.md"
+      ]
+    },
+    {
+      "name": "Humanizer",
+      "repo": "blader/humanizer",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 66035,
+      "open_source": true,
+      "notes": "Skill viết lại văn bản AI cho tự nhiên mà giữ ý, dựa trên Wikipedia Signs of AI writing, 26 mẫu; thử mù 16/16 chọn bản viết lại; /humanizer; 103 commit; ★ 8/11/2026: 66.035 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "humanizer",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/blader/humanizer/blob/0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0/README.md"
+      ]
+    },
+    {
+      "name": "Notion MCP Server",
+      "repo": "makenotion/notion-mcp-server",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 4699,
+      "open_source": true,
+      "notes": "MCP tự host của Notion; Notion khuyên dùng Remote Notion MCP chính thức (OAuth, tìm ngữ nghĩa, đọc sửa Markdown, tôn trọng quyền); ★ 8/11/2026: 4.699 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "notion-mcp-server",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "cf16e5c20bfbfb98ecec1227f210ef0ae3abebe5",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/makenotion/notion-mcp-server/blob/cf16e5c20bfbfb98ecec1227f210ef0ae3abebe5/README.md"
+      ]
+    },
+    {
+      "name": "Zapier MCP",
+      "repo": "zapier/zapier-mcp",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 454,
+      "open_source": true,
+      "notes": "Plugin phân phối cho Zapier MCP hosted: truy cập có kiểm soát 9.000+ ứng dụng, onboarding, demo, skill theo vai trò; Claude Code qua zapier/marketplace hoặc anthropics/claude-plugins-official; ★ 8/11/2026: 454 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "zapier-mcp",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "54a12277a12c60df51ec16cf4e4ef0b27b166649",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/zapier/zapier-mcp/blob/54a12277a12c60df51ec16cf4e4ef0b27b166649/README.md"
+      ]
+    },
+    {
+      "name": "Perplexity MCP",
+      "repo": "perplexityai/modelcontextprotocol",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 2612,
+      "open_source": true,
+      "notes": "MCP chính thức của Perplexity API: tìm web thời gian thực, suy luận, nghiên cứu; remote https://api.perplexity.ai/mcp (Bearer API key), bản local và Docker; 180 commit; ★ 8/11/2026: 2.612 (GitHub search API), mục 20 §3zb",
+      "section": "20",
+      "id": "perplexity-mcp",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "cd1d27cffe56739819abb3e56a18e26dbd88c487",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/perplexityai/modelcontextprotocol/blob/cd1d27cffe56739819abb3e56a18e26dbd88c487/README.md"
+      ]
+    },
+    {
+      "name": "Granola MCP",
+      "url": "https://docs.granola.ai/help-center/sharing/integrations/mcp",
+      "category": "protocol",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "MCP chính thức của Granola https://mcp.granola.ai/mcp, OAuth, quyền theo người dùng và workspace; Claude Connectors hoặc claude mcp add granola --transport http; Basic đọc 30 ngày, Enterprise chọn phạm vi/chỉ đọc (đọc docs 8/11/2026), mục 20 §3zb",
+      "section": "20",
+      "id": "granola-mcp",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://docs.granola.ai/help-center/sharing/integrations/mcp"
+      ]
+    },
+    {
+      "name": "Slack MCP",
+      "url": "https://docs.slack.dev/ai/mcp-server/",
+      "category": "protocol",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "MCP chính thức của Slack https://mcp.slack.com/mcp, OAuth theo quyền người dùng: tìm, gửi/hẹn/nháp tin, đọc kênh và thread, canvas, list, file; Claude.ai, Claude Code, Cursor, Perplexity; admin duyệt app (đọc docs 8/11/2026), mục 20 §3zb",
+      "section": "20",
+      "id": "slack-mcp",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://docs.slack.dev/ai/mcp-server/"
+      ]
+    },
+    {
+      "name": "Kondo MCP",
+      "url": "https://www.trykondo.com",
+      "category": "protocol",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Hộp thư hợp nhất LinkedIn, WhatsApp, iMessage, Telegram; MCP cho agent tìm chat, đọc thread, gắn nhãn, ghi chú, đặt nhắc, soạn nháp (chỉ gửi khi người dùng bấm) (đọc docs 8/11/2026), mục 20 §3zb",
+      "section": "20",
+      "id": "kondo-mcp",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.trykondo.com"
       ]
     }
   ]
