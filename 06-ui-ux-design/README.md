@@ -1572,6 +1572,40 @@ Dùng: sau khi cài, yêu cầu agent "Build App Store and Google Play screensho
 
 **Nguồn §7za:** bài đăng người dùng gửi 8/11/2026 · clone `--filter=blob:none`: https://github.com/Jakubantalik/Libraries.dev/blob/9a42e88847dab0ac145733f15cf90535e9cb59ab/README.md · https://github.com/Jakubantalik/Libraries.dev/blob/9a42e88847dab0ac145733f15cf90535e9cb59ab/LICENSE-MODEL.md · https://github.com/cabralorenzo/bencho/blob/c65992417427bb09e661674ffa800bef29adef49/README.md · https://github.com/cabralorenzo/bencho/blob/c65992417427bb09e661674ffa800bef29adef49/LICENSE · https://github.com/starc007/ui-components/blob/7664db5374761439e6582d534311a17aed34d29d/README.md · https://github.com/BoardUI/boardui/blob/ec5c5eb3e29c2441be63b9422cd54f411ef23466/README.md · https://github.com/flohoeller/affectui/blob/7ac87beb0ffaef2dd0305e508b4e3d471f269d84/README.md · https://github.com/WatermelonCorp/watermelon-platform/blob/2a2aeef7533d7df52be294e73628a216238d1b90/README.md · https://uiarc.dev/docs/introduction · https://kobra.systems · https://kobra.systems/pricing · GitHub search API 8/11/2026.
 
+## 7zb. Đọc lại heydamir/unslop: skill biến UI "vibecoded" thành giao diện có chủ đích, 11,4k★ sau 10 ngày (ảnh người dùng gửi, đọc mã 8/11/2026)
+
+> Ảnh là một dòng "unslop: +4,000 ★ … trong 3 ngày". Bổ sung cho dòng `heydamir/unslop` ở §7p.
+
+| Thuộc tính | Giá trị (8/11/2026) |
+|---|---|
+| Repo | https://github.com/heydamir/unslop · **11.436★, 629 fork** (GitHub search API) · tạo 29/10/2026 · CC BY 4.0 (dùng, sửa, chia sẻ kể cả thương mại khi ghi công tác giả và link về repo) |
+| Tác giả | Damir Sokolovsky (@heydamir), người mở loạt "Unslopping" trên X; 12 commit, có đóng góp từ cộng đồng (Codex, snapshot ảnh responsive) |
+| Đà tăng sao | Kho này ghi 3.397★ ngày 31/10 và 11.436★ ngày 8/11, tức hơn 8.000★ trong 8 ngày, trung bình khoảng 1.000★ mỗi ngày, khớp với con số +4.000★ trong 3 ngày của ảnh |
+| Thành phần | `skills/unslop/SKILL.md` (233 dòng) và 5 file tham chiếu (`signs.md` dấu hiệu slop, `tokens.md`, `effects.md`, `visuals.md`, `refs.md` kèm ảnh mẫu); script `snapshot.mjs` và `story.mjs`; `agents/openai.yaml` cho Codex; hai màn "vibecoded" mẫu trong `examples/` |
+
+Điểm mạnh:
+
+- **Kiểm trước, sửa sau**: liệt kê từng dấu hiệu slop kèm vị trí (gradient tím, glow, nhãn emoji, chữ la hét, khoảng cách lệch), rồi đề xuất hướng trước khi sửa để người dùng lái sớm. Màn đã tốt thì chỉ gợi ý vài chỉnh nhỏ, không thiết kế lại.
+- **Hướng đi lấy từ chính sản phẩm**: tính cách, "thế giới", một hai khoảnh khắc mang màu, và một chi tiết đặc trưng.
+- **Chín lượt theo thứ tự**: spacing, màu, icon, copy, chữ, layout, chi tiết, hình ảnh, motion; cuối có phần "Do not" và checklist.
+- **Hình ảnh thật của sản phẩm** thay cho khối blob bóng loáng; khi hero cần cảnh hoặc vật thể, có thể sinh ảnh qua fal, Replicate, OpenAI images hoặc Higgsfield.
+- **Video câu chuyện**: video vuông dưới 10 giây cảnh màn hình tự "unslop", sẵn để đăng (Playwright + ffmpeg); `snapshot.mjs` chụp được trang đang chạy.
+- **Chạy trên Claude Code và Codex**, có tên hiển thị và prompt mặc định cho Codex.
+
+Cài và dùng:
+
+```bash
+git clone https://github.com/heydamir/unslop
+mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
+```
+
+- Codex: `$skill-installer install https://github.com/heydamir/unslop/tree/main/skills/unslop`, hoặc copy vào `~/.agents/skills/`.
+- Muốn chụp trang hoặc làm video: `npm install -D playwright` rồi `npx playwright install chromium`, cần ffmpeg trong PATH.
+- Gọi `/unslop this dashboard`, `/unslop the hero of https://example.com` (Codex: `$unslop`). Thử trước trên hai màn mẫu trong `examples/`.
+- Cùng nhóm: Taste Skill (§7j), Hallmark (§7l), antislop (§7i), Emil Kowalski (§7z.1).
+
+**Nguồn §7zb:** ảnh người dùng gửi 8/11/2026 · clone https://github.com/heydamir/unslop HEAD `a6f121eee5f29c2f74976b75456feae8b66afb3a`: https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/README.md · https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/skills/unslop/SKILL.md · https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/LICENSE · GitHub search API 31/10 và 8/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

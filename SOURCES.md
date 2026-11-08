@@ -1951,3 +1951,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 - Clone `--filter=blob:none` 8/11/2026: `Jakubantalik/Libraries.dev` HEAD `9a42e88847dab0ac145733f15cf90535e9cb59ab`, `cabralorenzo/bencho` HEAD `c65992417427bb09e661674ffa800bef29adef49`, `starc007/ui-components` HEAD `7664db5374761439e6582d534311a17aed34d29d`, `BoardUI/boardui` HEAD `ec5c5eb3e29c2441be63b9422cd54f411ef23466`, `flohoeller/affectui` HEAD `7ac87beb0ffaef2dd0305e508b4e3d471f269d84`, `WatermelonCorp/watermelon-platform` HEAD `2a2aeef7533d7df52be294e73628a216238d1b90`, `lemomo-ai/lemo-opuscar` HEAD `5c05490cc55dfb54f8f4c333f0f0e79cb6500564`; đọc README, LICENSE, cây thư mục (`packages/`, `blocks/`, `skills/`, `mcp/`, `tests/`, `styles/`, `core/`).
 - Arc UI: https://uiarc.dev/docs/introduction · Kobra: https://kobra.systems, https://kobra.systems/pricing (không tìm thấy repo công khai qua GitHub search).
 - GitHub search API 8/11/2026 cho các repo trên.
+
+## Bổ sung 2026-11-08b (ảnh "unslop +4,000 ★ trong 3 ngày" → mục 06 §7zb)
+
+- `heydamir/unslop`: clone `--filter=blob:none` HEAD `a6f121eee5f29c2f74976b75456feae8b66afb3a` (12 commit): README, `skills/unslop/SKILL.md`, `references/`, `scripts/`, `agents/openai.yaml`, `git log`. GitHub search API 8/11/2026 (11.436★); mốc 31/10/2026 (3.397★) lấy từ catalog. API stargazers theo ngày không mở cho phiên này nên chưa kiểm được đúng cửa sổ 3 ngày.
