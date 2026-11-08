@@ -431,6 +431,14 @@ agent-skills (mục 20 §3o.2b, 113,8k★, MIT, 0.6.15) biến vòng đời mộ
 
 `emilkowalski/skills` (mục 06 §7z.1, 54k★, MIT) có 17 skill viết từ kinh nghiệm design engineer ở Vercel và Linear: dựng, review, audit và tối ưu animation, cộng `break-ui`, `mobile-native`, `pick-ui-library`. `ParthJadhav/app-store-screenshots` (mục 06 §7z.2, 7,8k★, MIT) dựng một editor Next.js để làm ảnh quảng cáo cho App Store và Google Play, có 18 phong cách và xuất đủ mọi kích thước. gstack của Garry Tan (mục 20 §3za, 140k★, MIT) là bộ 71 skill chạy theo sprint; `/plan-design-review` chấm từng mặt thiết kế 0–10, nói thế nào là 10 rồi sửa kế hoạch tới đó.
 
+### 68. Tám kho UI sẵn dùng cho coding agent (8/11/2026)
+
+Mục 06 §7za đọc 8 kho trong bài "đừng để AI tự bịa giao diện". Libraries.dev (4,6k★, MIT) có 7 hiệu ứng React cho AI UI như border beam, thinking orbs, liquid metal. Bencho có 47 block tương tác xếp theo cử chỉ, kèm 24 âm thanh giao diện. beUI (1,9k★) có component motion và giao diện agent, kèm MCP không cần key. Arc UI và BoardUI (1,1k★, React Aria) phục vụ dashboard, settings và form. Kobra có component chat, reasoning và âm thanh. affectUI có tool call, decision inbox và approval. Watermelon UI mở mã cả nền tảng catalog. Cả 8 cho phép đưa source vào repo, và đều có MCP, `llms.txt`, registry hoặc skill để agent tra đúng API trước khi cài.
+
+### 69. Lemo-Opuscar đọc lại (8/11/2026): 66 phong cách phim làm bằng code
+
+Lemo-Opuscar (mục 22 §9k, 13,4k★, mã MIT) là plugin Claude Code dựng phim hoàn toàn bằng code: hình vẽ bằng canvas và WebGL, nhạc lấy từ thư viện sample miễn phí, lời dẫn bằng TTS. Mỗi phong cách có style prompt và phim mẫu. Cài bằng hai lệnh `claude plugin`, rồi mô tả phim bằng lời. Có thể biến một phong cách có sẵn thành phong cách riêng, lưu lại để dùng cho các phim sau.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

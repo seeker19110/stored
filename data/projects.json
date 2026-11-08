@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1046,
+    "count": 1054,
     "schema_version": 2
   },
   "projects": [
@@ -8509,12 +8509,21 @@
       "repo": "lemomo-ai/lemo-opuscar",
       "category": "motion-design",
       "license": "MIT",
-      "stars": 10106,
+      "stars": 13396,
       "open_source": true,
-      "notes": "66 phong cách phim dựng bằng canvas/WebGL cho Claude Code; cổng readcheck.mjs đo thời gian đọc chữ; setup clone main không ghim; một tác giả, tạo 26/9/2026; ★ 31/10/2026 (GitHub API), mục 22 §9e",
+      "notes": "66 phong cách phim dựng bằng canvas/WebGL cho Claude Code; cổng readcheck.mjs đo thời gian đọc chữ; setup clone main không ghim; một tác giả, tạo 26/9/2026; ★ 31/10/2026 (GitHub API), mục 22 §9e; đọc lại 8/11/2026 (§9k): 122 commit, cài plugin claude plugin marketplace add lemomo-ai/lemo-opuscar + install lemo-opuscar@lemolab; DIRECTOR/TECHNIQUE/STYLE.md, phong cách riêng ~/lemo-my-styles; Node 20+, ffmpeg 7+, Python 3.11+; phim mẫu CC BY 4.0; ★ 8/11/2026: 13.396 (GitHub search API)",
       "section": "22",
       "id": "lemo-opuscar",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9k-đọc-lại-lemomo-ailemo-opuscar-66-phong-cách-phim-làm-bằng-code-cài-bằng-plugin-claude-code-ảnh-slide-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "5c05490cc55dfb54f8f4c333f0f0e79cb6500564",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/README.md",
+        "https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/LICENSE",
+        "https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/MY-STYLES.md"
+      ]
     },
     {
       "name": "html-video",
@@ -14542,6 +14551,159 @@
         "https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/README.md",
         "https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/skills/app-store-screenshots/SKILL.md",
         "https://github.com/ParthJadhav/app-store-screenshots/blob/3bdfb8d3dc794bae05f240b2cb9607cd23de40ec/LICENSE"
+      ]
+    },
+    {
+      "name": "Libraries.dev",
+      "repo": "Jakubantalik/Libraries.dev",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 4637,
+      "open_source": true,
+      "notes": "7 thư viện hiệu ứng React cho AI UI (border-beam, thinking-orbs, bot-avatars, liquid-gooey, voice-glow, metal-fx, img-fx), package npm độc lập không phụ thuộc runtime, theme auto, nút Copy prompt cho agent, skill libraries-dev; Pro mở Studio; model .mfxl theo Libraries.dev Model License; 702 commit; ★ 8/11/2026: 4.637, mục 06 §7za",
+      "section": "06",
+      "id": "libraries-dev",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "9a42e88847dab0ac145733f15cf90535e9cb59ab",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Jakubantalik/Libraries.dev/blob/9a42e88847dab0ac145733f15cf90535e9cb59ab/README.md",
+        "https://github.com/Jakubantalik/Libraries.dev/blob/9a42e88847dab0ac145733f15cf90535e9cb59ab/LICENSE-MODEL.md"
+      ]
+    },
+    {
+      "name": "Bencho",
+      "repo": "cabralorenzo/bencho",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 91,
+      "open_source": true,
+      "notes": "47 block tương tác React xếp theo cử chỉ (hover, drag, swipe, slide, press, type, select) + 24 âm thanh Web Audio trong một file; mỗi block có README props, tokens.css sáng/tối; MCP và Copy prompt trên bencho.dev; bản Pro license riêng; ★ 8/11/2026: 91, mục 06 §7za",
+      "section": "06",
+      "id": "bencho",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "c65992417427bb09e661674ffa800bef29adef49",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/cabralorenzo/bencho/blob/c65992417427bb09e661674ffa800bef29adef49/README.md",
+        "https://github.com/cabralorenzo/bencho/blob/c65992417427bb09e661674ffa800bef29adef49/LICENSE"
+      ]
+    },
+    {
+      "name": "beUI",
+      "repo": "starc007/ui-components",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 1934,
+      "open_source": true,
+      "notes": "Component motion cho React/Next.js (component, block, AI agents, chart), registry shadcn @beui, MCP mcp.beui.dev không cần key, skill beui/beui-pro, llms.txt, 35 file test a11y; 841 commit; ★ 8/11/2026: 1.934, mục 06 §7za",
+      "section": "06",
+      "id": "beui",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "7664db5374761439e6582d534311a17aed34d29d",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/starc007/ui-components/blob/7664db5374761439e6582d534311a17aed34d29d/README.md"
+      ]
+    },
+    {
+      "name": "BoardUI",
+      "repo": "BoardUI/boardui",
+      "category": "agentic-ui",
+      "license": "MIT",
+      "stars": 1085,
+      "open_source": true,
+      "notes": "Design system React cho dashboard và giao diện agent: 69 item free, React Aria + Tailwind v4, 400+ token, RTL, app mẫu chat/dashboard nhận key nhiều nhà cung cấp; npx boardui add, MCP npx boardui mcp, skill, AGENTS.md, llms.txt; Pro trả một lần; ★ 8/11/2026: 1.085, mục 06 §7za",
+      "section": "06",
+      "id": "boardui",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "ec5c5eb3e29c2441be63b9422cd54f411ef23466",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/BoardUI/boardui/blob/ec5c5eb3e29c2441be63b9422cd54f411ef23466/README.md"
+      ]
+    },
+    {
+      "name": "affectUI",
+      "repo": "flohoeller/affectui",
+      "category": "agentic-ui",
+      "license": "MIT",
+      "stars": 523,
+      "open_source": true,
+      "notes": "Component React 19 cho việc agent làm (Tool Call Card, Decision Inbox, Change Summary, Thinking Loader…) và phần còn lại của app; 40 item free, kiểu clean/classic, reduced-motion; registry shadcn @affectui, MCP affectui.com/api/mcp, llms.txt; Agent Tree/Trace Waterfall thuộc Pro; ★ 8/11/2026: 523, mục 06 §7za",
+      "section": "06",
+      "id": "affectui",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "7ac87beb0ffaef2dd0305e508b4e3d471f269d84",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/flohoeller/affectui/blob/7ac87beb0ffaef2dd0305e508b4e3d471f269d84/README.md"
+      ]
+    },
+    {
+      "name": "Watermelon UI",
+      "repo": "WatermelonCorp/watermelon-platform",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 184,
+      "open_source": true,
+      "notes": "Nền tảng mở của ui.watermelon.sh (React 19, Vite, Tailwind 4, Motion): animated component, block, dashboard, template dạng MDX; MCP stdio + hosted Cloudflare, registry shadcn, llms.txt, openapi.json, API catalog, skill watermelon-ui; 942 commit; ★ 8/11/2026: 184, mục 06 §7za",
+      "section": "06",
+      "id": "watermelon-ui",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "2a2aeef7533d7df52be294e73628a216238d1b90",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/WatermelonCorp/watermelon-platform/blob/2a2aeef7533d7df52be294e73628a216238d1b90/README.md"
+      ]
+    },
+    {
+      "name": "Arc UI",
+      "url": "https://uiarc.dev",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": null,
+      "open_source": false,
+      "notes": "Thư viện component/block React có motion (TSX + CSS modules, token chung): free 121 component + 22 block MIT, Pro thêm 121 component + 118 block; cài qua shadcn CLI, MCP uiarc.dev/api/mcp, llms.txt, trang Markdown mỗi item; chưa thấy repo công khai (đọc docs 8/11/2026), mục 06 §7za",
+      "section": "06",
+      "id": "arc-ui",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://uiarc.dev/docs/introduction"
+      ]
+    },
+    {
+      "name": "Kobra",
+      "url": "https://kobra.systems",
+      "category": "ui-library",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Thư viện component React của Harsh Singh: ~89 mục gồm Generative UI và Agents (Conversation, Composer, Reasoning Steps…), motion riêng từng component, dark mode, âm thanh tổng hợp; cài shadcn @kobra; free 11 component dùng cá nhân, Pro trả một lần có MCP và skill; chưa thấy repo công khai (đọc trang 8/11/2026), mục 06 §7za",
+      "section": "06",
+      "id": "kobra",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7za-kiểm-bài-8-kho-ui-sẵn-dùng-librariesdev-bencho-beui-arc-ui-boardui-kobra-affectui-watermelon-ui-bài-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://kobra.systems",
+        "https://kobra.systems/pricing"
       ]
     }
   ]
