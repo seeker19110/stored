@@ -1463,6 +1463,66 @@ git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.cl
 
 **Nguồn §3za:** ảnh thẻ skill người dùng gửi 7/11/2026 · clone https://github.com/garrytan/gstack HEAD `297f50c7e1d46aab1404f5f2e8a9584af76ad6b2`: https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/README.md · https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/plan-design-review/SKILL.md · https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/LICENSE · https://github.com/garrytan/gstack/blob/297f50c7e1d46aab1404f5f2e8a9584af76ad6b2/docs/privacy.md · GitHub search API 7/11/2026.
 
+## 3zb. Kiểm ảnh "8 plugin, 8 kỹ năng, 8 MCP": bộ cài sẵn cho Claude (ảnh @PHANDONGGIANG người dùng gửi, đọc mã 8/11/2026)
+
+> Ảnh chia ba cột: Plugins (8 đã cài), Kỹ năng (8 đang dùng), MCP (8 kết nối). Bảng dưới ghép từng mục với repo hoặc trang chính thức, số sao đo lại 8/11/2026 (ảnh là ảnh chụp sớm hơn nên số nhỏ hơn). Mười bốn mục đã có hồ sơ; mười mục mới được ghi ở §3zb.2.
+
+### 3zb.1 Bảng đối chiếu
+
+| Cột | Mục trong ảnh | Repo hoặc trang | ★ 8/11/2026 | Hồ sơ |
+|---|---|---|---|---|
+| Plugin | gstack | `garrytan/gstack` | 140.677 | §3za |
+| Plugin | superpowers | `obra/superpowers` | 314.177 | mục 20 |
+| Plugin | codex-plugin-cc | `openai/codex-plugin-cc` | 34.968 | mục 20 |
+| Plugin | financial-services | `anthropics/financial-services` | 41.115 | **mới** §3zb.2 |
+| Plugin | claude-for-legal | `anthropics/claude-for-legal` | 9.930 | **mới** §3zb.2 |
+| Plugin | claude-skills ("263 kỹ năng") | `alirezarezvani/claude-skills` (nay 478 file `SKILL.md`) | 29.460 | mục 20 |
+| Plugin | marketingskills | `coreyhaines31/marketingskills` | 59.094 | **mới** §3zb.2 |
+| Plugin | social-media-skills | `charlie947/social-media-skills` | 4.603 | mục 20 |
+| Kỹ năng | frontend-design | `anthropics/skills` → `skills/frontend-design` | 188.891 (repo) | mục 06, mục 22 |
+| Kỹ năng | skill-creator | `anthropics/skills` → `skills/skill-creator` | (cùng repo) | mục 22 |
+| Kỹ năng | hyperframes | `heygen-com/hyperframes` | 80.643 | mục 19 §3h.4, mục 22 |
+| Kỹ năng | mcp-builder | `anthropics/skills` → `skills/mcp-builder` | (cùng repo) | mục 22 |
+| Kỹ năng | claude-seo | `AgriciDaniel/claude-seo` | 27.295 | §3z |
+| Kỹ năng | find-skills | `vercel-labs/skills` → `skills/find-skills` | 38.507 (repo) | mục 20 |
+| Kỹ năng | humanizer | `blader/humanizer` | 66.035 | **mới** §3zb.2 |
+| Kỹ năng | caveman | `JuliusBrussee/caveman` | 118.188 | mục 20 |
+| MCP | granola | Granola MCP chính thức `https://mcp.granola.ai/mcp` | — | **mới** §3zb.3 |
+| MCP | slack | Slack MCP chính thức `https://mcp.slack.com/mcp` | — | **mới** §3zb.3 |
+| MCP | notion | Remote Notion MCP; bản tự host `makenotion/notion-mcp-server` | 4.699 | **mới** §3zb.3 |
+| MCP | kondo | MCP của Kondo (hộp thư LinkedIn, WhatsApp, iMessage, Telegram) | — | **mới** §3zb.3 |
+| MCP | zapier | `zapier/zapier-mcp` + server hosted | 454 | **mới** §3zb.3 |
+| MCP | higgsfield | `higgsfield-ai/skills` | — | mục 19 §3f |
+| MCP | perplexity | `perplexityai/modelcontextprotocol` | 2.612 | **mới** §3zb.3 |
+| MCP | agent-browser | `vercel-labs/agent-browser` | 46.938 | mục 11 |
+
+Ảnh ghi social-media-skills 59,2k★; repo cùng tên lớn nhất hiện là `charlie947/social-media-skills` (4,6k★), nên dòng này ghép theo tên.
+
+### 3zb.2 Plugin và kỹ năng mới
+
+- **Claude for Financial Services** (`anthropics/financial-services`, Apache-2.0, 74 commit): agent, skill và connector cho ngân hàng đầu tư, phân tích cổ phiếu, quỹ PE, quản lý tài sản; cài như plugin Cowork hoặc triển khai qua Claude Managed Agents. 10 agent đặt tên theo việc (Pitch Agent, Meeting Prep, Market Researcher, Earnings Reviewer, Model Builder dựng DCF/LBO/3 báo cáo trong Excel, GL Reconciler, KYC Screener, Month-End Closer, Statement Auditor, Valuation Reviewer), 6 plugin theo mảng và plugin đối tác LSEG, S&P Global. Cài: `claude plugin marketplace add anthropics/financial-services`. Mọi kết quả là bản nháp cho người có chuyên môn duyệt.
+- **Claude for Legal** (`anthropics/claude-for-legal`, Apache-2.0): plugin theo mảng hành nghề (thương mại, quyền riêng tư, sản phẩm, doanh nghiệp, lao động, tranh tụng, quản lý, AI governance, sở hữu trí tuệ, sinh viên luật, legal clinic); mỗi plugin mở đầu bằng buổi phỏng vấn học playbook và lưu hồ sơ hành nghề vào `CLAUDE.md`; có agent đặt tên theo việc (Vendor Agreement Reviewer, DSAR Responder…), cookbook theo dõi định kỳ và connector Slack, Google Drive, Box, Ironclad, DocuSign, iManage, CourtListener. Cài: `/plugin marketplace add` rồi `/plugin install privacy-legal@claude-for-legal` (xem `QUICKSTART.md`). Kết quả là bản nháp cho luật sư duyệt.
+- **Marketing Skills** (`coreyhaines31/marketingskills`, MIT, 1.404 commit): 53 skill cho CRO, copywriting, SEO, analytics, tăng trưởng; có script kiểm skill (`validate-skills.sh`), thư mục `tests/` và hướng dẫn nối tài khoản marketing bằng credential giới hạn, kết quả đầu tiên chỉ đọc. Cài: `npx skills add coreyhaines31/marketingskills` (thêm `--skill cro copywriting` để chọn).
+- **Humanizer** (`blader/humanizer`, MIT, 103 commit): viết lại văn bản AI cho tự nhiên mà giữ nguyên ý, dựa trên trang "Signs of AI writing" của Wikipedia; kiểm 26 mẫu, năm mẫu mạnh nhất gồm "không chỉ X mà là Y", câu chốt một dòng, câu nghe sâu sắc, câu dẫn dựng sẵn, tranh luận với người vô hình. Trong thử mù, giám khảo chọn bản viết lại 16/16 lần. Mục tiêu là người đọc, không phải qua mặt máy dò. Gọi bằng `/humanizer`.
+- **frontend-design, skill-creator, mcp-builder** nằm trong `anthropics/skills` (20 skill); **find-skills** nằm trong `vercel-labs/skills`, giúp agent tìm và cài skill bằng `npx skills`.
+
+### 3zb.3 MCP mới
+
+- **Granola** (chính thức): `https://mcp.granola.ai/mcp`, đăng nhập OAuth, quyền theo từng người dùng và workspace đang mở. Claude: thêm từ Connectors; Claude Code: `claude mcp add granola --transport http https://mcp.granola.ai/mcp` rồi xác thực bằng `/mcp`. Gói Basic đọc ghi chú 30 ngày gần nhất; Enterprise cho admin chọn phạm vi, tắt transcript hoặc chỉ đọc.
+- **Slack** (chính thức): `https://mcp.slack.com/mcp`, OAuth theo quyền người dùng; tìm tin nhắn, file, kênh, người; gửi, hẹn giờ, nháp tin; đọc lịch sử kênh và thread; tạo và sửa canvas, list. Có sẵn cho Claude.ai, Claude Code, Cursor, Perplexity; admin workspace duyệt app.
+- **Notion**: dùng Remote Notion MCP chính thức (OAuth, tìm ngữ nghĩa, đọc sửa trang dạng Markdown, tôn trọng quyền Notion sẵn có, tốn ít token). Repo `makenotion/notion-mcp-server` (MIT) là bản tự host, nay Notion khuyên dùng bản remote.
+- **Kondo**: hộp thư hợp nhất LinkedIn, WhatsApp, iMessage, Telegram cho sales, tuyển dụng, founder; MCP cho agent tìm chat, đọc thread, gắn nhãn, ghi chú, đặt nhắc và soạn nháp; mọi thứ agent viết giữ ở dạng nháp tới khi bạn bấm gửi.
+- **Zapier MCP**: truy cập có kiểm soát tới hơn 9.000 ứng dụng bằng lời; nối chỉ cần URL server. Repo `zapier/zapier-mcp` (MIT) phát hành plugin thêm onboarding, demo lần đầu và skill theo vai trò; Claude Code cài qua marketplace `zapier/marketplace` hoặc `anthropics/claude-plugins-official`.
+- **Perplexity** (`perplexityai/modelcontextprotocol`, MIT, 180 commit): MCP chính thức cho tìm kiếm web thời gian thực, suy luận và nghiên cứu. Bản remote: `claude mcp add --transport http perplexity https://api.perplexity.ai/mcp --header "Authorization: Bearer YOUR_API_KEY"`; có bản local và Docker.
+
+### 3zb.4 Dùng bộ này thế nào
+
+- Plugin là bộ lớn cài một lần (quy trình, nghề nghiệp); kỹ năng là việc cụ thể gọi khi cần; MCP nối dữ liệu thật (họp, chat, tài liệu, web).
+- Bắt đầu với phần đúng việc của mình, ví dụ developer: gstack hoặc superpowers, frontend-design, agent-browser; marketing: marketingskills, humanizer, claude-seo, Zapier; pháp lý hay tài chính: plugin chuyên ngành của Anthropic kèm Slack, Notion.
+- MCP chính thức (Granola, Slack, Notion, Perplexity) đều chạy theo quyền của người dùng; cấp phạm vi vừa đủ cho việc đang làm.
+
+**Nguồn §3zb:** ảnh người dùng gửi 8/11/2026 · clone `--filter=blob:none`: https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md · https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/README.md · https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/QUICKSTART.md · https://github.com/coreyhaines31/marketingskills/blob/96798cf38736ecdba015a1d2b0521b0c8f8f41dd/README.md · https://github.com/blader/humanizer/blob/0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0/README.md · https://github.com/makenotion/notion-mcp-server/blob/cf16e5c20bfbfb98ecec1227f210ef0ae3abebe5/README.md · https://github.com/zapier/zapier-mcp/blob/54a12277a12c60df51ec16cf4e4ef0b27b166649/README.md · https://github.com/perplexityai/modelcontextprotocol/blob/cd1d27cffe56739819abb3e56a18e26dbd88c487/README.md · cây thư mục https://github.com/anthropics/skills/blob/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills · https://github.com/vercel-labs/skills/blob/d3701c11b1101251af14c9d148f026e1a47ebe17/skills/find-skills/SKILL.md · https://docs.granola.ai/help-center/sharing/integrations/mcp · https://docs.slack.dev/ai/mcp-server/ · https://www.trykondo.com · GitHub search API 8/11/2026.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
