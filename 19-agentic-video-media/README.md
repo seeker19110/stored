@@ -756,6 +756,67 @@ Không repo nào của mục 19 bị archive. `MoneyPrinterTurbo` được nhắ
 
 **Nguồn §3g:** các permalink CLI/SDK/LICENSE/CI trên; chuẩn C2PA và đối chiếu metric/timeline §3d–§3e. Không cài CLI, không chạy model hay xuất bản media.
 
+## 3h. Kiểm ảnh "AI Video Stack": Remotion Skills, Blender và Blender MCP, faster-whisper, Chatterbox, GSAP (ảnh người dùng gửi, đọc mã 8/11/2026)
+
+> Ảnh ghép 5 thẻ đầu (#01–#05) của loạt "AI Video Stack" 14 công cụ (NGUYEN TAT KIEM.COM), thẻ thứ 5 ghi "+10" cho phần còn lại. Mỗi thẻ ghép một video ngắn với trang GitHub của repo. Người dùng gửi thêm danh sách đủ 14 công cụ; #06–#14 ở §3h.4. Mười hai repo đã có trong catalog (mục 11, 14, 20, 22) và được đọc lại ở đây; Blender và yt-dlp là hồ sơ mới.
+
+### 3h.1 Bảng nhanh
+
+| # | Vai trò trong stack | Repo | ★ / fork (8/11/2026) | Giấy phép |
+|---|---|---|---|---|
+| 01 | Hướng dẫn agent dựng video bằng React | `remotion-dev/skills` | 6.553 / 716 | Repo skill không kèm file license; Remotion theo license riêng của Remotion |
+| 02 | Dựng hình 3D, rigging, render | `blender/blender` (mirror chính thức) | 21.750 / 3.535 | GPL-3.0 |
+| 02b | Cho Claude điều khiển Blender (thẻ ghi "Blender MCP") | `ahujasid/mcp-for-blender` (tên cũ `blender-mcp`) | 33.578 | MIT |
+| 03 | Tạo phụ đề từ lời dẫn | `SYSTRAN/faster-whisper` | 26.577 / 2.222 | MIT |
+| 04 | Tạo giọng đọc từ văn bản | `resemble-ai/chatterbox` | 27.660 / 3.722 | MIT |
+| 05 | Chuyển động UI và chữ theo timeline | `greensock/GSAP` | 30.295 / 2.354 | GSAP Standard "no charge" License |
+
+### 3h.2 Từng công cụ
+
+- **Remotion Skills** (95 commit, tạo 19/1/2026): 13 skill chính thức, gom dưới `/remotion-best-practices`: `/remotion-create`, `/remotion-markup` (composition, animation, layout, chữ, media, hiệu ứng, âm thanh, font, timing), `/remotion-studio`, `/remotion-render`, `/remotion-maps` (Cesium, Mapbox, MapLibre, MapTiler), `/remotion-captions` (phiên âm, nhập SRT, hiển thị phụ đề), `/remotion-saas`, `/remotion-interactivity`, `/remotion-docs`, `/remotion-license`, `/remotion-upgrade`, `/remotion-multimedia`. Mỗi skill có `agents/openai.yaml` cho Codex. Cài: `npx skills add remotion-dev/skills` hoặc `gh skill install remotion-dev/skills`; khi tạo dự án mới bằng `bun create video` cũng được hỏi có thêm skill. Thẻ trong ảnh ghi "12 rules" là cấu trúc `rules/*.md` trước đây; nay đã tách thành các skill con.
+- **Blender**: bộ công cụ 3D mở phủ trọn quy trình: modeling, rigging, animation, simulation, render, compositing, motion tracking và dựng video. Repo GitHub là mirror chính thức; review code và bug tracker ở projects.blender.org.
+- **MCP for Blender** (266 commit): addon `addon.py` mở socket server trong Blender; MCP server cho agent viết Python Blender trực tiếp (`execute_blender_code`), tự nhìn lại kết quả (`look`: viewport, camera, nhiều góc, dải khung hình), đọc tóm tắt cảnh (`get_scene_info`), lấy tài sản từ Poly Haven, Sketchfab, Poly Pizza và sinh model 3D qua Meshy, Tripo, Hyper3D Rodin, Hunyuan3D (`generate_3d`); có công cụ tắt telemetry. Cài một lệnh `curl -LsSf https://www.mcp-for-blender.com/install.sh | sh` (Windows: `install.ps1`) hoặc `uvx mcp-for-blender setup`; tự tìm Claude Desktop, Claude Code, Codex, Cursor, VS Code, Windsurf, OpenCode, Antigravity. Cấu hình cũ `uvx blender-mcp` vẫn chạy. Có thư mục `tests/` lớn (tương thích phiên bản, bảo mật import).
+- **faster-whisper** (276 commit, v1.2.1): Whisper chạy trên CTranslate2, nhanh tới 4 lần bản gốc với cùng độ chính xác và ít bộ nhớ hơn. Benchmark trong README: 13 phút audio, large-v2 trên GPU mất 1m03s (fp16), 16s với `batch_size=8` int8; small trên CPU 1m42s int8. Có `BatchedInferencePipeline`, timestamp từng từ (hợp cho phụ đề karaoke), lọc VAD, Distil-Whisper. Cài: `pip install faster-whisper`; GPU cần CUDA 12 và cuDNN 9.
+- **Chatterbox** (43 commit, v0.1.2): họ model TTS mở: Turbo 350M (tiếng Anh, độ trễ thấp, tag `[laugh]`, `[cough]`), Nano 110M (chạy CPU), Multilingual V3 500M (23+ ngôn ngữ, clone giọng xuyên ngôn ngữ), Single Language Pack 6 bản tinh chỉnh. Mọi file sinh ra có watermark PerTh không nghe thấy, kèm script kiểm watermark. Từ 8/2026 Resemble AI giữ repo ở dạng lưu trữ công khai theo MIT; mã và model vẫn dùng được. Cài: `pip install chatterbox-tts` (thử trên Python 3.11).
+- **GSAP** (v3.15.1): thư viện animation JavaScript không phụ thuộc, chạy mọi framework, animate CSS, SVG, canvas, WebGL; miễn phí hoàn toàn cả các plugin như SplitText, MorphSVG, ScrollTrigger nhờ Webflow tài trợ. Cài: `npm install gsap` hoặc CDN jsDelivr. Timeline của GSAP là nền cho HyperFrames và nhiều pipeline video HTML ở mục 22.
+
+### 3h.4 Công cụ #06–#14 (danh sách đầy đủ người dùng gửi thêm)
+
+| # | Vai trò | Repo | ★ / fork (8/11/2026) | Giấy phép |
+|---|---|---|---|---|
+| 06 | Claude điều khiển cảnh Blender | `ahujasid/mcp-for-blender` (§3h.2) | 33.578 | MIT |
+| 07 | Agent tự xem kết quả render và sửa trước khi xuất | `ChromeDevTools/chrome-devtools-mcp` | 54.937 / 5.236 | Apache-2.0 |
+| 08 | Encode, kiểm tra, xuất MP4 | `FFmpeg/FFmpeg` (mirror) | 66.719 / 14.541 | LGPL-2.1+ / GPL tùy cấu hình build |
+| 09 | Ghép và render video bằng React | `remotion-dev/remotion` | 71.540 / 5.932 | Remotion License (miễn phí cho cá nhân và công ty nhỏ, công ty lớn mua Company License) |
+| 10 | Hoàn thiện, phê bình, kiểm thiết kế | `pbakaus/impeccable` | 105.650 / 6.277 | Apache-2.0 |
+| 11 | Render 3D bằng GPU trên trình duyệt | `mrdoob/three.js` | 117.839 / 36.905 | MIT |
+| 12 | Pipeline sinh ảnh và video | `Comfy-Org/ComfyUI` | 145.616 / 17.335 | GPL-3.0 |
+| 13 | Lấy clip và audio tham chiếu từ web | `yt-dlp/yt-dlp` | 206.055 / 18.102 | Unlicense |
+| 14 | Viết HTML thành video, thiết kế cho agent | `heygen-com/hyperframes` | 80.641 / 7.442 | Apache-2.0 |
+
+- **Chrome DevTools MCP**: agent điều khiển và soi Chrome thật qua MCP hoặc CLI: chụp màn hình, đọc console có stack trace theo source map, phân tích request mạng, ghi trace hiệu năng; Puppeteer tự chờ kết quả thao tác. Với video HTML, agent mở trang, chụp khung và sửa trước khi render. Cấu hình: `"command": "npx", "args": ["-y", "chrome-devtools-mcp@latest"]`; thêm `--no-usage-statistics` để tắt thống kê sử dụng.
+- **FFmpeg**: bộ thư viện `libavcodec`, `libavformat`, `libavfilter`, `libswscale`, `libswresample` và công cụ `ffmpeg`, `ffprobe` xử lý audio, video, phụ đề; `ffprobe` dùng để kiểm thông số file trước khi giao.
+- **Remotion**: làm video bằng agent, bằng editor tương tác hoặc bằng code; dựng thư viện asset động cho tổ chức, render hàng loạt trên hạ tầng riêng, đóng gói thành ứng dụng; tài liệu hơn 1.200 trang. Bắt đầu: `npx create-video@latest`.
+- **Impeccable**: "từ vựng thiết kế" cho coding agent: `polish`, `bolder` để lái, `critique` chấm theo heuristic khả dụng và xếp thứ tự sửa, `audit` kiểm accessibility, hiệu năng, theming, responsive; 62 luật tất định bắt dấu hiệu AI slop, không cần LLM hay API key. Cài: `npx impeccable install`, rồi `/impeccable init`.
+- **three.js**: thư viện 3D nhẹ, đa trình duyệt, renderer WebGL và WebGPU; repo có `llms.txt` cho agent. Cài: `npm install three`.
+- **ComfyUI**: engine sinh ảnh, video bằng đồ thị node, hỗ trợ sẵn các model mở mới nhất, kiểm soát từng tham số; có `openapi.yaml` và `AGENTS.md`.
+- **yt-dlp**: tải audio và video từ hàng nghìn trang (`supportedsites.md`), nhánh nâng cấp của youtube-dl; ghép luồng hình và tiếng nhờ ffmpeg (dự án có bản build FFmpeg riêng). Cài: `python -m pip install -U "yt-dlp[default]"`. Chỉ dùng cho nội dung bạn có quyền sử dụng (§3g).
+- **HyperFrames**: biến HTML, CSS, media và animation tua được thành MP4 tất định; dùng qua CLI, skill cho agent hoặc Studio. Claude Code: `claude plugin marketplace add heygen-com/hyperframes` rồi `claude plugin install hyperframes@hyperframes`; agent khác: `npx skills add heygen-com/hyperframes`.
+
+### 3h.3 Ghép thành một stack video
+
+1. Viết kịch bản, rồi tạo giọng đọc bằng Chatterbox.
+2. Chạy faster-whisper với timestamp từng từ để có phụ đề khớp giọng.
+3. Dựng hình bằng Remotion (React) có Remotion Skills dẫn agent, hoặc HTML + GSAP timeline.
+4. Cảnh 3D: agent điều khiển Blender qua MCP for Blender rồi render cảnh.
+5. Lấy clip, audio tham chiếu bằng yt-dlp; sinh ảnh, video bổ trợ bằng ComfyUI; cảnh 3D trên web bằng three.js.
+6. Agent mở trang qua Chrome DevTools MCP để xem từng khung và sửa; rà thiết kế bằng Impeccable.
+7. Render bằng `/remotion-render` hoặc HyperFrames, gắn phụ đề bằng `/remotion-captions`, kiểm và encode MP4 bằng `ffprobe`/`ffmpeg`.
+
+Liên quan: mục 22 (motion, HyperFrames, Lemo-Opuscar §9k), mục 14 (giọng nói), mục 27 (3D).
+
+**Nguồn §3h:** ảnh người dùng gửi 8/11/2026 · clone `--filter=blob:none`: https://github.com/remotion-dev/skills/blob/a2824c67f8b4585c294a8101db9f9f0ad3c643f8/README.md · https://github.com/blender/blender/blob/9c4fc4363b03d30e576d76b86420b929f1e18465/README.md · https://github.com/blender/blender/blob/9c4fc4363b03d30e576d76b86420b929f1e18465/COPYING · https://github.com/ahujasid/mcp-for-blender/blob/2e4b0bc294694b1570d76ed01be657c22e6d02a0/README.md · https://github.com/ahujasid/mcp-for-blender/blob/2e4b0bc294694b1570d76ed01be657c22e6d02a0/LICENSE · https://github.com/SYSTRAN/faster-whisper/blob/846467d436117e44d54ad74f555d85c75834edb0/README.md · https://github.com/SYSTRAN/faster-whisper/blob/846467d436117e44d54ad74f555d85c75834edb0/LICENSE · https://github.com/resemble-ai/chatterbox/blob/ab55923c27757c90cfcc407baa57dc25a7d25217/README.md · https://github.com/resemble-ai/chatterbox/blob/ab55923c27757c90cfcc407baa57dc25a7d25217/LICENSE · https://github.com/greensock/GSAP/blob/5e6c35ff8eedea12d4f229129def635277d8b0f2/README.md · https://github.com/greensock/GSAP/blob/5e6c35ff8eedea12d4f229129def635277d8b0f2/package.json · danh sách 14 công cụ người dùng gửi thêm, clone `--depth 1 --sparse`: https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/0b37364dc0a88a804c6d73d3335e776adc7f33c4/README.md · https://github.com/FFmpeg/FFmpeg/blob/2bf291526e50480d2c355b4c6c8dd04863212aa1/README.md · https://github.com/remotion-dev/remotion/blob/5dee2b6b14f7f0cebb040b7d92b0097b6be582a9/README.md · https://github.com/pbakaus/impeccable/blob/924bbd194d02e5e15a227e75b5901fb0d7a4ecad/README.md · https://github.com/mrdoob/three.js/blob/f2b6a71bdd088d9da387fcc62802323341099b92/README.md · https://github.com/Comfy-Org/ComfyUI/blob/bdb0816a292d221efeb6ec4ae41bcdff3f91fc86/README.md · https://github.com/yt-dlp/yt-dlp/blob/412e7f0a4b0588fe884a02b344ac66a06538475b/README.md · https://github.com/heygen-com/hyperframes/blob/adf14d7324109694614955f32ba6cf2b97ad79d2/README.md · https://github.com/remotion-dev/remotion/blob/5dee2b6b14f7f0cebb040b7d92b0097b6be582a9/LICENSE.md · GitHub search API 8/11/2026.
+
 ## 4. Nguồn
 
 - https://github.com/calesthio/OpenMontage (README, AGENTS.md, AGENT_GUIDE.md, commits) · https://github.com/calesthio · https://openmontage.video

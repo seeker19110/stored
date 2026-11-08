@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1054,
+    "count": 1056,
     "schema_version": 2
   },
   "projects": [
@@ -2138,12 +2138,20 @@
       "repo": "SYSTRAN/faster-whisper",
       "category": "speech",
       "license": "MIT",
-      "stars": null,
+      "stars": 26577,
       "open_source": true,
-      "notes": "",
+      "notes": "đọc lại 8/11/2026 (mục 19 §3h): v1.2.1, 276 commit; CTranslate2, nhanh tới 4× openai/whisper; batched pipeline, word timestamps, VAD, distil-whisper; large-v2 GPU 13 phút audio 16s (batch 8, int8); ★ 8/11/2026: 26.577 (GitHub search API)",
       "section": "14",
       "id": "faster-whisper",
-      "profile_path": "14-voice-multimodal/README.md"
+      "profile_path": "14-voice-multimodal/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "846467d436117e44d54ad74f555d85c75834edb0",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/SYSTRAN/faster-whisper/blob/846467d436117e44d54ad74f555d85c75834edb0/README.md",
+        "https://github.com/SYSTRAN/faster-whisper/blob/846467d436117e44d54ad74f555d85c75834edb0/LICENSE"
+      ]
     },
     {
       "name": "whisper.cpp",
@@ -2174,12 +2182,20 @@
       "repo": "resemble-ai/chatterbox",
       "category": "speech",
       "license": "MIT",
-      "stars": null,
+      "stars": 27660,
       "open_source": true,
-      "notes": "voice clone",
+      "notes": "voice clone; đọc lại 8/11/2026 (mục 19 §3h): Turbo 350M, Nano 110M (CPU), Multilingual V3 500M 23+ ngôn ngữ, Single Language Pack; watermark PerTh; repo lưu trữ MIT từ 8/2026; pip install chatterbox-tts; ★ 8/11/2026: 27.660 (GitHub search API)",
       "section": "14",
       "id": "chatterbox",
-      "profile_path": "14-voice-multimodal/README.md"
+      "profile_path": "14-voice-multimodal/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "ab55923c27757c90cfcc407baa57dc25a7d25217",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/resemble-ai/chatterbox/blob/ab55923c27757c90cfcc407baa57dc25a7d25217/README.md",
+        "https://github.com/resemble-ai/chatterbox/blob/ab55923c27757c90cfcc407baa57dc25a7d25217/LICENSE"
+      ]
     },
     {
       "name": "Qwen3-VL",
@@ -2210,12 +2226,19 @@
       "repo": "Comfy-Org/ComfyUI",
       "category": "image-gen",
       "license": "GPL-3.0",
-      "stars": 144356,
+      "stars": 145616,
       "open_source": true,
-      "notes": "122k–136k; repo đã chuyển từ comfyanonymous/ComfyUI (cùng HEAD, kiểm 25/10/2026); ★ 31/10/2026: 144.356 (GitHub API)",
+      "notes": "122k–136k; repo đã chuyển từ comfyanonymous/ComfyUI (cùng HEAD, kiểm 25/10/2026); ★ 31/10/2026: 144.356 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): engine node graph sinh ảnh/video, hỗ trợ model mở mới nhất; có openapi.yaml, AGENTS.md; ★ 8/11/2026: 145.616 (GitHub search API)",
       "section": "14",
       "id": "comfyui",
-      "profile_path": "14-voice-multimodal/README.md"
+      "profile_path": "14-voice-multimodal/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "bdb0816a292d221efeb6ec4ae41bcdff3f91fc86",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Comfy-Org/ComfyUI/blob/bdb0816a292d221efeb6ec4ae41bcdff3f91fc86/README.md"
+      ]
     },
     {
       "name": "Stable Diffusion WebUI",
@@ -2667,23 +2690,20 @@
       "repo": "remotion-dev/remotion",
       "category": "video-engine",
       "license": "Remotion License",
-      "stars": 69442,
+      "stars": 71540,
       "open_source": false,
-      "notes": "Remotion License is source-available, not OSI: Free License eligibility and Company License conditions apply; random(null) calls Math.random, seeded output alone does not guarantee deterministic media. Source/LICENSE/CI read 4/11/2026, not rendered. Stars retain 31/10 snapshot.",
+      "notes": "Remotion License is source-available, not OSI: Free License eligibility and Company License conditions apply; random(null) calls Math.random, seeded output alone does not guarantee deterministic media. Source/LICENSE/CI read 4/11/2026, not rendered. Stars retain 31/10 snapshot.; đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): làm video bằng agent, editor tương tác hoặc code; render hàng loạt; tài liệu 1.200+ trang; npx create-video@latest; ★ 8/11/2026: 71.540 (GitHub search API)",
       "section": "22",
       "id": "remotion",
       "profile_path": "22-motion-design-animation/README.md",
-      "last_verified_at": "2026-11-04",
-      "verified_ref": "fe9f0c372706f2039da6b2a0a92b92aa746e69cf",
-      "verification_level": "code-read",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "5dee2b6b14f7f0cebb040b7d92b0097b6be582a9",
+      "verification_level": "docs-read",
       "sources": [
-        "https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/LICENSE.md",
-        "https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/LICENSE.md",
-        "https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/core/src/random.ts",
-        "https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/packages/renderer/src/render-media.ts",
-        "https://github.com/remotion-dev/remotion/blob/fe9f0c372706f2039da6b2a0a92b92aa746e69cf/.github/workflows/push.yml"
+        "https://github.com/remotion-dev/remotion/blob/5dee2b6b14f7f0cebb040b7d92b0097b6be582a9/README.md",
+        "https://github.com/remotion-dev/remotion/blob/5dee2b6b14f7f0cebb040b7d92b0097b6be582a9/LICENSE.md"
       ],
-      "profile_anchor": "22-motion-design-animation/README.md#remotion-factory"
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026"
     },
     {
       "name": "Open-Sora",
@@ -2993,24 +3013,38 @@
       "repo": "heygen-com/hyperframes",
       "category": "video-engine",
       "license": "Apache-2.0",
-      "stars": 76551,
+      "stars": 80641,
       "open_source": true,
-      "notes": "HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0; ★ 31/10/2026: 76.551 (GitHub API)",
+      "notes": "HeyGen: HTML thuần → Puppeteer Chrome + FFmpeg; 21 skill; Lambda/cloud render; pre-1.0; ★ 31/10/2026: 76.551 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): HTML/CSS/media → MP4 tất định; plugin Claude Code (marketplace heygen-com/hyperframes), npx skills add, Studio app; ★ 8/11/2026: 80.641 (GitHub search API)",
       "section": "22",
       "id": "hyperframes",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "adf14d7324109694614955f32ba6cf2b97ad79d2",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/heygen-com/hyperframes/blob/adf14d7324109694614955f32ba6cf2b97ad79d2/README.md"
+      ]
     },
     {
       "name": "remotion-dev/skills",
       "repo": "remotion-dev/skills",
       "category": "motion-design",
       "license": null,
-      "stars": 5978,
+      "stars": 6553,
       "open_source": true,
-      "notes": "12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo; ★ 31/10/2026: 5.978 (GitHub API)",
+      "notes": "12 skill chính thức Remotion cho Claude Code/Codex/Kimi/Cursor; mirror từ monorepo; ★ 31/10/2026: 5.978 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h): 13 skill dưới /remotion-best-practices (create, markup, studio, render, maps, captions, saas, interactivity, docs, license, upgrade, multimedia), cài npx skills add hoặc gh skill install, có agents/openai.yaml; 95 commit; ★ 8/11/2026: 6.553 (GitHub search API)",
       "section": "22",
       "id": "remotion-dev-skills",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "a2824c67f8b4585c294a8101db9f9f0ad3c643f8",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/remotion-dev/skills/blob/a2824c67f8b4585c294a8101db9f9f0ad3c643f8/README.md"
+      ]
     },
     {
       "name": "gsap-skills",
@@ -3734,15 +3768,23 @@
     },
     {
       "name": "blender-mcp",
-      "repo": "ahujasid/blender-mcp",
+      "repo": "ahujasid/mcp-for-blender",
       "category": "protocol",
       "license": "MIT",
-      "stars": null,
+      "stars": 33578,
       "open_source": true,
-      "notes": "MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh); repo nay redirect về ahujasid/mcp-for-blender (30,5k★, 12/10/2026)",
+      "notes": "MCP server điều khiển Blender; ~24,6k★ (theo docs nội bộ, chưa xác minh); repo nay redirect về ahujasid/mcp-for-blender (30,5k★, 12/10/2026); đọc lại 8/11/2026 (mục 19 §3h): repo đổi tên ahujasid/mcp-for-blender, package mcp-for-blender (uvx blender-mcp vẫn chạy); 9 tool gồm execute_blender_code, look, get_scene_info, generate_3d (Meshy/Tripo/Rodin/Hunyuan3D), search/import asset (Poly Haven, Sketchfab, Poly Pizza); cài một lệnh tự cấu hình 8 client; 266 commit; ★ 8/11/2026: 33.578 (GitHub search API)",
       "section": "14",
       "id": "blender-mcp",
-      "profile_path": "14-voice-multimodal/README.md"
+      "profile_path": "14-voice-multimodal/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "2e4b0bc294694b1570d76ed01be657c22e6d02a0",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/ahujasid/mcp-for-blender/blob/2e4b0bc294694b1570d76ed01be657c22e6d02a0/README.md",
+        "https://github.com/ahujasid/mcp-for-blender/blob/2e4b0bc294694b1570d76ed01be657c22e6d02a0/LICENSE"
+      ]
     },
     {
       "name": "OpenCompany (ex-MachinaOS)",
@@ -4002,12 +4044,19 @@
       "repo": "mrdoob/three.js",
       "category": "animation-library",
       "license": "MIT",
-      "stars": 117308,
+      "stars": 117839,
       "open_source": true,
-      "notes": "Thư viện 3D WebGL/WebGPU; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 117.308 (GitHub API)",
+      "notes": "Thư viện 3D WebGL/WebGPU; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 117.308 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): renderer WebGL và WebGPU, có llms.txt; npm install three; ★ 8/11/2026: 117.839 (GitHub search API)",
       "section": "22",
       "id": "three-js",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "f2b6a71bdd088d9da387fcc62802323341099b92",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/mrdoob/three.js/blob/f2b6a71bdd088d9da387fcc62802323341099b92/README.md"
+      ]
     },
     {
       "name": "anime.js",
@@ -4050,24 +4099,39 @@
       "repo": "greensock/GSAP",
       "category": "animation-library",
       "license": "GreenSock Standard License",
-      "stars": 29984,
+      "stars": 30295,
       "open_source": false,
-      "notes": "Timeline animation; license riêng no-charge, không OSI; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 29.984 (GitHub API)",
+      "notes": "Timeline animation; license riêng no-charge, không OSI; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 29.984 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h): 3.15.1, miễn phí cả plugin (SplitText, MorphSVG, ScrollTrigger), không phụ thuộc, npm install gsap; ★ 8/11/2026: 30.295 (GitHub search API)",
       "section": "22",
       "id": "gsap",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "5e6c35ff8eedea12d4f229129def635277d8b0f2",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/greensock/GSAP/blob/5e6c35ff8eedea12d4f229129def635277d8b0f2/README.md",
+        "https://github.com/greensock/GSAP/blob/5e6c35ff8eedea12d4f229129def635277d8b0f2/package.json"
+      ]
     },
     {
       "name": "FFmpeg",
       "repo": "FFmpeg/FFmpeg",
       "category": "video-engine",
       "license": "LGPL-2.1+",
-      "stars": 66164,
+      "stars": 66719,
       "open_source": true,
-      "notes": "Mirror GitHub; cắt/ghép/encode video, phần lớn pipeline video-as-code dựa vào; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 66.164 (GitHub API)",
+      "notes": "Mirror GitHub; cắt/ghép/encode video, phần lớn pipeline video-as-code dựa vào; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 66.164 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): libavcodec/libavformat/libavfilter/libswscale/libswresample + ffmpeg/ffprobe; khâu encode, kiểm và xuất MP4; ★ 8/11/2026: 66.719 (GitHub search API)",
       "section": "22",
       "id": "ffmpeg",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "2bf291526e50480d2c355b4c6c8dd04863212aa1",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/FFmpeg/FFmpeg/blob/2bf291526e50480d2c355b4c6c8dd04863212aa1/README.md"
+      ]
     },
     {
       "name": "Manim (Community)",
@@ -4841,12 +4905,19 @@
       "repo": "ChromeDevTools/chrome-devtools-mcp",
       "category": "browser-agent",
       "license": "Apache-2.0",
-      "stars": 54561,
+      "stars": 54937,
       "open_source": true,
-      "notes": "MCP chính thức điều khiển/soi Chrome; telemetry bật mặc định; ★ đọc 12/10/2026; hồ sơ đầy đủ mục 11 §1e (31/10/2026): 55k★, v1.12.0, 60 tool/12 nhóm + 7 skill, CI có test rò rỉ bộ nhớ; usage statistics gửi Google mặc định (--no-usage-statistics), CrUX gửi URL trace (--no-performance-crux), profile ~/.cache không xóa giữa lần chạy (--isolated), --autoConnect truy cập mọi tab profile mặc định; ★ 31/10/2026: 54.561 (GitHub API)",
+      "notes": "MCP chính thức điều khiển/soi Chrome; telemetry bật mặc định; ★ đọc 12/10/2026; hồ sơ đầy đủ mục 11 §1e (31/10/2026): 55k★, v1.12.0, 60 tool/12 nhóm + 7 skill, CI có test rò rỉ bộ nhớ; usage statistics gửi Google mặc định (--no-usage-statistics), CrUX gửi URL trace (--no-performance-crux), profile ~/.cache không xóa giữa lần chạy (--isolated), --autoConnect truy cập mọi tab profile mặc định; ★ 31/10/2026: 54.561 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): MCP và CLI cho agent soi Chrome: screenshot, console source-mapped, mạng, trace hiệu năng; dùng để agent xem khung render và sửa trước khi xuất; --no-usage-statistics tắt thống kê; ★ 8/11/2026: 54.937 (GitHub search API)",
       "section": "11",
       "id": "chrome-devtools-mcp",
-      "profile_path": "11-browser-computer-use-sandbox/README.md"
+      "profile_path": "11-browser-computer-use-sandbox/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "0b37364dc0a88a804c6d73d3335e776adc7f33c4",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/0b37364dc0a88a804c6d73d3335e776adc7f33c4/README.md"
+      ]
     },
     {
       "name": "gVisor",
@@ -6833,12 +6904,19 @@
       "repo": "pbakaus/impeccable",
       "category": "design-skill",
       "license": "Apache-2.0",
-      "stars": 98225,
+      "stars": 105650,
       "open_source": true,
-      "notes": "1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 19/10/2026 (shields); cập nhật 31/10/2026 (mục 20 §3n.1): 97k★, skill/cli v4.8.0, engine v0.1.18, 62 rule; engine tải về nay kiểm checksum manifest + bundle ký (#813), action CI ghim SHA; request catalog impeccable.style luôn chạy kể cả khi tắt telemetry; hook chạy ngoài phê duyệt của model; ★ 31/10/2026: 98.225 (GitHub API)",
+      "notes": "1 skill /impeccable + 24 lệnh (init→PRODUCT.md, critique, audit, polish, live); engine Rust 59 rule tất định chạy ở hook PostToolUse/Stop, binary tải từ GitHub Releases; roll API impeccable.style luôn gọi + telemetry opt-out; ★ 19/10/2026 (shields); cập nhật 31/10/2026 (mục 20 §3n.1): 97k★, skill/cli v4.8.0, engine v0.1.18, 62 rule; engine tải về nay kiểm checksum manifest + bundle ký (#813), action CI ghim SHA; request catalog impeccable.style luôn chạy kể cả khi tắt telemetry; hook chạy ngoài phê duyệt của model; ★ 31/10/2026: 98.225 (GitHub API); đọc lại 8/11/2026 (mục 19 §3h.4, AI Video Stack): polish/bolder/critique/audit; 62 luật tất định bắt AI slop không cần LLM; npx impeccable install rồi /impeccable init; chạy trên 20+ agent; ★ 8/11/2026: 105.650 (GitHub search API)",
       "section": "20",
       "id": "impeccable",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "924bbd194d02e5e15a227e75b5901fb0d7a4ecad",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/pbakaus/impeccable/blob/924bbd194d02e5e15a227e75b5901fb0d7a4ecad/README.md"
+      ]
     },
     {
       "name": "Vercel Agent Skills",
@@ -14713,6 +14791,46 @@
       "sources": [
         "https://kobra.systems",
         "https://kobra.systems/pricing"
+      ]
+    },
+    {
+      "name": "Blender",
+      "repo": "blender/blender",
+      "category": "design-tool",
+      "license": "GPL-3.0",
+      "stars": 21750,
+      "open_source": true,
+      "notes": "Bộ công cụ 3D mở trọn quy trình: modeling, rigging, animation, simulation, render, compositing, motion tracking, dựng video; repo GitHub là mirror chính thức (review ở projects.blender.org); agent điều khiển qua MCP for Blender; ★ 8/11/2026: 21.750 (GitHub search API), mục 19 §3h",
+      "section": "19",
+      "id": "blender",
+      "profile_path": "19-agentic-video-media/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "9c4fc4363b03d30e576d76b86420b929f1e18465",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/blender/blender/blob/9c4fc4363b03d30e576d76b86420b929f1e18465/README.md",
+        "https://github.com/blender/blender/blob/9c4fc4363b03d30e576d76b86420b929f1e18465/COPYING"
+      ]
+    },
+    {
+      "name": "yt-dlp",
+      "repo": "yt-dlp/yt-dlp",
+      "category": "video-engine",
+      "license": "Unlicense",
+      "stars": 206055,
+      "open_source": true,
+      "notes": "CLI tải audio/video từ hàng nghìn trang (supportedsites.md), nhánh nâng cấp của youtube-dl; ghép luồng bằng ffmpeg/ffprobe (có yt-dlp/FFmpeg-Builds); pip install -U \"yt-dlp[default]\"; trong AI Video Stack dùng lấy clip và audio tham chiếu có quyền sử dụng; ★ 8/11/2026: 206.055 (GitHub search API), mục 19 §3h.4",
+      "section": "19",
+      "id": "yt-dlp",
+      "profile_path": "19-agentic-video-media/README.md",
+      "profile_anchor": "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "412e7f0a4b0588fe884a02b344ac66a06538475b",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/yt-dlp/yt-dlp/blob/412e7f0a4b0588fe884a02b344ac66a06538475b/README.md",
+        "https://github.com/yt-dlp/yt-dlp/blob/412e7f0a4b0588fe884a02b344ac66a06538475b/LICENSE"
       ]
     }
   ]

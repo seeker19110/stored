@@ -443,6 +443,10 @@ Lemo-Opuscar (mục 22 §9k, 13,4k★, mã MIT) là plugin Claude Code dựng ph
 
 unslop của Damir Sokolovsky (mục 06 §7zb, CC BY 4.0) là skill cho Claude Code và Codex, biến UI "vibecoded" thành giao diện có tính cách riêng. Skill kiểm và liệt kê dấu hiệu slop, đề xuất hướng lấy từ chính sản phẩm, rồi sửa qua chín lượt từ spacing tới motion. Nó có thể quay video vuông dưới 10 giây cảnh màn hình tự sửa. Cài bằng cách copy `skills/unslop` vào `~/.claude/skills/`, rồi gọi `/unslop this dashboard`.
 
+### 71. AI Video Stack (8/11/2026): 14 công cụ để agent làm video từ đầu tới cuối
+
+Mục 19 §3h đọc 5 thẻ đầu của loạt "AI Video Stack". Remotion Skills (6,6k★) gồm 13 skill chính thức để agent dựng video bằng React, từ tạo dự án, phụ đề, bản đồ tới render. Blender (21,8k★, GPL-3.0) lo dựng hình 3D. MCP for Blender (33,6k★, MIT, tên cũ blender-mcp) cho agent viết Python trong Blender rồi tự nhìn lại cảnh. faster-whisper (26,6k★) phiên âm nhanh tới 4 lần Whisper gốc, có timestamp từng từ để làm phụ đề. Chatterbox (27,7k★) tạo giọng đọc và clone giọng 23+ ngôn ngữ, có watermark. GSAP (30,3k★) điều khiển chuyển động theo timeline, miễn phí cả plugin. Chín công cụ còn lại gồm Chrome DevTools MCP để agent tự xem khung render, FFmpeg, Remotion, Impeccable, three.js, ComfyUI, yt-dlp (206k★) và HyperFrames. Mục này có gợi ý ghép cả 14 thành một pipeline.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
