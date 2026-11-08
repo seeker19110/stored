@@ -439,6 +439,10 @@ Mục 06 §7za đọc 8 kho trong bài "đừng để AI tự bịa giao diện"
 
 Lemo-Opuscar (mục 22 §9k, 13,4k★, mã MIT) là plugin Claude Code dựng phim hoàn toàn bằng code: hình vẽ bằng canvas và WebGL, nhạc lấy từ thư viện sample miễn phí, lời dẫn bằng TTS. Mỗi phong cách có style prompt và phim mẫu. Cài bằng hai lệnh `claude plugin`, rồi mô tả phim bằng lời. Có thể biến một phong cách có sẵn thành phong cách riêng, lưu lại để dùng cho các phim sau.
 
+### 70. unslop đọc lại (8/11/2026): từ 3,4k lên 11,4k sao trong 8 ngày
+
+unslop của Damir Sokolovsky (mục 06 §7zb, CC BY 4.0) là skill cho Claude Code và Codex, biến UI "vibecoded" thành giao diện có tính cách riêng. Skill kiểm và liệt kê dấu hiệu slop, đề xuất hướng lấy từ chính sản phẩm, rồi sửa qua chín lượt từ spacing tới motion. Nó có thể quay video vuông dưới 10 giây cảnh màn hình tự sửa. Cài bằng cách copy `skills/unslop` vào `~/.claude/skills/`, rồi gọi `/unslop this dashboard`.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

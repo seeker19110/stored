@@ -7455,12 +7455,21 @@
       "repo": "heydamir/unslop",
       "category": "design-skill",
       "license": "CC-BY-4.0",
-      "stars": 3397,
+      "stars": 11436,
       "open_source": true,
-      "notes": "Một skill sửa UI 'vibecoded' theo 9 lượt + video trước/sau (Playwright + ffmpeg); luật chỉ là prompt, không đo; SKILL.md ~8k token; 4 commit, tạo 28/10/2026; quảng cáo dịch vụ trả phí; ★ 31/10/2026 (GitHub API), mục 06 §7p",
+      "notes": "Một skill sửa UI 'vibecoded' theo 9 lượt + video trước/sau (Playwright + ffmpeg); luật chỉ là prompt, không đo; SKILL.md ~8k token; 4 commit, tạo 28/10/2026; quảng cáo dịch vụ trả phí; ★ 31/10/2026 (GitHub API), mục 06 §7p; đọc lại 8/11/2026 (§7zb): 12 commit, thêm hỗ trợ Codex (skill-installer, openai.yaml), 9 lượt spacing→motion, sinh ảnh qua fal/Replicate/OpenAI/Higgsfield, video story dưới 10 giây; 3.397★ (31/10) → 11.436★ (8/11), khoảng 1.000★/ngày; ★ 8/11/2026: 11.436 (GitHub search API)",
       "section": "06",
       "id": "unslop",
-      "profile_path": "06-ui-ux-design/README.md"
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zb-đọc-lại-heydamirunslop-skill-biến-ui-vibecoded-thành-giao-diện-có-chủ-đích-114k-sau-10-ngày-ảnh-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "a6f121eee5f29c2f74976b75456feae8b66afb3a",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/README.md",
+        "https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/skills/unslop/SKILL.md",
+        "https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/LICENSE"
+      ]
     },
     {
       "name": "designer-skills",
