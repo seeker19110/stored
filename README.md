@@ -451,6 +451,10 @@ Mục 19 §3h đọc 5 thẻ đầu của loạt "AI Video Stack". Remotion Skil
 
 Mục 20 §3zb ghép 24 mục trong ảnh với repo hoặc trang chính thức và đo lại số sao. 14 mục đã có hồ sơ: gstack, superpowers, codex-plugin-cc, claude-skills, social-media-skills, frontend-design, skill-creator, mcp-builder, find-skills, hyperframes, claude-seo, caveman, Higgsfield và agent-browser. 10 mục mới gồm hai bộ plugin chuyên ngành của Anthropic (tài chính 41k★, pháp lý 9,9k★), Marketing Skills (59k★, 53 skill) và Humanizer (66k★). Phần MCP mới gồm Granola, Slack, Notion, Kondo, Zapier và Perplexity, đều chạy theo quyền của người dùng.
 
+### 73. ai-memory (8/11/2026): bộ nhớ chung để đổi agent giữa chừng không mất ngữ cảnh
+
+ai-memory của Fabio Akita (mục 10 §6h, 15,4k★, MIT) cho hơn 20 coding agent dùng chung một bộ nhớ dài hạn. Bỏ Claude Code giữa chừng, mở Codex cùng thư mục, agent mới nhận handoff ghi chỗ đang dừng, cái đã thất bại và việc còn mở. Bộ nhớ là wiki Markdown trong git, chạy trên server bạn tự host nên dùng được qua nhiều máy và cả nhóm. Mặc định không gọi LLM và không có telemetry. Cài bằng `install.sh` rồi `ai-memory setup`.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

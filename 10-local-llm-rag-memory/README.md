@@ -568,6 +568,44 @@ Sau đó thêm `gpu_unlock.targets=all` vào kernel command line (GRUB, `grubby`
 
 **Nguồn §6g:** link người dùng gửi 4/11/2026 · clone https://github.com/Zagitta/gpu-unlock HEAD `7eb51bccae0a0b7e599e084d971170e9a1e82d0c`: https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/README.md · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/docs/How%20Ampere%20was%20unlocked.md · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/firmware/NOTICE.md · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/debian/copyright · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/kernel/gpu_unlock/recipes.c · https://github.com/Zagitta/gpu-unlock/blob/7eb51bccae0a0b7e599e084d971170e9a1e82d0c/.github/workflows/ci.yml · GitHub search API `repo:Zagitta/gpu-unlock` 4/11/2026.
 
+## 6h. Hồ sơ akitaonrails/ai-memory: bộ nhớ dài hạn dùng chung cho 20+ coding agent, wiki Markdown trong git, mặc định không gọi LLM (ảnh README người dùng gửi, đọc mã 8/11/2026)
+
+> Ảnh là phần đầu README: logo ai-memory, câu "Quit Claude Code mid-task, start OpenAI Codex in the same directory, continue without re-explaining…", badge release v3.1.1, Rust 1.95+, MIT, và đầu mục "Why ai-memory".
+
+### 6h.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (8/11/2026) |
+|---|---|
+| Repo | https://github.com/akitaonrails/ai-memory · **15.353★, 1.121 fork** (GitHub search API) · tạo 21/5/2026 · MIT · site aimemory.sh |
+| Tác giả | Fabio Akita (AkitaOnRails); 5.743 commit, tag mới nhất v3.4.3 (ảnh chụp lúc v3.1.1) |
+| Thành phần | Một binary Rust: 11 crate (`cli`, `core`, `store`, `wiki`, `hooks`, `mcp`, `consolidate`, `workstream`, `llm`, `web`…), companion (desktop, app macOS, relay, importer, wikisync, SDK TypeScript), plugin Claude Code và Codex, `evals/` |
+| Kiểm thử | 581 file `.rs`, khoảng 8.000 test Rust; CI gồm `ci.yml`, CodeQL, quét secret, build Windows, macOS, Nix, desktop |
+
+### 6h.2 Điểm mạnh (đọc mã)
+
+- **Một bộ nhớ cho mọi agent**: hơn 20 harness (Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Grok, Devin, Kimi, Kiro…) ghi vào cùng một bộ nhớ. Bỏ Claude Code giữa chừng, mở Codex cùng thư mục, agent mới nhận handoff ghi chỗ đang dừng, cái đã thất bại và việc còn mở. Handoff là giao thức có kiểu: mỗi cái có chủ và chỉ được nhận đúng một lần.
+- **Mang cả phiên, không chỉ bản tóm tắt**: chạy qua `ai-memory run codex`, agent mới nhận workstream chung cộng một bản chiếu cục bộ, tạm thời của lịch sử Claude để tra chi tiết; server chỉ biết tên harness và định danh phiên, không nhận transcript.
+- **Theo bạn qua dự án, máy và nhóm**: hồ sơ thói quen làm việc (package manager, cách xếp test, kiến trúc quen dùng) tới mọi repo mới; bộ nhớ nằm trên server bạn tự chạy (laptop, homelab) nên đổi máy vẫn tiếp tục; nhóm trỏ chung một server, tri thức chia theo dự án, handoff cá nhân giữ riêng; xác thực nhiều người, ghi tên tác giả và audit log có sẵn.
+- **Bộ nhớ là Markdown thường**: nguồn sự thật là wiki `.md` trong git (grep được, mở bằng Obsidian, sửa tay, rsync); SQLite chỉ là chỉ mục dựng lại được (FTS5, entity, đồ thị, embedding tùy chọn).
+- **Tự ghi lại công việc, mặc định không gọi LLM**: hook ghi prompt, tool call, ranh giới phiên, lọc qua lớp riêng tư có kiểu trước khi lưu, rồi server gom thành trang wiki; ghi, tìm và handoff đều chạy không cần API key.
+- **Lão hóa bộ nhớ không cần LLM**: trang dùng nhiều phân rã chậm hơn; ghi chú nguội có thể nén còn sự kiện bền (đường dẫn file, mã lỗi, quyết định); gộp bản gần trùng, gắn cờ mâu thuẫn; không xóa cứng, bản gốc nằm trong git và `restore-page` lấy lại được. "Dream" (gộp cụm ghi chú bằng LLM khi rảnh) là tùy chọn, mặc định tắt và phải qua eval recall.
+- **Minh bạch và riêng tư**: không telemetry, không tự kiểm cập nhật (`DATA_HANDLING.md`); trần ghi khoảng 700 lần/giây được đo; `evals/` chạy LongMemEval và kiểm truy hồi phiên code qua server thật.
+
+### 6h.3 Cài và dùng
+
+```bash
+curl -fsSL https://github.com/akitaonrails/ai-memory/releases/latest/download/install.sh | sh
+ai-memory setup
+```
+
+- `install.sh` kiểm SHA-256 của bản phát hành trước khi cài, đặt binary ở `~/.local/bin`; `ai-memory setup` tạo thư mục dữ liệu với bearer token chỉ chủ sở hữu đọc được, chạy service theo user (systemd `--user` hoặc launchd), nối MCP, hook và Agent Skills cho các agent tìm thấy, hỏi trước khi áp dụng (`--plan` chỉ in kế hoạch, `--web` chọn trên trình duyệt).
+- Windows có `install.ps1`; còn có AUR, Homebrew, RPM, app thanh menu macOS, Docker, NixOS.
+- Plugin: `claude plugin marketplace add akitaonrails/ai-memory && claude plugin install ai-memory@ai-memory` (Codex tương tự).
+- Kiểm: khởi động lại agent và hỏi "What do you remember about this project?". Agent cài hộ có thể theo `INSTALL_FOR_AGENTS.md`.
+- Liên quan: Hindsight (§4d), mẫu BM25 trên SQLite (§6f), quản vòng đời tri thức (§6e).
+
+**Nguồn §6h:** ảnh README người dùng gửi 8/11/2026 · clone https://github.com/akitaonrails/ai-memory HEAD `fec76f18c15835bb2dc5c2be3081ce4db0c1270e`: https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/README.md · https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/DATA_HANDLING.md · https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/evals/README.md · https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/LICENSE · GitHub search API 8/11/2026.
+
 ## 7. Nguồn
 
 - https://dev.to/sreeraj-sreenivasan/the-complete-guide-to-local-llm-inference-tools-in-july-2026-llamacpp-ollama-vllm-sglang-and-4mh1 · https://blog.starmorph.com/blog/local-llm-inference-tools-guide · https://openalternative.co/blog/best-local-llm-tools · https://www.storagereview.com/best/local-llm-tools · https://deepresearch.ninja/2026/06/Open-Source-LLM-Inference-Projects-A-Comprehensive-Comparative-Analysis/ · https://www.digitalapplied.com/blog/run-local-llms-ollama-vs-lm-studio-vs-vllm-2026-guide
