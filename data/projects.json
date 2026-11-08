@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1066,
+    "count": 1067,
     "schema_version": 2
   },
   "projects": [
@@ -15019,6 +15019,28 @@
       "verification_level": "docs-read",
       "sources": [
         "https://www.trykondo.com"
+      ]
+    },
+    {
+      "name": "ai-memory",
+      "repo": "akitaonrails/ai-memory",
+      "category": "agent-memory",
+      "license": "MIT",
+      "stars": 15353,
+      "open_source": true,
+      "notes": "Bộ nhớ dài hạn dùng chung cho 20+ coding agent (Claude Code, Codex, Cursor, Gemini CLI…) của Fabio Akita: một binary Rust, wiki Markdown trong git làm nguồn sự thật, SQLite FTS5 làm chỉ mục; handoff có kiểu nhận đúng một lần, ai-memory run mang phiên sang agent khác; hook tự ghi, mặc định 0 lời gọi LLM; lão hóa theo mức dùng, không xóa cứng; server tự host cho nhiều máy và nhóm (audit log); không telemetry; ~8.000 test, evals LongMemEval; install.sh kiểm SHA-256 + ai-memory setup; v3.4.3, 5.743 commit; ★ 8/11/2026: 15.353 (GitHub search API), mục 10 §6h",
+      "section": "10",
+      "id": "ai-memory-akitaonrails",
+      "profile_path": "10-local-llm-rag-memory/README.md",
+      "profile_anchor": "10-local-llm-rag-memory/README.md#6h-hồ-sơ-akitaonrailsai-memory-bộ-nhớ-dài-hạn-dùng-chung-cho-20-coding-agent-wiki-markdown-trong-git-mặc-định-không-gọi-llm-ảnh-readme-người-dùng-gửi-đọc-mã-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "fec76f18c15835bb2dc5c2be3081ce4db0c1270e",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/README.md",
+        "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/DATA_HANDLING.md",
+        "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/evals/README.md",
+        "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/LICENSE"
       ]
     }
   ]

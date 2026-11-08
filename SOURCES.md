@@ -1964,3 +1964,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-08d (ảnh "8 plugin, 8 kỹ năng, 8 MCP" → mục 20 §3zb)
 
 - Clone `--filter=blob:none` 8/11/2026: `anthropics/financial-services` HEAD `60565064557ca77b12f62aa7877f365d111c129d`, `anthropics/claude-for-legal` HEAD `4a6c651889c97cc9140580363c73e0eb17379c2b`, `coreyhaines31/marketingskills` HEAD `96798cf38736ecdba015a1d2b0521b0c8f8f41dd`, `blader/humanizer` HEAD `0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0`, `makenotion/notion-mcp-server` HEAD `cf16e5c20bfbfb98ecec1227f210ef0ae3abebe5`, `zapier/zapier-mcp` HEAD `54a12277a12c60df51ec16cf4e4ef0b27b166649`, `perplexityai/modelcontextprotocol` HEAD `cd1d27cffe56739819abb3e56a18e26dbd88c487`, `anthropics/skills` HEAD `2c5958ecac7cee2b583967a2c4981d0f4a75c579`, `vercel-labs/skills` HEAD `d3701c11b1101251af14c9d148f026e1a47ebe17` (anthropics/skills và vercel-labs/skills chỉ đọc cây thư mục). Docs: https://docs.granola.ai/help-center/sharing/integrations/mcp · https://docs.slack.dev/ai/mcp-server/ · https://www.trykondo.com. GitHub search API 8/11/2026 cho 24 mục.
+
+## Bổ sung 2026-11-08e (ảnh README ai-memory → mục 10 §6h)
+
+- `akitaonrails/ai-memory`: clone `--filter=blob:none` HEAD `fec76f18c15835bb2dc5c2be3081ce4db0c1270e` (5.743 commit, tag v3.4.3): README, `DATA_HANDLING.md`, `evals/README.md`, `crates/`, `companions/`, `.github/workflows/`, đếm `#[test]`. GitHub search API 8/11/2026.
