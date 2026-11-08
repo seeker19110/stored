@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1067,
+    "count": 1074,
     "schema_version": 2
   },
   "projects": [
@@ -15041,6 +15041,138 @@
         "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/DATA_HANDLING.md",
         "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/evals/README.md",
         "https://github.com/akitaonrails/ai-memory/blob/fec76f18c15835bb2dc5c2be3081ce4db0c1270e/LICENSE"
+      ]
+    },
+    {
+      "name": "LinkML",
+      "repo": "linkml/linkml",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 691,
+      "open_source": true,
+      "notes": "Ngôn ngữ mô hình dữ liệu liên kết hướng đối tượng viết bằng YAML, sinh JSON Schema, SQL DDL, Pydantic, OWL, SHACL; imports/is_a/mixins cho Core + module ngành; ★ 8/11/2026: 691 (GitHub search API), mục 24 §6c (Business Ontology)",
+      "section": "24",
+      "id": "linkml",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "5dcae0f60bb524b3aec2b8a488fcce3546da8149",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/linkml/linkml/blob/5dcae0f60bb524b3aec2b8a488fcce3546da8149/README.md"
+      ]
+    },
+    {
+      "name": "Protégé",
+      "repo": "protegeproject/protege",
+      "category": "data",
+      "license": "BSD-2-Clause",
+      "stars": 1634,
+      "open_source": true,
+      "notes": "Trình soạn ontology OWL 2 mã mở của Stanford, kiến trúc plugin; ★ 8/11/2026: 1.634 (GitHub search API), mục 24 §6c (Business Ontology)",
+      "section": "24",
+      "id": "protege",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "bf03cccc65ea664e139d6829bba6d209ef58ee55",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/protegeproject/protege/blob/bf03cccc65ea664e139d6829bba6d209ef58ee55/README.md"
+      ]
+    },
+    {
+      "name": "schema.org",
+      "repo": "schemaorg/schemaorg",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 6300,
+      "open_source": true,
+      "notes": "Từ vựng chung (Person, Organization, Product, Order, Invoice, Offer…) làm tên chuẩn cho Core Ontology; ★ 8/11/2026: 6.300 (GitHub search API), mục 24 §6c (Business Ontology)",
+      "section": "24",
+      "id": "schemaorg",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "02bbb0f199023dd3fc335b27dde8a71066f84f61",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/schemaorg/schemaorg/blob/02bbb0f199023dd3fc335b27dde8a71066f84f61/README.md"
+      ]
+    },
+    {
+      "name": "pySHACL",
+      "repo": "RDFLib/pySHACL",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 371,
+      "open_source": true,
+      "notes": "Bộ kiểm SHACL (W3C) thuần Python: biến Business Rules thành bài kiểm dữ liệu; ★ 8/11/2026: 371 (GitHub search API), mục 24 §6c (Business Ontology)",
+      "section": "24",
+      "id": "pyshacl",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "df57bd4390bd397811d7c2d3b7cf0e49cd21c189",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/RDFLib/pySHACL/blob/df57bd4390bd397811d7c2d3b7cf0e49cd21c189/README.md"
+      ]
+    },
+    {
+      "name": "Ontop",
+      "repo": "ontop/ontop",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 1016,
+      "open_source": true,
+      "notes": "Knowledge graph ảo trên CSDL quan hệ: ánh xạ R2RML, dịch SPARQL sang SQL, dữ liệu giữ ở nguồn; ★ 8/11/2026: 1.016 (GitHub search API), mục 24 §6c (Business Ontology)",
+      "section": "24",
+      "id": "ontop",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "964dbb79431fb958fce9de0784424f7c0e35f9bf",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/ontop/ontop/blob/964dbb79431fb958fce9de0784424f7c0e35f9bf/README.md"
+      ]
+    },
+    {
+      "name": "MetricFlow",
+      "repo": "dbt-labs/metricflow",
+      "category": "data",
+      "license": "Apache-2.0",
+      "stars": 1866,
+      "open_source": true,
+      "notes": "Định nghĩa KPI/metric bằng code (dbt Semantic Layer) dùng chung cho BI, API, agent; ★ 8/11/2026: 1.866 (GitHub search API), mục 24 §6c (Business Ontology)",
+      "section": "24",
+      "id": "metricflow",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verified_ref": "fe4b8c1ccb72a8ca77494b345777eff20a714119",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/dbt-labs/metricflow/blob/fe4b8c1ccb72a8ca77494b345777eff20a714119/README.md"
+      ]
+    },
+    {
+      "name": "Palantir Foundry Ontology",
+      "url": "https://www.palantir.com/docs/foundry/ontology/core-concepts",
+      "category": "data",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Sản phẩm thương mại: object type, property, shared property, link type, action type, functions, interfaces, roles, Object View; bản gần nhất với quy trình Business Ontology 8 bước (đọc docs 8/11/2026), mục 24 §6c",
+      "section": "24",
+      "id": "palantir-ontology",
+      "profile_path": "24-ai-data-engineering/README.md",
+      "profile_anchor": "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026",
+      "last_verified_at": "2026-11-08",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.palantir.com/docs/foundry/ontology/core-concepts"
       ]
     }
   ]
