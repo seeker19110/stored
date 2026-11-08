@@ -455,6 +455,10 @@ Mục 20 §3zb ghép 24 mục trong ảnh với repo hoặc trang chính thức 
 
 ai-memory của Fabio Akita (mục 10 §6h, 15,4k★, MIT) cho hơn 20 coding agent dùng chung một bộ nhớ dài hạn. Bỏ Claude Code giữa chừng, mở Codex cùng thư mục, agent mới nhận handoff ghi chỗ đang dừng, cái đã thất bại và việc còn mở. Bộ nhớ là wiki Markdown trong git, chạy trên server bạn tự host nên dùng được qua nhiều máy và cả nhóm. Mặc định không gọi LLM và không có telemetry. Cài bằng `install.sh` rồi `ai-memory setup`.
 
+### 74. Business Ontology cho doanh nghiệp (8/11/2026): quy trình, Core theo ngành, kiến trúc
+
+Mục 24 §6c gom ba infographic. Ảnh 1 là quy trình 8 bước: từ KPI, quy trình nghiệp vụ, Object, Property, Relationship, Business Rules, mapping dữ liệu tới AI Agent, kèm 5 vai trò. Ảnh 2 là Core 8 Object dùng chung (Customer, Product, Order…), mở rộng theo từng ngành sản xuất, xây dựng, thương mại, du lịch. Ảnh 3 là kiến trúc 5 lớp từ CRM, ERP, MISA tới người dùng, có lớp quản trị và bảo mật. Mục này ghép từng khái niệm với Palantir Ontology và chuẩn W3C (OWL, SHACL), rồi gợi ý công cụ mở cho từng bước: LinkML, Protégé, schema.org, pySHACL, Ontop, MetricFlow.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

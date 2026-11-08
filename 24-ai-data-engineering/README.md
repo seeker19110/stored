@@ -268,6 +268,68 @@ CI DVC ở SHA này có matrix OS/Python và đặt `DVC_NO_ANALYTICS` ở các 
 
 **Nguồn §6b:** [LICENSE](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/LICENSE) · [dvc/repo/reproduce.py](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/reproduce.py) · [dvc/repo/pull.py](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/pull.py) · [dvc/repo/status.py](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/dvc/repo/status.py) · [.github/workflows/tests.yaml](https://github.com/treeverse/dvc/blob/56e59829512ff134aa269099a2099587b810b4dd/.github/workflows/tests.yaml).
 
+## 6c. Business Ontology cho doanh nghiệp: quy trình 8 bước, Core mở rộng theo ngành, kiến trúc 5 lớp, và công cụ mở cho từng bước (3 infographic người dùng gửi, 8/11/2026)
+
+> Ba ảnh: (1) "Quy trình triển khai Business Ontology" 8 bước, 5 vai trò, 4 đầu ra; (2) "Mô hình Core Ontology và mở rộng theo ngành" với 8 Object lõi và 4 ngành; (3) "Kiến trúc Ontology cho Doanh nghiệp" từ nguồn dữ liệu tới người dùng, có lớp quản trị và bảo mật bên dưới. Ba ảnh là một bộ khái niệm, không kèm repo; mục này ghi lại ý chính và ghép với chuẩn, công cụ mở để làm được từng bước.
+
+### 6c.1 Ý chính của ba ảnh
+
+**Quy trình 8 bước** (ảnh 1):
+
+| Bước | Việc | Vai trò chính | Ra gì |
+|---|---|---|---|
+| 1 | Xác định bài toán và KPI | Business Owner | Mục tiêu, phạm vi, chỉ số đo |
+| 2 | Phân tích quy trình nghiệp vụ end-to-end | BA | Hoạt động, đầu vào, đầu ra, tác nhân |
+| 3 | Xác định Object (thực thể cốt lõi) | BA, Data Architect | Danh sách Object |
+| 4 | Định nghĩa Property và Trạng thái trong vòng đời | Data Architect | Thuộc tính, máy trạng thái |
+| 5 | Mô hình Relationship (liên kết, sở hữu, phụ thuộc, bao gồm) | Data Architect | Đồ thị quan hệ |
+| 6 | Thiết lập Business Rules (ràng buộc, logic suy luận, điều kiện xử lý) | BA, Data Architect | Bộ luật |
+| 7 | Mapping dữ liệu từ CRM, ERP, Excel; làm sạch, chuẩn hóa | Data Engineer | Data Mapping |
+| 8 | AI Agent, Dashboard, Action (tự động hóa, gợi ý, cảnh báo) | AI Engineer | Use case AI |
+
+Bốn đầu ra: Ontology Catalog, Data Mapping, Test Cases, Use Cases AI.
+
+**Core chung, mở rộng theo ngành** (ảnh 2): 8 Object lõi dùng mọi nơi (Customer, Product, Order, Contract, Invoice, Payment, Employee, Supplier); mỗi ngành thêm Object riêng: sản xuất (BOM, lệnh sản xuất, vật tư, chất lượng), xây dựng (công trình, hạng mục, khối lượng, nghiệm thu), thương mại (kho, giao hàng, khuyến mại, nhà phân phối), du lịch (tour, booking, lịch khởi hành, dịch vụ). Cùng một Core phục vụ Data Platform, BI, AI Agent, ERP/CRM và báo cáo quản trị.
+
+**Kiến trúc 5 lớp** (ảnh 3): nguồn dữ liệu (CRM, ERP, kế toán MISA, Excel, HRM, sản xuất, website/app) → Data Platform (tích hợp, làm sạch, kho dữ liệu hoặc lakehouse, BI và API) → Business Ontology (Object, Property, Relationship, Business Rules, KPI, Action) → AI và ứng dụng (AI Agent, Copilot, dashboard, workflow, cảnh báo, tự động hóa) → người dùng (CEO, trưởng phòng, nhân viên, khách hàng), có vòng phản hồi và yêu cầu xử lý quay lại lớp ứng dụng. Lớp quản trị và bảo mật nằm dưới mọi lớp: phân quyền, audit log, data quality, quy trình phê duyệt.
+
+### 6c.2 Khái niệm ứng với chuẩn mở và sản phẩm đã có
+
+| Khái niệm trong ảnh | Palantir Foundry Ontology | Chuẩn W3C / mở |
+|---|---|---|
+| Object | Object type | `owl:Class`, LinkML `class` |
+| Property | Property, Shared property | `owl:DatatypeProperty`, LinkML `slot` |
+| Relationship | Link type | `owl:ObjectProperty` |
+| Business Rules | Functions, ràng buộc trên Action | SHACL shapes |
+| Action | Action type | API hoặc workflow ghi lại vào hệ thống nguồn |
+| Core + mở rộng ngành | Interfaces (hình dạng chung cho nhiều Object type) | LinkML `imports`, `is_a`, `mixins`; schema.org làm từ vựng lõi |
+| Phân quyền | Roles | quyền ở lớp truy vấn và ứng dụng |
+
+Palantir mô tả Ontology là mô hình thế giới của tổ chức, ánh xạ dataset và model vào object type, property, link và action, và dùng Object View gom chi tiết, đối tượng liên kết, chỉ số và dashboard của một object vào một chỗ. Đây là bản thương mại gần nhất với ba ảnh.
+
+### 6c.3 Công cụ mở cho từng bước
+
+| Bước | Công cụ | Repo | ★ (8/11/2026) | Giấy phép | Dùng làm gì |
+|---|---|---|---|---|---|
+| 3–5 | LinkML | `linkml/linkml` | 691 | Apache-2.0 | Viết Object, Property, Relationship bằng YAML hướng đối tượng, sinh ra JSON Schema, SQL DDL, Pydantic, OWL, SHACL và tài liệu từ một nguồn; `imports` cho Core và module ngành |
+| 3–5 | Protégé | `protegeproject/protege` | 1.634 | BSD-2-Clause | Trình soạn ontology OWL 2 có giao diện, kiến trúc plugin, cho BA và Data Architect xem và sửa trực quan |
+| 3 | schema.org | `schemaorg/schemaorg` | 6.300 | Apache-2.0 | Từ vựng chung có sẵn Person, Organization, Product, Order, Invoice, Offer để đặt tên Core thống nhất |
+| 6, kiểm thử | pySHACL | `RDFLib/pySHACL` | 371 | Apache-2.0 | Kiểm dữ liệu theo SHACL (chuẩn W3C): biến Business Rules thành bài kiểm chạy được, ra Test Cases |
+| 7 | Ontop | `ontop/ontop` | 1.016 | Apache-2.0 | Knowledge graph ảo trên cơ sở dữ liệu quan hệ: ánh xạ bảng vào ontology bằng R2RML, dịch SPARQL thành SQL, dữ liệu vẫn ở nguồn |
+| 1, 8 | MetricFlow | `dbt-labs/metricflow` | 1.866 | Apache-2.0 | Định nghĩa KPI bằng code một lần, dùng chung cho BI, API và agent |
+
+Cùng nhóm đã có hồ sơ: Cube (`cube-js/cube`) và WrenAI (`Canner/WrenAI`) ở mục 15 làm semantic layer cho BI và text-to-SQL.
+
+### 6c.4 Làm theo ba ảnh
+
+1. Chọn một bài toán có KPI rõ (bước 1) và viết Core 8 Object bằng LinkML, đặt tên theo schema.org.
+2. Thêm một module ngành bằng `imports` (ví dụ xây dựng: công trình, hạng mục, khối lượng, nghiệm thu), giữ Core không đổi.
+3. Viết Business Rules thành SHACL và chạy pySHACL trên dữ liệu mẫu; mỗi luật là một Test Case.
+4. Ánh xạ bảng CRM, ERP, MISA vào Object bằng Ontop (không phải chép dữ liệu) hoặc pipeline vào lakehouse; định nghĩa KPI trong MetricFlow.
+5. Cho AI Agent đọc ontology (tên Object, quan hệ, luật) làm ngữ cảnh và gọi Action qua API có phân quyền, audit log và bước phê duyệt như lớp quản trị trong ảnh 3.
+
+**Nguồn §6c:** 3 infographic người dùng gửi 8/11/2026 · https://www.palantir.com/docs/foundry/ontology/core-concepts · clone `--depth 1 --sparse` 8/11/2026: https://github.com/linkml/linkml/blob/5dcae0f60bb524b3aec2b8a488fcce3546da8149/README.md · https://github.com/protegeproject/protege/blob/bf03cccc65ea664e139d6829bba6d209ef58ee55/README.md · https://github.com/schemaorg/schemaorg/blob/02bbb0f199023dd3fc335b27dde8a71066f84f61/README.md · https://github.com/RDFLib/pySHACL/blob/df57bd4390bd397811d7c2d3b7cf0e49cd21c189/README.md · https://github.com/ontop/ontop/blob/964dbb79431fb958fce9de0784424f7c0e35f9bf/README.md · https://github.com/dbt-labs/metricflow/blob/fe4b8c1ccb72a8ca77494b345777eff20a714119/README.md · GitHub search API 8/11/2026.
+
 ## 7. Nguồn và nguyên tắc cập nhật
 
 Mỗi hồ sơ dẫn README/LICENSE/CI/source ghim full SHA đã clone. Stars và `archived` lấy từ GitHub REST ngày 2/11/2026; commit date lấy từ HEAD đã đọc. `pushed_at` có thể là hoạt động nhánh khác. Không gọi repo “còn phát triển mạnh” chỉ vì chưa archive. Không chạy mã, upload dataset hay kiểm chứng con số marketing trong đợt này.

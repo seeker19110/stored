@@ -1968,3 +1968,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-08e (ảnh README ai-memory → mục 10 §6h)
 
 - `akitaonrails/ai-memory`: clone `--filter=blob:none` HEAD `fec76f18c15835bb2dc5c2be3081ce4db0c1270e` (5.743 commit, tag v3.4.3): README, `DATA_HANDLING.md`, `evals/README.md`, `crates/`, `companions/`, `.github/workflows/`, đếm `#[test]`. GitHub search API 8/11/2026.
+
+## Bổ sung 2026-11-08f (3 infographic Business Ontology → mục 24 §6c)
+
+- Clone `--depth 1 --filter=blob:none --sparse` 8/11/2026: `linkml/linkml` HEAD `5dcae0f60bb524b3aec2b8a488fcce3546da8149`, `ontop/ontop` HEAD `964dbb79431fb958fce9de0784424f7c0e35f9bf`, `RDFLib/pySHACL` HEAD `df57bd4390bd397811d7c2d3b7cf0e49cd21c189`, `protegeproject/protege` HEAD `bf03cccc65ea664e139d6829bba6d209ef58ee55`, `dbt-labs/metricflow` HEAD `fe4b8c1ccb72a8ca77494b345777eff20a714119`, `schemaorg/schemaorg` HEAD `02bbb0f199023dd3fc335b27dde8a71066f84f61` (schema.org chỉ ls-remote). Docs: https://www.palantir.com/docs/foundry/ontology/core-concepts. GitHub search API 8/11/2026.
