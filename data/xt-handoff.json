@@ -1,26 +1,35 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của seeker19110/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026)",
     "columns": [
       "deeper",
       "shallower",
       "missing",
       "not_adding"
     ],
-    "updated": "2026-11-04",
-    "count": 116,
+    "updated": "2026-11-10",
+    "count": 125,
     "current_batch": {
-      "stored_base": "79c86359b6acc72da840fdd040e26bea32cfb57d",
-      "xt_commit": "23447d817d2bc8cf68093591177f85fd72a8a2f6",
+      "stored_base": "4a45f00",
+      "xt_commit": "aeb195c2b6ae5074d70efe592d218e9c1147c05e",
       "ids": [
-        "XT-H-113",
-        "XT-H-116"
+        "XT-H-117",
+        "XT-H-125"
       ],
       "status": "documented-in-stored"
     },
     "previous_batches": [
+      {
+        "stored_base": "79c86359b6acc72da840fdd040e26bea32cfb57d",
+        "xt_commit": "23447d817d2bc8cf68093591177f85fd72a8a2f6",
+        "ids": [
+          "XT-H-113",
+          "XT-H-116"
+        ],
+        "status": "documented-in-stored"
+      },
       {
         "stored_base": "a1413e6abbe71cd98c9125b967f33689f12a25d0",
         "xt_commit": "628e36caeb706001cf512787eba56bcfcb44f133",
@@ -2672,6 +2681,352 @@
         "XT-H-086"
       ],
       "note": "Đối chiếu framework/implementation tại 23447d817d2bc8cf68093591177f85fd72a8a2f6; bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-117",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "10 §6h"
+      ],
+      "profile_anchors": [
+        "10-local-llm-rag-memory/README.md#6h-hồ-sơ-akitaonrailsai-memory-bộ-nhớ-dài-hạn-dùng-chung-cho-20-coding-agent-wiki-markdown-trong-git-mặc-định-không-gọi-llm-ảnh-readme-người-dùng-gửi-đọc-mã-8112026"
+      ],
+      "lesson": "Bộ nhớ dùng chung nhiều harness (ai-memory) có handoff có kiểu, mỗi handoff có chủ và chỉ được nhận một lần; nguồn sự thật là wiki Markdown trong git, chỉ mục SQLite dựng lại được; mặc định không gọi LLM.",
+      "xt_ids": [
+        "LOOP-HARNESS-019",
+        "LOOP-HARNESS-021",
+        "WF-DOC-016"
+      ],
+      "column": "shallower",
+      "existing_coverage": "LOOP-HARNESS-019/021 coi memory ngoài là công cụ tra cứu cho một harness, chỉ bật một công cụ, kho ngoài repo, quyền chủ sở hữu; WF-DOC-016 ghi bàn giao vào PROGRESS.md.",
+      "delta": "Chưa có luật cho trường hợp một server memory phục vụ nhiều harness hoặc nhiều người: bàn giao giữa Claude Code và Codex, phân tách tri thức dự án với handoff cá nhân, và tránh hai phiên cùng nhận một việc.",
+      "xt_evidence": [
+        {
+          "id": "LOOP-HARNESS-019",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 330,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/harness-files.md#L330"
+        },
+        {
+          "id": "LOOP-HARNESS-021",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 332,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/harness-files.md#L332"
+        },
+        {
+          "id": "WF-DOC-016",
+          "file": "framework/10-workflow/documentation-workflow.md",
+          "line": 60,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/10-workflow/documentation-workflow.md#L60"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Khi dùng một server memory chung cho nhiều harness hoặc nhiều người, SHOULD: PROGRESS.md vẫn là nguồn bàn giao chính; handoff trong memory có chủ, trạng thái và chỉ được nhận một lần; server bind loopback hoặc có xác thực, token chỉ chủ sở hữu đọc; tri thức theo dự án tách khỏi handoff cá nhân; nguồn lưu ở dạng file đọc được (Markdown/git) để rà và khôi phục. Kiểm fixture hai phiên cùng nhận một handoff: chỉ một phiên nhận được, phiên kia thấy đã có chủ."
+      }
+    },
+    {
+      "id": "XT-H-118",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "20 §3za"
+      ],
+      "profile_anchors": [
+        "20-claude-plugins-ecosystem/README.md#3za-hồ-sơ-garrytangstack-đội-kỹ-sư-ảo-cho-claude-code-plan-design-review-chấm-thiết-kế-010-ảnh-thẻ-skill-người-dùng-gửi-đọc-mã-7112026"
+      ],
+      "lesson": "Review kế hoạch giao diện của gstack (/plan-design-review) chấm từng mặt 0–10, nói rõ thế nào là 10, hỏi người dùng một quyết định cho mỗi chỗ hở, chỉ áp cách sửa đã chọn rồi chấm lại.",
+      "xt_ids": [
+        "LOOP-STOP-018",
+        "WF-SDD-011",
+        "LOOP-DESIGN-021"
+      ],
+      "column": "shallower",
+      "existing_coverage": "LOOP-STOP-018 ghi điểm quyết định có ≥ 2 phương án; WF-SDD-011 duyệt cách xác minh trước khi code; LOOP-DESIGN-021 kiểm UI sau khi làm bằng ảnh và gắn nhãn asserted-not-measured.",
+      "delta": "Chưa có bước rà thiết kế ở giai đoạn kế hoạch cho task UI theo từng mặt (cấu trúc thông tin, trạng thái, responsive, a11y…) và chưa có quy tắc “một quyết định cho một chỗ hở, áp đúng cách sửa đã chọn”.",
+      "xt_evidence": [
+        {
+          "id": "LOOP-STOP-018",
+          "file": "framework/11-autonomous-loop/stop-points-and-escalation.md",
+          "line": 232,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/stop-points-and-escalation.md#L232"
+        },
+        {
+          "id": "WF-SDD-011",
+          "file": "framework/10-workflow/spec-driven-development.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/10-workflow/spec-driven-development.md#L52"
+        },
+        {
+          "id": "LOOP-DESIGN-021",
+          "file": "framework/11-autonomous-loop/loop-design.md",
+          "line": 82,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/loop-design.md#L82"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với task có giao diện, SHOULD rà kế hoạch trước khi code theo danh sách mặt thiết kế cố định; mỗi mặt ghi điểm, lý do và điều kiện cụ thể để đạt mức tốt nhất; mỗi chỗ hở là một quyết định riêng ghi bằng loop decide, chỉ áp cách sửa đã chọn rồi chấm lại. Điểm là nhận định (asserted-not-measured), không thay Gate; mỗi chỗ hở đã chọn sửa phải đổi thành tiêu chí kiểm được trong PLAN. Kiểm: PLAN của task UI có bảng mặt thiết kế và mỗi dòng dưới mức tốt nhất có quyết định hoặc tiêu chí đi kèm."
+      }
+    },
+    {
+      "id": "XT-H-119",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "06 §7zb",
+        "19 §3h.4",
+        "06 §7za"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#7zb-đọc-lại-heydamirunslop-skill-biến-ui-vibecoded-thành-giao-diện-có-chủ-đích-114k-sau-10-ngày-ảnh-người-dùng-gửi-đọc-mã-8112026",
+        "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026"
+      ],
+      "lesson": "Bắt “AI slop” giao diện bằng luật tất định không cần LLM (Impeccable 62 luật) và quy trình kiểm trước sửa sau (unslop liệt kê từng dấu hiệu kèm vị trí, đề xuất hướng rồi mới sửa; màn đã tốt chỉ chỉnh nhỏ).",
+      "xt_ids": [
+        "UX-VISUAL-011"
+      ],
+      "column": "deeper",
+      "existing_coverage": "UX-VISUAL-011 đã có script check:ui-ux-guard (grep gradient ngoài token, transition: all, emoji, backdrop-filter) và review ảnh hero.",
+      "delta": "Thêm ví dụ công cụ tất định có sẵn (Impeccable detector) và fixture: màn có gradient tím + emoji nhãn phải bị bắt; màn sạch không bị đề xuất thiết kế lại. Không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "UX-VISUAL-011",
+          "file": "framework/06-design-ux/motion-and-visual-quality.md",
+          "line": 61,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/06-design-ux/motion-and-visual-quality.md#L61"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-120",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "19 §3h",
+        "22 §9k"
+      ],
+      "profile_anchors": [
+        "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026"
+      ],
+      "lesson": "Agent tự xem kết quả render trước khi xuất: Chrome DevTools MCP chụp khung trang HTML, MCP for Blender có tool look (viewport, camera, nhiều góc, dải khung hình); kiểm file video cuối bằng ffprobe.",
+      "xt_ids": [
+        "LOOP-DESIGN-021"
+      ],
+      "column": "deeper",
+      "existing_coverage": "LOOP-DESIGN-021 đã đòi ảnh màn đã đổi, chuỗi frame cho animation, nhãn measured/unmeasured.",
+      "delta": "Mở rộng ví dụ sang artifact không phải web: video (lấy frame từ chính file MP4 đã encode, ffprobe kiểm codec/thời lượng/fps) và cảnh 3D (render nhiều góc). Kiểm trên artifact xuất cuối, không chỉ trang nguồn.",
+      "xt_evidence": [
+        {
+          "id": "LOOP-DESIGN-021",
+          "file": "framework/11-autonomous-loop/loop-design.md",
+          "line": 82,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/loop-design.md#L82"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-061"
+      ],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-121",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "10 §6h"
+      ],
+      "profile_anchors": [
+        "10-local-llm-rag-memory/README.md#6h-hồ-sơ-akitaonrailsai-memory-bộ-nhớ-dài-hạn-dùng-chung-cho-20-coding-agent-wiki-markdown-trong-git-mặc-định-không-gọi-llm-ảnh-readme-người-dùng-gửi-đọc-mã-8112026"
+      ],
+      "lesson": "Script cài của ai-memory tải bản phát hành theo OS/CPU, so SHA-256 với checksum đã công bố và từ chối cài khi lệch; lệnh setup in kế hoạch (--plan), hỏi trước khi nối từng agent, chạy lại không đổi gì.",
+      "xt_ids": [
+        "PRF-CLI-008",
+        "LOOP-HARNESS-025"
+      ],
+      "column": "deeper",
+      "existing_coverage": "PRF-CLI-008 (MUST@M) đã đòi checksums.txt SHA-256 kèm chữ ký/attestation và cấm hướng dẫn curl | sh không kiểm checksum; LOOP-HARNESS-025 thử guard chặn curl | sh.",
+      "delta": "Thêm ví dụ tốt và hai ý vận hành: lệnh setup in kế hoạch không đổi gì (--plan), hỏi trước khi sửa cấu hình của agent khác, chạy lại không đổi thêm. Checksum cùng bản phát hành chỉ bảo vệ đường truyền (XT-H-046), nên vẫn cần chữ ký/attestation như PRF-CLI-008. Không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "PRF-CLI-008",
+          "file": "framework/02-profiles/cli-tool.md",
+          "line": 63,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/02-profiles/cli-tool.md#L63"
+        },
+        {
+          "id": "LOOP-HARNESS-025",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 336,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/harness-files.md#L336"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-046"
+      ],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-122",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "20 §3zb"
+      ],
+      "profile_anchors": [
+        "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026"
+      ],
+      "lesson": "Connector MCP của SaaS hành động thay người dùng: Slack MCP cần app đã duyệt và scope theo tool, Granola có chế độ chỉ đọc và tắt transcript, Kondo giữ mọi tin agent viết ở dạng nháp tới khi người bấm gửi.",
+      "xt_ids": [
+        "LOOP-STOP-002",
+        "LOOP-STOP-014",
+        "LOOP-STOP-023",
+        "SEC-AI-007"
+      ],
+      "column": "shallower",
+      "existing_coverage": "LOOP-STOP-002 đưa hành động đối ngoại qua guard; LOOP-STOP-014 cho routine chỉ đề xuất; LOOP-STOP-023 cấm agent tự thêm MCP giữa phiên. SEC-AI-007 đòi identity theo người dùng/phiên, token TTL ngắn, scope hẹp.",
+      "delta": "Chưa có bảng khai từng connector SaaS: scope, đọc/ghi, chế độ nháp; guard dựa trên lệnh shell có thể không thấy tool MCP gửi tin.",
+      "xt_evidence": [
+        {
+          "id": "LOOP-STOP-002",
+          "file": "framework/11-autonomous-loop/stop-points-and-escalation.md",
+          "line": 216,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/stop-points-and-escalation.md#L216"
+        },
+        {
+          "id": "LOOP-STOP-014",
+          "file": "framework/11-autonomous-loop/stop-points-and-escalation.md",
+          "line": 228,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/stop-points-and-escalation.md#L228"
+        },
+        {
+          "id": "LOOP-STOP-023",
+          "file": "framework/11-autonomous-loop/stop-points-and-escalation.md",
+          "line": 237,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/11-autonomous-loop/stop-points-and-escalation.md#L237"
+        },
+        {
+          "id": "SEC-AI-007",
+          "file": "framework/12-security/ai-security.md",
+          "line": 59,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/12-security/ai-security.md#L59"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với connector MCP của dịch vụ ngoài (chat, email, ghi chú, CRM), SHOULD khai trong repo từng connector: scope đã cấp, tool đọc và tool ghi, chế độ chỉ đọc hoặc nháp nếu có; ưu tiên chế độ nháp hoặc chỉ đọc cho phiên không người trực; tool gửi/đăng của connector được coi là hành động đối ngoại như LOOP-STOP-002. Kiểm fixture: phiên không người trực gọi tool gửi tin của connector phải bị chặn hoặc chỉ tạo nháp."
+      }
+    },
+    {
+      "id": "XT-H-123",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "19 §3h",
+        "20 §3zb"
+      ],
+      "profile_anchors": [
+        "19-agentic-video-media/README.md#3h-kiểm-ảnh-ai-video-stack-remotion-skills-blender-và-blender-mcp-faster-whisper-chatterbox-gsap-ảnh-người-dùng-gửi-đọc-mã-8112026"
+      ],
+      "lesson": "Repo và package đổi tên hoặc đổi chủ vẫn chạy bằng tên cũ: blender-mcp thành mcp-for-blender (uvx blender-mcp vẫn chạy), ComfyUI chuyển org, Notion khuyên bỏ server tự host sang bản remote.",
+      "xt_ids": [
+        "SEC-SUPPLY-026"
+      ],
+      "column": "shallower",
+      "existing_coverage": "SEC-SUPPLY-026 đòi đọc lịch sử thật thay số commit/sao khi đánh giá bảo trì.",
+      "delta": "Chưa có kiểm tên chuẩn: dependency trỏ tên cũ qua redirect hoặc alias, hoặc bản đã được chủ dự án khuyên ngừng dùng.",
+      "xt_evidence": [
+        {
+          "id": "SEC-SUPPLY-026",
+          "file": "framework/12-security/supply-chain.md",
+          "line": 72,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/12-security/supply-chain.md#L72"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-030"
+      ],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với dependency, MCP server và skill bên thứ ba, SHOULD ghim tên chuẩn hiện tại (owner/repo, tên package) và định kỳ so tên khai báo với tên API trả về; báo khi repo redirect, package đổi tên, hoặc README ghi deprecated/khuyên bản khác. Kiểm fixture: khai báo repo cũ đã redirect thì công cụ kiểm báo tên chuẩn mới."
+      }
+    },
+    {
+      "id": "XT-H-124",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "20 §3zb",
+        "20 §3za"
+      ],
+      "profile_anchors": [
+        "20-claude-plugins-ecosystem/README.md#3f5-đọc-lại-2112026-ảnh-readme-mới-bốn-commit-thêm-rồi-gỡ-claude-reel-editor-banner-giữ-số-cũ-ảnh-người-dùng-gửi",
+        "20-claude-plugins-ecosystem/README.md#3za-hồ-sơ-garrytangstack-đội-kỹ-sư-ảo-cho-claude-code-plan-design-review-chấm-thiết-kế-010-ảnh-thẻ-skill-người-dùng-gửi-đọc-mã-7112026"
+      ],
+      "lesson": "Số sao trong infographic là ảnh chụp cũ hoặc ghép sai repo: gstack ghi 82,7k khi API là 140,7k, social-media-skills ghi 59,2k nhưng repo cùng tên lớn nhất chỉ 4,6k.",
+      "xt_ids": [
+        "SEC-SUPPLY-026"
+      ],
+      "column": "deeper",
+      "existing_coverage": "SEC-SUPPLY-026 đã nói số sao không là bằng chứng bảo trì.",
+      "delta": "Thêm ví dụ: khi nguồn là ảnh hay bài đăng, đối chiếu owner/repo và số liệu bằng API tại ngày đọc, ghi ngày; không dùng số trong ảnh để chọn công cụ.",
+      "xt_evidence": [
+        {
+          "id": "SEC-SUPPLY-026",
+          "file": "framework/12-security/supply-chain.md",
+          "line": 72,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/12-security/supply-chain.md#L72"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-125",
+      "date": "2026-11-10",
+      "stored_ref": [
+        "24 §6c"
+      ],
+      "profile_anchors": [
+        "24-ai-data-engineering/README.md#6c-business-ontology-cho-doanh-nghiệp-quy-trình-8-bước-core-mở-rộng-theo-ngành-kiến-trúc-5-lớp-và-công-cụ-mở-cho-từng-bước-3-infographic-người-dùng-gửi-8112026"
+      ],
+      "lesson": "Business Ontology cho AI agent: Object, Property, Relationship, Business Rules, KPI và Action cần một mô hình máy đọc được làm nguồn chung; luật viết thành SHACL chạy được (pySHACL), KPI định nghĩa một lần (MetricFlow), Core chung và module theo ngành (LinkML imports).",
+      "xt_ids": [
+        "PRF-DATA-002",
+        "DB-MODEL-010",
+        "UX-CONTENT-008"
+      ],
+      "column": "shallower",
+      "existing_coverage": "PRF-DATA-002 có data contract; DB-MODEL-010 có từ điển dữ liệu; UX-CONTENT-008 có GLOSSARY.",
+      "delta": "Ba nguồn tách nhau (glossary, schema, comment) và chưa có luật cho luật nghiệp vụ dạng chạy được hay KPI một định nghĩa khi agent đọc dữ liệu nghiệp vụ.",
+      "xt_evidence": [
+        {
+          "id": "PRF-DATA-002",
+          "file": "framework/02-profiles/data-ml.md",
+          "line": 63,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/02-profiles/data-ml.md#L63"
+        },
+        {
+          "id": "DB-MODEL-010",
+          "file": "framework/09-database/data-modeling.md",
+          "line": 58,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/09-database/data-modeling.md#L58"
+        },
+        {
+          "id": "UX-CONTENT-008",
+          "file": "framework/06-design-ux/content-and-microcopy.md",
+          "line": 47,
+          "url": "https://github.com/seeker19110/X-Templates/blob/aeb195c2b6ae5074d70efe592d218e9c1147c05e/framework/06-design-ux/content-and-microcopy.md#L47"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại aeb195c2b6ae5074d70efe592d218e9c1147c05e (10/11/2026); bàn giao trong stored, chưa sửa/gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với sản phẩm cho AI agent đọc/ghi dữ liệu nghiệp vụ, SHOULD có một mô hình miền máy đọc được (thực thể, thuộc tính, trạng thái, quan hệ) làm nguồn sinh glossary, schema hoặc tài liệu cho agent; luật nghiệp vụ quan trọng viết thành kiểm chạy được trên dữ liệu mẫu; KPI định nghĩa một lần trong code và dùng chung cho BI, API, agent. Kiểm: thêm một thuộc tính vào mô hình thì glossary/schema sinh lại khớp; bản ghi vi phạm một luật mẫu bị bộ kiểm báo."
+      }
     }
   ]
 }
