@@ -12,13 +12,14 @@
     "updated": "2026-11-10",
     "count": 125,
     "current_batch": {
-      "stored_base": "4a45f00",
+      "stored_base": "82ab9b2f880ca067a11f58bdaa68fe254b621d69",
       "xt_commit": "aeb195c2b6ae5074d70efe592d218e9c1147c05e",
       "ids": [
         "XT-H-117",
         "XT-H-125"
       ],
-      "status": "documented-in-stored"
+      "status": "proposal-pr-open",
+      "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/494"
     },
     "previous_batches": [
       {
