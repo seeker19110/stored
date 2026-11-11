@@ -567,6 +567,94 @@ Advisor Tool (§8e) và Agent Teams (§8f) đều ảnh hưởng cache (model kh
 
 **Nguồn bổ sung:** [LICENSE](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/LICENSE) · [Normalization/match helpers](https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/agentevals/trajectory/utils.py). Các mutation trên chưa được thực thi trong kho; phạm vi xác minh hiện tại là đường mã scorer.
 
+<a id="beyond-the-agent-5-lop-2026-11-11"></a>
+
+## 8m. Kiểm ảnh và bài "AI Coding Is Moving Beyond the Agent": 5 lớp Model → Harness → Loop → Graph → Software Factory (ảnh và bài viết lại người dùng gửi, đối chiếu nguồn gốc 11/11/2026)
+
+> Ảnh gồm ba phần: (1) năm khung lồng nhau, từ trong ra ngoài là Model, Harness (context · tools · permissions), Loop (retry · validate · stop), Graph (routing · parallelism · human gates), Software Factory (routing · measurement · SDLC automation); (2) "A governed AI coding workflow" 9 bước trong một repo; (3) sơ đồ đồ thị có ba agent chạy song song. Kèm theo là một bài tiếng Việt viết lại, ghi nguồn cảm hứng là bài của Sumant Thakur.
+
+**Nguồn gốc:** bài *AI Coding Is Moving Beyond the Agent* của Sumant Thakur trên Substack "Autonomous AI Architect", đăng 2/9/2026. Bài viết lại giữ đúng năm câu hỏi và các ví dụ của bài gốc. Đây là một **mô hình tư duy của một tác giả**, chưa phải chuẩn: chính tác giả viết rằng ông dè dặt với thuật ngữ "graph engineering" và không chắc các tên gọi này sẽ tồn tại.
+
+### 8m.1 Năm lớp, năm câu hỏi, và chỗ kho đã có
+
+| Lớp | Câu hỏi (theo bài gốc) | Việc của lớp | Kho đã có ở đâu |
+|---|---|---|---|
+| Model | Tôi nên tạo ra cái gì? | Sinh mã, kế hoạch, đề xuất | Mục 01 §2 (benchmark) |
+| Harness | Tôi được phép và được trang bị để làm gì? | Context, tool, quyền, môi trường chạy | §4, §8c ở trên; mục 11 (sandbox), mục 12 (guardrail), mục 20 (hook, skill) |
+| Loop | Có nên tiếp tục không? | Xem kết quả rồi dừng, sửa, thử lại hoặc đưa lên người | §3, checklist §6 (mục 1, 3, 8); mục 21 §8 |
+| Graph | Ai hoặc cái gì hành động tiếp theo? | Định tuyến giữa agent, bước tất định và người; chạy song song rồi gộp | §1 (routing, parallelization, orchestrator–workers), §5; mục 02 (LangGraph); mục 21 §4–§5 |
+| Factory | Vận hành và cải tiến tất cả ở quy mô lớn thế nào? | Chọn worker, cấp context và quyền, đặt điểm duyệt, đo kết quả qua thời gian | [FACTORY.md](../FACTORY.md) §3 (cổng G0–G8); mục 01 §1.3 (ADE), mục 21 §10h (Pullboard) |
+
+Ba cột theo quy ước kho: bốn lớp trong (Model tới Graph) kho **đã có và sâu hơn** ảnh, vì đã đọc mã của từng công cụ. Lớp Factory kho **đã có nhưng nông hơn**: FACTORY.md mô tả cổng giao hàng, chưa có hồ sơ công cụ điều phối nhiều workflow. §8m.4 bổ sung phần đó.
+
+**Các bản xếp lớp khác đang cùng lưu hành, không khớp nhau:**
+
+| Nguồn | Các lớp | Khác ảnh ở đâu |
+|---|---|---|
+| Addy Osmani, *Software Factories, Light and Dark* (20/7/2026) | Loop → Harness → Factory | Loop nằm **trong** harness; ảnh vẽ ngược lại. Không có lớp Graph riêng |
+| Bài "5 Layers of AI Engineering" (dev.to, Substack opencloudai) | Prompt, Context, Harness, Loop, Graph | Không có Model và Factory; tách Prompt và Context khỏi Harness |
+| Lei Hua, arXiv 2611.06946 (3/11/2026) | Domain, Factory Harness, Agent Harness, Foundation Model, Plant | Gộp Loop vào Agent Harness; thêm lớp miền nghiệp vụ và lớp máy chạy |
+
+Bài arXiv đưa ra tiêu chí phân ranh dùng được ngay: cơ chế chỉ liên quan **một lần chạy** thì thuộc agent harness; cơ chế điều phối **từ hai lần chạy trở lên**, chuyển trạng thái sang lần chạy sau, hoặc được cập nhật từ kết quả các lần chạy khác thì thuộc factory. Tác giả tự ghi giới hạn: một người vừa vận hành, thiết kế vừa chấm; mẫu nhỏ; kết quả sơ bộ.
+
+### 8m.2 Kiểm từng ví dụ trong bài
+
+Ký hiệu: ✅ khớp nguồn gốc · ⚠️ khớp nhưng thiếu ý quan trọng · ❓ chưa xác minh được.
+
+| Ý trong bài | Đánh giá | Nguồn gốc nói gì |
+|---|---|---|
+| OpenAI: khoảng 1 triệu dòng, 1.500 PR, 5 tháng, ban đầu 3 kỹ sư | ⚠️ | Số liệu OpenAI tự công bố cho một sản phẩm beta nội bộ; trang gốc trả 403 khi đọc 11/11/2026 nên con số 1.500 PR chỉ đối chiếu được qua bản dịch và bài của Martin Fowler **(chưa xác minh trực tiếp)**. Các nguồn này còn ghi: nhóm sau đó tăng lên 7 người, và người **không bắt buộc** phải review PR, phần lớn review là agent với agent. Chi tiết này ngược với thông điệp "người giữ quyền merge cuối" của bài |
+| Anthropic tách Planner, Generator, Evaluator | ✅ | Đúng với bài *Harness design for long-running application development* (24/3/2026), mục 21 §2.2. Bài gốc lại dẫn link sang bài 26/11/2025 (*Effective harnesses…*), là bài về initializer và coding agent |
+| Atlan Sherlock: 11.000 alert/tháng, chặn hơn 85% trước khi gọi model, từ hơn 10 phút còn khoảng 2 phút | ⚠️ | Khớp blog Atlan (17/7/2026): một cửa sổ 30 ngày chặn khoảng 86%, còn khoảng 1.550 alert được điều tra; chi phí mỗi lần khoảng 0,28 USD. Bộ lọc là **mã thường, không phải model** (bảng phân loại trong Postgres, khử lặp theo tầng). Bài không nói: Atlan **không công bố độ chính xác**, ghi rõ điểm tự tin không phải độ chính xác, người vẫn xem mọi kết luận, và Sherlock chỉ có quyền đọc. Đây là điều tra sự cố, không phải viết mã |
+| Nghiên cứu vòng lặp trên 36.710 repo, 217 vòng lặp tự trị (bài gốc) | ⚠️ | arXiv 2608.21884 (Lulla và cộng sự, v3 22/10/2026). Tóm tắt ghi hai điều bài gốc bỏ qua: gần như **không repo nào commit file trạng thái** mà các bài hướng dẫn khuyên, và các nguồn này **không có bằng chứng hệ thống** về lợi ích. Thí nghiệm có đối chứng mới được thiết kế, chưa chạy |
+| Spotify Xirp: hơn 36.000 session, thiết kế cho hơn 50 session song song | ⚠️ | Số 36.000 do Spotify tự công bố; con số 50 session có nguồn ghi là chỉ xuất hiện ở bài đưa tin lại **(chưa xác minh)**. Xirp là phần mềm đóng, beta công khai từ 10/8/2026, chỉ macOS, cần tài khoản Spotify (theo các bài đưa tin) |
+| Kiro Crew: thực thi bền, retry, replan | ✅ | Docs Task Runner: mỗi bước một phiên mới, chạy test rồi commit, **phiên reviewer riêng đọc git diff**, review hỏng thì revert và thử lại. Trần: 3 lần thử lại, 2 lần phục hồi crash mỗi bước, 2 lần lập lại kế hoạch mỗi lượt, 50 task; ba lỗi giống nhau thì đánh FAILED "Loop detected". `force_approval: true` chặn cả khi bật tự duyệt |
+| Warp Factories: harness chạy worker, factory chọn worker, context, quyền, checkpoint | ✅ | Blog Warp (Zach Lloyd, 18/8/2026): agent "foreman" nhận việc từ trigger rồi sinh subagent, chọn model, harness và context cho từng cái; chạy được Warp Agent, Claude Code, Codex. Sản phẩm đang closed beta. Chữ "open infrastructure" trong tiêu đề **không có nghĩa mã nguồn mở**: trang không nêu giấy phép cho phần điều khiển; chỉ repo ví dụ cấu hình là MIT (§8m.4) |
+| "Hỏi 5 câu này" | ⚠️ | Bài liệt kê sáu câu. Nội dung sáu câu vẫn dùng tốt làm checklist |
+
+### 8m.3 Kiểm sơ đồ "governed workflow" 9 bước
+
+Bài gốc mô tả 8 chặng; ảnh tách thành 9 bước bằng cách chia kiểm tất định làm hai: "focused deterministic checks" (bước 4, trong vòng sửa) và "full verification" (bước 5, sau khi qua vòng).
+
+| Phần của sơ đồ | Đánh giá | Bổ sung |
+|---|---|---|
+| Bắt đầu bằng đặc tả đã duyệt (hợp đồng vào/ra, ranh giới bảo mật, tiêu chí nghiệm thu, phạm vi được sửa, bằng chứng cần có) | ✅ | Khớp cổng G3 của FACTORY.md §3 và spec-driven ở mục 13 §5a |
+| Builder không được tự chấm mình | ✅ | Khớp checklist §6 mục 5 và 8: tín hiệu dừng do mã điền, không do model khai |
+| Vòng Builder → kiểm → Repair nằm trong khung Harness | ⚠️ | Bài gốc nói vòng sửa **có giới hạn**; sơ đồ không vẽ trần số vòng, ngân sách hay nhánh "dừng và báo người". Kiro Crew ghi rõ các trần này (§8m.2); kho dùng quy tắc ba lần đỏ cùng chữ ký thì BLOCKED (§3) |
+| Nhãn "Deterministic authority" bao cả bước 5, 6, 7 | ⚠️ | Chỉ bước 5 (và bước 4) là tất định. Clean evaluator và Independent reviewer là **model**, kết quả có thể đổi giữa hai lần chạy. Chú giải của sơ đồ bên phải cũng xếp agent vào nhóm "Probabilistic". Nên đọc nhãn này là "thẩm quyền nằm ngoài builder", không phải "kết quả tất định" |
+| "Clean evaluator", "Independent reviewer" | ⚠️ | Khác phiên chưa phải khác thẩm quyền: hai phiên agent cùng quyền ghi không tạo ra độc lập về quyền (FACTORY.md §3; Pullboard ở mục 21 §10h thực thi "builder không tự verify" bằng khác phiên chạy). Muốn độc lập thật thì reviewer không có quyền ghi vào nhánh, hoặc dùng model khác, hoặc giấu bộ kiểm khỏi builder (holdout, §8m.4) |
+| Lỗi quay về đúng nơi (sơ đồ phải: "rework routed back to relevant agent(s) or planner") | ✅ | Bài: lỗi mã về Builder, kế hoạch sai về Planner, thiếu quyết định sản phẩm thì dừng chờ người. Muốn định tuyến được thì phải **phân loại lỗi trước khi thử lại** |
+| Bước 9 "CI + human merge gate", "Authority ends with CI + human" | ✅ | Khớp checklist §6 mục 7. Lưu ý ví dụ OpenAI mà bài dùng lại không bắt buộc người review |
+| Lớp Factory ghi "measurement" | ⚠️ | Sơ đồ workflow không có bước đo nào. Thiếu cả nhánh "model không nên chạy" (bộ lọc đầu vào kiểu Atlan), dù bài coi đó là quyết định giá trị nhất của vòng lặp |
+
+**Tổng:** 4 ✅, 4 ⚠️ trên sơ đồ; 3 ✅, 5 ⚠️ trên các ví dụ; không có ý nào sai hẳn. Ảnh dùng tốt để giải thích vì sao chất lượng nằm ở hệ thống quanh model. Chỗ cần đọc kỹ là mọi con số đều do chính công ty công bố, và nghiên cứu duy nhất trong bài lại ghi rằng chưa có bằng chứng hệ thống về lợi ích của vòng lặp.
+
+### 8m.4 Công cụ mở để dựng lớp Graph và Factory
+
+Sao đọc 11/11/2026 qua GitHub search API; giấy phép đọc từ file LICENSE ở HEAD đã clone. Không cài hay chạy mã.
+
+| Repo | Lớp | ★ · giấy phép | Điều đáng ghi | Rủi ro |
+|---|---|---|---|---|
+| `coleam00/Archon` | Graph + Factory | 23.891 · MIT | v0.14.0. Workflow YAML là đồ thị node: node `prompt`, node `loop` có `until_bash` (mã quyết định xong hay chưa), `max_iterations`, `fresh_context`; node `wait` dừng chờ người duyệt; `when` rẽ nhánh. Chạy Claude Code, Codex, Pi qua CLI của chúng; SQLite hoặc PostgreSQL; kèm bộ SDLC (triage, plan, implement, review, merge-queue…) | Telemetry PostHog ẩn danh **bật sẵn** theo README, gửi cả id provider/model, tổng token và chi phí; tắt bằng `ARCHON_TELEMETRY_DISABLED=1` hoặc `DO_NOT_TRACK=1`. Mô tả trên GitHub còn ghi "harness builder" trong khi README đã đổi sang "factory builder" |
+| `coleam00/ai-software-factory` | Factory | 524 · **không có file LICENSE** | Lớp cài đặt trên Archon: PRD → issue liên kết → vòng làm → hai reviewer không viết mã đó quyết định merge → staging để người dùng thử. Có hook `holdout_fence.py` chặn builder và reviewer đọc thư mục kịch bản holdout (hook lỗi thì coi là từ chối), và bộ `mutations/` cài lỗi cố ý để kiểm bộ test có bắt được không. README tự gọi "không phải dark factory" | Không có giấy phép nên mặc định không được phép dùng lại mã. Ghim một revision Archon trên nhánh `factory/sdlc-on-dev`. Merge do **cổng tất định** thực hiện, người chỉ ở khâu lập kế hoạch và thử staging: khác với "human merge gate" của ảnh |
+| `warpdotdev/warp-factory-examples` | Factory | 92 · MIT | 15 thư mục ví dụ factory-as-code, schema `v1alpha1`: `factory.yaml`, `agents/`, `automations/`, `runners/`, `scorers/`, `skills/`. Đúng một agent là `FOREMAN`. Ví dụ `03-multi-harness`: foreman chạy Warp Agent, implementer là Claude Code, reviewer là Codex | Chỉ là file cấu hình; cần dịch vụ Warp Factories (closed beta) để chạy |
+| `alexrolls/startup-factory` | Factory | 23 · MIT | v0.2.3. Chín vai (team lead, principal architect, sceptical architect, backend, frontend, QA, security, reviewer, integrator), điều phối qua Linear, Jira hoặc GitHub Issues; README nêu nguyên tắc "fail-closed" khi bằng chứng thiếu hoặc cũ | Rất ít người dùng (23★), một tác giả; chưa đọc mã thực thi |
+| `humanlayer/12-factor-agents` | Loop + Graph | 27.097 · nội dung CC BY-SA 4.0, mã Apache-2.0 | 12 nguyên tắc; liên quan trực tiếp tới ảnh: 8 (tự nắm luồng điều khiển), 6 (launch/pause/resume), 7 (hỏi người bằng tool call), 10 (agent nhỏ, tập trung), 12 (agent là stateless reducer) | Commit cuối 21/9/2025, hơn một năm không cập nhật. GitHub ghi nhãn giấy phép `NOASSERTION` vì có hai giấy phép |
+| `varun1505/awesome-software-factories` | Danh mục | 92 · CC0-1.0 | Hơn 600 mục: factory mở, pipeline ticket-to-PR, vòng lặp tự trị, quản lý session song song, cô lập, cổng review, sản phẩm thương mại, bài tường thuật thực địa. Phần định nghĩa ghi nguồn gốc thuật ngữ (Bob Bemer 1968; "dark factory" của Dan Shapiro 1/2026) | Danh sách tổng hợp, mới 2 tháng tuổi; từng mục cần kiểm lại |
+
+Sản phẩm đóng được bài nêu: **Spotify Xirp** (quản lý session cho Claude Code, Codex, Gemini CLI; beta, macOS) và **Kiro Crew** (Task Runner của AWS, xem trần ở §8m.2). Trong kho đã có các công cụ cùng lớp: LangGraph và Deep Agents (mục 02), gh-aw và Temporal (mục 21 §4, §5), Pullboard (mục 21 §10h), Omnigent và Orca (mục 01 §3f, §3n), spec-kit (mục 13 §5a).
+
+### 8m.5 Dùng thế nào
+
+1. Bắt đầu từ trong ra ngoài. Chưa có harness và vòng lặp dừng bằng máy (checklist §6) thì chưa cần graph hay factory.
+2. Viết đặc tả có đủ năm thứ bài nêu: hợp đồng vào/ra, ranh giới bảo mật, tiêu chí nghiệm thu, phạm vi được sửa, bằng chứng cần có.
+3. Đặt trần cho vòng sửa và phân loại lỗi trước khi thử lại: lỗi mã về builder, kế hoạch sai về planner, lỗi ngoài quyền agent thì dừng và báo người.
+4. Làm cho reviewer độc lập thật: không có quyền ghi vào nhánh đang review, đọc diff chứ không đọc lời kể của builder, và có bộ kiểm mà builder không nhìn thấy.
+5. Thêm bộ lọc đầu vào bằng mã thường trước khi gọi model (bài học Atlan), và đo kết quả theo thời gian ở lớp factory (tỷ lệ revert, lỗi lọt, chi phí mỗi việc).
+6. Giữ người ở ba chỗ: duyệt đặc tả, quyết định sản phẩm còn thiếu, và merge hoặc nghiệm thu trên staging.
+
+**Nguồn §8m:** ảnh và bài viết lại người dùng gửi 11/11/2026 · https://sumantthakur.substack.com/p/ai-coding-is-moving-beyond-the-agent · https://addyosmani.com/blog/software-factories/ · https://arxiv.org/abs/2611.06946 · https://arxiv.org/abs/2608.21884 · https://blog.atlan.com/engineering/loop-engineering-in-production-putting-ai-agents-on-call/ · https://kiro.dev/docs/crew/features/task-runner/ · https://www.warp.dev/blog/open-infrastructure-for-building-a-software-factory · https://openai.com/index/harness-engineering/ (403 khi đọc) · https://www.martinfowler.com/articles/exploring-gen-ai/harness-engineering-memo.html · clone `--depth 1 --filter=blob:none` 11/11/2026: https://github.com/coleam00/Archon/blob/f1c5d5c52763b5f55c2b5e7f700e84468473dd9a/README.md · https://github.com/coleam00/ai-software-factory/blob/f6d8f69e452607ceedc6d42f2ed0398db543ba71/template/.factory/hooks/holdout_fence.py · https://github.com/warpdotdev/warp-factory-examples/blob/c939cb19f89f6fbba0e4eb203a0b5e0afaee0482/README.md · https://github.com/alexrolls/startup-factory/blob/7ca7e356df85976441cabc512b907f464ceb2611/README.md · https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/README.md · https://github.com/varun1505/awesome-software-factories/blob/28059372515359a4bd96c644e1f77efbe3c53200/README.md · GitHub search API 11/11/2026.
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)
