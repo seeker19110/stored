@@ -12,13 +12,14 @@
     "updated": "2026-11-16",
     "count": 131,
     "current_batch": {
-      "stored_base": "aad97cf",
+      "stored_base": "c60701366d3e20e24b352ff182ecb725ec05ebcb",
       "xt_commit": "efa521a64e2c2be2cdd596b7b8fd59bab8029cf0",
       "ids": [
         "XT-H-126",
         "XT-H-131"
       ],
-      "status": "documented-in-stored"
+      "status": "proposal-pr-open",
+      "proposal_pr": "https://github.com/www-donghanhcungban-org/X-Templates/pull/597"
     },
     "previous_batches": [
       {
