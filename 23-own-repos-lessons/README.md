@@ -1,4 +1,4 @@
-# 23 · Bài học từ hệ sinh thái repo của chủ kho (seeker19110 / donghanhcungban)
+# 23 · Bài học từ hệ sinh thái repo của chủ kho (www-donghanhcungban-org, trước đây seeker19110 / donghanhcungban)
 
 > Mở ra theo yêu cầu "check toàn bộ repo của tôi xem có gì cần cập nhật cho dự án này" (2026-10-12). 19 repo được clone nông và đọc trực tiếp (README, CLAUDE.md/AGENTS.md, `.claude/`, `.agents/`, docs, ADR, workflow CI, manifest). Mục này ghi lại **(a)** từng repo là gì và mẫu nào đáng tái dùng, **(b)** công cụ/nguồn bên ngoài mà các repo đã nghiên cứu nhưng kho chưa có, **(c)** điểm nào trong kho bị chính các repo này phản biện. Số sao ghi trong docs nội bộ của các repo được giữ nguyên kèm ngày và đánh dấu **(theo docs nội bộ)**; chưa đối chiếu lại GitHub.
 
