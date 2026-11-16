@@ -467,6 +467,10 @@ Mục 03 §8m kiểm ảnh và bài viết lại theo bài của Sumant Thakur (
 
 Mục 06 §7zc chia 20 trang thành bốn nhóm. Nhóm gallery tổng hợp gồm Recent Design (trước là Godly), Inspora, Land-book, Landdding. Nhóm từng phần giao diện gồm Navbar Gallery, Footer Design, CTA Gallery, Iconly, Refero Styles. Nhóm chuyển động gồm 60fps, Scrolltide, Scroll Shaders, OriginKit. Nhóm làm web bằng AI và asset gồm MotionSites, One Prompt Design, Backgrounds Supply, Font In Logo. Những trang đưa thẳng cho coding agent được: Refero Styles (`DESIGN.md` và MCP), OriginKit (MCP miễn phí, plugin MIT), Iconly (MCP), Scrolltide và Motion In Design (prompt kèm spec), Scroll Shaders (copy component React).
 
+### 77. Sáu công cụ cho designer dùng AI (16/11/2026)
+
+Mục 06 §7zd gồm sáu công cụ. dream-loop (2,4k★, MIT) dựng hình 3D bằng vòng sinh ảnh mục tiêu, dựng rồi để critic so sánh và lặp. Hairline (3,9k★, MIT) là 33 hình nét isometric phản hồi theo con trỏ. Skill Meng To (7,6k★, MIT) có 183 skill cho web, 3D, minh họa và game. REA (MIT) là một MCP để agent phân tích ngược app và website. HTML Demo của Fil dựng bản demo app chạy được bằng HTML thay cho video. Skill Emil Kowalski đã có hồ sơ ở §7z.1.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

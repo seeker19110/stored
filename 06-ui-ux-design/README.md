@@ -1661,6 +1661,40 @@ mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
 
 **Nguồn §7zc:** danh sách người dùng gửi 16/11/2026 · WebFetch 16/11/2026: https://www.inspora.design/ · https://godly.website (301 về recent.design) · https://recent.design · https://land-book.com/llms.txt · https://landdding.com · https://landdding.com/pro · https://motionin.design/ · https://www.navbar.gallery · https://www.footer.design · https://www.cta.gallery · https://iconly.ai/ · https://styles.refero.design/ · https://60fps.design/ · https://60fps.design/pro · https://www.scrolltide.co/ · https://scrollshaders.com/ · https://www.originkit.dev/ · https://studio.motionsites.ai/ · https://onepromptdesign.com/ · https://backgrounds.supply/ · clone https://github.com/vellum-ai/originkit/blob/d27526a2e2e728fd2c0c13b28021ade6908211a7/README.md · https://github.com/referodesign/refero_skill/blob/2382e518f90096df607196b9a635da2d1bc142f9/README.md · GitHub search API 16/11/2026.
 
+## 7zd. Sáu công cụ cho designer dùng AI: dream-loop, Hairline, skill Emil Kowalski, skill Meng To, REA, HTML Demo (danh sách người dùng gửi, đọc mã 16/11/2026)
+
+> Người dùng gửi 6 link kèm mô tả. Link `github.com/achimala/dream` không tồn tại; repo đúng là **`achimala/dream-loop`**. Link `fil.design/skills/html-de` là trang **HTML Demo** (`fil.design/skills/html-demo`), mã nằm trong repo `MengTo/Skills`. Skill Emil Kowalski đã có hồ sơ ở §7m.1 và §7z.1.
+
+### 7zd.1 Bảng nhanh
+
+| # | Công cụ | Repo hoặc trang | ★ (16/11/2026) | Giấy phép | Làm gì |
+|---|---|---|---|---|---|
+| 1 | **dream-loop** | `achimala/dream-loop` | 2.352 | MIT | Skill tạo hình 3D và game đẹp bằng vòng khép kín: sinh ảnh mục tiêu, dựng, critic so ảnh thật với mục tiêu, lặp |
+| 2 | **Hairline** | `lucasmarkes/hairline` · hairline.lucasmarkes.com | 3.943 | MIT | 33 hình vẽ nét isometric phản hồi theo con trỏ, SVG không phụ thuộc, cho React và DOM thường |
+| 3 | **Skill Emil Kowalski** | `emilkowalski/skills` · emilkowal.ski/skill | (§7z.1) | MIT | 17 skill design engineering về animation, transition, chi tiết tương tác |
+| 4 | **Skill Meng To** | `MengTo/Skills` | 7.644 | MIT | 183 skill cho designer và builder: web design, 3D, minh họa, game, workflow, media |
+| 5 | **REA** | `morluto/rea` · rea.tools | 463.317 (GitHub search API) | MIT | Một MCP cho agent phân tích ngược app, game, website tới mức binary |
+| 6 | **HTML Demo** | fil.design/skills/html-demo · `MengTo/Skills` | (cùng repo Meng To) | MIT (repo) | Skill dựng bản demo app chạy được bằng HTML thay video quay màn hình |
+
+### 7zd.2 Từng công cụ
+
+- **dream-loop** (@anshuc trên X): (1) AI "mơ" ra ảnh mục tiêu chất lượng cao bằng image generation, (2) dựng theo mục tiêu, (3) một AI critic riêng so ảnh chụp thật với mục tiêu và góp ý, (4) lặp tới khi critic hài lòng, (5) có thể mơ mục tiêu mới cao hơn từ trạng thái hiện tại. Cần agent có image generation (sẵn có hoặc qua API như Gemini), đọc được ảnh, nên có subagent; cài Blender khi cần dựng mô hình 3D riêng, qua Blender MCP (§19 §3h) hoặc scripting. Có script `fal-batch.mjs` cho fal và `preview-server.py`; demo trực tiếp dream-loop-demo.anshu.dev. Cài: `npx skills add achimala/dream-loop`.
+- **Hairline** (Lucas Marques, v0.5.1): 33 hình nét isometric (ví dụ `Riffle`: khay 8 thẻ, thẻ dưới con trỏ dựng lên, phím mũi tên đi qua từng thẻ), mỗi hình có `intensity` chỉnh độ mạnh phản hồi, tự lấp chiều rộng khung theo tỉ lệ 5:4. Không phụ thuộc, ESM; React 18+ chỉ cần cho bản `/react`. Cài `npm i @lucasmarkes/hairline` hoặc `npx shadcn@latest add https://hairline.lucasmarkes.com/r/hairline.json` (wrapper đọc token theme). Dùng `<Terrain />` trong React hoặc `terrain(el, { play: true })` ở DOM. Có skill vẽ hình mới và `llms.txt`.
+- **Skill Emil Kowalski**: xem §7z.1 (17 skill, `npx skills@latest add emilkowalski/skills`).
+- **Skill Meng To** (`MengTo/Skills`, 169 commit): 183 file `SKILL.md` chia nhóm `web-design`, `3d`, `illustration` (14 phong cách minh họa SVG), `game-development`, `game-combat`, `ui`, `media`, `workflow`, `codex`. Bốn skill đầu bảng cho quy trình web: biến video quay màn hình thành "super prompt", tách trang HTML thành prompt cho từng section và hiệu ứng, chụp trọn landing page, gom cảm hứng UI hằng ngày thành gói prompt. Định dạng Markdown thuần, dùng được với Codex, Claude Code, Cursor; có `DEMOS.md` liệt kê demo chạy được.
+- **REA** (Reverse Engineer Anything): một MCP nối agent tới công cụ phân tích binary native (dùng Hopper, Ghidra, IDA hoặc Kuna có sẵn), app JavaScript và Electron, assembly .NET, APK Android, website (qua kết nối debug trình duyệt cục bộ); phân tích chạy trên máy và kết quả kèm bằng chứng; dựng được môi trường RL từ phiên web đã ghi. Cài: `npx rea-agents setup` (Windows, macOS, Linux). README nhắc chỉ tải từ `morluto/rea`, rea.tools hoặc gói npm `rea-agents`; có `DISCLAIMER.md`, chỉ phân tích phần mềm bạn có quyền.
+- **HTML Demo** (Fil, fil.design): dựng một cửa sổ demo sống trên trang web cho thấy app hoạt động qua 3–5 bước, mỗi bước 4–8 giây, sân khấu cố định 1200×750 co giãn sắc nét; mỗi khung là hàm thuần của đồng hồ `t`, con trỏ di chuyển như người thật, tự dừng khi khuất màn hình, có khung cuối cho reduced motion; `shoot.mjs` chụp khung bằng Playwright. Nhập ảnh UI thật, frame từ video docs (ffmpeg) và mã nguồn để chép đúng nhãn, menu, số liệu. Có bản React và JavaScript thuần. Cài Claude Code: tải `https://fil.design/skills/html-demo.zip` giải nén vào `~/.claude/skills`, hoặc `npx degit MengTo/Skills/agent-skills/web-design/html-demo ~/.claude/skills/html-demo`. Fil có 49 skill tải miễn phí (ảnh, video, 3D, web); app Fil hiện chỉ mời.
+
+### 7zd.3 Dùng thế nào
+
+- Dựng hình 3D hay game cần đẹp ngay: dream-loop với Blender MCP và một critic riêng.
+- Thêm điểm nhấn tương tác cho landing page: Hairline (hình nét theo con trỏ), cùng nhóm với OriginKit, Scroll Shaders ở §7zc.
+- Animation và chi tiết tương tác: skill Emil Kowalski; quy trình từ tham chiếu tới prompt: skill Meng To.
+- Học cách một sản phẩm tham khảo được dựng: REA trên app hoặc web bạn có quyền phân tích.
+- Trình bày ý tưởng cho khách hàng: HTML Demo thay video quay màn hình.
+
+**Nguồn §7zd:** danh sách người dùng gửi 16/11/2026 · clone `--filter=blob:none` 16/11/2026: https://github.com/achimala/dream-loop/blob/9bddb901f7d071cfefdd21e264267c757177a9df/README.md · https://github.com/lucasmarkes/hairline/blob/034f4bf9902c6adcf3cf39d82f85e6010cb4e094/README.md · https://github.com/MengTo/Skills/blob/3cc93458c4949c39a04e938ea7892a1d6d3d40bf/README.md · https://github.com/morluto/rea/blob/8ffea11ee30d5e0d442a8d14b27e05b0441b9e18/README.md · WebFetch https://hairline.lucasmarkes.com/ · https://rea.tools/ · https://fil.design/skills · https://fil.design/skills/html-demo · GitHub search API 16/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
