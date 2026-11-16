@@ -1981,3 +1981,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-16 (danh sách 20 trang cảm hứng thiết kế → mục 06 §7zc)
 
 - WebFetch 16/11/2026 trang chủ, `llms.txt` và trang giá của 18 trang (danh sách URL ở nguồn §7zc); godly.website trả 301 về recent.design. Clone `vellum-ai/originkit` HEAD `d27526a2e2e728fd2c0c13b28021ade6908211a7`, `referodesign/refero_skill` HEAD `2382e518f90096df607196b9a635da2d1bc142f9`. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16b (6 công cụ cho designer → mục 06 §7zd)
+
+- Clone 16/11/2026: `achimala/dream-loop` HEAD `9bddb901f7d071cfefdd21e264267c757177a9df`, `MengTo/Skills` HEAD `3cc93458c4949c39a04e938ea7892a1d6d3d40bf`, `morluto/rea` HEAD `8ffea11ee30d5e0d442a8d14b27e05b0441b9e18`, `lucasmarkes/hairline` HEAD `034f4bf9902c6adcf3cf39d82f85e6010cb4e094`. `achimala/dream` không tồn tại (git ls-remote đòi đăng nhập); repo đúng là `achimala/dream-loop`. WebFetch: https://hairline.lucasmarkes.com/ · https://rea.tools/ · https://fil.design/skills · https://fil.design/skills/html-demo. GitHub search API 16/11/2026.

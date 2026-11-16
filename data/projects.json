@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1100,
+    "count": 1105,
     "schema_version": 2
   },
   "projects": [
@@ -15658,6 +15658,107 @@
       "sources": [
         "https://github.com/referodesign/refero_skill/blob/2382e518f90096df607196b9a635da2d1bc142f9/README.md",
         "https://github.com/referodesign/refero_skill/blob/2382e518f90096df607196b9a635da2d1bc142f9/LICENSE"
+      ]
+    },
+    {
+      "name": "dream-loop",
+      "repo": "achimala/dream-loop",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 2352,
+      "open_source": true,
+      "notes": "Skill vòng khép kín cho hình 3D/game: sinh ảnh mục tiêu → dựng → critic so ảnh thật với mục tiêu → lặp; Blender qua MCP hoặc scripting, fal-batch; npx skills add achimala/dream-loop; ★ 16/11/2026: 2.352 (GitHub search API), mục 06 §7zd",
+      "section": "06",
+      "id": "dream-loop",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zd-sáu-công-cụ-cho-designer-dùng-ai-dream-loop-hairline-skill-emil-kowalski-skill-meng-to-rea-html-demo-danh-sách-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "9bddb901f7d071cfefdd21e264267c757177a9df",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/achimala/dream-loop/blob/9bddb901f7d071cfefdd21e264267c757177a9df/README.md",
+        "https://github.com/achimala/dream-loop/blob/9bddb901f7d071cfefdd21e264267c757177a9df/LICENSE"
+      ]
+    },
+    {
+      "name": "Hairline",
+      "repo": "lucasmarkes/hairline",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 3943,
+      "open_source": true,
+      "notes": "33 hình nét isometric phản hồi theo con trỏ, SVG không phụ thuộc, React và DOM; npm i @lucasmarkes/hairline hoặc shadcn registry; v0.5.1; ★ 16/11/2026: 3.943 (GitHub search API), mục 06 §7zd",
+      "section": "06",
+      "id": "hairline",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zd-sáu-công-cụ-cho-designer-dùng-ai-dream-loop-hairline-skill-emil-kowalski-skill-meng-to-rea-html-demo-danh-sách-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "034f4bf9902c6adcf3cf39d82f85e6010cb4e094",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/lucasmarkes/hairline/blob/034f4bf9902c6adcf3cf39d82f85e6010cb4e094/README.md",
+        "https://github.com/lucasmarkes/hairline/blob/034f4bf9902c6adcf3cf39d82f85e6010cb4e094/LICENSE"
+      ],
+      "url": "https://hairline.lucasmarkes.com/"
+    },
+    {
+      "name": "Skills của Meng To",
+      "repo": "MengTo/Skills",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 7644,
+      "open_source": true,
+      "notes": "183 SKILL.md cho designer và builder (web-design, 3d, illustration, game, ui, media, workflow, codex); gồm video-to-superprompt, html-to-interaction-prompts, html-demo; 169 commit; ★ 16/11/2026: 7.644 (GitHub search API), mục 06 §7zd",
+      "section": "06",
+      "id": "mengto-skills",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zd-sáu-công-cụ-cho-designer-dùng-ai-dream-loop-hairline-skill-emil-kowalski-skill-meng-to-rea-html-demo-danh-sách-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "3cc93458c4949c39a04e938ea7892a1d6d3d40bf",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/MengTo/Skills/blob/3cc93458c4949c39a04e938ea7892a1d6d3d40bf/README.md",
+        "https://github.com/MengTo/Skills/blob/3cc93458c4949c39a04e938ea7892a1d6d3d40bf/LICENSE"
+      ]
+    },
+    {
+      "name": "REA (Reverse Engineer Anything)",
+      "repo": "morluto/rea",
+      "category": "reverse-engineering",
+      "license": "MIT",
+      "stars": 463317,
+      "open_source": true,
+      "notes": "Một MCP cho agent phân tích ngược binary native (Hopper/Ghidra/IDA/Kuna), JS/Electron, .NET, APK, website; chạy cục bộ, kết quả kèm bằng chứng; npx rea-agents setup; ★ 16/11/2026: 463.317 (GitHub search API), mục 06 §7zd",
+      "section": "06",
+      "id": "rea-reverse-engineer",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zd-sáu-công-cụ-cho-designer-dùng-ai-dream-loop-hairline-skill-emil-kowalski-skill-meng-to-rea-html-demo-danh-sách-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "8ffea11ee30d5e0d442a8d14b27e05b0441b9e18",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/morluto/rea/blob/8ffea11ee30d5e0d442a8d14b27e05b0441b9e18/README.md",
+        "https://github.com/morluto/rea/blob/8ffea11ee30d5e0d442a8d14b27e05b0441b9e18/LICENSE"
+      ],
+      "url": "https://rea.tools/"
+    },
+    {
+      "name": "HTML Demo (Fil)",
+      "url": "https://fil.design/skills/html-demo",
+      "category": "design-skill",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Skill dựng demo app chạy được bằng HTML (React hoặc JS thuần) thay video: sân khấu 1200×750, khung là hàm của đồng hồ t, con trỏ như người thật, shoot.mjs chụp khung Playwright; mã trong MengTo/Skills (agent-skills/web-design/html-demo); Fil có 49 skill tải miễn phí (đọc trang 16/11/2026), mục 06 §7zd",
+      "section": "06",
+      "id": "fil-html-demo",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zd-sáu-công-cụ-cho-designer-dùng-ai-dream-loop-hairline-skill-emil-kowalski-skill-meng-to-rea-html-demo-danh-sách-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://fil.design/skills/html-demo",
+        "https://fil.design/skills"
       ]
     }
   ]
