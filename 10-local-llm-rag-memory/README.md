@@ -81,7 +81,7 @@
 | **cognee** | topoteretes/cognee | Apache-2.0 | ~30k | Memory + knowledge graph pipeline | |
 | LangMem | langchain-ai/langmem | MIT | – | Memory cho LangGraph | |
 | **Hindsight** | vectorize-io/hindsight | MIT | ~50k (16/10/2026, shields) | Retain → recall (vector + BM25 + graph + reranker) → reflect; bank theo thời gian, mental model | 1.0 ngày 15/10/2026; Memlake là bản trả phí. Xem §4d |
-| agent-memory (X-Agents tự viết) | seeker19110/X-Agents | – | – | SQLite + candidate pipeline: memory phải qua đề xuất → duyệt → ghi | Mục 23 §3.1; Hermes `safe-ai-state-authority` cùng ý |
+| agent-memory (X-Agents tự viết) | www-donghanhcungban-org/X-Agents | – | – | SQLite + candidate pipeline: memory phải qua đề xuất → duyệt → ghi | Mục 23 §3.1; Hermes `safe-ai-state-authority` cùng ý |
 
 **Benchmark LongMemEval:** Zep báo 63.8–75.1%, Mem0 báo Zep chỉ 58.4% và tự nhận 49% → số liệu chéo nhà cung cấp không đáng tin; chọn theo kiến trúc (fact-store vs temporal graph vs OS-style).
 

@@ -55,7 +55,7 @@ Quy ước do người dùng đặt ra (2026-11-02): **cứ 2 tuần nâng trầ
 ### Prompt chạy tự động
 
 ```text
-Bạn đang chạy đợt "nâng trần" định kỳ 2 tuần/lần cho kho seeker19110/stored (kho tri thức tiếng Việt, chỉ lưu hồ sơ + đánh giá repo). Chạy ở chế độ ultracode trên model Opus: dùng workflow nhiều agent cho mọi bước nặng; mọi agent() trong workflow đặt `effort: "high"` (bước kiểm đối kháng có thể dùng cao hơn). Tìm bằng mọi cách trên internet và GitHub.
+Bạn đang chạy đợt "nâng trần" định kỳ 2 tuần/lần cho kho www-donghanhcungban-org/stored (kho tri thức tiếng Việt, chỉ lưu hồ sơ + đánh giá repo). Chạy ở chế độ ultracode trên model Opus: dùng workflow nhiều agent cho mọi bước nặng; mọi agent() trong workflow đặt `effort: "high"` (bước kiểm đối kháng có thể dùng cao hơn). Tìm bằng mọi cách trên internet và GitHub.
 
 0. Chuẩn bị
 - Nếu phiên chưa có checkout của kho: gọi add_repo (owner `seeker19110`, repo `stored`, access `push`), clone theo hướng dẫn trả về và làm việc trong thư mục đó. Nếu công cụ GitHub MCP (tạo PR, bật auto-merge) không có trong phiên thì vẫn làm hết, push nhánh, và ở báo cáo cuối đưa link tạo PR để người dùng bấm.
@@ -82,12 +82,12 @@ Không thêm trùng: grep `repo` trong `data/projects.json` trước. Mỗi mụ
 
 4. Gộp
 - Gộp projects vào `data/projects.json` (khử trùng theo thực thể/id; cùng repo có thể chứa sản phẩm/plugin/skill khác nhau), sinh lại `data/projects.csv` theo TEMPLATE.md. Thêm mục "Bổ sung <ngày> (nâng trần định kỳ)" vào `SOURCES.md`. Thêm một mục tóm tắt mới vào "Bức tranh tổng thể" của `README.md` gốc.
-- X-Templates: clone công khai `https://github.com/seeker19110/x-templates`. Mỗi bài học được một agent grep `framework/` để tìm 1–3 ID thật và xếp cột deeper/shallower/missing/not_adding; dòng trùng XT-H cũ ghi duplicate. Thêm XT-H-NNN vào `data/xt-handoff.json` và một bảng §4x mới trong `X-TEMPLATES.md`, ghi commit X-Templates đã đối chiếu.
+- X-Templates: clone công khai `https://github.com/www-donghanhcungban-org/x-templates`. Mỗi bài học được một agent grep `framework/` để tìm 1–3 ID thật và xếp cột deeper/shallower/missing/not_adding; dòng trùng XT-H cũ ghi duplicate. Thêm XT-H-NNN vào `data/xt-handoff.json` và một bảng §4x mới trong `X-TEMPLATES.md`, ghi commit X-Templates đã đối chiếu.
 - Chạy `python3 scripts/check_catalog.py` , `python3 -I scripts/test_check_catalog.py` và `npx --yes markdownlint-cli2` trên mọi file đã sửa, sửa đến khi sạch.
 
 5. Phát hành
 - Commit theo từng nhóm mục rồi push. Mở PR vào `main` và bật auto-merge NGAY sau khi tạo (theo bước 8 của quy trình). Nếu PR đã "clean" thì merge trực tiếp.
-- Bàn giao X-Templates: add_repo push `seeker19110/X-Templates`, thêm `research/<ngày>-stored-delta-ceiling.md` theo mẫu các note `stored-delta` trước. Note chỉ là đề xuất: không sửa `framework/`, không nêu tên model/phiên AI trong nội dung. Mở PR theo template của repo đó, không bật auto-merge. Sau đó ghi "Đã gửi đề xuất" kèm link PR vào §6 `X-TEMPLATES.md` của stored (PR nhỏ, có auto-merge).
+- Bàn giao X-Templates: add_repo push `www-donghanhcungban-org/X-Templates`, thêm `research/<ngày>-stored-delta-ceiling.md` theo mẫu các note `stored-delta` trước. Note chỉ là đề xuất: không sửa `framework/`, không nêu tên model/phiên AI trong nội dung. Mở PR theo template của repo đó, không bật auto-merge. Sau đó ghi "Đã gửi đề xuất" kèm link PR vào §6 `X-TEMPLATES.md` của stored (PR nhỏ, có auto-merge).
 
 6. Báo cáo cuối (ngắn, tiếng Việt)
 Số mục có phần mới, số dự án thêm (catalog trước → sau), phát hiện quan trọng nhất (license, telemetry, archive, chuẩn mới), kết quả kiểm đối kháng, link các PR, và những gì chưa làm được kèm lý do. Nếu một bước bị chặn quyền thì dừng bước đó, ghi rõ và làm tiếp phần còn lại; không lách quyền.
