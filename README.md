@@ -463,6 +463,10 @@ Mục 24 §6c gom ba infographic. Ảnh 1 là quy trình 8 bước: từ KPI, qu
 
 Mục 03 §8m kiểm ảnh và bài viết lại theo bài của Sumant Thakur (Substack, 2/9/2026). Năm lớp là Model, Harness, Loop, Graph, Software Factory, mỗi lớp trả lời một câu hỏi. Đây là mô hình tư duy của một tác giả; Addy Osmani và một bài arXiv xếp lớp khác. Các ví dụ khớp nguồn gốc nhưng đều là số tự công bố: OpenAI (1 triệu dòng, 1.500 PR, không bắt buộc người review), Atlan Sherlock (lọc 86% alert bằng mã thường, không công bố độ chính xác), Spotify Xirp (mã đóng, chỉ macOS). Nghiên cứu 217 vòng lặp mà bài dẫn ghi rằng chưa có bằng chứng hệ thống về lợi ích. Sơ đồ 9 bước đúng hướng, nhưng gắn nhãn "deterministic" cho cả evaluator và reviewer là model, và không vẽ trần cho vòng sửa. Công cụ mở cho lớp Graph và Factory: Archon (23,9k★, MIT, telemetry bật sẵn), ai-software-factory (không có giấy phép), warp-factory-examples, startup-factory, 12-factor-agents, awesome-software-factories.
 
+### 76. Hai mươi trang cảm hứng và tài nguyên thiết kế (16/11/2026)
+
+Mục 06 §7zc chia 20 trang thành bốn nhóm. Nhóm gallery tổng hợp gồm Recent Design (trước là Godly), Inspora, Land-book, Landdding. Nhóm từng phần giao diện gồm Navbar Gallery, Footer Design, CTA Gallery, Iconly, Refero Styles. Nhóm chuyển động gồm 60fps, Scrolltide, Scroll Shaders, OriginKit. Nhóm làm web bằng AI và asset gồm MotionSites, One Prompt Design, Backgrounds Supply, Font In Logo. Những trang đưa thẳng cho coding agent được: Refero Styles (`DESIGN.md` và MCP), OriginKit (MCP miễn phí, plugin MIT), Iconly (MCP), Scrolltide và Motion In Design (prompt kèm spec), Scroll Shaders (copy component React).
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

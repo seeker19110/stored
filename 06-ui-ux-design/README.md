@@ -1606,6 +1606,61 @@ mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
 
 **Nguồn §7zb:** ảnh người dùng gửi 8/11/2026 · clone https://github.com/heydamir/unslop HEAD `a6f121eee5f29c2f74976b75456feae8b66afb3a`: https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/README.md · https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/skills/unslop/SKILL.md · https://github.com/heydamir/unslop/blob/a6f121eee5f29c2f74976b75456feae8b66afb3a/LICENSE · GitHub search API 31/10 và 8/11/2026.
 
+## 7zc. Hai mươi trang cảm hứng và tài nguyên thiết kế: gallery, từng phần giao diện, chuyển động, làm web bằng AI (danh sách người dùng gửi, đọc 16/11/2026)
+
+> Người dùng gửi danh sách 20 trang chia bốn nhóm. Font In Logo và MotionSites đã có hồ sơ ở §7v và §7w; 18 trang còn lại được đọc trang chủ (và `llms.txt`, trang giá khi có) ngày 16/11/2026. Hai chỗ cần biết khi tra: **Godly (godly.website) nay chuyển hẳn về Recent Design** (recent.design), nên mục 02 và 05 là một trang; **Motion In Design** có địa chỉ `motionin.design`.
+
+### 7zc.1 Cảm hứng tổng hợp
+
+| # | Trang | Có gì | Giá | Cho agent |
+|---|---|---|---|---|
+| 01 | **Inspora** · inspora.design | Kho thiết kế mới tuyển chọn, lọc Web, Branding, Product, Motion, Illustration, 3D, Print; mục Websites và Logos riêng | Miễn phí | Xem tham khảo |
+| 02, 05 | **Recent Design** · recent.design (trước là Godly) | "The best design inspiration on the Internet": Design, Launch Videos, Websites, OG Images, App Screenshots, App Icons, cùng Tools, Skills, Jobs; lọc Web, Interface, Branding, Motion, Illustration, Posters, Print | Miễn phí | Xem tham khảo |
+| 03 | **Land-book** · land-book.com | Gallery website cập nhật hằng ngày, duyệt theo loại trang (landing, portfolio, ecommerce, blog), theo section (pricing, value proposition…), nền tảng và màu; thêm OG images, template Webflow/Framer | Miễn phí giới hạn, có gói Pro | `llms.txt` |
+| 04 | **Landdding** · landdding.com (Azwedo) | Khoảng 2.700 thiết kế landing page, 40 nhóm, 5 nền tảng template (Webflow, Framer, WordPress, Wix, Squarespace); lọc màu, tag; feed ngày và tuần | Miễn phí; PRO $4/tháng hoặc $48/năm | `llms.txt` |
+| 06 | **Motion In Design** · motionin.design | Section web tương tác cao cấp (hero, portfolio wall, product showcase, immersive) dựng bằng React, GSAP, Three.js; có vài section miễn phí | $9/tháng (3 section/tháng), lifetime $99 | Mỗi section là một prompt kèm file spec Markdown, nút *Copy Prompt* để dán vào công cụ AI coding; `llms.txt` |
+
+### 7zc.2 Từng phần của giao diện
+
+| # | Trang | Có gì | Giá | Cho agent |
+|---|---|---|---|---|
+| 07 | **Navbar Gallery** · navbar.gallery (Christina Liubynska) | Hơn 450 navbar từ site thật, theo loại (static, dropdown, mega menu, sidebar, search bar, announcement, full screen, breadcrumbs), theo style và ngành | Miễn phí | `llms.txt` |
+| 08 | **Footer Design** · footer.design (NOOON Studio) | Gallery footer lọc Typographic, Illustrative, Grid, Animated, Cards, Dark, Large Type, Bold… | Miễn phí | `llms.txt` |
+| 09 | **CTA Gallery** · cta.gallery | Mẫu CTA theo loại: button, call-to-buy, download, form, modal, newsletter, pricing; lọc theo ngành và chế độ sáng/tối | Miễn phí | Xem tham khảo |
+| 10 | **Iconly** · iconly.ai | Nền tảng sinh icon và asset bằng AI (Icon Generator, Vector Studio, Brand Studio), thư viện công khai hơn 11.000 icon trong 10 style, trang riêng cho app và game; icon tạo ra dùng được cả thương mại | Pro $12,50/tháng, Max $25/tháng | REST API, MCP từ xa `https://iconly.ai/mcp`, agent skill |
+| 11 | **Refero Styles** · styles.refero.design | Hơn 2.000 design system đọc được bằng AI lấy từ sản phẩm thật: màu, chữ, spacing, component, kèm file `DESIGN.md` cho Cursor, Claude Code, Codex, v0, Lovable | Theo gói Refero | `DESIGN.md`, Refero MCP, skill `referodesign/refero_skill` |
+
+**Refero skill** (`referodesign/refero_skill`, MIT, 353★): một skill bắt agent nghiên cứu trước khi làm giao diện, cộng MCP chỉ đọc để tra style, hơn 150.000 màn hình app thật và hơn 6.000 user flow. Claude Code: `/plugin marketplace add referodesign/refero_skill` rồi `/plugin install refero@refero`; có bản cho Codex, Cursor, Gemini CLI. Tra cứu trực tiếp cần gói Refero trả phí.
+
+### 7zc.3 Chuyển động và hiệu ứng
+
+| # | Trang | Có gì | Giá | Cho agent |
+|---|---|---|---|---|
+| 12 | **60fps** · 60fps.design | Chi tiết animation và tương tác của app iOS và web: 2.140 shot, 499 app, storyboard, 32 snippet, 108 bộ lọc, glossary | Xem miễn phí; PRO $15/tháng hoặc $150/năm | MCP (gói riêng), snippet |
+| 13 | **Scrolltide** · scrolltide.co | 149 template (hero, web 3D, landing), 107 component, 55 shader, 24 section; "copy one, paste it into your AI" để ra Next.js, React, Tailwind, Framer Motion, GSAP, Three.js | Lifetime $299, có template miễn phí; dùng cho cá nhân và khách hàng | Prompt cho Claude, Cursor, v0; MCP chỉ đọc cho Claude Code, Cursor, Codex, VS Code |
+| 14 | **Scroll Shaders** · scrollshaders.com | 117 shader WebGL lặp liền mạch trong 11 nhóm (mesh gradient, grain, light & rays, halftone, 3D…), component shader (button, card, border, headline), 77 ảnh tĩnh 6K | $29/tháng, $129/năm, $239 trọn đời; giấy phép thương mại | Copy component React `.tsx` hoặc snippet HTML/JS WebGL2 không cần npm |
+| 15 | **OriginKit** · originkit.dev (Vellum AI) | Component có animation miễn phí cho web: interactive, image gallery, text, background, button (Black Hole, Fluid Trail, Coverflow Carousel, Text Morph, Pixel Reveal…), cho React, Next.js, Vite, Framer với CSS, Tailwind hoặc CSS Modules | Miễn phí; lấy code cần API key miễn phí | MCP `https://mcp.originkit.dev/vellumai`; plugin `vellum-ai/originkit` (MIT) với tool browse, get, setup |
+
+### 7zc.4 Làm web bằng AI và tài nguyên
+
+| # | Trang | Có gì | Giá | Cho agent |
+|---|---|---|---|---|
+| 16 | **MotionSites** · motionsites.ai (hồ sơ §7w) | Thư viện prompt hero và landing page có motion | Gói trả phí | Prompt, MCP trong gói trả phí |
+| 17 | **MotionSites Studio** · studio.motionsites.ai | AI website builder: mô tả doanh nghiệp, AI chỉnh một mẫu MotionSites, tạo ảnh và video rồi dựng site; mẫu Portfolio, Ecommerce, SaaS, Agency, Travel, Fashion, 3D | Theo trang | Dựng site bằng lời |
+| 18 | **One Prompt Design** · onepromptdesign.com | Prompt AI và tham chiếu hình cho quảng cáo, bài mạng xã hội: posters, images, mockups, gradients, backdrops | Theo trang | Prompt để copy |
+| 19 | **Backgrounds Supply** · backgrounds.supply (Kailash) | 1.983 hình nền trong 53 bộ: gradient, wallpaper, nền AI, 36 nền động MP4; ảnh 16:9 tới 4K; 14 công cụ miễn phí như Gradient Lab | $49 một lần, trọn đời; dùng thương mại | File ảnh, video |
+| 20 | **Font In Logo** · fontinlogo.com (hồ sơ §7v) | Tra font của logo thương hiệu lớn, có nhãn mức chắc chắn từng mục | Miễn phí | Xem tham khảo |
+
+### 7zc.5 Dùng thế nào
+
+- **Tìm bố cục và cảm hứng chung:** Recent Design, Inspora, Land-book, Landdding; khi cần đúng một phần thì vào Navbar Gallery, Footer Design, CTA Gallery.
+- **Đưa thẳng cho coding agent:** Refero Styles (`DESIGN.md` và MCP), OriginKit (MCP, miễn phí), Scrolltide và Motion In Design (prompt kèm spec), Scroll Shaders (copy component React); Iconly qua MCP khi cần icon riêng.
+- **Chuyển động:** xem mẫu trên 60fps rồi dùng OriginKit, Scroll Shaders hoặc Scrolltide để dựng; kết hợp skill Emil Kowalski (§7z.1) cho đường cong và thời lượng.
+- **Asset:** Backgrounds Supply cho nền, Font In Logo để tìm font gần với thương hiệu tham chiếu.
+- Liên quan: §7v (năm trang cảm hứng khác), §7za (8 kho UI sẵn dùng), §7w (MotionSites).
+
+**Nguồn §7zc:** danh sách người dùng gửi 16/11/2026 · WebFetch 16/11/2026: https://www.inspora.design/ · https://godly.website (301 về recent.design) · https://recent.design · https://land-book.com/llms.txt · https://landdding.com · https://landdding.com/pro · https://motionin.design/ · https://www.navbar.gallery · https://www.footer.design · https://www.cta.gallery · https://iconly.ai/ · https://styles.refero.design/ · https://60fps.design/ · https://60fps.design/pro · https://www.scrolltide.co/ · https://scrollshaders.com/ · https://www.originkit.dev/ · https://studio.motionsites.ai/ · https://onepromptdesign.com/ · https://backgrounds.supply/ · clone https://github.com/vellum-ai/originkit/blob/d27526a2e2e728fd2c0c13b28021ade6908211a7/README.md · https://github.com/referodesign/refero_skill/blob/2382e518f90096df607196b9a635da2d1bc142f9/README.md · GitHub search API 16/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/
