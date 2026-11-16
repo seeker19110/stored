@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1082,
+    "count": 1100,
     "schema_version": 2
   },
   "projects": [
@@ -15329,6 +15329,335 @@
       "verification_level": "docs-read",
       "sources": [
         "https://sumantthakur.substack.com/p/ai-coding-is-moving-beyond-the-agent"
+      ]
+    },
+    {
+      "name": "Inspora",
+      "url": "https://www.inspora.design/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Kho cảm hứng thiết kế tuyển chọn: Web, Branding, Product, Motion, Illustration, 3D, Print; miễn phí (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "inspora",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.inspora.design/"
+      ]
+    },
+    {
+      "name": "Recent Design (trước là Godly)",
+      "url": "https://recent.design",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Gallery cảm hứng: Design, Launch Videos, Websites, OG Images, App Screenshots, App Icons; godly.website chuyển 301 về đây; miễn phí (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "recent-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://recent.design"
+      ]
+    },
+    {
+      "name": "Land-book",
+      "url": "https://land-book.com",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Gallery website cập nhật hằng ngày theo loại trang, section, nền tảng, màu; OG images, template Webflow/Framer; có gói Pro; llms.txt (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "land-book",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://land-book.com/llms.txt"
+      ]
+    },
+    {
+      "name": "Landdding",
+      "url": "https://landdding.com",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "~2.700 landing page, 40 nhóm, template 5 nền tảng; Azwedo; PRO $4/tháng hoặc $48/năm; llms.txt (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "landdding",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://landdding.com"
+      ]
+    },
+    {
+      "name": "Motion In Design",
+      "url": "https://motionin.design/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Section web tương tác React/GSAP/Three.js bán dưới dạng prompt + spec Markdown cho AI coding (Copy Prompt); $9/tháng hoặc lifetime $99; llms.txt (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "motion-in-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://motionin.design/"
+      ]
+    },
+    {
+      "name": "Navbar Gallery",
+      "url": "https://www.navbar.gallery",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "450+ navbar từ site thật theo loại, style, ngành; Christina Liubynska; miễn phí; llms.txt (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "navbar-gallery",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.navbar.gallery"
+      ]
+    },
+    {
+      "name": "Footer Design",
+      "url": "https://www.footer.design",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Gallery footer theo phong cách (typographic, grid, animated, dark…); NOOON Studio; miễn phí; llms.txt (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "footer-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.footer.design"
+      ]
+    },
+    {
+      "name": "CTA Gallery",
+      "url": "https://www.cta.gallery",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Mẫu CTA theo loại (button, form, modal, newsletter, pricing) và ngành; miễn phí (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "cta-gallery",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.cta.gallery"
+      ]
+    },
+    {
+      "name": "Iconly",
+      "url": "https://iconly.ai/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Sinh icon/asset bằng AI, thư viện 11.000+ icon 10 style, trang cho app và game; REST API, MCP https://iconly.ai/mcp, agent skill; Pro $12,50/tháng (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "iconly",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://iconly.ai/"
+      ]
+    },
+    {
+      "name": "Refero Styles",
+      "url": "https://styles.refero.design/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "2.000+ design system đọc được bằng AI từ sản phẩm thật, kèm DESIGN.md cho Claude Code/Cursor/Codex/v0/Lovable; Refero MCP (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "refero-styles",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://styles.refero.design/"
+      ]
+    },
+    {
+      "name": "60fps",
+      "url": "https://60fps.design/",
+      "category": "motion-design",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Chi tiết animation/tương tác app iOS và web: 2.140 shot, 499 app, storyboard, snippet; PRO $15/tháng; MCP gói riêng (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "60fps-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://60fps.design/"
+      ]
+    },
+    {
+      "name": "Scrolltide",
+      "url": "https://www.scrolltide.co/",
+      "category": "motion-design",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "149 template, 107 component, 55 shader, 24 section dạng prompt cho AI ra Next.js/React/Tailwind/GSAP/Three.js; MCP chỉ đọc; lifetime $299 (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "scrolltide",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://www.scrolltide.co/"
+      ]
+    },
+    {
+      "name": "Scroll Shaders",
+      "url": "https://scrollshaders.com/",
+      "category": "motion-design",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "117 shader WebGL lặp liền mạch 11 nhóm + component shader, copy React .tsx hoặc HTML/JS WebGL2; $29/tháng, $239 trọn đời; giấy phép thương mại (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "scroll-shaders",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://scrollshaders.com/"
+      ]
+    },
+    {
+      "name": "MotionSites Studio",
+      "url": "https://studio.motionsites.ai/",
+      "category": "ai-ui-generator",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "AI website builder của MotionSites: mô tả doanh nghiệp → AI chỉnh mẫu, tạo ảnh/video, dựng site; mẫu Portfolio, Ecommerce, SaaS, Agency, 3D (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "motionsites-studio",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://studio.motionsites.ai/"
+      ]
+    },
+    {
+      "name": "One Prompt Design",
+      "url": "https://onepromptdesign.com/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "Prompt AI và tham chiếu hình cho quảng cáo, mạng xã hội: posters, images, mockups, gradients, backdrops (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "one-prompt-design",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://onepromptdesign.com/"
+      ]
+    },
+    {
+      "name": "Backgrounds Supply",
+      "url": "https://backgrounds.supply/",
+      "category": "design-tool",
+      "license": null,
+      "stars": null,
+      "open_source": false,
+      "notes": "1.983 hình nền 53 bộ (gradient, wallpaper, nền AI, nền động MP4), 14 công cụ miễn phí; $49 trọn đời, dùng thương mại; Kailash (đọc trang 16/11/2026), mục 06 §7zc",
+      "section": "06",
+      "id": "backgrounds-supply",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://backgrounds.supply/"
+      ]
+    },
+    {
+      "name": "OriginKit",
+      "repo": "vellum-ai/originkit",
+      "url": "https://www.originkit.dev/",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 32,
+      "open_source": true,
+      "notes": "Thư viện component animation miễn phí của Vellum AI (interactive, gallery, text, background, button) cho React/Next.js/Vite/Framer với CSS/Tailwind/CSS Modules; repo là plugin MCP (browse, get, setup), MCP https://mcp.originkit.dev/vellumai, lấy code cần API key miễn phí; ★ 16/11/2026: 32 (GitHub search API), mục 06 §7zc",
+      "section": "06",
+      "id": "originkit",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "d27526a2e2e728fd2c0c13b28021ade6908211a7",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/vellum-ai/originkit/blob/d27526a2e2e728fd2c0c13b28021ade6908211a7/README.md",
+        "https://github.com/vellum-ai/originkit/blob/d27526a2e2e728fd2c0c13b28021ade6908211a7/LICENSE"
+      ]
+    },
+    {
+      "name": "Refero skill",
+      "repo": "referodesign/refero_skill",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 353,
+      "open_source": true,
+      "notes": "Skill bắt agent nghiên cứu trước khi làm UI + MCP chỉ đọc tra style, 150.000+ màn hình app thật, 6.000+ user flow; plugin cho Claude Code, Codex, Cursor, Gemini CLI; tra cứu trực tiếp cần gói Refero trả phí; ★ 16/11/2026: 353 (GitHub search API), mục 06 §7zc",
+      "section": "06",
+      "id": "refero-skill",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "2382e518f90096df607196b9a635da2d1bc142f9",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/referodesign/refero_skill/blob/2382e518f90096df607196b9a635da2d1bc142f9/README.md",
+        "https://github.com/referodesign/refero_skill/blob/2382e518f90096df607196b9a635da2d1bc142f9/LICENSE"
       ]
     }
   ]
