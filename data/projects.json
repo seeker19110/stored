@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1106,
+    "count": 1107,
     "schema_version": 2
   },
   "projects": [
@@ -3051,12 +3051,20 @@
       "repo": "greensock/gsap-skills",
       "category": "motion-design",
       "license": "MIT",
-      "stars": 17642,
+      "stars": 18536,
       "open_source": true,
-      "notes": "8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow); ★ 31/10/2026: 17.642 (GitHub API)",
+      "notes": "8 skill chính thức GSAP; GSAP free thương mại từ 30/4/2025 (license độc quyền Webflow); ★ 31/10/2026: 17.642 (GitHub API); đọc lại 16/11/2026 (mục 22 §9l): 8 skill (core. timeline. scrolltrigger. plugins. utils. react. frameworks. performance). CLAUDE.md/GEMINI.md/AGENTS.md. llms.txt; ★ 16/11/2026: 18.536 (GitHub search API)",
       "section": "22",
       "id": "gsap-skills",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9l-kiểm-ảnh-4-skill-claude-code-làm-animation-threejs-gsap-design-dna-motion-design-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "aed9cfd3277740755f6bfc1155c7aa645403b760",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/greensock/gsap-skills/blob/aed9cfd3277740755f6bfc1155c7aa645403b760/README.md",
+        "https://github.com/greensock/gsap-skills/blob/aed9cfd3277740755f6bfc1155c7aa645403b760/LICENSE"
+      ]
     },
     {
       "name": "Motion (ex Framer Motion)",
@@ -3075,12 +3083,20 @@
       "repo": "LottieFiles/motion-design-skill",
       "category": "motion-design",
       "license": "MIT",
-      "stars": 2649,
+      "stars": 3212,
       "open_source": true,
-      "notes": "Nguyên lý motion UI (Disney 12, 4 personality, bảng timing); thư viện-agnostic; 4 commit; ★ 31/10/2026: 2.649 (GitHub API)",
+      "notes": "Nguyên lý motion UI (Disney 12, 4 personality, bảng timing); thư viện-agnostic; 4 commit; ★ 31/10/2026: 2.649 (GitHub API); đọc lại 16/11/2026 (mục 22 §9l): checklist 8 bước. 12 nguyên lý Disney cho UI. director/patterns/reference; ★ 16/11/2026: 3.212 (GitHub search API)",
       "section": "22",
       "id": "lottiefiles-motion-design-skill",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9l-kiểm-ảnh-4-skill-claude-code-làm-animation-threejs-gsap-design-dna-motion-design-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "f9a8a041b85185ee4881b3471d3415e939aac772",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/LottieFiles/motion-design-skill/blob/f9a8a041b85185ee4881b3471d3415e939aac772/README.md",
+        "https://github.com/LottieFiles/motion-design-skill/blob/f9a8a041b85185ee4881b3471d3415e939aac772/LICENSE"
+      ]
     },
     {
       "name": "product-launch-motion",
@@ -4284,12 +4300,20 @@
       "repo": "CloudAI-X/threejs-skills",
       "category": "motion-design",
       "license": "MIT",
-      "stars": 3888,
+      "stars": 4222,
       "open_source": true,
-      "notes": "Skill three.js cho Claude Code; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 3.888 (GitHub API)",
+      "notes": "Skill three.js cho Claude Code; ★ 12/10/2026 (danh sách 28 repo Charlie Hills, mục 22 §9b); ★ 31/10/2026: 3.888 (GitHub API); đọc lại 16/11/2026 (mục 22 §9l): 13 skill. nhắm three.js r186 / R3F 9.8 / drei 10.7. mục Common Mistakes theo phiên bản; 26 commit; ★ 16/11/2026: 4.222 (GitHub search API)",
       "section": "22",
       "id": "threejs-skills",
-      "profile_path": "22-motion-design-animation/README.md"
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9l-kiểm-ảnh-4-skill-claude-code-làm-animation-threejs-gsap-design-dna-motion-design-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "0e181866f095b5f06d005133876e926515390d95",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/CloudAI-X/threejs-skills/blob/0e181866f095b5f06d005133876e926515390d95/README.md",
+        "https://github.com/CloudAI-X/threejs-skills/blob/0e181866f095b5f06d005133876e926515390d95/LICENSE"
+      ]
     },
     {
       "name": "after-effects-mcp",
@@ -15807,6 +15831,27 @@
       "sources": [
         "https://github.com/obsidianmd/obsidian-skills/blob/398127736bd4ba42d767b1419fee1a927508370b/README.md",
         "https://github.com/obsidianmd/obsidian-skills/blob/398127736bd4ba42d767b1419fee1a927508370b/LICENSE"
+      ]
+    },
+    {
+      "name": "Design DNA",
+      "repo": "zanwei/design-dna",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 2131,
+      "open_source": true,
+      "notes": "Skill trích \"ADN thiết kế\" từ ảnh/URL thành JSON (design system, style, visual effects), 3 pha Structure/Analyze/Generate; đo màu bằng k-means tất định (measure-colors.mjs) và verify.mjs so ΔE (ví dụ bun.sh ΔE 0,87); npx skills add zanwei/design-dna; 27 commit; ★ 16/11/2026: 2.131 (GitHub search API), mục 22 §9l",
+      "section": "22",
+      "id": "design-dna",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9l-kiểm-ảnh-4-skill-claude-code-làm-animation-threejs-gsap-design-dna-motion-design-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "593e39bc9e3652734653bd75544a333d7d43615e",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/README.md",
+        "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md",
+        "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/LICENSE"
       ]
     }
   ]

@@ -475,6 +475,10 @@ Mục 06 §7zd gồm sáu công cụ. dream-loop (2,4k★, MIT) dựng hình 3D 
 
 Mục 20 §3zc cập nhật số liệu bốn repo đã có hồ sơ. mattpocock/skills (326k★) vừa thêm nhóm software-factory. addyosmani/agent-skills (118k★) lên bản 0.6.16. cloudflare/security-audit-skill (74k★) dùng verifier ngữ cảnh mới để giảm cảnh báo sai. Google EGM (20k★) rà tài liệu thiết kế trước khi code. Hồ sơ mới là Obsidian Skills (53k★, MIT): 7 skill chính thức giúp agent viết đúng Markdown, Bases, Canvas và dùng CLI của Obsidian. Link `kepano/obsidian-skills` trong bài nay chuyển về `obsidianmd/obsidian-skills`.
 
+### 79. Bốn skill Claude Code làm animation (16/11/2026): Three.js, GSAP, Design DNA, Motion Design
+
+Mục 22 §9l gồm bốn skill. threejs-skills có 13 skill viết đúng cho three.js r186. gsap-skills là 8 skill chính thức của GreenSock. motion-design-skill của LottieFiles dạy nhịp, easing và 12 nguyên lý Disney trước khi viết code. Hồ sơ mới là Design DNA: đo phong cách từ ảnh hoặc link thành JSON (màu đo bằng pixel thật, không đoán) rồi dựng lại cùng phong cách; ví dụ dựng lại hero bun.sh lệch màu trung bình chỉ ΔE 0,87.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
