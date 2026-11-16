@@ -471,6 +471,10 @@ Mục 06 §7zc chia 20 trang thành bốn nhóm. Nhóm gallery tổng hợp gồ
 
 Mục 06 §7zd gồm sáu công cụ. dream-loop (2,4k★, MIT) dựng hình 3D bằng vòng sinh ảnh mục tiêu, dựng rồi để critic so sánh và lặp. Hairline (3,9k★, MIT) là 33 hình nét isometric phản hồi theo con trỏ. Skill Meng To (7,6k★, MIT) có 183 skill cho web, 3D, minh họa và game. REA (MIT) là một MCP để agent phân tích ngược app và website. HTML Demo của Fil dựng bản demo app chạy được bằng HTML thay cho video. Skill Emil Kowalski đã có hồ sơ ở §7z.1.
 
+### 78. Năm repo skill đáng lưu (16/11/2026): Matt Pocock, Addy Osmani, Cloudflare, Obsidian, Google EGM
+
+Mục 20 §3zc cập nhật số liệu bốn repo đã có hồ sơ. mattpocock/skills (326k★) vừa thêm nhóm software-factory. addyosmani/agent-skills (118k★) lên bản 0.6.16. cloudflare/security-audit-skill (74k★) dùng verifier ngữ cảnh mới để giảm cảnh báo sai. Google EGM (20k★) rà tài liệu thiết kế trước khi code. Hồ sơ mới là Obsidian Skills (53k★, MIT): 7 skill chính thức giúp agent viết đúng Markdown, Bases, Canvas và dùng CLI của Obsidian. Link `kepano/obsidian-skills` trong bài nay chuyển về `obsidianmd/obsidian-skills`.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

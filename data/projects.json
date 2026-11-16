@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1105,
+    "count": 1106,
     "schema_version": 2
   },
   "projects": [
@@ -3579,12 +3579,19 @@
       "repo": "addyosmani/agent-skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 113774,
+      "stars": 118181,
       "open_source": true,
-      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.2 (31/10/2026): 112k★, v0.6.14, 772 commit/103 tác giả, 25 skill/4 agent/9 command/7 checklist; CI lint + eval routing ≥95% hạng 1 (TF-IDF, tất định), eval hành vi chạy tay; hook tùy chọn có test (sdd-cache xác thực lại bằng ETag); ledger thay đổi bị từ chối; không telemetry; ★ 31/10/2026: 112.246 (GitHub API); đọc lại 7/11/2026 (§3o.2b): 0.6.15, 807 commit; bảy bước /spec /plan /build (auto) /test /review /code-simplify /ship ánh xạ tới skill tương ứng, /ship chạy song song 3 persona (code-reviewer, security-auditor, test-engineer) rồi ra go/no-go; 0.6.15 thêm kiểm phát hiện review với baseline, cổng bảo mật và accessibility trong constraints, quét secret không in credential; ★ 7/11/2026: 113.774 (GitHub search API)",
+      "notes": "incremental-implementation, source-driven, doubt-driven development, context-engineering; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.2 (31/10/2026): 112k★, v0.6.14, 772 commit/103 tác giả, 25 skill/4 agent/9 command/7 checklist; CI lint + eval routing ≥95% hạng 1 (TF-IDF, tất định), eval hành vi chạy tay; hook tùy chọn có test (sdd-cache xác thực lại bằng ETag); ledger thay đổi bị từ chối; không telemetry; ★ 31/10/2026: 112.246 (GitHub API); đọc lại 7/11/2026 (§3o.2b): 0.6.15, 807 commit; bảy bước /spec /plan /build (auto) /test /review /code-simplify /ship ánh xạ tới skill tương ứng, /ship chạy song song 3 persona (code-reviewer, security-auditor, test-engineer) rồi ra go/no-go; 0.6.15 thêm kiểm phát hiện review với baseline, cổng bảo mật và accessibility trong constraints, quét secret không in credential; ★ 7/11/2026: 113.774 (GitHub search API); đọc lại 16/11/2026 (mục 20 §3zc): 0.6.16. 848 commit: spec evolution. V1 scoping. delta spec. debug khi dán diff/stack trace; ★ 16/11/2026: 118.181 (GitHub search API)",
       "section": "20",
       "id": "agent-skills-addyosmani",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zc-kiểm-bài-5-repo-skill-đáng-lưu-matt-pocock-addy-osmani-cloudflare-obsidian-google-egm-bài-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "39b723ceebf81474d0557c1fecd01eddab585563",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/addyosmani/agent-skills/blob/39b723ceebf81474d0557c1fecd01eddab585563/README.md"
+      ]
     },
     {
       "name": "claude-red",
@@ -4032,12 +4039,19 @@
       "repo": "mattpocock/skills",
       "category": "harness-pack",
       "license": "MIT",
-      "stars": 308333,
+      "stars": 325682,
       "open_source": true,
-      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật 31/10/2026 (mục 20 §3p.1): 308k★, v1.3.2, 553 commit (8 từ 12/10), 39 SKILL.md (8 in-progress: chief-of-staff wiki memory, implement-spec subagent sạch ngữ cảnh, software-factory), CI chỉ quản trị issue/phát hành; ★ 31/10/2026: 308.333 (GitHub API)",
+      "notes": "38 SKILL.md nhỏ ghép được (grill-with-docs, to-spec, tdd, diagnosing-bugs, improve-codebase-architecture); có trong claude-plugins-official; SCOPE.md + .out-of-scope/ chặn skill mới; ★ 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật 31/10/2026 (mục 20 §3p.1): 308k★, v1.3.2, 553 commit (8 từ 12/10), 39 SKILL.md (8 in-progress: chief-of-staff wiki memory, implement-spec subagent sạch ngữ cảnh, software-factory), CI chỉ quản trị issue/phát hành; ★ 31/10/2026: 308.333 (GitHub API); đọc lại 16/11/2026 (mục 20 §3zc): v1.3.2. 555 commit. 39 SKILL.md. thêm software-factory và implement-spec (subagent mới cho từng ticket); ★ 16/11/2026: 325.682 (GitHub search API)",
       "section": "20",
       "id": "mattpocock-skills",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zc-kiểm-bài-5-repo-skill-đáng-lưu-matt-pocock-addy-osmani-cloudflare-obsidian-google-egm-bài-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/mattpocock/skills/blob/5863806dd4e15c63174bee4e7515a4256792ecfa/README.md"
+      ]
     },
     {
       "name": "three.js",
@@ -5703,12 +5717,19 @@
       "repo": "cloudflare/security-audit-skill",
       "category": "security",
       "license": "MIT",
-      "stars": 55283,
+      "stars": 73608,
       "open_source": true,
-      "notes": "Skill audit bảo mật 1 repo, 6 pha (recon → hunt theo coverage ledger → verifier mới bác bỏ → findings.json theo schema → kiểm lại → báo cáo); 2 validator Node (65/65 test pass) chỉ kiểm định dạng; chạy code target chỉ trong sandbox OS; không phòng prompt injection từ repo đang audit; validator từ chối input trên Windows; hạt giống harness 128 repo của Cloudflare (blog 18/6/2026); ★ 25/10/2026 (shields; 28,6k ngày 12/10), mục 12 §3m; ★ 31/10/2026: 55.283 (GitHub API)",
+      "notes": "Skill audit bảo mật 1 repo, 6 pha (recon → hunt theo coverage ledger → verifier mới bác bỏ → findings.json theo schema → kiểm lại → báo cáo); 2 validator Node (65/65 test pass) chỉ kiểm định dạng; chạy code target chỉ trong sandbox OS; không phòng prompt injection từ repo đang audit; validator từ chối input trên Windows; hạt giống harness 128 repo của Cloudflare (blog 18/6/2026); ★ 25/10/2026 (shields; 28,6k ngày 12/10), mục 12 §3m; ★ 31/10/2026: 55.283 (GitHub API); đọc lại 16/11/2026 (mục 20 §3zc): 14 commit. verifier ngữ cảnh mới giảm cảnh báo sai; ★ 16/11/2026: 73.608 (GitHub search API)",
       "section": "12",
       "id": "security-audit-skill-cloudflare",
-      "profile_path": "12-ai-security-guardrails/README.md"
+      "profile_path": "12-ai-security-guardrails/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zc-kiểm-bài-5-repo-skill-đáng-lưu-matt-pocock-addy-osmani-cloudflare-obsidian-google-egm-bài-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/cloudflare/security-audit-skill/blob/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/README.md"
+      ]
     },
     {
       "name": "Anthropic-Cybersecurity-Skills (cộng đồng)",
@@ -9954,12 +9975,19 @@
       "repo": "google/elephant-goldfish-model",
       "category": "plugin-marketplace",
       "license": "Apache-2.0",
-      "stars": 9165,
+      "stars": 20149,
       "open_source": true,
-      "notes": "Plugin toàn prompt (7 skill, 9 persona reviewer) cho Claude Code/Codex/Antigravity: viết spec với agent đủ ngữ cảnh, rà bằng subagent ngữ cảnh mới (bản Claude Code: tools chỉ đọc + omitClaudeMd), vòng rà hội tụ khi 2 lượt sạch, trần 5, phát hiện churn; 'not an officially supported Google product', lịch sử công khai từ 21/10/2026; 'thousands of Google engineers' chưa xác minh; ★ 2/11/2026 (GitHub API), mục 20 §3u",
+      "notes": "Plugin toàn prompt (7 skill, 9 persona reviewer) cho Claude Code/Codex/Antigravity: viết spec với agent đủ ngữ cảnh, rà bằng subagent ngữ cảnh mới (bản Claude Code: tools chỉ đọc + omitClaudeMd), vòng rà hội tụ khi 2 lượt sạch, trần 5, phát hiện churn; 'not an officially supported Google product', lịch sử công khai từ 21/10/2026; 'thousands of Google engineers' chưa xác minh; ★ 2/11/2026 (GitHub API), mục 20 §3u; đọc lại 16/11/2026 (mục 20 §3zc): v0.1.1. 204 commit. adapter Windsurf thử nghiệm. provenance bundle khi phát hành; ★ 16/11/2026: 20.149 (GitHub search API)",
       "section": "20",
       "id": "elephant-goldfish-model-egm",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zc-kiểm-bài-5-repo-skill-đáng-lưu-matt-pocock-addy-osmani-cloudflare-obsidian-google-egm-bài-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "72d06f52a2482885d9a64bd24b291c6e8628942c",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model/blob/72d06f52a2482885d9a64bd24b291c6e8628942c/README.md"
+      ]
     },
     {
       "name": "Stageshow",
@@ -15759,6 +15787,26 @@
       "sources": [
         "https://fil.design/skills/html-demo",
         "https://fil.design/skills"
+      ]
+    },
+    {
+      "name": "Obsidian Skills",
+      "repo": "obsidianmd/obsidian-skills",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 52915,
+      "open_source": true,
+      "notes": "Skill chính thức của Obsidian (Steph Ango/kepano): obsidian-markdown, obsidian-bases, json-canvas, obsidian-cli, obsidian-headless, defuddle, knap theo chuẩn Agent Skills; plugin Claude Code/Codex/Cursor, npx skills; v1.1.0, 100 commit; link cũ kepano/obsidian-skills chuyển hướng về đây; ★ 16/11/2026: 52.915 (GitHub search API), mục 20 §3zc",
+      "section": "20",
+      "id": "obsidian-skills",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zc-kiểm-bài-5-repo-skill-đáng-lưu-matt-pocock-addy-osmani-cloudflare-obsidian-google-egm-bài-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "398127736bd4ba42d767b1419fee1a927508370b",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/obsidianmd/obsidian-skills/blob/398127736bd4ba42d767b1419fee1a927508370b/README.md",
+        "https://github.com/obsidianmd/obsidian-skills/blob/398127736bd4ba42d767b1419fee1a927508370b/LICENSE"
       ]
     }
   ]
