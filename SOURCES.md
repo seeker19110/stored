@@ -1997,3 +1997,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-16e (ảnh bộ skill Figma của TELOS Academy → mục 06 §7ze)
 
 - WebFetch 16/11/2026: https://www.figma.com/resource-library/claude-skills-for-design/. Clone `--filter=blob:none` 16/11/2026: `figma/mcp-server-guide` HEAD `5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d`, `edenspiekermann/Skills` HEAD `a49e859329aa99e81e8725bc66767d16e8fc9539`, `redongreen/uSpec` HEAD `1e25e9b8bc2e694689ba0489594f38807a341f14`, `nolanperk/rad-spacing` HEAD `15e911236edca0d6c30d29a24581112ae7635a08`, `firebenders/sync-figma-token-skill` HEAD `c017392e2061874124eef61b9f29a7301ad844d1`, `nvillapiano/component-contracts-figma` HEAD `14db03bba7727122a7704d46aef1a5f28a2d6dcc`. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16f (bài đăng evondevKit landing → mục 06 §7n.6)
+
+- `evondev/evondevKit`: clone `--filter=blob:none` HEAD `5a892ceac93d1bb286391663eb01cbd011706886` (355 commit, plugin 0.9.3): README.vi.md, NEXT.md (mục 9 skill landing), `git log` 6–9/11/2026. GitHub search API 16/11/2026.

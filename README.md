@@ -483,6 +483,10 @@ Mục 22 §9l gồm bốn skill. threejs-skills có 13 skill viết đúng cho t
 
 Mục 06 §7ze đối chiếu ảnh TELOS Academy với trang "10 Claude Skills for Design" của Figma. Ba skill của Figma (`figma-use`, `figma-generate-design`, `figma-generate-library`) cho Claude thao tác trực tiếp trên canvas và dùng thư viện component có sẵn. Edenspiekermann có bộ rà và sửa chỗ lệch design system. uSpec (Uber, MIT) sinh đặc tả screen reader. rad-spacing chuẩn hóa spacing theo cấp bậc. sync-figma-token so token giữa Figma và code, bắt duyệt trước khi áp. component-contracts-figma dựng component và token từ một file JSON chung. `/frontend-design` của Anthropic lập brief sáng tạo trước khi tạo UI.
 
+### 81. evondevKit 0.9.3 (16/11/2026): thêm Mobile App UI, skill landing đang audit
+
+evondevKit (mục 06 §7n.6, 564★, MIT) nay làm tốt cả Dashboard UI và Mobile App UI. Phần mobile có chín bộ mặt app và lệnh `probe --mobile` đo vùng chạm, chữ nhỏ, ô nhập thiếu `inputmode`. Skill landing page `evon:landing` đang được audit. Hướng làm đã ghi trong `NEXT.md`: brief hỏi khách vào trang để làm gì (dùng thử, mua, đặt demo, danh sách chờ), rồi chọn trong chín loại section, một CTA chính lặp dọc trang.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

@@ -933,20 +933,20 @@
       "repo": "evondev/evondevKit",
       "category": "design-skill",
       "license": "MIT",
-      "stars": 460,
+      "stars": 564,
       "open_source": true,
-      "notes": "Skill ui-ux tiếng Việt cho dashboard/app của Tuấn Trần (evondev): brief → 2–3 wireframe → dựng bằng component sẵn có; probe.mjs (~4.700 dòng, Playwright) đo tràn/cắt chữ/tương phản ở 375–1920px và so với wireframe; SKILL.md 44,5 KB (~11k token) + references ~1,2 MB; Beta, '70 prompt' tự khai; không CI, không telemetry (check-update 1 lần/ngày, tắt EVONDEVKIT_NO_UPDATE_CHECK=1); 259 commit một tác giả, 258 trailer Claude, tạo 20/9/2026; plugin evon v0.3.27; 432★ (31/10/2026, shields); hồ sơ mục 06 §7n; ★ 31/10/2026: 437 (GitHub API); đọc lại 6/11/2026 (§7n.5): v0.6.0, cài cho Claude Code (marketplace) và Cursor/OpenCode/Codex/Antigravity/ZCode/omp (npx skills add); thêm phân tích sản phẩm, soi luồng, DESIGN.md, probe --stress, bộ mặt dashboard P13, màu nhấn theo ngành (≥5:1), trục khung app; ★ 6/11/2026: 460 (GitHub search API)",
+      "notes": "Skill ui-ux tiếng Việt cho dashboard/app của Tuấn Trần (evondev): brief → 2–3 wireframe → dựng bằng component sẵn có; probe.mjs (~4.700 dòng, Playwright) đo tràn/cắt chữ/tương phản ở 375–1920px và so với wireframe; SKILL.md 44,5 KB (~11k token) + references ~1,2 MB; Beta, '70 prompt' tự khai; không CI, không telemetry (check-update 1 lần/ngày, tắt EVONDEVKIT_NO_UPDATE_CHECK=1); 259 commit một tác giả, 258 trailer Claude, tạo 20/9/2026; plugin evon v0.3.27; 432★ (31/10/2026, shields); hồ sơ mục 06 §7n; ★ 31/10/2026: 437 (GitHub API); đọc lại 6/11/2026 (§7n.5): v0.6.0, cài cho Claude Code (marketplace) và Cursor/OpenCode/Codex/Antigravity/ZCode/omp (npx skills add); thêm phân tích sản phẩm, soi luồng, DESIGN.md, probe --stress, bộ mặt dashboard P13, màu nhấn theo ngành (≥5:1), trục khung app; ★ 6/11/2026: 460 (GitHub search API); đọc lại 16/11/2026 (§7n.6): plugin 0.9.3, 355 commit, nhánh app điện thoại (9 bộ mặt, probe --mobile), skill nhẹ token hơn; evon:landing đang audit theo hướng trong NEXT.md; ★ 16/11/2026: 564 (GitHub search API)",
       "section": "06",
       "id": "evondevkit-ui-ux",
       "profile_path": "06-ui-ux-design/README.md",
-      "last_verified_at": "2026-11-06",
-      "verified_ref": "69fc1b347dd779f29f13bb4efb42075fb80a1c3a",
-      "verification_level": "docs-read",
-      "profile_anchor": "06-ui-ux-design/README.md#7n5-đọc-lại-6112026-v060-cài-được-cho-sáu-công-cụ-thêm-phân-tích-sản-phẩm-và-bộ-mặt-dashboard",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "5a892ceac93d1bb286391663eb01cbd011706886",
+      "verification_level": "code-read",
+      "profile_anchor": "06-ui-ux-design/README.md#7n6-đọc-lại-16112026-v093-làm-tốt-cả-mobile-app-ui-skill-landing-evonlanding-đang-được-audit-bài-đăng-người-dùng-gửi",
       "sources": [
-        "https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/README.vi.md",
-        "https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/.claude-plugin/plugin.json",
-        "https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/LICENSE"
+        "https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/README.vi.md",
+        "https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/NEXT.md",
+        "https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/.claude-plugin/plugin.json"
       ]
     },
     {

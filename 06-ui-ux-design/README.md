@@ -870,6 +870,30 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7n.5:** ảnh trang giới thiệu người dùng gửi 6/11/2026 · clone https://github.com/evondev/evondevKit HEAD `69fc1b347dd779f29f13bb4efb42075fb80a1c3a`: https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/README.vi.md · https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/.claude-plugin/plugin.json · https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/LICENSE · `git log 4d02153..HEAD` · https://evondev-uiux.vercel.app/ui-ux · GitHub search API 6/11/2026.
 
+### 7n.6 Đọc lại 16/11/2026: v0.9.3 làm tốt cả Mobile App UI, skill landing `evon:landing` đang được audit (bài đăng người dùng gửi)
+
+> Bài đăng của tác giả: landing page trong ảnh là kết quả một prompt của skill đang audit để thêm vào evondevKit; skill hiện làm tốt Dashboard UI và Mobile App UI; lệnh dự kiến `evon:landing: <prompt>`.
+
+| Thuộc tính | Giá trị (16/11/2026) |
+|---|---|
+| Repo | https://github.com/evondev/evondevKit · **564★, 89 fork** (GitHub search API) · MIT · 355 commit · plugin `evon` **0.9.3** (tag mới nhất v0.9.2) |
+| Gọi | `/evon:ui-ux` (Claude Code: `/plugin marketplace add evondev/evondevKit` rồi `/plugin install evon@evondevkit`) |
+
+Điểm mới từ 6/11 (đọc `git log`):
+
+- **App điện thoại thành nhánh đầy đủ (0.9.0–0.9.3)**: `mobile.md` tách theo mục, chín "bộ mặt" app (`clean`, `mono`, `photo`, `playful`, `immersive`, `editorial`…, thêm bộ Brand cho gọi xe, giao hàng, vé), màu nhấn theo ngành; `probe --mobile` đo vùng chạm nhỏ, chữ nhỏ, dòng cuối bị che, sheet thiếu lớp phủ, ô nhập số thiếu `inputmode`, ô thiếu nhãn, màn lỗi chung chung, màn mất nút quay lại.
+- **Skill nhẹ token hơn**: `SKILL.md` gọn lại, wireframe tách theo loại màn, checklist từng màn chỉ mở khi cần, `lint-skill.mjs` báo khi file vượt trần kích thước.
+- **Thử bằng dự án thật**: mỗi lần sửa luật ghi lại phiên thử (app du lịch, bảo hiểm, AI chat, gọi xe) và kết quả probe.
+
+**Skill landing page (`evon:landing`)**: `NEXT.md` đã chốt hướng làm thành skill thứ hai, tách khỏi `ui-ux` vì luật hai bên khác nhau:
+
+1. Tra 15–20 landing page SaaS đang chạy trước khi viết luật, ghi section, thứ tự, số lần lặp CTA, dạng pricing.
+2. Brief hỏi một câu "khách vào trang cần làm gì?" với bốn mục tiêu: đăng ký dùng thử, mua luôn, đặt lịch demo, vào danh sách chờ; mục tiêu quyết định bật section nào.
+3. Chín loại section nền (header, hero, social proof, tính năng, cách hoạt động, pricing, FAQ, CTA cuối, footer), mỗi loại 2–3 biến thể; pricing ba dạng.
+4. Luật chung: một CTA chính lặp dọc trang cùng chữ cùng đích, một màu nhấn, nhịp dọc theo một thang, chữ hero nói đúng sản phẩm làm được gì cho ai.
+
+**Nguồn §7n.6:** bài đăng người dùng gửi 16/11/2026 · clone https://github.com/evondev/evondevKit HEAD `5a892ceac93d1bb286391663eb01cbd011706886`: https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/README.vi.md · https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/NEXT.md · https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/.claude-plugin/plugin.json · `git log` 6–9/11/2026 · GitHub search API 16/11/2026.
+
 ## 7o. Ba skill thiết kế trong ảnh: `/figma-use-motion` (Figma), `/design-critique` và `/design-handoff` (Anthropic) (ảnh người dùng gửi, clone 2026-10-31)
 
 > Ảnh là ba chip lệnh slash trên nền cam, không kèm chữ (sau chip đầu thấy loáng thoáng "…The faded card behind it rises a…", tức một bài viết về hiệu ứng chuyển động). Đã clone `figma/mcp-server-guide`, `anthropics/knowledge-work-plugins` và `openai/plugins`, đọc `SKILL.md` cùng `references/`, `plugin.json`, `.mcp.json`, `CONNECTORS.md` và lịch sử git của từng skill. **Không cài, không gọi Figma MCP.**
