@@ -1695,6 +1695,42 @@ mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
 
 **Nguồn §7zd:** danh sách người dùng gửi 16/11/2026 · clone `--filter=blob:none` 16/11/2026: https://github.com/achimala/dream-loop/blob/9bddb901f7d071cfefdd21e264267c757177a9df/README.md · https://github.com/lucasmarkes/hairline/blob/034f4bf9902c6adcf3cf39d82f85e6010cb4e094/README.md · https://github.com/MengTo/Skills/blob/3cc93458c4949c39a04e938ea7892a1d6d3d40bf/README.md · https://github.com/morluto/rea/blob/8ffea11ee30d5e0d442a8d14b27e05b0441b9e18/README.md · WebFetch https://hairline.lucasmarkes.com/ · https://rea.tools/ · https://fil.design/skills · https://fil.design/skills/html-demo · GitHub search API 16/11/2026.
 
+## 7ze. Kiểm ảnh bộ skill Figma cho Claude (TELOS Academy): 11 skill từ figma-use tới cc-figma-tokens (ảnh người dùng gửi, đọc mã 16/11/2026)
+
+> Hai ảnh TELOS Academy giới thiệu 11 skill. Danh sách khớp trang [10 Claude Skills for Design](https://www.figma.com/resource-library/claude-skills-for-design/) của Figma; trang này ghi tác giả và link cho từng skill. Ba skill của Figma nằm trong `figma/mcp-server-guide` (đã có hồ sơ ở §7o); `/frontend-design` của Anthropic đã có hồ sơ ở §7g; còn lại là skill cộng đồng, được hồ sơ ở đây.
+
+### 7ze.1 Bảng 11 skill
+
+| Skill | Tác giả | Repo | ★ (16/11/2026) | Làm gì |
+|---|---|---|---|---|
+| `/figma-use` | Figma | `figma/mcp-server-guide` → `skills/figma-use` | 2.197 (repo) | Cho Claude đọc, đi lại và thao tác trên file Figma: component, layer, variable, frame; nền cho mọi skill Figma khác |
+| `/figma-generate-design` | Figma | cùng repo → `skills/figma-generate-design` | | Dựng màn hình, layout, component mới từ thư viện component đã duyệt |
+| `/figma-generate-library` | Figma | cùng repo → `skills/figma-generate-library` | | Từ codebase sinh thư viện component Figma tương ứng |
+| `/audit-design-system` | Chris Goebel, Edenspiekermann | `edenspiekermann/Skills` | 68 | Rà màn hình hoặc component tìm chỗ lệch design system: thiếu component dùng chung, override cục bộ, token chưa gắn |
+| `/apply-design-system` | Chris Goebel, Edenspiekermann | cùng repo | | Gắn lại phần tử lẻ về đúng component và token |
+| `/create-voice` | Ian Guisard, Uber | `redongreen/uSpec` | 251 | Sinh đặc tả screen reader cho VoiceOver, TalkBack, ARIA từ component Figma |
+| `/rad-spacing` | Nolan Perkins, Rad Collab | `nolanperk/rad-spacing` | 17 | Áp spacing theo cấp bậc bằng biến có sẵn, có quy tắc dự phòng khi thiếu token |
+| `/sync-figma-token` | Anish Karthik, Firebender | `firebenders/sync-figma-token-skill` | 27 | So token giữa Figma variables và codebase, báo chỗ lệch |
+| `/frontend-design` | Anthropic | `anthropics/claude-code` → `plugins/frontend-design` | (§7g) | Bắt Claude lập brief sáng tạo (mục đích, tông giọng, ràng buộc, điểm nhớ) trước khi tạo UI |
+| `/cc-figma-component`, `/cc-figma-tokens` | Nick Villapiano, One North | `nvillapiano/component-contracts-figma` | 34 | Từ file JSON đặc tả (component contract) sinh component set hoặc biến token trong Figma |
+
+### 7ze.2 Điểm mạnh các skill cộng đồng (đọc mã)
+
+- **Edenspiekermann** (3 skill, 165–235 dòng mỗi file): quy trình ba bước rà → sửa từng phát hiện → gắn lại. `audit-design-system` phân loại ba kiểu lệch (thiếu component dùng chung, override cục bộ, token chưa gắn); `fix-design-system-finding` sửa đúng một phát hiện; `apply-design-system` rà rồi nối lại cả màn hình. Repo có sẵn mục `.claude/skills/` nên mở repo trong Claude Code là dùng được lệnh slash.
+- **uSpec** (MIT, 67 commit, 13 skill): sinh tài liệu design system cho component từ agent: anatomy, API, cấu trúc, màu, motion, property, voice; plugin Figma "uSpec Extract" chụp component, rồi `create-component-md` sinh cặp `.json` và `.md` làm hợp đồng máy đọc. `create-voice` (891 dòng) viết đặc tả VoiceOver, TalkBack và ARIA cho từng trạng thái.
+- **rad-spacing**: xác định độ sâu lồng (trang → section → card → nội dung → phần tử dòng), dùng biến spacing sẵn có trong thư viện theo đúng cách đặt tên đang dùng; nếu chưa có thì tạo bộ `spacing/xs…3xl` (4–48px); mỗi cấp cha lớn hơn cấp con khoảng 1,4 lần rồi làm tròn về bội 8px (hoặc 4px), theo nguyên tắc gần gũi Gestalt.
+- **sync-figma-token**: đồng bộ token giữa code và Figma variables với báo cáo lệch nghiêm ngặt, **bắt buộc duyệt trước khi áp**, chỉ áp phần chênh và lưu báo cáo.
+- **component-contracts-figma**: một file contract là nguồn chung cho cả code và Figma; `cc-figma-tokens` dựng collection Primitives và Semantic, `cc-figma-component` dựng component set với variant theo contract.
+
+### 7ze.3 Cài và dùng
+
+- Ba skill Figma: cài plugin `figma` từ `figma/mcp-server-guide` (hướng dẫn trong §7o) và nối Figma MCP (`mcp.figma.com/mcp`).
+- Skill cộng đồng: chép thư mục skill vào `~/.claude/skills/` hoặc `.claude/skills/` của dự án; Figma còn gom các skill ở trang Community Skills (figma.com/community/skills).
+- Bốn repo `edenspiekermann/Skills`, `nolanperk/rad-spacing`, `firebenders/sync-figma-token-skill`, `nvillapiano/component-contracts-figma` chưa kèm file LICENSE; dùng nội bộ thì chép được, muốn phân phối lại thì hỏi tác giả.
+- Gợi ý quy trình: `/frontend-design` lập brief → `/figma-generate-design` dựng bằng thư viện có sẵn → `/rad-spacing` chuẩn spacing → `/audit-design-system` rồi `/apply-design-system` → `/sync-figma-token` trước khi bàn giao code → `/create-voice` cho đặc tả screen reader.
+
+**Nguồn §7ze:** ảnh người dùng gửi 16/11/2026 · https://www.figma.com/resource-library/claude-skills-for-design/ (WebFetch 16/11/2026) · clone `--filter=blob:none` 16/11/2026: https://github.com/figma/mcp-server-guide/blob/5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d/README.md · https://github.com/edenspiekermann/Skills/blob/a49e859329aa99e81e8725bc66767d16e8fc9539/README.md · https://github.com/redongreen/uSpec/blob/1e25e9b8bc2e694689ba0489594f38807a341f14/README.md · https://github.com/nolanperk/rad-spacing/blob/15e911236edca0d6c30d29a24581112ae7635a08/rad-spacing.md · https://github.com/firebenders/sync-figma-token-skill/blob/c017392e2061874124eef61b9f29a7301ad844d1/skills/sync-figma-token/SKILL.md · https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-component/SKILL.md · GitHub search API 16/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

@@ -479,6 +479,10 @@ Mục 20 §3zc cập nhật số liệu bốn repo đã có hồ sơ. mattpocock
 
 Mục 22 §9l gồm bốn skill. threejs-skills có 13 skill viết đúng cho three.js r186. gsap-skills là 8 skill chính thức của GreenSock. motion-design-skill của LottieFiles dạy nhịp, easing và 12 nguyên lý Disney trước khi viết code. Hồ sơ mới là Design DNA: đo phong cách từ ảnh hoặc link thành JSON (màu đo bằng pixel thật, không đoán) rồi dựng lại cùng phong cách; ví dụ dựng lại hero bun.sh lệch màu trung bình chỉ ΔE 0,87.
 
+### 80. Bộ 11 skill Figma cho Claude (16/11/2026): từ figma-use tới cc-figma-tokens
+
+Mục 06 §7ze đối chiếu ảnh TELOS Academy với trang "10 Claude Skills for Design" của Figma. Ba skill của Figma (`figma-use`, `figma-generate-design`, `figma-generate-library`) cho Claude thao tác trực tiếp trên canvas và dùng thư viện component có sẵn. Edenspiekermann có bộ rà và sửa chỗ lệch design system. uSpec (Uber, MIT) sinh đặc tả screen reader. rad-spacing chuẩn hóa spacing theo cấp bậc. sync-figma-token so token giữa Figma và code, bắt duyệt trước khi áp. component-contracts-figma dựng component và token từ một file JSON chung. `/frontend-design` của Anthropic lập brief sáng tạo trước khi tạo UI.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

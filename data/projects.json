@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1107,
+    "count": 1112,
     "schema_version": 2
   },
   "projects": [
@@ -7434,12 +7434,19 @@
       "repo": "figma/mcp-server-guide",
       "category": "design-skill",
       "license": "Figma Developer Terms (không có LICENSE)",
-      "stars": 2137,
+      "stars": 2197,
       "open_source": false,
-      "notes": "Plugin figma v2.2.174 (Beta): Figma MCP + 16 skill (figma-use, figma-use-motion, figma-implement-motion, figma-design-to-code…); figma-use-motion tạo keyframe/animation style trên canvas, bị khoá theo cờ tính năng (metronome), kiểm bằng export_video tốn phí; Starter/View/Collab chỉ 6 lần gọi/tháng; bản sao trong openai/plugins cũ hơn; ★ 31/10/2026 (GitHub API), mục 06 §7o",
+      "notes": "Plugin figma v2.2.174 (Beta): Figma MCP + 16 skill (figma-use, figma-use-motion, figma-implement-motion, figma-design-to-code…); figma-use-motion tạo keyframe/animation style trên canvas, bị khoá theo cờ tính năng (metronome), kiểm bằng export_video tốn phí; Starter/View/Collab chỉ 6 lần gọi/tháng; bản sao trong openai/plugins cũ hơn; ★ 31/10/2026 (GitHub API), mục 06 §7o; đọc lại 16/11/2026 (mục 06 §7ze): 17 skill trong skills/ gồm figma-use, figma-generate-design, figma-generate-library (Figma liệt kê ở trang 10 Claude Skills for Design); 93 commit; ★ 16/11/2026: 2.197 (GitHub search API)",
       "section": "06",
       "id": "figma-mcp-server-guide-figma-plugin-skills",
-      "profile_path": "06-ui-ux-design/README.md"
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/figma/mcp-server-guide/blob/5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d/README.md"
+      ]
     },
     {
       "name": "Astryx (Meta)",
@@ -15852,6 +15859,105 @@
         "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/README.md",
         "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md",
         "https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/LICENSE"
+      ]
+    },
+    {
+      "name": "Figma Design System Skills (Edenspiekermann)",
+      "repo": "edenspiekermann/Skills",
+      "category": "design-skill",
+      "license": null,
+      "stars": 68,
+      "open_source": false,
+      "notes": "3 skill Figma của Chris Goebel: audit-design-system (thiếu component dùng chung, override cục bộ, token chưa gắn), fix-design-system-finding, apply-design-system; có .claude/skills/; chưa kèm file LICENSE; ★ 16/11/2026: 68 (GitHub search API), mục 06 §7ze",
+      "section": "06",
+      "id": "edenspiekermann-figma-ds-skills",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "a49e859329aa99e81e8725bc66767d16e8fc9539",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/edenspiekermann/Skills/blob/a49e859329aa99e81e8725bc66767d16e8fc9539/README.md",
+        "https://github.com/edenspiekermann/Skills/blob/a49e859329aa99e81e8725bc66767d16e8fc9539/skills/audit-design-system/SKILL.md"
+      ]
+    },
+    {
+      "name": "uSpec",
+      "repo": "redongreen/uSpec",
+      "category": "design-skill",
+      "license": "MIT",
+      "stars": 251,
+      "open_source": true,
+      "notes": "13 skill sinh tài liệu design system từ component Figma (anatomy, API, structure, color, motion, property, voice) qua plugin uSpec Extract; create-component-md ra cặp .json + .md; create-voice đặc tả VoiceOver/TalkBack/ARIA; Ian Guisard (Uber); ★ 16/11/2026: 251 (GitHub search API), mục 06 §7ze",
+      "section": "06",
+      "id": "uspec",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "1e25e9b8bc2e694689ba0489594f38807a341f14",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/redongreen/uSpec/blob/1e25e9b8bc2e694689ba0489594f38807a341f14/README.md",
+        "https://github.com/redongreen/uSpec/blob/1e25e9b8bc2e694689ba0489594f38807a341f14/skills/create-voice/SKILL.md",
+        "https://github.com/redongreen/uSpec/blob/1e25e9b8bc2e694689ba0489594f38807a341f14/LICENSE"
+      ]
+    },
+    {
+      "name": "rad-spacing",
+      "repo": "nolanperk/rad-spacing",
+      "category": "design-skill",
+      "license": null,
+      "stars": 17,
+      "open_source": false,
+      "notes": "Skill Figma áp spacing theo cấp bậc lồng bằng biến sẵn có, tự tạo spacing/xs…3xl khi thiếu, cấp cha ≈1,4× cấp con làm tròn 8px/4px (Gestalt proximity); Nolan Perkins; chưa kèm file LICENSE; ★ 16/11/2026: 17 (GitHub search API), mục 06 §7ze",
+      "section": "06",
+      "id": "rad-spacing",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "15e911236edca0d6c30d29a24581112ae7635a08",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/nolanperk/rad-spacing/blob/15e911236edca0d6c30d29a24581112ae7635a08/rad-spacing.md"
+      ]
+    },
+    {
+      "name": "sync-figma-token",
+      "repo": "firebenders/sync-figma-token-skill",
+      "category": "design-skill",
+      "license": null,
+      "stars": 27,
+      "open_source": false,
+      "notes": "Skill đồng bộ token giữa code và Figma variables: báo cáo lệch nghiêm ngặt, bắt buộc duyệt trước khi áp, chỉ áp phần chênh, lưu báo cáo; Anish Karthik (Firebender); chưa kèm file LICENSE; ★ 16/11/2026: 27 (GitHub search API), mục 06 §7ze",
+      "section": "06",
+      "id": "sync-figma-token",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "c017392e2061874124eef61b9f29a7301ad844d1",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/firebenders/sync-figma-token-skill/blob/c017392e2061874124eef61b9f29a7301ad844d1/skills/sync-figma-token/SKILL.md"
+      ]
+    },
+    {
+      "name": "component-contracts-figma",
+      "repo": "nvillapiano/component-contracts-figma",
+      "category": "design-skill",
+      "license": null,
+      "stars": 34,
+      "open_source": false,
+      "notes": "2 skill cc-figma-tokens (collection Primitives/Semantic) và cc-figma-component (component set có variant) từ file component contract JSON làm nguồn chung code và Figma; Nick Villapiano (One North); chưa kèm file LICENSE; ★ 16/11/2026: 34 (GitHub search API), mục 06 §7ze",
+      "section": "06",
+      "id": "component-contracts-figma",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "14db03bba7727122a7704d46aef1a5f28a2d6dcc",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-component/SKILL.md",
+        "https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-tokens/SKILL.md"
       ]
     }
   ]
