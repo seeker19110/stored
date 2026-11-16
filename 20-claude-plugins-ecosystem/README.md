@@ -170,7 +170,7 @@ plugin-name/
 | **oh-my-hermes** (OMH) | rlaope/oh-my-hermes | Workflow pack: ralplan, ultrawork, ultraqa, loop, adversarial-consensus, rules-distill, jit-learn, deep-interview | Hermes-Agents vendor 6 skill |
 | agent-skills | addyosmani/agent-skills | incremental-implementation, source-driven, **doubt-driven development**, context-engineering | Hermes-Agents vendor |
 | wshobson/agents · gsd-build/get-shit-done · trycua/cua | – | Agent/skill pack phổ biến; **GSD đã archive 26/6/2026 → open-gsd/gsd-core** (§3d) | Hermes-Agents vendor |
-| claude-red | SnailSploit/claude-red | 78 skill red-team (dual-use, mục 12) | fork `seeker19110/Claude-Red` |
+| claude-red | SnailSploit/claude-red | 78 skill red-team (dual-use, mục 12) | fork `www-donghanhcungban-org/Claude-Red` |
 
 **Phản biện nhận định "cài plugin đang thắng chép prompt" (xu hướng §14 README):** hai repo của chủ kho (xboss ADR-0013, X-Agents `vendor_skills.py` + `*.lock.json`, Hermes-Agents `install.py`) chọn **vendor skill có lock** thay vì cài plugin, vì: (1) phiên cloud claude.ai/code **không nạp plugin bật qua `settings.json`**, `~/.claude` mất khi container thu hồi; (2) chỉ một phần nhỏ skill liên quan stack (56/293); (3) cần ghi đè và test được (`tests/ecc-vendor.test.ts`); (4) provenance: kiểm LICENSE, `name:` trùng thư mục, từ chối symlink, lock sha256. Kết luận sửa lại: *plugin thắng ở phân phối; vendor-có-lock thắng ở vận hành repo và CI.*
 

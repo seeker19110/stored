@@ -1,6 +1,6 @@
 # Thư viện cho X-Templates
 
-> Kho `stored` là **nguồn tham khảo** cho khung [`seeker19110/X-Templates`](https://github.com/seeker19110/X-Templates) (v3.29.0, đọc 2026-10-31).
+> Kho `stored` là **nguồn tham khảo** cho khung [`www-donghanhcungban-org/X-Templates`](https://github.com/www-donghanhcungban-org/X-Templates) (v3.29.0, đọc 2026-10-31).
 > X-Templates định kỳ trích "phần mới" của kho theo khoảng commit (`research/YYYY-MM-DD-stored-delta-extraction.md`), đối chiếu ba cột
 > *sâu hơn / nông hơn / chưa có* và chỉ biến cột 2–3 thành ID yêu cầu. File này làm phía `stored` của hợp đồng đó: chỉ cách đọc kho,
 > tổng hợp chéo các hồ sơ, và **bản bàn giao đã đối chiếu sẵn với ID thật của X-Templates**. Bản máy-đọc-được: [`data/xt-handoff.json`](data/xt-handoff.json).

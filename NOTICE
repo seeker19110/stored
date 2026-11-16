@@ -1,0 +1,27 @@
+stored — kho tham khảo Coding · AI · Agentic · Design · UI/UX
+Copyright (c) 2026 www-donghanhcungban-org
+
+Phạm vi giấy phép
+-----------------
+Giấy phép MIT (xem LICENSE) áp dụng cho nội dung do chủ kho tự biên soạn: phân tích, nhận định,
+bảng so sánh, tóm tắt viết lại bằng lời của kho, dữ liệu catalog (data/projects.json,
+data/projects.csv, data/xt-handoff.json) và script trong scripts/.
+
+Nội dung bên thứ ba
+-------------------
+Kho KHÔNG chứa mã nguồn, tài liệu, ảnh, font, mô hình hay dataset của dự án được khảo sát. Phần
+liên quan đến bên thứ ba chỉ gồm:
+- Tên dự án, tên repo, URL, số sao, tên giấy phép, số phiên bản và mốc commit — là dữ kiện, ghi
+  kèm nguồn và ngày.
+- Trích dẫn ngắn (khẩu hiệu, tiêu đề, tên mục, tên lệnh, vài dòng lệnh cài đặt ví dụ) để nhận diện
+  và phân tích dự án, kèm nguồn. Các trích dẫn này thuộc quyền của tác giả gốc; MIT của kho không
+  cấp lại quyền đối với chúng.
+- Mỗi dự án được dẫn giữ giấy phép riêng của nó (ghi trong từng hồ sơ); đọc LICENSE gốc trước khi
+  dùng, giấy phép của kho không thay thế giấy phép đó.
+
+Nhãn hiệu
+---------
+Techcombank, VietQR, NAPAS 247 (xuất hiện trên ảnh QR docs/assets/donate-vietqr-techcombank.png),
+GitHub, Anthropic, Claude, OpenAI, Google, Microsoft và mọi tên sản phẩm, dịch vụ, tổ chức khác nhắc
+đến trong kho là nhãn hiệu của chủ sở hữu tương ứng. Kho không liên kết, không được tài trợ hay xác
+nhận bởi các chủ sở hữu đó.

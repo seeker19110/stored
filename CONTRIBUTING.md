@@ -21,4 +21,4 @@ npx --yes markdownlint-cli2 '**/*.md'
 
 Các kiểm trên chạy trên chính kho; không cần cài/chạy code của dự án được khảo sát. Không đặt app, skill, plugin hoặc demo thực thi trong kho. Các vấn đề của repo ngoài được mô tả như dữ kiện nghiên cứu; việc sửa thuộc repo đó.
 
-Kho hiện chưa có giấy phép chung cho nội dung tự biên soạn và script. Không suy giấy phép của dự án được dẫn sang nội dung của kho; việc cấp phép chung cần chủ sở hữu lựa chọn riêng.
+Nội dung tự biên soạn và script của kho phát hành theo giấy phép MIT (xem [LICENSE](LICENSE) và [NOTICE](NOTICE)); đóng góp được gộp vào kho theo cùng giấy phép. Không suy giấy phép của dự án được dẫn sang nội dung của kho, và MIT của kho không cấp quyền gì với dự án, tài liệu, ảnh hay nhãn hiệu của bên khác.

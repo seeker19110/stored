@@ -187,7 +187,7 @@ Phần: Dependencies & build · Environment & secrets · Rendering/caching/data 
 - **Lấy:** luật "tầng rẻ nhất", bảng verdict (đổi verdict 4 thành flaky/môi trường), và ý tách người viết test khỏi người viết code ở vùng rủi ro cao.
 - **Sửa trước khi dùng:** bỏ tuyên bố "đỡ tốn token", thêm trần vòng lặp, chọn tầng theo rủi ro thay đổi, oracle lấy từ spec.
 - **Không lấy:** mô hình QA "tự nhận việc" từ bên code. Điều phối nên đi qua một phiên chính duy nhất để giữ ngân sách và điểm dừng (đúng nguyên tắc ở mục 23 §4.4).
-- Các điểm nên lấy được đưa vào khung X-Templates ở PR riêng (repo `seeker19110/X-Templates`, mảng 14 và harness `.claude/`).
+- Các điểm nên lấy được đưa vào khung X-Templates ở PR riêng (repo `www-donghanhcungban-org/X-Templates`, mảng 14 và harness `.claude/`).
 
 **Nguồn §3:** ảnh và bài nháp người dùng gửi (2026-10-17) · https://martinfowler.com/articles/practical-test-pyramid.html (đọc 2026-10-17) · https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html (đọc một phần, 2026-10-17) · https://arxiv.org/html/2412.14137v1 · https://arxiv.org/html/2601.05542v1 · https://arxiv.org/html/2501.17461v1 (cả ba chỉ đọc qua kết quả tìm kiếm)
 
