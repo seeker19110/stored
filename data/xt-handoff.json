@@ -1,27 +1,36 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của www-donghanhcungban-org/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125); efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (XT-H-126…131)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026); 82ab9b2..aad97cf (XT-H-126…131, đợt 11–16/11/2026)",
     "columns": [
       "deeper",
       "shallower",
       "missing",
       "not_adding"
     ],
-    "updated": "2026-11-10",
-    "count": 125,
+    "updated": "2026-11-16",
+    "count": 131,
     "current_batch": {
-      "stored_base": "82ab9b2f880ca067a11f58bdaa68fe254b621d69",
-      "xt_commit": "aeb195c2b6ae5074d70efe592d218e9c1147c05e",
+      "stored_base": "aad97cf",
+      "xt_commit": "efa521a64e2c2be2cdd596b7b8fd59bab8029cf0",
       "ids": [
-        "XT-H-117",
-        "XT-H-125"
+        "XT-H-126",
+        "XT-H-131"
       ],
-      "status": "proposal-pr-open",
-      "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/494"
+      "status": "documented-in-stored"
     },
     "previous_batches": [
+      {
+        "stored_base": "82ab9b2f880ca067a11f58bdaa68fe254b621d69",
+        "xt_commit": "aeb195c2b6ae5074d70efe592d218e9c1147c05e",
+        "ids": [
+          "XT-H-117",
+          "XT-H-125"
+        ],
+        "status": "proposal-pr-open",
+        "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/494"
+      },
       {
         "stored_base": "79c86359b6acc72da840fdd040e26bea32cfb57d",
         "xt_commit": "23447d817d2bc8cf68093591177f85fd72a8a2f6",
@@ -3028,6 +3037,235 @@
         "level": "SHOULD",
         "text": "Với sản phẩm cho AI agent đọc/ghi dữ liệu nghiệp vụ, SHOULD có một mô hình miền máy đọc được (thực thể, thuộc tính, trạng thái, quan hệ) làm nguồn sinh glossary, schema hoặc tài liệu cho agent; luật nghiệp vụ quan trọng viết thành kiểm chạy được trên dữ liệu mẫu; KPI định nghĩa một lần trong code và dùng chung cho BI, API, agent. Kiểm: thêm một thuộc tính vào mô hình thì glossary/schema sinh lại khớp; bản ghi vi phạm một luật mẫu bị bộ kiểm báo."
       }
+    },
+    {
+      "id": "XT-H-126",
+      "date": "2026-11-16",
+      "stored_ref": [
+        "22 §9l"
+      ],
+      "profile_anchors": [
+        "22-motion-design-animation/README.md#9l-kiểm-ảnh-4-skill-claude-code-làm-animation-threejs-gsap-design-dna-motion-design-ảnh-người-dùng-gửi-đọc-mã-16112026"
+      ],
+      "lesson": "Dựng lại giao diện theo ảnh tham chiếu: màu ước bằng mắt lệch về bảng màu quen (Design DNA ghi #ff90e8 bị thấy thành #ec4899, ΔE ≈ 29); đo bằng k-means tất định trên pixel thật rồi verify bản dựng bằng ΔE (bun.sh: PASS, ΔE trung bình 0,87; bản ước bằng mắt FAIL, ΔE 9,54).",
+      "xt_ids": [
+        "FE-START-005",
+        "UX-DS-014"
+      ],
+      "column": "shallower",
+      "existing_coverage": "FE-START-005 (MAY) dặn chỉ tham khảo bố cục, không chép asset/logo/văn bản; UX-DS-014 đòi ảnh trước/sau khi đổi token.",
+      "delta": "Chưa có yêu cầu cho bước agent trích token từ ảnh hoặc trang tham chiếu: màu do model ước dễ trôi về bảng màu mặc định, và chưa có phép đo sau khi dựng lại.",
+      "xt_evidence": [
+        {
+          "id": "FE-START-005",
+          "file": "framework/07-frontend/starter-layouts.md",
+          "line": 45,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/07-frontend/starter-layouts.md#L45"
+        },
+        {
+          "id": "UX-DS-014",
+          "file": "framework/06-design-ux/design-system-and-tokens.md",
+          "line": 61,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/06-design-ux/design-system-and-tokens.md#L61"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Khi agent trích token (màu, chữ, spacing) từ ảnh hoặc trang tham chiếu, SHOULD đo màu bằng công cụ tất định trên pixel thật (mã hex, tỉ lệ phủ, vai trò) thay vì để model ước; sau khi dựng, chụp bản dựng và so từng token với số đo, ghi ΔE và ngưỡng đạt; giữ nguồn tham chiếu và giới hạn quyền theo FE-START-005. Kiểm fixture: ảnh có màu nhấn hồng #ff90e8 thì token trích ra không được thành #ec4899; bản dựng lệch nền đen gần (#16151b → #000000) phải FAIL."
+      }
+    },
+    {
+      "id": "XT-H-127",
+      "date": "2026-11-16",
+      "stored_ref": [
+        "06 §7ze"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#7ze-kiểm-ảnh-bộ-skill-figma-cho-claude-telos-academy-11-skill-từ-figma-use-tới-cc-figma-tokens-ảnh-người-dùng-gửi-đọc-mã-16112026"
+      ],
+      "lesson": "Token và component giữa thiết kế và code lệch âm thầm: sync-figma-token báo khớp/lệch/thiếu, bắt duyệt trước khi áp, chỉ áp phần chênh, lưu báo cáo; component-contracts-figma và uSpec dùng một file contract JSON làm nguồn cho cả code, biến Figma và đặc tả screen reader.",
+      "xt_ids": [
+        "UX-DS-018",
+        "UX-DS-014"
+      ],
+      "column": "shallower",
+      "existing_coverage": "UX-DS-018 (MAY) xuất token sang Penpot/Figma và ghi ngày đồng bộ; UX-DS-014 đưa thay đổi token qua PR riêng có ảnh trước/sau.",
+      "delta": "Chưa có kiểm lệch hai chiều giữa biến của công cụ thiết kế và token trong code, chưa có bước duyệt trước khi ghi vào file thiết kế.",
+      "xt_evidence": [
+        {
+          "id": "UX-DS-018",
+          "file": "framework/06-design-ux/design-system-and-tokens.md",
+          "line": 65,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/06-design-ux/design-system-and-tokens.md#L65"
+        },
+        {
+          "id": "UX-DS-014",
+          "file": "framework/06-design-ux/design-system-and-tokens.md",
+          "line": 61,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/06-design-ux/design-system-and-tokens.md#L61"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-125"
+      ],
+      "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với dự án dùng công cụ thiết kế có biến (Figma, Penpot), SHOULD giữ một nguồn token/contract trong repo; CI hoặc lệnh định kỳ so biến thiết kế với token code và báo ba trạng thái khớp/lệch/thiếu, lưu báo cáo có ngày; ghi ngược vào file thiết kế chỉ sau khi người duyệt bản chênh và chỉ áp phần chênh. Kiểm fixture: radius/lg 24px trong thiết kế và 20px trong code phải báo lệch; color/muted có ở thiết kế mà thiếu trong code phải báo thiếu."
+      }
+    },
+    {
+      "id": "XT-H-128",
+      "date": "2026-11-16",
+      "stored_ref": [
+        "22 §9l"
+      ],
+      "profile_anchors": [
+        "22-motion-design-animation/README.md#9l-kiểm-ảnh-4-skill-claude-code-làm-animation-threejs-gsap-design-dna-motion-design-ảnh-người-dùng-gửi-đọc-mã-16112026"
+      ],
+      "lesson": "Skill cho một thư viện ghi rõ phiên bản đích (threejs-skills nhắm three.js r186, R3F 9.8, drei 10.7) và mục \"Common Mistakes\" ghi code cũ → cách đúng ở bản đó, vì dữ liệu huấn luyện trộn nhiều bản.",
+      "xt_ids": [
+        "XC-DOCAI-012",
+        "OPS-MAINT-015",
+        "WF-DOC-019"
+      ],
+      "column": "deeper",
+      "existing_coverage": "XC-DOCAI-012 đòi tài liệu nạp cho agent có phiên bản và ngày; OPS-MAINT-015 ghi phiên bản harness; WF-DOC-019 ghim lệnh cài.",
+      "delta": "Thêm ví dụ: skill hoặc tài liệu cho agent về một dependency ghi phiên bản đích, và dự án so phiên bản đó với lockfile; lệch thì báo trước khi agent dùng snippet. Gắn với XT-H-095 (requested/served version), không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "XC-DOCAI-012",
+          "file": "framework/18-cross-cutting/docs-for-ai-agents.md",
+          "line": 54,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/18-cross-cutting/docs-for-ai-agents.md#L54"
+        },
+        {
+          "id": "OPS-MAINT-015",
+          "file": "framework/15-operations/maintenance-and-lifecycle.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/15-operations/maintenance-and-lifecycle.md#L52"
+        },
+        {
+          "id": "WF-DOC-019",
+          "file": "framework/10-workflow/documentation-workflow.md",
+          "line": 63,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/10-workflow/documentation-workflow.md#L63"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-095"
+      ],
+      "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-129",
+      "date": "2026-11-16",
+      "stored_ref": [
+        "06 §7n.6"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#7n6-đọc-lại-16112026-v093-làm-tốt-cả-mobile-app-ui-skill-landing-evonlanding-đang-được-audit-bài-đăng-người-dùng-gửi"
+      ],
+      "lesson": "Kiểm giao diện app điện thoại bằng probe tự động (evondevKit probe --mobile): vùng chạm nhỏ, chữ nhỏ, dòng cuối bị thanh tab che, sheet thiếu lớp phủ, ô nhập số thiếu inputmode, ô thiếu nhãn, màn lỗi chung chung, màn mất nút quay lại.",
+      "xt_ids": [
+        "UX-A11Y-006",
+        "FE-FORM-004",
+        "PRF-MOB-011"
+      ],
+      "column": "deeper",
+      "existing_coverage": "UX-A11Y-006 đo vùng chạm; FE-FORM-004 đòi type/inputmode đúng; PRF-MOB-011 đòi a11y theo nền tảng.",
+      "delta": "Thêm ví dụ bộ kiểm tự động cho khung 375×812: dòng cuối không bị thanh tab che sau khi cuộn hết, sheet có lớp phủ, màn con có nút quay lại. Ba điểm này chưa nằm trong ID nào nhưng nhỏ, gộp làm fixture của QA E2E mobile.",
+      "xt_evidence": [
+        {
+          "id": "UX-A11Y-006",
+          "file": "framework/06-design-ux/accessibility.md",
+          "line": 44,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/06-design-ux/accessibility.md#L44"
+        },
+        {
+          "id": "FE-FORM-004",
+          "file": "framework/07-frontend/forms-and-validation.md",
+          "line": 43,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/07-frontend/forms-and-validation.md#L43"
+        },
+        {
+          "id": "PRF-MOB-011",
+          "file": "framework/02-profiles/mobile-app.md",
+          "line": 71,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/02-profiles/mobile-app.md#L71"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-130",
+      "date": "2026-11-16",
+      "stored_ref": [
+        "20 §3zc",
+        "06 §7zc",
+        "06 §7zd"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#7zc-hai-mươi-trang-cảm-hứng-và-tài-nguyên-thiết-kế-gallery-từng-phần-giao-diện-chuyển-động-làm-web-bằng-ai-danh-sách-người-dùng-gửi-đọc-16112026",
+        "06-ui-ux-design/README.md#7zd-sáu-công-cụ-cho-designer-dùng-ai-dream-loop-hairline-skill-emil-kowalski-skill-meng-to-rea-html-demo-danh-sách-người-dùng-gửi-đọc-mã-16112026",
+        "20-claude-plugins-ecosystem/README.md#3zc-kiểm-bài-5-repo-skill-đáng-lưu-matt-pocock-addy-osmani-cloudflare-obsidian-google-egm-bài-người-dùng-gửi-đọc-mã-16112026"
+      ],
+      "lesson": "Thêm ca tên chuẩn: kepano/obsidian-skills chuyển về obsidianmd/obsidian-skills; godly.website chuyển 301 về recent.design; link achimala/dream không tồn tại (repo đúng achimala/dream-loop); README của REA dặn chỉ tải từ repo, site và gói npm chính thức vì tên repo giống nhau không chứng minh bản chính thức.",
+      "xt_ids": [
+        "SEC-SUPPLY-026"
+      ],
+      "column": "deeper",
+      "existing_coverage": "SEC-SUPPLY-026 đọc bảo trì theo lịch sử thật. Đề xuất tên chuẩn đã ở XT-H-123.",
+      "delta": "Chỉ thêm ba ví dụ và một ca âm (link không tồn tại) cho fixture của XT-H-123; không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "SEC-SUPPLY-026",
+          "file": "framework/12-security/supply-chain.md",
+          "line": 72,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/12-security/supply-chain.md#L72"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-123"
+      ],
+      "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-131",
+      "date": "2026-11-16",
+      "stored_ref": [
+        "03 §8m"
+      ],
+      "profile_anchors": [
+        "03-agentic-patterns-loops/README.md#8m-kiểm-ảnh-và-bài-ai-coding-is-moving-beyond-the-agent-5-lớp-model--harness--loop--graph--software-factory-ảnh-và-bài-viết-lại-người-dùng-gửi-đối-chiếu-nguồn-gốc-11112026"
+      ],
+      "lesson": "Nghiên cứu 36.710 repo, 217 vòng lặp tự trị (arXiv 2608.21884) thấy gần như không repo nào commit file trạng thái mà các bài hướng dẫn khuyên; bài arXiv 2611.06946 tách ranh: cơ chế cho một lần chạy thuộc agent harness, cơ chế qua từ hai lần chạy hoặc mang trạng thái sang lần sau thuộc lớp factory.",
+      "xt_ids": [
+        "LOOP-DESIGN-006",
+        "LOOP-CTX-006"
+      ],
+      "column": "deeper",
+      "existing_coverage": "LOOP-DESIGN-006 (MUST@L) và LOOP-CTX-006 (MUST) đã bắt trạng thái bền nằm trong repo; X-Templates làm đúng điều số đông bỏ qua.",
+      "delta": "Thêm bằng chứng nguồn cho LOOP-DESIGN-006 và tiêu chí phân ranh harness/factory cho tài liệu 11-autonomous-loop; không đổi mức, không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "LOOP-DESIGN-006",
+          "file": "framework/11-autonomous-loop/loop-design.md",
+          "line": 67,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/11-autonomous-loop/loop-design.md#L67"
+        },
+        {
+          "id": "LOOP-CTX-006",
+          "file": "framework/11-autonomous-loop/context-and-token-budget.md",
+          "line": 73,
+          "url": "https://github.com/seeker19110/X-Templates/blob/efa521a64e2c2be2cdd596b7b8fd59bab8029cf0/framework/11-autonomous-loop/context-and-token-budget.md#L73"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
     }
   ]
 }
