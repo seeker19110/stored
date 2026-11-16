@@ -1985,3 +1985,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-16b (6 công cụ cho designer → mục 06 §7zd)
 
 - Clone 16/11/2026: `achimala/dream-loop` HEAD `9bddb901f7d071cfefdd21e264267c757177a9df`, `MengTo/Skills` HEAD `3cc93458c4949c39a04e938ea7892a1d6d3d40bf`, `morluto/rea` HEAD `8ffea11ee30d5e0d442a8d14b27e05b0441b9e18`, `lucasmarkes/hairline` HEAD `034f4bf9902c6adcf3cf39d82f85e6010cb4e094`. `achimala/dream` không tồn tại (git ls-remote đòi đăng nhập); repo đúng là `achimala/dream-loop`. WebFetch: https://hairline.lucasmarkes.com/ · https://rea.tools/ · https://fil.design/skills · https://fil.design/skills/html-demo. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16c (bài "5 repo skill đáng lưu" → mục 20 §3zc)
+
+- Clone `--filter=blob:none` 16/11/2026: `mattpocock/skills` HEAD `5863806dd4e15c63174bee4e7515a4256792ecfa`, `addyosmani/agent-skills` HEAD `39b723ceebf81474d0557c1fecd01eddab585563`, `cloudflare/security-audit-skill` HEAD `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`, `obsidianmd/obsidian-skills` HEAD `398127736bd4ba42d767b1419fee1a927508370b`, `google/elephant-goldfish-model` HEAD `72d06f52a2482885d9a64bd24b291c6e8628942c`. `kepano/obsidian-skills` chuyển hướng về `obsidianmd/obsidian-skills` (git ls-remote cùng HEAD). GitHub search API 16/11/2026.

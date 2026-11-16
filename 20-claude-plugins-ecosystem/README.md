@@ -1523,6 +1523,50 @@ git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.cl
 
 **Nguồn §3zb:** ảnh người dùng gửi 8/11/2026 · clone `--filter=blob:none`: https://github.com/anthropics/financial-services/blob/60565064557ca77b12f62aa7877f365d111c129d/README.md · https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/README.md · https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/QUICKSTART.md · https://github.com/coreyhaines31/marketingskills/blob/96798cf38736ecdba015a1d2b0521b0c8f8f41dd/README.md · https://github.com/blader/humanizer/blob/0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0/README.md · https://github.com/makenotion/notion-mcp-server/blob/cf16e5c20bfbfb98ecec1227f210ef0ae3abebe5/README.md · https://github.com/zapier/zapier-mcp/blob/54a12277a12c60df51ec16cf4e4ef0b27b166649/README.md · https://github.com/perplexityai/modelcontextprotocol/blob/cd1d27cffe56739819abb3e56a18e26dbd88c487/README.md · cây thư mục https://github.com/anthropics/skills/blob/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills · https://github.com/vercel-labs/skills/blob/d3701c11b1101251af14c9d148f026e1a47ebe17/skills/find-skills/SKILL.md · https://docs.granola.ai/help-center/sharing/integrations/mcp · https://docs.slack.dev/ai/mcp-server/ · https://www.trykondo.com · GitHub search API 8/11/2026.
 
+## 3zc. Kiểm bài "5 repo skill đáng lưu": Matt Pocock, Addy Osmani, Cloudflare, Obsidian, Google EGM (bài người dùng gửi, đọc mã 16/11/2026)
+
+> Bài đăng giới thiệu 5 repo skill cho Claude Code, Codex và vibe coding. Bốn repo đã có hồ sơ; mục này cập nhật số liệu ngày 16/11/2026 và thêm hồ sơ **Obsidian Skills**. Link `github.com/kepano/obsidian-skills` trong bài nay chuyển hướng về **`obsidianmd/obsidian-skills`** (repo chính thức của Obsidian, tác giả chính Steph Ango tức kepano, CEO Obsidian).
+
+### 3zc.1 Bảng cập nhật
+
+| # | Repo | ★ / fork (16/11/2026) | Giấy phép | Bản / commit | Làm gì | Hồ sơ |
+|---|---|---|---|---|---|---|
+| 01 | `mattpocock/skills` | 325.682 / 27.335 | MIT | v1.3.2, 555 commit, 39 `SKILL.md` | Skill nhỏ ghép được cho quy trình: spec, TDD, debug, review, cải thiện kiến trúc; mới thêm nhóm `software-factory` và `implement-spec` dùng subagent mới cho từng ticket | §3c |
+| 02 | `addyosmani/agent-skills` | 118.181 / 12.357 | MIT | 0.6.16, 848 commit, 25 skill | Vòng đời kỹ thuật bảy bước `/spec` tới `/ship`; 0.6.16 thêm hướng dẫn tiến hóa spec, phạm vi V1, delta spec, kích hoạt debug khi dán diff hoặc stack trace | §3o.2, §3o.2b |
+| 03 | `cloudflare/security-audit-skill` | 73.608 / 4.933 | MIT | 14 commit | Audit bảo mật nhiều pha, verifier ngữ cảnh mới kiểm lại từng phát hiện để giảm cảnh báo sai, kết quả theo schema | mục 12 §3m |
+| 04 | `obsidianmd/obsidian-skills` | 52.915 / 3.772 | MIT | 1.1.0, 100 commit | 7 skill cho Obsidian: Markdown, Bases, Canvas, CLI, Headless, Defuddle, Knap | **mới** §3zc.2 |
+| 05 | `google/elephant-goldfish-model` | 20.149 / 1.495 | Apache-2.0 | v0.1.1, 204 commit | Agent đủ ngữ cảnh viết tài liệu thiết kế, các agent ngữ cảnh mới rà giả định sai và chỗ thiếu trước khi code; mới thêm adapter Windsurf và bundle provenance khi phát hành | §3u |
+
+### 3zc.2 Hồ sơ `obsidianmd/obsidian-skills`
+
+- **Bảy skill theo chuẩn Agent Skills**, dùng được với Claude Code, Codex, OpenCode, Cursor:
+  - `obsidian-markdown`: Markdown kiểu Obsidian với wikilink, embed, callout, properties.
+  - `obsidian-bases`: file `.base` với view, filter, formula, summary (dạng bảng dữ liệu trên ghi chú).
+  - `json-canvas`: file `.canvas` với node, edge, group cho mind map, flowchart.
+  - `obsidian-cli`: đọc, tạo, tìm, quản lý ghi chú, task, properties qua Obsidian CLI, kể cả phát triển plugin và theme.
+  - `obsidian-headless`: Sync và Publish vault từ dòng lệnh không cần app desktop.
+  - `defuddle`: lấy Markdown sạch từ trang web để tiết kiệm token.
+  - `knap`: sinh hàng loạt ghi chú Markdown từ template và dữ liệu JSON hoặc CSV.
+- **Do chính Obsidian làm**: 62 commit của Steph Ango; định dạng bám tài liệu chính thức (help.obsidian.md, jsoncanvas.org) nên ghi chú agent tạo ra mở đúng trong Obsidian.
+- **Cài**:
+
+```sh
+claude plugin marketplace add obsidianmd/obsidian-skills
+claude plugin install obsidian@obsidian-skills
+```
+
+  Codex: `codex plugin marketplace add obsidianmd/obsidian-skills`; mọi agent: `npx skills add https://github.com/obsidianmd/obsidian-skills`; hoặc chép `plugins/obsidian/skills/` vào `.claude/skills/` ở gốc vault. Cập nhật: `claude plugin update obsidian@obsidian-skills`.
+
+### 3zc.3 Chọn theo việc
+
+- Quy trình code có spec và test: Matt Pocock (skill nhỏ ghép theo nhu cầu) hoặc Addy Osmani (bảy bước trọn vòng đời).
+- Rà thiết kế trước khi code: Google EGM.
+- Audit bảo mật một repo: Cloudflare (chạy trong sandbox như hồ sơ mục 12 §3m).
+- Ghi chú và second brain: Obsidian Skills; kết hợp ai-memory (mục 10 §6h) khi cần bộ nhớ chung cho nhiều agent.
+- Như bài đăng gợi ý, cài theo dự án đang làm, không cần cài cả năm bộ.
+
+**Nguồn §3zc:** bài người dùng gửi 16/11/2026 · clone `--filter=blob:none` 16/11/2026: https://github.com/mattpocock/skills/blob/5863806dd4e15c63174bee4e7515a4256792ecfa/README.md · https://github.com/addyosmani/agent-skills/blob/39b723ceebf81474d0557c1fecd01eddab585563/README.md · https://github.com/cloudflare/security-audit-skill/blob/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/README.md · https://github.com/obsidianmd/obsidian-skills/blob/398127736bd4ba42d767b1419fee1a927508370b/README.md · https://github.com/obsidianmd/obsidian-skills/blob/398127736bd4ba42d767b1419fee1a927508370b/LICENSE · https://github.com/google/elephant-goldfish-model/blob/72d06f52a2482885d9a64bd24b291c6e8628942c/README.md · `git ls-remote https://github.com/kepano/obsidian-skills` (chuyển hướng về obsidianmd) · GitHub search API 16/11/2026.
+
 ## 4. Nguồn
 
 - Mục 23 §4.3, §5 (xboss ADR-0013, Hermes-Agents `VENDORED-SKILLS.md`; đọc 2026-10-12) · https://github.com/affaan-m/everything-claude-code · https://github.com/obra/superpowers · https://github.com/rlaope/oh-my-hermes · https://github.com/addyosmani/agent-skills
