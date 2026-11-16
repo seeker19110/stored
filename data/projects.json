@@ -9898,12 +9898,21 @@
       "repo": "K-Dense-AI/scientific-agent-skills",
       "category": "data",
       "license": "MIT",
-      "stars": 55542,
+      "stars": 57429,
       "open_source": true,
-      "notes": "177 skill Agent Skills cho khoa học và phân tích dữ liệu (polars, statsmodels, EDA, 100+ CSDL khoa học); quét bảo mật skill bằng LLM trong CI; đã gỡ skill chép từ anthropics/skills vì license; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026",
+      "notes": "177 skill Agent Skills cho khoa học và phân tích dữ liệu (polars, statsmodels, EDA, 100+ CSDL khoa học); quét bảo mật skill bằng LLM trong CI; đã gỡ skill chép từ anthropics/skills vì license; ★ 31/10/2026 (GitHub API), mục 15 §Nâng cấp 31/10/2026; đọc lại 16/11/2026 (mục 15 §7): v2.72.0, 765 commit; skill statistical-power, uncertainty-and-units, optimize-for-gpu, database-lookup (80 CSDL: FRED, SEC EDGAR…), polars/dask/vaex, shap, pymc, timesfm-forecasting; ★ 16/11/2026: 57.429 (GitHub search API)",
       "section": "15",
       "id": "scientific-agent-skills",
-      "profile_path": "15-ai-for-data/README.md"
+      "profile_path": "15-ai-for-data/README.md",
+      "profile_anchor": "15-ai-for-data/README.md#7-đọc-lại-k-dense-aiscientific-agent-skills-cho-phân-tích-dữ-liệu-177-skill-574k-v2720-bài-đăng-người-dùng-gửi-đọc-mã-16112026",
+      "last_verified_at": "2026-11-16",
+      "verified_ref": "ec59a29a03d5c40f73ab40878df04860bc00e876",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/README.md",
+        "https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/LICENSE.md",
+        "https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/database-lookup/SKILL.md"
+      ]
     },
     {
       "name": "DBHub",

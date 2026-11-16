@@ -191,6 +191,49 @@
 
 **Nguồn §6:** [LICENSE](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/LICENSE) · [test callsite](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/context.py) · [audit types](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/audit/definition.py) · [scheduler enforcement](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/scheduler.py) · [analytics config](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/config/root.py) · [analytics dispatcher](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/sqlmesh/core/analytics/dispatcher.py) · [CI](https://github.com/TobikoData/sqlmesh/blob/c4dbac499c312ccab17cb328ffb6ecfd801ce73d/.github/workflows/pr.yaml).
 
+## 7. Đọc lại K-Dense-AI/scientific-agent-skills cho phân tích dữ liệu: 177 skill, 57,4k★, v2.72.0 (bài đăng người dùng gửi, đọc mã 16/11/2026)
+
+> Bài đăng "Skill và tool hay trên GitHub, phần 2" giới thiệu bộ skill cho nghiên cứu và phân tích dữ liệu. Repo đã có dòng ở §3 (đọc 31/10); mục này đọc lại bản mới và đối chiếu từng nhóm skill bài nhắc. Mọi ý trong bài khớp mã.
+
+| Thuộc tính | Giá trị (16/11/2026) |
+|---|---|
+| Repo | https://github.com/K-Dense-AI/scientific-agent-skills · **57.429★, 5.047 fork** (GitHub search API) · MIT · tag v2.72.0 · 765 commit · đổi tên từ "Claude Scientific Skills" |
+| Thành phần | 177 thư mục skill theo chuẩn Agent Skills; hơn 70 skill gói Python viết theo phiên bản; skill `database-lookup` ghi 80 cơ sở dữ liệu có cách truy cập (công khai, đăng ký, có phép), cộng các skill truy cập dữ liệu riêng, tổng hơn 100 nguồn |
+| Chạy trên | Claude Code, Claude Cowork, Codex, Gemini CLI, Google Antigravity, Cursor và host khác theo Agent Skills |
+| Kiểm | `tests/` (kiểm cấu trúc skill, schema, đường dẫn cá nhân), `scan_skills.py` và workflow quét bảo mật skill, báo cáo quét cập nhật hằng tuần |
+
+### 7.1 Các nhóm skill cho phân tích dữ liệu (đối chiếu tên thư mục)
+
+| Nhóm trong bài | Skill trong repo |
+|---|---|
+| EDA, kiểm định giả thuyết, thiết kế thực nghiệm | `exploratory-data-analysis`, `statistical-analysis`, `experimental-design` |
+| Cỡ mẫu, sai số đo | `statistical-power` (tính cỡ mẫu và power trước khi làm nghiên cứu), `uncertainty-and-units` (đơn vị vật lý và lan truyền sai số đo theo GUM bằng `pint`, `uncertainties`) |
+| Bảng dữ liệu lớn, GPU | `polars`, `dask`, `vaex`; `optimize-for-gpu` (tăng tốc NumPy, SciPy, pandas, scikit-learn trên GPU NVIDIA và **kiểm kết quả vẫn đúng và nhanh hơn**) |
+| Biểu đồ chuẩn công bố | `matplotlib`, `seaborn` |
+| Machine learning, Bayes, chuỗi thời gian | `scikit-learn`, `statsmodels`, `shap`, `pymc`, `timesfm-forecasting` |
+| Kinh tế, tài chính, học thuật | `database-lookup` (FRED cần `FRED_API_KEY`; SEC EDGAR gọi endpoint kèm header User-Agent định danh; có ghi giới hạn tốc độ từng API), `usfiscaldata`, `literature-review` (arXiv, PubMed) |
+
+### 7.2 Điểm mạnh
+
+- **Quy trình thay prompt rời**: mỗi skill là workflow có ví dụ chạy được và quy tắc kiểm, ví dụ power analysis trước khi thu dữ liệu, lan truyền sai số theo chuẩn đo lường, GPU phải chứng minh kết quả đúng.
+- **Theo phiên bản gói**: hướng dẫn cho từng thư viện ghi phạm vi phiên bản, tránh agent dùng API cũ.
+- **Truy cập dữ liệu có kỷ luật**: ghi cách xác thực, header bắt buộc và giới hạn tốc độ của từng nguồn, xếp hàng request với API giới hạn.
+- **An toàn chuỗi cung ứng skill**: quét bảo mật mọi skill trong CI và khi có PR.
+
+### 7.3 Cài và dùng
+
+```bash
+npx skills add K-Dense-AI/scientific-agent-skills
+```
+
+- Cài một skill: `gh skill install K-Dense-AI/scientific-agent-skills scanpy` (GitHub CLI 2.90.0+); thêm `--agent cursor` cho Cursor.
+- Bộ 177 skill lớn: chỉ cài nhóm cần dùng cho dự án (ví dụ `exploratory-data-analysis`, `statistical-analysis`, `polars`, `scikit-learn`, `shap`).
+- Nguồn cần khoá (FRED…) đặt khoá qua biến môi trường như skill hướng dẫn.
+- Cùng hãng: K-Dense BYOK, trợ lý nghiên cứu chạy trên desktop dùng bộ skill này với khoá API của bạn.
+- Liên quan: §4 (text-to-SQL), mục 24 (dữ liệu cho AI), mục 25 (huấn luyện).
+
+**Nguồn §7:** bài đăng người dùng gửi 16/11/2026 · clone `--filter=blob:none` HEAD `ec59a29a03d5c40f73ab40878df04860bc00e876`: https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/README.md · https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/LICENSE.md · https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/database-lookup/SKILL.md · https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/statistical-power/SKILL.md · https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/uncertainty-and-units/SKILL.md · https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/optimize-for-gpu/SKILL.md · GitHub search API 16/11/2026.
+
 ## Nguồn
 
 - https://duckdb.org/2026/08/05/github-40k-stars · https://en.wikipedia.org/wiki/Polars_(software) · https://github.com/sinaptik-ai/pandas-ai · https://github.com/topics/sql?l=python · https://aitools.flocci.in/alternatives/pandasai · https://jupysql.readthedocs.io/en/latest/tutorials/duckdb-github.html

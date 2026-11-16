@@ -487,6 +487,10 @@ Mục 06 §7ze đối chiếu ảnh TELOS Academy với trang "10 Claude Skills 
 
 evondevKit (mục 06 §7n.6, 564★, MIT) nay làm tốt cả Dashboard UI và Mobile App UI. Phần mobile có chín bộ mặt app và lệnh `probe --mobile` đo vùng chạm, chữ nhỏ, ô nhập thiếu `inputmode`. Skill landing page `evon:landing` đang được audit. Hướng làm đã ghi trong `NEXT.md`: brief hỏi khách vào trang để làm gì (dùng thử, mua, đặt demo, danh sách chờ), rồi chọn trong chín loại section, một CTA chính lặp dọc trang.
 
+### 82. Scientific Agent Skills cho phân tích dữ liệu (16/11/2026): 177 skill, 57k★
+
+Bộ skill của K-Dense AI (mục 15 §7, MIT, v2.72.0, tên cũ Claude Scientific Skills) có sẵn các quy trình EDA, kiểm định thống kê, thiết kế thực nghiệm, tính cỡ mẫu (`statistical-power`) và lan truyền sai số đo (`uncertainty-and-units`). Bộ còn có xử lý bảng lớn với Polars, Dask, Vaex; tăng tốc GPU có kiểm kết quả; biểu đồ Matplotlib, Seaborn; scikit-learn, statsmodels, SHAP, PyMC, TimesFM. Skill `database-lookup` ghi cách truy cập 80 cơ sở dữ liệu như FRED, SEC EDGAR, kèm arXiv và PubMed. Cài bằng `npx skills add K-Dense-AI/scientific-agent-skills`; nên chỉ cài nhóm skill cần dùng.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

@@ -2001,3 +2001,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-16f (bài đăng evondevKit landing → mục 06 §7n.6)
 
 - `evondev/evondevKit`: clone `--filter=blob:none` HEAD `5a892ceac93d1bb286391663eb01cbd011706886` (355 commit, plugin 0.9.3): README.vi.md, NEXT.md (mục 9 skill landing), `git log` 6–9/11/2026. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16g (bài Scientific Agent Skills → mục 15 §7)
+
+- `K-Dense-AI/scientific-agent-skills`: clone `--filter=blob:none` HEAD `ec59a29a03d5c40f73ab40878df04860bc00e876` (765 commit, tag v2.72.0): README, `skills/` (177 SKILL.md), `tests/`. GitHub search API 16/11/2026.
