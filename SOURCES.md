@@ -1989,3 +1989,15 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-16c (bài "5 repo skill đáng lưu" → mục 20 §3zc)
 
 - Clone `--filter=blob:none` 16/11/2026: `mattpocock/skills` HEAD `5863806dd4e15c63174bee4e7515a4256792ecfa`, `addyosmani/agent-skills` HEAD `39b723ceebf81474d0557c1fecd01eddab585563`, `cloudflare/security-audit-skill` HEAD `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`, `obsidianmd/obsidian-skills` HEAD `398127736bd4ba42d767b1419fee1a927508370b`, `google/elephant-goldfish-model` HEAD `72d06f52a2482885d9a64bd24b291c6e8628942c`. `kepano/obsidian-skills` chuyển hướng về `obsidianmd/obsidian-skills` (git ls-remote cùng HEAD). GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16d (ảnh "4 skill Claude Code làm animation" → mục 22 §9l)
+
+- Clone `--filter=blob:none` 16/11/2026: `CloudAI-X/threejs-skills` HEAD `0e181866f095b5f06d005133876e926515390d95`, `greensock/gsap-skills` HEAD `aed9cfd3277740755f6bfc1155c7aa645403b760`, `zanwei/design-dna` HEAD `593e39bc9e3652734653bd75544a333d7d43615e`, `LottieFiles/motion-design-skill` HEAD `f9a8a041b85185ee4881b3471d3415e939aac772`. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16e (ảnh bộ skill Figma của TELOS Academy → mục 06 §7ze)
+
+- WebFetch 16/11/2026: https://www.figma.com/resource-library/claude-skills-for-design/. Clone `--filter=blob:none` 16/11/2026: `figma/mcp-server-guide` HEAD `5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d`, `edenspiekermann/Skills` HEAD `a49e859329aa99e81e8725bc66767d16e8fc9539`, `redongreen/uSpec` HEAD `1e25e9b8bc2e694689ba0489594f38807a341f14`, `nolanperk/rad-spacing` HEAD `15e911236edca0d6c30d29a24581112ae7635a08`, `firebenders/sync-figma-token-skill` HEAD `c017392e2061874124eef61b9f29a7301ad844d1`, `nvillapiano/component-contracts-figma` HEAD `14db03bba7727122a7704d46aef1a5f28a2d6dcc`. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-16f (bài đăng evondevKit landing → mục 06 §7n.6)
+
+- `evondev/evondevKit`: clone `--filter=blob:none` HEAD `5a892ceac93d1bb286391663eb01cbd011706886` (355 commit, plugin 0.9.3): README.vi.md, NEXT.md (mục 9 skill landing), `git log` 6–9/11/2026. GitHub search API 16/11/2026.

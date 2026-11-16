@@ -870,6 +870,30 @@ Skill chính không chỉ là lời khuyên; nó có **ba script không phụ th
 
 **Nguồn §7n.5:** ảnh trang giới thiệu người dùng gửi 6/11/2026 · clone https://github.com/evondev/evondevKit HEAD `69fc1b347dd779f29f13bb4efb42075fb80a1c3a`: https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/README.vi.md · https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/.claude-plugin/plugin.json · https://github.com/evondev/evondevKit/blob/69fc1b347dd779f29f13bb4efb42075fb80a1c3a/LICENSE · `git log 4d02153..HEAD` · https://evondev-uiux.vercel.app/ui-ux · GitHub search API 6/11/2026.
 
+### 7n.6 Đọc lại 16/11/2026: v0.9.3 làm tốt cả Mobile App UI, skill landing `evon:landing` đang được audit (bài đăng người dùng gửi)
+
+> Bài đăng của tác giả: landing page trong ảnh là kết quả một prompt của skill đang audit để thêm vào evondevKit; skill hiện làm tốt Dashboard UI và Mobile App UI; lệnh dự kiến `evon:landing: <prompt>`.
+
+| Thuộc tính | Giá trị (16/11/2026) |
+|---|---|
+| Repo | https://github.com/evondev/evondevKit · **564★, 89 fork** (GitHub search API) · MIT · 355 commit · plugin `evon` **0.9.3** (tag mới nhất v0.9.2) |
+| Gọi | `/evon:ui-ux` (Claude Code: `/plugin marketplace add evondev/evondevKit` rồi `/plugin install evon@evondevkit`) |
+
+Điểm mới từ 6/11 (đọc `git log`):
+
+- **App điện thoại thành nhánh đầy đủ (0.9.0–0.9.3)**: `mobile.md` tách theo mục, chín "bộ mặt" app (`clean`, `mono`, `photo`, `playful`, `immersive`, `editorial`…, thêm bộ Brand cho gọi xe, giao hàng, vé), màu nhấn theo ngành; `probe --mobile` đo vùng chạm nhỏ, chữ nhỏ, dòng cuối bị che, sheet thiếu lớp phủ, ô nhập số thiếu `inputmode`, ô thiếu nhãn, màn lỗi chung chung, màn mất nút quay lại.
+- **Skill nhẹ token hơn**: `SKILL.md` gọn lại, wireframe tách theo loại màn, checklist từng màn chỉ mở khi cần, `lint-skill.mjs` báo khi file vượt trần kích thước.
+- **Thử bằng dự án thật**: mỗi lần sửa luật ghi lại phiên thử (app du lịch, bảo hiểm, AI chat, gọi xe) và kết quả probe.
+
+**Skill landing page (`evon:landing`)**: `NEXT.md` đã chốt hướng làm thành skill thứ hai, tách khỏi `ui-ux` vì luật hai bên khác nhau:
+
+1. Tra 15–20 landing page SaaS đang chạy trước khi viết luật, ghi section, thứ tự, số lần lặp CTA, dạng pricing.
+2. Brief hỏi một câu "khách vào trang cần làm gì?" với bốn mục tiêu: đăng ký dùng thử, mua luôn, đặt lịch demo, vào danh sách chờ; mục tiêu quyết định bật section nào.
+3. Chín loại section nền (header, hero, social proof, tính năng, cách hoạt động, pricing, FAQ, CTA cuối, footer), mỗi loại 2–3 biến thể; pricing ba dạng.
+4. Luật chung: một CTA chính lặp dọc trang cùng chữ cùng đích, một màu nhấn, nhịp dọc theo một thang, chữ hero nói đúng sản phẩm làm được gì cho ai.
+
+**Nguồn §7n.6:** bài đăng người dùng gửi 16/11/2026 · clone https://github.com/evondev/evondevKit HEAD `5a892ceac93d1bb286391663eb01cbd011706886`: https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/README.vi.md · https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/NEXT.md · https://github.com/evondev/evondevKit/blob/5a892ceac93d1bb286391663eb01cbd011706886/.claude-plugin/plugin.json · `git log` 6–9/11/2026 · GitHub search API 16/11/2026.
+
 ## 7o. Ba skill thiết kế trong ảnh: `/figma-use-motion` (Figma), `/design-critique` và `/design-handoff` (Anthropic) (ảnh người dùng gửi, clone 2026-10-31)
 
 > Ảnh là ba chip lệnh slash trên nền cam, không kèm chữ (sau chip đầu thấy loáng thoáng "…The faded card behind it rises a…", tức một bài viết về hiệu ứng chuyển động). Đã clone `figma/mcp-server-guide`, `anthropics/knowledge-work-plugins` và `openai/plugins`, đọc `SKILL.md` cùng `references/`, `plugin.json`, `.mcp.json`, `CONNECTORS.md` và lịch sử git của từng skill. **Không cài, không gọi Figma MCP.**
@@ -1694,6 +1718,42 @@ mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
 - Trình bày ý tưởng cho khách hàng: HTML Demo thay video quay màn hình.
 
 **Nguồn §7zd:** danh sách người dùng gửi 16/11/2026 · clone `--filter=blob:none` 16/11/2026: https://github.com/achimala/dream-loop/blob/9bddb901f7d071cfefdd21e264267c757177a9df/README.md · https://github.com/lucasmarkes/hairline/blob/034f4bf9902c6adcf3cf39d82f85e6010cb4e094/README.md · https://github.com/MengTo/Skills/blob/3cc93458c4949c39a04e938ea7892a1d6d3d40bf/README.md · https://github.com/morluto/rea/blob/8ffea11ee30d5e0d442a8d14b27e05b0441b9e18/README.md · WebFetch https://hairline.lucasmarkes.com/ · https://rea.tools/ · https://fil.design/skills · https://fil.design/skills/html-demo · GitHub search API 16/11/2026.
+
+## 7ze. Kiểm ảnh bộ skill Figma cho Claude (TELOS Academy): 11 skill từ figma-use tới cc-figma-tokens (ảnh người dùng gửi, đọc mã 16/11/2026)
+
+> Hai ảnh TELOS Academy giới thiệu 11 skill. Danh sách khớp trang [10 Claude Skills for Design](https://www.figma.com/resource-library/claude-skills-for-design/) của Figma; trang này ghi tác giả và link cho từng skill. Ba skill của Figma nằm trong `figma/mcp-server-guide` (đã có hồ sơ ở §7o); `/frontend-design` của Anthropic đã có hồ sơ ở §7g; còn lại là skill cộng đồng, được hồ sơ ở đây.
+
+### 7ze.1 Bảng 11 skill
+
+| Skill | Tác giả | Repo | ★ (16/11/2026) | Làm gì |
+|---|---|---|---|---|
+| `/figma-use` | Figma | `figma/mcp-server-guide` → `skills/figma-use` | 2.197 (repo) | Cho Claude đọc, đi lại và thao tác trên file Figma: component, layer, variable, frame; nền cho mọi skill Figma khác |
+| `/figma-generate-design` | Figma | cùng repo → `skills/figma-generate-design` | | Dựng màn hình, layout, component mới từ thư viện component đã duyệt |
+| `/figma-generate-library` | Figma | cùng repo → `skills/figma-generate-library` | | Từ codebase sinh thư viện component Figma tương ứng |
+| `/audit-design-system` | Chris Goebel, Edenspiekermann | `edenspiekermann/Skills` | 68 | Rà màn hình hoặc component tìm chỗ lệch design system: thiếu component dùng chung, override cục bộ, token chưa gắn |
+| `/apply-design-system` | Chris Goebel, Edenspiekermann | cùng repo | | Gắn lại phần tử lẻ về đúng component và token |
+| `/create-voice` | Ian Guisard, Uber | `redongreen/uSpec` | 251 | Sinh đặc tả screen reader cho VoiceOver, TalkBack, ARIA từ component Figma |
+| `/rad-spacing` | Nolan Perkins, Rad Collab | `nolanperk/rad-spacing` | 17 | Áp spacing theo cấp bậc bằng biến có sẵn, có quy tắc dự phòng khi thiếu token |
+| `/sync-figma-token` | Anish Karthik, Firebender | `firebenders/sync-figma-token-skill` | 27 | So token giữa Figma variables và codebase, báo chỗ lệch |
+| `/frontend-design` | Anthropic | `anthropics/claude-code` → `plugins/frontend-design` | (§7g) | Bắt Claude lập brief sáng tạo (mục đích, tông giọng, ràng buộc, điểm nhớ) trước khi tạo UI |
+| `/cc-figma-component`, `/cc-figma-tokens` | Nick Villapiano, One North | `nvillapiano/component-contracts-figma` | 34 | Từ file JSON đặc tả (component contract) sinh component set hoặc biến token trong Figma |
+
+### 7ze.2 Điểm mạnh các skill cộng đồng (đọc mã)
+
+- **Edenspiekermann** (3 skill, 165–235 dòng mỗi file): quy trình ba bước rà → sửa từng phát hiện → gắn lại. `audit-design-system` phân loại ba kiểu lệch (thiếu component dùng chung, override cục bộ, token chưa gắn); `fix-design-system-finding` sửa đúng một phát hiện; `apply-design-system` rà rồi nối lại cả màn hình. Repo có sẵn mục `.claude/skills/` nên mở repo trong Claude Code là dùng được lệnh slash.
+- **uSpec** (MIT, 67 commit, 13 skill): sinh tài liệu design system cho component từ agent: anatomy, API, cấu trúc, màu, motion, property, voice; plugin Figma "uSpec Extract" chụp component, rồi `create-component-md` sinh cặp `.json` và `.md` làm hợp đồng máy đọc. `create-voice` (891 dòng) viết đặc tả VoiceOver, TalkBack và ARIA cho từng trạng thái.
+- **rad-spacing**: xác định độ sâu lồng (trang → section → card → nội dung → phần tử dòng), dùng biến spacing sẵn có trong thư viện theo đúng cách đặt tên đang dùng; nếu chưa có thì tạo bộ `spacing/xs…3xl` (4–48px); mỗi cấp cha lớn hơn cấp con khoảng 1,4 lần rồi làm tròn về bội 8px (hoặc 4px), theo nguyên tắc gần gũi Gestalt.
+- **sync-figma-token**: đồng bộ token giữa code và Figma variables với báo cáo lệch nghiêm ngặt, **bắt buộc duyệt trước khi áp**, chỉ áp phần chênh và lưu báo cáo.
+- **component-contracts-figma**: một file contract là nguồn chung cho cả code và Figma; `cc-figma-tokens` dựng collection Primitives và Semantic, `cc-figma-component` dựng component set với variant theo contract.
+
+### 7ze.3 Cài và dùng
+
+- Ba skill Figma: cài plugin `figma` từ `figma/mcp-server-guide` (hướng dẫn trong §7o) và nối Figma MCP (`mcp.figma.com/mcp`).
+- Skill cộng đồng: chép thư mục skill vào `~/.claude/skills/` hoặc `.claude/skills/` của dự án; Figma còn gom các skill ở trang Community Skills (figma.com/community/skills).
+- Bốn repo `edenspiekermann/Skills`, `nolanperk/rad-spacing`, `firebenders/sync-figma-token-skill`, `nvillapiano/component-contracts-figma` chưa kèm file LICENSE; dùng nội bộ thì chép được, muốn phân phối lại thì hỏi tác giả.
+- Gợi ý quy trình: `/frontend-design` lập brief → `/figma-generate-design` dựng bằng thư viện có sẵn → `/rad-spacing` chuẩn spacing → `/audit-design-system` rồi `/apply-design-system` → `/sync-figma-token` trước khi bàn giao code → `/create-voice` cho đặc tả screen reader.
+
+**Nguồn §7ze:** ảnh người dùng gửi 16/11/2026 · https://www.figma.com/resource-library/claude-skills-for-design/ (WebFetch 16/11/2026) · clone `--filter=blob:none` 16/11/2026: https://github.com/figma/mcp-server-guide/blob/5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d/README.md · https://github.com/edenspiekermann/Skills/blob/a49e859329aa99e81e8725bc66767d16e8fc9539/README.md · https://github.com/redongreen/uSpec/blob/1e25e9b8bc2e694689ba0489594f38807a341f14/README.md · https://github.com/nolanperk/rad-spacing/blob/15e911236edca0d6c30d29a24581112ae7635a08/rad-spacing.md · https://github.com/firebenders/sync-figma-token-skill/blob/c017392e2061874124eef61b9f29a7301ad844d1/skills/sync-figma-token/SKILL.md · https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-component/SKILL.md · GitHub search API 16/11/2026.
 
 ## 8. Nguồn (mục 1–6)
 

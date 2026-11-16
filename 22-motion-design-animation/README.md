@@ -651,6 +651,35 @@ Rồi nói bằng lời, gọi tên phong cách bằng tiếng Anh hoặc tiến
 
 **Nguồn §9k:** ảnh slide người dùng gửi 8/11/2026 · clone https://github.com/lemomo-ai/lemo-opuscar HEAD `5c05490cc55dfb54f8f4c333f0f0e79cb6500564`: https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/README.md · https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/LICENSE · https://github.com/lemomo-ai/lemo-opuscar/blob/5c05490cc55dfb54f8f4c333f0f0e79cb6500564/MY-STYLES.md · GitHub search API 8/11/2026.
 
+## 9l. Kiểm ảnh "4 skill Claude Code làm animation": Three.js, GSAP, Design DNA, Motion Design (ảnh người dùng gửi, đọc mã 16/11/2026)
+
+> Ảnh TOPMAX "Claude Skills Collection" gồm 4 thẻ. Ba repo đã có trong bảng §2 (GSAP §2.4, LottieFiles §2.5, threejs-skills ở danh sách §9b); mục này đọc lại và thêm hồ sơ **Design DNA**. Số liệu trên thẻ khớp mã: threejs-skills nhắm three.js r186, 13 skill; gsap-skills 8 skill; Design DNA quy trình 3 pha và ví dụ dựng lại hero bun.sh lệch màu trung bình ΔE 0,87; motion-design-skill có checklist 8 bước và 12 nguyên lý Disney. Số sao trên thẻ Three.js (118K) và GSAP (30,4K) là của thư viện gốc `mrdoob/three.js` và `greensock/GSAP`.
+
+### 9l.1 Bảng nhanh
+
+| # | Skill | Repo | ★ (16/11/2026) | Giấy phép | Làm gì | Cài |
+|---|---|---|---|---|---|---|
+| 01 | Three.js | `CloudAI-X/threejs-skills` | 4.222 | MIT | 13 skill: fundamentals, geometry, materials, textures, lighting, shaders, postprocessing, animation, interaction, loaders, asset pipeline, performance, React Three Fiber; nhắm three.js r186 | `npx skills add cloudai-x/threejs-skills` |
+| 02 | GSAP | `greensock/gsap-skills` | 18.536 | MIT | 8 skill chính thức: core, timeline, ScrollTrigger, plugins, utils, React, frameworks (Vue, Svelte…), performance; GSAP miễn phí cả plugin | `npx skills add https://github.com/greensock/gsap-skills` |
+| 03 | Design DNA | `zanwei/design-dna` | 2.131 | MIT | Đo "ADN thiết kế" từ ảnh hoặc link rồi dựng lại cùng phong cách | `npx skills add zanwei/design-dna` |
+| 04 | Motion Design | `LottieFiles/motion-design-skill` | 3.212 | MIT | Dạy agent nghĩ như đạo diễn chuyển động trước khi viết code: thời lượng, easing, thứ tự xuất hiện | `npx skills add LottieFiles/motion-design-skill` |
+
+### 9l.2 Điểm mạnh từng skill
+
+- **threejs-skills**: viết cho đúng một phiên bản (three.js r186, React Three Fiber 9.8, drei 10.7, gltf-transform 4.5) vì dữ liệu huấn luyện trộn nhiều bản; mỗi skill có mục "Common Mistakes" ghi code cũ hay sai → cách sửa ở r186 kèm lý do (ví dụ `RGBELoader` thành `HDRLoader`, `Clock` nhường cho `Timer`). Ví dụ dùng `WebGLRenderer`, phần WebGPU và TSL dùng `WebGPURenderer`.
+- **gsap-skills**: do chính GreenSock viết, có file hướng dẫn cho Claude, Gemini và agent chung (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`), `llms.txt` và thư mục ví dụ.
+- **Design DNA** (mới): skill trích và áp bản sắc thiết kế thành JSON máy đọc được theo ba chiều: design system (token màu, chữ, spacing, layout, shape, elevation, motion, component), design style (cảm xúc, ngôn ngữ hình ảnh, bố cục, giọng thương hiệu), visual effects (Canvas, WebGL, 3D, particle, shader, scroll, cursor, SVG animation). Ba pha: Structure (xem schema), Analyze (từ ảnh hoặc URL ra hồ sơ JSON đủ trường), Generate (dựng HTML/CSS/JS tự chứa theo DNA). Màu không ước bằng mắt: `measure-colors.mjs` chạy k-means tất định trên pixel thật để lấy mã hex, tỉ lệ phủ và vai trò màu; `verify.mjs` đo lại bản dựng và so ΔE. README ghi bản đo được dựng lại hero bun.sh khớp mọi token (PASS, ΔE trung bình 0,87). README có 6 ngôn ngữ; script có test.
+- **motion-design-skill**: không gắn thư viện, dùng được với CSS, GSAP, Lottie, Framer Motion; `SKILL.md` có checklist 8 bước, kiểu tính cách chuyển động, bảng thời lượng và easing; thư mục `director/` (ba trụ cột, 12 nguyên lý Disney cho UI, cảm xúc sang chuyển động, biên đạo), `patterns/` (vào/ra, trạng thái thành công/lỗi/loading/hover, chuyển động nền, nhiều phần tử), `reference/` (bảng timing, checklist chất lượng, xử lý sự cố).
+
+### 9l.3 Dùng cùng nhau
+
+1. Lấy phong cách từ trang tham khảo bằng Design DNA (đo màu thật, không đoán).
+2. Lên nhịp và easing theo Motion Design.
+3. Dựng chuyển động UI và cuộn trang bằng GSAP; cảnh 3D bằng three.js theo threejs-skills.
+4. Kiểm lại bằng `verify.mjs` của Design DNA và chuỗi khung hình (§9h).
+
+**Nguồn §9l:** ảnh người dùng gửi 16/11/2026 · clone `--filter=blob:none` 16/11/2026: https://github.com/CloudAI-X/threejs-skills/blob/0e181866f095b5f06d005133876e926515390d95/README.md · https://github.com/greensock/gsap-skills/blob/aed9cfd3277740755f6bfc1155c7aa645403b760/README.md · https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/README.md · https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md · https://github.com/LottieFiles/motion-design-skill/blob/f9a8a041b85185ee4881b3471d3415e939aac772/README.md · GitHub search API 16/11/2026.
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes

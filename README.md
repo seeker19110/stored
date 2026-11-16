@@ -475,6 +475,18 @@ Mục 06 §7zd gồm sáu công cụ. dream-loop (2,4k★, MIT) dựng hình 3D 
 
 Mục 20 §3zc cập nhật số liệu bốn repo đã có hồ sơ. mattpocock/skills (326k★) vừa thêm nhóm software-factory. addyosmani/agent-skills (118k★) lên bản 0.6.16. cloudflare/security-audit-skill (74k★) dùng verifier ngữ cảnh mới để giảm cảnh báo sai. Google EGM (20k★) rà tài liệu thiết kế trước khi code. Hồ sơ mới là Obsidian Skills (53k★, MIT): 7 skill chính thức giúp agent viết đúng Markdown, Bases, Canvas và dùng CLI của Obsidian. Link `kepano/obsidian-skills` trong bài nay chuyển về `obsidianmd/obsidian-skills`.
 
+### 79. Bốn skill Claude Code làm animation (16/11/2026): Three.js, GSAP, Design DNA, Motion Design
+
+Mục 22 §9l gồm bốn skill. threejs-skills có 13 skill viết đúng cho three.js r186. gsap-skills là 8 skill chính thức của GreenSock. motion-design-skill của LottieFiles dạy nhịp, easing và 12 nguyên lý Disney trước khi viết code. Hồ sơ mới là Design DNA: đo phong cách từ ảnh hoặc link thành JSON (màu đo bằng pixel thật, không đoán) rồi dựng lại cùng phong cách; ví dụ dựng lại hero bun.sh lệch màu trung bình chỉ ΔE 0,87.
+
+### 80. Bộ 11 skill Figma cho Claude (16/11/2026): từ figma-use tới cc-figma-tokens
+
+Mục 06 §7ze đối chiếu ảnh TELOS Academy với trang "10 Claude Skills for Design" của Figma. Ba skill của Figma (`figma-use`, `figma-generate-design`, `figma-generate-library`) cho Claude thao tác trực tiếp trên canvas và dùng thư viện component có sẵn. Edenspiekermann có bộ rà và sửa chỗ lệch design system. uSpec (Uber, MIT) sinh đặc tả screen reader. rad-spacing chuẩn hóa spacing theo cấp bậc. sync-figma-token so token giữa Figma và code, bắt duyệt trước khi áp. component-contracts-figma dựng component và token từ một file JSON chung. `/frontend-design` của Anthropic lập brief sáng tạo trước khi tạo UI.
+
+### 81. evondevKit 0.9.3 (16/11/2026): thêm Mobile App UI, skill landing đang audit
+
+evondevKit (mục 06 §7n.6, 564★, MIT) nay làm tốt cả Dashboard UI và Mobile App UI. Phần mobile có chín bộ mặt app và lệnh `probe --mobile` đo vùng chạm, chữ nhỏ, ô nhập thiếu `inputmode`. Skill landing page `evon:landing` đang được audit. Hướng làm đã ghi trong `NEXT.md`: brief hỏi khách vào trang để làm gì (dùng thử, mua, đặt demo, danh sách chờ), rồi chọn trong chín loại section, một CTA chính lặp dọc trang.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
