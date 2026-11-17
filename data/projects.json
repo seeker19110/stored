@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1112,
+    "count": 1113,
     "schema_version": 2
   },
   "projects": [
@@ -15967,6 +15967,28 @@
       "sources": [
         "https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-component/SKILL.md",
         "https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-tokens/SKILL.md"
+      ]
+    },
+    {
+      "name": "Animate UI",
+      "repo": "imskyleen/animate-ui",
+      "url": "https://animate-ui.com",
+      "category": "animation-library",
+      "license": "MIT + Commons Clause",
+      "stars": 5063,
+      "open_source": false,
+      "notes": "Primitive có animation (Motion) thay thẳng cho Radix UI, Base UI, React Aria giữ đúng API gốc, giữ nguyên component shadcn/ui; @animate-ui/react 2.4.6, @animate-ui/vue (reka-ui), CLI codemod `animate all`; agent skill skills/animate-ui; MIT + Commons Clause (dùng thương mại được, không bán lại component); Elliot Sutton, 1.189 commit; ★ 17/11/2026: 5.063 (GitHub search API), mục 06 §7zf",
+      "section": "06",
+      "id": "animate-ui",
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zf-hồ-sơ-imskyleenanimate-ui-animate-ui-primitive-có-animation-thay-thẳng-cho-radix-ui-base-ui-react-aria-giữ-nguyên-component-shadcnui-ảnh-readme-người-dùng-gửi-đọc-mã-17112026",
+      "last_verified_at": "2026-11-17",
+      "verified_ref": "9873c628afdcdb030e74dc2930774a2aa473bd39",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/README.md",
+        "https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/LICENSE.md",
+        "https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/skills/animate-ui/SKILL.md"
       ]
     }
   ]

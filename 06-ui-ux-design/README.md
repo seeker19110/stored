@@ -1755,6 +1755,42 @@ mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
 
 **Nguồn §7ze:** ảnh người dùng gửi 16/11/2026 · https://www.figma.com/resource-library/claude-skills-for-design/ (WebFetch 16/11/2026) · clone `--filter=blob:none` 16/11/2026: https://github.com/figma/mcp-server-guide/blob/5f3024c3decd83ff6f0bfb3ef36a2c4cfbff961d/README.md · https://github.com/edenspiekermann/Skills/blob/a49e859329aa99e81e8725bc66767d16e8fc9539/README.md · https://github.com/redongreen/uSpec/blob/1e25e9b8bc2e694689ba0489594f38807a341f14/README.md · https://github.com/nolanperk/rad-spacing/blob/15e911236edca0d6c30d29a24581112ae7635a08/rad-spacing.md · https://github.com/firebenders/sync-figma-token-skill/blob/c017392e2061874124eef61b9f29a7301ad844d1/skills/sync-figma-token/SKILL.md · https://github.com/nvillapiano/component-contracts-figma/blob/14db03bba7727122a7704d46aef1a5f28a2d6dcc/skills/cc-figma-component/SKILL.md · GitHub search API 16/11/2026.
 
+## 7zf. Hồ sơ imskyleen/animate-ui (Animate UI): primitive có animation thay thẳng cho Radix UI, Base UI, React Aria, giữ nguyên component shadcn/ui (ảnh README người dùng gửi, đọc mã 17/11/2026)
+
+> Ảnh là phần đầu README: "Animated drop-in primitives for Radix UI, Base UI and React Aria, built with Motion. Swap the import, keep your shadcn/ui components.", badge 5K sao, license "MIT + Commons Clause", site animate-ui.com.
+
+### 7zf.1 Hồ sơ nhanh
+
+| Thuộc tính | Giá trị (17/11/2026) |
+|---|---|
+| Repo | https://github.com/imskyleen/animate-ui · **5.063★, 288 fork** (GitHub search API) · tạo 26/3/2025 · site animate-ui.com |
+| Tác giả | Elliot Sutton (1.102/1.189 commit) |
+| Giấy phép | MIT kèm Commons Clause: dùng trong mọi ứng dụng, website, sản phẩm kể cả thương mại; không bán hoặc phân phối lại chính các component ở dạng gốc |
+| Gói | `@animate-ui/react` 2.4.6 (primitive cho Radix UI, Base UI, React Aria), `@animate-ui/vue` 2.4.6 (cho reka-ui/shadcn-vue), `@animate-ui/cli` 2.4.0 (codemod) |
+| Kiểm thử | CLI có thư mục `test/` (vitest), thư mục `e2e/` chạy trình duyệt |
+
+### 7zf.2 Điểm mạnh (đọc mã)
+
+- **Đổi một dòng import là có animation**: mỗi primitive giữ **đúng API của thư viện gốc**, chỉ thêm Motion bên trong, nên component shadcn/ui giữ nguyên. Ví dụ `import { Accordion as AccordionPrimitive } from 'radix-ui'` thành `… from '@animate-ui/react/primitives/radix-ui'`.
+- **Một lệnh cho cả dự án**: `npx @animate-ui/cli@latest animate all` chạy codemod đổi primitive của mọi component shadcn/ui đã cài; lệnh `migrate` chuyển dần từ bản v1.
+- **Phủ ba thư viện headless**: trong `packages/react` có primitive cho Radix UI, Base UI và React Aria; thêm bản Vue cho reka-ui.
+- **Ngôn ngữ chuyển động thống nhất**: phần lớn chuyển động dùng spring, mỗi vai trò chuyển động một giá trị token, tween chọn đường cong theo việc phần tử làm; mượn quy tắc thực hành của Emil Kowalski (gốc theo trigger, ease-out khi vào/ra, phản hồi khi nhấn, tôn trọng reduced motion), ghi nguồn MIT trong `NOTICE.md`.
+- **Có agent skill đi kèm**: `skills/animate-ui/` (41 file) hướng dẫn agent chọn đường đi (codemod cho shadcn/ui hay đổi import thủ công), danh mục component, token cảm giác chuyển động, công thức tương tác (banner, count badge, expanding card…).
+
+### 7zf.3 Cài và dùng
+
+```bash
+npx @animate-ui/cli@latest animate all
+```
+
+- Dự án dùng shadcn/ui (React) hoặc shadcn-vue: chạy lệnh trên, rồi kiểm lại UI.
+- Component tự viết trên Radix UI, Base UI, React Aria: đổi import sang `@animate-ui/react/primitives/<thư viện>`.
+- Agent: chép `skills/animate-ui/` vào thư mục skill để agent tự chọn cách làm.
+- Giấy phép cho phép dùng trong sản phẩm thương mại; khi đóng gói lại thành bộ component để bán hoặc phát tán thì cần xin phép tác giả.
+- Liên quan: §7za (8 kho UI sẵn dùng), skill Emil Kowalski §7z.1, mục 22 (animation).
+
+**Nguồn §7zf:** ảnh README người dùng gửi 17/11/2026 · clone https://github.com/imskyleen/animate-ui HEAD `9873c628afdcdb030e74dc2930774a2aa473bd39`: https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/README.md · https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/LICENSE.md · https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/skills/animate-ui/SKILL.md · https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/skills/animate-ui/NOTICE.md · GitHub search API 17/11/2026.
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

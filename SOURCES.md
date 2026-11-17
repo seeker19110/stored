@@ -2005,3 +2005,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-16g (bài Scientific Agent Skills → mục 15 §7)
 
 - `K-Dense-AI/scientific-agent-skills`: clone `--filter=blob:none` HEAD `ec59a29a03d5c40f73ab40878df04860bc00e876` (765 commit, tag v2.72.0): README, `skills/` (177 SKILL.md), `tests/`. GitHub search API 16/11/2026.
+
+## Bổ sung 2026-11-17 (ảnh README Animate UI → mục 06 §7zf)
+
+- `imskyleen/animate-ui`: clone `--filter=blob:none` HEAD `9873c628afdcdb030e74dc2930774a2aa473bd39` (1.189 commit): README, LICENSE.md, `packages/*/package.json`, `skills/animate-ui/`. GitHub search API 17/11/2026.
