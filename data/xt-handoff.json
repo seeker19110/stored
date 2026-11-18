@@ -1,27 +1,36 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của www-donghanhcungban-org/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125); efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (XT-H-126…131)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026); 82ab9b2..aad97cf (XT-H-126…131, đợt 11–16/11/2026)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125); efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (XT-H-126…131); 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (XT-H-132…136)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026); 82ab9b2..aad97cf (XT-H-126…131, đợt 11–16/11/2026); c607013..ff5f479 (XT-H-132…136, mốc 1150 hồ sơ)",
     "columns": [
       "deeper",
       "shallower",
       "missing",
       "not_adding"
     ],
-    "updated": "2026-11-16",
-    "count": 131,
+    "updated": "2026-11-18",
+    "count": 136,
     "current_batch": {
-      "stored_base": "c60701366d3e20e24b352ff182ecb725ec05ebcb",
-      "xt_commit": "efa521a64e2c2be2cdd596b7b8fd59bab8029cf0",
+      "stored_base": "ff5f479",
+      "xt_commit": "3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19",
       "ids": [
-        "XT-H-126",
-        "XT-H-131"
+        "XT-H-132",
+        "XT-H-136"
       ],
-      "status": "proposal-pr-open",
-      "proposal_pr": "https://github.com/www-donghanhcungban-org/X-Templates/pull/597"
+      "status": "documented-in-stored"
     },
     "previous_batches": [
+      {
+        "stored_base": "c60701366d3e20e24b352ff182ecb725ec05ebcb",
+        "xt_commit": "efa521a64e2c2be2cdd596b7b8fd59bab8029cf0",
+        "ids": [
+          "XT-H-126",
+          "XT-H-131"
+        ],
+        "status": "proposal-pr-open",
+        "proposal_pr": "https://github.com/www-donghanhcungban-org/X-Templates/pull/597"
+      },
       {
         "stored_base": "82ab9b2f880ca067a11f58bdaa68fe254b621d69",
         "xt_commit": "aeb195c2b6ae5074d70efe592d218e9c1147c05e",
@@ -52,7 +61,7 @@
         "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/410"
       }
     ],
-    "suggest_milestone": 1100
+    "suggest_milestone": 1150
   },
   "items": [
     {
@@ -3268,6 +3277,222 @@
       ],
       "related_handoffs": [],
       "note": "Đối chiếu framework tại efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (16/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-132",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026"
+      ],
+      "lesson": "Thêm công tắc telemetry và kênh dữ liệu từ đợt đọc 40 repo: modern-web-guidance gửi tên agent, ID guide và truy vấn tìm kiếm (tắt bằng DISABLE_TELEMETRY=1); Agno gửi telemetry mỗi agent (AGNO_TELEMETRY=false); TradingAgents kiểm bản mới mỗi ngày (TRADINGAGENTS_NO_UPDATE_CHECK=1); 182 skill của google/skills dặn agent gắn tag agent-skills/1.0 vào User-Agent khi gọi gcloud/REST.",
+      "xt_ids": [
+        "BASE-DEP-006",
+        "FE-BUILD-017",
+        "SEC-INFRA-027",
+        "LOOP-HARNESS-030"
+      ],
+      "column": "deeper",
+      "existing_coverage": "BASE-DEP-006 cấm phụ thuộc bật telemetry mặc định; FE-BUILD-017 tắt telemetry toolchain; SEC-INFRA-027 là bảng công tắc; LOOP-HARNESS-030 đòi bảng kênh dữ liệu rời máy đọc từ mã.",
+      "delta": "Chỉ thêm các dòng mới vào bảng công tắc SEC-INFRA-027 và một ví dụ cho LOOP-HARNESS-030: skill có thể dặn agent gắn tag định danh vào lời gọi API, đây cũng là kênh dữ liệu cần ghi. Không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "BASE-DEP-006",
+          "file": "framework/01-baseline/dependencies.md",
+          "line": 43,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/01-baseline/dependencies.md#L43"
+        },
+        {
+          "id": "FE-BUILD-017",
+          "file": "framework/07-frontend/build-and-tooling.md",
+          "line": 57,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/07-frontend/build-and-tooling.md#L57"
+        },
+        {
+          "id": "SEC-INFRA-027",
+          "file": "framework/12-security/infrastructure-and-network.md",
+          "line": 69,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/12-security/infrastructure-and-network.md#L69"
+        },
+        {
+          "id": "LOOP-HARNESS-030",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 354,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/11-autonomous-loop/harness-files.md#L354"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-002",
+        "XT-H-045"
+      ],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-133",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c",
+        "08 §6c.4"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026"
+      ],
+      "lesson": "Tên gói và kênh cài bị mạo danh ở phía người dùng: gói agent-reach trên PyPI không phải của dự án; gói npm omo thuộc người khác (đúng là omo-ai); book-to-skill cảnh báo bản re-upload độc hại; Archify ghi kênh chính thức chỉ có archify.si và GitHub.",
+      "xt_ids": [
+        "BASE-DEP-006",
+        "BASE-DEP-011",
+        "XC-OSS-021"
+      ],
+      "column": "shallower",
+      "existing_coverage": "XC-OSS-021 (MAY) bắt repo phát hành ghi kênh chính thức; BASE-DEP-006 kiểm repo trước khi thêm phụ thuộc; BASE-DEP-011 kiểm toàn vẹn khi cài.",
+      "delta": "Chưa có luật phía dùng: trước khi cài công cụ, skill hay gói theo tên, đối chiếu tên với kênh chính thức do dự án công bố; integrity chỉ chứng minh đúng gói đã khóa, không chứng minh đúng dự án.",
+      "xt_evidence": [
+        {
+          "id": "BASE-DEP-006",
+          "file": "framework/01-baseline/dependencies.md",
+          "line": 43,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/01-baseline/dependencies.md#L43"
+        },
+        {
+          "id": "BASE-DEP-011",
+          "file": "framework/01-baseline/dependencies.md",
+          "line": 48,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/01-baseline/dependencies.md#L48"
+        },
+        {
+          "id": "XC-OSS-021",
+          "file": "framework/18-cross-cutting/open-source-and-community.md",
+          "line": 60,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/18-cross-cutting/open-source-and-community.md#L60"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-123"
+      ],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Trước khi thêm phụ thuộc, công cụ agent hoặc skill theo tên registry, SHOULD đối chiếu tên gói, owner/repo và domain cài với kênh chính thức trong README hoặc SECURITY.md của dự án, ghi nguồn đối chiếu vào PR; lệnh cài trong tài liệu dự án đích trỏ đúng tên đã đối chiếu. Kiểm fixture: lệnh `npm install omo` trong khi dự án công bố `omo-ai` bị báo lệch."
+      }
+    },
+    {
+      "id": "XT-H-134",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "06 §7zf",
+        "08 §6c"
+      ],
+      "profile_anchors": [
+        "06-ui-ux-design/README.md#7zf-hồ-sơ-imskyleenanimate-ui-animate-ui-primitive-có-animation-thay-thẳng-cho-radix-ui-base-ui-react-aria-giữ-nguyên-component-shadcnui-ảnh-readme-người-dùng-gửi-đọc-mã-17112026",
+        "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026"
+      ],
+      "lesson": "Giấy phép không phải OSI gặp nhiều ở skill và kit UI: Animate UI (MIT + Commons Clause, chép component vào repo được nhưng không bán lại component gốc), oh-my-openagent (Sustainable Use, chỉ nội bộ/phi thương mại), academic-research-skills (CC BY-NC cho skill), autoresearch (MIT chỉ ghi trong README, không có file LICENSE), Archify (MIT trước một commit mốc, Apache-2.0 sau đó).",
+      "xt_ids": [
+        "CMP-LIC-004",
+        "CMP-LIC-022"
+      ],
+      "column": "deeper",
+      "existing_coverage": "CMP-LIC-004 phân loại riêng source-available (có Commons Clause); CMP-LIC-022 đòi LICENSE/NOTICE/SOURCE cho mã UI chép vào repo.",
+      "delta": "Thêm ví dụ: Sustainable Use và CC BY-NC cho skill/prompt pack cũng vào nhóm \"review\"; giấy phép chỉ ghi trong README không có file LICENSE xếp là chưa rõ; giấy phép đổi theo commit mốc phải ghi commit đã dùng. Không cần ID mới.",
+      "xt_evidence": [
+        {
+          "id": "CMP-LIC-004",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/16-compliance-privacy/licensing-and-ip.md#L52"
+        },
+        {
+          "id": "CMP-LIC-022",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 70,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/16-compliance-privacy/licensing-and-ip.md#L70"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-025",
+        "XT-H-112"
+      ],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+    },
+    {
+      "id": "XT-H-135",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026"
+      ],
+      "lesson": "OpenAI Symphony chạy tool tracker ở phía host bằng auth đã cấu hình và gỡ token tracker khỏi môi trường tiến trình Codex con; agent chỉ thấy kết quả tool, không thấy khóa.",
+      "xt_ids": [
+        "SEC-AI-007",
+        "LOOP-HARNESS-022"
+      ],
+      "column": "shallower",
+      "existing_coverage": "SEC-AI-007 đòi identity theo người dùng/phiên, token TTL ngắn, scope hẹp; LOOP-HARNESS-022 đòi sandbox cho phiên không người trực.",
+      "delta": "Chưa có luật cho bộ điều phối chạy agent con: khóa dịch vụ ngoài không được truyền vào biến môi trường của tiến trình agent.",
+      "xt_evidence": [
+        {
+          "id": "SEC-AI-007",
+          "file": "framework/12-security/ai-security.md",
+          "line": 59,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/12-security/ai-security.md#L59"
+        },
+        {
+          "id": "LOOP-HARNESS-022",
+          "file": "framework/11-autonomous-loop/harness-files.md",
+          "line": 346,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/11-autonomous-loop/harness-files.md#L346"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Với bộ điều phối khởi chạy agent con (Codex, Claude Code, CLI agent khác), SHOULD giữ khóa dịch vụ ngoài ở phía host và gọi qua tool hoặc proxy chạy ngoài tiến trình agent; môi trường của tiến trình agent chỉ nhận biến cần thiết theo allowlist. Kiểm fixture: in môi trường bên trong tiến trình agent không thấy LINEAR_API_KEY hay token tracker dù bộ điều phối có."
+      }
+    },
+    {
+      "id": "XT-H-136",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026"
+      ],
+      "lesson": "Công cụ nối agent vào trình duyệt thật đã đăng nhập: browser-harness điều khiển cả Chrome qua CDP sau khi bật remote debugging; Agent-Reach chép cookie một trang từ Chrome và khuyên dùng tài khoản phụ; last30days dùng cookie x.com trên trình duyệt.",
+      "xt_ids": [
+        "QA-E2E-030",
+        "SEC-AI-007"
+      ],
+      "column": "shallower",
+      "existing_coverage": "QA-E2E-030 đòi profile cô lập khi agent dùng trình duyệt để kiểm UI; SEC-AI-007 đòi scope hẹp.",
+      "delta": "QA-E2E-030 chỉ nói về kiểm UI; chưa có luật khi công cụ agent cố ý dùng phiên đăng nhập thật của người dùng để đọc hoặc thao tác trên web.",
+      "xt_evidence": [
+        {
+          "id": "QA-E2E-030",
+          "file": "framework/14-testing-quality/e2e-and-accessibility.md",
+          "line": 65,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/14-testing-quality/e2e-and-accessibility.md#L65"
+        },
+        {
+          "id": "SEC-AI-007",
+          "file": "framework/12-security/ai-security.md",
+          "line": 59,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/12-security/ai-security.md#L59"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-005"
+      ],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Khi công cụ agent nối vào trình duyệt đã đăng nhập (CDP remote debugging, chép cookie), SHOULD dùng profile Chrome riêng chỉ đăng nhập đúng tài khoản cần (ưu tiên tài khoản phụ), chỉ bật trong phiên có người trực, tắt remote debugging sau phiên và ghi danh sách trang được phép. Kiểm: phiên không người trực không khởi được kết nối CDP tới profile chính."
+      }
     }
   ]
 }
