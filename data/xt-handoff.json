@@ -18,7 +18,8 @@
         "XT-H-137",
         "XT-H-139"
       ],
-      "status": "documented-in-stored"
+      "status": "proposal-pr-open",
+      "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/657"
     },
     "previous_batches": [
       {
@@ -67,7 +68,8 @@
           "XT-H-132",
           "XT-H-136"
         ],
-        "status": "documented-in-stored"
+        "status": "proposal-pr-open",
+        "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/657"
       }
     ],
     "suggest_milestone": 1550
@@ -3336,7 +3338,7 @@
         "XT-H-002",
         "XT-H-045"
       ],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note)."
     },
     {
       "id": "XT-H-133",
@@ -3380,7 +3382,7 @@
       "related_handoffs": [
         "XT-H-123"
       ],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
       "proposal": {
         "level": "SHOULD",
         "text": "Trước khi thêm phụ thuộc, công cụ agent hoặc skill theo tên registry, SHOULD đối chiếu tên gói, owner/repo và domain cài với kênh chính thức trong README hoặc SECURITY.md của dự án, ghi nguồn đối chiếu vào PR; lệnh cài trong tài liệu dự án đích trỏ đúng tên đã đối chiếu. Kiểm fixture: lệnh `npm install omo` trong khi dự án công bố `omo-ai` bị báo lệch."
@@ -3423,7 +3425,7 @@
         "XT-H-025",
         "XT-H-112"
       ],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates."
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note)."
     },
     {
       "id": "XT-H-135",
@@ -3457,7 +3459,7 @@
         }
       ],
       "related_handoffs": [],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
       "proposal": {
         "level": "SHOULD",
         "text": "Với bộ điều phối khởi chạy agent con (Codex, Claude Code, CLI agent khác), SHOULD giữ khóa dịch vụ ngoài ở phía host và gọi qua tool hoặc proxy chạy ngoài tiến trình agent; môi trường của tiến trình agent chỉ nhận biến cần thiết theo allowlist. Kiểm fixture: in môi trường bên trong tiến trình agent không thấy LINEAR_API_KEY hay token tracker dù bộ điều phối có."
@@ -3497,7 +3499,7 @@
       "related_handoffs": [
         "XT-H-005"
       ],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
       "proposal": {
         "level": "SHOULD",
         "text": "Khi công cụ agent nối vào trình duyệt đã đăng nhập (CDP remote debugging, chép cookie), SHOULD dùng profile Chrome riêng chỉ đăng nhập đúng tài khoản cần (ưu tiên tài khoản phụ), chỉ bật trong phiên có người trực, tắt remote debugging sau phiên và ghi danh sách trang được phép. Kiểm: phiên không người trực không khởi được kết nối CDP tới profile chính."
@@ -3537,7 +3539,7 @@
       "related_handoffs": [
         "XT-H-134"
       ],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
       "proposal": {
         "level": "SHOULD",
         "text": "Khi tự host, fork hoặc vendor một repo open-core, SHOULD liệt kê mọi thư mục có LICENSE riêng (ee/, pro/, enterprise/, proprietary/) trong license-policy.yaml kèm giấy phép của từng thư mục, và build hoặc cấu hình bản dùng không kéo các thư mục chưa có giấy phép. Kiểm: script tìm file LICENSE lồng trong mã vendor hoặc image build; thư mục ee/ chưa được duyệt mà có trong artifact thì cổng đỏ."
@@ -3575,7 +3577,7 @@
         }
       ],
       "related_handoffs": [],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
       "proposal": {
         "level": "SHOULD",
         "text": "Bộ phát hiện dependency không bảo trì SHOULD đọc thêm tín hiệu do dự án tự công bố: cờ deprecated trên registry (npm deprecate, PyPI yanked hoặc classifier Inactive), từ khoá maintenance mode, deprecated, no longer maintained, superseded by trong README; gặp thì đưa vào cùng hàng đợi thay thế với ghi chú repo kế nhiệm. Kiểm fixture: gói có README ghi Maintenance Mode nhưng release mới được báo."
@@ -3613,7 +3615,7 @@
         }
       ],
       "related_handoffs": [],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
       "proposal": {
         "level": "SHOULD",
         "text": "Gateway hoặc proxy LLM dùng cho sản phẩm, CI và agent tự động SHOULD chỉ dùng khoá API hoặc tài khoản dịch vụ theo điều khoản thương mại của nhà cung cấp; không định tuyến qua token OAuth của gói thuê bao cá nhân (app chat, CLI) và không xoay vòng nhiều tài khoản để vượt hạn mức. Kiểm: cấu hình gateway chỉ khai nguồn kiểu api_key hoặc service_account; nguồn oauth_subscription hoặc danh sách nhiều tài khoản cùng nhà cung cấp làm cổng đỏ."
