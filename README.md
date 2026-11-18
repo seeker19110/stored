@@ -495,6 +495,10 @@ Bộ skill của K-Dense AI (mục 15 §7, MIT, v2.72.0, tên cũ Claude Scienti
 
 Animate UI (mục 06 §7zf, 5,1k★) đưa Motion vào primitive của Radix UI, Base UI và React Aria mà giữ đúng API gốc, nên component shadcn/ui không phải sửa. Lệnh `npx @animate-ui/cli@latest animate all` đổi cả dự án một lần; có bản Vue và agent skill đi kèm. Giấy phép MIT kèm Commons Clause: dùng trong sản phẩm thương mại được, chỉ không bán lại chính các component.
 
+### 84. Kho repo của Phan Đông Giang (18/11/2026): 694 repo đã kiểm, 24 repo AI/agent đọc mã
+
+Mục 08 §6c ghi lại toàn bộ 694 repo của trang phandonggiang.com/kho-repo vào `data/collections/phandonggiang-kho-repo.json`, đã kiểm bằng GitHub API: số sao khớp, 3 repo đổi chủ, 1 repo archive. 24 repo AI/agent chưa có hồ sơ được đọc mã và thêm vào catalog. Trong đó có karpathy/autoresearch (agent tự thử nghiệm huấn luyện), cc-switch và claude-code-router (đổi nhà cung cấp cho Claude Code, Codex), Agent-Reach và Scrapling (thu thập web), Composio và Agno (nền tảng agent), Beads (bộ nhớ dạng đồ thị task), OpenAI Symphony (issue thành lượt chạy Codex), Trellis, google/skills, modern-web-guidance của đội Chrome. Ba repo có giấy phép hạn chế: oh-my-openagent (Sustainable Use), academic-research-skills (CC BY-NC), autoresearch (không có file LICENSE).
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
