@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1137,
+    "count": 1153,
     "schema_version": 2
   },
   "projects": [
@@ -231,15 +231,23 @@
     },
     {
       "name": "Goose",
-      "repo": "block/goose",
+      "repo": "aaif-goose/goose",
       "category": "coding-agent",
       "license": "Apache-2.0",
-      "stars": null,
+      "stars": 56732,
       "open_source": true,
-      "notes": "MCP-first; 18/11/2026: repo chuyển sang aaif-goose/goose (GitHub search API trả full_name mới), mục 08 §6c",
+      "notes": "MCP-first; 18/11/2026: repo chuyển sang aaif-goose/goose (GitHub search API trả full_name mới), mục 08 §6c; đọc lại 18/11/2026 (mục 08 §6c.4): repo chuyển sang aaif-goose/goose thuộc Agentic AI Foundation (Linux Foundation). Rust. 15+ nhà cung cấp. 70+ extension MCP. dùng được gói Claude/ChatGPT/Gemini qua ACP; ★ 18/11/2026: 56.732 (GitHub search API)",
       "section": "01",
       "id": "goose",
-      "profile_path": "01-ai-coding-agents/README.md"
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "46b2b237d6b164482ca2e3bdcd10b1bf988a6b4b",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/aaif-goose/goose/blob/46b2b237d6b164482ca2e3bdcd10b1bf988a6b4b/README.md",
+        "https://github.com/aaif-goose/goose/blob/46b2b237d6b164482ca2e3bdcd10b1bf988a6b4b/LICENSE"
+      ],
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026"
     },
     {
       "name": "Roo Code",
@@ -16469,6 +16477,326 @@
       "sources": [
         "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/README.md",
         "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/LICENSE"
+      ]
+    },
+    {
+      "name": "CowAgent",
+      "repo": "zhayujie/CowAgent",
+      "category": "personal-agent",
+      "license": "MIT",
+      "stars": 47982,
+      "open_source": true,
+      "notes": "Agent cá nhân (tên cũ chatgpt-on-wechat) tự lập kế hoạch, dùng công cụ, skill, MCP, có bộ nhớ dài hạn và kho tri thức. Kênh có sẵn: Web, WeChat, Feishu, DingTalk, WeCom, QQ, Telegram, Slack, Discord; bộ nhớ ba tầng truy hồi lai từ khóa và vector; đổi nhà cung cấp model ngay trên web console. Điều kiện: Cần khóa LLM; chế độ Agent có quyền hệ điều hành nên chỉ chạy ở môi trường tin cậy, đặt web_password khi mở ra ngoài. ★ 18/11/2026: 47.982 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "cowagent",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "bcc36de52ca17b45d1132f388a04b7a456bd3f95",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/zhayujie/CowAgent/blob/bcc36de52ca17b45d1132f388a04b7a456bd3f95/README.md",
+        "https://github.com/zhayujie/CowAgent/blob/bcc36de52ca17b45d1132f388a04b7a456bd3f95/LICENSE"
+      ]
+    },
+    {
+      "name": "openhuman",
+      "repo": "tinyhumansai/openhuman",
+      "category": "agent-framework",
+      "license": "GPL-3.0",
+      "stars": 42740,
+      "open_source": true,
+      "notes": "Agent harness bằng Rust vừa là app desktop, terminal, server vừa là thư viện nhúng agent vào sản phẩm. Nhúng được qua crate openhuman-embed; nén token theo Recursive Language Models, benchmark SWE-bench công khai; approval gate, sandbox (OS jail hoặc Docker), bí mật lưu trong keyring. Điều kiện: Dự án tự ghi early beta; BYOK 26 nhà cung cấp hoặc model cục bộ; GPL-3.0. ★ 18/11/2026: 42.740 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "openhuman",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "94971862e5a84108ae28f8382de5d5e7e70fe648",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/tinyhumansai/openhuman/blob/94971862e5a84108ae28f8382de5d5e7e70fe648/README.md",
+        "https://github.com/tinyhumansai/openhuman/blob/94971862e5a84108ae28f8382de5d5e7e70fe648/LICENSE"
+      ]
+    },
+    {
+      "name": "500-AI-Agents-Projects",
+      "repo": "ashishpatel26/500-AI-Agents-Projects",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 40062,
+      "open_source": true,
+      "notes": "Bộ sưu tập hơn 500 dự án và ca dùng agent theo ngành và framework (LangGraph, CrewAI, AutoGen, Agno, LlamaIndex). 21 agent mẫu chạy được trong agents/, mỗi cái có agent.py, requirements.txt, metadata.yaml; bảng so sánh framework; khóa CrewAI + MCP 3 bài. Điều kiện: Agent mẫu cần khóa API; dự án ngoài được liệt kê theo giấy phép riêng. ★ 18/11/2026: 40.062 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "500-ai-agents-projects",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "e48f78ccf182746d4f01e2093fe2ccd884269656",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/ashishpatel26/500-AI-Agents-Projects/blob/e48f78ccf182746d4f01e2093fe2ccd884269656/README.md",
+        "https://github.com/ashishpatel26/500-AI-Agents-Projects/blob/e48f78ccf182746d4f01e2093fe2ccd884269656/LICENSE"
+      ]
+    },
+    {
+      "name": "QwenPaw",
+      "repo": "agentscope-ai/QwenPaw",
+      "category": "personal-agent",
+      "license": "Apache-2.0",
+      "stars": 37892,
+      "open_source": true,
+      "notes": "Trợ lý cá nhân chạy cục bộ hoặc cloud, mở rộng bằng skill và plugin, nối nhiều kênh nhắn tin; có console web, TUI, app desktop. Bộ nhớ ba lớp lưu Markdown; runtime QwenPaw Local và model QwenPaw-Flash chạy không cần khóa, cùng Ollama, LM Studio và 14+ nhà cung cấp; sandbox mức kernel, Tool Guard, File Guard, Skill Scanner. Điều kiện: Python 3.11–3.13; LLM cloud cần khóa. ★ 18/11/2026: 37.892 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "qwenpaw",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "8ac8efb8d48b49880adca9d3126d0b03e43132a5",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/agentscope-ai/QwenPaw/blob/8ac8efb8d48b49880adca9d3126d0b03e43132a5/README.md",
+        "https://github.com/agentscope-ai/QwenPaw/blob/8ac8efb8d48b49880adca9d3126d0b03e43132a5/LICENSE"
+      ]
+    },
+    {
+      "name": "gpt-researcher",
+      "repo": "assafelovic/gpt-researcher",
+      "category": "product-research",
+      "license": "Apache-2.0",
+      "stars": 30761,
+      "open_source": true,
+      "notes": "Agent nghiên cứu sâu tạo báo cáo chi tiết có trích dẫn từ web và tài liệu cục bộ, agent lập kế hoạch và agent thực thi chạy song song. Chế độ deep research đệ quy và luồng nhiều agent; nhiều nguồn tìm (Tavily, Brave, Exa, arXiv, PubMed Central, Semantic Scholar, SearxNG, MCP…); xuất PDF, Word; dùng như gói pip. Điều kiện: Mặc định cần OpenAI và Tavily (đổi được sang API tương thích). ★ 18/11/2026: 30.761 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "gpt-researcher",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "ddd4db36208d9c8e49f3b2436efda97baecb5433",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/assafelovic/gpt-researcher/blob/ddd4db36208d9c8e49f3b2436efda97baecb5433/README.md",
+        "https://github.com/assafelovic/gpt-researcher/blob/ddd4db36208d9c8e49f3b2436efda97baecb5433/LICENSE"
+      ]
+    },
+    {
+      "name": "OpenMausBot",
+      "repo": "milind-soni/OpenMausBot",
+      "category": "agent-workspace",
+      "license": "Apache-2.0 (trừ thư mục enterprise/)",
+      "stars": 24862,
+      "open_source": true,
+      "notes": "App chat nơi mỗi bot là một agent thật chạy CLI claude, codex hoặc grok trên máy bạn, có tính cách, model và ứng dụng kết nối riêng. Local-first: harness server trên 127.0.0.1 quản lý tiến trình, dữ liệu ở ~/.openmausbot; dùng lại đăng nhập CLI sẵn có, không proxy trung gian; app cho macOS, Windows, Ubuntu và gói npm cho server. Điều kiện: Node 24+, ít nhất một CLI agent đã đăng nhập; thư mục enterprise/ chạy production cần license key. ★ 18/11/2026: 24.862 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "openmausbot",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "c175749a8becc545bf29f4ec40c8fd1eeab8cf41",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/milind-soni/OpenMausBot/blob/c175749a8becc545bf29f4ec40c8fd1eeab8cf41/README.md",
+        "https://github.com/milind-soni/OpenMausBot/blob/c175749a8becc545bf29f4ec40c8fd1eeab8cf41/LICENSE"
+      ]
+    },
+    {
+      "name": "NemoClaw",
+      "repo": "NVIDIA/NemoClaw",
+      "category": "sandbox",
+      "license": "Apache-2.0",
+      "stars": 23053,
+      "open_source": true,
+      "notes": "Bộ tham chiếu của NVIDIA chạy agent (OpenClaw, Hermes, LangChain Deep Agents) trong sandbox NVIDIA OpenShell, kèm CLI quản lý vòng đời. Onboarding có hướng dẫn, managed inference, chính sách mạng kiểm soát egress, lưu trạng thái qua OpenShell; blueprint khai báo policies và provider profiles. Điều kiện: Alpha; cần NVIDIA OpenShell và nền tảng hỗ trợ (DGX, WSL…). ★ 18/11/2026: 23.053 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "nemoclaw",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "5d4a72d7499cd92b3f8fc0462ba6bac7d9962725",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/NVIDIA/NemoClaw/blob/5d4a72d7499cd92b3f8fc0462ba6bac7d9962725/README.md",
+        "https://github.com/NVIDIA/NemoClaw/blob/5d4a72d7499cd92b3f8fc0462ba6bac7d9962725/LICENSE"
+      ]
+    },
+    {
+      "name": "owl",
+      "repo": "camel-ai/owl",
+      "category": "agent-framework",
+      "license": "Apache-2.0 (khai trong pyproject)",
+      "stars": 20198,
+      "open_source": true,
+      "notes": "Khung nhiều agent OWL (Optimized Workforce Learning) trên CAMEL-AI tự động hóa tác vụ thực tế bằng agent cộng tác có công cụ tìm, trình duyệt, đa phương tiện. README ghi điểm GAIA trung bình 69,09, hạng 1 trong khung mã nguồn mở; MCPToolkit và nhiều toolkit (Playwright, tìm kiếm, chạy code, Excel, GitHub); ví dụ cho Claude, Qwen, DeepSeek, OpenAI. Điều kiện: Cần khóa model có tool calling mạnh; Python 3.10–3.12. ★ 18/11/2026: 20.198 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "owl",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "563a7c405744868679d0b5619aa451afdc7c9205",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/camel-ai/owl/blob/563a7c405744868679d0b5619aa451afdc7c9205/README.md",
+        "https://github.com/camel-ai/owl/blob/563a7c405744868679d0b5619aa451afdc7c9205/LICENSE"
+      ]
+    },
+    {
+      "name": "eliza",
+      "repo": "elizaOS/eliza",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 19901,
+      "open_source": true,
+      "notes": "Khung TypeScript và bộ sản phẩm cho agent tự trị: runtime lõi, app, CLI, cloud, plugin chính chủ. Không phụ thuộc model, mở rộng qua plugin (81 mục: nhắn tin, trình duyệt, ví EVM/Solana có ranh giới phê duyệt); kiểm mô hình trạng thái bằng Quint và helper xác minh bằng Dafny. Điều kiện: Bun 1.4.2; benchmark trực tiếp cần khóa nhà cung cấp. ★ 18/11/2026: 19.901 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "eliza",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "78e4453128afd44a1d4889be04b3adf591464fe7",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/elizaOS/eliza/blob/78e4453128afd44a1d4889be04b3adf591464fe7/README.md",
+        "https://github.com/elizaOS/eliza/blob/78e4453128afd44a1d4889be04b3adf591464fe7/LICENSE"
+      ]
+    },
+    {
+      "name": "agent-lightning",
+      "repo": "microsoft/agent-lightning",
+      "category": "model-training",
+      "license": "MIT",
+      "stars": 18973,
+      "open_source": true,
+      "notes": "Khung học tăng cường gọn (~3.500 dòng) huấn luyện agent với harness thật; v1.0 viết lại hoàn toàn. Ba thành phần Trainer (verl + vLLM), API Gateway thu dữ liệu, Rollout Controller; agent chạy qua proxy không cần sửa mã, chạy được như Kubernetes Job; ví dụ huấn luyện coding agent nâng SWE-bench Verified từ 41,8% lên 56,4% với Qwen3.5-9B. Điều kiện: Cần GPU CUDA và stack verl. ★ 18/11/2026: 18.973 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "agent-lightning",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "2070bad5113e52f1aa2e5bdba822d4b24b197c05",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/microsoft/agent-lightning/blob/2070bad5113e52f1aa2e5bdba822d4b24b197c05/README.md",
+        "https://github.com/microsoft/agent-lightning/blob/2070bad5113e52f1aa2e5bdba822d4b24b197c05/LICENSE"
+      ]
+    },
+    {
+      "name": "gastown",
+      "repo": "gastownhall/gastown",
+      "category": "agent-workspace",
+      "license": "MIT",
+      "stars": 18828,
+      "open_source": true,
+      "notes": "Trình quản lý workspace điều phối nhiều agent lập trình (Claude Code, Copilot, Codex, Gemini) với trạng thái công việc bền trong git worktree. Trạng thái lưu trong Beads; Refinery là hàng đợi merge kiểu Bors có chia đôi để cô lập thay đổi lỗi; giám sát ba tầng Witness, Deacon, Dogs phát hiện agent bị kẹt. Điều kiện: Git 2.20+, Go 1.26.2+, Beads, Dolt, tmux 3.0+ và CLI agent. ★ 18/11/2026: 18.828 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "gastown",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "94cc82289d2ead275a62e1db4ef1d4ada4a1f98e",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/gastownhall/gastown/blob/94cc82289d2ead275a62e1db4ef1d4ada4a1f98e/README.md",
+        "https://github.com/gastownhall/gastown/blob/94cc82289d2ead275a62e1db4ef1d4ada4a1f98e/LICENSE"
+      ]
+    },
+    {
+      "name": "parlant",
+      "repo": "emcie-co/parlant",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 18334,
+      "open_source": true,
+      "notes": "Nền tảng mở dựng agent chăm sóc khách hàng, vận hành từ coding agent, kèm chat widget, chuyển giao người, kiểm thử, phân tích. Policy giữ agent đúng chính sách và tự kiểm trước khi trả lời; tự mang model, không cộng phí suy luận; Dashboard CLI cho coding agent. Điều kiện: Mặc định cần khóa OpenRouter; Dashboard host thu phí theo workspace, framework miễn phí. ★ 18/11/2026: 18.334 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "parlant",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "4962e62bcd988ff65c1e41c4cc4ade7338efe0dd",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/emcie-co/parlant/blob/4962e62bcd988ff65c1e41c4cc4ade7338efe0dd/README.md",
+        "https://github.com/emcie-co/parlant/blob/4962e62bcd988ff65c1e41c4cc4ade7338efe0dd/LICENSE"
+      ]
+    },
+    {
+      "name": "rowboat",
+      "repo": "rowboatlabs/rowboat",
+      "category": "agent-workspace",
+      "license": "Apache-2.0",
+      "stars": 18291,
+      "open_source": true,
+      "notes": "Nhóm chat nơi người và nhiều agent (Claude Code, Codex, Hermes…) cộng tác, kèm app desktop dựng đồ thị tri thức từ email, họp, Slack. Mỗi tổ chức có MCP server tại /mcp với OAuth 2.1, mọi hành động ghi cho thành viên; server Harbor tự host trên Postgres; agent tạo agent mới phải được người duyệt. Điều kiện: Tự host cần Postgres, tên miền, OIDC; giao thức còn v0. ★ 18/11/2026: 18.291 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "rowboat",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "c37ffda3b002499da5b0d76785cc7c3275be1a7f",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/rowboatlabs/rowboat/blob/c37ffda3b002499da5b0d76785cc7c3275be1a7f/README.md",
+        "https://github.com/rowboatlabs/rowboat/blob/c37ffda3b002499da5b0d76785cc7c3275be1a7f/LICENSE"
+      ]
+    },
+    {
+      "name": "mcp-toolbox",
+      "repo": "googleapis/mcp-toolbox",
+      "category": "protocol",
+      "license": "Apache-2.0",
+      "stars": 16897,
+      "open_source": true,
+      "notes": "MCP server (tên cũ genai-toolbox) nối agent, IDE, ứng dụng với cơ sở dữ liệu doanh nghiệp, có công cụ dựng sẵn và khung tự định nghĩa qua tools.yaml. --prebuilt=<db> cho AlloyDB, BigQuery, Cloud SQL, Spanner, PostgreSQL, MySQL, MongoDB, Snowflake… (57 nguồn); connection pooling, IAM, OpenTelemetry; SDK Python, JS/TS, Go, Java; theo SemVer (1.17.0). Điều kiện: Cần thông tin kết nối cơ sở dữ liệu; nguồn GCP cần tài khoản. ★ 18/11/2026: 16.897 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "mcp-toolbox",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "3a7becd7bd59592236fc5064c9839d03dc0ad07e",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/googleapis/mcp-toolbox/blob/3a7becd7bd59592236fc5064c9839d03dc0ad07e/README.md",
+        "https://github.com/googleapis/mcp-toolbox/blob/3a7becd7bd59592236fc5064c9839d03dc0ad07e/LICENSE"
+      ]
+    },
+    {
+      "name": "eigent",
+      "repo": "eigent-ai/eigent",
+      "category": "agent-workspace",
+      "license": "Apache-2.0",
+      "stars": 15843,
+      "open_source": true,
+      "notes": "App desktop Cowork dựng và chạy đội agent (một hoặc nhiều agent) tự động hóa quy trình, trên CAMEL-AI. Nhiều agent song song hoặc một meta agent; model cục bộ (vLLM, Ollama, LM Studio) và tự host backend; MCP, skill, toolkit trình duyệt và terminal, lập lịch định kỳ. Điều kiện: Quick Start cần tài khoản cloud Eigent; tự host theo server/README_EN.md; Node 18–22. ★ 18/11/2026: 15.843 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "eigent",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "eb1b6315fcc7e09305641b05e254bcdc4ef0e2c6",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/eigent-ai/eigent/blob/eb1b6315fcc7e09305641b05e254bcdc4ef0e2c6/README.md",
+        "https://github.com/eigent-ai/eigent/blob/eb1b6315fcc7e09305641b05e254bcdc4ef0e2c6/LICENSE"
+      ]
+    },
+    {
+      "name": "RD-Agent",
+      "repo": "microsoft/RD-Agent",
+      "category": "agent-framework",
+      "license": "MIT",
+      "stars": 15412,
+      "open_source": true,
+      "notes": "Khung agent tự động hóa R&D dữ liệu (đề xuất ý tưởng và hiện thực) cho quant tài chính, khai phá dữ liệu, đọc báo cáo, Kaggle, tinh chỉnh LLM. CLI nhiều kịch bản (fin_quant, fin_factor, data_science, kaggle…); LiteLLM cho nhiều nhà cung cấp; UI Streamlit và Web UI theo dõi. Điều kiện: Chỉ Linux, Docker chạy không sudo; không dùng cho tư vấn tài chính; Web UI chạy code sinh ra nên cần môi trường cô lập. ★ 18/11/2026: 15.412 (GitHub search API), nhóm AI Agent & MCP trong kho-repo của Phan Đông Giang, mục 08 §6c.4",
+      "section": "08",
+      "id": "rd-agent",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c4-nhóm-ai-agent--mcp-so-sánh-chọn-16-repo-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "484776c211e4fbbeef03e0ec00d6bbee7362a4f4",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md",
+        "https://github.com/microsoft/RD-Agent/blob/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/LICENSE"
       ]
     }
   ]
