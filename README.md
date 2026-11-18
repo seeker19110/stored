@@ -511,6 +511,16 @@ Mục 08 §6c.4 đọc mã 27 repo nhóm AI Agent & MCP và chỉ thêm repo cò
 
 Hồ sơ goose được cập nhật sang tên mới `aaif-goose/goose`. 11 repo không thêm vì ngừng cập nhật, đã bị thay thế hoặc chưa phát hành.
 
+### 86. Lọc lại toàn bộ kho-repo (18/11/2026): đọc mã 437 repo, thêm 410 hồ sơ
+
+Mục 08 §6c.5 áp cùng tiêu chí cho cả 694 repo của kho. Mỗi repo có kết luận ở trường `review`: có hồ sơ hoặc lý do chưa thêm.
+
+- Lọc máy bằng GitHub API loại 204 repo: commit cũ hơn 6 tháng, không có giấy phép, archive, không truy cập được hoặc ngoài phạm vi kho.
+- 437 repo còn lại được đọc README, LICENSE và cây thư mục. 410 repo được thêm hồ sơ, chia theo 28 nhóm của kho: AI ảnh và giọng nói, DevOps, editor và terminal, framework backend và frontend, giám sát và CSDL, học AI, mô hình AI, ghi chú và năng suất, RAG, skill, sách, thu thập web, trợ lý lập trình, tài chính, OCR và thị giác máy tính, tự host, đồ họa, ứng dụng đa nền tảng.
+- 27 repo không thêm: công cụ deepfake hoán đổi khuôn mặt, proxy gộp tài khoản thuê bao, gpt4free, openclaude (mã dẫn xuất Claude Code không được phép phân phối), bản alpha/beta, bản dịch, repo ngừng bảo trì, repo trùng loại.
+- Giấy phép hạn chế (phi thương mại, Sustainable Use, Business Source, Elastic License, source-available) được ghi rõ, catalog đặt `open_source: false`.
+- Hai repo thêm trước đó chưa đạt tiêu chí (autoresearch, andrej-karpathy-skills) vẫn giữ hồ sơ, kèm ghi chú.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
