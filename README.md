@@ -521,6 +521,10 @@ Mục 08 §6c.5 áp cùng tiêu chí cho cả 694 repo của kho. Mỗi repo có
 - Giấy phép hạn chế (phi thương mại, Sustainable Use, Business Source, Elastic License, source-available) được ghi rõ, catalog đặt `open_source: false`.
 - Hai repo thêm trước đó chưa đạt tiêu chí (autoresearch, andrej-karpathy-skills) vẫn giữ hồ sơ, kèm ghi chú.
 
+### 87. StarCi harness (18/11/2026): agent làm không tự chấm
+
+Mục 03 §8n ghi hồ sơ `starci183/starci-harness`, CLI điều phối AI coding agent theo hợp đồng task. Harness chạy lại các kiểm máy trên checkout sạch rồi mới commit, nên agent làm việc không tự chấm kết quả của mình. Repo còn có danh sách 12 dấu hiệu nới cổng bị cấm, định tuyến model theo độ khó và sổ cái SQLite giữ trạng thái ngoài repo. Đây là bản alpha, ★ 8, giấy phép MIT.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
