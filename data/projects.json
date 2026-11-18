@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1113,
+    "count": 1137,
     "schema_version": 2
   },
   "projects": [
@@ -236,7 +236,7 @@
       "license": "Apache-2.0",
       "stars": null,
       "open_source": true,
-      "notes": "MCP-first",
+      "notes": "MCP-first; 18/11/2026: repo chuyển sang aaif-goose/goose (GitHub search API trả full_name mới), mục 08 §6c",
       "section": "01",
       "id": "goose",
       "profile_path": "01-ai-coding-agents/README.md"
@@ -6901,9 +6901,9 @@
       "repo": "multica-ai/andrej-karpathy-skills",
       "category": "harness-pack",
       "license": null,
-      "stars": 227470,
+      "stars": 234029,
       "open_source": true,
-      "notes": "Một CLAUDE.md/SKILL.md ~65 dòng, 4 nguyên tắc (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) rút từ bài X của Karpathy về lỗi coding của LLM — KHÔNG do Karpathy viết (Jiayuan Zhang/forrestchang, quảng bá Multica); tên cũ forrestchang/… (cùng HEAD); 28 commit, đứng yên từ 20/4/2026; không có file LICENSE (plugin.json/SKILL.md ghi MIT); không script/test/benchmark; 227k★/23k fork (30/10/2026, shields); hồ sơ mục 20 §3k.3; ★ 31/10/2026: 227.470 (GitHub API)",
+      "notes": "Một CLAUDE.md/SKILL.md ~65 dòng, 4 nguyên tắc (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) rút từ bài X của Karpathy về lỗi coding của LLM — KHÔNG do Karpathy viết (Jiayuan Zhang/forrestchang, quảng bá Multica); tên cũ forrestchang/… (cùng HEAD); 28 commit, đứng yên từ 20/4/2026; không có file LICENSE (plugin.json/SKILL.md ghi MIT); không script/test/benchmark; 227k★/23k fork (30/10/2026, shields); hồ sơ mục 20 §3k.3; ★ 31/10/2026: 227.470 (GitHub API); ★ 18/11/2026: 234.029 (GitHub search API), có trong kho-repo của Phan Đông Giang dưới tên cũ forrestchang/…, mục 08 §6c",
       "section": "20",
       "id": "andrej-karpathy-skills",
       "profile_path": "20-claude-plugins-ecosystem/README.md"
@@ -15989,6 +15989,486 @@
         "https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/README.md",
         "https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/LICENSE.md",
         "https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/skills/animate-ui/SKILL.md"
+      ]
+    },
+    {
+      "name": "autoresearch",
+      "repo": "karpathy/autoresearch",
+      "category": "pattern-loop",
+      "license": "MIT (chỉ ghi trong README)",
+      "stars": 100199,
+      "open_source": true,
+      "notes": "Bộ huấn luyện LLM nhỏ trên một GPU (rút gọn từ nanochat) để agent tự thử nghiệm qua đêm: sửa train.py, huấn luyện 5 phút, đo val_bpb, giữ hoặc bỏ thay đổi rồi lặp lại; người chỉ viết program.md. Ba file chính (prepare.py cố định, train.py agent sửa, program.md người sửa) nên diff dễ duyệt; ngân sách 5 phút mỗi lần nên khoảng 12 thí nghiệm mỗi giờ so sánh được; chỉ số val_bpb không phụ thuộc kích thước từ vựng. Điều kiện: GPU NVIDIA (thử trên H100). Python 3.10+; CPU/MPS dùng các fork README liệt kê; README khuyên chạy agent với mọi quyền bị tắt. ★ 18/11/2026: 100.199 (GitHub search API), nhóm \"AI Agent & MCP\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "autoresearch",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "228791fb499afffb54b46200aca536f79142f117",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/karpathy/autoresearch/blob/228791fb499afffb54b46200aca536f79142f117/README.md",
+        "https://github.com/karpathy/autoresearch/blob/228791fb499afffb54b46200aca536f79142f117/pyproject.toml"
+      ]
+    },
+    {
+      "name": "cc-switch",
+      "repo": "farion1231/cc-switch",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": 155259,
+      "open_source": true,
+      "notes": "App desktop (Tauri 2) quản lý nhà cung cấp API cho 12 công cụ lập trình AI (Claude Code, Codex, Gemini CLI, OpenCode…): đổi nhà cung cấp một cú nhấp, quản lý MCP, Skills, Prompts và theo dõi mức dùng. Hơn 90 preset, chỉ thay endpoint, khóa, model và tự sao lưu cấu hình trước lần ghi đầu; chế độ Routing chuyển đổi định dạng Anthropic/OpenAI/Gemini có failover và circuit breaker; bảng thống kê token, cache, chi phí đọc từ log cục bộ. Điều kiện: Cần khóa hoặc tài khoản từng nhà cung cấp; README tự cảnh báo dùng gói thuê bao ngoài client chính thức (tính năng Accounts) có thể trái điều khoản nhà cung cấp. ★ 18/11/2026: 155.259 (GitHub search API), nhóm \"Trợ lý lập trình AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "cc-switch",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "bdbc9604bc655320bfe4560ed6cf36b3cdf6b910",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/farion1231/cc-switch/blob/bdbc9604bc655320bfe4560ed6cf36b3cdf6b910/README.md",
+        "https://github.com/farion1231/cc-switch/blob/bdbc9604bc655320bfe4560ed6cf36b3cdf6b910/LICENSE"
+      ]
+    },
+    {
+      "name": "Agent-Reach",
+      "repo": "Panniantong/Agent-Reach",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 112815,
+      "open_source": true,
+      "notes": "CLI Python cho agent đọc và tìm trên X, Reddit, YouTube, Bilibili, Xiaohongshu, V2EX, LinkedIn, GitHub… bằng một cú pháp agent-reach <kênh> <hành động>. Mỗi hành động có danh sách công cụ chính và dự phòng; chỉ đọc, không đăng, không đăng nhập thay, không hỏi mật khẩu; mọi thứ cài vào ~/.agent-reach/, gỡ có liệt kê trước. Điều kiện: Python 3.10+. uv; nhiều kênh dùng cookie đăng nhập từ Chrome. README khuyên dùng tài khoản phụ; gói agent-reach trên PyPI không phải của dự án. ★ 18/11/2026: 112.815 (GitHub search API), nhóm \"Thu thập dữ liệu & Trình duyệt tự động\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "agent-reach",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "c70ae6da5d39bc90e09ad2ae0575ccc89f31e284",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Panniantong/Agent-Reach/blob/c70ae6da5d39bc90e09ad2ae0575ccc89f31e284/README.md",
+        "https://github.com/Panniantong/Agent-Reach/blob/c70ae6da5d39bc90e09ad2ae0575ccc89f31e284/docs/install.md"
+      ]
+    },
+    {
+      "name": "Scrapling",
+      "repo": "D4Vinci/Scrapling",
+      "category": "data",
+      "license": "BSD-3-Clause",
+      "stars": 103979,
+      "open_source": true,
+      "notes": "Framework thu thập web Python gộp HTTP nhanh, trình duyệt, parser và crawl đồng thời; dùng từ Python, terminal hoặc agent qua MCP server và Agent Skill. Spider kiểu Scrapy có pause/resume, AutoThrottle, tùy chọn tuân thủ robots.txt; theo dõi phần tử thích ứng khi trang đổi; xuất Markdown sạch cho RAG; kiểu đầy đủ, kiểm bằng PyRight và MyPy. Điều kiện: Python 3.10+; README nêu chỉ dùng cho giáo dục và nghiên cứu. phải tuân luật dữ liệu. điều khoản website và robots.txt. ★ 18/11/2026: 103.979 (GitHub search API), nhóm \"Thu thập dữ liệu & Trình duyệt tự động\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "scrapling",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "2998c9ebba52ef6116f0a483c7d2f21908250024",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/D4Vinci/Scrapling/blob/2998c9ebba52ef6116f0a483c7d2f21908250024/README.md",
+        "https://github.com/D4Vinci/Scrapling/blob/2998c9ebba52ef6116f0a483c7d2f21908250024/pyproject.toml"
+      ]
+    },
+    {
+      "name": "TradingAgents",
+      "repo": "TauricResearch/TradingAgents",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 122976,
+      "open_source": true,
+      "notes": "Framework nhiều agent trên LangGraph mô phỏng công ty giao dịch: analyst cơ bản, tâm lý, tin tức, kỹ thuật; tranh luận bull/bear; trader, quản trị rủi ro, portfolio manager ra quyết định. Vai trò tách bạch, analyst chạy song song; nhiều nhà cung cấp LLM, tầng quick/deep chạy được trên nhà cung cấp khác nhau; dữ liệu SEC EDGAR đọc đúng như đã nộp tại ngày chạy để chống look-ahead khi backtest. Điều kiện: Python 3.11+. khóa ít nhất một LLM; dự án ghi rõ chỉ phục vụ nghiên cứu. không phải lời khuyên đầu tư. ★ 18/11/2026: 122.976 (GitHub search API), nhóm \"Tài chính & Crypto\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "tradingagents",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "9fa1196fffbcfd9de5146d2dd2869df84ab99838",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/TauricResearch/TradingAgents/blob/9fa1196fffbcfd9de5146d2dd2869df84ab99838/README.md",
+        "https://github.com/TauricResearch/TradingAgents/blob/9fa1196fffbcfd9de5146d2dd2869df84ab99838/pyproject.toml"
+      ]
+    },
+    {
+      "name": "OmniRoute",
+      "repo": "cheaper-inference/OmniRoute",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": 88432,
+      "open_source": true,
+      "notes": "Cổng AI tự host, một endpoint tương thích OpenAI (localhost:20128/v1) định tuyến Claude Code, Codex, Cursor, Cline tới nhiều nhà cung cấp, có fallback và nén token; có dashboard, CLI, MCP, A2A. \"Combo\" định tuyến với 22 chiến lược; ba tầng chịu lỗi gồm circuit breaker; pipeline nén 12 engine; telemetry tắt mặc định, khóa lưu mã hóa AES-256-GCM. Điều kiện: Node.js 22/24; tự mang khóa từng nhà cung cấp; nhà cung cấp gắn tos: avoid bị loại khỏi định tuyến tự động mặc định. ★ 18/11/2026: 88.432 (GitHub search API), nhóm \"Bộ nhớ, Ngữ cảnh & Tiết kiệm token\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "omniroute",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "bc4b0c5f5190d4bf64be616225e2a4403ede6492",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/cheaper-inference/OmniRoute/blob/bc4b0c5f5190d4bf64be616225e2a4403ede6492/README.md",
+        "https://github.com/cheaper-inference/OmniRoute/blob/bc4b0c5f5190d4bf64be616225e2a4403ede6492/package.json"
+      ]
+    },
+    {
+      "name": "last30days-skill",
+      "repo": "mvanhorn/last30days-skill",
+      "category": "product-research",
+      "license": "MIT",
+      "stars": 69159,
+      "open_source": true,
+      "notes": "Skill tìm song song thông tin 30 ngày gần nhất về một chủ đề trên Reddit, X, YouTube, Hacker News, Polymarket, GitHub và hơn 25 nguồn, chấm theo tương tác thật rồi tổng hợp có dẫn nguồn. Reddit, HN, Polymarket, GitHub chạy không cần khóa; chạy cục bộ, không tracking; --preflight xem trước sẽ đọc/ghi gì; đầu ra JSON có phiên bản. Điều kiện: Python 3.12+; X. TikTok. Instagram… cần khóa hoặc dịch vụ trả theo dùng; đặt khóa rerank thì chủ đề gửi tới nhà cung cấp đó. ★ 18/11/2026: 69.159 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "last30days-skill",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "a854f3bcb2c4344d7498426d653378510f8b253a",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/mvanhorn/last30days-skill/blob/a854f3bcb2c4344d7498426d653378510f8b253a/README.md",
+        "https://github.com/mvanhorn/last30days-skill/blob/a854f3bcb2c4344d7498426d653378510f8b253a/LICENSE"
+      ]
+    },
+    {
+      "name": "oh-my-openagent",
+      "repo": "code-yeongyu/oh-my-openagent",
+      "category": "coding-agent",
+      "license": "Sustainable Use License 1.0",
+      "stars": 70982,
+      "open_source": false,
+      "notes": "Agent lập trình omo (trước là plugin oh-my-opencode): nghiên cứu, lập kế hoạch, viết code, tự kiểm chứng tới khi xong, phối hợp model đắt và rẻ. Từ khóa ultrawork/ulw làm kỹ từng bước, mass ulw chạy đồ thị nhiều agent song song; bộ nhớ \"Kibitzer\" là markdown trong git; omo doctor --models cho biết model nào chạy từng việc. Điều kiện: Giấy phép chỉ cho dùng nội bộ hoặc phi thương mại; gói npm đúng là omo-ai. ★ 18/11/2026: 70.982 (GitHub search API), nhóm \"Trợ lý lập trình AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "oh-my-openagent",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "ac2844b2aa3713455948d3ff82035349971a562f",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/code-yeongyu/oh-my-openagent/blob/ac2844b2aa3713455948d3ff82035349971a562f/README.md",
+        "https://github.com/code-yeongyu/oh-my-openagent/blob/ac2844b2aa3713455948d3ff82035349971a562f/LICENSE.md"
+      ]
+    },
+    {
+      "name": "i-have-adhd",
+      "repo": "ayghri/i-have-adhd",
+      "category": "prompt",
+      "license": "MIT",
+      "stars": 61520,
+      "open_source": true,
+      "notes": "Skill bắt trợ lý lập trình trả lời gọn theo 10 luật: hành động kế tiếp lên đầu, bước đánh số, danh sách tối đa 5 mục, ước lượng thời gian cụ thể. Hướng dẫn cài cho hơn 10 host (Claude Code, Codex, Gemini CLI, Copilot, Cursor…); hook SessionStart tùy chọn để luôn bật; có bộ eval (cases, rubric, kết quả). Điều kiện: Hook luôn bật cần Node.js. ★ 18/11/2026: 61.520 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "i-have-adhd",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "1ecea1993b7fce257ffbd686c070948b5e07eda6",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/ayghri/i-have-adhd/blob/1ecea1993b7fce257ffbd686c070948b5e07eda6/README.md",
+        "https://github.com/ayghri/i-have-adhd/blob/1ecea1993b7fce257ffbd686c070948b5e07eda6/INSTALL.md"
+      ]
+    },
+    {
+      "name": "academic-research-skills",
+      "repo": "Imbad0202/academic-research-skills",
+      "category": "harness-pack",
+      "license": "CC-BY-NC-4.0",
+      "stars": 57341,
+      "open_source": false,
+      "notes": "Bộ skill Claude Code cho nghiên cứu học thuật: pipeline 10 giai đoạn từ nghiên cứu tài liệu, viết, phản biện tới xuất bản, dừng xin xác nhận ở từng giai đoạn và có cổng liêm chính. Kiểm trích dẫn qua Semantic Scholar, audit đối chiếu nguồn với từng nhận định (tùy chọn); SR-Screener sàng lọc bằng 2 reviewer AI mù và trọng tài, tính kappa, đếm PRISMA 2020; có DATA_FLOWS.md nêu dữ liệu nào rời máy. Điều kiện: Giấy phép cấm dùng thương mại. bắt buộc ghi nguồn; cần khóa API; người dùng chịu trách nhiệm mọi nhận định nộp đi. ★ 18/11/2026: 57.341 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "academic-research-skills",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "c70feb7ab43265b31988c3ab38e8731d3bca0784",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Imbad0202/academic-research-skills/blob/c70feb7ab43265b31988c3ab38e8731d3bca0784/README.md",
+        "https://github.com/Imbad0202/academic-research-skills/blob/c70feb7ab43265b31988c3ab38e8731d3bca0784/LICENSE"
+      ]
+    },
+    {
+      "name": "agno",
+      "repo": "agno-agi/agno",
+      "category": "agent-framework",
+      "license": "Apache-2.0",
+      "stars": 43222,
+      "open_source": true,
+      "notes": "Nền tảng agent tự quản: dựng agent bằng Agno SDK, Claude Agent SDK hoặc Codex SDK, ghép team và workflow, chạy như dịch vụ bền trên AgentOS có REST API, MCP, xác thực, lập lịch và phê duyệt của người. Module agent, team, workflow, memory, knowledge, guardrails, tracing; AgentOS có durable execution, resume/replay, RBAC, cách ly dữ liệu theo người dùng; template triển khai Docker, AWS, GCP, Azure, Helm. Điều kiện: Cần khóa nhà cung cấp model; tắt telemetry bằng AGNO_TELEMETRY=false; template mặc định dùng PostgreSQL. ★ 18/11/2026: 43.222 (GitHub search API), nhóm \"AI Agent & MCP\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "agno",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "2e9a4521003da1cae559d8049a1c73306fc68004",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/agno-agi/agno/blob/2e9a4521003da1cae559d8049a1c73306fc68004/README.md",
+        "https://github.com/agno-agi/agno/blob/2e9a4521003da1cae559d8049a1c73306fc68004/libs/agno/pyproject.toml"
+      ]
+    },
+    {
+      "name": "claude-code-router",
+      "repo": "musistudio/claude-code-router",
+      "category": "llm-gateway",
+      "license": "MIT",
+      "stars": 38217,
+      "open_source": true,
+      "notes": "Cổng model cục bộ kiêm bảng điều khiển: Claude Code, Codex, Grok CLI, Kimi CLI, OpenCode dùng chung endpoint 127.0.0.1:3456, còn nhà cung cấp, định tuyến, fallback quản lý một chỗ. Hỗ trợ OpenAI Chat/Responses, Anthropic Messages, Gemini và endpoint tùy chỉnh; định tuyến theo điều kiện, xoay khóa, fallback; log request, token, độ trễ, chi phí; có app desktop, CLI, Docker. Điều kiện: Node.js 22+; tự có khóa nhà cung cấp; đọc hướng dẫn Docker trước khi mở ra mạng ngoài. ★ 18/11/2026: 38.217 (GitHub search API), nhóm \"Nền tảng AI, RAG & Workflow\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "claude-code-router",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "da96d5dfb4d3d7f91818043a1500c4a447f3cdcf",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/musistudio/claude-code-router/blob/da96d5dfb4d3d7f91818043a1500c4a447f3cdcf/README.md",
+        "https://github.com/musistudio/claude-code-router/blob/da96d5dfb4d3d7f91818043a1500c4a447f3cdcf/package.json"
+      ]
+    },
+    {
+      "name": "book-to-skill",
+      "repo": "virgiliojr94/book-to-skill",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 38301,
+      "open_source": true,
+      "notes": "Biến sách kỹ thuật hoặc thư mục tài liệu (PDF, EPUB, DOCX, MD, HTML…) thành agent skill có cấu trúc: SKILL.md, file theo chương, glossary, để agent nạp khi cần. Trích xuất tất định bằng Python, lùi về stdlib khi thiếu công cụ; mỗi chương một file nạp theo nhu cầu (README đo tốn ít token hơn 24–51 lần); xử lý cục bộ; đẩy lên GitHub mặc định tạo repo private. Điều kiện: Chỉ dùng tài liệu mình có quyền đọc. skill từ sách có bản quyền giữ private; chỉ cài từ repo chính thức (SECURITY-NOTICE.md cảnh báo bản re-upload). ★ 18/11/2026: 38.301 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "book-to-skill",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "e7bb659d3261491c8b28793dcb9102fa64a46c22",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/virgiliojr94/book-to-skill/blob/e7bb659d3261491c8b28793dcb9102fa64a46c22/README.md",
+        "https://github.com/virgiliojr94/book-to-skill/blob/e7bb659d3261491c8b28793dcb9102fa64a46c22/SECURITY-NOTICE.md"
+      ]
+    },
+    {
+      "name": "composio",
+      "repo": "ComposioHQ/composio",
+      "category": "protocol",
+      "license": "MIT",
+      "stars": 31153,
+      "open_source": true,
+      "notes": "SDK TypeScript và Python cùng CLI cho agent dùng hơn 1.000 toolkit đã xác thực sẵn, phiên theo người dùng, có trigger, sandbox và endpoint MCP do Composio host. Adapter cho OpenAI Agents, Anthropic, Claude Agent SDK, Vercel AI SDK, LangGraph, LlamaIndex, Mastra, CrewAI…; meta tool tìm và chạy tool lúc runtime thay vì nạp hàng trăm định nghĩa; CLI cho coding agent dùng tool từ shell. Điều kiện: Cần tài khoản và COMPOSIO_API_KEY; toolkit chạy qua nền tảng Composio và tài khoản ứng dụng của người dùng cuối. ★ 18/11/2026: 31.153 (GitHub search API), nhóm \"AI Agent & MCP\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "composio",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "2aa8ef6caa6d2ae4eee445537f1e0c1377955d5d",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/ComposioHQ/composio/blob/2aa8ef6caa6d2ae4eee445537f1e0c1377955d5d/README.md",
+        "https://github.com/ComposioHQ/composio/blob/2aa8ef6caa6d2ae4eee445537f1e0c1377955d5d/LICENSE"
+      ]
+    },
+    {
+      "name": "beads",
+      "repo": "gastownhall/beads",
+      "category": "agent-memory",
+      "license": "MIT",
+      "stars": 28812,
+      "open_source": true,
+      "notes": "bd là bộ theo dõi issue dạng đồ thị phân tán cho agent, chạy trên Dolt, thay kế hoạch markdown bằng đồ thị task có phụ thuộc làm bộ nhớ dài hạn. ID dạng hash tránh xung đột khi nhiều agent làm nhiều nhánh; bd ready lấy việc đã hết chặn, bd update --claim nhận việc nguyên tử; script cài kiểm checksum, có guard phiên bản schema. Điều kiện: bd init mặc định sửa AGENTS.md và cài tích hợp agent. trừ khi dùng --skip-agents hoặc --stealth. ★ 18/11/2026: 28.812 (GitHub search API), nhóm \"Bộ nhớ, Ngữ cảnh & Tiết kiệm token\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "beads",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "a6b7cd76943765a05c5f26074b10e6a3f7b7db14",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/gastownhall/beads/blob/a6b7cd76943765a05c5f26074b10e6a3f7b7db14/README.md",
+        "https://github.com/gastownhall/beads/blob/a6b7cd76943765a05c5f26074b10e6a3f7b7db14/LICENSE"
+      ]
+    },
+    {
+      "name": "symphony",
+      "repo": "openai/symphony",
+      "category": "workflow-automation",
+      "license": "Apache-2.0",
+      "stars": 28077,
+      "open_source": true,
+      "notes": "Biến issue trên tracker (Linear, GitHub Issues, Jira, Asana, GitLab) thành các lượt triển khai cô lập: mỗi issue một workspace, chạy Codex App Server tới khi xong; gồm đặc tả SPEC.md và bản tham chiếu Elixir. SPEC.md đủ để tự cài bằng ngôn ngữ khác; issue kết thúc thì tự dừng agent và dọn workspace; token tracker bị gỡ khỏi môi trường tiến trình Codex con; việc cần người duyệt được đánh dấu blocked. Điều kiện: Dự án ghi là bản xem trước kỹ thuật. chỉ thử trong môi trường tin cậy; cần Codex CLI và khóa tracker. ★ 18/11/2026: 28.077 (GitHub search API), nhóm \"AI Agent & MCP\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "symphony",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "be10a1b79df723d6d7612b5651c8522704dafb2e",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/openai/symphony/blob/be10a1b79df723d6d7612b5651c8522704dafb2e/README.md",
+        "https://github.com/openai/symphony/blob/be10a1b79df723d6d7612b5651c8522704dafb2e/elixir/README.md"
+      ]
+    },
+    {
+      "name": "pm-skills",
+      "repo": "phuryn/pm-skills",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 28113,
+      "open_source": true,
+      "notes": "Marketplace plugin quản lý sản phẩm: 72 skill và 42 command chia 9 plugin (discovery, strategy, execution, go-to-market, growth, analytics…), mỗi skill mã hóa một khung PM (Teresa Torres, Marty Cagan, Alberto Savoia). Command nối chuỗi skill, ví dụ /discover từ brainstorm tới thử nghiệm; cài được trên Claude Code và Codex; có tests/ và validate_plugins.py. Điều kiện: Command chỉ chạy trên Claude Code/Cowork. công cụ khác dùng skill; plugin pm-ai-shipping đã chuyển sang phuryn/product-engineering. ★ 18/11/2026: 28.113 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "pm-skills",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/phuryn/pm-skills/blob/9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef/README.md",
+        "https://github.com/phuryn/pm-skills/blob/9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef/LICENSE"
+      ]
+    },
+    {
+      "name": "learn-harness-engineering",
+      "repo": "walkinglabs/learn-harness-engineering",
+      "category": "learning",
+      "license": "MIT",
+      "stars": 25317,
+      "open_source": true,
+      "notes": "Khóa học theo dự án về harness engineering: môi trường, quản lý trạng thái, xác minh, cơ chế kiểm soát để coding agent chạy tin cậy; 14 bài giảng, 8 dự án, phân tích harness của Claude Code, Codex, Pi, DeepSeek. Tài liệu 15 ngôn ngữ, có tiếng Việt (docs/vi); skill harness-creator kèm template AGENTS.md, feature-list.json, progress.md và 10 ca eval; tools/audit-harness.sh kiểm repo theo 5 phân hệ, không cần Node.js. Điều kiện: Làm dự án cần một coding agent có quyền sửa file và chạy lệnh. ★ 18/11/2026: 25.317 (GitHub search API), nhóm \"Học AI & Machine Learning\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "learn-harness-engineering",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "f7aa3b0c7aec0a682535b37586281394e07476b7",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/walkinglabs/learn-harness-engineering/blob/f7aa3b0c7aec0a682535b37586281394e07476b7/README.md",
+        "https://github.com/walkinglabs/learn-harness-engineering/blob/f7aa3b0c7aec0a682535b37586281394e07476b7/skills/README.md"
+      ]
+    },
+    {
+      "name": "browser-harness",
+      "repo": "browser-use/browser-harness",
+      "category": "browser-agent",
+      "license": "MIT",
+      "stars": 19133,
+      "open_source": true,
+      "notes": "Cho Claude Code, Codex, Cursor điều khiển Chrome thật của người dùng qua CDP với phiên đã đăng nhập; agent tự viết helper còn thiếu nên harness tốt dần; nay là engine bên trong CLI browser-use. Lõi giữ cố định, agent chỉ ghi agent_helpers.py; 18 interaction-skill (iframe, shadow DOM, upload, download, dialog…); có MCP server; tác giả đo trên 100 tác vụ BU Bench: token đầu vào trung vị và chi phí thấp nhất. Điều kiện: Chrome 144+ và bật \"Allow remote debugging\"; agent điều khiển cả trình duyệt với phiên của bạn; ghi hình mặc định tắt. ★ 18/11/2026: 19.133 (GitHub search API), nhóm \"Thu thập dữ liệu & Trình duyệt tự động\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "browser-harness",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "4cccf3b8daf992227a6c9019ffbce5f7a2844280",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/browser-use/browser-harness/blob/4cccf3b8daf992227a6c9019ffbce5f7a2844280/README.md",
+        "https://github.com/browser-use/browser-harness/blob/4cccf3b8daf992227a6c9019ffbce5f7a2844280/install.md"
+      ]
+    },
+    {
+      "name": "Trellis",
+      "repo": "mindfold-ai/Trellis",
+      "category": "spec-driven",
+      "license": "AGPL-3.0",
+      "stars": 15152,
+      "open_source": true,
+      "notes": "Khung kỹ thuật lưu spec, task, bộ nhớ vào .trellis/ trong repo để mọi coding agent làm theo chuẩn dự án qua nhiều phiên, vòng Plan → Implement → Verify → Finish. Spec tự chèn vào ngữ cảnh mỗi phiên; sub-agent research, implement, check (lint, type, test, tự sửa) và update-spec đưa bài học trở lại spec; trellis ablate tạm gỡ để so có và không có Trellis. Điều kiện: Node.js 18+. Python 3.9+; AGPL-3.0: cung cấp bản sửa đổi qua mạng thì phải công bố mã. ★ 18/11/2026: 15.152 (GitHub search API), nhóm \"Trợ lý lập trình AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "trellis",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "f089cb3286071199e84118dee86b6d76aab032f1",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/mindfold-ai/Trellis/blob/f089cb3286071199e84118dee86b6d76aab032f1/README.md",
+        "https://github.com/mindfold-ai/Trellis/blob/f089cb3286071199e84118dee86b6d76aab032f1/COPYRIGHT"
+      ]
+    },
+    {
+      "name": "archify",
+      "repo": "tt-a1i/archify",
+      "category": "docs",
+      "license": "Apache-2.0",
+      "stars": 97508,
+      "open_source": true,
+      "notes": "Skill biến mô tả, câu hỏi hoặc repo thành một file HTML tương tác tự chứa: sơ đồ kiến trúc, workflow, ERD, timeline, waterfall hoặc trang giải thích. Mỗi chế độ có JSON IR có schema; validator kiểm schema, layout, HTML/SVG, khoảng cách nhãn trước khi giao, lỗi trả mã luật và cách sửa; node sơ đồ dẫn chứng file và dòng ghim theo commit; xuất PNG/PDF, theme sáng/tối, nhiều ngôn ngữ. Điều kiện: Node.js 18+; mã trước một commit mốc vẫn theo MIT (ghi trong NOTICE); kênh chính thức chỉ có archify.si và GitHub. ★ 18/11/2026: 97.508 (GitHub search API), nhóm \"Đồ họa, 3D & Sơ đồ\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "archify",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "44781293f38728baf04dbad33ce1a0cef8c39cca",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/tt-a1i/archify/blob/44781293f38728baf04dbad33ce1a0cef8c39cca/README_EN.md",
+        "https://github.com/tt-a1i/archify/blob/44781293f38728baf04dbad33ce1a0cef8c39cca/NOTICE"
+      ]
+    },
+    {
+      "name": "ppt-master",
+      "repo": "hugohe3/ppt-master",
+      "category": "docs",
+      "license": "MIT",
+      "stars": 77973,
+      "open_source": true,
+      "notes": "Quy trình cho agent tạo file PowerPoint sửa được từ PDF, DOCX, trang web hoặc văn bản: phân tích, thiết kế từng trang, xuất PPTX cục bộ; chiết template từ mẫu, điền vào .pptx có sẵn, thêm chuyển cảnh và thuyết minh. Xuất shape native và slide master thật, chart/table có Edit Data; công thức thành OMML sửa được; chế độ sửa .pptx giữ nguyên các trang không đổi; tìm ảnh web và tự chèn credit. Điều kiện: Python 3.10–3.14; tốn nhiều token. nên dùng model ngữ cảnh dài; sinh ảnh cần khóa nhà cung cấp. ★ 18/11/2026: 77.973 (GitHub search API), nhóm \"Dựng video & Slide tự động\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "ppt-master",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "7e0df6705de0cd24345210d31f07fcb5a32b6900",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/hugohe3/ppt-master/blob/7e0df6705de0cd24345210d31f07fcb5a32b6900/README.md",
+        "https://github.com/hugohe3/ppt-master/blob/7e0df6705de0cd24345210d31f07fcb5a32b6900/LICENSE"
+      ]
+    },
+    {
+      "name": "skills",
+      "repo": "google/skills",
+      "category": "harness-pack",
+      "license": "Apache-2.0",
+      "stars": 24400,
+      "open_source": true,
+      "notes": "Bộ Agent Skills chính thức của Google, chủ yếu Google Cloud (GKE, Compute Engine, Cloud Storage, BigQuery, Gemini, IAM…) cùng Ads, Analytics, Identity; kèm plugin Skill + MCP. 207 SKILL.md theo nhóm; index.json sinh tự động; mỗi skill ghi khi nào dùng và khi nào không; plugin cho Claude Code, Codex, Antigravity; cập nhật bằng npx skills update. Điều kiện: Phần lớn skill cần dự án GCP. gcloud và quyền IAM; nhiều skill gắn tag agent-skills/1.0 vào User-Agent khi chạy lệnh gcloud (bỏ được nếu yêu cầu). ★ 18/11/2026: 24.400 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "skills",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "739e294750207dcdb90e2a1b74c7517411a974d6",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/google/skills/blob/739e294750207dcdb90e2a1b74c7517411a974d6/README.md",
+        "https://github.com/google/skills/blob/739e294750207dcdb90e2a1b74c7517411a974d6/LICENSE"
+      ]
+    },
+    {
+      "name": "modern-web-guidance",
+      "repo": "GoogleChrome/modern-web-guidance",
+      "category": "frontend",
+      "license": "Apache-2.0",
+      "stars": 22163,
+      "open_source": true,
+      "notes": "Bộ skill đưa kiến thức nền tảng web hiện đại, thực hành tốt và dữ liệu Baseline vào coding agent; agent gọi CLI để lấy guide phù hợp. Đội Chrome, Edge, Firefox và MDN cùng quản lý. 262 tính năng web, guide chia css, forms, performance, accessibility, security, pwa…; tìm kiếm cục bộ offline (embedding + BM25), không cần khóa; chặn guide Origin Trial trừ khi bật; lệnh legacy-scan tìm mẫu cũ trong codebase. Điều kiện: CLI gửi telemetry ẩn danh (lượt cài. tên agent. ID guide. truy vấn). tắt bằng DISABLE_TELEMETRY=1. ★ 18/11/2026: 22.163 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "section": "08",
+      "id": "modern-web-guidance",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/README.md",
+        "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/LICENSE"
       ]
     }
   ]
