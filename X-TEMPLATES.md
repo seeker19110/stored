@@ -403,6 +403,8 @@ Thứ tự theo lợi ích trên công sức, gộp với các đợt còn chờ
 
 Đường áp chính thức và đường tạm giữ như §5e: X-Templates thêm ID → dự án chạy lại `install.py` và `xt.py compose` → mục SHOULD vào `BLUEPRINT-BACKLOG.md` của hồ sơ có điều kiện tương ứng → `blueprint-status --run` và `/autopilot` biến thành task.
 
+**Đã gửi:** XT-H-132…139 (§4h, §4i) thành research note ở [www-donghanhcungban-org/X-Templates#657](https://github.com/seeker19110/X-Templates/pull/657) ngày 18/11/2026; chưa thành ID, chưa sửa `framework/`.
+
 ## 6. Cách duy trì
 
 - Mỗi đợt cập nhật `stored` có nội dung đáng bàn giao: thêm dòng vào `data/xt-handoff.json` (và bảng §4 nếu đợt lớn), ghi `date` và `stored_ref`.
