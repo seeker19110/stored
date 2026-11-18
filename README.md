@@ -499,6 +499,18 @@ Animate UI (mục 06 §7zf, 5,1k★) đưa Motion vào primitive của Radix UI,
 
 Mục 08 §6c ghi lại toàn bộ 694 repo của trang phandonggiang.com/kho-repo vào `data/collections/phandonggiang-kho-repo.json`, đã kiểm bằng GitHub API: số sao khớp, 3 repo đổi chủ, 1 repo archive. 24 repo AI/agent chưa có hồ sơ được đọc mã và thêm vào catalog. Trong đó có karpathy/autoresearch (agent tự thử nghiệm huấn luyện), cc-switch và claude-code-router (đổi nhà cung cấp cho Claude Code, Codex), Agent-Reach và Scrapling (thu thập web), Composio và Agno (nền tảng agent), Beads (bộ nhớ dạng đồ thị task), OpenAI Symphony (issue thành lượt chạy Codex), Trellis, google/skills, modern-web-guidance của đội Chrome. Ba repo có giấy phép hạn chế: oh-my-openagent (Sustainable Use), academic-research-skills (CC BY-NC), autoresearch (không có file LICENSE).
 
+### 85. Nhóm AI Agent & MCP trong kho-repo (18/11/2026): chọn 16 repo tốt từ 27
+
+Mục 08 §6c.4 đọc mã 27 repo nhóm AI Agent & MCP và chỉ thêm repo còn bảo trì, giấy phép rõ, có giá trị riêng. Repo được thêm gồm:
+
+- nền tảng agent: elizaOS, Parlant;
+- điều phối nhiều coding agent: Gas Town, Rowboat, OpenMausBot, Eigent;
+- trợ lý cá nhân: CowAgent, QwenPaw, openhuman;
+- nghiên cứu: gpt-researcher, RD-Agent;
+- còn lại: NemoClaw (sandbox của NVIDIA), agent-lightning (huấn luyện agent bằng RL), MCP Toolbox của Google (nối cơ sở dữ liệu), OWL, 500-AI-Agents-Projects.
+
+Hồ sơ goose được cập nhật sang tên mới `aaif-goose/goose`. 11 repo không thêm vì ngừng cập nhật, đã bị thay thế hoặc chưa phát hành.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
