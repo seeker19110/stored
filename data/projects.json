@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1563,
+    "count": 1564,
     "schema_version": 2
   },
   "projects": [
@@ -24587,6 +24587,28 @@
       "verification_level": "docs-read",
       "sources": [
         "https://github.com/carla-simulator/carla/tree/94f2985b44e43553948a34c905729e0bc40239ec"
+      ]
+    },
+    {
+      "name": "StarCi harness",
+      "repo": "starci183/starci-harness",
+      "category": "pattern-loop",
+      "license": "MIT",
+      "stars": 8,
+      "open_source": true,
+      "notes": "CLI starci (npm starci-harness@alpha) điều phối AI coding agent theo hợp đồng task: phạm vi đường dẫn, đầu vào, khoá đầu ra, kiểm máy, ngân sách; worker làm trong worktree riêng, harness chạy lại kiểm trên checkout sạch rồi mới commit, agent làm không tự chấm. Cấm 12 dấu hiệu nới cổng (eslint-disable, ts-ignore, skip test, || true, --no-verify…) có ngoại lệ ghi đúng dòng; định tuyến theo độ khó, nâng tầng sau 2 lần đỏ; sổ cái SQLite ngoài repo; runner orca và inline; app desktop Tauri, kênh Telegram cho chủ dự án. Điều kiện: Node ≥ 24, git; Orca cho runner orca, Docker cho uat; bản alpha, ngữ cảnh viết cho stack StarCi; định tuyến mặc định Claude và Codex. ★ 18/11/2026: 8 (GitHub search API), mục 03 §8n",
+      "section": "03",
+      "id": "starci-harness",
+      "profile_path": "03-agentic-patterns-loops/README.md",
+      "profile_anchor": "03-agentic-patterns-loops/README.md#8n-hồ-sơ-starci183starci-harness-hợp-đồng-kiểm-máy-verify-trên-checkout-sạch-agent-làm-không-tự-chấm-link-người-dùng-gửi-đọc-mã-18112026",
+      "last_verified_at": "2026-11-18",
+      "verified_ref": "9f21b38e237eeb4cf21d6ac0268367a99d37cba2",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/README.md",
+        "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/contexts/harness/roles.md",
+        "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/policy/loosening.yaml",
+        "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/ops/routing.yaml"
       ]
     }
   ]

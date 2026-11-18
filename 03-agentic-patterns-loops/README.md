@@ -655,6 +655,34 @@ Sản phẩm đóng được bài nêu: **Spotify Xirp** (quản lý session cho
 
 **Nguồn §8m:** ảnh và bài viết lại người dùng gửi 11/11/2026 · https://sumantthakur.substack.com/p/ai-coding-is-moving-beyond-the-agent · https://addyosmani.com/blog/software-factories/ · https://arxiv.org/abs/2611.06946 · https://arxiv.org/abs/2608.21884 · https://blog.atlan.com/engineering/loop-engineering-in-production-putting-ai-agents-on-call/ · https://kiro.dev/docs/crew/features/task-runner/ · https://www.warp.dev/blog/open-infrastructure-for-building-a-software-factory · https://openai.com/index/harness-engineering/ (403 khi đọc) · https://www.martinfowler.com/articles/exploring-gen-ai/harness-engineering-memo.html · clone `--depth 1 --filter=blob:none` 11/11/2026: https://github.com/coleam00/Archon/blob/f1c5d5c52763b5f55c2b5e7f700e84468473dd9a/README.md · https://github.com/coleam00/ai-software-factory/blob/f6d8f69e452607ceedc6d42f2ed0398db543ba71/template/.factory/hooks/holdout_fence.py · https://github.com/warpdotdev/warp-factory-examples/blob/c939cb19f89f6fbba0e4eb203a0b5e0afaee0482/README.md · https://github.com/alexrolls/startup-factory/blob/7ca7e356df85976441cabc512b907f464ceb2611/README.md · https://github.com/humanlayer/12-factor-agents/blob/d20c728368bf9c189d6d7aab704744decb6ec0cc/README.md · https://github.com/varun1505/awesome-software-factories/blob/28059372515359a4bd96c644e1f77efbe3c53200/README.md · GitHub search API 11/11/2026.
 
+## 8n. Hồ sơ `starci183/starci-harness`: hợp đồng kiểm máy, verify trên checkout sạch, agent làm không tự chấm (link người dùng gửi, đọc mã 18/11/2026)
+
+> **Nguồn:** link GitHub người dùng gửi qua Facebook (bỏ tham số theo dõi `fbclid`). Clone nông HEAD `9f21b38` (commit 18/11/2026), đọc README, LICENSE, `contexts/harness/roles.md`, `policy/loosening.yaml`, `ops/routing.yaml`, cây `cli/src`. ★ 8, tạo 26/10/2026, MIT, TypeScript (GitHub search API 18/11/2026).
+
+**Làm gì:** CLI `starci` (npm `starci-harness`, kênh `alpha`) điều phối AI coding agent theo hợp đồng. Mỗi task là một hợp đồng gồm phạm vi đường dẫn được ghi/đọc, đầu vào, khoá đầu ra, danh sách kiểm máy chạy được, ngân sách phút và số lần thử. Worker làm việc trong worktree riêng, tự chạy thử hợp đồng rồi nộp một kết quả `done`, `blocked`, `mismatch` hoặc `failed`. Harness rebase phần việc lên nhánh workflow, **chạy lại kiểm trên checkout sạch**, xanh mới commit; đỏ thì giữ lại và đặt lại các đường dẫn đó.
+
+**Điểm mạnh (đọc mã):**
+
+- **Tách người làm và người chấm:** chỉ `starci task verify` kết thúc một task; Kernel (agent lập kế hoạch) không đọc terminal của worker mà chấm qua kết quả nộp. Vai trò Supervisor, Kernel, Op/Worker, Debug, Owner có bảng "được làm, không bao giờ làm, chuyển lên ai" trong [`roles.md`](https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/contexts/harness/roles.md).
+- **Chặn nới cổng bằng máy:** [`policy/loosening.yaml`](https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/policy/loosening.yaml) cấm 12 dấu hiệu làm kiểm xanh giả (`eslint-disable`, `ts-ignore`, `ts-expect-error`, test skip/focus, `|| true`, `--no-verify`, nới cổng, tắt kiểm TLS…), dò ở `cli/src/core/check/markers.ts`; ngoại lệ chỉ ở file chính sách, ghi đúng dòng, lý do và luật dẫn chiếu, ngoại lệ thừa báo `EXCEPTION_STALE`; dự án chỉ được cấm thêm, không được gỡ cấm.
+- **Định tuyến theo độ khó:** [`ops/routing.yaml`](https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/ops/routing.yaml) ánh xạ easy/medium/hard/insane sang tầng low/medium/high/frontier, nâng một tầng sau 2 lần đỏ hợp đồng, có ngắt mạch nhà cung cấp và hạn mức; 9 nhãn việc (code, test, review, audit, verify, docs, draw, image, deliver) ở `ops/ops/`.
+- **Trạng thái bền ngoài repo:** sổ cái SQLite ghi mọi task và workflow nên chạy tiếp được khi đóng chat hay agent chết; workflow là đồ thị task, sửa bằng amend giữ phần đã xong. Hai runner: `orca` (ghế worker qua Orca) và `inline` (agent chat làm từng task).
+- **Đi kèm:** app desktop Tauri (Windows `.msi`/`.exe`, macOS `.dmg`, kèm `SHA256SUMS.txt`), kênh Telegram cho chủ dự án trả lời ticket, CI chỉ kiểm phần bị ảnh hưởng, 16 gói npm `@starci/*` (lint canon, Grammar UI, `ai-router`, `outbox` Postgres…). 347 file TypeScript trong `cli/src`, 38 file test.
+
+**Cài và dùng:**
+
+```sh
+npx starci-harness doctor          # kiểm Node, git, npm, gh, Orca và cây thư mục
+npx starci-harness explain task    # các verb của một task, cờ và JSON schema
+npm i -g starci-harness@alpha      # đặt lệnh starci lên PATH
+```
+
+Trong repo: `starci contract new` → `starci task send` → worker nộp `starci task result` → `starci task verify` chạy lại kiểm trên checkout sạch và commit khi xanh. Mọi lệnh có hiệu ứng mặc định chạy khô, cần `--execute`.
+
+**Điều kiện:** Node ≥ 24 và git; Orca chỉ cần cho runner `orca`, `gh` cho `check ci`, Docker cho `uat run`. Bản `alpha`, README ghi còn thiếu host daemon, `msg`, `debug`, `task wait`. Ngữ cảnh (`contexts/`) và canon lint viết cho stack của StarCi (Next.js, Nest, Postgres); bảng định tuyến mặc định dùng Claude và Codex, cần tài khoản của các agent đó. App desktop chưa ký số nên SmartScreen cảnh báo, đối chiếu `SHA256SUMS.txt`. Dưới `npx` cần đặt `STARCI_LOCAL_ROOT` để giữ trạng thái.
+
+**Dùng khi:** cần một vòng agent mà điều kiện xong là kiểm máy chạy lại độc lập, không phải lời khai của agent; tham khảo mẫu hợp đồng task, danh sách dấu hiệu nới cổng và bảng vai trò dù không dùng nguyên stack. Liên quan: §8l (nghiệm thu bằng kết quả và bất biến), §8m (lớp Harness → Loop → Graph), mục 20 (harness pack).
+
 ## 9. Nguồn (mục 1–7)
 
 - Mục 23 §2.1–2.4, §4.3, §4.5 (projects-template, xboss, Sales-Hunter; đọc clone nông 2026-10-12)
