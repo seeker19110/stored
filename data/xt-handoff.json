@@ -1,8 +1,8 @@
 {
   "meta": {
     "description": "Bài học từ catalog stored đã đối chiếu với ID yêu cầu của www-donghanhcungban-org/X-Templates. Xem X-TEMPLATES.md.",
-    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125); efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (XT-H-126…131); 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (XT-H-132…136)",
-    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026); 82ab9b2..aad97cf (XT-H-126…131, đợt 11–16/11/2026); c607013..ff5f479 (XT-H-132…136, mốc 1150 hồ sơ)",
+    "xt_commit": "0b90230 (XT-H-001…018); a0f08cd (XT-H-019…051); ff23040 (XT-H-052…060); 1abbde2 (XT-H-061…093); 628e36caeb706001cf512787eba56bcfcb44f133 (XT-H-094…105); fb7b62c (XT-H-106); ccf980d (XT-H-107); 2049135 (XT-H-108); 2049135 (XT-H-109); 2049135 (XT-H-110); 5316026 (XT-H-111); 2049135 (XT-H-112); 23447d817d2bc8cf68093591177f85fd72a8a2f6 (XT-H-113…116); aeb195c2b6ae5074d70efe592d218e9c1147c05e (XT-H-117…125); efa521a64e2c2be2cdd596b7b8fd59bab8029cf0 (XT-H-126…131); 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (XT-H-132…136); 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (XT-H-137…139)",
+    "stored_range": "fa02a75..e3fdcb0 (XT-H-001…018); e3fdcb0..e8b3831 (XT-H-019…051); e8b3831..5f9e546 (XT-H-052…060); 5f9e546..b96e45c (XT-H-061…093); từ a1413e6 (XT-H-094…105, phạm vi PR mở rộng28mục); a1413e6.. (XT-H-106, kiểm infographic 12 §4e); d8b51bf.. (XT-H-107, đọc lại 20 §3f.5); 1857520.. (XT-H-108, kiểm bài đăng 22 §9i); 4983547.. (XT-H-109, 02 §4f + 20 §3x); 4983547.. (XT-H-110, 02 §4g); c77e1f9.. (XT-H-111, 18 §4e); 6d9e713.. (XT-H-112, 06 §7w); 79c8635.. (XT-H-113…116, xưởng34mục); 79c8635..4a45f00 (XT-H-117…125, đợt 5–8/11/2026); 82ab9b2..aad97cf (XT-H-126…131, đợt 11–16/11/2026); c607013..ff5f479 (XT-H-132…136, mốc 1150 hồ sơ); 5bb1381..16ff666 (XT-H-137…139, mốc 1550 hồ sơ)",
     "columns": [
       "deeper",
       "shallower",
@@ -10,13 +10,13 @@
       "not_adding"
     ],
     "updated": "2026-11-18",
-    "count": 136,
+    "count": 139,
     "current_batch": {
-      "stored_base": "ff5f479",
+      "stored_base": "16ff666",
       "xt_commit": "3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19",
       "ids": [
-        "XT-H-132",
-        "XT-H-136"
+        "XT-H-137",
+        "XT-H-139"
       ],
       "status": "documented-in-stored"
     },
@@ -59,9 +59,18 @@
         ],
         "status": "proposal-pr-open",
         "proposal_pr": "https://github.com/seeker19110/X-Templates/pull/410"
+      },
+      {
+        "stored_base": "ff5f479",
+        "xt_commit": "3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19",
+        "ids": [
+          "XT-H-132",
+          "XT-H-136"
+        ],
+        "status": "documented-in-stored"
       }
     ],
-    "suggest_milestone": 1150
+    "suggest_milestone": 1550
   },
   "items": [
     {
@@ -3492,6 +3501,122 @@
       "proposal": {
         "level": "SHOULD",
         "text": "Khi công cụ agent nối vào trình duyệt đã đăng nhập (CDP remote debugging, chép cookie), SHOULD dùng profile Chrome riêng chỉ đăng nhập đúng tài khoản cần (ưu tiên tài khoản phụ), chỉ bật trong phiên có người trực, tắt remote debugging sau phiên và ghi danh sách trang được phép. Kiểm: phiên không người trực không khởi được kết nối CDP tới profile chính."
+      }
+    },
+    {
+      "id": "XT-H-137",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c.5"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c5-lọc-lại-toàn-bộ-kho-đọc-mã-437-repo-giữ-410-repo-18112026"
+      ],
+      "lesson": "Repo open-core phổ biến để giấy phép khác nhau theo thư mục: Infisical, Onyx, Strapi, SigNoz, TabbyML, Amplication để mã ngoài ee/ theo MIT hoặc Apache-2.0 còn ee/ theo giấy phép thương mại; Docmost và Documenso thêm packages/ee; Dyad để src/pro theo FSL; Stirling-PDF có thư mục proprietary; Medusa ghi tính năng Enterprise trong ENTERPRISE-LICENSE.md. GitHub API và SPDX ở gốc chỉ thấy giấy phép mở.",
+      "xt_ids": [
+        "CMP-LIC-002",
+        "CMP-LIC-004"
+      ],
+      "column": "shallower",
+      "existing_coverage": "CMP-LIC-002 phân loại allow/deny/review theo SPDX id của gói; CMP-LIC-004 tách nhóm source-available.",
+      "delta": "Chính sách theo SPDX id của gói hoặc của LICENSE ở gốc không thấy giấy phép thương mại nằm trong thư mục con (ee/, pro/, proprietary/) của cùng repo khi dự án tự host, fork hoặc vendor mã.",
+      "xt_evidence": [
+        {
+          "id": "CMP-LIC-002",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 50,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/16-compliance-privacy/licensing-and-ip.md#L50"
+        },
+        {
+          "id": "CMP-LIC-004",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 52,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/16-compliance-privacy/licensing-and-ip.md#L52"
+        }
+      ],
+      "related_handoffs": [
+        "XT-H-134"
+      ],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Khi tự host, fork hoặc vendor một repo open-core, SHOULD liệt kê mọi thư mục có LICENSE riêng (ee/, pro/, enterprise/, proprietary/) trong license-policy.yaml kèm giấy phép của từng thư mục, và build hoặc cấu hình bản dùng không kéo các thư mục chưa có giấy phép. Kiểm: script tìm file LICENSE lồng trong mã vendor hoặc image build; thư mục ee/ chưa được duyệt mà có trong artifact thì cổng đỏ."
+      }
+    },
+    {
+      "id": "XT-H-138",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c.5"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c5-lọc-lại-toàn-bộ-kho-đọc-mã-437-repo-giữ-410-repo-18112026"
+      ],
+      "lesson": "Repo chưa archive và vẫn có commit nhưng README tự nêu không còn phát triển: Rasa Open Source ghi đang ở Maintenance Mode và hướng sang sản phẩm khác; ageron/handson-ml ghi đã lỗi thời và thay bằng handson-ml3; ultralytics/yolov5 vẫn cập nhật nhưng đã có gói ultralytics mới hơn. Lọc chỉ bằng archived hoặc ngày release bỏ sót các trường hợp này.",
+      "xt_ids": [
+        "OPS-MAINT-008",
+        "FE-START-003"
+      ],
+      "column": "shallower",
+      "existing_coverage": "OPS-MAINT-008 phát hiện bằng máy dependency archive, không release > 18 tháng, CVE không vá > 90 ngày; FE-START-003 cấm mẫu đã ngừng cập nhật.",
+      "delta": "Tiêu chí máy chỉ dựa vào archive, ngày release và CVE; chưa đọc tuyên bố của chính dự án (maintenance mode, deprecated, successor) trong README hoặc mô tả gói.",
+      "xt_evidence": [
+        {
+          "id": "OPS-MAINT-008",
+          "file": "framework/15-operations/maintenance-and-lifecycle.md",
+          "line": 45,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/15-operations/maintenance-and-lifecycle.md#L45"
+        },
+        {
+          "id": "FE-START-003",
+          "file": "framework/07-frontend/starter-layouts.md",
+          "line": 43,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/07-frontend/starter-layouts.md#L43"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Bộ phát hiện dependency không bảo trì SHOULD đọc thêm tín hiệu do dự án tự công bố: cờ deprecated trên registry (npm deprecate, PyPI yanked hoặc classifier Inactive), từ khoá maintenance mode, deprecated, no longer maintained, superseded by trong README; gặp thì đưa vào cùng hàng đợi thay thế với ghi chú repo kế nhiệm. Kiểm fixture: gói có README ghi Maintenance Mode nhưng release mới được báo."
+      }
+    },
+    {
+      "id": "XT-H-139",
+      "date": "2026-11-18",
+      "stored_ref": [
+        "08 §6c.5"
+      ],
+      "profile_anchors": [
+        "08-awesome-lists-learning/README.md#6c516-nền-tảng-ai-rag--workflow"
+      ],
+      "lesson": "Một nhóm proxy LLM nhiều sao chuyên định tuyến agent lập trình qua tài khoản thuê bao cá nhân: CLIProxyAPI dùng đăng nhập OAuth của từng nhà cung cấp, 9router xoay vòng nhiều tài khoản và gói đăng ký, opencodex tự cảnh báo một số nhà cung cấp có thể khoá tài khoản khi đi qua proxy và gộp nhiều tài khoản ChatGPT không được bảo đảm. Kho không thêm các repo này.",
+      "xt_ids": [
+        "AI-APP-018",
+        "AI-OBS-009"
+      ],
+      "column": "shallower",
+      "existing_coverage": "AI-APP-018 cho phép fallback đa nhà cung cấp qua gateway; AI-OBS-009 giữ key nhà cung cấp ở gateway hoặc server, ứng dụng dùng key ảo.",
+      "delta": "Chưa nói nguồn quyền gọi model ở gateway phải là khoá API thương mại theo điều khoản nhà cung cấp; gateway dựng trên phiên đăng nhập thuê bao cá nhân hoặc xoay vòng nhiều tài khoản vẫn thỏa luật hiện có.",
+      "xt_evidence": [
+        {
+          "id": "AI-APP-018",
+          "file": "framework/13-ai-engineering/llm-app-foundations.md",
+          "line": 81,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/13-ai-engineering/llm-app-foundations.md#L81"
+        },
+        {
+          "id": "AI-OBS-009",
+          "file": "framework/13-ai-engineering/observability-and-cost.md",
+          "line": 66,
+          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/13-ai-engineering/observability-and-cost.md#L66"
+        }
+      ],
+      "related_handoffs": [],
+      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, chưa gửi PR sang X-Templates.",
+      "proposal": {
+        "level": "SHOULD",
+        "text": "Gateway hoặc proxy LLM dùng cho sản phẩm, CI và agent tự động SHOULD chỉ dùng khoá API hoặc tài khoản dịch vụ theo điều khoản thương mại của nhà cung cấp; không định tuyến qua token OAuth của gói thuê bao cá nhân (app chat, CLI) và không xoay vòng nhiều tài khoản để vượt hạn mức. Kiểm: cấu hình gateway chỉ khai nguồn kiểu api_key hoặc service_account; nguồn oauth_subscription hoặc danh sách nhiều tài khoản cùng nhà cung cấp làm cổng đỏ."
       }
     }
   ]
