@@ -33,6 +33,14 @@ class CatalogIntegrityTests(unittest.TestCase):
             writer.writerow(checker.CSV_FIELDS)
             writer.writerows(checker.csv_row(p) for p in self.data["projects"])
 
+    def test_xt_milestone_reminder_handles_skipped_multiples(self):
+        self.assertEqual(checker.xt_milestone_due(1113, 1100), None)
+        self.assertEqual(checker.xt_milestone_due(1150, 1100), 1150)
+        self.assertEqual(checker.xt_milestone_due(1212, 1100), 1200)
+        self.assertEqual(checker.xt_milestone_due(1113, None), 1100)
+        self.assertEqual(checker.xt_milestone_due(1113, True), 1100)
+        self.assertEqual(checker.xt_milestone_due(30, None), None)
+
     def test_valid_fixture(self):
         self.assertEqual(checker.validate(self.root), [])
 

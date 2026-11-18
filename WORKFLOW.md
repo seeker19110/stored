@@ -45,6 +45,7 @@ Quy ước do người dùng đặt ra (2026-10-12): **mọi link gửi lên đ�
 
 - Mỗi quý: rà lại số sao, trạng thái bảo trì (archive, đổi tên, mua lại), license của các dự án đầu bảng.
 - Khi một chuẩn/giao thức ra phiên bản mới (MCP, A2A, AG-UI, Agent Skills): cập nhật mục 04.
+- **Mốc 50 hồ sơ → cập nhật gợi ý X-Templates:** mỗi khi số hồ sơ trong `data/projects.json` vượt qua một mốc chia hết cho 50 (1150, 1200…; tính cả khi một đợt nhảy qua mốc), làm thêm một đợt bàn giao: rút bài học từ nội dung mới kể từ đợt trước, đối chiếu `framework/` của X-Templates ở HEAD mới nhất, ghi `data/xt-handoff.json` và `X-TEMPLATES.md` (§4 bàn giao, §5 gợi ý, cách áp lên dự án), rồi đặt `meta.suggest_milestone` bằng mốc vừa xử lý. `scripts/check_catalog.py` in dòng `NHẮC:` khi có mốc chưa xử lý. Mở PR đề xuất sang X-Templates khi người dùng yêu cầu.
 
 ## Nâng trần định kỳ (2 tuần/lần)
 

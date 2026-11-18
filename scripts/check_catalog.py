@@ -230,6 +230,14 @@ def validate(root=ROOT):
     return errors
 
 
+def xt_milestone_due(count, done):
+    """Mốc bội số 50 mới nhất đã vượt mà chưa cập nhật gợi ý X-Templates, hoặc None."""
+    milestone = count // 50 * 50
+    if milestone >= 50 and (not isinstance(done, int) or isinstance(done, bool) or milestone > done):
+        return milestone
+    return None
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=ROOT)
@@ -239,6 +247,11 @@ def main():
         print('\n'.join(errors)); return 1
     data = json.loads((args.root / 'data/projects.json').read_text(encoding='utf-8'))
     print(f"OK: {len(data['projects'])} hồ sơ, {len(data['meta']['categories'])} category; CSV khớp từng ô; nguồn và neo hợp lệ.")
+    hp = args.root / 'data/xt-handoff.json'
+    done = json.loads(hp.read_text(encoding='utf-8')).get('meta', {}).get('suggest_milestone') if hp.exists() else None
+    due = xt_milestone_due(len(data['projects']), done)
+    if due is not None:
+        print(f"NHẮC: catalog đã vượt mốc {due} hồ sơ (mốc đã cập nhật: {done}); cập nhật gợi ý X-Templates theo WORKFLOW.md rồi ghi meta.suggest_milestone = {due}.")
     return 0
 
 
