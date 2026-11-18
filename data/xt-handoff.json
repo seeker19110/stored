@@ -3516,34 +3516,30 @@
       ],
       "lesson": "Repo open-core phổ biến để giấy phép khác nhau theo thư mục: Infisical, Onyx, Strapi, SigNoz, TabbyML, Amplication để mã ngoài ee/ theo MIT hoặc Apache-2.0 còn ee/ theo giấy phép thương mại; Docmost và Documenso thêm packages/ee; Dyad để src/pro theo FSL; Stirling-PDF có thư mục proprietary; Medusa ghi tính năng Enterprise trong ENTERPRISE-LICENSE.md. GitHub API và SPDX ở gốc chỉ thấy giấy phép mở.",
       "xt_ids": [
-        "CMP-LIC-002",
-        "CMP-LIC-004"
+        "CMP-LIC-004",
+        "CMP-LIC-002"
       ],
-      "column": "shallower",
-      "existing_coverage": "CMP-LIC-002 phân loại allow/deny/review theo SPDX id của gói; CMP-LIC-004 tách nhóm source-available.",
-      "delta": "Chính sách theo SPDX id của gói hoặc của LICENSE ở gốc không thấy giấy phép thương mại nằm trong thư mục con (ee/, pro/, proprietary/) của cùng repo khi dự án tự host, fork hoặc vendor mã.",
+      "column": "deeper",
+      "existing_coverage": "CMP-LIC-004 đã đòi đọc LICENSE/NOTICE theo từng thư mục con cho skill/prompt pack và phân loại riêng source-available; CMP-LIC-002 có allow/deny/review theo SPDX.",
+      "delta": "Chỉ mở rộng chữ của CMP-LIC-004: việc đọc LICENSE theo thư mục con áp cả cho mã ứng dụng open-core khi tự host, fork hoặc vendor (ee/, pro/, proprietary/ như Infisical, Onyx, Strapi, SigNoz, Docmost, Documenso, Dyad, Stirling-PDF), không chỉ skill/prompt pack. Không cần ID mới.",
       "xt_evidence": [
-        {
-          "id": "CMP-LIC-002",
-          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
-          "line": 50,
-          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/16-compliance-privacy/licensing-and-ip.md#L50"
-        },
         {
           "id": "CMP-LIC-004",
           "file": "framework/16-compliance-privacy/licensing-and-ip.md",
           "line": 52,
-          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/16-compliance-privacy/licensing-and-ip.md#L52"
+          "url": "https://github.com/seeker19110/X-Templates/blob/7cf743fcd5a70137d9bf8b1e355354985ae76697/framework/16-compliance-privacy/licensing-and-ip.md#L52"
+        },
+        {
+          "id": "CMP-LIC-002",
+          "file": "framework/16-compliance-privacy/licensing-and-ip.md",
+          "line": 50,
+          "url": "https://github.com/seeker19110/X-Templates/blob/7cf743fcd5a70137d9bf8b1e355354985ae76697/framework/16-compliance-privacy/licensing-and-ip.md#L50"
         }
       ],
       "related_handoffs": [
         "XT-H-134"
       ],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
-      "proposal": {
-        "level": "SHOULD",
-        "text": "Khi tự host, fork hoặc vendor một repo open-core, SHOULD liệt kê mọi thư mục có LICENSE riêng (ee/, pro/, enterprise/, proprietary/) trong license-policy.yaml kèm giấy phép của từng thư mục, và build hoặc cấu hình bản dùng không kéo các thư mục chưa có giấy phép. Kiểm: script tìm file LICENSE lồng trong mã vendor hoặc image build; thư mục ee/ chưa được duyệt mà có trong artifact thì cổng đỏ."
-      }
+      "note": "Đính chính 18/11/2026 khi đối chiếu lại tại 7cf743fcd5a70137d9bf8b1e355354985ae76697: ID gần nhất đã phủ phần lớn, chuyển cột từ shallower sang deeper; bản trước đã gửi ở PR #657."
     },
     {
       "id": "XT-H-138",
@@ -3556,32 +3552,21 @@
       ],
       "lesson": "Repo chưa archive và vẫn có commit nhưng README tự nêu không còn phát triển: Rasa Open Source ghi đang ở Maintenance Mode và hướng sang sản phẩm khác; ageron/handson-ml ghi đã lỗi thời và thay bằng handson-ml3; ultralytics/yolov5 vẫn cập nhật nhưng đã có gói ultralytics mới hơn. Lọc chỉ bằng archived hoặc ngày release bỏ sót các trường hợp này.",
       "xt_ids": [
-        "OPS-MAINT-008",
-        "FE-START-003"
+        "OPS-MAINT-008"
       ],
-      "column": "shallower",
-      "existing_coverage": "OPS-MAINT-008 phát hiện bằng máy dependency archive, không release > 18 tháng, CVE không vá > 90 ngày; FE-START-003 cấm mẫu đã ngừng cập nhật.",
-      "delta": "Tiêu chí máy chỉ dựa vào archive, ngày release và CVE; chưa đọc tuyên bố của chính dự án (maintenance mode, deprecated, successor) trong README hoặc mô tả gói.",
+      "column": "deeper",
+      "existing_coverage": "OPS-MAINT-008 đã lấy tín hiệu còn sống từ commit chạm mã, bắt đổi tên/chuyển org, đọc banner README và bảng hỗ trợ SECURITY.md.",
+      "delta": "Chỉ thêm ví dụ và một tín hiệu máy: cờ deprecated trên registry (npm deprecate, PyPI classifier Inactive); ví dụ Rasa Open Source ghi Maintenance Mode, ageron/handson-ml ghi lỗi thời và chỉ sang handson-ml3, ultralytics/yolov5 có gói kế nhiệm. Không cần ID mới.",
       "xt_evidence": [
         {
           "id": "OPS-MAINT-008",
           "file": "framework/15-operations/maintenance-and-lifecycle.md",
           "line": 45,
-          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/15-operations/maintenance-and-lifecycle.md#L45"
-        },
-        {
-          "id": "FE-START-003",
-          "file": "framework/07-frontend/starter-layouts.md",
-          "line": 43,
-          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/07-frontend/starter-layouts.md#L43"
+          "url": "https://github.com/seeker19110/X-Templates/blob/7cf743fcd5a70137d9bf8b1e355354985ae76697/framework/15-operations/maintenance-and-lifecycle.md#L45"
         }
       ],
       "related_handoffs": [],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
-      "proposal": {
-        "level": "SHOULD",
-        "text": "Bộ phát hiện dependency không bảo trì SHOULD đọc thêm tín hiệu do dự án tự công bố: cờ deprecated trên registry (npm deprecate, PyPI yanked hoặc classifier Inactive), từ khoá maintenance mode, deprecated, no longer maintained, superseded by trong README; gặp thì đưa vào cùng hàng đợi thay thế với ghi chú repo kế nhiệm. Kiểm fixture: gói có README ghi Maintenance Mode nhưng release mới được báo."
-      }
+      "note": "Đính chính 18/11/2026 khi đối chiếu lại tại 7cf743fcd5a70137d9bf8b1e355354985ae76697: ID gần nhất đã phủ phần lớn, chuyển cột từ shallower sang deeper; bản trước đã gửi ở PR #657."
     },
     {
       "id": "XT-H-139",
@@ -3594,32 +3579,28 @@
       ],
       "lesson": "Một nhóm proxy LLM nhiều sao chuyên định tuyến agent lập trình qua tài khoản thuê bao cá nhân: CLIProxyAPI dùng đăng nhập OAuth của từng nhà cung cấp, 9router xoay vòng nhiều tài khoản và gói đăng ký, opencodex tự cảnh báo một số nhà cung cấp có thể khoá tài khoản khi đi qua proxy và gộp nhiều tài khoản ChatGPT không được bảo đảm. Kho không thêm các repo này.",
       "xt_ids": [
-        "AI-APP-018",
+        "AI-APP-021",
         "AI-OBS-009"
       ],
-      "column": "shallower",
-      "existing_coverage": "AI-APP-018 cho phép fallback đa nhà cung cấp qua gateway; AI-OBS-009 giữ key nhà cung cấp ở gateway hoặc server, ứng dụng dùng key ảo.",
-      "delta": "Chưa nói nguồn quyền gọi model ở gateway phải là khoá API thương mại theo điều khoản nhà cung cấp; gateway dựng trên phiên đăng nhập thuê bao cá nhân hoặc xoay vòng nhiều tài khoản vẫn thỏa luật hiện có.",
+      "column": "deeper",
+      "existing_coverage": "AI-APP-021 cấm mã sản phẩm đọc, lưu hay trung chuyển token OAuth thuê bao Claude.ai, nêu Codex/Gemini CLI theo điều khoản từng nhà cung cấp, backend dùng khoá API/tài khoản tổ chức; AI-OBS-009 giữ key ở gateway.",
+      "delta": "Chỉ thêm ví dụ và một vế vào AI-APP-021: không xoay vòng nhiều tài khoản thuê bao để vượt hạn mức, và luật áp cả gateway dùng cho CI hoặc agent tự động, không chỉ mã sản phẩm; ví dụ CLIProxyAPI, 9router, opencodex. Không cần ID mới.",
       "xt_evidence": [
         {
-          "id": "AI-APP-018",
+          "id": "AI-APP-021",
           "file": "framework/13-ai-engineering/llm-app-foundations.md",
-          "line": 81,
-          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/13-ai-engineering/llm-app-foundations.md#L81"
+          "line": 84,
+          "url": "https://github.com/seeker19110/X-Templates/blob/7cf743fcd5a70137d9bf8b1e355354985ae76697/framework/13-ai-engineering/llm-app-foundations.md#L84"
         },
         {
           "id": "AI-OBS-009",
           "file": "framework/13-ai-engineering/observability-and-cost.md",
           "line": 66,
-          "url": "https://github.com/seeker19110/X-Templates/blob/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19/framework/13-ai-engineering/observability-and-cost.md#L66"
+          "url": "https://github.com/seeker19110/X-Templates/blob/7cf743fcd5a70137d9bf8b1e355354985ae76697/framework/13-ai-engineering/observability-and-cost.md#L66"
         }
       ],
       "related_handoffs": [],
-      "note": "Đối chiếu framework tại 3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19 (18/11/2026); bàn giao trong stored, đề xuất gửi X-Templates ở PR #657 (research note).",
-      "proposal": {
-        "level": "SHOULD",
-        "text": "Gateway hoặc proxy LLM dùng cho sản phẩm, CI và agent tự động SHOULD chỉ dùng khoá API hoặc tài khoản dịch vụ theo điều khoản thương mại của nhà cung cấp; không định tuyến qua token OAuth của gói thuê bao cá nhân (app chat, CLI) và không xoay vòng nhiều tài khoản để vượt hạn mức. Kiểm: cấu hình gateway chỉ khai nguồn kiểu api_key hoặc service_account; nguồn oauth_subscription hoặc danh sách nhiều tài khoản cùng nhà cung cấp làm cổng đỏ."
-      }
+      "note": "Đính chính 18/11/2026 khi đối chiếu lại tại 7cf743fcd5a70137d9bf8b1e355354985ae76697: ID gần nhất đã phủ phần lớn, chuyển cột từ shallower sang deeper; bản trước đã gửi ở PR #657."
     }
   ]
 }

@@ -294,13 +294,13 @@ Không cấp sẵn ID yêu cầu mới. Ba bài học `deeper` chỉ thêm ví d
 
 ## 4i. Bàn giao mốc 1550 hồ sơ (18/11/2026: lọc lại toàn bộ kho-repo, 410 hồ sơ mới)
 
-Đối chiếu `framework/` của X-Templates tại [3cd50cb](https://github.com/seeker19110/X-Templates/tree/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19) (18/11/2026, HEAD chưa đổi so với §4h); permalink từng ID trong `xt_evidence` của [JSON](data/xt-handoff.json). Phạm vi `stored` `5bb1381..16ff666` (PR #165), catalog 1153 → 1563, vượt các mốc 1200…1550 trong một đợt nên gộp thành một bàn giao. Kết quả: 3 `shallower`.
+Đối chiếu `framework/` của X-Templates tại [3cd50cb](https://github.com/seeker19110/X-Templates/tree/3cd50cb2e1b1c673ded8a2de6e45c7a093f9dd19) (18/11/2026, HEAD chưa đổi so với §4h); permalink từng ID trong `xt_evidence` của [JSON](data/xt-handoff.json). Phạm vi `stored` `5bb1381..16ff666` (PR #165), catalog 1153 → 1563, vượt các mốc 1200…1550 trong một đợt nên gộp thành một bàn giao. Kết quả ban đầu ghi 3 `shallower`; **đính chính 18/11/2026** khi đối chiếu lại tại [7cf743f](https://github.com/seeker19110/X-Templates/tree/7cf743fcd5a70137d9bf8b1e355354985ae76697): `CMP-LIC-004` đã đọc LICENSE theo thư mục con, `OPS-MAINT-008` đã đọc banner README, `AI-APP-021` đã cấm token OAuth thuê bao trong sản phẩm, nên cả ba chuyển sang `deeper` (chỉ sửa chữ hoặc thêm ví dụ).
 
 | Bàn giao | Bài học và nguồn | ID đã có | Cột và xử lý |
 |---|---|---|---|
-| XT-H-137 | Repo open-core phổ biến để giấy phép khác nhau theo thư mục: Infisical, Onyx, Strapi, SigNoz, TabbyML, Amplication để mã ngoài ee/ theo MIT hoặc Apache-2.0 còn ee/ theo giấy phép thương mại; Docmost và Documenso thêm packages/ee; Dyad để src/pro theo FSL; Stirling-PDF có thư mục proprietary; Medusa ghi tính năng Enterprise trong ENTERPRISE-LICENSE.md. GitHub API và SPDX ở gốc chỉ thấy giấy phép mở.<br>[08 §6c.5](08-awesome-lists-learning/README.md#6c5-lọc-lại-toàn-bộ-kho-đọc-mã-437-repo-giữ-410-repo-18112026) | `CMP-LIC-002`, `CMP-LIC-004` | `shallower`: Chính sách theo SPDX id của gói hoặc của LICENSE ở gốc không thấy giấy phép thương mại nằm trong thư mục con (ee/, pro/, proprietary/) của cùng repo khi dự án tự host, fork hoặc vendor mã. Đề xuất SHOULD: Khi tự host, fork hoặc vendor một repo open-core, SHOULD liệt kê mọi thư mục có LICENSE riêng (ee/, pro/, enterprise/, proprietary/) trong license-policy.yaml kèm giấy phép của từng thư mục, và build hoặc cấu hình bản dùng không kéo các thư mục chưa có giấy phép. Kiểm: script tìm file LICENSE lồng trong mã vendor hoặc image build; thư mục ee/ chưa được duyệt mà có trong artifact thì cổng đỏ. |
-| XT-H-138 | Repo chưa archive và vẫn có commit nhưng README tự nêu không còn phát triển: Rasa Open Source ghi đang ở Maintenance Mode và hướng sang sản phẩm khác; ageron/handson-ml ghi đã lỗi thời và thay bằng handson-ml3; ultralytics/yolov5 vẫn cập nhật nhưng đã có gói ultralytics mới hơn. Lọc chỉ bằng archived hoặc ngày release bỏ sót các trường hợp này.<br>[08 §6c.5](08-awesome-lists-learning/README.md#6c5-lọc-lại-toàn-bộ-kho-đọc-mã-437-repo-giữ-410-repo-18112026) | `OPS-MAINT-008`, `FE-START-003` | `shallower`: Tiêu chí máy chỉ dựa vào archive, ngày release và CVE; chưa đọc tuyên bố của chính dự án (maintenance mode, deprecated, successor) trong README hoặc mô tả gói. Đề xuất SHOULD: Bộ phát hiện dependency không bảo trì SHOULD đọc thêm tín hiệu do dự án tự công bố: cờ deprecated trên registry (npm deprecate, PyPI yanked hoặc classifier Inactive), từ khoá maintenance mode, deprecated, no longer maintained, superseded by trong README; gặp thì đưa vào cùng hàng đợi thay thế với ghi chú repo kế nhiệm. Kiểm fixture: gói có README ghi Maintenance Mode nhưng release mới được báo. |
-| XT-H-139 | Một nhóm proxy LLM nhiều sao chuyên định tuyến agent lập trình qua tài khoản thuê bao cá nhân: CLIProxyAPI dùng đăng nhập OAuth của từng nhà cung cấp, 9router xoay vòng nhiều tài khoản và gói đăng ký, opencodex tự cảnh báo một số nhà cung cấp có thể khoá tài khoản khi đi qua proxy và gộp nhiều tài khoản ChatGPT không được bảo đảm. Kho không thêm các repo này.<br>[08 §6c.5.16](08-awesome-lists-learning/README.md#6c516-nền-tảng-ai-rag--workflow) | `AI-APP-018`, `AI-OBS-009` | `shallower`: Chưa nói nguồn quyền gọi model ở gateway phải là khoá API thương mại theo điều khoản nhà cung cấp; gateway dựng trên phiên đăng nhập thuê bao cá nhân hoặc xoay vòng nhiều tài khoản vẫn thỏa luật hiện có. Đề xuất SHOULD: Gateway hoặc proxy LLM dùng cho sản phẩm, CI và agent tự động SHOULD chỉ dùng khoá API hoặc tài khoản dịch vụ theo điều khoản thương mại của nhà cung cấp; không định tuyến qua token OAuth của gói thuê bao cá nhân (app chat, CLI) và không xoay vòng nhiều tài khoản để vượt hạn mức. Kiểm: cấu hình gateway chỉ khai nguồn kiểu api_key hoặc service_account; nguồn oauth_subscription hoặc danh sách nhiều tài khoản cùng nhà cung cấp làm cổng đỏ. |
+| XT-H-137 | Repo open-core phổ biến để giấy phép khác nhau theo thư mục: Infisical, Onyx, Strapi, SigNoz, TabbyML, Amplication để mã ngoài ee/ theo MIT hoặc Apache-2.0 còn ee/ theo giấy phép thương mại; Docmost và Documenso thêm packages/ee; Dyad để src/pro theo FSL; Stirling-PDF có thư mục proprietary; Medusa ghi tính năng Enterprise trong ENTERPRISE-LICENSE.md. GitHub API và SPDX ở gốc chỉ thấy giấy phép mở.<br>[08 §6c.5](08-awesome-lists-learning/README.md#6c5-lọc-lại-toàn-bộ-kho-đọc-mã-437-repo-giữ-410-repo-18112026) | `CMP-LIC-004`, `CMP-LIC-002` | `deeper` (đính chính): Chỉ mở rộng chữ của CMP-LIC-004: việc đọc LICENSE theo thư mục con áp cả cho mã ứng dụng open-core khi tự host, fork hoặc vendor (ee/, pro/, proprietary/ như Infisical, Onyx, Strapi, SigNoz, Docmost, Documenso, Dyad, Stirling-PDF), không chỉ skill/prompt pack. Không cần ID mới. |
+| XT-H-138 | Repo chưa archive và vẫn có commit nhưng README tự nêu không còn phát triển: Rasa Open Source ghi đang ở Maintenance Mode và hướng sang sản phẩm khác; ageron/handson-ml ghi đã lỗi thời và thay bằng handson-ml3; ultralytics/yolov5 vẫn cập nhật nhưng đã có gói ultralytics mới hơn. Lọc chỉ bằng archived hoặc ngày release bỏ sót các trường hợp này.<br>[08 §6c.5](08-awesome-lists-learning/README.md#6c5-lọc-lại-toàn-bộ-kho-đọc-mã-437-repo-giữ-410-repo-18112026) | `OPS-MAINT-008` | `deeper` (đính chính): Chỉ thêm ví dụ và một tín hiệu máy: cờ deprecated trên registry (npm deprecate, PyPI classifier Inactive); ví dụ Rasa Open Source ghi Maintenance Mode, ageron/handson-ml ghi lỗi thời và chỉ sang handson-ml3, ultralytics/yolov5 có gói kế nhiệm. Không cần ID mới. |
+| XT-H-139 | Một nhóm proxy LLM nhiều sao chuyên định tuyến agent lập trình qua tài khoản thuê bao cá nhân: CLIProxyAPI dùng đăng nhập OAuth của từng nhà cung cấp, 9router xoay vòng nhiều tài khoản và gói đăng ký, opencodex tự cảnh báo một số nhà cung cấp có thể khoá tài khoản khi đi qua proxy và gộp nhiều tài khoản ChatGPT không được bảo đảm. Kho không thêm các repo này.<br>[08 §6c.5.16](08-awesome-lists-learning/README.md#6c516-nền-tảng-ai-rag--workflow) | `AI-APP-021`, `AI-OBS-009` | `deeper` (đính chính): Chỉ thêm ví dụ và một vế vào AI-APP-021: không xoay vòng nhiều tài khoản thuê bao để vượt hạn mức, và luật áp cả gateway dùng cho CI hoặc agent tự động, không chỉ mã sản phẩm; ví dụ CLIProxyAPI, 9router, opencodex. Không cần ID mới. |
 
 ## 5. Gợi ý tích hợp và nâng cấp X-Templates (theo thứ tự lợi ích / công sức)
 
@@ -393,17 +393,45 @@ Thứ tự theo lợi ích trên công sức, gộp với các đợt còn chờ
 
 Đường áp chính thức và đường tạm giữ như §5e: X-Templates thêm ID → dự án chạy lại `install.py` và `xt.py compose` → mục SHOULD vào `BLUEPRINT-BACKLOG.md` của hồ sơ có điều kiện tương ứng → `blueprint-status --run` và `/autopilot` biến thành task.
 
-## 5g. Gợi ý mốc 1550 và cách áp lên dự án (18/11/2026)
+## 5g. Gợi ý mốc 1550 và cách áp lên dự án (18/11/2026, đã đính chính)
 
-Thứ tự theo lợi ích trên công sức, gộp với các đợt còn chờ ở §5f:
+Cả ba mục chỉ là sửa chữ hoặc thêm ví dụ vào ID đã có, không cần ID mới:
 
-1. **XT-H-139 Gateway LLM chỉ dùng khoá API thương mại:** rủi ro khoá tài khoản và vi phạm điều khoản, sửa rẻ. Áp cho dự án có gateway hoặc proxy model (LiteLLM, router tự dựng): khai nguồn quyền trong cấu hình gateway theo kiểu `api_key`/`service_account` và thêm một kiểm tra cấu hình từ chối nguồn OAuth thuê bao hay danh sách nhiều tài khoản cùng nhà cung cấp.
-2. **XT-H-137 Giấy phép theo thư mục trong repo open-core:** áp cho dự án tự host hoặc vendor Infisical, Onyx, Strapi, SigNoz, Docmost, Documenso…: thêm script tìm `LICENSE` lồng trong mã vendor/image, ghi từng thư mục `ee/`, `pro/` vào `license-policy.yaml` (cùng file của XT-H-134).
-3. **XT-H-138 Tín hiệu ngừng phát triển do dự án tự công bố:** áp cho mọi dự án có bộ phát hiện dependency không bảo trì (`OPS-MAINT-008`): bổ sung đọc cờ deprecated của registry và từ khoá maintenance mode, superseded by trong README; kết quả vào cùng hàng đợi thay thế.
-
-Đường áp chính thức và đường tạm giữ như §5e: X-Templates thêm ID → dự án chạy lại `install.py` và `xt.py compose` → mục SHOULD vào `BLUEPRINT-BACKLOG.md` của hồ sơ có điều kiện tương ứng → `blueprint-status --run` và `/autopilot` biến thành task.
+- **XT-H-139 → `AI-APP-021`:** thêm vế không xoay vòng nhiều tài khoản thuê bao để vượt hạn mức và áp cả gateway cho CI hoặc agent tự động. Dự án có gateway model: khai nguồn quyền kiểu `api_key`/`service_account` trong cấu hình gateway.
+- **XT-H-137 → `CMP-LIC-004`:** mở rộng việc đọc LICENSE theo thư mục con sang mã ứng dụng open-core (`ee/`, `pro/`, `proprietary/`). Dự án tự host hoặc vendor Infisical, Onyx, Strapi, SigNoz…: ghi từng thư mục vào `license-policy.yaml`.
+- **XT-H-138 → `OPS-MAINT-008`:** thêm cờ deprecated của registry và ví dụ Rasa, handson-ml, yolov5.
 
 **Đã gửi:** XT-H-132…139 (§4h, §4i) thành research note ở [www-donghanhcungban-org/X-Templates#657](https://github.com/seeker19110/X-Templates/pull/657) ngày 18/11/2026; chưa thành ID, chưa sửa `framework/`.
+
+## 5h. Tổng hợp gợi ý đang chờ cho X-Templates (18/11/2026)
+
+Đối chiếu tại [7cf743f](https://github.com/seeker19110/X-Templates/tree/7cf743fcd5a70137d9bf8b1e355354985ae76697) (18/11/2026): đợt XT-H-027…116 đã thành ID (CHANGELOG, D-341). Đợt XT-H-117…139 đã gửi thành research note (#494, #597, #657) nhưng chưa thành ID. Trong 23 mục còn chờ có 10 `shallower` cần ID mới hoặc nâng mức, 13 `deeper` chỉ cần ví dụ hoặc sửa chữ. Mọi mục là SHOULD, không đụng trần MUST của ADR-0004.
+
+**Nhóm 1: an toàn khi agent hành động, rủi ro cao, sửa rẻ (làm trước).**
+
+- **XT-H-122 Connector MCP là hành động đối ngoại:** khai trong repo từng connector (scope, tool đọc/ghi, chế độ chỉ đọc); tool gửi tin qua cùng cổng duyệt như lệnh shell đối ngoại. Nhà gần nhất `LOOP-STOP-014`, `SEC-AI-007`.
+- **XT-H-135 Khoá ở phía host:** bộ điều phối giữ khoá dịch vụ ngoài, tiến trình agent con chỉ nhận biến môi trường theo allowlist. Nhà `LOOP-HARNESS-022`.
+- **XT-H-136 Trình duyệt đã đăng nhập:** profile Chrome riêng, chỉ bật khi có người trực, tắt remote debugging sau phiên. Nhà `QA-E2E-030`.
+
+**Nhóm 2: chuỗi cung ứng và tên chuẩn.**
+
+- **XT-H-123 + XT-H-130 Tên chuẩn của dependency, MCP, skill:** ghim owner/repo và tên gói hiện tại, `doctor` so với tên API trả về. Nhà `SEC-SUPPLY-026`.
+- **XT-H-133 Đối chiếu tên gói với kênh chính thức** trước khi thêm phụ thuộc; nâng tinh thần `XC-OSS-021` (MAY, phía phát hành) sang phía người dùng.
+
+**Nhóm 3: thiết kế và giao diện.**
+
+- **XT-H-127 Kiểm lệch token giữa file thiết kế và code**, ghi ngược sau khi duyệt (`UX-DS-018` đang MAY).
+- **XT-H-126 Đo token từ ảnh tham chiếu, verify bằng ΔE** (bước của `/ui-verify`).
+- **XT-H-118 Rà thiết kế khi lập PLAN cho task UI**, chấm từng mặt và điều kiện đạt.
+
+**Nhóm 4: bộ nhớ và mô hình miền.**
+
+- **XT-H-117 Bộ nhớ dùng chung nhiều harness:** `PROGRESS.md` vẫn là nguồn bàn giao chính; handoff trong memory có chủ và trạng thái.
+- **XT-H-125 Mô hình miền máy đọc được** cho sản phẩm có agent đọc/ghi dữ liệu nghiệp vụ.
+
+**Chỉ thêm ví dụ hoặc sửa chữ (13 mục):** 119 (`UX-VISUAL-011`), 120 (`LOOP-DESIGN-021`), 121 (`PRF-CLI-008`), 124 (`SEC-SUPPLY-026`), 128 (`XC-DOCAI-012`), 129 (`UX-A11Y-006`), 131 (`LOOP-DESIGN-006`), 132 (`SEC-INFRA-027`), 134 và 137 (`CMP-LIC-004`), 138 (`OPS-MAINT-008`), 139 (`AI-APP-021`).
+
+**Áp lên dự án đích:** khi X-Templates thêm ID hoặc sửa chữ, dự án chạy lại `install.py` và `xt.py compose`; mục SHOULD mới vào `BLUEPRINT-BACKLOG.md` của hồ sơ có điều kiện tương ứng, rồi `blueprint-status --run` và `/autopilot` biến thành task. Trong lúc chờ, dự án áp trực tiếp nhóm 1 bằng ba thay đổi nhỏ: file `docs/connectors.md` khai connector và scope, allowlist biến môi trường trong script chạy agent con, và profile trình duyệt riêng cho agent. Chi tiết từng đợt ở §5c…§5g và §5e.
 
 ## 6. Cách duy trì
 
