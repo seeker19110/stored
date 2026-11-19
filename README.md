@@ -529,6 +529,10 @@ Mục 03 §8n ghi hồ sơ `starci183/starci-harness`, CLI điều phối AI cod
 
 Mục 04 §4g viết hồ sơ đầy đủ cho `ag-ui-protocol/ag-ui` (★ 20,6k, MIT), thay cho dòng tóm tắt cũ. Spec 1.0 đã đóng băng bằng JSON Schema với 31 loại sự kiện và có bộ test conformance. SDK TypeScript, Python và .NET được sinh tự động từ schema. Repo có 22 tích hợp framework agent và middleware cho MCP, A2A, A2UI. `DEPRECATIONS.md` ghi lộ trình bỏ các dạng cũ trước 1.0, hạn chót 17/9/2027.
 
+### 89. Penpot (19/11/2026): thiết kế mã mở tự host có MCP server chính thức
+
+Mục 06 §7zg viết hồ sơ đầy đủ cho `penpot/penpot` (★ 62,6k, MPL-2.0), thay thế Figma, chạy trên SaaS hoặc tự host bằng Docker. Thiết kế lưu dạng mã nên có layout CSS Grid/Flex thật, tab Inspect xuất SVG/CSS/HTML và design token gốc. MCP server chính thức cho LLM đọc, sửa và tạo thiết kế qua Plugin API. Ngoài ra có hệ plugin, webhook và renderer Rust/WebAssembly.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

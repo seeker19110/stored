@@ -1791,6 +1791,26 @@ npx @animate-ui/cli@latest animate all
 
 **Nguồn §7zf:** ảnh README người dùng gửi 17/11/2026 · clone https://github.com/imskyleen/animate-ui HEAD `9873c628afdcdb030e74dc2930774a2aa473bd39`: https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/README.md · https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/LICENSE.md · https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/skills/animate-ui/SKILL.md · https://github.com/imskyleen/animate-ui/blob/9873c628afdcdb030e74dc2930774a2aa473bd39/skills/animate-ui/NOTICE.md · GitHub search API 17/11/2026.
 
+## 7zg. Hồ sơ penpot/penpot: nền tảng thiết kế mã mở tự host, design token gốc, MCP server chính thức (ảnh README người dùng gửi, đọc mã 19/11/2026)
+
+> **Nguồn:** ảnh trang repo GitHub (README, giấy phép MPL-2.0). Clone nông HEAD `b100a5e` (commit 19/11/2026), đọc README, LICENSE, `CHANGES.md`, `mcp/README.md` và cây `backend/`, `frontend/`, `render-wasm/`, `plugins/`, `docker/`. GitHub search API 19/11/2026: ★ 62.550, fork 4.442, MPL-2.0, tạo 29/12/2015. Bảng §1 có dòng Penpot cũ (~62k, 30/10/2026); hồ sơ này bổ sung chi tiết.
+
+**Làm gì:** nền tảng thiết kế và prototype mã nguồn mở, thay thế Figma, chạy được trên SaaS (design.penpot.app) hoặc tự host bằng Docker, Kubernetes. Thiết kế được lưu dưới dạng mã (SVG, CSS, HTML), nên lập trình viên và AI đọc được trực tiếp.
+
+**Điểm mạnh (đọc mã):**
+
+- **Gần với code:** layout CSS Grid và Flex thật, tab Inspect cho SVG, CSS, HTML dùng ngay; design token gốc làm một nguồn sự thật giữa thiết kế và code, cùng component và variant cho design system.
+- **MCP server chính thức** ([`mcp/`](https://github.com/penpot/penpot/blob/b100a5e26f9b0d762ce3edbd00997d4b7f0874fb/mcp/README.md)): LLM truy vấn, sửa và tạo phần tử thiết kế qua Plugin API; server nói với plugin Penpot MCP qua WebSocket. Hỗ trợ luồng thiết kế → code, code → thiết kế.
+- **Lập trình được:** hệ plugin (`plugins/`, có tài liệu API và style), webhook, API dùng access token.
+- **Kiến trúc mở rộng được:** backend và frontend Clojure/ClojureScript, renderer mới viết bằng Rust biên dịch WebAssembly (`render-wasm/`), dịch vụ exporter và media-processor riêng; `docker/images/` có Dockerfile cho backend, frontend, exporter, mcp, media-processor và `docker-compose.yaml`.
+- **Bảo trì chủ động:** CHANGES.md bản 2.21.0 có mục sửa bảo mật kèm GHSA (WebSocket cộng tác không kiểm lại quyền truy cập file sau khi bị thu hồi); Renovate cập nhật phụ thuộc; được công nhận Digital Public Good.
+
+**Cài và dùng:** dùng ngay tại design.penpot.app, hoặc tự host theo hướng dẫn penpot.app/self-host với `docker/images/docker-compose.yaml`. MCP: chạy server trong `mcp/` rồi cài plugin Penpot MCP vào file thiết kế, xem hướng dẫn nhanh help.penpot.app/mcp.
+
+**Điều kiện:** MPL-2.0, giấy phép copyleft theo từng file: sửa file của Penpot thì phải công khai file đó, mã của mình ghép bên cạnh không bị ràng buộc. Penpot Enterprise là gói trả phí cho quản trị nhiều đội. MCP cho LLM viết và chạy đoạn mã tuỳ ý trong môi trường plugin của file đang mở: nên dùng trên file có bản sao lưu và với LLM được tin cậy.
+
+**Dùng khi:** cần công cụ thiết kế tự host, giữ dữ liệu thiết kế trong hạ tầng của mình, hoặc muốn agent đọc và sửa thiết kế qua MCP. Liên quan: §1 (bảng công cụ thiết kế), §7ze (skill Figma cho Claude, so khớp token thiết kế và code).
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

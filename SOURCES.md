@@ -2031,3 +2031,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-19 (AG-UI → mục 04 §4g)
 
 - Ảnh thẻ GitHub người dùng gửi (`ag-ui-protocol/ag-ui`, 21k sao). Clone nông HEAD `3416b86da4b3288e87f827c7f2759a7fa18b5231` (commit 17/11/2026); GitHub search API 19/11/2026: ★ 20.574, fork 2.118, MIT.
+
+## Bổ sung 2026-11-19b (Penpot → mục 06 §7zg)
+
+- Ảnh README người dùng gửi (`penpot/penpot`). Clone nông HEAD `b100a5e26f9b0d762ce3edbd00997d4b7f0874fb` (commit 19/11/2026); GitHub search API 19/11/2026: ★ 62.550, fork 4.442, MPL-2.0.
