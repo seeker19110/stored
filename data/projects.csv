@@ -36,7 +36,7 @@ claude-code-ultimate-guide,FlorianBruniaux/claude-code-ultimate-guide,,learning,
 MCP servers (reference),modelcontextprotocol/servers,,protocol,MIT,91720,True,04,"AAIF / Linux Foundation; README chỉ còn 7 reference server, trỏ sang Registry (12/10/2026); ★ 31/10/2026: 91.720 (GitHub API)"
 FastMCP,prefecthq/fastmcp,,protocol,Apache-2.0,28251,True,04,Python MCP framework; ★ 31/10/2026: 28.251 (GitHub API)
 A2A,a2aproject/A2A,,protocol,Apache-2.0,,True,04,v1.0 3/2026; Linux Foundation
-AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,16949,True,04,Agent ↔ UI; CopilotKit; ★ 19/10/2026 (shields); ★ 31/10/2026: 16.949 (GitHub API)
+AG-UI,ag-ui-protocol/ag-ui,,protocol,MIT,20574,True,04,"Giao thức sự kiện Agent ↔ UI do CopilotKit khởi xướng; spec 1.0 đóng băng 17/9/2026 (JSON Schema, 31 loại sự kiện, test conformance), SDK TypeScript/Python/.NET sinh từ schema, 8 SDK cộng đồng; 22 tích hợp framework (LangGraph, CrewAI, MS Agent Framework, Google ADK, AWS Strands, Mastra, Claude Agent SDK…), 6 middleware (MCP, MCP Apps, A2A, A2UI); shim pre-1.0 hết hạn 17/9/2027. Điều kiện: template create-ag-ui-app cần OPENAI_API_KEY; client giao diện chủ yếu là CopilotKit. ★ 19/10/2026 (shields); ★ 31/10/2026: 16.949 (GitHub API); ★ 19/11/2026: 20.574 (GitHub search API), mục 04 §4g"
 Agent Skills spec,,https://agentskills.io,protocol,open standard,,True,04,SKILL.md; chuẩn mở 18/12/2025
 awesome-agent-skills,VoltAgent/awesome-agent-skills,,awesome-list,,,True,04,1000+ skills
 n8n,n8n-io/n8n,,low-code,Sustainable Use,209211,False,05,fair-code; ★ 31/10/2026: 209.211 (GitHub API)

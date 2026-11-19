@@ -245,6 +245,34 @@
 
 **Nguồn kiểm cấu hình:** [CI](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/.github/workflows/ci.yml) · [Expected failures](https://github.com/modelcontextprotocol/conformance/blob/c37eec888e1c6ff140af79987a40008548b7cc5f/src/expected-failures.ts). CI chạy kiểm/build/test harness; không chứng nhận một deployment của xưởng.
 
+## 4g. Hồ sơ `ag-ui-protocol/ag-ui`: AG-UI 1.0, giao thức sự kiện nối agent với giao diện người dùng (ảnh thẻ GitHub người dùng gửi, đọc mã 19/11/2026)
+
+> **Nguồn:** ảnh thẻ GitHub (182 contributor, 21k sao, 2k fork). Clone nông HEAD `3416b86` (commit 17/11/2026), đọc README, LICENSE, `DEPRECATIONS.md`, `spec/README.md`, `spec/1.0/schema.json` và cây `sdks/`, `integrations/`, `middlewares/`. GitHub search API 19/11/2026: ★ 20.574, fork 2.118, MIT, tạo 7/5/2025. Mục §1 và §4b.1 có dòng AG-UI cũ (16,9k, 31/10/2026); hồ sơ này thay cho chúng.
+
+**Làm gì:** giao thức mở, dựa trên sự kiện, chuẩn hoá cách agent nói chuyện với ứng dụng người dùng. Agent là một HTTP endpoint nhận `RunAgentInput` và stream sự kiện về (SSE hoặc wire nhị phân); client không đổi khi đổi framework agent phía sau. Trong bộ ba giao thức: MCP cho agent dùng tool, A2A cho agent nói với agent, AG-UI cho agent đến người dùng. A2UI, MCP Apps là spec mô tả giao diện agent muốn hiện; AG-UI là giao thức runtime chở chúng.
+
+**Điểm mạnh (đọc mã):**
+
+- **Spec 1.0 đóng băng, có máy kiểm:** bản 1.0 phát hành 17/9/2026, hợp đồng là [`spec/1.0/schema.json`](https://github.com/ag-ui-protocol/ag-ui/blob/3416b86da4b3288e87f827c7f2759a7fa18b5231/spec/1.0/schema.json) (JSON Schema, mọi object đóng bằng `unevaluatedProperties: false`) với 31 loại sự kiện: tin nhắn, tool call, state snapshot/delta (JSON Patch), messages snapshot, activity, run/step, reasoning (kể cả giá trị mã hoá), subagent. `spec/harness/` có test conformance, fixture chấp nhận/từ chối, `proto-freeze.txt` là sổ số hiệu wire nhị phân chỉ được thêm.
+- **SDK sinh từ schema:** TypeScript (`@ag-ui/client`), Python (`ag-ui-protocol`), .NET (`AGUI.Client`) sinh tất định bởi `spec/generator/`; SDK cộng đồng Kotlin, Go, Java, Dart, Rust, Ruby, C++, Swift. Nguyên tắc "object chính xác, bên nhận dễ tính": bên nhận bỏ trường lạ kèm cảnh báo thay vì từ chối stream.
+- **Lộ trình ngừng dùng rõ ràng:** [`DEPRECATIONS.md`](https://github.com/ag-ui-protocol/ag-ui/blob/3416b86da4b3288e87f827c7f2759a7fa18b5231/DEPRECATIONS.md) liệt kê từng dạng cũ (vd `THINKING_*` → `REASONING_*`, phần `binary` → phần media có `source`), shim nằm ở đâu và ngày hết hạn chung 17/9/2027 (12 tháng sau 1.0); middleware tương thích theo phiên bản peer.
+- **Tích hợp rộng:** 22 thư mục tích hợp trong `integrations/` (LangGraph, CrewAI, Microsoft Agent Framework, Google ADK, AWS Strands, Mastra, Pydantic AI, LlamaIndex, Agno, AG2, Claude Agent SDK, Claude Managed Agents, OpenAI Agents, Vercel AI SDK, watsonx…), 6 middleware (MCP, MCP Apps, A2A, A2UI, throttle sự kiện), mỗi framework có demo ở Dojo; Amazon Bedrock AgentCore hỗ trợ AG-UI trong runtime.
+- **Khối tính năng map vào sự kiện:** streaming chat có huỷ và chạy tiếp, generative UI, shared state, frontend tool, human-in-the-loop bằng kết quả `interrupt`, hiển thị reasoning.
+
+**Cài và dùng:**
+
+```sh
+npx create-ag-ui-app@latest            # dựng app CopilotKit/Next.js hoặc client terminal nối framework agent đã chọn
+pip install ag-ui-protocol             # SDK Python cho phía agent
+npm install @ag-ui/client              # SDK TypeScript cho phía client
+```
+
+README có ví dụ 30 dòng: server FastAPI phát `RUN_STARTED`, `TEXT_MESSAGE_*`, `RUN_FINISHED` và client `HttpAgent` in chuỗi stream, không cần khoá API.
+
+**Điều kiện:** MIT. Python 3.9+ cho SDK Python, Node.js 20+ cho client mẫu. Template của `create-ag-ui-app` gọi OpenAI nên cần `OPENAI_API_KEY`. Giao thức do CopilotKit khởi xướng; client giao diện có sẵn chủ yếu là CopilotKit (React, Angular, Vue, React Native). Peer nói phiên bản trước 1.0 chỉ được hỗ trợ qua shim tới 17/9/2027.
+
+**Dùng khi:** cần đưa agent vào giao diện người dùng (web, mobile, Slack/Teams, terminal) mà không viết giao thức stream riêng cho từng framework; cần shared state hai chiều, tool chạy phía app hoặc duyệt của người giữa lượt chạy. Liên quan: §1 (bản đồ giao thức), §4b.3 (A2UI), §4c (bộ conformance của MCP/A2A), mục 06 §7p (OpenUI, Tambo dùng sự kiện AG-UI).
+
 ## 5. Nguồn
 
 - https://en.wikipedia.org/wiki/Model_Context_Protocol · https://github.com/wong2/awesome-mcp-servers · https://github.com/sadekxD/Awesome-MCP · https://uibakery.io/blog/best-mcp-servers

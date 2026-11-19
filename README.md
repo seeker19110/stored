@@ -525,6 +525,10 @@ Mục 08 §6c.5 áp cùng tiêu chí cho cả 694 repo của kho. Mỗi repo có
 
 Mục 03 §8n ghi hồ sơ `starci183/starci-harness`, CLI điều phối AI coding agent theo hợp đồng task. Harness chạy lại các kiểm máy trên checkout sạch rồi mới commit, nên agent làm việc không tự chấm kết quả của mình. Repo còn có danh sách 12 dấu hiệu nới cổng bị cấm, định tuyến model theo độ khó và sổ cái SQLite giữ trạng thái ngoài repo. Đây là bản alpha, ★ 8, giấy phép MIT.
 
+### 88. AG-UI 1.0 (19/11/2026): giao thức nối agent với giao diện người dùng
+
+Mục 04 §4g viết hồ sơ đầy đủ cho `ag-ui-protocol/ag-ui` (★ 20,6k, MIT), thay cho dòng tóm tắt cũ. Spec 1.0 đã đóng băng bằng JSON Schema với 31 loại sự kiện và có bộ test conformance. SDK TypeScript, Python và .NET được sinh tự động từ schema. Repo có 22 tích hợp framework agent và middleware cho MCP, A2A, A2UI. `DEPRECATIONS.md` ghi lộ trình bỏ các dạng cũ trước 1.0, hạn chót 17/9/2027.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).
