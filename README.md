@@ -533,6 +533,20 @@ Mục 04 §4g viết hồ sơ đầy đủ cho `ag-ui-protocol/ag-ui` (★ 20,6k
 
 Mục 06 §7zg viết hồ sơ đầy đủ cho `penpot/penpot` (★ 62,6k, MPL-2.0), thay thế Figma, chạy trên SaaS hoặc tự host bằng Docker. Thiết kế lưu dạng mã nên có layout CSS Grid/Flex thật, tab Inspect xuất SVG/CSS/HTML và design token gốc. MCP server chính thức cho LLM đọc, sửa và tạo thiết kế qua Plugin API. Ngoài ra có hệ plugin, webhook và renderer Rust/WebAssembly.
 
+### 90. Ảnh "20 repo / một motion studio" (19/11/2026): thêm 7 repo 3D, hiệu ứng và âm thanh
+
+Mục 22 §9m đối chiếu 20 mục trong ảnh: 11 mục đã có hồ sơ, 2 mục chưa xác định được repo. Bảy repo mới được thêm:
+
+- Anatomy Reveal: skill dựng phim tách lớp đồ vật.
+- react-three-rapier: vật lý cho react-three-fiber.
+- react-postprocessing: hậu kỳ cho react-three-fiber.
+- three.quarks: hạt và VFX cho three.js.
+- Tweakpane: bảng chỉnh tham số.
+- Openverse: tìm media có giấy phép mở.
+- librosa: phân tích nhạc.
+
+Mục này còn có sơ đồ ghép cả 20 mục thành một quy trình làm motion.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

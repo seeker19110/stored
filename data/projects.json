@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1564,
+    "count": 1571,
     "schema_version": 2
   },
   "projects": [
@@ -24628,6 +24628,139 @@
         "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/contexts/harness/roles.md",
         "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/policy/loosening.yaml",
         "https://github.com/starci183/starci-harness/blob/9f21b38e237eeb4cf21d6ac0268367a99d37cba2/ops/routing.yaml"
+      ]
+    },
+    {
+      "name": "Anatomy Reveal",
+      "repo": "annnguyentt/anatomy-reveal-skill",
+      "category": "motion-design",
+      "license": "MIT",
+      "stars": 119,
+      "open_source": true,
+      "notes": "Skill cho agent dựng bất kỳ đồ vật nào thành hình giải phẫu isometric nhiều bộ phận, rồi xuất trang tách lớp tương tác và phim reveal MP4 30 fps (9:16, 4:5, 1:1, 16:9; 3–60 giây), từ ảnh chụp hoặc chỉ từ tên đồ vật. Ví dụ có sẵn là máy espresso 82 bộ phận kèm phim demo; quy trình có bước kiểm (npm run check) trước khi render và encode; dùng lại kit của wheresryan22/anatomy (MIT, ghi trong THIRD_PARTY_NOTICES.md). Điều kiện: Node.js 20+, Chrome/Chromium/Edge (hoặc CHROME_PATH), ffmpeg, ImageMagick 7. ★ 19/11/2026: 119 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "anatomy-reveal-skill",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "dd01e1c04559d79002da07862e26f8a5c2a07644",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/annnguyentt/anatomy-reveal-skill/tree/dd01e1c04559d79002da07862e26f8a5c2a07644"
+      ]
+    },
+    {
+      "name": "react-three-rapier",
+      "repo": "pmndrs/react-three-rapier",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 1688,
+      "open_source": true,
+      "notes": "Thư viện bọc engine vật lý Rapier (WASM) cho react-three-fiber: `<Physics>`, `<RigidBody>`, collider tự sinh (hull, cuboid…) để cảnh 3D có va chạm, trọng lực. API khai báo gọn trong JSX; bản v2 hỗ trợ @react-three/fiber v9 và React 19 (React 18 dùng v1); chế độ debug vẽ collider; có trang API docs. Điều kiện: Commit nhánh chính mới nhất 3/11/2025 (repo vẫn có push 12/10/2026); cần react-three-fiber. ★ 19/11/2026: 1.688 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "react-three-rapier",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "ae5c3fede5ca489fd7eaa8271e9d9c5eabc88e98",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/pmndrs/react-three-rapier/tree/ae5c3fede5ca489fd7eaa8271e9d9c5eabc88e98"
+      ]
+    },
+    {
+      "name": "react-postprocessing",
+      "repo": "pmndrs/react-postprocessing",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 1663,
+      "open_source": true,
+      "notes": "Bọc thư viện postprocessing cho react-three-fiber: chuỗi hiệu ứng hậu kỳ (Bloom, DepthOfField, Noise, Vignette…) trong `<EffectComposer>`. EffectPass gộp nhiều hiệu ứng vào ít lượt render; dùng một tam giác phủ màn hình thay quad; MSAA WebGL2 bật mặc định; demo thật kèm mã. Điều kiện: Cần react-three-fiber; README tự nhận chưa nhắm tới điều phối hiệu ứng phức tạp. ★ 19/11/2026: 1.663 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "react-postprocessing",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "e07ef9a890c8a202a3b20eac0249032cff4e7805",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/pmndrs/react-postprocessing/tree/e07ef9a890c8a202a3b20eac0249032cff4e7805"
+      ]
+    },
+    {
+      "name": "three.quarks",
+      "repo": "Alchemist0823/three.quarks",
+      "category": "animation-library",
+      "license": "MIT",
+      "stars": 1237,
+      "open_source": true,
+      "notes": "Hệ hạt và thư viện VFX hiệu năng cao cho three.js viết bằng TypeScript. BatchedRenderer gộp draw call; nhập hệ hạt Shuriken của Unity; trình sửa trực quan quarks.art/create; hệ plugin cho behavior và emitter tuỳ biến. Điều kiện: Cần three.js. ★ 19/11/2026: 1.237 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "three-quarks",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "9d0445c5949c7da570f412ad7007efecd0357886",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Alchemist0823/three.quarks/tree/9d0445c5949c7da570f412ad7007efecd0357886"
+      ]
+    },
+    {
+      "name": "Tweakpane",
+      "repo": "cocopon/tweakpane",
+      "category": "ui-library",
+      "license": "MIT",
+      "stars": 4712,
+      "open_source": true,
+      "notes": "Bảng điều khiển nhỏ gọn để chỉnh tham số và theo dõi giá trị lúc chạy (cảm hứng từ dat.GUI). Không phụ thuộc gói nào; binding số, chuỗi, boolean, màu, điểm 2D/3D/4D, binding chỉ đọc; folder, tab, button; theme, plugin, xuất/nhập JSON, hỗ trợ mobile; có Design Kit Figma. Điều kiện: Từ v4 chỉ ES module (CommonJS dùng 3.x); commit cuối 15/3/2026. ★ 19/11/2026: 4.712 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "tweakpane",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "50a18c3dba67cb78431d7248dbe4d5a76336885a",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/cocopon/tweakpane/tree/50a18c3dba67cb78431d7248dbe4d5a76336885a"
+      ]
+    },
+    {
+      "name": "Openverse",
+      "repo": "WordPress/openverse",
+      "category": "data",
+      "license": "MIT",
+      "stars": 702,
+      "open_source": true,
+      "notes": "Máy tìm kiếm ảnh, âm thanh có giấy phép mở (tương thích GPL) của WordPress, chạy tại openverse.org; monorepo gồm catalog, ingestion server, API và frontend. Catalog thu metadata bằng Apache Airflow; API REST Django để tìm kiếm; frontend Vue/Nuxt; có docker-compose và dữ liệu mẫu để chạy cục bộ. Điều kiện: Mỗi tác phẩm giữ giấy phép riêng (CC, public domain), phải đọc giấy phép và ghi công từng file trước khi dùng. ★ 19/11/2026: 702 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "openverse",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "10aec8251c6b3724c07215b77e8ff0570a4640c8",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/WordPress/openverse/tree/10aec8251c6b3724c07215b77e8ff0570a4640c8"
+      ]
+    },
+    {
+      "name": "librosa",
+      "repo": "librosa/librosa",
+      "category": "speech",
+      "license": "ISC",
+      "stars": 9029,
+      "open_source": true,
+      "notes": "Thư viện Python phân tích âm thanh và nhạc: thuật toán nền cho truy hồi thông tin âm nhạc (beat, tempo, phổ, onset…). Tài liệu đầy đủ kèm tutorial tại librosa.org; cài qua PyPI hoặc conda-forge; librosa.cite() lấy DOI theo từng phiên bản để trích dẫn. Điều kiện: Python 3. ★ 19/11/2026: 9.029 (GitHub search API), ảnh \"20 repo / một motion studio\", mục 22 §9m",
+      "section": "22",
+      "id": "librosa",
+      "profile_path": "22-motion-design-animation/README.md",
+      "profile_anchor": "22-motion-design-animation/README.md#9m-kiểm-ảnh-20-repo--một-motion-studio-skill-3d-hiệu-ứng-chuyển-động-âm-thanh-xuất-video-ảnh-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "32fbd2838f3a57dff6845a94820322582de5bee8",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/librosa/librosa/tree/32fbd2838f3a57dff6845a94820322582de5bee8"
       ]
     }
   ]
