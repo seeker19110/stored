@@ -2035,3 +2035,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-19b (Penpot → mục 06 §7zg)
 
 - Ảnh README người dùng gửi (`penpot/penpot`). Clone nông HEAD `b100a5e26f9b0d762ce3edbd00997d4b7f0874fb` (commit 19/11/2026); GitHub search API 19/11/2026: ★ 62.550, fork 4.442, MPL-2.0.
+
+## Bổ sung 2026-11-19c (ảnh "20 repo / một motion studio" → mục 22 §9m)
+
+- GitHub search API 19/11/2026 cho 20 mục. Clone nông 7 repo, HEAD: `annnguyentt/anatomy-reveal-skill` `dd01e1c04559d79002da07862e26f8a5c2a07644`, `pmndrs/react-three-rapier` `ae5c3fede5ca489fd7eaa8271e9d9c5eabc88e98`, `pmndrs/react-postprocessing` `e07ef9a890c8a202a3b20eac0249032cff4e7805`, `Alchemist0823/three.quarks` `9d0445c5949c7da570f412ad7007efecd0357886`, `cocopon/tweakpane` `50a18c3dba67cb78431d7248dbe4d5a76336885a`, `WordPress/openverse` `10aec8251c6b3724c07215b77e8ff0570a4640c8`, `librosa/librosa` `32fbd2838f3a57dff6845a94820322582de5bee8`.

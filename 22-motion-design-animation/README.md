@@ -680,6 +680,56 @@ Rồi nói bằng lời, gọi tên phong cách bằng tiếng Anh hoặc tiến
 
 **Nguồn §9l:** ảnh người dùng gửi 16/11/2026 · clone `--filter=blob:none` 16/11/2026: https://github.com/CloudAI-X/threejs-skills/blob/0e181866f095b5f06d005133876e926515390d95/README.md · https://github.com/greensock/gsap-skills/blob/aed9cfd3277740755f6bfc1155c7aa645403b760/README.md · https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/README.md · https://github.com/zanwei/design-dna/blob/593e39bc9e3652734653bd75544a333d7d43615e/SKILL.md · https://github.com/LottieFiles/motion-design-skill/blob/f9a8a041b85185ee4881b3471d3415e939aac772/README.md · GitHub search API 16/11/2026.
 
+## 9m. Kiểm ảnh "20 repo / một motion studio": skill, 3D, hiệu ứng, chuyển động, âm thanh, xuất video (ảnh người dùng gửi, đọc mã 19/11/2026)
+
+> Ảnh lưới 20 thẻ tiêu đề "Fable 5.2 motion design skills", chia nhóm Skills, 3D, FX, Motion, Sound, Export. Đây là danh sách tuyển chọn trong ảnh, không phải một repo. Kiểm từng mục bằng GitHub search API 19/11/2026 và clone nông 7 repo chưa có trong kho (HEAD ghi ở SOURCES).
+
+### 9m.1 Hai mươi mục và chỗ có trong kho
+
+| Mục trong ảnh | Repo | Trong kho |
+|---|---|---|
+| /motion-design-skill | `LottieFiles/motion-design-skill` | 22 §9l |
+| ai-kit | chưa xác định (ảnh chỉ ghi tên ngắn, tìm GitHub không ra repo motion khớp) | — |
+| Remotion Skills | `remotion-dev/skills` | 19 §3h |
+| /hairline | `lucasmarkes/hairline` | 06 §7zd |
+| /anatomy | `wheresryan22/anatomy` | 06 (hồ sơ Anatomy) |
+| /anatomy-reveal | `annnguyentt/anatomy-reveal-skill` | mới, §9m |
+| /blender-agents (MCP) | chưa xác định; MCP cho Blender đã có `ahujasid/mcp-for-blender` | 14, 19 §3h |
+| Three.js | `mrdoob/three.js` | 19 §3h |
+| react-three-rapier | `pmndrs/react-three-rapier` | mới, §9m |
+| react-postprocessing | `pmndrs/react-postprocessing` | mới, §9m |
+| three.quarks | `Alchemist0823/three.quarks` | mới, §9m |
+| Tweakpane | `cocopon/tweakpane` | mới, §9m |
+| GSAP | `greensock/GSAP` | 19 §3h |
+| Remotion | `remotion-dev/remotion` | 19 §3h |
+| Manim | `ManimCommunity/manim` | 22 |
+| Lottie | `airbnb/lottie-web` | 22 |
+| Openverse API | `WordPress/openverse` | mới, §9m |
+| librosa | `librosa/librosa` | mới, §9m |
+| WhisperX | `m-bain/whisperX` | 14 |
+| FFmpeg | `FFmpeg/FFmpeg` | 19 §3h |
+
+Kết quả: 11 mục đã có hồ sơ, 7 mục thêm mới bên dưới, 2 mục chưa xác định được repo.
+
+### 9m.2 Bảy repo mới
+
+| Repo | ★ (19/11/2026) | Giấy phép | Làm gì | Điểm mạnh (đọc mã) | Cài | Điều kiện dùng |
+|---|---|---|---|---|---|---|
+| [`annnguyentt/anatomy-reveal-skill`](https://github.com/annnguyentt/anatomy-reveal-skill) | 119 | MIT | Skill cho agent dựng bất kỳ đồ vật nào thành hình giải phẫu isometric nhiều bộ phận, rồi xuất trang tách lớp tương tác và phim reveal MP4 30 fps (9:16, 4:5, 1:1, 16:9; 3–60 giây), từ ảnh chụp hoặc chỉ từ tên đồ vật. | Ví dụ có sẵn là máy espresso 82 bộ phận kèm phim demo; quy trình có bước kiểm (`npm run check`) trước khi render và encode; dùng lại kit của `wheresryan22/anatomy` (MIT, ghi trong THIRD_PARTY_NOTICES.md). | `git clone https://github.com/annnguyentt/anatomy-reveal-skill ~/.claude/skills/anatomy-reveal` | Node.js 20+, Chrome/Chromium/Edge (hoặc `CHROME_PATH`), ffmpeg, ImageMagick 7. |
+| [`pmndrs/react-three-rapier`](https://github.com/pmndrs/react-three-rapier) | 1.688 | MIT | Thư viện bọc engine vật lý Rapier (WASM) cho react-three-fiber: `<Physics>`, `<RigidBody>`, collider tự sinh (hull, cuboid…) để cảnh 3D có va chạm, trọng lực. | API khai báo gọn trong JSX; bản v2 hỗ trợ @react-three/fiber v9 và React 19 (React 18 dùng v1); chế độ `debug` vẽ collider; có trang API docs. | `npm install @react-three/rapier` | Commit nhánh chính mới nhất 3/11/2025 (repo vẫn có push 12/10/2026); cần react-three-fiber. |
+| [`pmndrs/react-postprocessing`](https://github.com/pmndrs/react-postprocessing) | 1.663 | MIT | Bọc thư viện postprocessing cho react-three-fiber: chuỗi hiệu ứng hậu kỳ (Bloom, DepthOfField, Noise, Vignette…) trong `<EffectComposer>`. | EffectPass gộp nhiều hiệu ứng vào ít lượt render; dùng một tam giác phủ màn hình thay quad; MSAA WebGL2 bật mặc định; demo thật kèm mã. | `npm install @react-three/postprocessing` | Cần react-three-fiber; README tự nhận chưa nhắm tới điều phối hiệu ứng phức tạp. |
+| [`Alchemist0823/three.quarks`](https://github.com/Alchemist0823/three.quarks) | 1.237 | MIT | Hệ hạt và thư viện VFX hiệu năng cao cho three.js viết bằng TypeScript. | BatchedRenderer gộp draw call; nhập hệ hạt Shuriken của Unity; trình sửa trực quan quarks.art/create; hệ plugin cho behavior và emitter tuỳ biến. | `npm install three.quarks` | Cần three.js. |
+| [`cocopon/tweakpane`](https://github.com/cocopon/tweakpane) | 4.712 | MIT | Bảng điều khiển nhỏ gọn để chỉnh tham số và theo dõi giá trị lúc chạy (cảm hứng từ dat.GUI). | Không phụ thuộc gói nào; binding số, chuỗi, boolean, màu, điểm 2D/3D/4D, binding chỉ đọc; folder, tab, button; theme, plugin, xuất/nhập JSON, hỗ trợ mobile; có Design Kit Figma. | `npm install tweakpane` (TypeScript thêm `@tweakpane/core`) | Từ v4 chỉ ES module (CommonJS dùng 3.x); commit cuối 15/3/2026. |
+| [`WordPress/openverse`](https://github.com/WordPress/openverse) | 702 | MIT | Máy tìm kiếm ảnh, âm thanh có giấy phép mở (tương thích GPL) của WordPress, chạy tại openverse.org; monorepo gồm catalog, ingestion server, API và frontend. | Catalog thu metadata bằng Apache Airflow; API REST Django để tìm kiếm; frontend Vue/Nuxt; có docker-compose và dữ liệu mẫu để chạy cục bộ. | Gọi API công khai của openverse.org; tự chạy: `docker-compose up` theo tài liệu `documentation/` | Mỗi tác phẩm giữ giấy phép riêng (CC, public domain), phải đọc giấy phép và ghi công từng file trước khi dùng. |
+| [`librosa/librosa`](https://github.com/librosa/librosa) | 9.029 | ISC | Thư viện Python phân tích âm thanh và nhạc: thuật toán nền cho truy hồi thông tin âm nhạc (beat, tempo, phổ, onset…). | Tài liệu đầy đủ kèm tutorial tại librosa.org; cài qua PyPI hoặc conda-forge; `librosa.cite()` lấy DOI theo từng phiên bản để trích dẫn. | `pip install librosa` | Python 3. |
+
+### 9m.3 Ghép thành một xưởng motion thế nào
+
+- **Skill cho agent:** Motion Design Skill (LottieFiles), Remotion Skills, Anatomy và Anatomy Reveal cho hình giải phẫu và phim reveal.
+- **3D và hiệu ứng trên web:** Three.js làm nền, react-three-rapier thêm vật lý, react-postprocessing thêm hậu kỳ, three.quarks thêm hạt và VFX, Tweakpane để chỉnh tham số khi dựng.
+- **Chuyển động và video:** GSAP cho timeline web, Remotion dựng video bằng React, Manim cho hoạt hoạ toán, Lottie cho animation vector nhẹ.
+- **Âm thanh và xuất bản:** Openverse tìm nhạc và hiệu ứng âm có giấy phép mở, librosa bắt beat để cắt cảnh theo nhạc, WhisperX làm phụ đề khớp từng từ, FFmpeg encode bản cuối.
+
 ## 10. Nguồn
 
 - Nhóm A/B: github.com/AbubakrChan/product-launch-motion (README, SKILL.md, scripts/, evals/, commits, issues), github.com/AbubakrChan, github.com/charlie947/motion-graphics-skills (README, commits), github.com/charlie947, charliehills.substack.com/p/opus-55-motion-graphics, skillsllm.com/skill/motion-graphics-skills, github.com/howseen-ai/claude-motion-design (README, commits, issues), github.com/howseen-ai, trendshift.io/repositories/265851, skillsdirectory.com/skills/howseen-ai-motion-design, github.com/ProSkillsMD/proskills/issues/7473, github.com/nateherkai/hyperframes-student-kit (README, .claude/skills, cut-mistakes/SKILL.md, cut-silences/SKILL.md, issues), github.com/nateherkai, opsmavix.com/blog/hyperframes-student-kit, skillsllm.com/skill/hyperframes-student-kit, aident.ai/blog/edit-videos-claude-code-hyperframes, github.com/Barty-Bart/motion-graphics (README, skills/motion-broll/SKILL.md, skills/object-separation/SKILL.md, issues), github.com/Barty-Bart, aitoolsreview.co.uk (2 video), autoae.online/blog/claude-motion-graphics-skills, mindstudio.ai/blog/ai-video-editing-claude-code-hyperframes
