@@ -2027,3 +2027,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-18d (starci-harness → mục 03 §8n)
 
 - Link người dùng gửi (qua Facebook, bỏ `fbclid`): https://github.com/starci183/starci-harness. Clone nông HEAD `9f21b38e237eeb4cf21d6ac0268367a99d37cba2` (commit 18/11/2026); GitHub search API 18/11/2026: ★ 8, fork 0, MIT, tạo 26/10/2026.
+
+## Bổ sung 2026-11-19 (AG-UI → mục 04 §4g)
+
+- Ảnh thẻ GitHub người dùng gửi (`ag-ui-protocol/ag-ui`, 21k sao). Clone nông HEAD `3416b86da4b3288e87f827c7f2759a7fa18b5231` (commit 17/11/2026); GitHub search API 19/11/2026: ★ 20.574, fork 2.118, MIT.

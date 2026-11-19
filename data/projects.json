@@ -605,12 +605,22 @@
       "repo": "ag-ui-protocol/ag-ui",
       "category": "protocol",
       "license": "MIT",
-      "stars": 16949,
+      "stars": 20574,
       "open_source": true,
-      "notes": "Agent ↔ UI; CopilotKit; ★ 19/10/2026 (shields); ★ 31/10/2026: 16.949 (GitHub API)",
+      "notes": "Giao thức sự kiện Agent ↔ UI do CopilotKit khởi xướng; spec 1.0 đóng băng 17/9/2026 (JSON Schema, 31 loại sự kiện, test conformance), SDK TypeScript/Python/.NET sinh từ schema, 8 SDK cộng đồng; 22 tích hợp framework (LangGraph, CrewAI, MS Agent Framework, Google ADK, AWS Strands, Mastra, Claude Agent SDK…), 6 middleware (MCP, MCP Apps, A2A, A2UI); shim pre-1.0 hết hạn 17/9/2027. Điều kiện: template create-ag-ui-app cần OPENAI_API_KEY; client giao diện chủ yếu là CopilotKit. ★ 19/10/2026 (shields); ★ 31/10/2026: 16.949 (GitHub API); ★ 19/11/2026: 20.574 (GitHub search API), mục 04 §4g",
       "section": "04",
       "id": "ag-ui",
-      "profile_path": "04-protocols-standards/README.md"
+      "profile_path": "04-protocols-standards/README.md",
+      "profile_anchor": "04-protocols-standards/README.md#4g-hồ-sơ-ag-ui-protocolag-ui-ag-ui-10-giao-thức-sự-kiện-nối-agent-với-giao-diện-người-dùng-ảnh-thẻ-github-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "3416b86da4b3288e87f827c7f2759a7fa18b5231",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/ag-ui-protocol/ag-ui/blob/3416b86da4b3288e87f827c7f2759a7fa18b5231/README.md",
+        "https://github.com/ag-ui-protocol/ag-ui/blob/3416b86da4b3288e87f827c7f2759a7fa18b5231/spec/README.md",
+        "https://github.com/ag-ui-protocol/ag-ui/blob/3416b86da4b3288e87f827c7f2759a7fa18b5231/spec/1.0/schema.json",
+        "https://github.com/ag-ui-protocol/ag-ui/blob/3416b86da4b3288e87f827c7f2759a7fa18b5231/DEPRECATIONS.md"
+      ]
     },
     {
       "name": "Agent Skills spec",
