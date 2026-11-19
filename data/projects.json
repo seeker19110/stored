@@ -832,12 +832,21 @@
       "repo": "penpot/penpot",
       "category": "design-tool",
       "license": "MPL-2.0",
-      "stars": 61930,
+      "stars": 62550,
       "open_source": true,
-      "notes": "Figma alternative; ★ 19/10/2026 (shields); ★ 31/10/2026: 61.929 (GitHub API)",
+      "notes": "Nền tảng thiết kế và prototype mã mở thay Figma, SaaS hoặc tự host (Docker, Kubernetes); thiết kế lưu dạng SVG/CSS/HTML, layout CSS Grid và Flex, Inspect xuất mã, design token gốc, component và variant; MCP server chính thức cho LLM đọc/sửa/tạo thiết kế qua Plugin API và WebSocket; hệ plugin, webhook, API token; renderer Rust/WebAssembly. Điều kiện: MPL-2.0 copyleft theo file; Penpot Enterprise trả phí; MCP cho LLM chạy mã tuỳ ý trong plugin. ★ 19/10/2026 (shields); ★ 31/10/2026: 61.929 (GitHub API); ★ 19/11/2026: 62.550 (GitHub search API), mục 06 §7zg",
       "section": "06",
       "id": "penpot",
-      "profile_path": "06-ui-ux-design/README.md"
+      "profile_path": "06-ui-ux-design/README.md",
+      "profile_anchor": "06-ui-ux-design/README.md#7zg-hồ-sơ-penpotpenpot-nền-tảng-thiết-kế-mã-mở-tự-host-design-token-gốc-mcp-server-chính-thức-ảnh-readme-người-dùng-gửi-đọc-mã-19112026",
+      "last_verified_at": "2026-11-19",
+      "verified_ref": "b100a5e26f9b0d762ce3edbd00997d4b7f0874fb",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/penpot/penpot/blob/b100a5e26f9b0d762ce3edbd00997d4b7f0874fb/README.md",
+        "https://github.com/penpot/penpot/blob/b100a5e26f9b0d762ce3edbd00997d4b7f0874fb/mcp/README.md",
+        "https://github.com/penpot/penpot/blob/b100a5e26f9b0d762ce3edbd00997d4b7f0874fb/CHANGES.md"
+      ]
     },
     {
       "name": "tldraw",
