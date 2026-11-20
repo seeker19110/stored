@@ -1400,6 +1400,37 @@ Nhóm có 32 repo. Bốn repo đã đọc ở §6c.2 (autoresearch, Agno, Compos
 
 **Nguồn §6c:** bảng người dùng dán từ https://phandonggiang.com/kho-repo ngày 18/11/2026 · GitHub search API cho từng repo 18/11/2026 · clone nông 24 repo, đọc README, LICENSE và cây thư mục (HEAD ghi trong `data/projects.json`).
 
+<a id="mwg-reread-2026-11-20"></a>
+### 6c.6 Đọc lại `GoogleChrome/modern-web-guidance` và repo nguồn `modern-web-guidance-src` (20/11/2026)
+
+> Người dùng nhắc "Modern Web Guidance (23,7K sao GitHub" (tin nhắn bị cắt) và yêu cầu làm theo cách tốt nhất. Clone `blob:none` cả hai repo, đọc README, cấu trúc, mã telemetry và `legacy-scan` ở repo nguồn. Mức: bản phân phối `docs-read`; repo nguồn `code-read` cho telemetry và `legacy-scan`. **Không cài, không chạy CLI, không chạy eval/test.**
+
+| Mục | `GoogleChrome/modern-web-guidance` | `GoogleChrome/modern-web-guidance-src` |
+|---|---|---|
+| Vai trò | **Bản phân phối đã build**: `skills/`, `plugin.json`, `gemini-extension.json`, `kimi.plugin.json`, `policies/` | **Repo nguồn**: `src/` (cli, rag, build, harness, grading, legacy-scan, dashboard), `guides/`, `features/`, `skills-src/`, `docs/` |
+| Sao / fork (GitHub search API 20/11/2026) | **23.932 / ~984** | **9.521 / ~768** |
+| Phiên bản | v1.0.1 (package.json 1.0.1; tag v1.0.0 → v1.0.1) | tag v1.0.1; `package.json` ghi 1.0.0, `private` |
+| License | Apache-2.0 | Apache-2.0 |
+| Issue / PR mở | 0 / 0 (shields) | **309 / 75** (shields) |
+| Commit · HEAD | 217 · `64a6d708` (16/11/2026); **195 commit do `github-actions[bot]`**, Paul Irish 19 | 1.663 · `634d0f83` (20/11/2026); Paul Irish 402, micahjo7 279, Rick Viscomi 250; 84 tác giả; từ 11/12/2025; 1 trailer Claude |
+| CI | không có workflow | 9 workflow (ci, publish, guide-sync, update-web-features, deploy-dashboard…) |
+
+**Điều cần nhớ khi dùng số sao:** 23,9k là sao của **kho phân phối**, nơi gần như không có hoạt động của người (issue/PR đều 0, 195/217 commit do bot). Mọi đóng góp, issue, eval và code thật nằm ở `-src` (9,5k★). Dùng số 23,9k chỉ để nói về mức quan tâm, không phải mức hoạt động.
+
+**Đã xác nhận trong mã (`-src`, HEAD `634d0f83`):**
+- **Telemetry bật theo mặc định.** `src/cli/telemetry/clearcut-logger.ts`: `isTelemetryEnabled()` trả `true` trừ khi `DISABLE_TELEMETRY` là `1` hoặc `true` (không phân biệt hoa thường), hoặc đang trong test Node. Điểm gửi mặc định là `https://play.googleapis.com/log?format=json_proto` (`watchdog/clearcut-sender.ts`). Có gửi truy vấn tìm kiếm (`logSearchResult(query, …)`) và tên agent do `detect-agent.ts` suy ra. Lệnh `install` in cảnh báo "Google collects anonymous usage information…". **Đặt `DISABLE_TELEMETRY=1` trong profile shell trước khi cho agent chạy**, vì truy vấn có thể chứa mô tả mã/sản phẩm.
+- **Harness eval tắt telemetry:** `src/harness/config.ts` đặt `DISABLE_TELEMETRY=1`, có test giữ điều đó.
+- **`legacy-scan`** (`src/legacy-scan`): bộ khớp tĩnh (AST/token, có pre-filter `fastTokens`) **không cần LLM lúc chạy**; bước xác minh ngữ cảnh do coding agent đảm nhiệm khi chạy thật, còn "LLM Verifier" chỉ dùng trong eval. `rules/` có 80 file (mỗi rule kèm file test). Đọc README và cấu trúc; **chưa chạy thử** nên chưa biết tỷ lệ dương tính giả.
+- **Chặn Origin Trial:** có logic liên quan ở `src/rag/retrieve.ts` và `src/cli/modern-web.ts`; chưa đọc kỹ đường gọi nên **giữ nguyên tuyên bố cũ là (chưa xác minh đầy đủ)**.
+- **Tìm kiếm cục bộ:** `src/rag/` có `search.ts`, BM25, README riêng; chưa chạy benchmark `benchmark:rag`.
+- **Quản trị:** `GOVERNANCE.md` mô tả Contributor, Peer, Owner; **viết guide mới từ đầu dành cho Peer**; README nêu Chrome, Edge, Firefox và MDN cùng quản lý.
+
+**So với hồ sơ 18/11:** hồ sơ cũ đúng về telemetry và tính năng; thiếu (1) vai trò hai repo, (2) số sao/hoạt động đúng chỗ, (3) điểm gửi và chi tiết opt-out. HEAD bản phân phối không đổi (`64a6d708`).
+
+**Dùng thế nào:** chạy `npx modern-web-guidance@latest search`/`retrieve` trong dự án web để agent lấy guide; chạy `legacy-scan` trên mã nội bộ để lập danh sách việc hiện đại hóa. Cả hai cần Node 22+. **Chưa có benchmark độc lập** cho việc guide cải thiện chất lượng mã agent; dashboard eval là của chính dự án.
+
+**Nguồn §6c.6:** clone github.com/GoogleChrome/modern-web-guidance 20/11/2026 (blob:none, 217 commit, HEAD 64a6d70, README, package.json, skills/, policies/) · clone github.com/GoogleChrome/modern-web-guidance-src 20/11/2026 (blob:none, 1.663 commit, HEAD 634d0f8; README, GOVERNANCE.md, `src/cli/telemetry/*`, `src/legacy-scan/README.md`, `src/harness/config.ts`, `.github/workflows/`) · GitHub search API (số sao) và img.shields.io (fork/issue/PR) ngày 20/11/2026
+
 ## Nguồn
 
 - https://gitstarclub.com/rankings · https://www.countly.net/most-starred-github-repositories-june-2026 · https://www.stackscan.com/blog/github-statistics · https://github.com/EvanLi/Github-Ranking · https://www.firecrawl.dev/blog/best-github-repos

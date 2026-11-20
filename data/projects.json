@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1577,
+    "count": 1578,
     "schema_version": 2
   },
   "projects": [
@@ -16501,19 +16501,44 @@
       "repo": "GoogleChrome/modern-web-guidance",
       "category": "frontend",
       "license": "Apache-2.0",
-      "stars": 22163,
+      "stars": 23932,
       "open_source": true,
-      "notes": "Bộ skill đưa kiến thức nền tảng web hiện đại, thực hành tốt và dữ liệu Baseline vào coding agent; agent gọi CLI để lấy guide phù hợp. Đội Chrome, Edge, Firefox và MDN cùng quản lý. 262 tính năng web, guide chia css, forms, performance, accessibility, security, pwa…; tìm kiếm cục bộ offline (embedding + BM25), không cần khóa; chặn guide Origin Trial trừ khi bật; lệnh legacy-scan tìm mẫu cũ trong codebase. Điều kiện: CLI gửi telemetry ẩn danh (lượt cài. tên agent. ID guide. truy vấn). tắt bằng DISABLE_TELEMETRY=1. ★ 18/11/2026: 22.163 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c",
+      "notes": "Bộ skill đưa kiến thức nền tảng web hiện đại, thực hành tốt và dữ liệu Baseline vào coding agent; agent gọi CLI để lấy guide phù hợp. Đội Chrome, Edge, Firefox và MDN cùng quản lý. 262 tính năng web, guide chia css, forms, performance, accessibility, security, pwa…; tìm kiếm cục bộ offline (embedding + BM25), không cần khóa; chặn guide Origin Trial trừ khi bật; lệnh legacy-scan tìm mẫu cũ trong codebase. Điều kiện: CLI gửi telemetry ẩn danh (lượt cài. tên agent. ID guide. truy vấn). tắt bằng DISABLE_TELEMETRY=1. ★ 18/11/2026: 22.163 (GitHub search API), nhóm \"Skill, Prompt & Mẫu cho AI\" trong kho-repo của Phan Đông Giang, mục 08 §6c Đọc lại 20/11/2026 (§6c.6): đây là kho PHÂN PHỐI đã build (195/217 commit do bot, 0 issue/PR); nguồn thật ở modern-web-guidance-src. Telemetry bật mặc định (Clearcut, play.googleapis.com; gửi truy vấn tìm kiếm và tên agent); tắt DISABLE_TELEMETRY=1 hoặc true. ★ 20/11/2026: 23.932 (GitHub search API).",
       "section": "08",
       "id": "modern-web-guidance",
       "profile_path": "08-awesome-lists-learning/README.md",
-      "profile_anchor": "08-awesome-lists-learning/README.md#6c-kho-repo-của-phan-đông-giang-phandonggiangcomkho-repo-694-repo-32-nhóm-và-24-repo-aiagent-đọc-mã-bảng-người-dùng-dán-kiểm-18112026",
-      "last_verified_at": "2026-11-18",
+      "profile_anchor": "08-awesome-lists-learning/README.md#mwg-reread-2026-11-20",
+      "last_verified_at": "2026-11-20",
       "verified_ref": "64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65",
       "verification_level": "docs-read",
       "sources": [
         "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/README.md",
-        "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/LICENSE"
+        "https://github.com/GoogleChrome/modern-web-guidance/blob/64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65/LICENSE",
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/src/cli/telemetry/clearcut-logger.ts"
+      ]
+    },
+    {
+      "name": "modern-web-guidance-src",
+      "repo": "GoogleChrome/modern-web-guidance-src",
+      "category": "frontend",
+      "license": "Apache-2.0",
+      "stars": 9521,
+      "open_source": true,
+      "notes": "Repo nguồn của modern-web-guidance: guides/, features/, skills-src/, CLI (search, retrieve, legacy-scan, install), RAG BM25 cục bộ, harness eval, dashboard; 1.663 commit, 84 tác giả, Paul Irish 402; 309 issue/75 PR mở; legacy-scan dùng bộ khớp tĩnh, không cần LLM lúc chạy; telemetry Clearcut mặc định bật (clearcut-logger.ts), harness eval tắt; viết guide mới dành cho Peer (GOVERNANCE.md); code-read telemetry/legacy-scan, chưa chạy CLI/test/eval; ★ 20/11/2026: 9.521 (GitHub search API); mục 08 §6c.6",
+      "section": "08",
+      "id": "modern-web-guidance-src",
+      "profile_path": "08-awesome-lists-learning/README.md",
+      "profile_anchor": "08-awesome-lists-learning/README.md#mwg-reread-2026-11-20",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "634d0f83bb41092832797411d148350196b8258d",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/README.md",
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/GOVERNANCE.md",
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/LICENSE",
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/src/cli/telemetry/clearcut-logger.ts",
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/src/cli/telemetry/watchdog/clearcut-sender.ts",
+        "https://github.com/GoogleChrome/modern-web-guidance-src/blob/634d0f83bb41092832797411d148350196b8258d/src/legacy-scan/README.md"
       ]
     },
     {

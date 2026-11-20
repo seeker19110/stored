@@ -2051,3 +2051,8 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-20b (kỹ năng Figma từ ảnh bài đăng tìm việc)
 
 - Mục 06 §7zh: đối chiếu 4 bài help.figma.com (auto layout, components, variants, prototyping), docs-read 20/11/2026; bài đăng cá nhân trong ảnh không được lưu vào kho. Catalog không đổi.
+
+## Bổ sung 2026-11-20c (Modern Web Guidance: kho phân phối và kho nguồn)
+
+- `GoogleChrome/modern-web-guidance`: clone 20/11/2026 (217 commit, HEAD 64a6d70, 195 commit do github-actions[bot]); 23.932★ (GitHub search API), v1.0.1, Apache-2.0, 0 issue/PR mở.
+- `GoogleChrome/modern-web-guidance-src` (hồ sơ mới): clone 20/11/2026 (1.663 commit, HEAD 634d0f8); 9.521★, 309 issue/75 PR mở; đọc mã telemetry (Clearcut, mặc định bật, opt-out `DISABLE_TELEMETRY`), `legacy-scan`, GOVERNANCE. Mục 08 §6c.6; catalog +1 = 1578. Chưa cài/chạy CLI.
