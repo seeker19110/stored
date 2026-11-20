@@ -1811,6 +1811,25 @@ npx @animate-ui/cli@latest animate all
 
 **Dùng khi:** cần công cụ thiết kế tự host, giữ dữ liệu thiết kế trong hạ tầng của mình, hoặc muốn agent đọc và sửa thiết kế qua MCP. Liên quan: §1 (bảng công cụ thiết kế), §7ze (skill Figma cho Claude, so khớp token thiết kế và code).
 
+## 7zh. Bốn kỹ năng Figma hay được nêu trong hồ sơ xin việc UI/UX, đối chiếu tài liệu chính thức (ảnh bài đăng tìm việc người dùng gửi, đọc docs 20/11/2026)
+
+> Ảnh là bài đăng của một cá nhân tìm vị trí UI/UX remote (3 năm kinh nghiệm, Figma). Bài **không** được đưa vào kho: không phải công cụ, không có danh tính hay liên hệ. Mục này chỉ lấy phần công cụ: bốn kỹ năng "Components & Auto Layout", "Wireframing & Prototyping", "User Flows" và variants, đối chiếu help.figma.com. Mức `docs-read`; không mở Figma, không chạy gì.
+
+| Kỹ năng trong bài | Tính năng Figma | Khái niệm chính (đọc 20/11/2026) | Điều kiện |
+|---|---|---|---|
+| Auto Layout | [Auto layout](https://help.figma.com/hc/en-us/articles/360040451373-Explore-auto-layout-properties) | Hướng xếp (dọc, ngang, lưới), wrap, padding, gap (kể cả Auto: Between/Around/Evenly), resizing (Hug contents, Fill container, Fixed, min/max), Ignore auto layout, lồng auto layout | Mọi gói; cần quyền sửa file |
+| Components | [Components](https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma) | Main component và instance (bản liên kết nhận cập nhật), team library, overrides, detach | Mọi gói; cần quyền sửa file. Xuất bản thư viện nằm ở bài khác |
+| Components (biến thể) | [Variants](https://help.figma.com/hc/en-us/articles/360056440594) | Component set, variant property/value, đặt tên có dấu `/`, "Combine as variants" | Tạo/dùng: mọi gói; **xuất bản component set lên thư viện cần gói trả phí** |
+| Prototyping, User Flows | [Prototyping](https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma) | Flow, điểm bắt đầu, hotspot, connection, trigger, action, destination (phải là frame cấp cao nhất), transition (thời lượng, easing), overlay, Smart Animate | Mọi gói; cần quyền sửa file |
+| Wireframing | Không có bài riêng được đọc | Wireframe là kỹ thuật, không phải một tính năng Figma | – |
+
+**Lưu ý:**
+- Bốn tính năng là sản phẩm **đóng, của Figma**; kho chỉ ghi điều docs nói, không đánh giá chất lượng. Phương án mã nguồn mở xem Penpot (§2, §7zg).
+- "Figma Expert" và "3 năm kinh nghiệm" là lời tự khai trong bài; kho không xác minh.
+- Liên quan: bộ skill Figma cho Claude (§7ze), FigCraft (§7e), Penpot (§7zg).
+
+**Nguồn §7zh:** các URL help.figma.com trong bảng (HTTP 200, đọc 20/11/2026 bằng agent web-fetch) · ảnh bài đăng do người dùng cung cấp (không lưu nội dung cá nhân)
+
 ## 8. Nguồn (mục 1–6)
 
 - https://designrevision.com/blog/best-react-component-libraries · https://designrevision.com/blog/best-tailwind-component-libraries · https://dualite.dev/blogs/best-ui-component-libraries · https://www.uilora.com/blog/uilora/10-best-react-ui-component-libraries-in-2026-ranked-by-a-frontend-team · https://www.techwench.com/best-ui-component-libraries-2026/

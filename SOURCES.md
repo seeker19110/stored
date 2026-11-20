@@ -2047,3 +2047,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-20 (đọc lại Obscura)
 
 - `h4ckf0r0day/obscura`: clone 20/11/2026 (blob:none, 1.821 commit, HEAD 58a04dd); shields ~37k★/2,9k fork, Apache-2.0, v0.2.7, 147 issue/122 PR mở; ảnh README do người dùng gửi đối chiếu với README tại HEAD (render native trong release, bảng so Chrome). Mức docs-read, không build/chạy. Mục 11 §1i.2b; catalog không thêm hồ sơ (vẫn 1577).
+
+## Bổ sung 2026-11-20b (kỹ năng Figma từ ảnh bài đăng tìm việc)
+
+- Mục 06 §7zh: đối chiếu 4 bài help.figma.com (auto layout, components, variants, prototyping), docs-read 20/11/2026; bài đăng cá nhân trong ảnh không được lưu vào kho. Catalog không đổi.
