@@ -547,6 +547,10 @@ Mục 22 §9m đối chiếu 20 mục trong ảnh: 11 mục đã có hồ sơ, 2
 
 Mục này còn có sơ đồ ghép cả 20 mục thành một quy trình làm motion.
 
+### 91. "7 plugin thay 7 vị trí" (20/11/2026): QuickBooks, Stripe, Shopify, Canva, HubSpot, LegalZoom, Zapier
+
+Mục 20 §3zd đọc mã cả bảy plugin ở đúng SHA mà marketplace chính thức ghim. Cả bảy làm thay một phần việc chứ không thay cả vị trí. QuickBooks đọc báo cáo và nhắc nợ, HubSpot chuẩn bị cuộc gọi; skill nào ghi dữ liệu hay chuyển tiền (Stripe `stripe-pay`) đều hỏi xác nhận trước. Hai điểm trong danh sách đã sai. Shopify AI Toolkit là công cụ cho lập trình viên, nay chỉ còn 2 skill thay vì 18, và mặc định gửi telemetry kèm nguyên văn prompt. LegalZoom không thay luật sư mà chuyển người dùng sang luật sư thật khi rủi ro cao. Mục §3zd.3 cập nhật `claude-plugins-official` theo ảnh người dùng gửi: 47,8k★, plugin bên thứ ba nay nộp ở `claude.ai/directory/manage`, repo không còn nhận PR.
+
 ## 🧭 Cách dùng kho này
 
 1. Đọc README của chuyên mục để nắm bối cảnh, bảng so sánh và điều kiện tích hợp (license, rủi ro, phương án thay thế).

@@ -73,7 +73,7 @@
       "feature-management",
       "computer-vision"
     ],
-    "count": 1571,
+    "count": 1577,
     "schema_version": 2
   },
   "projects": [
@@ -2797,12 +2797,20 @@
       "repo": "anthropics/claude-plugins-official",
       "category": "plugin-marketplace",
       "license": "Apache-2.0",
-      "stars": 45573,
+      "stars": 47761,
       "open_source": true,
-      "notes": "Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026); cập nhật 31/10/2026 (mục 20 §3q.1): 46k★, 315 entry (39 nội bộ + 14 external_plugins + 262 repo ngoài đều ghim sha), bot bump SHA hằng đêm sau `claude plugin validate` + Claude policy scan, PR người ngoài chỉ được thêm entry; ★ 31/10/2026: 45.573 (GitHub API)",
+      "notes": "Marketplace mặc định của Claude Code: 31 plugin nội bộ + >135 vendor; quy ước renames, skill-bundle strict:false; +2.172★/ngày (12/10/2026); cập nhật 31/10/2026 (mục 20 §3q.1): 46k★, 315 entry (39 nội bộ + 14 external_plugins + 262 repo ngoài đều ghim sha), bot bump SHA hằng đêm sau `claude plugin validate` + Claude policy scan, PR người ngoài chỉ được thêm entry; ★ 31/10/2026: 45.573 (GitHub API); cập nhật 20/11/2026 (mục 20 §3zd.3, ảnh người dùng gửi): 47.761★/4.954 fork, 4.868 commit, HEAD d7d3279, 317 entry; plugin bên thứ ba nay nộp ở claude.ai/directory/manage, marketplace.json dần chỉ còn plugin Anthropic, PR không còn được theo dõi, CI chỉ kiểm plugin trong repo; ★ 20/11/2026: 47.761 (GitHub search API)",
       "section": "20",
       "id": "claude-plugins-official",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "d7d32797e7e02708d0bb00ffe8b8f2397dc1aea6",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/anthropics/claude-plugins-official/blob/d7d32797e7e02708d0bb00ffe8b8f2397dc1aea6/README.md",
+        "https://github.com/anthropics/claude-plugins-official/blob/d7d32797e7e02708d0bb00ffe8b8f2397dc1aea6/.claude-plugin/marketplace.json"
+      ]
     },
     {
       "name": "Anatomy",
@@ -15031,12 +15039,12 @@
       "license": "MIT",
       "stars": 454,
       "open_source": true,
-      "notes": "Plugin phân phối cho Zapier MCP hosted: truy cập có kiểm soát 9.000+ ứng dụng, onboarding, demo, skill theo vai trò; Claude Code qua zapier/marketplace hoặc anthropics/claude-plugins-official; ★ 8/11/2026: 454 (GitHub search API), mục 20 §3zb",
+      "notes": "Plugin phân phối cho Zapier MCP hosted: truy cập có kiểm soát 9.000+ ứng dụng, onboarding, demo, skill theo vai trò; Claude Code qua zapier/marketplace hoặc anthropics/claude-plugins-official; ★ 8/11/2026: 454 (GitHub search API), mục 20 §3zb; đọc lại 20/11/2026 (mục 20 §3zd): plugin zapier ở SHA ghim 54a1227 có 4 skill (zapier-onboard, zapier-explore, zapier-demo, zapier-status); HEAD 4e347e2 (18/11) ghi 10.000+ app, marketplace còn ghi 8.000+",
       "section": "20",
       "id": "zapier-mcp",
       "profile_path": "20-claude-plugins-ecosystem/README.md",
-      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zb-kiểm-ảnh-8-plugin-8-kỹ-năng-8-mcp-bộ-cài-sẵn-cho-claude-ảnh-phandonggiang-người-dùng-gửi-đọc-mã-8112026",
-      "last_verified_at": "2026-11-08",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
       "verified_ref": "54a12277a12c60df51ec16cf4e4ef0b27b166649",
       "verification_level": "docs-read",
       "sources": [
@@ -24761,6 +24769,126 @@
       "verification_level": "docs-read",
       "sources": [
         "https://github.com/librosa/librosa/tree/32fbd2838f3a57dff6845a94820322582de5bee8"
+      ]
+    },
+    {
+      "name": "QuickBooks plugin cho Claude",
+      "repo": "intuit/quickbooks-claude-plugin",
+      "category": "harness-pack",
+      "license": "Apache-2.0",
+      "stars": 1,
+      "open_source": true,
+      "notes": "Plugin chính chủ Intuit (intuit-quickbooks 0.1.0) trong claude-plugins-official: 10 skill (business-health-check đọc P&L/dòng tiền/bảng cân đối/công nợ, chase-overdue-invoices, email-to-estimate-invoice, industry-benchmark, 4 skill payroll, lending, setup); cần connector QuickBooks; skill ghi (nhắc nợ, đổi lương) đều xác nhận trước; không phải tư vấn thuế/pháp lý; 4 commit; ★ 20/11/2026: 1 (GitHub search API), mục 20 §3zd",
+      "section": "20",
+      "id": "quickbooks-claude-plugin",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "c8daa17a64d4d0fdeabdf0516524f72549b6ad19",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/intuit/quickbooks-claude-plugin/blob/c8daa17a64d4d0fdeabdf0516524f72549b6ad19/README.md",
+        "https://github.com/intuit/quickbooks-claude-plugin/blob/c8daa17a64d4d0fdeabdf0516524f72549b6ad19/skills/chase-overdue-invoices/SKILL.md"
+      ]
+    },
+    {
+      "name": "Stripe AI (plugin Claude)",
+      "repo": "stripe/ai",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 2075,
+      "open_source": true,
+      "notes": "Monorepo AI của Stripe; plugin stripe 0.11.17 ở providers/claude/plugin: MCP https://mcp.stripe.com, 10 skill (stripe-best-practices: Checkout Sessions, Billing, webhook, restricted key, sandbox; upgrade-stripe, stripe-apps, connect-recommend, stripe-pay chuyển tiền thật chỉ sau xác nhận, metronome…), agent company-researcher, /test-cards, /explain-error; hook SessionStart/UserPromptSubmit/PostToolUse nhắc gửi góp ý qua stripe feedback sau khi người dùng duyệt; 502 commit, HEAD plugin 0.15.0; ★ 20/11/2026: 2.075 (GitHub search API), mục 20 §3zd",
+      "section": "20",
+      "id": "stripe-ai",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "deae744bc0cbf6034b4b6f22f51c690b71a4e779",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/stripe/ai/blob/deae744bc0cbf6034b4b6f22f51c690b71a4e779/providers/claude/plugin/hooks/hooks.json",
+        "https://github.com/stripe/ai/blob/deae744bc0cbf6034b4b6f22f51c690b71a4e779/providers/claude/plugin/skills/stripe-best-practices/SKILL.md",
+        "https://github.com/stripe/ai/blob/deae744bc0cbf6034b4b6f22f51c690b71a4e779/providers/claude/plugin/skills/stripe-pay/SKILL.md"
+      ]
+    },
+    {
+      "name": "Shopify AI Toolkit",
+      "repo": "Shopify/Shopify-AI-Toolkit",
+      "category": "harness-pack",
+      "license": "MIT",
+      "stars": 652,
+      "open_source": true,
+      "notes": "Công cụ cho lập trình viên Shopify (plugin shopify-plugin 2.1.2 ở SHA ghim, HEAD 2.4.0): 2 skill đang dùng (shopify gộp 20 chủ đề Admin/Storefront GraphQL, Liquid, Hydrogen, Polaris, Functions, CLI, onboarding; ucp), 21 skill cũ trong deprecated/; marketplace còn ghi \"18 skill\" (cũ); hook track-telemetry ở UserPromptSubmit/PostToolUse POST tới shopify.dev/mcp/usage, trên Claude Code gửi kèm nguyên văn prompt khi skill Shopify kích hoạt; tắt bằng OPT_OUT_INSTRUMENTATION=true, DO_NOT_TRACK hoặc ~/.config/shopify-ai-toolkit/opt-out; repo mirror từ ai-toolkit-source, 84 commit; ★ 20/11/2026: 652 (GitHub search API), mục 20 §3zd",
+      "section": "20",
+      "id": "shopify-ai-toolkit",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "3c32168c6e4cb73f0b46243c82586176ca58bb48",
+      "verification_level": "code-read",
+      "sources": [
+        "https://github.com/Shopify/Shopify-AI-Toolkit/blob/3c32168c6e4cb73f0b46243c82586176ca58bb48/.claude-plugin/plugin.json",
+        "https://github.com/Shopify/Shopify-AI-Toolkit/blob/3c32168c6e4cb73f0b46243c82586176ca58bb48/hooks/scripts/track-telemetry.sh"
+      ]
+    },
+    {
+      "name": "Canva skills",
+      "repo": "canva-sdks/canva-skills",
+      "category": "design-skill",
+      "license": "Apache-2.0",
+      "stars": 168,
+      "open_source": true,
+      "notes": "Plugin canva chính chủ: MCP https://mcp.canva.com/mcp; 6 skill ở SHA ghim (brand-check chỉ đọc, bulk-create, edit-design, get-design-feedback, implement-feedback, resize-for-social-media), HEAD 1.1.0 có 10; brand-check ghi rõ API có thể không trả mã màu/font nên chỉ so gần đúng qua ảnh thu nhỏ; bản Codex/Cursor; 62 commit; ★ 20/11/2026: 168 (GitHub search API), mục 20 §3zd",
+      "section": "20",
+      "id": "canva-skills",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "bfcbc681560f6031e9949ea52f81e20beb87e39e",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/canva-sdks/canva-skills/blob/bfcbc681560f6031e9949ea52f81e20beb87e39e/plugins/canva/skills/brand-check/SKILL.md"
+      ]
+    },
+    {
+      "name": "HubSpot Sales plugin",
+      "repo": "HubSpot/hubspot-mcp-plugins",
+      "category": "harness-pack",
+      "license": "Apache-2.0",
+      "stars": 5,
+      "open_source": true,
+      "notes": "Plugin hubspot-sales 2.3.0 (cùng repo có HubSpot-Partner): MCP https://mcp.hubspot.com/anthropic; 9 skill (daily-brief, call-prep, follow-up, log-call, pipeline-pulse, import-contacts, contact-lookup, onboarding, hubspot) + 2 agent; daily-brief chỉ gợi ý task, log-call hiện khối xác nhận trước khi ghi CRM; 17 commit; ★ 20/11/2026: 5 (GitHub search API), mục 20 §3zd",
+      "section": "20",
+      "id": "hubspot-mcp-plugins",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "a0c59600fc1ddcf03ceca71aebf0c28aa55f49e3",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/HubSpot/hubspot-mcp-plugins/blob/a0c59600fc1ddcf03ceca71aebf0c28aa55f49e3/HubSpot-Sales/skills/daily-brief/SKILL.md",
+        "https://github.com/HubSpot/hubspot-mcp-plugins/blob/a0c59600fc1ddcf03ceca71aebf0c28aa55f49e3/HubSpot-Sales/skills/log-call/SKILL.md"
+      ]
+    },
+    {
+      "name": "LegalZoom plugin",
+      "repo": "legalzoom/claude-plugins",
+      "category": "harness-pack",
+      "license": "PROPRIETARY",
+      "stars": 1,
+      "open_source": false,
+      "notes": "Plugin legalzoom 1.0.0: /review-contract (AI chấm rủi ro điều khoản, không gọi MCP, cấm giả lập luật sư) và skill attorney-assist đặt lịch luật sư LegalZoom qua MCP https://www.legalzoom.com/mcp/claude/v1 sau kiểm quyền gói; luật sư thấy lịch sử hội thoại và tài liệu; plugin.json ghi PROPRIETARY, repo không có LICENSE; 1 commit (20/2/2026); dịch vụ Mỹ; ★ 20/11/2026: 1 (GitHub search API), mục 20 §3zd",
+      "section": "20",
+      "id": "legalzoom-claude-plugins",
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#3zd-kiểm-danh-sách-7-plugin-thay-7-vị-trí-quickbooks-stripe-shopify-canva-hubspot-legalzoom-zapier-danh-sách-người-dùng-gửi-đọc-mã-20112026",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "f9fd8a0ca6e1421bc1aacb113a109663a7a6f6d8",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/legalzoom/claude-plugins/blob/f9fd8a0ca6e1421bc1aacb113a109663a7a6f6d8/plugins/legalzoom/commands/review-contract.md",
+        "https://github.com/legalzoom/claude-plugins/blob/f9fd8a0ca6e1421bc1aacb113a109663a7a6f6d8/plugins/legalzoom/skills/attorney-assist/SKILL.md"
       ]
     }
   ]
