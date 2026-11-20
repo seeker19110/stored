@@ -377,6 +377,34 @@
 
 **Đánh giá:** kỹ thuật ấn tượng (engine tự viết, render native, CDP tương thích Puppeteer/Playwright, được Cloudflare ghi nhận) và tiết kiệm tài nguyên khi chạy nhiều phiên song song. Nhưng còn v0.2.x, tác giả ẩn danh gần như một người, và định vị chính là scraping + anti-detect → **không đưa vào stack mặc định**. Có thể thử làm engine phụ cho tác vụ đọc trang hàng loạt trên site nội bộ, sau khi so kết quả với Chrome.
 
+<a id="obscura-reread-2026-11-20"></a>
+### 1i.2b Đọc lại `h4ckf0r0day/obscura` (2026-11-20, từ ảnh README do người dùng gửi)
+
+> Ảnh chụp README (huy hiệu Trendshift, dòng "Native rendering is here. No Chromium required", bảng so với headless Chrome) được đối chiếu với clone `blob:none` tại `58a04dd3cf1e09e0d572f18db07c0024c93f41dc` (commit 2026-11-20). Mức `docs-read`: đọc README, SECURITY.md, cây thư mục, workflow; **không build, không chạy, không đo lại**.
+
+| Mục | 31/10/2026 (§1i.2) | 20/11/2026 |
+|---|---|---|
+| Phiên bản | v0.2.5 | **v0.2.7** (tag v0.2.6, v0.2.7 mới) |
+| Sao / fork | 30k / 2,3k | **~37k / ~2,9k** (shields, làm tròn; không có số chính xác từ API) |
+| Issue / PR mở | 110 / 97 | **147 / 122** |
+| Commit / tác giả | 1.626 / 104 | **1.821 / 117**; `SGavrl` 1.317 (**~72%**, không đổi), Andrey Mnatsakanov 95, `h4ckf0r0day` 34; 9 trailer Claude |
+| Workflow | 3 | **4** (thêm `windows-package.yml`); `ci.yml` vẫn ghim SHA 15 chỗ; `deny.toml` còn |
+| Tải trang (tự công bố) | 51–84 ms vs 500–800 ms | README hiện ghi **85 ms** vs ~500 ms; dải 51–84 ms không còn trong README *(chưa xác minh, thay đổi do tác giả tự đo)* |
+| Bộ nhớ / binary | ~30 MB / ~70 MiB | không đổi (30 MB vs 200+ MB; ~70 MiB vs 300+ MB) |
+
+**Điểm mới đáng ghi:**
+- **Render native nay nằm trong bản phát hành chính thức:** README mục *Rendering* ghi archive release và Docker image đã gồm engine render (layout/paint CSS, screenshot viewport và full-page, screencast CDP, xuất PDF raster, không khởi động Chromium). Đường dùng qua Puppeteer/Playwright (`page.screenshot`, `page.pdf`).
+- **Giới hạn do chính README nêu:** engine "evolving independent engine"; CSS đuôi dài, một số Web API, phát media, hiệu ứng compositor và rasterize font có thể khác Chromium. Không thể dùng làm baseline cho kiểm thử hiển thị/visual regression thay Chrome.
+- **Thư mục mới:** `docs/` có hướng dẫn riêng (CLI, MCP, Playwright, cấu hình stealth và proxy, chạy production), `skills/`, `render-repros/`, `AGENTS.md`.
+- **SSRF:** README ghi chặn IP riêng/nội bộ **mặc định**, kể cả kiểm tra lúc phân giải DNS; cờ `--allow-private-network` / `OBSCURA_ALLOW_PRIVATE_NETWORK=1` mở lại — chỉ bật khi cần cho dev cục bộ. Chưa đọc đường gọi trong `obscura-ssrf` nên không khẳng định mặc định có hiệu lực ở mọi subcommand.
+- **Huy hiệu Trendshift "#1 Repository Of The Day"** là xếp hạng xu hướng trong ngày, không phải bằng chứng chất lượng hay an toàn.
+- **Telemetry:** grep `telemetry` chỉ khớp bình luận chặn analytics của trang và struct đo layout nội bộ (`ContainerLayoutTelemetry`); không thấy gửi dữ liệu về (grep, không phải bằng chứng toàn diện).
+- Obscura Cloud (residential proxies, waitlist) vẫn còn; bảng README vẫn dùng cột "Anti-detect: Built-in".
+
+**Đánh giá cập nhật:** kết luận §1i.2 giữ nguyên — **không đưa vào stack mặc định**: vẫn v0.2.x, ~72% commit từ một tài khoản, định vị scraping + anti-detect (rủi ro ToS/pháp lý). Thay đổi thực chất là render native đã có trong release, mở ra khả năng chụp ảnh/PDF nhẹ cho trang nội bộ; cần so từng trang với Chrome trước khi dùng. Số sao tăng ~7k trong 20 ngày phản ánh sự chú ý, không đổi đánh giá.
+
+**Nguồn §1i.2b:** clone github.com/h4ckf0r0day/obscura 20/11/2026 (blob:none, HEAD 58a04dd, 1.821 commit; README.md (Why Obscura, Obscura Cloud, Rendering, SSRF), SECURITY.md, .github/workflows/*, `git shortlog`, `git tag`) · img.shields.io/github/{stars,forks,license,last-commit,v/release,issues,issues-pr}/h4ckf0r0day/obscura (20/11/2026) · ảnh chụp README do người dùng cung cấp
+
 ### 1i.3 Bổ sung bảng chọn §1g.3
 
 | Nhu cầu | Gợi ý |

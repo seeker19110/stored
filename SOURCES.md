@@ -2043,3 +2043,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-20 (danh sách "7 plugin thay 7 vị trí" và ảnh claude-plugins-official → mục 20 §3zd)
 
 - Clone `--filter=blob:none` 20/11/2026, đọc ở SHA marketplace ghim: `anthropics/claude-plugins-official` HEAD `d7d32797e7e02708d0bb00ffe8b8f2397dc1aea6`; `intuit/quickbooks-claude-plugin` `c8daa17a64d4d0fdeabdf0516524f72549b6ad19`; `stripe/ai` `deae744bc0cbf6034b4b6f22f51c690b71a4e779` (HEAD `119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a`); `Shopify/Shopify-AI-Toolkit` `3c32168c6e4cb73f0b46243c82586176ca58bb48` (HEAD `0388268a61051d1e8400996a58b0e3590c1e1500`); `canva-sdks/canva-skills` `bfcbc681560f6031e9949ea52f81e20beb87e39e` (HEAD `508753389ae753417d776dc4e74bb5a7e1302aa1`); `HubSpot/hubspot-mcp-plugins` `a0c59600fc1ddcf03ceca71aebf0c28aa55f49e3` (HEAD `032d294bc91577cb1b9c4a61372567266ca8524e`); `legalzoom/claude-plugins` `f9fd8a0ca6e1421bc1aacb113a109663a7a6f6d8`; `zapier/zapier-mcp` `54a12277a12c60df51ec16cf4e4ef0b27b166649` (HEAD `4e347e2f7a360882a9b431749fad9412990b4e7d`). GitHub search API 20/11/2026 cho số sao (zapier/zapier-mcp không trả kết quả, giữ số 8/11).
+
+## Bổ sung 2026-11-20 (đọc lại Obscura)
+
+- `h4ckf0r0day/obscura`: clone 20/11/2026 (blob:none, 1.821 commit, HEAD 58a04dd); shields ~37k★/2,9k fork, Apache-2.0, v0.2.7, 147 issue/122 PR mở; ảnh README do người dùng gửi đối chiếu với README tại HEAD (render native trong release, bảng so Chrome). Mức docs-read, không build/chạy. Mục 11 §1i.2b; catalog không thêm hồ sơ (vẫn 1577).

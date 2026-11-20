@@ -1565,10 +1565,20 @@
       "license": "Apache-2.0",
       "stars": 29897,
       "open_source": true,
-      "notes": "Engine trình duyệt headless Rust: V8 + render native (không Chromium) + CDP (Puppeteer/Playwright) + MCP + crate chặn SSRF; RAM ~30 MB (tự đo); được Cloudflare Kitesurf ghi nhận là nguồn cảm hứng (blog 6/8/2026); định vị scraping + anti-detect (bản -stealth) → rủi ro ToS/pháp lý; v0.2.5, ~72% commit của một tài khoản ẩn danh; Obscura Cloud có residential proxies (waitlist); agent-browser hỗ trợ thử nghiệm (--engine obscura); 30k★ (31/10/2026, shields); mục 11 §1i.2; ★ 31/10/2026: 29.897 (GitHub API)",
+      "notes": "Engine trình duyệt headless Rust: V8 + render native (không Chromium) + CDP (Puppeteer/Playwright) + MCP + crate chặn SSRF; RAM ~30 MB (tự đo); được Cloudflare Kitesurf ghi nhận là nguồn cảm hứng (blog 6/8/2026); định vị scraping + anti-detect (bản -stealth) → rủi ro ToS/pháp lý; v0.2.5, ~72% commit của một tài khoản ẩn danh; Obscura Cloud có residential proxies (waitlist); agent-browser hỗ trợ thử nghiệm (--engine obscura); 30k★ (31/10/2026, shields); mục 11 §1i.2; ★ 31/10/2026: 29.897 (GitHub API) Đọc lại 20/11/2026 (docs-read, HEAD 58a04dd): v0.2.7, ~37k★ (shields), 147 issue/122 PR mở, 1.821 commit (~72% một tài khoản); render native có trong release (README nêu khác Chromium ở CSS/Web API/font); chưa build/chạy; mục 11 §1i.2b.",
       "section": "11",
       "id": "obscura",
-      "profile_path": "11-browser-computer-use-sandbox/README.md"
+      "profile_path": "11-browser-computer-use-sandbox/README.md",
+      "last_verified_at": "2026-11-20",
+      "verified_ref": "58a04dd3cf1e09e0d572f18db07c0024c93f41dc",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/h4ckf0r0day/obscura/blob/58a04dd3cf1e09e0d572f18db07c0024c93f41dc/README.md",
+        "https://github.com/h4ckf0r0day/obscura/blob/58a04dd3cf1e09e0d572f18db07c0024c93f41dc/SECURITY.md",
+        "https://github.com/h4ckf0r0day/obscura/blob/58a04dd3cf1e09e0d572f18db07c0024c93f41dc/LICENSE",
+        "https://github.com/h4ckf0r0day/obscura/blob/58a04dd3cf1e09e0d572f18db07c0024c93f41dc/.github/workflows/ci.yml"
+      ],
+      "profile_anchor": "11-browser-computer-use-sandbox/README.md#obscura-reread-2026-11-20"
     },
     {
       "name": "Stagehand",
