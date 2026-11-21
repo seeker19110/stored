@@ -273,6 +273,30 @@ README có ví dụ 30 dòng: server FastAPI phát `RUN_STARTED`, `TEXT_MESSAGE_
 
 **Dùng khi:** cần đưa agent vào giao diện người dùng (web, mobile, Slack/Teams, terminal) mà không viết giao thức stream riêng cho từng framework; cần shared state hai chiều, tool chạy phía app hoặc duyệt của người giữa lượt chạy. Liên quan: §1 (bản đồ giao thức), §4b.3 (A2UI), §4c (bộ conformance của MCP/A2A), mục 06 §7p (OpenUI, Tambo dùng sự kiện AG-UI).
 
+<a id="awesome-mcp-servers-reread-2026-11-21"></a>
+## 4h. Kiểm ảnh trang repo `punkpeye/awesome-mcp-servers` (ảnh người dùng gửi, đọc 21/11/2026)
+
+> Ảnh chụp trang GitHub: 97,8k★, 20,2k fork, 15.249 commit, 3.940 contributor, commit gần nhất `5fb385c` (14 giờ trước), MIT. Đối chiếu với clone `blob:none` tại `5fb385c3c56a004eacad6a21cb446205c787926b` (commit 16/11/2026) và GitHub search API 21/11/2026. Mức `docs-read`; không kiểm từng server trong danh sách.
+
+| Ô trong ảnh | Kết quả | Ghi chú |
+|---|---|---|
+| 15.249 commit, HEAD `5fb385c` | ✅ khớp | Đúng với clone (`git rev-list --count`: 15.249) |
+| 97,8k★ / 20,2k fork | ✅ → nay **98.334★ / 20.539 fork** | Ảnh cũ vài ngày; GitHub search API 21/11/2026 |
+| MIT | ✅ | LICENSE trong repo |
+| 3.940 contributor | chưa kiểm | Số do GitHub hiển thị, không kiểm lại bằng API |
+| "A collection of MCP servers" | ✅ | Mô tả repo |
+
+**Cấu trúc và đặc điểm (đọc `README.md`, `CONTRIBUTING.md`, workflow):**
+- `README.md` 5.450 dòng, **4.982 dòng mục server**, 10 mục `##`; thêm bản dịch (fa, ja, ko, pt-BR, th, zh, zh-TW). Khoảng **521** dòng gắn 🎖️ (server chính chủ). Không có mã thực thi nào của danh sách ngoài workflow.
+- **Phạm vi:** chỉ server có **repo GitHub công khai tự cài/chạy**; server chỉ-từ-xa (URL hosted) thuộc `awesome-remote-mcp-servers`. Dùng bảng này cùng `modelcontextprotocol/servers` (mục này) và `VoltAgent/official-mcp-servers` (§2c) để chọn.
+- **Một người chi phối:** Frank Fiegel (`punkpeye`) **6.252/15.249 commit (~41%)**; người kế tiếp 96 commit. Bus factor cao, nhưng nhiều contributor chỉ thêm một dòng.
+- **Gắn với doanh nghiệp của chủ repo (glama.ai):** README có banner quảng cáo ("ray.run", liên kết `glama.ai/advertise` đánh dấu *Ad*), huy hiệu Discord/subreddit của Glama, và khoảng **3.699 dòng gắn huy hiệu điểm của Glama** (`glama.ai/mcp/servers/.../badges/score.svg`). Workflow `check-glama.yml` bắt PR phải có liên kết Glama. Đây không phải sai, nhưng nghĩa là **thứ hạng/điểm hiển thị là của dịch vụ thương mại**, và danh sách hướng người dùng về Glama.
+- **Đường tắt cho agent:** `CONTRIBUTING.md` ghi PR của agent tự động được **merge nhanh** nếu thêm `🤖🤖🤖` vào tiêu đề. Nghĩa là có thể tin ít hơn vào việc mỗi mục đã được người đọc kiểm. Workflow dùng `pull_request_target` (quyền ghi PR/issue); tôi chỉ đọc đầu file, **không đánh giá an toàn** của workflow.
+
+**Dùng thế nào:** coi đây là **mục lục để tìm ứng viên**, không phải bảo chứng. Trước khi cài một server từ danh sách, đọc mã/quyền của chính repo đó (xem mẫu kiểm MCP ở các mục trên): danh sách không kiểm license, quyền ghi hay telemetry của từng server. Với nhu cầu chỉ server chính chủ, dùng `VoltAgent/official-mcp-servers` hoặc registry chính thức.
+
+**Nguồn §4h:** clone github.com/punkpeye/awesome-mcp-servers 21/11/2026 (blob:none, 15.249 commit, HEAD 5fb385c; `README.md`, `CONTRIBUTING.md`, `LICENSE`, `.github/workflows/check-glama.yml`, `git shortlog`) · GitHub search API (số sao/fork) 21/11/2026 · ảnh trang repo do người dùng cung cấp
+
 ## 5. Nguồn
 
 - https://en.wikipedia.org/wiki/Model_Context_Protocol · https://github.com/wong2/awesome-mcp-servers · https://github.com/sadekxD/Awesome-MCP · https://uibakery.io/blog/best-mcp-servers

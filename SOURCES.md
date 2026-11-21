@@ -2064,3 +2064,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-21b (rà telemetry 7 plugin trong ảnh)
 
 - Mục 20 §3ze: clone 21/11/2026 (blob:none) `obra/superpowers` 22f0b46, `JuliusBrussee/caveman` a192894, `thedotmack/claude-mem` f1bb834, `Graphify-Labs/graphify` b582ad4, `DietrichGebert/ponytail` 96608e0, `Egonex-AI/Understand-Anything` bb70fdb, `vercel-labs/agent-skills` 5a37a63. Mức docs-read kèm đọc mã ở các file telemetry/hook nêu trong mục; không cài, không chạy. Catalog không đổi số hồ sơ (1578).
+
+## Bổ sung 2026-11-21c (awesome-mcp-servers, ảnh trang repo)
+
+- `punkpeye/awesome-mcp-servers`: clone 21/11/2026 (blob:none, 15.249 commit, HEAD 5fb385c); 98.334★/20.539 fork (GitHub search API), MIT. Ảnh người dùng gửi khớp commit/HEAD; đếm ~4.982 mục, ~521 chính chủ, ~3.699 huy hiệu Glama. Mục 04 §4h; catalog không đổi số hồ sơ (1578).

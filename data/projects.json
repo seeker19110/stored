@@ -5699,12 +5699,22 @@
       "repo": "punkpeye/awesome-mcp-servers",
       "category": "awesome-list",
       "license": "MIT",
-      "stars": 97133,
+      "stars": 98334,
       "open_source": true,
-      "notes": "Danh sách MCP lớn nhất, không lọc chính chủ; ★ đọc 12/10/2026; ★ 31/10/2026: 97.133 (GitHub API)",
+      "notes": "Danh sách MCP lớn nhất, không lọc chính chủ; ★ đọc 12/10/2026; ★ 31/10/2026: 97.133 (GitHub API) Đọc 21/11/2026 (04 §4h, docs-read): 15.249 commit, ~41% do một người (punkpeye), ~4.982 mục, ~521 chính chủ; banner quảng cáo và ~3.699 huy hiệu Glama (dịch vụ thương mại của chủ repo); PR của agent merge nhanh nếu thêm 🤖🤖🤖; không kiểm từng server. ★ 21/11/2026: 98.334 (GitHub search API).",
       "section": "04",
       "id": "awesome-mcp-servers-punkpeye",
-      "profile_path": "04-protocols-standards/README.md"
+      "profile_path": "04-protocols-standards/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "5fb385c3c56a004eacad6a21cb446205c787926b",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/punkpeye/awesome-mcp-servers/blob/5fb385c3c56a004eacad6a21cb446205c787926b/README.md",
+        "https://github.com/punkpeye/awesome-mcp-servers/blob/5fb385c3c56a004eacad6a21cb446205c787926b/CONTRIBUTING.md",
+        "https://github.com/punkpeye/awesome-mcp-servers/blob/5fb385c3c56a004eacad6a21cb446205c787926b/LICENSE",
+        "https://github.com/punkpeye/awesome-mcp-servers/blob/5fb385c3c56a004eacad6a21cb446205c787926b/.github/workflows/check-glama.yml"
+      ],
+      "profile_anchor": "04-protocols-standards/README.md#awesome-mcp-servers-reread-2026-11-21"
     },
     {
       "name": "VoltAgent",
