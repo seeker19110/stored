@@ -1539,12 +1539,22 @@
       "repo": "vercel-labs/agent-browser",
       "category": "browser-agent",
       "license": "Apache-2.0",
-      "stars": 46938,
-      "open_source": false,
-      "notes": "CLI Rust; hồ sơ đầy đủ mục 11 §1h.2 (31/10/2026): 45k★, v0.41.0, CLI Rust; hàng rào opt-in: auth vault mã hóa, --allowed-domains, --action-policy (fail closed), --confirm-actions, --content-boundaries, --max-output; MCP server; không thấy telemetry; 582 issue+PR tồn, test mỏng; ★ 31/10/2026: 45.034 (GitHub API); ★ 8/11/2026: 46.938 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb)",
+      "stars": 53133,
+      "open_source": true,
+      "notes": "CLI Rust; hồ sơ đầy đủ mục 11 §1h.2 (31/10/2026): 45k★, v0.41.0, CLI Rust; hàng rào opt-in: auth vault mã hóa, --allowed-domains, --action-policy (fail closed), --confirm-actions, --content-boundaries, --max-output; MCP server; không thấy telemetry; 582 issue+PR tồn, test mỏng; ★ 31/10/2026: 45.034 (GitHub API); ★ 8/11/2026: 46.938 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb) Đọc lại 21/11/2026 (11 §1i.2c, docs-read): v0.43.0, 870 commit/122 tác giả; thêm saved flows (thử nghiệm, phát lại request) và skill Modern Web Guidance; cờ an toàn vẫn có trong mã, README không còn mục Security riêng; không thấy telemetry; CI không ghim SHA; sửa open_source false→true. ★ 21/11/2026: 53.133 (GitHub search API).",
       "section": "11",
       "id": "agent-browser",
-      "profile_path": "11-browser-computer-use-sandbox/README.md"
+      "profile_path": "11-browser-computer-use-sandbox/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "1fde6b90e8f17474b2f122d4b4ce43a7fa0a6aa0",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/vercel-labs/agent-browser/blob/1fde6b90e8f17474b2f122d4b4ce43a7fa0a6aa0/README.md",
+        "https://github.com/vercel-labs/agent-browser/blob/1fde6b90e8f17474b2f122d4b4ce43a7fa0a6aa0/CHANGELOG.md",
+        "https://github.com/vercel-labs/agent-browser/blob/1fde6b90e8f17474b2f122d4b4ce43a7fa0a6aa0/package.json",
+        "https://github.com/vercel-labs/agent-browser/blob/1fde6b90e8f17474b2f122d4b4ce43a7fa0a6aa0/.github/workflows/ci.yml"
+      ],
+      "profile_anchor": "11-browser-computer-use-sandbox/README.md#agent-browser-reread-2026-11-21"
     },
     {
       "name": "Browserbase MCP (self-host, archived)",

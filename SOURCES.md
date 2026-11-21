@@ -2068,3 +2068,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-21c (awesome-mcp-servers, ảnh trang repo)
 
 - `punkpeye/awesome-mcp-servers`: clone 21/11/2026 (blob:none, 15.249 commit, HEAD 5fb385c); 98.334★/20.539 fork (GitHub search API), MIT. Ảnh người dùng gửi khớp commit/HEAD; đếm ~4.982 mục, ~521 chính chủ, ~3.699 huy hiệu Glama. Mục 04 §4h; catalog không đổi số hồ sơ (1578).
+
+## Bổ sung 2026-11-21d (agent-browser v0.43.0, ảnh README)
+
+- `vercel-labs/agent-browser`: clone 21/11/2026 (blob:none, 870 commit, HEAD 1fde6b9); 53.133★/3.717 fork (GitHub search API), v0.43.0, Apache-2.0; đọc CHANGELOG 0.42–0.43, grep cờ an toàn và telemetry. Mục 11 §1i.2c; sửa `open_source` false→true; catalog vẫn 1578. Chưa cài/chạy.
