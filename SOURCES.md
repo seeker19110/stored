@@ -2060,3 +2060,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 ## Bổ sung 2026-11-21 (làm mới số sao 10 plugin từ ảnh bảng xếp hạng)
 
 - Ảnh bảng "plugin" (10 dòng: superpowers, mattpocock/skills, ponytail, graphify, caveman, claude-mem, Understand-Anything, impeccable, chrome-devtools-mcp, vercel-labs/agent-skills) do người dùng gửi. Cả 10 repo **đã có** trong catalog; số sao trong ảnh thấp hơn catalog (ảnh cũ, và thứ hạng khác: `mattpocock/skills` hiện vượt `obra/superpowers`). Đã làm mới `stars` bằng GitHub search API 21/11/2026; không đọc lại mã nên không đổi `last_verified_at`. Mô tả tiếng Việt trong ảnh là của trang nguồn ảnh, chưa kiểm.
+
+## Bổ sung 2026-11-21b (rà telemetry 7 plugin trong ảnh)
+
+- Mục 20 §3ze: clone 21/11/2026 (blob:none) `obra/superpowers` 22f0b46, `JuliusBrussee/caveman` a192894, `thedotmack/claude-mem` f1bb834, `Graphify-Labs/graphify` b582ad4, `DietrichGebert/ponytail` 96608e0, `Egonex-AI/Understand-Anything` bb70fdb, `vercel-labs/agent-skills` 5a37a63. Mức docs-read kèm đọc mã ở các file telemetry/hook nêu trong mục; không cài, không chạy. Catalog không đổi số hồ sơ (1578).

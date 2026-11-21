@@ -2865,10 +2865,17 @@
       "license": "MIT",
       "stars": 93463,
       "open_source": true,
-      "notes": "Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026); cập nhật 30/10/2026: 89k★, 866 commit/85 tác giả, chỉ 7 commit từ 12/10, 126 issue/211 PR mở, plugin 2.9.8 (tag cuối v2.9.0 7/2026), 10 agent/9 skill gồm /understand-figma (Figma REST API), 2 hook, không telemetry; mục 01 §3b.5; ★ 31/10/2026: 89.410 (GitHub API) ★ 21/11/2026: 93.463 (GitHub search API).",
+      "notes": "Codebase → knowledge graph: Tree-sitter + LLM, 7 agent, dashboard, đa host, output vi; trending +2.331★/ngày (12/10/2026); cập nhật 30/10/2026: 89k★, 866 commit/85 tác giả, chỉ 7 commit từ 12/10, 126 issue/211 PR mở, plugin 2.9.8 (tag cuối v2.9.0 7/2026), 10 agent/9 skill gồm /understand-figma (Figma REST API), 2 hook, không telemetry; mục 01 §3b.5; ★ 31/10/2026: 89.410 (GitHub API) ★ 21/11/2026: 93.463 (GitHub search API). Rà 21/11/2026 (20 §3ze): không thấy telemetry; kết nối ngoài chỉ cho nguồn Figma.",
       "section": "01",
       "id": "understand-anything",
-      "profile_path": "01-ai-coding-agents/README.md"
+      "profile_path": "01-ai-coding-agents/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "bb70fdb0489f8839ce55bf99dae0125ea067f712",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Egonex-AI/Understand-Anything/blob/bb70fdb0489f8839ce55bf99dae0125ea067f712/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "gh-aw (GitHub Agentic Workflows)",
@@ -3606,10 +3613,17 @@
       "license": "MIT",
       "stars": 322943,
       "open_source": true,
-      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.1 (31/10/2026): 310k★, v7.0.1, 686 commit, 195 issue/180 PR mở, KHÔNG có CI (.github/workflows), eval Quorum ở repo riêng prime-radiant-inc/superpowers-evals (không license); 1 hook SessionStart chèn using-superpowers; logo visual companion tải từ web kèm phiên bản (tắt SUPERPOWERS_DISABLE_TELEMETRY=1); TDD xóa code viết trước test; ★ 31/10/2026: 310.036 (GitHub API); ★ 8/11/2026: 314.177 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb) ★ 21/11/2026: 322.943 (GitHub search API).",
+      "notes": "Bộ skill quy trình brainstorm→plan→TDD→review; projects-template đối chiếu; v7.0.0, 15 skill lõi, 684 commit (đọc 12/10/2026); ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); hồ sơ đầy đủ mục 20 §3o.1 (31/10/2026): 310k★, v7.0.1, 686 commit, 195 issue/180 PR mở, KHÔNG có CI (.github/workflows), eval Quorum ở repo riêng prime-radiant-inc/superpowers-evals (không license); 1 hook SessionStart chèn using-superpowers; logo visual companion tải từ web kèm phiên bản (tắt SUPERPOWERS_DISABLE_TELEMETRY=1); TDD xóa code viết trước test; ★ 31/10/2026: 310.036 (GitHub API); ★ 8/11/2026: 314.177 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb) ★ 21/11/2026: 322.943 (GitHub search API). Rà 21/11/2026 (20 §3ze): telemetry mặc định bật nhưng chỉ là ảnh logo kèm phiên bản (tắt SUPERPOWERS_DISABLE_TELEMETRY/DISABLE_TELEMETRY).",
       "section": "20",
       "id": "superpowers",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "compound-engineering-plugin",
@@ -4030,10 +4044,17 @@
       "license": "Apache-2.0",
       "stars": 118686,
       "open_source": true,
-      "notes": "11 hook/9 sự kiện ghi phiên → worker Bun 127.0.0.1:37777 gọi model nén thành observation; SQLite FTS5 + Chroma ở ~/.claude-mem; 4 tool MCP truy xuất 3 lớp; File Read Gate chặn đọc nguyên file code ≥32 KB (có eval); telemetry PostHog BẬT mặc định (DO_NOT_TRACK=1), model nén mặc định qua Claude Agent SDK dùng token OAuth → tốn quota gói; installer mời đăng nhập cmem.ai (observer hosted, trial 30 ngày), Cloud Sync tuỳ chọn đẩy cả prompt; v15.6.0, 3.767 commit; 106k★/9,3k fork (30/10/2026, shields); hồ sơ mục 10 §4e; ★ 31/10/2026: 107.804 (GitHub API) ★ 21/11/2026: 118.686 (GitHub search API).",
+      "notes": "11 hook/9 sự kiện ghi phiên → worker Bun 127.0.0.1:37777 gọi model nén thành observation; SQLite FTS5 + Chroma ở ~/.claude-mem; 4 tool MCP truy xuất 3 lớp; File Read Gate chặn đọc nguyên file code ≥32 KB (có eval); telemetry PostHog BẬT mặc định (DO_NOT_TRACK=1), model nén mặc định qua Claude Agent SDK dùng token OAuth → tốn quota gói; installer mời đăng nhập cmem.ai (observer hosted, trial 30 ngày), Cloud Sync tuỳ chọn đẩy cả prompt; v15.6.0, 3.767 commit; 106k★/9,3k fork (30/10/2026, shields); hồ sơ mục 10 §4e; ★ 31/10/2026: 107.804 (GitHub API) ★ 21/11/2026: 118.686 (GitHub search API). Rà 21/11/2026 (20 §3ze): analytics mặc định bật (`claude-mem telemetry disable`); cloud sync opt-in; spool hook từ xa chưa đọc điều kiện.",
       "section": "10",
       "id": "claude-mem",
-      "profile_path": "10-local-llm-rag-memory/README.md"
+      "profile_path": "10-local-llm-rag-memory/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "f1bb834527637231e23575e2a70c57375efdac04",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/thedotmack/claude-mem/blob/f1bb834527637231e23575e2a70c57375efdac04/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "Serena",
@@ -5975,10 +5996,17 @@
       "license": "Apache-2.0",
       "stars": 151242,
       "open_source": true,
-      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng); hồ sơ đầy đủ mục 16 §2e (31/10/2026): 140k★/13k fork, v0.9.99, 2.675 commit/408 tác giả, 722 issue/920 PR mở, PyPI `graphifyy` (hai chữ y), không telemetry, query log tắt mặc định, hook PreToolUse đẩy agent sang graph, action CI ghim tag không ghim SHA; ★ 31/10/2026: 140.015 (GitHub API); kiểm ảnh \"graphify in 5 steps\" 3/11/2026 (mục 16 §2e.5): 3✅/2⚠️, ô lệnh bị cắt mất tên graphifyy, \"no AI\" chỉ đúng với code; v0.9.101, schema cache AST 32→36 trong 3 ngày; ★ 3/11/2026: 141.191 (GitHub search API) ★ 21/11/2026: 151.242 (GitHub search API).",
+      "notes": "Codebase → knowledge graph truy vấn được cho agent; tree-sitter AST tất định, không LLM/không vector cho code, cạnh gắn nhãn EXTRACTED/INFERRED; skill /graphify, cài PyPI graphifyy (có provenance); YC S26 + Graphify Cloud thương mại; benchmark tự công bố (chưa xác minh); ★ shields 126k 12/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); tên cũ safishamsi/graphify (cùng HEAD, GitHub chuyển hướng); hồ sơ đầy đủ mục 16 §2e (31/10/2026): 140k★/13k fork, v0.9.99, 2.675 commit/408 tác giả, 722 issue/920 PR mở, PyPI `graphifyy` (hai chữ y), không telemetry, query log tắt mặc định, hook PreToolUse đẩy agent sang graph, action CI ghim tag không ghim SHA; ★ 31/10/2026: 140.015 (GitHub API); kiểm ảnh \"graphify in 5 steps\" 3/11/2026 (mục 16 §2e.5): 3✅/2⚠️, ô lệnh bị cắt mất tên graphifyy, \"no AI\" chỉ đúng với code; v0.9.101, schema cache AST 32→36 trong 3 ngày; ★ 3/11/2026: 141.191 (GitHub search API) ★ 21/11/2026: 151.242 (GitHub search API). Rà 21/11/2026 (20 §3ze): README \"No telemetry\", grep không mâu thuẫn; CTA Graphify Cloud chỉ ở CLI tương tác.",
       "section": "16",
       "id": "graphify",
-      "profile_path": "16-docs-tools/README.md"
+      "profile_path": "16-docs-tools/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "b582ad401aaef4378935ec6620e3b165ae8e03c1",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/Graphify-Labs/graphify/blob/b582ad401aaef4378935ec6620e3b165ae8e03c1/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "codegraph",
@@ -6936,10 +6964,17 @@
       "license": "MIT",
       "stars": 195723,
       "open_source": true,
-      "notes": "Prompt 52 dòng \"lazy senior dev\": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật 31/10/2026 (mục 20 §3p.2): 181k★, v5.3.3, prompt lõi không đổi; thêm band (UI chi phí/token/test trên Claude Code ≥2.1.290), board HTML cục bộ ~/.config/ponytail/band, codebase map regex lúc SessionStart, webhook tùy chọn mặc định gửi kèm tên; ★ 31/10/2026: 181.505 (GitHub API) ★ 21/11/2026: 195.723 (GitHub search API).",
+      "notes": "Prompt 52 dòng \"lazy senior dev\": thang 6 bậc trước khi viết code, không cắt validation/bảo mật/a11y, logic phải có 1 test, comment shortcut:; /ponytail-review, -audit, -debt; adapter 20 harness; benchmark tự chạy 585 phiên (-53% LOC, -26% chi phí, độ đúng ngang); không telemetry; ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật 31/10/2026 (mục 20 §3p.2): 181k★, v5.3.3, prompt lõi không đổi; thêm band (UI chi phí/token/test trên Claude Code ≥2.1.290), board HTML cục bộ ~/.config/ponytail/band, codebase map regex lúc SessionStart, webhook tùy chọn mặc định gửi kèm tên; ★ 31/10/2026: 181.505 (GitHub API) ★ 21/11/2026: 195.723 (GitHub search API). Rà 21/11/2026 (20 §3ze): không thấy telemetry; band hook gọi webhook chỉ khi người dùng cấu hình.",
       "section": "20",
       "id": "ponytail",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "96608e078b2d5ea607c5c3b8b5a54d1c1fba6846",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/DietrichGebert/ponytail/blob/96608e078b2d5ea607c5c3b8b5a54d1c1fba6846/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "andrej-karpathy-skills",
@@ -6984,10 +7019,17 @@
       "license": "Apache-2.0",
       "stars": 121815,
       "open_source": true,
-      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật mục 20 §3g.6 (31/10/2026): 116k★, 1.886 commit, 63 issue/68 PR mở, bin-v4.0.2 vá Go CVE, ENABLE_TOOL_SEARCH mặc định true, telemetry CLI vẫn bật mặc định (IP giữ 90 ngày); ★ 31/10/2026: 116.520 (GitHub API); ★ 8/11/2026: 118.188 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb) ★ 21/11/2026: 121.815 (GitHub search API).",
+      "notes": "Skill trả lời ngắn → từ 4.0 là proxy cục bộ 6 module (nén input, Auto chọn model qua Caveman Cloud, Blocks, giữ cache ấm, browse); JetBrains A/B độc lập 8,5% ít output token; telemetry CLI bật mặc định, Auto gửi prompt kèm CLAUDE.md lên cloud; Apache-2.0 từ 3.0.0 (trước BSL); ★ 14/10/2026; ★ 30/10/2026 (shields, ảnh LapTrinhWebAI mục 20 §3k); cập nhật mục 20 §3g.6 (31/10/2026): 116k★, 1.886 commit, 63 issue/68 PR mở, bin-v4.0.2 vá Go CVE, ENABLE_TOOL_SEARCH mặc định true, telemetry CLI vẫn bật mặc định (IP giữ 90 ngày); ★ 31/10/2026: 116.520 (GitHub API); ★ 8/11/2026: 118.188 (GitHub search API, ảnh \"8 plugin, 8 kỹ năng, 8 MCP\" mục 20 §3zb) ★ 21/11/2026: 121.815 (GitHub search API). Rà 21/11/2026 (20 §3ze): CLI gửi usage stats + IP mặc định (tắt `caveman telemetry off`/DO_NOT_TRACK=1); gateway/dashboard có gửi dữ liệu; license kép chưa kiểm.",
       "section": "20",
       "id": "caveman",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "a192894723a8f47e7f504c7b5041967ff1f18e55",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/JuliusBrussee/caveman/blob/a192894723a8f47e7f504c7b5041967ff1f18e55/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "Impeccable",
@@ -7015,10 +7057,17 @@
       "license": "MIT (README; không có file LICENSE)",
       "stars": 34621,
       "open_source": true,
-      "notes": "9 skill chính chủ Vercel: react-best-practices (có build/validate CI), web-design-guidelines, writing-guidelines, react-native, view-transitions, deploy-to-vercel, vercel-optimize (60+ file test); commit cuối 28/8/2026, 112 PR mở; ★ 14/10/2026; cập nhật 31/10/2026 (mục 20 §3n.2): 33k★, 5 commit từ 14/10, 121 PR mở, vẫn không có file LICENSE; react-best-practices 72 rule; web-design-guidelines/writing-guidelines tải chỉ dẫn từ nhánh main mỗi lần (không ghim); deploy-to-vercel fallback `npx vercel@latest deploy --temporary` đưa bản build lên URL công khai tạm; ★ 31/10/2026: 33.309 (GitHub API) ★ 21/11/2026: 34.621 (GitHub search API).",
+      "notes": "9 skill chính chủ Vercel: react-best-practices (có build/validate CI), web-design-guidelines, writing-guidelines, react-native, view-transitions, deploy-to-vercel, vercel-optimize (60+ file test); commit cuối 28/8/2026, 112 PR mở; ★ 14/10/2026; cập nhật 31/10/2026 (mục 20 §3n.2): 33k★, 5 commit từ 14/10, 121 PR mở, vẫn không có file LICENSE; react-best-practices 72 rule; web-design-guidelines/writing-guidelines tải chỉ dẫn từ nhánh main mỗi lần (không ghim); deploy-to-vercel fallback `npx vercel@latest deploy --temporary` đưa bản build lên URL công khai tạm; ★ 31/10/2026: 33.309 (GitHub API) ★ 21/11/2026: 34.621 (GitHub search API). Rà 21/11/2026 (20 §3ze): tập skill, không thấy mã telemetry; skill triển khai dùng token Vercel.",
       "section": "20",
       "id": "vercel-agent-skills",
-      "profile_path": "20-claude-plugins-ecosystem/README.md"
+      "profile_path": "20-claude-plugins-ecosystem/README.md",
+      "last_verified_at": "2026-11-21",
+      "verified_ref": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+      "verification_level": "docs-read",
+      "sources": [
+        "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/README.md"
+      ],
+      "profile_anchor": "20-claude-plugins-ecosystem/README.md#telemetry-sweep-2026-11-21"
     },
     {
       "name": "BrewUI",
