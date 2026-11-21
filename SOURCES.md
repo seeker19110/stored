@@ -2056,3 +2056,7 @@ Kiểm đối kháng: mỗi nhóm chọn bốn nhóm claim làm đổi quyết �
 
 - `GoogleChrome/modern-web-guidance`: clone 20/11/2026 (217 commit, HEAD 64a6d70, 195 commit do github-actions[bot]); 23.932★ (GitHub search API), v1.0.1, Apache-2.0, 0 issue/PR mở.
 - `GoogleChrome/modern-web-guidance-src` (hồ sơ mới): clone 20/11/2026 (1.663 commit, HEAD 634d0f8); 9.521★, 309 issue/75 PR mở; đọc mã telemetry (Clearcut, mặc định bật, opt-out `DISABLE_TELEMETRY`), `legacy-scan`, GOVERNANCE. Mục 08 §6c.6; catalog +1 = 1578. Chưa cài/chạy CLI.
+
+## Bổ sung 2026-11-21 (làm mới số sao 10 plugin từ ảnh bảng xếp hạng)
+
+- Ảnh bảng "plugin" (10 dòng: superpowers, mattpocock/skills, ponytail, graphify, caveman, claude-mem, Understand-Anything, impeccable, chrome-devtools-mcp, vercel-labs/agent-skills) do người dùng gửi. Cả 10 repo **đã có** trong catalog; số sao trong ảnh thấp hơn catalog (ảnh cũ, và thứ hạng khác: `mattpocock/skills` hiện vượt `obra/superpowers`). Đã làm mới `stars` bằng GitHub search API 21/11/2026; không đọc lại mã nên không đổi `last_verified_at`. Mô tả tiếng Việt trong ảnh là của trang nguồn ảnh, chưa kiểm.
